@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment PLP - Boss Style</title>
+    <!-- PapaParse voor het makkelijk inlezen van de Google Sheet CSV -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <style>
+        :root {
+            --boss-red: #cc2027; /* Benadering van de Boss rode kleur */
+            --boss-black: #111111;
+            --boss-gray: #f4f4f4;
+            --text-dark: #333;
+            --text-light: #777;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--boss-gray);
+            color: var(--text-dark);
+        }
+
+        header {
+            background-color: #fff;
+            padding: 20px;
+            border-bottom: 2px solid var(--boss-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--boss-black);
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        header h1 span {
+            color: var(--boss-red);
+        }
+
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sidebar Filters */
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            padding-right: 20px;
+        }
+
+        .filter-group {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .filter-group h3 {
+            margin-top: 0;
+            font-size: 16px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .tab.active {
+            background-color: var(--boss-black);
+            color: #fff;
+            border-color: var(--boss-black);
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Product Card */
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-image-placeholder {
+            height: 200px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--boss-red);
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .card-content {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+            color: var(--boss-black);
+        }
+
+        .card-specs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .spec-tag {
+            background: var(--boss-gray);
+            padding: 4px 8px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+        }
+
+        .card-price {
+            font-size: 22px;
+            font-weight: 900;
+            margin-top: auto;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .new-price {
+            color: var(--boss-red);
+        }
+
+        .countdown {
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #fff3f3;
+            border: 1px solid var(--boss-red);
+            border-radius: 4px;
+            color: var(--boss-red);
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>BOSS <span>MACHINERY</span> Clone</h1>
+    </header>
+
+    <div class="container">
+        <!-- Filters -->
+        <aside class="sidebar">
+            <h2>Filters</h2>
+            <div class="filter-group">
+                <h3>Platform</h3>
+                <select id="filter-platform" onchange="applyFilters()">
+                    <option value="">Alle</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Merk</h3>
+                <select id="filter-merk" onchange="applyFilters()">
+                    <option value="">Alle</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Bouwjaar</h3>
+                <select id="filter-bouwjaar" onchange="applyFilters()">
+                    <option value="">Alle</option>
+                </select>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('listings')" id="tab-listings">Gewone Listings</div>
+                <div class="tab" onclick="switchTab('auctions')" id="tab-auctions">Veilingen</div>
+            </div>
+
+            <div class="grid" id="product-grid">
+                <!-- Product kaarten worden hier geladen met JavaScript -->
+                <p>Data aan het laden uit Google Sheets...</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Vervang deze URL met jouw "Gepubliceerd op internet" CSV link van de Google Sheet
+        const sheetCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS2MZR5mkooWA08Y3GcQAbkAK_SjN0lORb5mth5VVI0fu54XFjksN9HFH_drlAii3O3MYNiCz0OvLbZ/pub?gid=0&single=true&output=csv';
+        
+        let allData = [];
+        let currentTab = 'listings'; // 'listings' of 'auctions'
+
+        // Data inladen
+        Papa.parse(sheetCSVUrl, {
+            download: true,
+            header: true,
+            complete: function(results) {
+                allData = results.data.filter(row => row.Merk && row.Model); // Filter lege rijen eruit
+                populateFilters();
+                renderGrid();
+            }
+        });
+
+        // Tabbladen wisselen
+        function switchTab(tab) {
+            currentTab = tab;
+            document.getElementById('tab-listings').classList.toggle('active', tab === 'listings');
+            document.getElementById('tab-auctions').classList.toggle('active', tab === 'auctions');
+            renderGrid();
+        }
+
+        // Filters vullen op basis van unieke waarden in de data
+        function populateFilters() {
+            const platforms = [...new Set(allData.map(item => item.Platform))].filter(Boolean);
+            const merken = [...new Set(allData.map(item => item.Merk))].filter(Boolean);
+            const bouwjaren = [...new Set(allData.map(item => item.Bouwjaar))].filter(Boolean).sort((a,b)=>b-a);
+
+            const fillSelect = (id, arr) => {
+                const select = document.getElementById(id);
+                arr.forEach(val => select.innerHTML += `<option value="${val}">${val}</option>`);
+            };
+
+            fillSelect('filter-platform', platforms);
+            fillSelect('filter-merk', merken);
+            fillSelect('filter-bouwjaar', bouwjaren);
+        }
+
+        function applyFilters() {
+            renderGrid();
+        }
+
+        // Bereken tijd tot veiling afloopt
+        function getCountdown(endTimeString) {
+            if (!endTimeString) return '';
+            const end = new Date(endTimeString);
+            const now = new Date();
+            const diff = end - now;
+
+            if (diff <= 0) return 'Veiling afgelopen';
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            return `Nog ${days}d ${hours}u`;
+        }
+
+        // Grid renderen
+        function renderGrid() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            const filterPlatform = document.getElementById('filter-platform').value;
+            const filterMerk = document.getElementById('filter-merk').value;
+            const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
+
+            const filteredData = allData.filter(row => {
+                // Check of het een veiling is (Kolom N of O bevat data)
+                const isAuction = (row['Aantal biedingen'] && row['Aantal biedingen'].trim() !== '') || 
+                                  (row['Veiling loopt af op'] && row['Veiling loopt af op'].trim() !== '');
+
+                // Tab filter
+                if (currentTab === 'listings' && isAuction) return false;
+                if (currentTab === 'auctions' && !isAuction) return false;
+
+                // User filters
+                if (filterPlatform && row.Platform !== filterPlatform) return false;
+                if (filterMerk && row.Merk !== filterMerk) return false;
+                if (filterBouwjaar && row.Bouwjaar !== filterBouwjaar) return false;
+
+                return true;
+            });
+
+            if (filteredData.length === 0) {
+                grid.innerHTML = '<p>Geen resultaten gevonden.</p>';
+                return;
+            }
+
+            filteredData.forEach(row => {
+                const isAuction = currentTab === 'auctions';
+                
+                // Prijs logica
+                let priceHtml = `<div class="card-price">${row['Laatste prijs'] || 'Op aanvraag'}</div>`;
+                if (row['Eerste prijs'] && row['Laatste prijs'] && row['Eerste prijs'] !== row['Laatste prijs']) {
+                    priceHtml = `<div class="card-price"><span class="old-price">${row['Eerste prijs']}</span> <span class="new-price">${row['Laatste prijs']}</span></div>`;
+                }
+
+                // Veiling logica
+                let auctionHtml = '';
+                if (isAuction) {
+                    auctionHtml = `<div class="countdown">⏱ ${getCountdown(row['Veiling loopt af op'])} | Biedingen: ${row['Aantal biedingen'] || 0}</div>`;
+                }
+
+                const card = `
+                    <div class="card">
+                        ${row.Status === 'Afgeprijsd' ? '<div class="badge">Afgeprijsd</div>' : ''}
+                        <div class="card-image-placeholder">Afbeelding hier</div>
+                        <div class="card-content">
+                            <h3 class="card-title">${row.Merk} ${row.Model}</h3>
+                            <div class="card-specs">
+                                <span class="spec-tag">${row.Bouwjaar || 'N/A'}</span>
+                                <span class="spec-tag">${row.Draaiuren || 'N/A'}</span>
+                            </div>
+                            ${priceHtml}
+                            ${auctionHtml}
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        // Optioneel: Countdown elke minuut updaten (zodat de tijd live aftikt zonder refresh)
+        setInterval(() => {
+            if (currentTab === 'auctions') {
+                renderGrid();
+            }
+        }, 60000);
+
+    </script>
+</body>
+</html>
