@@ -127,6 +127,16 @@
             border-top-color: var(--boss-red);
         }
 
+        /* Stijl voor afgelopen veilingen (transparant grijs vlak en klikbaar houden) */
+        .card.expired {
+            opacity: 0.55;
+            background-color: #e9e9e9;
+        }
+        .card.expired:hover {
+            transform: none;
+            border-top-color: transparent;
+        }
+
         .card-image-container {
             position: relative;
             height: 180px;
@@ -403,24 +413,27 @@
             return '📍';
         }
 
-        // Robuuste datum parser voor frontend fallback
+        // Geoptimaliseerde datum parser ter ondersteuning van zowel ISO als oude/assign notaties
         function parseAuctionDate(str) {
             if (!str) return null;
-            str = String(str).replace(/'/g, '').trim();
+            str = String(str).replace(/^'/, '').trim();
 
+            // 1. ISO format (bijv: 2026-10-15T12:01:00+0200)
             if (str.includes('T')) {
                 const d = new Date(str);
                 if (!isNaN(d.getTime())) return d;
             }
 
+            // 2. Countdown format
             if (/^\d+:\d{2}:\d{2}$/.test(str)) {
                 const parts = str.split(':').map(Number);
                 const ms = (parts[0] * 3600 + parts[1] * 60 + parts[2]) * 1000;
                 return new Date(Date.now() + ms);
             }
 
-            if (str.startsWith('assign.:')) {
-                str = str.replace('assign.:', '').trim();
+            // 3. Verwijder prefixen zoals "assign.:" of "Startet"
+            if (str.toLowerCase().startsWith('assign.:')) {
+                str = str.substring(8).trim();
             }
 
             if (/heute\s+um/i.test(str)) {
@@ -461,7 +474,8 @@
                 }
             }
 
-            const euMatch = str.match(/^(\d{2})-(\d{2})-(\d{4}),?\s*(\d{2}):(\d{2})$/);
+            // 4. Europese datumnotatie (bijv: 30-09-2026, 14:15 of 30-09-2026 14:15)
+            const euMatch = str.match(/^(\d{2})-(\d{2})-(\d{4})[, ]*\s*(\d{2}):(\d{2})$/);
             if (euMatch) {
                 const [, d, m, y, hh, mm] = euMatch;
                 return new Date(`${y}-${m}-${d}T${hh}:${mm}:00`);
@@ -504,7 +518,7 @@
             const now = new Date();
             const diff = end - now;
 
-            if (diff <= 0) return { text: 'Veiling afgelopen', isUrgent: false, timeValue: 0 };
+            if (diff <= 0) return { text: 'Veiling afgelopen', isUrgent: false, timeValue: diff };
 
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -549,15 +563,36 @@
                 return true;
             });
 
-            if (currentTab === 'auctions') {
-                filteredData.sort((a, b) => {
+            // Sortering aanpassen: lopende veilingen op tijd, afgelopen veilingen en verkochte items altijd onderaan
+            filteredData.sort((a, b) => {
+                if (currentTab === 'auctions') {
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
                     const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                    const now = new Date();
+
+                    const isExpiredA = !dateA || (dateA - now <= 0);
+                    const isExpiredB = !dateB || (dateB - now <= 0);
+
+                    // Als A is afgelopen en B niet, zet A onderaan (+1)
+                    if (isExpiredA && !isExpiredB) return 1;
+                    if (!isExpiredA && isExpiredB) return -1;
+
+                    // Beide actief of beide verlopen: sorteer op tijd
                     if (!dateA) return 1;
                     if (!dateB) return -1;
                     return dateA - dateB;
-                });
-            }
+                } else {
+                    // Voor listings: "Verkocht" items automatisch onderaan plaatsen
+                    const statusA = (a['Status'] || '').toLowerCase();
+                    const statusB = (b['Status'] || '').toLowerCase();
+                    const isSoldA = statusA.includes('verkocht');
+                    const isSoldB = statusB.includes('verkocht');
+
+                    if (isSoldA && !isSoldB) return 1;
+                    if (!isSoldA && isSoldB) return -1;
+                    return 0;
+                }
+            });
 
             if (filteredData.length === 0) {
                 grid.innerHTML = '<p>Geen machines gevonden met deze filters.</p>';
@@ -584,17 +619,22 @@
 
                 let badgeHtml = '';
                 let auctionHtml = '';
+                let isExpired = false;
 
                 if (isAuction) {
                     const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
                     if (countdownObj) {
                         const bidsCount = row['Aantal biedingen'] || '0';
-                        if (countdownObj.isUrgent) {
-                            badgeHtml = `<div class="badge badge-urgent">${countdownObj.text}</div>`;
-                        } else if (countdownObj.text === 'Veiling afgelopen') {
+                        if (countdownObj.text === 'Veiling afgelopen') {
                             badgeHtml = `<div class="badge badge-rood">Afgelopen</div>`;
+                            auctionHtml = `<div class="countdown" style="background:#eee; color:#666; border-color:#ccc;">Veiling afgelopen | Biedingen: ${bidsCount}</div>`;
+                            isExpired = true;
+                        } else if (countdownObj.isUrgent) {
+                            badgeHtml = `<div class="badge badge-urgent">${countdownObj.text}</div>`;
+                            auctionHtml = `<div class="countdown">${countdownObj.text} | Biedingen: ${bidsCount}</div>`;
+                        } else {
+                            auctionHtml = `<div class="countdown">${countdownObj.text} | Biedingen: ${bidsCount}</div>`;
                         }
-                        auctionHtml = `<div class="countdown">${countdownObj.text} | Biedingen: ${bidsCount}</div>`;
                     }
                 } else if (row.Status) {
                     let statusLower = row.Status.toLowerCase().trim();
@@ -621,9 +661,10 @@
                 }
 
                 const productUrl = row.Link ? row.Link : '#';
+                const expiredClass = isExpired ? ' expired' : '';
 
                 const card = `
-                    <a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card">
+                    <a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}">
                         ${badgeHtml}
                         <div class="card-image-container">
                             ${imageHtml}
