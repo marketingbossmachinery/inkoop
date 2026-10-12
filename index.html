@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>Equipment Platform - Boss Style</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <style>
@@ -396,7 +396,6 @@
             return '📍';
         }
 
-        // Geavanceerde datum parser die ook weekdagen (zoals "Donnerstag um 12:12") automatisch naar de juiste komende dag omrekent
         function parseAuctionDate(str) {
             if (!str) return null;
             str = str.trim();
@@ -416,7 +415,6 @@
                 str = str.replace('assign.:', '').trim();
             }
 
-            // Weekdag herkenning (Duits & Nederlands), bijv. "Donnerstag um 12:12"
             const weekDays = {
                 'montag': 1, 'maandag': 1,
                 'dienstag': 2, 'dinsdag': 2,
@@ -430,7 +428,6 @@
             const lowerStr = str.toLowerCase();
             for (const [dayName, targetDayIndex] of Object.entries(weekDays)) {
                 if (lowerStr.includes(dayName)) {
-                    // Zoek tijdstip (bijv. 12:12)
                     const timeMatch = str.match(/(\d{2}):(\d{2})/);
                     const hours = timeMatch ? parseInt(timeMatch[1]) : 12;
                     const minutes = timeMatch ? parseInt(timeMatch[2]) : 0;
@@ -438,7 +435,7 @@
                     const now = new Date();
                     const currentDayIndex = now.getDay();
                     let dayDiff = targetDayIndex - currentDayIndex;
-                    if (dayDiff <= 0) dayDiff += 7; // Altijd naar de komende komende weekdag rekenen
+                    if (dayDiff <= 0) dayDiff += 7;
 
                     const targetDate = new Date(now);
                     targetDate.setDate(now.getDate() + dayDiff);
@@ -497,7 +494,6 @@
             const minutes = Math.floor((diff / 1000 / 60) % 60);
             const seconds = Math.floor((diff / 1000) % 60);
 
-            // Minder dan 12 uur -> Toon uren, minuten en seconden
             if (diff < 12 * 60 * 60 * 1000) {
                 const pad = (n) => String(n).padStart(2, '0');
                 return {
@@ -535,7 +531,6 @@
                 return true;
             });
 
-            // Sortering voor veilingen: Eerst aflopende veilingen bovenaan
             if (currentTab === 'auctions') {
                 filteredData.sort((a, b) => {
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
@@ -624,7 +619,7 @@
                                 ${priceHtml}
                             </div>
                             ${auctionHtml}
-                            ${row.Link ? `<a href="${row.Link}" target="_blank" class="card-link">Bekijk machine</a>` : ''}
+                            ${row.Link ? `<a href="${row.Link}" target="_blank" rel="noopener noreferrer" class="card-link">Bekijk machine</a>` : ''}
                         </div>
                     </div>
                 `;
