@@ -155,12 +155,18 @@
             flex-grow: 1;
         }
 
-        .tabs {
+        .tabs-container {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
-            gap: 10px;
             border-bottom: 2px solid #ddd;
             padding-bottom: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
         }
 
         .tab {
@@ -180,6 +186,23 @@
             color: #fff;
             border-color: var(--boss-red);
         }
+
+        .ai-header-btn {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ai-header-btn:hover { background: #1d4ed8; }
 
         .grid {
             display: grid;
@@ -209,10 +232,6 @@
         .card.expired {
             opacity: 0.55;
             background-color: #e9e9e9;
-        }
-        .card.expired:hover {
-            transform: none;
-            border-top-color: transparent;
         }
 
         .card-image-container {
@@ -246,15 +265,6 @@
 
         .badge-op-voorraad { background-color: #28a745; }
         .badge-rood { background-color: var(--boss-red); }
-        .badge-urgent { background-color: var(--boss-red); color: #fff; animation: pulse-urgent 1.5s infinite; }
-
-        @keyframes pulse-urgent {
-            0% { opacity: 1; }
-            50% { opacity: 0.8; }
-            100% { opacity: 1; }
-        }
-
-        .badge-default { background-color: var(--boss-black); }
 
         .card-content {
             padding: 15px;
@@ -351,44 +361,33 @@
 
         .card-link:hover { background: var(--boss-red); }
 
-        /* AI Knop voor Eigen Voorraad */
-        .ai-action-btn {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background: #2563eb;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            font-size: 13px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 12px;
+        .comparable-market-box {
+            margin-top: 10px;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
             border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.2s;
+            padding: 8px;
+            font-size: 11px;
         }
-        .ai-action-btn:hover { background: #1d4ed8; }
-
-        /* AI Modal Popup */
-        .ai-modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 1100;
-            justify-content: center;
-            align-items: center;
+        .comparable-market-box h4 {
+            margin: 0 0 5px 0;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 3px;
         }
-        .ai-modal-content {
-            background: #fff;
-            padding: 25px;
-            border-radius: 8px;
-            width: 500px;
-            max-width: 90%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            color: var(--text-dark);
+        .market-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3px;
         }
+        .market-item a {
+            color: var(--boss-red);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .market-item a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -412,32 +411,12 @@
         </div>
     </div>
 
-    <!-- Modal Popup voor AI Analyse -->
-    <div class="ai-modal-overlay" id="aiModal">
-        <div class="ai-modal-content">
-            <div class="modal-header">
-                <h2 id="aiModalTitle" style="font-size:16px; margin:0;">AI Prijsadvies & Vergelijk</h2>
-                <span class="modal-close" onclick="closeAiModal()">&times;</span>
-            </div>
-            <div id="aiModalLoading" style="text-align:center; padding: 25px;">
-                <p>Bezig met marktanalyse en AI raadplegen...</p>
-            </div>
-            <div id="aiModalBody" style="display:none;">
-                <div style="background:#f8f9fa; padding:12px; border-radius:6px; margin-bottom:15px; border:1px solid #ddd;">
-                    <strong>Prijsadvies:</strong> <span id="aiModalPriceVerdict" style="font-size:16px; font-weight:bold;"></span>
-                </div>
-                <h4 style="margin:0 0 8px 0; font-size:13px; text-transform:uppercase; color:var(--text-light);">Top 3 Vergelijkbare Marktopties:</h4>
-                <div id="aiModalComparables" style="font-size:12px; display:flex; flex-direction:column; gap:8px;"></div>
-            </div>
-        </div>
-    </div>
-
     <div class="container">
         <aside class="sidebar">
             <div class="filter-group">
                 <h3>Platform</h3>
                 <select id="filter-platform" onchange="renderGrid()">
-                    <option value="">Alle platforms</option>
+                    <option value="">Alle platformen</option>
                 </select>
             </div>
             <div class="filter-group">
@@ -461,14 +440,19 @@
         </aside>
 
         <main class="main-content">
-            <div class="tabs">
-                <div class="tab active" onclick="switchTab('listings')" id="tab-listings">Listings</div>
-                <div class="tab" onclick="switchTab('auctions')" id="tab-auctions">Veilingen</div>
-                <div class="tab" onclick="switchTab('voorraad')" id="tab-voorraad">Eigen Voorraad</div>
+            <div class="tabs-container">
+                <div class="tabs">
+                    <div class="tab active" onclick="switchTab('listings')" id="tab-listings">Listings</div>
+                    <div class="tab" onclick="switchTab('auctions')" id="tab-auctions">Veilingen</div>
+                    <div class="tab" onclick="switchTab('voorraad')" id="tab-voorraad">Eigen Voorraad</div>
+                </div>
+                <button class="ai-header-btn" onclick="alert('AI Marktselectie functie wordt klaargezet voor de listings!')">
+                    🤖 AI Marktadvies
+                </button>
             </div>
 
             <div class="grid" id="product-grid">
-                <p>Gegevens ophalen...</p>
+                <p>Gegevens ophalen uit Google Sheets...</p>
             </div>
         </main>
     </div>
@@ -487,7 +471,6 @@
             "MMT Usatomacchine", "Truckscout24", "Camion Super Market"
         ];
 
-        // Laad marktdata via PapaParse (voor listings en veilingen)
         Papa.parse(sheetCSVUrl, {
             download: true,
             header: true,
@@ -502,15 +485,13 @@
             }
         });
 
-        // Laad eigen voorraad via de Apps Script Web App wanneer nodig of bij start
         function loadOwnStock() {
             fetch(WEB_APP_URL)
                 .then(res => res.json())
                 .then(data => {
-                    // Zet de rijen om naar objecten op basis van headers
                     const headers = data.stockHeaders;
                     ownStockData = data.stockRows.map((row, index) => {
-                        let obj = { _sheetRowIndex: index + 1 }; // 1-based index in sheet
+                        let obj = { _sheetRowIndex: index + 1 };
                         headers.forEach((h, i) => { obj[h] = row[i]; });
                         return obj;
                     });
@@ -584,52 +565,8 @@
             document.getElementById('statusModal').style.display = 'none';
         }
 
-        function triggerAiAnalysis(sheetRowIndex, merkModel) {
-            document.getElementById('aiModalTitle').innerText = 'AI Prijsadvies: ' + merkModel;
-            document.getElementById('aiModalLoading').style.display = 'block';
-            document.getElementById('aiModalBody').style.display = 'none';
-            document.getElementById('aiModal').style.display = 'flex';
-
-            fetch(`${WEB_APP_URL}?action=analyzeRow&rowIndex=${sheetRowIndex}`)
-                .then(res => res.json())
-                .then(result => {
-                    document.getElementById('aiModalLoading').style.display = 'none';
-                    document.getElementById('aiModalBody').style.display = 'block';
-
-                    const verdictEl = document.getElementById('aiModalPriceVerdict');
-                    verdictEl.innerText = result.aiPrijs || 'Goed geprijsd';
-                    if (result.aiPrijs === 'Te hoog') verdictEl.style.color = 'var(--boss-red)';
-                    else if (result.aiPrijs === 'Te laag') verdictEl.style.color = '#e65100';
-                    else verdictEl.style.color = '#28a745';
-
-                    let compHtml = '';
-                    [result.top1, result.top2, result.top3].forEach((top, i) => {
-                        if (top && top.titel) {
-                            compHtml += `
-                                <div style="background:#f1f3f5; padding:8px; border-radius:4px; border:1px solid #ddd;">
-                                    <strong>${i+1}. ${top.titel}</strong><br>
-                                    <span>Bouwjaar: ${top.bouwjaar || '-'} | Uren: ${top.uren || '-'} | Prijs: <strong>${top.prijs || '-'}</strong></span>
-                                    ${top.link ? `<br><a href="${top.link}" target="_blank" style="color:var(--boss-red); font-weight:bold;">Bekijk marktoptie →</a>` : ''}
-                                </div>
-                            `;
-                        }
-                    });
-                    document.getElementById('aiModalComparables').innerHTML = compHtml || 'Geen vergelijkbare opties gevonden.';
-                    loadOwnStock(); // Herlaad voorraad op achtergrond
-                })
-                .catch(err => {
-                    console.error(err);
-                    document.getElementById('aiModalLoading').innerHTML = '<p style="color:red;">Fout bij verbinden met AI.</p>';
-                });
-        }
-
-        function closeAiModal() {
-            document.getElementById('aiModal').style.display = 'none';
-        }
-
         window.onclick = function(event) {
             if (event.target === document.getElementById('statusModal')) closeStatusModal();
-            if (event.target === document.getElementById('aiModal')) closeAiModal();
         }
 
         function populateFilters() {
@@ -640,9 +577,16 @@
             const bouwjaren = [...new Set(dataSource.map(item => item.Bouwjaar))].filter(Boolean).sort((a,b)=>b-a);
             const statussen = [...new Set(dataSource.map(item => item.Status))].filter(Boolean).sort();
 
+            const labels = {
+                'filter-platform': 'Alle platformen',
+                'filter-merk': 'Alle merken',
+                'filter-bouwjaar': 'Alle bouwjaren',
+                'filter-status': 'Alle statussen'
+            };
+
             const fillSelect = (id, arr) => {
                 const select = document.getElementById(id);
-                select.innerHTML = `<option value="">Alle ${id.replace('filter-', '')}s</option>`;
+                select.innerHTML = `<option value="">${labels[id]}</option>`;
                 arr.forEach(val => select.innerHTML += `<option value="${val}">${val}</option>`);
             };
 
@@ -652,21 +596,44 @@
             fillSelect('filter-status', statussen);
         }
 
+        // Uitgebreide landherkenning inclusief veelvoorkomende veilingsteden
         function getCountryFlagHtml(locStr) {
             if (!locStr) return '';
             let l = locStr.toLowerCase();
             let countryCode = '';
-            if (l.includes('slovenia') || l.includes('slovenië')) countryCode = 'si';
-            else if (l.includes('netherlands') || l.includes('nederland') || l.includes('holland')) countryCode = 'nl';
-            else if (l.includes('germany') || l.includes('duitsland')) countryCode = 'de';
-            else if (l.includes('france') || l.includes('frankrijk')) countryCode = 'fr';
-            else if (l.includes('belgium') || l.includes('belgië')) countryCode = 'be';
-            else if (l.includes('italy') || l.includes('italië')) countryCode = 'it';
-            else if (l.includes('spain') || l.includes('spanje')) countryCode = 'es';
-            else if (l.includes('poland') || l.includes('polen')) countryCode = 'pl';
+
+            // Nederland
+            if (l.includes('netherlands') || l.includes('nederland') || l.includes('holland') || l.includes(', nl') || l.includes('groot-ammers') || l.includes('moerdijk')) countryCode = 'nl';
+            // Duitsland
+            else if (l.includes('germany') || l.includes('duitsland') || l.includes('deutschland') || l.includes(', de') || l.includes('meppen') || l.includes('dormagen') || l.includes('nürnberg')) countryCode = 'de';
+            // Slovenië
+            else if (l.includes('slovenia') || l.includes('slovenië') || l.includes(', si') || l.includes('ajdovscina')) countryCode = 'si';
+            // Frankrijk
+            else if (l.includes('france') || l.includes('frankrijk') || l.includes(', fr') || l.includes('paris')) countryCode = 'fr';
+            // België
+            else if (l.includes('belgium') || l.includes('belgië') || l.includes(', be') || l.includes('antwerpen')) countryCode = 'be';
+            // Italië
+            else if (l.includes('italy') || l.includes('italië') || l.includes('italia') || l.includes(', it') || l.includes('gorgonzola') || l.includes('verona')) countryCode = 'it';
+            // Spanje
+            else if (l.includes('spain') || l.includes('spanje') || l.includes(', es') || l.includes('madrid')) countryCode = 'es';
+            // Polen
+            else if (l.includes('poland') || l.includes('polen') || l.includes(', pl') || l.includes('poznan')) countryCode = 'pl';
 
             if (countryCode) return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}">`;
             return '📍';
+        }
+
+        function getSimilarMarketVehicles(currentItem) {
+            const targetMerk = (currentItem.Merk || '').toLowerCase();
+            const targetModel = (currentItem.Model || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+            return allData.filter(r => {
+                const plat = (r.Platform || '').toLowerCase();
+                if (plat.includes('eigen voorraad') || plat.includes('boss')) return false;
+                const mMerk = (r.Merk || '').toLowerCase();
+                const mModel = (r.Model || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+                return mMerk === targetMerk && (targetModel !== '' && mModel.includes(targetModel));
+            }).slice(0, 3);
         }
 
         function parseAuctionDate(str) {
@@ -734,7 +701,13 @@
                 return true;
             });
 
-            if (currentTab === 'auctions') {
+            // Sortering voor Eigen voorraad: Machines MET vergelijkbare marktitems bovenaan!
+            if (currentTab === 'voorraad') {
+                filteredData.forEach(row => {
+                    row._similarCount = getSimilarMarketVehicles(row).length;
+                });
+                filteredData.sort((a, b) => b._similarCount - a._similarCount);
+            } else if (currentTab === 'auctions') {
                 filteredData.sort((a, b) => {
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
                     const dateB = parseAuctionDate(b['Veiling loopt af op']);
@@ -815,11 +788,25 @@
 
                 let bottomContentHtml = '';
                 if (currentTab === 'voorraad') {
-                    const sheetRowIdx = row._sheetRowIndex;
+                    const similar = getSimilarMarketVehicles(row);
+                    let marketHtml = '';
+                    if (similar.length > 0) {
+                        similar.forEach(v => {
+                            marketHtml += `
+                                <div class="market-item">
+                                    <span>${v.Bouwjaar || 'Onbekend'} | ${v.Draaiuren || 'Onbekend'} | <strong>${v['Laatste prijs'] || v['Eerste prijs'] || 'Op aanvraag'}</strong></span>
+                                    <a href="${v.Link || '#'}" target="_blank">Bekijk</a>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        marketHtml = `<div style="color:#777; font-style:italic;">Geen vergelijkbare marktdata.</div>`;
+                    }
                     bottomContentHtml = `
-                        <button class="ai-action-btn" onclick="triggerAiAnalysis(${sheetRowIdx}, '${row.Merk || ''} ${row.Model || ''}')">
-                            🤖 Vraag AI Marktadvies
-                        </button>
+                        <div class="comparable-market-box">
+                            <h4>Vergelijkbaar op de markt:</h4>
+                            ${marketHtml}
+                        </div>
                     `;
                 } else {
                     const productUrl = row.Link ? row.Link : '#';
