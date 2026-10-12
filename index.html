@@ -135,7 +135,6 @@
             font-weight: bold;
         }
 
-        /* Badge Stijlen */
         .badge {
             position: absolute;
             top: 10px;
@@ -150,11 +149,11 @@
         }
 
         .badge-op-voorraad {
-            background-color: #28a745; /* Groen */
+            background-color: #28a745;
         }
 
         .badge-rood {
-            background-color: var(--boss-red); /* Rood voor Afgeprijsd & Bod verhoogd */
+            background-color: var(--boss-red);
         }
 
         .badge-default {
@@ -338,10 +337,70 @@
             fillSelect('filter-status', statussen);
         }
 
+        // Slimme parser voor diverse datum- en tijdnotaties in de sheet
+        function parseAuctionDate(str) {
+            if (!str) return null;
+            str = str.trim();
+
+            // 1. ISO format (bijv. 2026-10-15T10:49:00+02:00)
+            if (str.includes('T')) {
+                const d = new Date(str);
+                if (!isNaN(d.getTime())) return d;
+            }
+
+            // 2. Countdown formaat (bijv. 1:55:09)
+            if (/^\d+:\d{2}:\d{2}$/.test(str)) {
+                const parts = str.split(':').map(Number);
+                const ms = (parts[0] * 3600 + parts[1] * 60 + parts[2]) * 1000;
+                return new Date(Date.now() + ms);
+            }
+
+            // 3. Opschonen van prefixen zoals "assign.:"
+            if (str.startsWith('assign.:')) {
+                str = str.replace('assign.:', '').trim();
+            }
+
+            // 4. Formaat DD-MM-YYYY, HH:mm
+            const euMatch = str.match(/^(\d{2})-(\d{2})-(\d{4}),?\s*(\d{2}):(\d{2})$/);
+            if (euMatch) {
+                const [, d, m, y, hh, mm] = euMatch;
+                return new Date(`${y}-${m}-${d}T${hh}:${mm}:00`);
+            }
+
+            // 5. Tekstnotaties zoals "22 Okt. um 12:11" of "Startet 07 Okt. 16:00"
+            let cleanStr = str
+                .replace(/Startet\s+(heute\s+um\s+|heute\s+)?/i, '')
+                .replace(/um/i, '')
+                .replace(/\./g, '')
+                .trim();
+
+            const months = {
+                'jan': 'Jan', 'feb': 'Feb', 'mär': 'Mar', 'mar': 'Mar', 'apr': 'Apr',
+                'mai': 'May', 'may': 'May', 'jun': 'Jun', 'jul': 'Jul', 'aug': 'Aug',
+                'sep': 'Sep', 'okt': 'Oct', 'oct': 'Oct', 'nov': 'Nov', 'dez': 'Dec', 'dec': 'Dec'
+            };
+
+            for (const [nl, en] of Object.entries(months)) {
+                const regex = new RegExp(nl, 'i');
+                if (regex.test(cleanStr)) {
+                    cleanStr = cleanStr.replace(regex, en);
+                    break;
+                }
+            }
+
+            if (!/\d{4}/.test(cleanStr)) {
+                cleanStr += ' 2026';
+            }
+
+            const parsed = new Date(cleanStr);
+            if (!isNaN(parsed.getTime())) return parsed;
+
+            return null;
+        }
+
         function getCountdown(endTimeString) {
-            if (!endTimeString || endTimeString.trim() === '') return null;
-            const end = new Date(endTimeString);
-            if (isNaN(end.getTime())) return null;
+            const end = parseAuctionDate(endTimeString);
+            if (!end) return null;
 
             const now = new Date();
             const diff = end - now;
@@ -366,7 +425,6 @@
             const filterStatus = document.getElementById('filter-status').value;
 
             const filteredData = allData.filter(row => {
-                // Veiling check: Als kolom O ('Veiling loopt af op') gevuld is, is het een veiling
                 const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
                 const isAuction = endDateVal !== '';
 
@@ -390,7 +448,7 @@
                 const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
                 const isAuction = endDateVal !== '';
 
-                // Prijs logica: Eerste prijs (F) of Laatste prijs (G), anders Actueel bod / Op aanvraag
+                // Prijs logica: Eerste prijs (F) / Laatste prijs (G) of Actueel bod / Op aanvraag
                 let priceHtml = '';
                 const eerstePrijs = row['Eerste prijs'] ? row['Eerste prijs'].trim() : '';
                 const laatstePrijs = row['Laatste prijs'] ? row['Laatste prijs'].trim() : '';
@@ -421,8 +479,8 @@
                     let statusLower = row.Status.toLowerCase().trim();
                     let badgeClass = 'badge-default';
 
-                    // "Op voorraad" mag nooit getoond worden bij veilingen
                     if (statusLower.includes('voorraad')) {
+                        // "Op voorraad" nooit tonen bij veilingen, wel bij gewone listings in het groen
                         if (!isAuction) {
                             badgeClass = 'badge-op-voorraad';
                             badgeHtml = `<div class="badge ${badgeClass}">${row.Status}</div>`;
@@ -435,11 +493,11 @@
                     }
                 }
 
-                // Afbeelding logica (ondersteunt Image URL, image url of image_url)
+                // Afbeelding logica
                 let imageUrl = row['Image URL'] || row['image url'] || row['image_url'] || '';
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
                 if (imageUrl.trim() !== '') {
-                    imageHtml = `<div class="card-image"><img src="${imageUrl.trim()}" alt="${row.Merk} ${row.Model}" style="width:100%; height:180px; object-fit:cover; display:block;" onerror="this.parentElement.innerHTML='<div class=\'card-image-placeholder\'>Afbeelding laadt niet</div>'"></div>`;
+                    imageHtml = `<div class="card-image"><img src="${imageUrl.trim()}" alt="${row.Merk} ${row.Model}" style="width:100%; height:180px; object-fit:cover; display:block;" onerror="this.parentElement.innerHTML='<div class=\'card-image-placeholder\'>Geen afbeelding</div>'"></div>`;
                 }
 
                 const card = `
