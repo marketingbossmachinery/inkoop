@@ -29,8 +29,87 @@
             padding: 15px 40px;
             border-bottom: 4px solid var(--boss-red);
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: center;
+        }
+
+        .system-status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .system-status-indicator:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot-green { background-color: #28a745; box-shadow: 0 0 8px #28a745; }
+        .dot-orange { background-color: #ffc107; box-shadow: 0 0 8px #ffc107; }
+        .dot-red { background-color: #dc3545; box-shadow: 0 0 8px #dc3545; animation: pulse-urgent 1.5s infinite; }
+
+        /* Modal / Popup voor Portalen */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            width: 450px;
+            max-width: 90%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: var(--text-dark);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--boss-gray);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .modal-header h2 { margin: 0; font-size: 18px; color: var(--boss-black); text-transform: uppercase; }
+        .modal-close { cursor: pointer; font-size: 20px; font-weight: bold; color: #777; }
+        .modal-close:hover { color: var(--boss-red); }
+
+        .portal-status-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .portal-status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
         }
 
         .container {
@@ -127,14 +206,9 @@
             border-top-color: var(--boss-red);
         }
 
-        /* Stijl voor afgelopen veilingen (transparant grijs vlak en klikbaar houden) */
         .card.expired {
             opacity: 0.55;
             background-color: #e9e9e9;
-        }
-        .card.expired:hover {
-            transform: none;
-            border-top-color: transparent;
         }
 
         .card-image-container {
@@ -166,19 +240,9 @@
             color: #fff;
         }
 
-        .badge-op-voorraad {
-            background-color: #28a745;
-        }
-
-        .badge-rood {
-            background-color: var(--boss-red);
-        }
-
-        .badge-urgent {
-            background-color: var(--boss-red);
-            color: #fff;
-            animation: pulse-urgent 1.5s infinite;
-        }
+        .badge-op-voorraad { background-color: #28a745; }
+        .badge-rood { background-color: var(--boss-red); }
+        .badge-urgent { background-color: var(--boss-red); color: #fff; animation: pulse-urgent 1.5s infinite; }
 
         @keyframes pulse-urgent {
             0% { opacity: 1; }
@@ -186,9 +250,7 @@
             100% { opacity: 1; }
         }
 
-        .badge-default {
-            background-color: var(--boss-black);
-        }
+        .badge-default { background-color: var(--boss-black); }
 
         .card-content {
             padding: 15px;
@@ -255,9 +317,7 @@
             margin-right: 8px;
         }
 
-        .new-price {
-            color: var(--boss-red);
-        }
+        .new-price { color: var(--boss-red); }
 
         .countdown {
             margin-top: 10px;
@@ -285,16 +345,60 @@
             border-radius: 4px;
         }
 
-        .card-link:hover {
-            background: var(--boss-red);
+        .card-link:hover { background: var(--boss-red); }
+
+        /* Stijl voor vergelijkbare voertuigen op eigen voorraad kaartjes */
+        .comparable-market-box {
+            margin-top: 10px;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 8px;
+            font-size: 11px;
         }
+        .comparable-market-box h4 {
+            margin: 0 0 5px 0;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 3px;
+        }
+        .market-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3px;
+        }
+        .market-item a {
+            color: var(--boss-red);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .market-item a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
     <header>
         <img src="logo.png" alt="BOSS GLOBAL" style="height: 45px; object-fit: contain; display: block;">
+        <div class="system-status-indicator" onclick="openStatusModal()">
+            <span id="header-status-dot" class="status-dot dot-green"></span>
+            <span id="header-status-text">Portalen Status</span>
+        </div>
     </header>
+
+    <!-- Modal Popup voor Portalen Status -->
+    <div class="modal-overlay" id="statusModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Status Portalen Vandaag</h2>
+                <span class="modal-close" onclick="closeStatusModal()">&times;</span>
+            </div>
+            <ul class="portal-status-list" id="portalStatusList">
+                <!-- Wordt dynamisch gevuld -->
+            </ul>
+        </div>
+    </div>
 
     <div class="container">
         <aside class="sidebar">
@@ -328,6 +432,7 @@
             <div class="tabs">
                 <div class="tab active" onclick="switchTab('listings')" id="tab-listings">Listings</div>
                 <div class="tab" onclick="switchTab('auctions')" id="tab-auctions">Veilingen</div>
+                <div class="tab" onclick="switchTab('voorraad')" id="tab-voorraad">Eigen Voorraad & AI</div>
             </div>
 
             <div class="grid" id="product-grid">
@@ -342,12 +447,19 @@
         let allData = [];
         let currentTab = 'listings';
 
+        const TARGET_PORTALS = [
+            "Klaravik", "Surplex", "Legal Brokers", "Truck1", "Mascus", 
+            "MachineryLine", "Equippo", "werktuigen", "Blaupool", 
+            "MMT Usatomacchine", "Truckscout24", "Camion Super Market"
+        ];
+
         Papa.parse(sheetCSVUrl, {
             download: true,
             header: true,
             complete: function(results) {
                 allData = results.data.filter(row => row.Merk && row.Model);
                 populateFilters();
+                updateSystemStatusHeader();
                 renderGrid();
             },
             error: function(err) {
@@ -359,7 +471,77 @@
             currentTab = tab;
             document.getElementById('tab-listings').classList.toggle('active', tab === 'listings');
             document.getElementById('tab-auctions').classList.toggle('active', tab === 'auctions');
+            document.getElementById('tab-voorraad').classList.toggle('active', tab === 'voorraad');
             renderGrid();
+        }
+
+        // Functie voor Systeem Status van de 12 portalen
+        function checkPortalsStatus() {
+            const todayStr = new Date().toISOString().split('T')[0];
+            let statuses = {};
+            let globalStatus = 'green'; // green, orange, red
+
+            TARGET_PORTALS.forEach(portalName => {
+                // Zoek rijen voor dit portaal (ongevoelig voor hoofdletters)
+                const portalRows = allData.filter(r => (r.Platform || '').toLowerCase().includes(portalName.toLowerCase()));
+                
+                if (portalRows.length === 0) {
+                    statuses[portalName] = { state: 'red', label: 'Geen data in sheet (Rood)' };
+                    globalStatus = 'red';
+                } else {
+                    // Check of er vandaag data is binnengekomen (Kolom K / 'Datum gevonden')
+                    const hasTodayData = portalRows.some(r => {
+                        const dFound = r['Datum gevonden'] || r['datum gevonden'] || '';
+                        return dFound.includes(todayStr);
+                    });
+
+                    if (hasTodayData) {
+                        statuses[portalName] = { state: 'green', label: 'Data vandaag binnen (Groen)' };
+                    } else {
+                        statuses[portalName] = { state: 'orange', label: 'Geen data vandaag (Oranje)' };
+                        if (globalStatus !== 'red') globalStatus = 'orange';
+                    }
+                }
+            });
+
+            return { statuses, globalStatus };
+        }
+
+        function updateSystemStatusHeader() {
+            const { globalStatus } = checkPortalsStatus();
+            const dot = document.getElementById('header-status-dot');
+            dot.className = 'status-dot dot-' + globalStatus;
+        }
+
+        function openStatusModal() {
+            const { statuses } = checkPortalsStatus();
+            const listEl = document.getElementById('portalStatusList');
+            listEl.innerHTML = '';
+
+            for (const [portal, info] of Object.entries(statuses)) {
+                listEl.innerHTML += `
+                    <li class="portal-status-item">
+                        <span><strong>${portal}</strong></span>
+                        <span style="display:flex; align-items:center; gap:8px;">
+                            <small style="color:#777;">${info.label.split('(')[0]}</small>
+                            <span class="status-dot dot-${info.state}"></span>
+                        </span>
+                    </li>
+                `;
+            }
+            document.getElementById('statusModal').style.display = 'flex';
+        }
+
+        function closeStatusModal() {
+            document.getElementById('statusModal').style.display = 'none';
+        }
+
+        // Sluit modal bij klik buiten de inhoud
+        window.onclick = function(event) {
+            const modal = document.getElementById('statusModal');
+            if (event.target === modal) {
+                closeStatusModal();
+            }
         }
 
         function populateFilters() {
@@ -389,125 +571,39 @@
             let l = locStr.toLowerCase();
             let countryCode = '';
 
-            if (l.includes(', si') || l.includes('slovenia') || l.includes('slovenië') || l.includes('ajdovscina')) {
-                countryCode = 'si';
-            } else if (l.includes('netherlands') || l.includes('nederland') || l.includes('holland') || l.includes(', nl')) {
-                countryCode = 'nl';
-            } else if (l.includes('germany') || l.includes('duitsland') || l.includes('deutschland') || l.includes(', de')) {
-                countryCode = 'de';
-            } else if (l.includes('france') || l.includes('frankrijk') || l.includes(', fr')) {
-                countryCode = 'fr';
-            } else if (l.includes('belgium') || l.includes('belgië') || l.includes('belgique') || l.includes(', be')) {
-                countryCode = 'be';
-            } else if (l.includes('italy') || l.includes('italië') || l.includes('italia') || l.includes(', it')) {
-                countryCode = 'it';
-            } else if (l.includes('spain') || l.includes('spanje') || l.includes('españa') || l.includes(', es')) {
-                countryCode = 'es';
-            } else if (l.includes('poland') || l.includes('polen') || l.includes(', pl')) {
-                countryCode = 'pl';
-            }
+            if (l.includes(', si') || l.includes('slovenia') || l.includes('slovenië') || l.includes('ajdovscina')) countryCode = 'si';
+            else if (l.includes('netherlands') || l.includes('nederland') || l.includes('holland') || l.includes(', nl')) countryCode = 'nl';
+            else if (l.includes('germany') || l.includes('duitsland') || l.includes('deutschland') || l.includes(', de')) countryCode = 'de';
+            else if (l.includes('france') || l.includes('frankrijk') || l.includes(', fr')) countryCode = 'fr';
+            else if (l.includes('belgium') || l.includes('belgië') || l.includes('belgique') || l.includes(', be')) countryCode = 'be';
+            else if (l.includes('italy') || l.includes('italië') || l.includes('italia') || l.includes(', it')) countryCode = 'it';
+            else if (l.includes('spain') || l.includes('spanje') || l.includes('españa') || l.includes(', es')) countryCode = 'es';
+            else if (l.includes('poland') || l.includes('polen') || l.includes(', pl')) countryCode = 'pl';
 
-            if (countryCode) {
-                return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}">`;
-            }
+            if (countryCode) return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}">`;
             return '📍';
         }
 
-        // Geoptimaliseerde datum parser ter ondersteuning van zowel ISO als oude/assign notaties
         function parseAuctionDate(str) {
             if (!str) return null;
             str = String(str).replace(/^'/, '').trim();
 
-            // 1. ISO format (bijv: 2026-10-15T12:01:00+0200)
             if (str.includes('T')) {
                 const d = new Date(str);
                 if (!isNaN(d.getTime())) return d;
             }
-
-            // 2. Countdown format
             if (/^\d+:\d{2}:\d{2}$/.test(str)) {
                 const parts = str.split(':').map(Number);
                 const ms = (parts[0] * 3600 + parts[1] * 60 + parts[2]) * 1000;
                 return new Date(Date.now() + ms);
             }
+            if (str.toLowerCase().startsWith('assign.:')) str = str.substring(8).trim();
 
-            // 3. Verwijder prefixen zoals "assign.:" of "Startet"
-            if (str.toLowerCase().startsWith('assign.:')) {
-                str = str.substring(8).trim();
-            }
-
-            if (/heute\s+um/i.test(str)) {
-                const timeMatch = str.match(/(\d{2}):(\d{2})/);
-                const hours = timeMatch ? parseInt(timeMatch[1]) : 12;
-                const minutes = timeMatch ? parseInt(timeMatch[2]) : 0;
-                const targetDate = new Date();
-                targetDate.setHours(hours, minutes, 0, 0);
-                return targetDate;
-            }
-
-            const weekDays = {
-                'montag': 1, 'maandag': 1,
-                'dienstag': 2, 'dinsdag': 2,
-                'mittwoch': 3, 'woensdag': 3,
-                'donnerstag': 4, 'donderdag': 4,
-                'freitag': 5, 'vrijdag': 5,
-                'samstag': 6, 'zaterdag': 6,
-                'sonntag': 0, 'zondag': 0
-            };
-
-            const lowerStr = str.toLowerCase();
-            for (const [dayName, targetDayIndex] of Object.entries(weekDays)) {
-                if (lowerStr.includes(dayName)) {
-                    const timeMatch = str.match(/(\d{2}):(\d{2})/);
-                    const hours = timeMatch ? parseInt(timeMatch[1]) : 12;
-                    const minutes = timeMatch ? parseInt(timeMatch[2]) : 0;
-
-                    const now = new Date();
-                    const currentDayIndex = now.getDay();
-                    let dayDiff = targetDayIndex - currentDayIndex;
-                    if (dayDiff <= 0) dayDiff += 7;
-
-                    const targetDate = new Date(now);
-                    targetDate.setDate(now.getDate() + dayDiff);
-                    targetDate.setHours(hours, minutes, 0, 0);
-                    return targetDate;
-                }
-            }
-
-            // 4. Europese datumnotatie (bijv: 30-09-2026, 14:15 of 30-09-2026 14:15)
             const euMatch = str.match(/^(\d{2})-(\d{2})-(\d{4})[, ]*\s*(\d{2}):(\d{2})$/);
             if (euMatch) {
                 const [, d, m, y, hh, mm] = euMatch;
                 return new Date(`${y}-${m}-${d}T${hh}:${mm}:00`);
             }
-
-            let cleanStr = str
-                .replace(/Startet\s+/i, '')
-                .replace(/um/i, '')
-                .replace(/\./g, '')
-                .trim();
-
-            const months = {
-                'jan': 'Jan', 'feb': 'Feb', 'mär': 'Mar', 'mar': 'Mar', 'apr': 'Apr',
-                'mai': 'May', 'may': 'May', 'jun': 'Jun', 'jul': 'Jul', 'aug': 'Aug',
-                'sep': 'Sep', 'okt': 'Oct', 'oct': 'Oct', 'nov': 'Nov', 'dez': 'Dec', 'dec': 'Dec'
-            };
-
-            for (const [nl, en] of Object.entries(months)) {
-                const regex = new RegExp(nl, 'i');
-                if (regex.test(cleanStr)) {
-                    cleanStr = cleanStr.replace(regex, en);
-                    break;
-                }
-            }
-
-            if (!/\d{4}/.test(cleanStr)) {
-                cleanStr += ' 2026';
-            }
-
-            const parsed = new Date(cleanStr);
-            if (!isNaN(parsed.getTime())) return parsed;
-
             return null;
         }
 
@@ -523,20 +619,30 @@
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
             const minutes = Math.floor((diff / 1000 / 60) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
-
             const pad = (n) => String(n).padStart(2, '0');
 
             if (diff < 12 * 60 * 60 * 1000) {
-                return {
-                    text: `⚠️ ${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`,
-                    isUrgent: true,
-                    timeValue: diff
-                };
+                return { text: `⚠️ ${pad(hours)}u ${pad(minutes)}m`, isUrgent: true, timeValue: diff };
             }
 
             let text = days > 0 ? `Nog ${days}d ${hours}u` : `Nog ${hours}u ${minutes}m`;
             return { text: `⏱ ${text}`, isUrgent: false, timeValue: diff };
+        }
+
+        // Zoek 3 meest vergelijkbare voertuigen op de markt voor de voorraad-tab
+        function getSimilarMarketVehicles(currentItem) {
+            const targetMerk = (currentItem.Merk || '').toLowerCase();
+            const targetModel = (currentItem.Model || '').toLowerCase();
+
+            // Filter uit de marktdata (exclusief eigen voorraad platform)
+            const marketItems = allData.filter(r => {
+                const plat = (r.Platform || '').toLowerCase();
+                if (plat.includes('eigen voorraad') || plat.includes('boss')) return false;
+                return (r.Merk || '').toLowerCase() === targetMerk;
+            });
+
+            // Sorteer op basis van overeenkomst en pak max 3
+            return marketItems.slice(0, 3);
         }
 
         function renderGrid() {
@@ -549,11 +655,18 @@
             const filterStatus = document.getElementById('filter-status').value;
 
             let filteredData = allData.filter(row => {
+                const platformVal = (row.Platform || '').toLowerCase();
+                const isOwnStock = platformVal.includes('eigen voorraad') || platformVal.includes('boss');
                 const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
                 const isAuction = endDateVal !== '';
 
-                if (currentTab === 'listings' && isAuction) return false;
-                if (currentTab === 'auctions' && !isAuction) return false;
+                if (currentTab === 'voorraad') {
+                    if (!isOwnStock) return false;
+                } else if (currentTab === 'listings') {
+                    if (isOwnStock || isAuction) return false;
+                } else if (currentTab === 'auctions') {
+                    if (isOwnStock || !isAuction) return false;
+                }
 
                 if (filterPlatform && row.Platform !== filterPlatform) return false;
                 if (filterMerk && row.Merk !== filterMerk) return false;
@@ -561,37 +674,6 @@
                 if (filterStatus && row.Status !== filterStatus) return false;
 
                 return true;
-            });
-
-            // Sortering aanpassen: lopende veilingen op tijd, afgelopen veilingen en verkochte items altijd onderaan
-            filteredData.sort((a, b) => {
-                if (currentTab === 'auctions') {
-                    const dateA = parseAuctionDate(a['Veiling loopt af op']);
-                    const dateB = parseAuctionDate(b['Veiling loopt af op']);
-                    const now = new Date();
-
-                    const isExpiredA = !dateA || (dateA - now <= 0);
-                    const isExpiredB = !dateB || (dateB - now <= 0);
-
-                    // Als A is afgelopen en B niet, zet A onderaan (+1)
-                    if (isExpiredA && !isExpiredB) return 1;
-                    if (!isExpiredA && isExpiredB) return -1;
-
-                    // Beide actief of beide verlopen: sorteer op tijd
-                    if (!dateA) return 1;
-                    if (!dateB) return -1;
-                    return dateA - dateB;
-                } else {
-                    // Voor listings: "Verkocht" items automatisch onderaan plaatsen
-                    const statusA = (a['Status'] || '').toLowerCase();
-                    const statusB = (b['Status'] || '').toLowerCase();
-                    const isSoldA = statusA.includes('verkocht');
-                    const isSoldB = statusB.includes('verkocht');
-
-                    if (isSoldA && !isSoldB) return 1;
-                    if (!isSoldA && isSoldB) return -1;
-                    return 0;
-                }
             });
 
             if (filteredData.length === 0) {
@@ -602,6 +684,8 @@
             filteredData.forEach(row => {
                 const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
                 const isAuction = endDateVal !== '';
+                const platformVal = (row.Platform || '').toLowerCase();
+                const isOwnStock = platformVal.includes('eigen voorraad') || platformVal.includes('boss');
 
                 let priceHtml = '';
                 const eerstePrijs = row['Eerste prijs'] ? row['Eerste prijs'].trim() : '';
@@ -611,27 +695,30 @@
                     priceHtml = `<div class="card-price"><span class="old-price">${eerstePrijs}</span> <span class="new-price">${laatstePrijs}</span></div>`;
                 } else if (laatstePrijs) {
                     priceHtml = `<div class="card-price">${laatstePrijs}</div>`;
-                } else if (eerstePrijs) {
-                    priceHtml = `<div class="card-price">${eerstePrijs}</div>`;
                 } else {
-                    priceHtml = `<div class="card-price">${isAuction ? 'Actueel bod' : 'Op aanvraag'}</div>`;
+                    priceHtml = `<div class="card-price">${eerstePrijs || 'Op aanvraag'}</div>`;
                 }
 
                 let badgeHtml = '';
                 let auctionHtml = '';
                 let isExpired = false;
 
-                if (isAuction) {
+                if (isOwnStock) {
+                    // AI Prijsindicatie badge (gesimuleerd op basis van label in sheet of analyse)
+                    let aiLabel = row['AI Prijs'] || 'Goed geprijsd'; 
+                    let badgeColor = '#28a745'; // Groen
+                    if (aiLabel.toLowerCase().includes('hoog')) badgeColor = '#dc3545'; // Rood
+                    if (aiLabel.toLowerCase().includes('laag')) badgeColor = '#ffc107'; // Oranje
+
+                    badgeHtml = `<div class="badge" style="background-color: ${badgeColor};">AI: ${aiLabel}</div>`;
+                } else if (isAuction) {
                     const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
                     if (countdownObj) {
                         const bidsCount = row['Aantal biedingen'] || '0';
                         if (countdownObj.text === 'Veiling afgelopen') {
                             badgeHtml = `<div class="badge badge-rood">Afgelopen</div>`;
-                            auctionHtml = `<div class="countdown" style="background:#eee; color:#666; border-color:#ccc;">Veiling afgelopen | Biedingen: ${bidsCount}</div>`;
+                            auctionHtml = `<div class="countdown" style="background:#eee; color:#666; border-color:#ccc;">Veiling afgelopen</div>`;
                             isExpired = true;
-                        } else if (countdownObj.isUrgent) {
-                            badgeHtml = `<div class="badge badge-urgent">${countdownObj.text}</div>`;
-                            auctionHtml = `<div class="countdown">${countdownObj.text} | Biedingen: ${bidsCount}</div>`;
                         } else {
                             auctionHtml = `<div class="countdown">${countdownObj.text} | Biedingen: ${bidsCount}</div>`;
                         }
@@ -639,19 +726,15 @@
                 } else if (row.Status) {
                     let statusLower = row.Status.toLowerCase().trim();
                     let badgeClass = 'badge-default';
-
-                    if (statusLower.includes('voorraad')) {
-                        badgeClass = 'badge-op-voorraad';
-                    } else if (statusLower.includes('afgeprijsd') || statusLower.includes('bod verhoogd')) {
-                        badgeClass = 'badge-rood';
-                    }
+                    if (statusLower.includes('voorraad')) badgeClass = 'badge-op-voorraad';
+                    else if (statusLower.includes('afgeprijsd')) badgeClass = 'badge-rood';
                     badgeHtml = `<div class="badge ${badgeClass}">${row.Status}</div>`;
                 }
 
                 let imageUrl = row['Image URL'] || row['image url'] || row['image_url'] || '';
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
                 if (imageUrl.trim() !== '') {
-                    imageHtml = `<div class="card-image"><img src="${imageUrl.trim()}" alt="${row.Merk} ${row.Model}" style="width:100%; height:180px; object-fit:cover; display:block;" onerror="this.parentElement.innerHTML='<div class=\'card-image-placeholder\'>Geen afbeelding</div>'"></div>`;
+                    imageHtml = `<div class="card-image"><img src="${imageUrl.trim()}" alt="${row.Merk} ${row.Model}" style="width:100%; height:180px; object-fit:cover; display:block;"></div>`;
                 }
 
                 let locationHtml = '';
@@ -660,11 +743,39 @@
                     locationHtml = `<div class="card-location">${flagHtml} <span>${row['Locatie']}</span></div>`;
                 }
 
-                const productUrl = row.Link ? row.Link : '#';
+                // Als het eigen voorraad is, tonen we onderaan de 3 vergelijkbare marktvoertuigen
+                let bottomContentHtml = '';
+                if (isOwnStock) {
+                    const similarVehicles = getSimilarMarketVehicles(row);
+                    let marketHtml = '';
+                    if (similarVehicles.length > 0) {
+                        similarVehicles.forEach(v => {
+                            marketHtml += `
+                                <div class="market-item">
+                                    <span>${v.Bouwjaar || 'Onbekend'} | ${v.Draaiuren || 'Onbekend'} | <strong>${v['Laatste prijs'] || v['Eerste prijs'] || 'Op aanvraag'}</strong></span>
+                                    <a href="${v.Link || '#'}" target="_blank">Bekijk</a>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        marketHtml = `<div style="color:#777; font-style:italic;">Geen vergelijkbare marktdata gevonden.</div>`;
+                    }
+
+                    bottomContentHtml = `
+                        <div class="comparable-market-box">
+                            <h4>Vergelijkbaar in markt:</h4>
+                            ${marketHtml}
+                        </div>
+                    `;
+                } else {
+                    const productUrl = row.Link ? row.Link : '#';
+                    bottomContentHtml = `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card-link">Bekijk machine</a>`;
+                }
+
                 const expiredClass = isExpired ? ' expired' : '';
 
                 const card = `
-                    <a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}">
+                    <div class="card${expiredClass}">
                         ${badgeHtml}
                         <div class="card-image-container">
                             ${imageHtml}
@@ -680,19 +791,16 @@
                                 ${priceHtml}
                             </div>
                             ${auctionHtml}
-                            <span class="card-link">Bekijk machine</span>
+                            ${bottomContentHtml}
                         </div>
-                    </a>
+                    </div>
                 `;
                 grid.innerHTML += card;
             });
         }
 
-        // Live update elke seconde voor vloeiend aftellende seconden
         setInterval(() => {
-            if (currentTab === 'auctions') {
-                renderGrid();
-            }
+            if (currentTab === 'auctions') renderGrid();
         }, 1000);
     </script>
 </body>
