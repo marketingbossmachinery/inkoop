@@ -135,18 +135,30 @@
             font-weight: bold;
         }
 
+        /* Badge Stijlen */
         .badge {
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: var(--boss-red);
-            color: #fff;
             padding: 4px 10px;
             font-size: 11px;
             font-weight: bold;
             border-radius: 3px;
             text-transform: uppercase;
             z-index: 2;
+            color: #fff;
+        }
+
+        .badge-op-voorraad {
+            background-color: #28a745; /* Groen */
+        }
+
+        .badge-rood {
+            background-color: var(--boss-red); /* Rood voor Afgeprijsd & Bod verhoogd */
+        }
+
+        .badge-default {
+            background-color: var(--boss-black);
         }
 
         .card-content {
@@ -329,7 +341,7 @@
         function getCountdown(endTimeString) {
             if (!endTimeString || endTimeString.trim() === '') return null;
             const end = new Date(endTimeString);
-            if (isNaN(end.getTime())) return null; // Als het geen geldige datum is
+            if (isNaN(end.getTime())) return null;
 
             const now = new Date();
             const diff = end - now;
@@ -354,10 +366,9 @@
             const filterStatus = document.getElementById('filter-status').value;
 
             const filteredData = allData.filter(row => {
-                // Strikte check: Een item is alleen een veiling als Kolom N ('Aantal biedingen') EN Kolom O ('Veiling loopt af op') echt gevuld zijn met data
-                const hasBids = row['Aantal biedingen'] && row['Aantal biedingen'].trim() !== '';
-                const hasEndDate = row['Veiling loopt af op'] && row['Veiling loopt af op'].trim() !== '';
-                const isAuction = hasBids && hasEndDate;
+                // Veiling check: Als kolom O ('Veiling loopt af op') gevuld is, is het een veiling
+                const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
+                const isAuction = endDateVal !== '';
 
                 if (currentTab === 'listings' && isAuction) return false;
                 if (currentTab === 'auctions' && !isAuction) return false;
@@ -376,15 +387,25 @@
             }
 
             filteredData.forEach(row => {
-                const hasBids = row['Aantal biedingen'] && row['Aantal biedingen'].trim() !== '';
-                const hasEndDate = row['Veiling loopt af op'] && row['Veiling loopt af op'].trim() !== '';
-                const isAuction = hasBids && hasEndDate;
+                const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
+                const isAuction = endDateVal !== '';
 
-                let priceHtml = `<div class="card-price">${row['Laatste prijs'] || 'Op aanvraag'}</div>`;
-                if (row['Eerste prijs'] && row['Laatste prijs'] && row['Eerste prijs'] !== row['Laatste prijs']) {
-                    priceHtml = `<div class="card-price"><span class="old-price">${row['Eerste prijs']}</span> <span class="new-price">${row['Laatste prijs']}</span></div>`;
+                // Prijs logica: Eerste prijs (F) of Laatste prijs (G), anders Actueel bod / Op aanvraag
+                let priceHtml = '';
+                const eerstePrijs = row['Eerste prijs'] ? row['Eerste prijs'].trim() : '';
+                const laatstePrijs = row['Laatste prijs'] ? row['Laatste prijs'].trim() : '';
+
+                if (laatstePrijs && eerstePrijs && eerstePrijs !== laatstePrijs) {
+                    priceHtml = `<div class="card-price"><span class="old-price">${eerstePrijs}</span> <span class="new-price">${laatstePrijs}</span></div>`;
+                } else if (laatstePrijs) {
+                    priceHtml = `<div class="card-price">${laatstePrijs}</div>`;
+                } else if (eerstePrijs) {
+                    priceHtml = `<div class="card-price">${eerstePrijs}</div>`;
+                } else {
+                    priceHtml = `<div class="card-price">${isAuction ? 'Actueel bod' : 'Op aanvraag'}</div>`;
                 }
 
+                // Veiling countdown
                 let auctionHtml = '';
                 if (isAuction) {
                     const countdownText = getCountdown(row['Veiling loopt af op']);
@@ -394,14 +415,31 @@
                     }
                 }
 
+                // Badge / Status logica
                 let badgeHtml = '';
                 if (row.Status) {
-                    badgeHtml = `<div class="badge">${row.Status}</div>`;
+                    let statusLower = row.Status.toLowerCase().trim();
+                    let badgeClass = 'badge-default';
+
+                    // "Op voorraad" mag nooit getoond worden bij veilingen
+                    if (statusLower.includes('voorraad')) {
+                        if (!isAuction) {
+                            badgeClass = 'badge-op-voorraad';
+                            badgeHtml = `<div class="badge ${badgeClass}">${row.Status}</div>`;
+                        }
+                    } else if (statusLower.includes('afgeprijsd') || statusLower.includes('bod verhoogd')) {
+                        badgeClass = 'badge-rood';
+                        badgeHtml = `<div class="badge ${badgeClass}">${row.Status}</div>`;
+                    } else {
+                        badgeHtml = `<div class="badge badge-default">${row.Status}</div>`;
+                    }
                 }
 
+                // Afbeelding logica (ondersteunt Image URL, image url of image_url)
+                let imageUrl = row['Image URL'] || row['image url'] || row['image_url'] || '';
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
-                if (row['Image URL'] && row['Image URL'].trim() !== '') {
-                    imageHtml = `<div class="card-image"><img src="${row['Image URL']}" alt="${row.Merk} ${row.Model}" style="width:100%; height:180px; object-fit:cover; display:block;"></div>`;
+                if (imageUrl.trim() !== '') {
+                    imageHtml = `<div class="card-image"><img src="${imageUrl.trim()}" alt="${row.Merk} ${row.Model}" style="width:100%; height:180px; object-fit:cover; display:block;" onerror="this.parentElement.innerHTML='<div class=\'card-image-placeholder\'>Afbeelding laadt niet</div>'"></div>`;
                 }
 
                 const card = `
