@@ -403,10 +403,10 @@
             return '📍';
         }
 
-        // Zeer robuuste datum parser voor alle variaties uit de sheet
+        // Robuuste datum parser voor frontend fallback
         function parseAuctionDate(str) {
             if (!str) return null;
-            str = str.trim();
+            str = String(str).replace(/'/g, '').trim();
 
             if (str.includes('T')) {
                 const d = new Date(str);
@@ -423,7 +423,6 @@
                 str = str.replace('assign.:', '').trim();
             }
 
-            // "Startet heute um 12:00" of "heute um 12:00"
             if (/heute\s+um/i.test(str)) {
                 const timeMatch = str.match(/(\d{2}):(\d{2})/);
                 const hours = timeMatch ? parseInt(timeMatch[1]) : 12;
@@ -433,7 +432,6 @@
                 return targetDate;
             }
 
-            // Weekdag herkenning (bijv. "Donnerstag um 12:12" of "Dienstag um 18:41")
             const weekDays = {
                 'montag': 1, 'maandag': 1,
                 'dienstag': 2, 'dinsdag': 2,
@@ -469,7 +467,6 @@
                 return new Date(`${y}-${m}-${d}T${hh}:${mm}:00`);
             }
 
-            // Formaten zoals "22 Okt. um 12:11" of "Startet 07 Okt. 16:00" of "15 Okt. um 18:36"
             let cleanStr = str
                 .replace(/Startet\s+/i, '')
                 .replace(/um/i, '')
@@ -650,6 +647,7 @@
             });
         }
 
+        // Live update elke seconde voor vloeiend aftellende seconden
         setInterval(() => {
             if (currentTab === 'auctions') {
                 renderGrid();
