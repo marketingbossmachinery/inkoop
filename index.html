@@ -196,7 +196,15 @@
             margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
+        }
+
+        .card-location img {
+            width: 20px;
+            height: 14px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 2px;
         }
 
         .card-price-box {
@@ -231,6 +239,19 @@
             font-size: 13px;
             font-weight: bold;
             text-align: center;
+        }
+
+        /* Extra urgentie e-commerce label voor < 12 uur */
+        .countdown-urgent {
+            background-color: var(--boss-red);
+            color: #fff;
+            animation: pulse-urgent 1.5s infinite;
+        }
+
+        @keyframes pulse-urgent {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
         }
 
         .card-link {
@@ -346,27 +367,34 @@
             fillSelect('filter-status', statussen);
         }
 
-        // Functie om landenvlag te bepalen op basis van de locatie-string
-        function getCountryFlagAndName(locStr) {
-            if (!locStr) return { flag: '🌍', text: '' };
+        // Slimme landenvlag herkenning (inclusief landcodes zoals SI voor Slovenië, DE, FR, NL, BE, etc.)
+        function getCountryFlagHtml(locStr) {
+            if (!locStr) return '';
             let l = locStr.toLowerCase();
+            let countryCode = '';
 
-            if (l.includes('netherlands') || l.includes('nederland') || l.includes('holland')) {
-                return { flag: '🇳🇱', text: locStr };
-            } else if (l.includes('germany') || l.includes('duitsland') || l.includes('deutschland')) {
-                return { flag: '🇩🇪', text: locStr };
-            } else if (l.includes('france') || l.includes('frankrijk')) {
-                return { flag: '🇫🇷', text: locStr };
-            } else if (l.includes('belgium') || l.includes('belgië') || l.includes('belgique')) {
-                return { flag: '🇧🇪', text: locStr };
-            } else if (l.includes('italy') || l.includes('italië') || l.includes('italia')) {
-                return { flag: '🇮🇹', text: locStr };
-            } else if (l.includes('spain') || l.includes('spanje') || l.includes('españa')) {
-                return { flag: '🇪🇸', text: locStr };
-            } else if (l.includes('poland') || l.includes('polen')) {
-                return { flag: '🇵🇱', text: locStr };
+            if (l.includes(', si') || l.includes('slovenia') || l.includes('slovenië') || l.includes('ajdovscina')) {
+                countryCode = 'si';
+            } else if (l.includes('netherlands') || l.includes('nederland') || l.includes('holland') || l.includes(', nl')) {
+                countryCode = 'nl';
+            } else if (l.includes('germany') || l.includes('duitsland') || l.includes('deutschland') || l.includes(', de')) {
+                countryCode = 'de';
+            } else if (l.includes('france') || l.includes('frankrijk') || l.includes(', fr')) {
+                countryCode = 'fr';
+            } else if (l.includes('belgium') || l.includes('belgië') || l.includes('belgique') || l.includes(', be')) {
+                countryCode = 'be';
+            } else if (l.includes('italy') || l.includes('italië') || l.includes('italia') || l.includes(', it')) {
+                countryCode = 'it';
+            } else if (l.includes('spain') || l.includes('spanje') || l.includes('españa') || l.includes(', es')) {
+                countryCode = 'es';
+            } else if (l.includes('poland') || l.includes('polen') || l.includes(', pl')) {
+                countryCode = 'pl';
             }
-            return { flag: '📍', text: locStr };
+
+            if (countryCode) {
+                return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}">`;
+            }
+            return '📍';
         }
 
         function parseAuctionDate(str) {
@@ -424,21 +452,32 @@
             return null;
         }
 
-        function getCountdown(endTimeString) {
+        function getCountdownDetails(endTimeString) {
             const end = parseAuctionDate(endTimeString);
             if (!end) return null;
 
             const now = new Date();
             const diff = end - now;
 
-            if (diff <= 0) return 'Veiling afgelopen';
+            if (diff <= 0) return { text: 'Veiling afgelopen', isUrgent: false, timeValue: 0 };
 
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
             const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
 
-            if (days > 0) return `Nog ${days}d ${hours}u`;
-            return `Nog ${hours}u ${minutes}m`;
+            // Minder dan 12 uur -> Toon uren, minuten en seconden
+            if (diff < 12 * 60 * 60 * 1000) {
+                const pad = (n) => String(n).padStart(2, '0');
+                return {
+                    text: `⚠️ Sluit over: ${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`,
+                    isUrgent: true,
+                    timeValue: diff
+                };
+            }
+
+            let text = days > 0 ? `Nog ${days}d ${hours}u` : `Nog ${hours}u ${minutes}m`;
+            return { text: `⏱ ${text}`, isUrgent: false, timeValue: diff };
         }
 
         function renderGrid() {
@@ -450,7 +489,7 @@
             const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
             const filterStatus = document.getElementById('filter-status').value;
 
-            const filteredData = allData.filter(row => {
+            let filteredData = allData.filter(row => {
                 const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
                 const isAuction = endDateVal !== '';
 
@@ -464,6 +503,17 @@
 
                 return true;
             });
+
+            // Sortering voor veilingen: Eerst aflopende veilingen bovenaan
+            if (currentTab === 'auctions') {
+                filteredData.sort((a, b) => {
+                    const dateA = parseAuctionDate(a['Veiling loopt af op']);
+                    const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                    if (!dateA) return 1;
+                    if (!dateB) return -1;
+                    return dateA - dateB;
+                });
+            }
 
             if (filteredData.length === 0) {
                 grid.innerHTML = '<p>Geen machines gevonden met deze filters.</p>';
@@ -490,10 +540,11 @@
 
                 let auctionHtml = '';
                 if (isAuction) {
-                    const countdownText = getCountdown(row['Veiling loopt af op']);
-                    if (countdownText) {
+                    const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
+                    if (countdownObj) {
                         const bidsCount = row['Aantal biedingen'] || '0';
-                        auctionHtml = `<div class="countdown">⏱ ${countdownText} | Biedingen: ${bidsCount}</div>`;
+                        const urgentClass = countdownObj.isUrgent ? 'countdown countdown-urgent' : 'countdown';
+                        auctionHtml = `<div class="${urgentClass}">${countdownObj.text} | Biedingen: ${bidsCount}</div>`;
                     }
                 }
 
@@ -521,11 +572,10 @@
                     imageHtml = `<div class="card-image"><img src="${imageUrl.trim()}" alt="${row.Merk} ${row.Model}" style="width:100%; height:180px; object-fit:cover; display:block;" onerror="this.parentElement.innerHTML='<div class=\'card-image-placeholder\'>Geen afbeelding</div>'"></div>`;
                 }
 
-                // Locatie en vlag verwerking
-                const locInfo = getCountryFlagAndName(row['Locatie']);
                 let locationHtml = '';
-                if (locInfo.text) {
-                    locationHtml = `<div class="card-location"><span>${locInfo.flag}</span> <span>${locInfo.text}</span></div>`;
+                if (row['Locatie']) {
+                    let flagHtml = getCountryFlagHtml(row['Locatie']);
+                    locationHtml = `<div class="card-location">${flagHtml} <span>${row['Locatie']}</span></div>`;
                 }
 
                 const card = `
@@ -551,11 +601,12 @@
             });
         }
 
+        // Als we in de veilingen tab zitten, elke seconde de secondenteller updaten voor maximale urgentie!
         setInterval(() => {
             if (currentTab === 'auctions') {
                 renderGrid();
             }
-        }, 60000);
+        }, 1000);
     </script>
 </body>
 </html>
