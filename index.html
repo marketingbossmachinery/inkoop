@@ -254,15 +254,20 @@
             font-weight: bold;
         }
 
+        /* --- VERNIEUWDE TIMER BADGE OP FOTO (ROOD VLAK, WITTE TEKST) --- */
         .badge-image {
             position: absolute;
             top: 10px;
             right: 10px;
+            background-color: var(--boss-red);
+            color: #ffffff;
+            padding: 5px 10px;
             font-size: 12px;
             font-weight: 900;
+            border-radius: 4px;
             z-index: 2;
-            color: #fff;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-transform: uppercase;
         }
 
         .badge {
@@ -356,7 +361,7 @@
 
         .new-price { color: var(--boss-red); }
 
-        /* De vertrouwde rode timer styling van de Veilingen! */
+        /* Rode aftel box onderaan voor urgente veilingen */
         .countdown {
             margin-top: 10px;
             padding: 8px;
@@ -369,6 +374,7 @@
             text-align: center;
         }
 
+        /* Grijze/rustige box onderaan voor veilingen verder in de toekomst */
         .countdown-future {
             margin-top: 10px;
             padding: 8px;
@@ -502,9 +508,9 @@
     </div>
 
     <script>
-        // Data bronnen (Market Data en Eigen Voorraad via specifieke GID's)
+        // 1. Data bronnen (Web app link hersteld voor Eigen Voorraad zoals succesvol bevestigd)
         const sheetCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS2MZR5mkooWA08Y3GcQAbkAK_SjN0lORb5mth5VVI0fu54XFjksN9HFH_drlAii3O3MYNiCz0OvLbZ/pub?gid=0&single=true&output=csv';
-        const stockCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS2MZR5mkooWA08Y3GcQAbkAK_SjN0lORb5mth5VVI0fu54XFjksN9HFH_drlAii3O3MYNiCz0OvLbZ/pub?gid=475849892&single=true&output=csv';
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxF4GY0PsOlNyVWoj9pSQM--b3CFGW7e2OAyZEy5573ZKpxZ-K_jd_x1hpBiIYSIRm2/exec';
         
         let allData = [];
         let ownStockData = [];
@@ -516,7 +522,7 @@
             "MMT Usatomacchine", "Truckscout24", "Camion Super Market"
         ];
 
-        // 1. Laad Marktdata
+        // Laad Marktdata
         Papa.parse(sheetCSVUrl, {
             download: true,
             header: true,
@@ -528,14 +534,22 @@
             }
         });
 
-        // 2. Laad Eigen Voorraad razendsnel en robuust in via de CSV GID link
-        Papa.parse(stockCSVUrl, {
-            download: true,
-            header: true,
-            complete: function(results) {
-                ownStockData = results.data.filter(row => row.Merk && row.Model);
-            }
-        });
+        // Laad Eigen Voorraad (De originele stabiele web-app code!)
+        function loadOwnStock() {
+            fetch(WEB_APP_URL)
+                .then(res => res.json())
+                .then(data => {
+                    const headers = data.stockHeaders;
+                    ownStockData = data.stockRows.map((row, index) => {
+                        let obj = { _sheetRowIndex: index + 1 };
+                        headers.forEach((h, i) => { obj[h] = row[i]; });
+                        return obj;
+                    });
+                    if (currentTab === 'voorraad') renderGrid();
+                })
+                .catch(err => console.error("Fout bij laden eigen voorraad:", err));
+        }
+        loadOwnStock();
 
         function switchTab(tab) {
             currentTab = tab;
@@ -608,7 +622,7 @@
             const dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
             
             const platforms = [...new Set(dataSource.map(item => item.Platform))].filter(Boolean).sort();
-            const merken = [...new Set(dataSource.map(item => item.Merk))].filter(Boolean).sort();
+            const merken = [...new Set(dataSource.map(item => item.Merk || item.brand))].filter(Boolean).sort();
             const bouwjaren = [...new Set(dataSource.map(item => item.Bouwjaar))].filter(Boolean).sort((a,b)=>b-a);
             const statussen = [...new Set(dataSource.map(item => item.Status))].filter(Boolean).sort();
 
@@ -624,7 +638,6 @@
             fillSelect('filter-status', statussen, 'Alle statussen');
         }
 
-        // Landherkenning aangevuld met Europese locaties
         function getCountryFlagHtml(locStr) {
             if (!locStr) return '';
             let l = locStr.toLowerCase();
@@ -681,7 +694,7 @@
             const now = new Date();
             const diff = end - now;
             
-            if (diff <= 0) return { text: 'Veiling afgelopen', isUrgent: false, timeValue: diff };
+            if (diff <= 0) return { boxText: 'Veiling afgelopen', imageBadge: 'AFGELOPEN', isUrgent: false, isExpired: true };
             
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -689,18 +702,37 @@
             const seconds = Math.floor((diff / 1000) % 60);
             const pad = (n) => String(n).padStart(2, '0');
             
-            // Rode urgent status (binnen 24 uur)
-            if (days < 1) {
-                return { text: `⚠️ ${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`, textUpper: `⚠️ ${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S`, isUrgent: true, futureDate: null };
+            // Altijd de tijdsweergave opmaken (ook als het ver weg is, laten we het aftellen!)
+            let timeStrUpper = "";
+            if (days > 0) {
+                timeStrUpper = `⏱ ${days}D ${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S`;
+            } else {
+                timeStrUpper = `⚠️ ${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S`;
             }
-            
-            // Toekomstig (meer dan 24 uur), geen countdown maar een vaste datum string
+
             const d = pad(end.getDate());
             const m = pad(end.getMonth() + 1);
             const y = end.getFullYear();
             const H = pad(end.getHours());
             const M = pad(end.getMinutes());
-            return { text: `Veiling op: ${d}-${m}-${y} ${H}:${M}`, isUrgent: false, futureDate: true };
+            
+            // Rode urgent status box (minder dan 2 dagen)
+            if (days < 2) {
+                return { 
+                    boxText: `⚠️ Nog ${days > 0 ? days + 'd ' : ''}${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`, 
+                    imageBadge: timeStrUpper, 
+                    isUrgent: true, 
+                    isExpired: false 
+                };
+            }
+            
+            // Verder in de toekomst (Toont de datum beneden, maar COUNTDOWN BOVENIN tikt netjes af)
+            return { 
+                boxText: `Veiling op: ${d}-${m}-${y} om ${H}:${M}`, 
+                imageBadge: timeStrUpper, 
+                isUrgent: false, 
+                isExpired: false 
+            };
         }
 
         // Functie voor slimme voorraad-vergelijking
@@ -742,8 +774,12 @@
                 if (currentTab === 'listings' && isAuction) return false;
                 if (currentTab === 'auctions' && !isAuction) return false;
 
-                if (filterPlatform && row.Platform !== filterPlatform) return false;
-                if (filterMerk && row.Merk !== filterMerk) return false;
+                const p = (row.Platform || '');
+                if (filterPlatform && p !== filterPlatform) return false;
+                
+                const m = (row.Merk || row.brand || '');
+                if (filterMerk && m !== filterMerk) return false;
+
                 if (filterBouwjaar && row.Bouwjaar !== filterBouwjaar) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
 
@@ -752,10 +788,8 @@
 
             // Sortering
             if (currentTab === 'voorraad') {
-                // Machines met vergelijkbare marktopties bovenaan
                 filteredData.sort((a, b) => (b._similarCount || 0) - (a._similarCount || 0));
             } else if (currentTab === 'auctions') {
-                // Veilingen op tijd gesorteerd
                 filteredData.sort((a, b) => {
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
                     const dateB = parseAuctionDate(b['Veiling loopt af op']);
@@ -769,7 +803,6 @@
                     return dateA - dateB;
                 });
             } else if (currentTab === 'listings') {
-                // Verkochte listings naar onderen
                 filteredData.sort((a, b) => {
                     const isSoldA = (a.Status || '').toLowerCase().includes('verkocht');
                     const isSoldB = (b.Status || '').toLowerCase().includes('verkocht');
@@ -788,7 +821,7 @@
                 const isOwnStock = (currentTab === 'voorraad');
                 const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
                 const isAuction = endDateVal !== '';
-                const fullTitle = row.Titel || row.Title || (`${row.Merk} ${row.Model}`);
+                const fullTitle = row.Titel || row.Title || (`${row.Merk || ''} ${row.Model || ''}`);
 
                 let priceHtml = '';
                 const eerstePrijs = row['Eerste prijs'] ? row['Eerste prijs'].trim() : '';
@@ -815,19 +848,22 @@
                     const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
                     if (countdownObj) {
                         const bidsCount = row['Aantal biedingen'] || '0';
-                        if (countdownObj.text === 'Veiling afgelopen') {
+                        if (countdownObj.isExpired) {
                             badgeHtml = `<div class="badge badge-rood">Afgelopen</div>`;
-                            imageBadgeHtml = `<div class="badge-image" style="color:var(--boss-red);">AFGELOPEN</div>`;
+                            imageBadgeHtml = `<div class="badge-image">AFGELOPEN</div>`;
                             auctionHtml = `<div class="countdown" style="background:#eee; color:#666; border-color:#ccc;">Veiling afgelopen | Biedingen: ${bidsCount}</div>`;
                             isExpired = true;
-                        } else if (countdownObj.isUrgent) {
-                            // Urgent styling (Rood vlak + label op foto)
-                            badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
-                            imageBadgeHtml = `<div class="badge-image" style="color:#ffc107;">${countdownObj.textUpper}</div>`;
-                            auctionHtml = `<div class="countdown">${countdownObj.text} | Biedingen: ${bidsCount}</div>`;
-                        } else if (countdownObj.futureDate) {
-                            // Ver in de toekomst (Grijze tekst, geen opvallend rood vlak)
-                            auctionHtml = `<div class="countdown-future">${countdownObj.text} | Biedingen: ${bidsCount}</div>`;
+                        } else {
+                            // TIMER OP DE AFBEELDING IS NU ALTIJD ZICHTBAAR (ROOD VLAKJE)
+                            imageBadgeHtml = `<div class="badge-image">${countdownObj.imageBadge}</div>`;
+                            
+                            // TEXT ONDER DE PRIJS
+                            if (countdownObj.isUrgent) {
+                                badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
+                                auctionHtml = `<div class="countdown">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
+                            } else {
+                                auctionHtml = `<div class="countdown-future">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
+                            }
                         }
                     }
                 } else if (row.Status) {
@@ -850,7 +886,6 @@
                     locationHtml = `<div class="card-location">${flagHtml} <span>${row['Locatie']}</span></div>`;
                 }
 
-                // AI Prijsindicatie / Vergelijkbare voertuigen opzet voor eigen voorraad
                 let extraContentHtml = '';
                 if (isOwnStock) {
                     const similar = getSimilarMarketVehicles(row.Merk, row.Model);
@@ -879,7 +914,6 @@
                 const productUrl = row.Link ? row.Link : '#';
                 const expiredClass = isExpired ? ' expired' : '';
                 
-                // Opbouwen kaart: A-tag voor markt, DIV voor eigen voorraad (zodat knoppen/links binnenin werkbaar zijn)
                 const wrapperStart = isOwnStock ? `<div class="card${expiredClass}">` : `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}">`;
                 const wrapperEnd = isOwnStock ? `</div>` : `</a>`;
 
