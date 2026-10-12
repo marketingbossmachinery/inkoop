@@ -29,8 +29,86 @@
             padding: 15px 40px;
             border-bottom: 4px solid var(--boss-red);
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: center;
+        }
+
+        .system-status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .system-status-indicator:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot-green { background-color: #28a745; box-shadow: 0 0 8px #28a745; }
+        .dot-orange { background-color: #ffc107; box-shadow: 0 0 8px #ffc107; }
+        .dot-red { background-color: #dc3545; box-shadow: 0 0 8px #dc3545; animation: pulse-urgent 1.5s infinite; }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            width: 450px;
+            max-width: 90%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: var(--text-dark);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--boss-gray);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .modal-header h2 { margin: 0; font-size: 18px; color: var(--boss-black); text-transform: uppercase; }
+        .modal-close { cursor: pointer; font-size: 20px; font-weight: bold; color: #777; }
+        .modal-close:hover { color: var(--boss-red); }
+
+        .portal-status-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .portal-status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
         }
 
         .container {
@@ -112,7 +190,7 @@
             background: #2563eb;
             color: #fff;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 18px;
             border-radius: 4px;
             font-size: 13px;
             font-weight: bold;
@@ -121,7 +199,6 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            text-transform: uppercase;
         }
 
         .ai-header-btn:hover { background: #1d4ed8; }
@@ -155,6 +232,7 @@
             opacity: 0.55;
             background-color: #e9e9e9;
         }
+
         .card.expired:hover {
             transform: none;
             border-top-color: transparent;
@@ -187,7 +265,7 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
 
-        .badge-status {
+        .badge {
             position: absolute;
             top: 10px;
             left: 10px;
@@ -202,7 +280,14 @@
 
         .badge-op-voorraad { background-color: #28a745; }
         .badge-rood { background-color: var(--boss-red); }
+        .badge-urgent { background-color: var(--boss-red); color: #fff; animation: pulse-urgent 1.5s infinite; }
         .badge-default { background-color: var(--boss-black); }
+
+        @keyframes pulse-urgent {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
 
         .card-content {
             padding: 15px;
@@ -216,7 +301,6 @@
             font-weight: 900;
             margin: 0 0 10px 0;
             color: var(--boss-black);
-            line-height: 1.3;
         }
 
         .card-specs {
@@ -256,13 +340,11 @@
             margin-top: auto;
             padding-top: 10px;
             border-top: 1px solid #eee;
-            margin-bottom: 10px;
         }
 
         .card-price {
             font-size: 20px;
             font-weight: 900;
-            color: var(--boss-black);
         }
 
         .old-price {
@@ -274,31 +356,27 @@
 
         .new-price { color: var(--boss-red); }
 
-        .countdown-box {
+        /* De vertrouwde rode timer styling van de Veilingen! */
+        .countdown {
+            margin-top: 10px;
             padding: 8px;
+            background-color: #fff3f3;
+            border: 1px solid var(--boss-red);
             border-radius: 4px;
+            color: var(--boss-red);
             font-size: 13px;
             font-weight: bold;
             text-align: center;
-            margin-bottom: 12px;
-        }
-
-        .countdown-urgent {
-            background-color: #fff3f3;
-            border: 1px solid var(--boss-red);
-            color: var(--boss-red);
         }
 
         .countdown-future {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
+            margin-top: 10px;
+            padding: 8px;
+            font-size: 13px;
             color: #555;
-        }
-
-        .countdown-expired {
-            background-color: #eee;
-            border: 1px solid #ccc;
-            color: #666;
+            text-align: center;
+            font-weight: bold;
+            border-top: 1px solid #eee;
         }
 
         .card-link {
@@ -311,40 +389,41 @@
             font-size: 13px;
             font-weight: bold;
             text-transform: uppercase;
+            margin-top: 12px;
             border-radius: 4px;
             transition: background 0.2s;
         }
 
-        .card:hover .card-link {
-            background: var(--boss-red);
-        }
-        
-        .card.expired:hover .card-link {
-            background: var(--boss-black); /* Blijft zwart bij expired */
-        }
+        .card-link:hover { background: var(--boss-red); }
 
         /* Stijl voor vergelijkbare voertuigen op eigen voorraad kaartjes */
         .comparable-market-box {
-            margin-top: 10px;
+            margin-top: 15px;
             background: #fafafa;
             border: 1px solid #e0e0e0;
             border-radius: 4px;
-            padding: 8px;
-            font-size: 11px;
-            color: var(--text-dark);
+            padding: 10px;
+            font-size: 12px;
         }
         .comparable-market-box h4 {
-            margin: 0 0 5px 0;
+            margin: 0 0 8px 0;
             font-size: 11px;
             text-transform: uppercase;
             color: var(--text-light);
             border-bottom: 1px solid #ddd;
-            padding-bottom: 3px;
+            padding-bottom: 4px;
         }
         .market-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 4px;
+        }
+        .market-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
         .market-item a {
             color: var(--boss-red);
@@ -359,7 +438,21 @@
 
     <header>
         <img src="logo.png" alt="BOSS GLOBAL" style="height: 45px; object-fit: contain; display: block;">
+        <div class="system-status-indicator" onclick="openStatusModal()">
+            <span id="header-status-dot" class="status-dot dot-green"></span>
+            <span id="header-status-text">Portalen Status</span>
+        </div>
     </header>
+
+    <div class="modal-overlay" id="statusModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Status Portalen Vandaag</h2>
+                <span class="modal-close" onclick="closeStatusModal()">&times;</span>
+            </div>
+            <ul class="portal-status-list" id="portalStatusList"></ul>
+        </div>
+    </div>
 
     <div class="container">
         <aside class="sidebar">
@@ -396,7 +489,8 @@
                     <div class="tab" onclick="switchTab('auctions')" id="tab-auctions">Veilingen</div>
                     <div class="tab" onclick="switchTab('voorraad')" id="tab-voorraad">Eigen Voorraad</div>
                 </div>
-                <button class="ai-header-btn" onclick="alert('AI Marktselectie functie wordt klaargezet voor latere implementatie!')">
+                <!-- AI Knop Algemeen (Rechtsboven) -->
+                <button class="ai-header-btn" onclick="alert('AI Marktadvies functie wordt later hier gekoppeld!')">
                     🤖 AI Marktadvies
                 </button>
             </div>
@@ -408,21 +502,38 @@
     </div>
 
     <script>
+        // Data bronnen (Market Data en Eigen Voorraad via specifieke GID's)
         const sheetCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS2MZR5mkooWA08Y3GcQAbkAK_SjN0lORb5mth5VVI0fu54XFjksN9HFH_drlAii3O3MYNiCz0OvLbZ/pub?gid=0&single=true&output=csv';
+        const stockCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS2MZR5mkooWA08Y3GcQAbkAK_SjN0lORb5mth5VVI0fu54XFjksN9HFH_drlAii3O3MYNiCz0OvLbZ/pub?gid=475849892&single=true&output=csv';
         
         let allData = [];
+        let ownStockData = [];
         let currentTab = 'listings';
 
+        const TARGET_PORTALS = [
+            "Klaravik", "Surplex", "Legal Brokers", "Truck1", "Mascus", 
+            "MachineryLine", "Equippo", "werktuigen", "Blaupool", 
+            "MMT Usatomacchine", "Truckscout24", "Camion Super Market"
+        ];
+
+        // 1. Laad Marktdata
         Papa.parse(sheetCSVUrl, {
             download: true,
             header: true,
             complete: function(results) {
                 allData = results.data.filter(row => row.Merk && row.Model);
                 populateFilters();
+                updateSystemStatusHeader();
                 renderGrid();
-            },
-            error: function(err) {
-                document.getElementById('product-grid').innerHTML = `<p style="color:red;">Fout bij laden van Google Sheet: ${err.message}</p>`;
+            }
+        });
+
+        // 2. Laad Eigen Voorraad razendsnel en robuust in via de CSV GID link
+        Papa.parse(stockCSVUrl, {
+            download: true,
+            header: true,
+            complete: function(results) {
+                ownStockData = results.data.filter(row => row.Merk && row.Model);
             }
         });
 
@@ -435,24 +546,75 @@
             renderGrid();
         }
 
-        function populateFilters() {
-            // Filter logica voor dropdowns op basis van actieve tab
-            const tabData = allData.filter(row => {
-                const isOwn = (row.Platform || '').toLowerCase().includes('eigen voorraad') || (row.Platform || '').toLowerCase().includes('boss');
-                const isAuc = (row['Veiling loopt af op'] || '').trim() !== '';
-                if(currentTab === 'voorraad') return isOwn;
-                if(currentTab === 'auctions') return !isOwn && isAuc;
-                return !isOwn && !isAuc;
+        function checkPortalsStatus() {
+            const todayStr = new Date().toISOString().split('T')[0];
+            let statuses = {};
+            let globalStatus = 'green';
+
+            TARGET_PORTALS.forEach(portalName => {
+                const portalRows = allData.filter(r => (r.Platform || '').toLowerCase().includes(portalName.toLowerCase()));
+                if (portalRows.length === 0) {
+                    statuses[portalName] = { state: 'red', label: 'Geen data in sheet' };
+                    globalStatus = 'red';
+                } else {
+                    const hasTodayData = portalRows.some(r => {
+                        const dFound = r['Datum gevonden'] || r['datum gevonden'] || '';
+                        return dFound.includes(todayStr);
+                    });
+                    if (hasTodayData) {
+                        statuses[portalName] = { state: 'green', label: 'Data vandaag binnen' };
+                    } else {
+                        statuses[portalName] = { state: 'orange', label: 'Geen data vandaag' };
+                        if (globalStatus !== 'red') globalStatus = 'orange';
+                    }
+                }
             });
+            return { statuses, globalStatus };
+        }
 
-            const platforms = [...new Set(tabData.map(item => item.Platform))].filter(Boolean).sort();
-            const merken = [...new Set(tabData.map(item => item.Merk))].filter(Boolean).sort();
-            const bouwjaren = [...new Set(tabData.map(item => item.Bouwjaar))].filter(Boolean).sort((a,b)=>b-a);
-            const statussen = [...new Set(tabData.map(item => item.Status))].filter(Boolean).sort();
+        function updateSystemStatusHeader() {
+            const { globalStatus } = checkPortalsStatus();
+            const dot = document.getElementById('header-status-dot');
+            if(dot) dot.className = 'status-dot dot-' + globalStatus;
+        }
 
-            const fillSelect = (id, arr, label) => {
+        function openStatusModal() {
+            const { statuses } = checkPortalsStatus();
+            const listEl = document.getElementById('portalStatusList');
+            listEl.innerHTML = '';
+            for (const [portal, info] of Object.entries(statuses)) {
+                listEl.innerHTML += `
+                    <li class="portal-status-item">
+                        <span><strong>${portal}</strong></span>
+                        <span style="display:flex; align-items:center; gap:8px;">
+                            <small style="color:#777;">${info.label}</small>
+                            <span class="status-dot dot-${info.state}"></span>
+                        </span>
+                    </li>
+                `;
+            }
+            document.getElementById('statusModal').style.display = 'flex';
+        }
+
+        function closeStatusModal() {
+            document.getElementById('statusModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('statusModal')) closeStatusModal();
+        }
+
+        function populateFilters() {
+            const dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
+            
+            const platforms = [...new Set(dataSource.map(item => item.Platform))].filter(Boolean).sort();
+            const merken = [...new Set(dataSource.map(item => item.Merk))].filter(Boolean).sort();
+            const bouwjaren = [...new Set(dataSource.map(item => item.Bouwjaar))].filter(Boolean).sort((a,b)=>b-a);
+            const statussen = [...new Set(dataSource.map(item => item.Status))].filter(Boolean).sort();
+
+            const fillSelect = (id, arr, labelText) => {
                 const select = document.getElementById(id);
-                select.innerHTML = `<option value="">${label}</option>`;
+                select.innerHTML = `<option value="">${labelText}</option>`;
                 arr.forEach(val => select.innerHTML += `<option value="${val}">${val}</option>`);
             };
 
@@ -462,7 +624,7 @@
             fillSelect('filter-status', statussen, 'Alle statussen');
         }
 
-        // Uitgebreide land/stad herkenning
+        // Landherkenning aangevuld met Europese locaties
         function getCountryFlagHtml(locStr) {
             if (!locStr) return '';
             let l = locStr.toLowerCase();
@@ -492,23 +654,6 @@
             return '📍';
         }
 
-        // Vind de top 3 vergelijkbare voertuigen op basis van merk en model
-        function getSimilarMarketVehicles(targetMerk, targetModel) {
-            if(!targetMerk) return [];
-            targetMerk = targetMerk.toLowerCase();
-            targetModel = (targetModel || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-
-            return allData.filter(r => {
-                const plat = (r.Platform || '').toLowerCase();
-                if (plat.includes('eigen voorraad') || plat.includes('boss')) return false;
-                
-                const mMerk = (r.Merk || '').toLowerCase();
-                const mModel = (r.Model || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-                
-                return mMerk === targetMerk && (targetModel === '' || mModel.includes(targetModel));
-            }).slice(0, 3);
-        }
-
         function parseAuctionDate(str) {
             if (!str) return null;
             str = String(str).replace(/^'/, '').trim();
@@ -529,46 +674,46 @@
             return null;
         }
 
-        function getAuctionLogic(endTimeString) {
+        function getCountdownDetails(endTimeString) {
             const end = parseAuctionDate(endTimeString);
             if (!end) return null;
             
             const now = new Date();
             const diff = end - now;
             
-            if (diff <= 0) {
-                return { type: 'expired', boxText: 'Veiling afgelopen', imageBadge: 'AFGELOPEN' };
-            }
+            if (diff <= 0) return { text: 'Veiling afgelopen', isUrgent: false, timeValue: diff };
             
-            const pad = (n) => String(n).padStart(2, '0');
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
             const minutes = Math.floor((diff / 1000 / 60) % 60);
             const seconds = Math.floor((diff / 1000) % 60);
+            const pad = (n) => String(n).padStart(2, '0');
             
-            // Binnen 24 uur -> Urgent / Rode live timer
+            // Rode urgent status (binnen 24 uur)
             if (days < 1) {
-                const timeStr = `${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`;
-                const timeStrUpper = `${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S`;
-                return { 
-                    type: 'urgent', 
-                    boxText: `⚠️ ${timeStr}`, 
-                    imageBadge: `⚠️ ${timeStrUpper}` 
-                };
-            } 
-            // Verder in de toekomst -> Gewoon de datum (Grijze box, geen label op foto)
-            else {
-                const d = pad(end.getDate());
-                const m = pad(end.getMonth() + 1);
-                const y = end.getFullYear();
-                const H = pad(end.getHours());
-                const M = pad(end.getMinutes());
-                return { 
-                    type: 'future', 
-                    boxText: `Veiling: ${d}-${m}-${y} ${H}:${M}`, 
-                    imageBadge: null 
-                };
+                return { text: `⚠️ ${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`, textUpper: `⚠️ ${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S`, isUrgent: true, futureDate: null };
             }
+            
+            // Toekomstig (meer dan 24 uur), geen countdown maar een vaste datum string
+            const d = pad(end.getDate());
+            const m = pad(end.getMonth() + 1);
+            const y = end.getFullYear();
+            const H = pad(end.getHours());
+            const M = pad(end.getMinutes());
+            return { text: `Veiling op: ${d}-${m}-${y} ${H}:${M}`, isUrgent: false, futureDate: true };
+        }
+
+        // Functie voor slimme voorraad-vergelijking
+        function getSimilarMarketVehicles(targetMerk, targetModel) {
+            if(!targetMerk) return [];
+            targetMerk = targetMerk.toLowerCase();
+            targetModel = (targetModel || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+            return allData.filter(r => {
+                const mMerk = (r.Merk || '').toLowerCase();
+                const mModel = (r.Model || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+                return mMerk === targetMerk && (targetModel === '' || mModel.includes(targetModel));
+            }).slice(0, 3);
         }
 
         function renderGrid() {
@@ -580,25 +725,22 @@
             const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
             const filterStatus = document.getElementById('filter-status').value;
 
-            // Voorbereken vergelijkbare items voor Eigen Voorraad sortering
+            // Bron selecteren
+            let dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
+
+            // Voorberekenen van overeenkomsten in markt voor de 'Eigen Voorraad' sortering
             if (currentTab === 'voorraad') {
-                allData.forEach(row => {
-                    const isOwnStock = (row.Platform || '').toLowerCase().includes('eigen voorraad') || (row.Platform || '').toLowerCase().includes('boss');
-                    if (isOwnStock) {
-                        row._similarCount = getSimilarMarketVehicles(row.Merk, row.Model).length;
-                    }
+                dataSource.forEach(row => {
+                    row._similarCount = getSimilarMarketVehicles(row.Merk, row.Model).length;
                 });
             }
 
-            let filteredData = allData.filter(row => {
-                const platformVal = (row.Platform || '').toLowerCase();
-                const isOwnStock = platformVal.includes('eigen voorraad') || platformVal.includes('boss');
+            let filteredData = dataSource.filter(row => {
                 const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
                 const isAuction = endDateVal !== '';
 
-                if (currentTab === 'voorraad' && !isOwnStock) return false;
-                if (currentTab === 'listings' && (isOwnStock || isAuction)) return false;
-                if (currentTab === 'auctions' && (isOwnStock || !isAuction)) return false;
+                if (currentTab === 'listings' && isAuction) return false;
+                if (currentTab === 'auctions' && !isAuction) return false;
 
                 if (filterPlatform && row.Platform !== filterPlatform) return false;
                 if (filterMerk && row.Merk !== filterMerk) return false;
@@ -610,10 +752,10 @@
 
             // Sortering
             if (currentTab === 'voorraad') {
-                // Sorteer op aantal vergelijkbare marktitems (meeste eerst)
+                // Machines met vergelijkbare marktopties bovenaan
                 filteredData.sort((a, b) => (b._similarCount || 0) - (a._similarCount || 0));
             } else if (currentTab === 'auctions') {
-                // Sorteer veilingen op tijd (eerstkomende bovenaan, afgelopen onderaan)
+                // Veilingen op tijd gesorteerd
                 filteredData.sort((a, b) => {
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
                     const dateB = parseAuctionDate(b['Veiling loopt af op']);
@@ -627,7 +769,7 @@
                     return dateA - dateB;
                 });
             } else if (currentTab === 'listings') {
-                // Sorteer 'Verkocht' onderaan
+                // Verkochte listings naar onderen
                 filteredData.sort((a, b) => {
                     const isSoldA = (a.Status || '').toLowerCase().includes('verkocht');
                     const isSoldB = (b.Status || '').toLowerCase().includes('verkocht');
@@ -638,20 +780,16 @@
             }
 
             if (filteredData.length === 0) {
-                grid.innerHTML = '<p>Geen machines gevonden met deze filters.</p>';
+                grid.innerHTML = '<p>Geen machines gevonden.</p>';
                 return;
             }
 
             filteredData.forEach(row => {
-                const platformVal = (row.Platform || '').toLowerCase();
-                const isOwnStock = platformVal.includes('eigen voorraad') || platformVal.includes('boss');
+                const isOwnStock = (currentTab === 'voorraad');
                 const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
                 const isAuction = endDateVal !== '';
-
-                // Volledige titel genereren
                 const fullTitle = row.Titel || row.Title || (`${row.Merk} ${row.Model}`);
 
-                // Prijs logica
                 let priceHtml = '';
                 const eerstePrijs = row['Eerste prijs'] ? row['Eerste prijs'].trim() : '';
                 const laatstePrijs = row['Laatste prijs'] ? row['Laatste prijs'].trim() : '';
@@ -666,92 +804,91 @@
                     priceHtml = isAuction ? 'Actueel bod' : 'Op aanvraag';
                 }
 
-                // Veiling & Badge logica
-                let statusBadge = '';
-                let imageBadge = '';
-                let auctionBoxHtml = '';
+                let badgeHtml = '';
+                let imageBadgeHtml = '';
+                let auctionHtml = '';
                 let isExpired = false;
 
                 if (isOwnStock) {
-                    statusBadge = `<div class="badge-status badge-op-voorraad">Eigen Voorraad</div>`;
+                    badgeHtml = `<div class="badge badge-op-voorraad">Eigen Voorraad</div>`;
                 } else if (isAuction) {
-                    const auctionDetails = getAuctionLogic(row['Veiling loopt af op']);
-                    if (auctionDetails) {
+                    const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
+                    if (countdownObj) {
                         const bidsCount = row['Aantal biedingen'] || '0';
-                        
-                        if (auctionDetails.type === 'expired') {
+                        if (countdownObj.text === 'Veiling afgelopen') {
+                            badgeHtml = `<div class="badge badge-rood">Afgelopen</div>`;
+                            imageBadgeHtml = `<div class="badge-image" style="color:var(--boss-red);">AFGELOPEN</div>`;
+                            auctionHtml = `<div class="countdown" style="background:#eee; color:#666; border-color:#ccc;">Veiling afgelopen | Biedingen: ${bidsCount}</div>`;
                             isExpired = true;
-                            imageBadge = `<div class="badge-image" style="color:var(--boss-red);">AFGELOPEN</div>`;
-                            auctionBoxHtml = `<div class="countdown-box countdown-expired">${auctionDetails.boxText}</div>`;
-                        } else if (auctionDetails.type === 'urgent') {
-                            imageBadge = `<div class="badge-image" style="color:#ffc107;">${auctionDetails.imageBadge}</div>`;
-                            auctionBoxHtml = `<div class="countdown-box countdown-urgent">${auctionDetails.boxText} | Biedingen: ${bidsCount}</div>`;
-                        } else {
-                            // Toekomst
-                            auctionBoxHtml = `<div class="countdown-box countdown-future">${auctionDetails.boxText} | Biedingen: ${bidsCount}</div>`;
+                        } else if (countdownObj.isUrgent) {
+                            // Urgent styling (Rood vlak + label op foto)
+                            badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
+                            imageBadgeHtml = `<div class="badge-image" style="color:#ffc107;">${countdownObj.textUpper}</div>`;
+                            auctionHtml = `<div class="countdown">${countdownObj.text} | Biedingen: ${bidsCount}</div>`;
+                        } else if (countdownObj.futureDate) {
+                            // Ver in de toekomst (Grijze tekst, geen opvallend rood vlak)
+                            auctionHtml = `<div class="countdown-future">${countdownObj.text} | Biedingen: ${bidsCount}</div>`;
                         }
                     }
                 } else if (row.Status) {
                     let statusLower = row.Status.toLowerCase().trim();
                     let badgeClass = 'badge-default';
                     if (statusLower.includes('voorraad')) badgeClass = 'badge-op-voorraad';
-                    else if (statusLower.includes('afgeprijsd') || statusLower.includes('bod verhoogd')) badgeClass = 'badge-rood';
-                    statusBadge = `<div class="badge-status ${badgeClass}">${row.Status}</div>`;
+                    else if (statusLower.includes('afgeprijsd')) badgeClass = 'badge-rood';
+                    badgeHtml = `<div class="badge ${badgeClass}">${row.Status}</div>`;
                 }
 
-                // Afbeelding
                 let imageUrl = row['Image URL'] || row['image url'] || row['image_url'] || '';
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
                 if (imageUrl.trim() !== '') {
                     imageHtml = `<img src="${imageUrl.trim()}" alt="${row.Merk} ${row.Model}" style="width:100%; height:180px; object-fit:cover; display:block;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
                 }
 
-                // Locatie
                 let locationHtml = '';
                 if (row['Locatie']) {
                     let flagHtml = getCountryFlagHtml(row['Locatie']);
                     locationHtml = `<div class="card-location">${flagHtml} <span>${row['Locatie']}</span></div>`;
                 }
 
-                // Extra content (Vergelijkbare box voor voorraad)
-                let extraContent = '';
+                // AI Prijsindicatie / Vergelijkbare voertuigen opzet voor eigen voorraad
+                let extraContentHtml = '';
                 if (isOwnStock) {
                     const similar = getSimilarMarketVehicles(row.Merk, row.Model);
-                    let marketList = '';
+                    let marketHtml = '';
                     if (similar.length > 0) {
                         similar.forEach(v => {
-                            marketList += `
+                            marketHtml += `
                                 <div class="market-item">
-                                    <span>${v.Bouwjaar || '-'} | ${v.Draaiuren || '-'} | <strong>${v['Laatste prijs'] || v['Eerste prijs'] || 'Op aanvraag'}</strong></span>
+                                    <span>${v.Bouwjaar || '-'} | ${v.Draaiuren || '-'} | <strong style="color:var(--text-dark);">${v['Laatste prijs'] || v['Eerste prijs'] || 'Op aanvraag'}</strong></span>
                                     <a href="${v.Link || '#'}" target="_blank">Bekijk</a>
                                 </div>
                             `;
                         });
                     } else {
-                        marketList = `<div style="color:#777; font-style:italic;">Geen vergelijkbare marktdata gevonden.</div>`;
+                        marketHtml = `<div style="color:#777; font-style:italic;">Geen vergelijkbare marktdata gevonden.</div>`;
                     }
-                    extraContent = `
+                    
+                    extraContentHtml = `
                         <div class="comparable-market-box">
-                            <h4>Vergelijkbaar in markt:</h4>
-                            ${marketList}
+                            <h4>Vergelijkbaar in de markt:</h4>
+                            ${marketHtml}
                         </div>
                     `;
                 }
 
-                // Kaart opbouw (Geheel klikbaar als link)
                 const productUrl = row.Link ? row.Link : '#';
                 const expiredClass = isExpired ? ' expired' : '';
-                const pointerStyle = isOwnStock ? 'cursor:default;' : '';
-                // Voorraad is een div, Listings/Auctions zijn a tags
+                
+                // Opbouwen kaart: A-tag voor markt, DIV voor eigen voorraad (zodat knoppen/links binnenin werkbaar zijn)
                 const wrapperStart = isOwnStock ? `<div class="card${expiredClass}">` : `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}">`;
                 const wrapperEnd = isOwnStock ? `</div>` : `</a>`;
 
                 const cardHtml = `
                     ${wrapperStart}
-                        ${statusBadge}
+                        ${badgeHtml}
                         <div class="card-image-container">
                             ${imageHtml}
-                            ${imageBadge}
+                            ${imageBadgeHtml}
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">${fullTitle}</h3>
@@ -760,15 +897,12 @@
                                 ${row.Draaiuren ? `<span class="spec-tag">Uren: ${row.Draaiuren}</span>` : ''}
                             </div>
                             ${locationHtml}
-                            
                             <div class="card-price-box">
                                 <div class="card-price">${priceHtml}</div>
                             </div>
-                            
-                            ${auctionBoxHtml}
-                            
-                            ${!isOwnStock ? `<div class="card-link">BEKIJK MACHINE</div>` : ''}
-                            ${extraContent}
+                            ${auctionHtml}
+                            ${!isOwnStock ? `<div class="card-link">Bekijk machine</div>` : ''}
+                            ${extraContentHtml}
                         </div>
                     ${wrapperEnd}
                 `;
@@ -776,11 +910,9 @@
             });
         }
 
-        // Live timer update per seconde (Alleen als Veilingen tab actief is)
+        // Live timer updates elke seconde op de veilingtab
         setInterval(() => {
-            if (currentTab === 'auctions') {
-                renderGrid();
-            }
+            if (currentTab === 'auctions') renderGrid();
         }, 1000);
     </script>
 </body>
