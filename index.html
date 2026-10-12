@@ -241,7 +241,6 @@
             text-align: center;
         }
 
-        /* Extra urgentie e-commerce label voor < 12 uur */
         .countdown-urgent {
             background-color: var(--boss-red);
             color: #fff;
@@ -367,7 +366,6 @@
             fillSelect('filter-status', statussen);
         }
 
-        // Slimme landenvlag herkenning (inclusief landcodes zoals SI voor Slovenië, DE, FR, NL, BE, etc.)
         function getCountryFlagHtml(locStr) {
             if (!locStr) return '';
             let l = locStr.toLowerCase();
@@ -397,6 +395,7 @@
             return '📍';
         }
 
+        // Geavanceerde datum parser die ook weekdagen (zoals "Donnerstag um 12:12") automatisch naar de juiste komende dag omrekent
         function parseAuctionDate(str) {
             if (!str) return null;
             str = str.trim();
@@ -414,6 +413,37 @@
 
             if (str.startsWith('assign.:')) {
                 str = str.replace('assign.:', '').trim();
+            }
+
+            // Weekdag herkenning (Duits & Nederlands), bijv. "Donnerstag um 12:12"
+            const weekDays = {
+                'montag': 1, 'maandag': 1,
+                'dienstag': 2, 'dinsdag': 2,
+                'mittwoch': 3, 'woensdag': 3,
+                'donnerstag': 4, 'donderdag': 4,
+                'freitag': 5, 'vrijdag': 5,
+                'samstag': 6, 'zaterdag': 6,
+                'sonntag': 0, 'zondag': 0
+            };
+
+            const lowerStr = str.toLowerCase();
+            for (const [dayName, targetDayIndex] of Object.entries(weekDays)) {
+                if (lowerStr.includes(dayName)) {
+                    // Zoek tijdstip (bijv. 12:12)
+                    const timeMatch = str.match(/(\d{2}):(\d{2})/);
+                    const hours = timeMatch ? parseInt(timeMatch[1]) : 12;
+                    const minutes = timeMatch ? parseInt(timeMatch[2]) : 0;
+
+                    const now = new Date();
+                    const currentDayIndex = now.getDay();
+                    let dayDiff = targetDayIndex - currentDayIndex;
+                    if (dayDiff <= 0) dayDiff += 7; // Altijd naar de komende komende weekdag rekenen
+
+                    const targetDate = new Date(now);
+                    targetDate.setDate(now.getDate() + dayDiff);
+                    targetDate.setHours(hours, minutes, 0, 0);
+                    return targetDate;
+                }
             }
 
             const euMatch = str.match(/^(\d{2})-(\d{2})-(\d{4}),?\s*(\d{2}):(\d{2})$/);
@@ -601,7 +631,6 @@
             });
         }
 
-        // Als we in de veilingen tab zitten, elke seconde de secondenteller updaten voor maximale urgentie!
         setInterval(() => {
             if (currentTab === 'auctions') {
                 renderGrid();
