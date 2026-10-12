@@ -118,6 +118,8 @@
             flex-direction: column;
             border-top: 3px solid transparent;
             transition: transform 0.2s;
+            text-decoration: none;
+            color: inherit;
         }
 
         .card:hover {
@@ -125,9 +127,14 @@
             border-top-color: var(--boss-red);
         }
 
-        .card-image-placeholder {
+        .card-image-container {
+            position: relative;
             height: 180px;
             background-color: #e9e9e9;
+        }
+
+        .card-image-placeholder {
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -155,6 +162,18 @@
 
         .badge-rood {
             background-color: var(--boss-red);
+        }
+
+        .badge-urgent {
+            background-color: var(--boss-red);
+            color: #fff;
+            animation: pulse-urgent 1.5s infinite;
+        }
+
+        @keyframes pulse-urgent {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
         }
 
         .badge-default {
@@ -240,18 +259,6 @@
             font-size: 13px;
             font-weight: bold;
             text-align: center;
-        }
-
-        .countdown-urgent {
-            background-color: var(--boss-red);
-            color: #fff;
-            animation: pulse-urgent 1.5s infinite;
-        }
-
-        @keyframes pulse-urgent {
-            0% { opacity: 1; }
-            50% { opacity: 0.8; }
-            100% { opacity: 1; }
         }
 
         .card-link {
@@ -396,6 +403,7 @@
             return '📍';
         }
 
+        // Zeer robuuste datum parser voor alle variaties uit de sheet
         function parseAuctionDate(str) {
             if (!str) return null;
             str = str.trim();
@@ -415,6 +423,17 @@
                 str = str.replace('assign.:', '').trim();
             }
 
+            // "Startet heute um 12:00" of "heute um 12:00"
+            if (/heute\s+um/i.test(str)) {
+                const timeMatch = str.match(/(\d{2}):(\d{2})/);
+                const hours = timeMatch ? parseInt(timeMatch[1]) : 12;
+                const minutes = timeMatch ? parseInt(timeMatch[2]) : 0;
+                const targetDate = new Date();
+                targetDate.setHours(hours, minutes, 0, 0);
+                return targetDate;
+            }
+
+            // Weekdag herkenning (bijv. "Donnerstag um 12:12" of "Dienstag um 18:41")
             const weekDays = {
                 'montag': 1, 'maandag': 1,
                 'dienstag': 2, 'dinsdag': 2,
@@ -450,8 +469,9 @@
                 return new Date(`${y}-${m}-${d}T${hh}:${mm}:00`);
             }
 
+            // Formaten zoals "22 Okt. um 12:11" of "Startet 07 Okt. 16:00" of "15 Okt. um 18:36"
             let cleanStr = str
-                .replace(/Startet\s+(heute\s+um\s+|heute\s+)?/i, '')
+                .replace(/Startet\s+/i, '')
                 .replace(/um/i, '')
                 .replace(/\./g, '')
                 .trim();
@@ -494,10 +514,11 @@
             const minutes = Math.floor((diff / 1000 / 60) % 60);
             const seconds = Math.floor((diff / 1000) % 60);
 
+            const pad = (n) => String(n).padStart(2, '0');
+
             if (diff < 12 * 60 * 60 * 1000) {
-                const pad = (n) => String(n).padStart(2, '0');
                 return {
-                    text: `⚠️ Sluit over: ${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`,
+                    text: `⚠️ ${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`,
                     isUrgent: true,
                     timeValue: diff
                 };
@@ -564,32 +585,30 @@
                     priceHtml = `<div class="card-price">${isAuction ? 'Actueel bod' : 'Op aanvraag'}</div>`;
                 }
 
+                let badgeHtml = '';
                 let auctionHtml = '';
+
                 if (isAuction) {
                     const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
                     if (countdownObj) {
                         const bidsCount = row['Aantal biedingen'] || '0';
-                        const urgentClass = countdownObj.isUrgent ? 'countdown countdown-urgent' : 'countdown';
-                        auctionHtml = `<div class="${urgentClass}">${countdownObj.text} | Biedingen: ${bidsCount}</div>`;
+                        if (countdownObj.isUrgent) {
+                            badgeHtml = `<div class="badge badge-urgent">${countdownObj.text}</div>`;
+                        } else if (countdownObj.text === 'Veiling afgelopen') {
+                            badgeHtml = `<div class="badge badge-rood">Afgelopen</div>`;
+                        }
+                        auctionHtml = `<div class="countdown">${countdownObj.text} | Biedingen: ${bidsCount}</div>`;
                     }
-                }
-
-                let badgeHtml = '';
-                if (row.Status) {
+                } else if (row.Status) {
                     let statusLower = row.Status.toLowerCase().trim();
                     let badgeClass = 'badge-default';
 
                     if (statusLower.includes('voorraad')) {
-                        if (!isAuction) {
-                            badgeClass = 'badge-op-voorraad';
-                            badgeHtml = `<div class="badge ${badgeClass}">${row.Status}</div>`;
-                        }
+                        badgeClass = 'badge-op-voorraad';
                     } else if (statusLower.includes('afgeprijsd') || statusLower.includes('bod verhoogd')) {
                         badgeClass = 'badge-rood';
-                        badgeHtml = `<div class="badge ${badgeClass}">${row.Status}</div>`;
-                    } else {
-                        badgeHtml = `<div class="badge badge-default">${row.Status}</div>`;
                     }
+                    badgeHtml = `<div class="badge ${badgeClass}">${row.Status}</div>`;
                 }
 
                 let imageUrl = row['Image URL'] || row['image url'] || row['image_url'] || '';
@@ -604,10 +623,14 @@
                     locationHtml = `<div class="card-location">${flagHtml} <span>${row['Locatie']}</span></div>`;
                 }
 
+                const productUrl = row.Link ? row.Link : '#';
+
                 const card = `
-                    <div class="card">
+                    <a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card">
                         ${badgeHtml}
-                        ${imageHtml}
+                        <div class="card-image-container">
+                            ${imageHtml}
+                        </div>
                         <div class="card-content">
                             <h3 class="card-title">${row.Merk} ${row.Model}</h3>
                             <div class="card-specs">
@@ -619,9 +642,9 @@
                                 ${priceHtml}
                             </div>
                             ${auctionHtml}
-                            ${row.Link ? `<a href="${row.Link}" target="_blank" rel="noopener noreferrer" class="card-link">Bekijk machine</a>` : ''}
+                            <span class="card-link">Bekijk machine</span>
                         </div>
-                    </div>
+                    </a>
                 `;
                 grid.innerHTML += card;
             });
