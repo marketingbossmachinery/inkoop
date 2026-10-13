@@ -150,7 +150,6 @@
             background: #fff;
         }
 
-        /* Mobiele filter toggle knop (standaard verborgen op desktop) */
         .mobile-filter-btn {
             display: none;
             width: 100%;
@@ -288,16 +287,22 @@
             position: absolute;
             top: 10px;
             left: 10px;
-            padding: 4px 10px;
+            padding: 5px 10px;
             font-size: 11px;
             font-weight: bold;
             border-radius: 3px;
             text-transform: uppercase;
             z-index: 2;
             color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        .badge-op-voorraad { background-color: #28a745; }
+        /* Badge kleuren voor AI Prijsadvies (Kolom T) */
+        .badge-te-hoog { background-color: #dc3545; }       /* Rood */
+        .badge-goed { background-color: #28a745; }          /* Groen */
+        .badge-te-laag { background-color: #fd7e14; }       /* Oranje */
+        .badge-geen-data { background-color: #6c757d; }     /* Grijs */
+        
         .badge-rood { background-color: var(--boss-red); }
         .badge-urgent { background-color: var(--boss-red); color: #fff; animation: pulse-urgent 1.5s infinite; }
         .badge-default { background-color: var(--boss-black); }
@@ -450,7 +455,6 @@
         }
         .market-item a:hover { text-decoration: underline; }
 
-        /* --- RESPONSIVE MEDIA QUERIES VOOR MOBIEL --- */
         @media (max-width: 900px) {
             .container {
                 flex-direction: column;
@@ -463,7 +467,7 @@
                 display: block;
             }
             .sidebar-filters-wrapper {
-                display: none; /* Standaard ingeklapt op mobiel */
+                display: none;
             }
             .sidebar-filters-wrapper.open {
                 display: block;
@@ -495,7 +499,6 @@
     </div>
 
     <div class="container">
-        <!-- Mobiele Filter Toggle Knop -->
         <button class="mobile-filter-btn" onclick="toggleMobileFilters()">🔍 Filters tonen / verbergen</button>
 
         <aside class="sidebar">
@@ -534,7 +537,7 @@
                     <div class="tab" onclick="switchTab('auctions')" id="tab-auctions">Veilingen</div>
                     <div class="tab" onclick="switchTab('voorraad')" id="tab-voorraad">Eigen Voorraad</div>
                 </div>
-                <button class="ai-header-btn" onclick="alert('AI Marktadvies functie wordt later hier gekoppeld!')">
+                <button class="ai-header-btn" onclick="alert('AI Marktadvies functie wordt hier gekoppeld!')">
                     🤖 AI Marktadvies
                 </button>
             </div>
@@ -564,7 +567,6 @@
             wrapper.classList.toggle('open');
         }
 
-        // Laad Marktdata
         Papa.parse(sheetCSVUrl, {
             download: true,
             header: true,
@@ -576,7 +578,6 @@
             }
         });
 
-        // Laad Eigen Voorraad via de beveiligde publicatielink
         Papa.parse(stockCSVUrl, {
             download: true,
             header: true,
@@ -857,7 +858,20 @@
                 let isExpired = false;
 
                 if (isOwnStock) {
-                    badgeHtml = `<div class="badge badge-op-voorraad">Eigen Voorraad</div>`;
+                    // Haal waarde uit Kolom T ("AI Prijs") op
+                    const aiPriceStatus = (row['AI Prijs'] || 'Geen marktdata').trim();
+                    let badgeClass = 'badge-geen-data';
+
+                    let statusLower = aiPriceStatus.toLowerCase();
+                    if (statusLower.includes('te hoog')) {
+                        badgeClass = 'badge-te-hoog';
+                    } else if (statusLower.includes('goed geprijsd')) {
+                        badgeClass = 'badge-goed';
+                    } else if (statusLower.includes('te laag')) {
+                        badgeClass = 'badge-te-laag';
+                    }
+
+                    badgeHtml = `<div class="badge ${badgeClass}">${aiPriceStatus}</div>`;
                 } else if (isAuction) {
                     const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
                     if (countdownObj) {
