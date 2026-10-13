@@ -858,7 +858,7 @@
                 let isExpired = false;
 
                 if (isOwnStock) {
-                    // Haal waarde uit Kolom T ("AI Prijs") op
+                    // Alleen op het tabblad Eigen Voorraad tonen we het AI-prijsadvies als badge
                     const aiPriceStatus = (row['AI Prijs'] || 'Geen marktdata').trim();
                     let badgeClass = 'badge-geen-data';
 
@@ -892,11 +892,11 @@
                         }
                     }
                 } else if (row.Status) {
+                    // Voor listings / veilingen: alleen tonen als het expliciet 'afgeprijsd' is (geen 'voorraad' labels meer)
                     let statusLower = row.Status.toLowerCase().trim();
-                    let badgeClass = 'badge-default';
-                    if (statusLower.includes('voorraad')) badgeClass = 'badge-op-voorraad';
-                    else if (statusLower.includes('afgeprijsd')) badgeClass = 'badge-rood';
-                    badgeHtml = `<div class="badge ${badgeClass}">${row.Status}</div>`;
+                    if (statusLower.includes('afgeprijsd')) {
+                        badgeHtml = `<div class="badge badge-rood">${row.Status}</div>`;
+                    }
                 }
 
                 let imageUrl = row['Afbeelding'] || row['Image URL'] || row['image url'] || '';
