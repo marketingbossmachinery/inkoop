@@ -254,6 +254,7 @@
             font-weight: bold;
         }
 
+        /* --- VERNIEUWDE TIMER BADGE OP FOTO (ROOD VLAK, WITTE TEKST) --- */
         .badge-image {
             position: absolute;
             top: 10px;
@@ -360,6 +361,7 @@
 
         .new-price { color: var(--boss-red); }
 
+        /* Rode aftel box onderaan voor urgente veilingen */
         .countdown {
             margin-top: 10px;
             padding: 8px;
@@ -372,6 +374,7 @@
             text-align: center;
         }
 
+        /* Grijze/rustige box onderaan voor veilingen verder in de toekomst */
         .countdown-future {
             margin-top: 10px;
             padding: 8px;
@@ -399,6 +402,7 @@
 
         .card-link:hover { background: var(--boss-red); }
 
+        /* Stijl voor vergelijkbare voertuigen op eigen voorraad kaartjes */
         .comparable-market-box {
             margin-top: 15px;
             background: #fafafa;
@@ -418,7 +422,6 @@
         .market-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             margin-bottom: 6px;
             border-bottom: 1px dashed #eee;
             padding-bottom: 4px;
@@ -434,6 +437,7 @@
             font-weight: bold;
         }
         .market-item a:hover { text-decoration: underline; }
+
     </style>
 </head>
 <body>
@@ -491,6 +495,7 @@
                     <div class="tab" onclick="switchTab('auctions')" id="tab-auctions">Veilingen</div>
                     <div class="tab" onclick="switchTab('voorraad')" id="tab-voorraad">Eigen Voorraad</div>
                 </div>
+                <!-- AI Knop Algemeen (Rechtsboven) -->
                 <button class="ai-header-btn" onclick="alert('AI Marktadvies functie wordt later hier gekoppeld!')">
                     🤖 AI Marktadvies
                 </button>
@@ -503,9 +508,9 @@
     </div>
 
     <script>
-        // Databronnen: Marktdata + Eigen Voorraad rechtstreeks via stabiele Google Sheets CSV export links
+        // 1. Data bronnen (Web app link hersteld voor Eigen Voorraad zoals succesvol bevestigd)
         const sheetCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS2MZR5mkooWA08Y3GcQAbkAK_SjN0lORb5mth5VVI0fu54XFjksN9HFH_drlAii3O3MYNiCz0OvLbZ/pub?gid=0&single=true&output=csv';
-        const stockCSVUrl = 'https://docs.google.com/spreadsheets/d/1uiQsimmf6GhPMq6TGqtfiYbVO-w6wEs6dvzjJF_QF4E/gviz/tq?tqx=out:csv&gid=475849892'; 
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxF4GY0PsOlNyVWoj9pSQM--b3CFGW7e2OAyZEy5573ZKpxZ-K_jd_x1hpBiIYSIRm2/exec';
         
         let allData = [];
         let ownStockData = [];
@@ -529,21 +534,22 @@
             }
         });
 
-        // Laad Eigen Voorraad via stabiele Google Spreadsheet CSV export
-        Papa.parse(stockCSVUrl, {
-            download: true,
-            header: true,
-            complete: function(results) {
-                ownStockData = results.data.filter(row => row.Merk && row.Model);
-                if (currentTab === 'voorraad') {
-                    populateFilters();
-                    renderGrid();
-                }
-            },
-            error: function(err) {
-                console.error("Fout bij laden eigen voorraad CSV:", err);
-            }
-        });
+        // Laad Eigen Voorraad (De originele stabiele web-app code!)
+        function loadOwnStock() {
+            fetch(WEB_APP_URL)
+                .then(res => res.json())
+                .then(data => {
+                    const headers = data.stockHeaders;
+                    ownStockData = data.stockRows.map((row, index) => {
+                        let obj = { _sheetRowIndex: index + 1 };
+                        headers.forEach((h, i) => { obj[h] = row[i]; });
+                        return obj;
+                    });
+                    if (currentTab === 'voorraad') renderGrid();
+                })
+                .catch(err => console.error("Fout bij laden eigen voorraad:", err));
+        }
+        loadOwnStock();
 
         function switchTab(tab) {
             currentTab = tab;
@@ -696,6 +702,7 @@
             const seconds = Math.floor((diff / 1000) % 60);
             const pad = (n) => String(n).padStart(2, '0');
             
+            // Altijd de tijdsweergave opmaken (ook als het ver weg is, laten we het aftellen!)
             let timeStrUpper = "";
             if (days > 0) {
                 timeStrUpper = `⏱ ${days}D ${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S`;
@@ -709,6 +716,7 @@
             const H = pad(end.getHours());
             const M = pad(end.getMinutes());
             
+            // Rode urgent status box (minder dan 2 dagen)
             if (days < 2) {
                 return { 
                     boxText: `⚠️ Nog ${days > 0 ? days + 'd ' : ''}${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`, 
@@ -718,6 +726,7 @@
                 };
             }
             
+            // Verder in de toekomst (Toont de datum beneden, maar COUNTDOWN BOVENIN tikt netjes af)
             return { 
                 boxText: `Veiling op: ${d}-${m}-${y} om ${H}:${M}`, 
                 imageBadge: timeStrUpper, 
@@ -726,6 +735,7 @@
             };
         }
 
+        // Functie voor slimme voorraad-vergelijking
         function getSimilarMarketVehicles(targetMerk, targetModel) {
             if(!targetMerk) return [];
             targetMerk = targetMerk.toLowerCase();
@@ -747,8 +757,10 @@
             const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
             const filterStatus = document.getElementById('filter-status').value;
 
+            // Bron selecteren
             let dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
 
+            // Voorberekenen van overeenkomsten in markt voor de 'Eigen Voorraad' sortering
             if (currentTab === 'voorraad') {
                 dataSource.forEach(row => {
                     row._similarCount = getSimilarMarketVehicles(row.Merk, row.Model).length;
@@ -774,6 +786,7 @@
                 return true;
             });
 
+            // Sortering
             if (currentTab === 'voorraad') {
                 filteredData.sort((a, b) => (b._similarCount || 0) - (a._similarCount || 0));
             } else if (currentTab === 'auctions') {
@@ -841,7 +854,10 @@
                             auctionHtml = `<div class="countdown" style="background:#eee; color:#666; border-color:#ccc;">Veiling afgelopen | Biedingen: ${bidsCount}</div>`;
                             isExpired = true;
                         } else {
+                            // TIMER OP DE AFBEELDING IS NU ALTIJD ZICHTBAAR (ROOD VLAKJE)
                             imageBadgeHtml = `<div class="badge-image">${countdownObj.imageBadge}</div>`;
+                            
+                            // TEXT ONDER DE PRIJS
                             if (countdownObj.isUrgent) {
                                 badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
                                 auctionHtml = `<div class="countdown">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
@@ -876,13 +892,9 @@
                     let marketHtml = '';
                     if (similar.length > 0) {
                         similar.forEach(v => {
-                            const bjaar = v.Bouwjaar ? v.Bouwjaar : '-';
-                            const uren = v.Draaiuren ? v.Draaiuren + 'u' : '-';
-                            const prijs = v['Laatste prijs'] || v['Eerste prijs'] || 'Op aanvraag';
-
                             marketHtml += `
                                 <div class="market-item">
-                                    <span style="font-size:11px;">${bjaar} | ${uren} | <strong style="color:var(--text-dark);">${prijs}</strong></span>
+                                    <span>${v.Bouwjaar || '-'} | ${v.Draaiuren || '-'} | <strong style="color:var(--text-dark);">${v['Laatste prijs'] || v['Eerste prijs'] || 'Op aanvraag'}</strong></span>
                                     <a href="${v.Link || '#'}" target="_blank">Bekijk</a>
                                 </div>
                             `;
@@ -932,6 +944,7 @@
             });
         }
 
+        // Live timer updates elke seconde op de veilingtab
         setInterval(() => {
             if (currentTab === 'auctions') renderGrid();
         }, 1000);
