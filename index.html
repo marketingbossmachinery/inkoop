@@ -418,6 +418,7 @@
         .market-item {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 6px;
             border-bottom: 1px dashed #eee;
             padding-bottom: 4px;
@@ -502,11 +503,9 @@
     </div>
 
     <script>
-        // 1. Databronnen: Marktdata + Eigen Voorraad direct via stabiele Google Sheets CSV export links
+        // Databronnen: Marktdata + Eigen Voorraad rechtstreeks via stabiele Google Sheets CSV export links
         const sheetCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS2MZR5mkooWA08Y3GcQAbkAK_SjN0lORb5mth5VVI0fu54XFjksN9HFH_drlAii3O3MYNiCz0OvLbZ/pub?gid=0&single=true&output=csv';
-        const stockCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS2MZR5mkooWA08Y3GcQAbkAK_SjN0lORb5mth5VVI0fu54XFjksN9HFH_drlAii3O3MYNiCz0OvLbZ/pub?gid=475849892&single=true&output=csv'; 
-        // 💡 Let op: Als je eigen voorraad in een andere Google Sheet ID staat dan je marktdata, vervang dan hierboven de spreadsheet ID in de stockCSVUrl naar: 
-        // 'https://docs.google.com/spreadsheets/d/1uiQsimmf6GhPMq6TGqtfiYbVO-w6wEs6dvzjJF_QF4E/gviz/tq?tqx=out:csv&gid=475849892' (zorg wel dat dat specifieke document openbaar is als web/csv).
+        const stockCSVUrl = 'https://docs.google.com/spreadsheets/d/1uiQsimmf6GhPMq6TGqtfiYbVO-w6wEs6dvzjJF_QF4E/gviz/tq?tqx=out:csv&gid=475849892'; 
         
         let allData = [];
         let ownStockData = [];
@@ -530,7 +529,7 @@
             }
         });
 
-        // Laad Eigen Voorraad via stabiele PapaParse CSV
+        // Laad Eigen Voorraad via stabiele Google Spreadsheet CSV export
         Papa.parse(stockCSVUrl, {
             download: true,
             header: true,
@@ -877,9 +876,13 @@
                     let marketHtml = '';
                     if (similar.length > 0) {
                         similar.forEach(v => {
+                            const bjaar = v.Bouwjaar ? v.Bouwjaar : '-';
+                            const uren = v.Draaiuren ? v.Draaiuren + 'u' : '-';
+                            const prijs = v['Laatste prijs'] || v['Eerste prijs'] || 'Op aanvraag';
+
                             marketHtml += `
                                 <div class="market-item">
-                                    <span>${v.Bouwjaar || '-'} | ${v.Draaiuren || '-'} | <strong style="color:var(--text-dark);">${v['Laatste prijs'] || v['Eerste prijs'] || 'Op aanvraag'}</strong></span>
+                                    <span style="font-size:11px;">${bjaar} | ${uren} | <strong style="color:var(--text-dark);">${prijs}</strong></span>
                                     <a href="${v.Link || '#'}" target="_blank">Bekijk</a>
                                 </div>
                             `;
