@@ -528,12 +528,19 @@
             }
         });
 
-        // Laad Eigen Voorraad
+        // Laad Eigen Voorraad (Met directe debug print in de console)
         Papa.parse(stockCSVUrl, {
             download: true,
             header: true,
             complete: function(results) {
+                console.log("--- DEBUG EIGEN VOORRAAD ---");
+                console.log("Alle ruwe rijen binnengekomen:", results.data);
+                console.log("Kolomnamen (headers) die PapaParse ziet:", results.meta.fields);
+                
+                // Filter en test
                 ownStockData = results.data.filter(row => row.Merk && row.Model);
+                console.log("Rijen over na filter op Merk en Model:", ownStockData.length);
+
                 if (currentTab === 'voorraad') {
                     populateFilters();
                     renderGrid();
