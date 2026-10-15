@@ -819,6 +819,9 @@
                 return;
             }
 
+            // DocumentFragment gebruiken voor bliksemsnelle DOM rendering in één keer
+            const fragment = document.createDocumentFragment();
+
             filteredData.forEach(row => {
                 const isOwnStock = (currentTab === 'voorraad');
                 const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
@@ -847,16 +850,10 @@
                 if (isOwnStock) {
                     const aiPriceStatus = (row['AI Prijs'] || 'Geen marktdata').trim();
                     let badgeClass = 'badge-geen-data';
-
                     let statusLower = aiPriceStatus.toLowerCase();
-                    if (statusLower.includes('te hoog')) {
-                        badgeClass = 'badge-te-hoog';
-                    } else if (statusLower.includes('goed geprijsd')) {
-                        badgeClass = 'badge-goed';
-                    } else if (statusLower.includes('te laag')) {
-                        badgeClass = 'badge-te-laag';
-                    }
-
+                    if (statusLower.includes('te hoog')) badgeClass = 'badge-te-hoog';
+                    else if (statusLower.includes('goed geprijsd')) badgeClass = 'badge-goed';
+                    else if (statusLower.includes('te laag')) badgeClass = 'badge-te-laag';
                     badgeHtml = `<div class="badge ${badgeClass}">${aiPriceStatus}</div>`;
                 } else if (isAuction) {
                     const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
@@ -884,11 +881,13 @@
                     }
                 }
 
-                let imageUrl = row['Afbeelding'] || row['Image URL'] || row['image url'] || '';
+                // Optimale URL validatie & Lazy Loading voor afbeeldingen
+                let rawImg = row['Afbeelding'] || row['Image URL'] || row['image url'] || '';
+                let imageUrl = String(rawImg).trim();
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
-                if (imageUrl.trim() !== '') {
-                    imageUrl = imageUrl.startsWith('http') ? imageUrl : 'https://' + imageUrl;
-                    imageHtml = `<img src="${imageUrl.trim()}" alt="${row.Merk} ${row.Model}" style="width:100%; height:180px; object-fit:cover; display:block;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
+                
+                if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+                    imageHtml = `<img src="${imageUrl}" alt="${row.Merk || ''} ${row.Model || ''}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
                 }
 
                 let locationHtml = '';
@@ -901,7 +900,6 @@
                 if (isOwnStock) {
                     let marketHtml = '';
                     let foundItemsCount = 0;
-                    
                     ['Vergelijkbaar 1', 'Vergelijkbaar 2', 'Vergelijkbaar 3'].forEach(colName => {
                         let val = row[colName] ? row[colName].trim() : '';
                         if (val) {
@@ -909,7 +907,6 @@
                             let parts = val.split('| Link:');
                             let infoText = parts[0].trim();
                             let linkUrl = parts[1] ? parts[1].trim() : '#';
-
                             marketHtml += `
                                 <div class="market-item">
                                     <span style="font-size:11px;">${infoText}</span>
@@ -918,11 +915,9 @@
                             `;
                         }
                     });
-
                     if (foundItemsCount === 0) {
                         marketHtml = `<div style="color:#777; font-style:italic;">Geen vergelijkbare marktdata ingeladen.</div>`;
                     }
-                    
                     extraContentHtml = `
                         <div class="comparable-market-box">
                             <h4>Vergelijkbaar in de markt:</h4>
@@ -933,11 +928,11 @@
 
                 const productUrl = row.Link ? row.Link : '#';
                 const expiredClass = isExpired ? ' expired' : '';
-                
                 const wrapperStart = isOwnStock ? `<div class="card${expiredClass}">` : `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}">`;
                 const wrapperEnd = isOwnStock ? `</div>` : `</a>`;
 
-                const cardHtml = `
+                const cardDiv = document.createElement('div');
+                cardDiv.innerHTML = `
                     ${wrapperStart}
                         ${badgeHtml}
                         <div class="card-image-container">
@@ -960,8 +955,10 @@
                         </div>
                     ${wrapperEnd}
                 `;
-                grid.innerHTML += cardHtml;
+                fragment.appendChild(cardDiv.firstElementChild);
             });
+
+            grid.appendChild(fragment);
         }
 
         setInterval(() => {
