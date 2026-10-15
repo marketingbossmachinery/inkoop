@@ -697,7 +697,10 @@
             let countryCode = '';
             let countryName = '';
 
-            if (l.includes('denmark') || l.includes('denemarken') || l.includes(', dk') || l.includes('(dk)') ||
+            if (l.includes('united states') || l.includes('verenigde staten') || l.includes('usa') || l.includes(', us') || l.includes('(us)')) {
+                countryCode = 'us'; 
+                countryName = 'Verenigde Staten';
+            } else if (l.includes('denmark') || l.includes('denemarken') || l.includes(', dk') || l.includes('(dk)') ||
                 l.includes('region syddanmark') || l.includes('region hovedstaden') || 
                 l.includes('region midtjylland') || l.includes('region nordjylland') || 
                 l.includes('region sjaelland') || l.includes('region sjælland') ||
