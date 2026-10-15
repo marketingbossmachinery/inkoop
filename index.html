@@ -204,6 +204,23 @@
             border-color: var(--boss-red);
         }
 
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feedback-filter-select {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 13px;
+            font-weight: bold;
+            background-color: #fff;
+            cursor: pointer;
+            outline: none;
+        }
+
         .ai-header-btn {
             background: #2563eb;
             color: #fff;
@@ -235,8 +252,9 @@
             position: relative;
             display: flex;
             flex-direction: column;
+            border: 2px solid transparent; /* Aangepast voor glow */
             border-top: 3px solid transparent;
-            transition: transform 0.2s;
+            transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
             text-decoration: none;
             color: inherit;
         }
@@ -245,6 +263,11 @@
             transform: translateY(-3px);
             border-top-color: var(--boss-red);
         }
+
+        /* --- NIEUW: Glow Effecten --- */
+        .card.glow-green { border-color: #28a745; box-shadow: 0 0 15px rgba(40,167,69,0.3); }
+        .card.glow-red { border-color: #dc3545; box-shadow: 0 0 15px rgba(220,53,69,0.3); opacity: 0.85; }
+        /* -------------------------- */
 
         .card.expired {
             opacity: 0.55;
@@ -266,6 +289,19 @@
             font-size: 13px;
             font-weight: bold;
         }
+
+        /* --- NIEUW: Feedback Knoppen --- */
+        .feedback-actions {
+            position: absolute; bottom: 8px; right: 8px; display: flex; gap: 5px; z-index: 5;
+        }
+        .feedback-btn {
+            background: rgba(255,255,255,0.9); border: 1px solid #ccc; border-radius: 4px; padding: 4px 8px;
+            font-size: 16px; cursor: pointer; transition: transform 0.1s, background 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .feedback-btn:hover { transform: scale(1.1); background: #fff; }
+        .feedback-btn.active-pos { background: #d4edda; border-color: #28a745; }
+        .feedback-btn.active-neg { background: #f8d7da; border-color: #dc3545; }
+        /* ----------------------------- */
 
         .badge-image {
             position: absolute;
@@ -549,9 +585,20 @@
                     <div class="tab" onclick="switchTab('auctions')" id="tab-auctions">Veilingen</div>
                     <div class="tab" onclick="switchTab('voorraad')" id="tab-voorraad">Eigen Voorraad</div>
                 </div>
-                <button class="ai-header-btn" onclick="alert('AI Marktadvies functie wordt hier gekoppeld!')">
-                    🤖 AI Marktadvies
-                </button>
+                
+                <div class="header-controls">
+                    <!-- NIEUW: Feedback Filter Dropdown -->
+                    <select id="filter-feedback" class="feedback-filter-select" onchange="renderGrid()">
+                        <option value="relevant" selected>Relevante resultaten (Geen 👎)</option>
+                        <option value="all">Alle resultaten</option>
+                        <option value="positive">Alleen positief (👍)</option>
+                        <option value="negative">Alleen negatief (👎)</option>
+                    </select>
+
+                    <button class="ai-header-btn" onclick="alert('AI Marktadvies functie wordt hier gekoppeld!')">
+                        🤖 AI Marktadvies
+                    </button>
+                </div>
             </div>
 
             <div class="grid" id="product-grid">
@@ -566,6 +613,25 @@
         let allData = [];
         let ownStockData = [];
         let currentTab = 'listings';
+
+        // NIEUW: Feedback data laden uit browser geheugen
+        let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
+
+        // NIEUW: Functie om duimpjes te verwerken en loggen
+        function toggleFeedback(event, id, type) {
+            event.preventDefault(); 
+            event.stopPropagation(); // Voorkomt dat de link van de kaart opent
+
+            if (feedbackData[id] === type) {
+                delete feedbackData[id]; // Toggle off
+            } else {
+                feedbackData[id] = type;
+            }
+            
+            localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
+            console.log("Feedback gelogd:", feedbackData); // Console Output
+            renderGrid();
+        }
 
         const TARGET_PORTALS = [
             "Klaravik", "Surplex", "Legal Brokers", "Truck1", "Mascus", 
@@ -813,6 +879,9 @@
             const filterMerk = document.getElementById('filter-merk').value;
             const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
             const filterStatus = document.getElementById('filter-status').value;
+            
+            // NIEUW: Haal actieve feedback filter op
+            const filterFb = document.getElementById('filter-feedback').value;
 
             let dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
 
@@ -831,6 +900,14 @@
 
                 if (filterBouwjaar && row.Bouwjaar !== filterBouwjaar) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
+
+                // NIEUW: Feedback Filter Logica
+                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
+                let userFb = feedbackData[uniqueId] || 'none';
+
+                if (filterFb === 'relevant' && userFb === 'negative') return false; 
+                if (filterFb === 'positive' && userFb !== 'positive') return false;
+                if (filterFb === 'negative' && userFb !== 'negative') return false;
 
                 return true;
             });
@@ -859,7 +936,7 @@
             }
 
             if (filteredData.length === 0) {
-                grid.innerHTML = '<p>Geen machines gevonden.</p>';
+                grid.innerHTML = '<p>Geen machines gevonden binnen deze filters.</p>';
                 return;
             }
 
@@ -976,8 +1053,32 @@
                 }
 
                 const productUrl = row.Link ? row.Link : '#';
+                
+                // NIEUW: Koppel extra styling (Glow en classes) op basis van de feedback
+                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
+                let myFb = feedbackData[uniqueId];
+                let extraClass = '';
+                let posBtnClass = '';
+                let negBtnClass = '';
+
+                if (myFb === 'positive') {
+                    extraClass = ' glow-green';
+                    posBtnClass = 'active-pos';
+                }
+                if (myFb === 'negative') {
+                    extraClass = ' glow-red';
+                    negBtnClass = 'active-neg';
+                }
+
+                let feedbackButtonsHtml = `
+                    <div class="feedback-actions">
+                        <button class="feedback-btn ${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive')" title="Positief (Interessant)">👍</button>
+                        <button class="feedback-btn ${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief (Niet interessant)">👎</button>
+                    </div>
+                `;
+
                 const expiredClass = isExpired ? ' expired' : '';
-                const wrapperStart = isOwnStock ? `<div class="card${expiredClass}">` : `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}">`;
+                const wrapperStart = isOwnStock ? `<div class="card${expiredClass}${extraClass}">` : `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}${extraClass}">`;
                 const wrapperEnd = isOwnStock ? `</div>` : `</a>`;
 
                 const cardDiv = document.createElement('div');
@@ -987,6 +1088,7 @@
                         <div class="card-image-container">
                             ${imageHtml}
                             ${imageBadgeHtml}
+                            ${feedbackButtonsHtml} <!-- NIEUW: Duimpjes geïnjecteerd over afbeelding -->
                         </div>
                         <div class="card-content">
                             <h3 class="card-title" title="${rawTitle}">${fullTitle}</h3>
