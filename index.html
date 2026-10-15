@@ -361,6 +361,9 @@
             margin-top: auto;
             padding-top: 10px;
             border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .card-price {
@@ -372,10 +375,21 @@
             text-decoration: line-through;
             color: #999;
             font-size: 13px;
-            margin-right: 8px;
+            margin-right: 6px;
         }
 
         .new-price { color: var(--boss-red); }
+
+        .card-source {
+            font-size: 11px;
+            font-weight: bold;
+            color: #555;
+            background: var(--boss-gray);
+            padding: 3px 7px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            border: 1px solid #ddd;
+        }
 
         .countdown {
             margin-top: 10px;
@@ -546,7 +560,6 @@
     </div>
 
     <script>
-        // De URL naar jouw centrale JSON-bestand op GitHub (Raw link of GitHub Pages link)
         const jsonMasterUrl = './data/equipment-data.json';
         
         let allData = [];
@@ -564,12 +577,22 @@
             wrapper.classList.toggle('open');
         }
 
-        // Inlezen van de centrale JSON vanuit GitHub in één bliksemsnelle fetch
+        // Inlezen van de centrale JSON vanuit GitHub
         fetch(jsonMasterUrl)
             .then(response => response.json())
             .then(masterData => {
-                allData = (masterData.listings || []).filter(row => row.Merk && row.Model);
-                ownStockData = (masterData.voorraad || []).filter(row => row.Merk && row.Model);
+                // Uitsluiten van de eerste regel (headers zoals "Platform" of "Merk" die vanuit Make meekomen)
+                allData = (masterData.listings || []).filter(row => {
+                    const p = (row.Platform || '').trim().toLowerCase();
+                    const m = (row.Merk || row.brand || '').trim().toLowerCase();
+                    return p && m && p !== 'platform' && m !== 'merk';
+                });
+
+                ownStockData = (masterData.voorraad || []).filter(row => {
+                    const p = (row.Platform || '').trim().toLowerCase();
+                    const m = (row.Merk || row.brand || '').trim().toLowerCase();
+                    return p && m && p !== 'platform' && m !== 'merk';
+                });
 
                 populateFilters();
                 updateSystemStatusHeader();
@@ -819,7 +842,6 @@
                 return;
             }
 
-            // DocumentFragment gebruiken voor bliksemsnelle DOM rendering in één keer
             const fragment = document.createDocumentFragment();
 
             filteredData.forEach(row => {
@@ -841,6 +863,11 @@
                 } else {
                     priceHtml = isAuction ? 'Actueel bod' : 'Op aanvraag';
                 }
+
+                // Schone bron / platform weergave (opschonen van bijv. "(Veilingen)")
+                let rawPlatform = row['Platform'] || '';
+                let cleanSource = rawPlatform.replace(/\(veilingen\)/gi, '').trim();
+                let sourceHtml = cleanSource ? `<span class="card-source">${cleanSource}</span>` : '';
 
                 let badgeHtml = '';
                 let imageBadgeHtml = '';
@@ -881,7 +908,6 @@
                     }
                 }
 
-                // Optimale URL validatie & Lazy Loading voor afbeeldingen
                 let rawImg = row['Afbeelding'] || row['Image URL'] || row['image url'] || '';
                 let imageUrl = String(rawImg).trim();
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
@@ -948,6 +974,7 @@
                             ${locationHtml}
                             <div class="card-price-box">
                                 <div class="card-price">${priceHtml}</div>
+                                ${sourceHtml}
                             </div>
                             ${auctionHtml}
                             ${!isOwnStock ? `<div class="card-link">Bekijk machine</div>` : ''}
@@ -960,10 +987,6 @@
 
             grid.appendChild(fragment);
         }
-
-        setInterval(() => {
-            if (currentTab === 'auctions') renderGrid();
-        }, 1000);
     </script>
 </body>
 </html>
