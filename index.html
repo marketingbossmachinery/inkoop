@@ -318,10 +318,11 @@
         }
 
         .card-title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 900;
             margin: 0 0 10px 0;
             color: var(--boss-black);
+            line-height: 1.3;
         }
 
         .card-specs {
@@ -569,7 +570,7 @@
         const TARGET_PORTALS = [
             "Klaravik", "Surplex", "Legal Brokers", "Truck1", "Mascus", 
             "MachineryLine", "Equippo", "werktuigen", "Blaupool", 
-            "MMT Usatomacchine", "Truckscout24", "Camion Super Market"
+            "MMT Usatomacchine", "Truckscout24", "Camion Super Market", "Proxibid", "Yoder & Frey"
         ];
 
         function toggleMobileFilters() {
@@ -581,17 +582,17 @@
         fetch(jsonMasterUrl)
             .then(response => response.json())
             .then(masterData => {
-                // Uitsluiten van de eerste regel (headers zoals "Platform" of "Merk" die vanuit Make meekomen)
+                // Eerste regel uitsluiten (headers zoals "Platform" of "Merk" die vanuit Make meekomen)
                 allData = (masterData.listings || []).filter(row => {
                     const p = (row.Platform || '').trim().toLowerCase();
-                    const m = (row.Merk || row.brand || '').trim().toLowerCase();
-                    return p && m && p !== 'platform' && m !== 'merk';
+                    const m = (row.Merk || row.brand || row.Model || '').trim().toLowerCase();
+                    return p && p !== 'platform' && m !== 'merk';
                 });
 
                 ownStockData = (masterData.voorraad || []).filter(row => {
                     const p = (row.Platform || '').trim().toLowerCase();
-                    const m = (row.Merk || row.brand || '').trim().toLowerCase();
-                    return p && m && p !== 'platform' && m !== 'merk';
+                    const m = (row.Merk || row.brand || row.Model || '').trim().toLowerCase();
+                    return p && p !== 'platform' && m !== 'merk';
                 });
 
                 populateFilters();
@@ -691,32 +692,49 @@
         }
 
         function getCountryFlagHtml(locStr) {
-            if (!locStr) return '';
+            if (!locStr) return '📍 <span>Onbekend</span>';
             let l = locStr.toLowerCase();
             let countryCode = '';
+            let countryName = '';
 
-            if (l.includes('netherlands') || l.includes('nederland') || l.includes('holland') || l.includes(', nl') || l.includes('groot-ammers') || l.includes('moerdijk') || l.includes('amsterdam') || l.includes('barneveld')) {
-                countryCode = 'nl';
-            } else if (l.includes('germany') || l.includes('duitsland') || l.includes('deutschland') || l.includes(', de') || l.includes('schwabhausen') || l.includes('meppen') || l.includes('dormagen') || l.includes('nürnberg') || l.includes('münchen') || l.includes('berlin')) {
-                countryCode = 'de';
-            } else if (l.includes('slovenia') || l.includes('slovenië') || l.includes(', si') || l.includes('ajdovscina')) {
-                countryCode = 'si';
-            } else if (l.includes('france') || l.includes('frankrijk') || l.includes(', fr') || l.includes('paris') || l.includes('lyon')) {
-                countryCode = 'fr';
-            } else if (l.includes('belgium') || l.includes('belgië') || l.includes('belgique') || l.includes(', be') || l.includes('antwerpen') || l.includes('brussel')) {
-                countryCode = 'be';
-            } else if (l.includes('italy') || l.includes('italië') || l.includes('italia') || l.includes(', it') || l.includes('gorgonzola') || l.includes('verona') || l.includes('milan')) {
-                countryCode = 'it';
-            } else if (l.includes('spain') || l.includes('spanje') || l.includes('españa') || l.includes(', es') || l.includes('madrid') || l.includes('barcelona') || l.includes('valencia')) {
-                countryCode = 'es';
-            } else if (l.includes('poland') || l.includes('polen') || l.includes(', pl') || l.includes('poznan') || l.includes('warsaw')) {
-                countryCode = 'pl';
+            if (l.includes('denmark') || l.includes('denemarken') || l.includes(', dk') || l.includes('(dk)') ||
+                l.includes('region syddanmark') || l.includes('region hovedstaden') || 
+                l.includes('region midtjylland') || l.includes('region nordjylland') || 
+                l.includes('region sjaelland') || l.includes('region sjælland') ||
+                l.includes('gribskov') || l.includes('hjoerring') || l.includes('hjørring') || l.includes('skive')) {
+                countryCode = 'dk'; 
+                countryName = 'Denemarken';
+            } else if (l.includes('netherlands') || l.includes('nederland') || l.includes('holland') || l.includes(', nl') || l.includes('(nl)')) {
+                countryCode = 'nl'; 
+                countryName = 'Nederland';
+            } else if (l.includes('germany') || l.includes('duitsland') || l.includes('deutschland') || l.includes(', de') || l.includes('(de)')) {
+                countryCode = 'de'; 
+                countryName = 'Duitsland';
+            } else if (l.includes('belgium') || l.includes('belgië') || l.includes('belgique') || l.includes(', be') || l.includes('(be)')) {
+                countryCode = 'be'; 
+                countryName = 'België';
+            } else if (l.includes('france') || l.includes('frankrijk') || l.includes(', fr') || l.includes('(fr)')) {
+                countryCode = 'fr'; 
+                countryName = 'Frankrijk';
+            } else if (l.includes('italy') || l.includes('italië') || l.includes('italia') || l.includes(', it') || l.includes('(it)')) {
+                countryCode = 'it'; 
+                countryName = 'Italië';
+            } else if (l.includes('spain') || l.includes('spanje') || l.includes('españa') || l.includes(', es') || l.includes('(es)')) {
+                countryCode = 'es'; 
+                countryName = 'Spanje';
+            } else if (l.includes('poland') || l.includes('polen') || l.includes(', pl') || l.includes('(pl)')) {
+                countryCode = 'pl'; 
+                countryName = 'Polen';
+            } else if (l.includes('slovenia') || l.includes('slovenië') || l.includes(', si') || l.includes('(si)')) {
+                countryCode = 'si'; 
+                countryName = 'Slovenië';
             }
 
             if (countryCode) {
-                return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}">`;
+                return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryName}" title="${countryName}"> <span>${locStr}</span>`;
             }
-            return '📍';
+            
+            return `📍 <span>${locStr}</span>`;
         }
 
         function parseAuctionDate(str) {
@@ -848,7 +866,10 @@
                 const isOwnStock = (currentTab === 'voorraad');
                 const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
                 const isAuction = endDateVal !== '';
-                const fullTitle = row.Titel || row.Title || (`${row.Merk || ''} ${row.Model || ''}`);
+                
+                // Titel opbouwen met automatische fallback en afkorten na 60 tekens
+                let rawTitle = row.Titel || row.Title || (`${row.Merk || ''} ${row.Model || ''}`.trim()) || row.Model || 'Machine / Onbekend';
+                const fullTitle = rawTitle.length > 60 ? rawTitle.substring(0, 57) + '...' : rawTitle;
 
                 let priceHtml = '';
                 const eerstePrijs = row['Eerste prijs'] ? row['Eerste prijs'].trim() : '';
@@ -864,7 +885,6 @@
                     priceHtml = isAuction ? 'Actueel bod' : 'Op aanvraag';
                 }
 
-                // Schone bron / platform weergave (opschonen van bijv. "(Veilingen)")
                 let rawPlatform = row['Platform'] || '';
                 let cleanSource = rawPlatform.replace(/\(veilingen\)/gi, '').trim();
                 let sourceHtml = cleanSource ? `<span class="card-source">${cleanSource}</span>` : '';
@@ -913,13 +933,13 @@
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
                 
                 if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-                    imageHtml = `<img src="${imageUrl}" alt="${row.Merk || ''} ${row.Model || ''}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
+                    imageHtml = `<img src="${imageUrl}" alt="${fullTitle}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
                 }
 
                 let locationHtml = '';
                 if (row['Locatie']) {
                     let flagHtml = getCountryFlagHtml(row['Locatie']);
-                    locationHtml = `<div class="card-location">${flagHtml} <span>${row['Locatie']}</span></div>`;
+                    locationHtml = `<div class="card-location">${flagHtml}</div>`;
                 }
 
                 let extraContentHtml = '';
@@ -966,7 +986,7 @@
                             ${imageBadgeHtml}
                         </div>
                         <div class="card-content">
-                            <h3 class="card-title">${fullTitle}</h3>
+                            <h3 class="card-title" title="${rawTitle}">${fullTitle}</h3>
                             <div class="card-specs">
                                 ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${row.Bouwjaar}</span>` : ''}
                                 ${row.Draaiuren ? `<span class="spec-tag">Uren: ${row.Draaiuren}</span>` : ''}
