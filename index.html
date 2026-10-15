@@ -252,7 +252,7 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            border: 2px solid transparent; /* Aangepast voor glow */
+            border: 2px solid transparent;
             border-top: 3px solid transparent;
             transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
             text-decoration: none;
@@ -264,10 +264,9 @@
             border-top-color: var(--boss-red);
         }
 
-        /* --- NIEUW: Glow Effecten --- */
-        .card.glow-green { border-color: #28a745; box-shadow: 0 0 15px rgba(40,167,69,0.3); }
-        .card.glow-red { border-color: #dc3545; box-shadow: 0 0 15px rgba(220,53,69,0.3); opacity: 0.85; }
-        /* -------------------------- */
+        /* Glow Effecten */
+        .card.glow-green { border-color: #28a745; box-shadow: 0 0 15px rgba(40,167,69,0.35); }
+        .card.glow-red { border-color: #dc3545; box-shadow: 0 0 15px rgba(220,53,69,0.35); opacity: 0.85; }
 
         .card.expired {
             opacity: 0.55;
@@ -290,18 +289,54 @@
             font-weight: bold;
         }
 
-        /* --- NIEUW: Feedback Knoppen --- */
+        /* Compacte & Duidelijke Feedback Knoppen */
         .feedback-actions {
-            position: absolute; bottom: 8px; right: 8px; display: flex; gap: 5px; z-index: 5;
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            display: flex;
+            gap: 5px;
+            z-index: 5;
         }
+        
         .feedback-btn {
-            background: rgba(255,255,255,0.9); border: 1px solid #ccc; border-radius: 4px; padding: 4px 8px;
-            font-size: 16px; cursor: pointer; transition: transform 0.1s, background 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.1s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+            padding: 0;
         }
-        .feedback-btn:hover { transform: scale(1.1); background: #fff; }
-        .feedback-btn.active-pos { background: #d4edda; border-color: #28a745; }
-        .feedback-btn.active-neg { background: #f8d7da; border-color: #dc3545; }
-        /* ----------------------------- */
+        
+        .feedback-btn:hover {
+            transform: scale(1.12);
+            background: #ffffff;
+        }
+
+        /* Actieve statussen met heldere kleuren */
+        .feedback-btn.active-pos {
+            background: #28a745;
+            border-color: #28a745;
+            box-shadow: 0 0 6px rgba(40,167,69,0.6);
+        }
+        .feedback-btn.active-pos svg {
+            fill: #ffffff !important;
+        }
+
+        .feedback-btn.active-neg {
+            background: #dc3545;
+            border-color: #dc3545;
+            box-shadow: 0 0 6px rgba(220,53,69,0.6);
+        }
+        .feedback-btn.active-neg svg {
+            fill: #ffffff !important;
+        }
 
         .badge-image {
             position: absolute;
@@ -587,7 +622,7 @@
                 </div>
                 
                 <div class="header-controls">
-                    <!-- NIEUW: Feedback Filter Dropdown -->
+                    <!-- Feedback Filter Dropdown -->
                     <select id="filter-feedback" class="feedback-filter-select" onchange="renderGrid()">
                         <option value="relevant" selected>Relevante resultaten (Geen 👎)</option>
                         <option value="all">Alle resultaten</option>
@@ -614,22 +649,25 @@
         let ownStockData = [];
         let currentTab = 'listings';
 
-        // NIEUW: Feedback data laden uit browser geheugen
+        // Feedback data laden uit browser geheugen
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
 
-        // NIEUW: Functie om duimpjes te verwerken en loggen
+        // SVG Icons voor strakke groene & rode duimpjes
+        const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
+        const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
+
         function toggleFeedback(event, id, type) {
             event.preventDefault(); 
             event.stopPropagation(); // Voorkomt dat de link van de kaart opent
 
             if (feedbackData[id] === type) {
-                delete feedbackData[id]; // Toggle off
+                delete feedbackData[id]; 
             } else {
                 feedbackData[id] = type;
             }
             
             localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
-            console.log("Feedback gelogd:", feedbackData); // Console Output
+            console.log("Feedback gelogd:", feedbackData);
             renderGrid();
         }
 
@@ -648,7 +686,6 @@
         fetch(jsonMasterUrl)
             .then(response => response.json())
             .then(masterData => {
-                // Eerste regel uitsluiten (headers zoals "Platform" of "Merk" die vanuit Make meekomen)
                 allData = (masterData.listings || []).filter(row => {
                     const p = (row.Platform || '').trim().toLowerCase();
                     const m = (row.Merk || row.brand || row.Model || '').trim().toLowerCase();
@@ -871,6 +908,40 @@
             };
         }
 
+        // Live updater voor de aftellende klok op het scherm
+        function updateLiveTimers() {
+            const timerBoxes = document.querySelectorAll('.live-countdown-box');
+            timerBoxes.forEach(box => {
+                const endTime = box.getAttribute('data-endtime');
+                const bids = box.getAttribute('data-bids') || '0';
+                const cardEl = box.closest('.card');
+                const badgeEl = cardEl ? cardEl.querySelector('.live-badge-image') : null;
+                
+                const cnt = getCountdownDetails(endTime);
+                if (cnt) {
+                    if (cnt.isExpired) {
+                        box.className = 'countdown';
+                        box.style.background = '#eee';
+                        box.style.color = '#666';
+                        box.style.borderColor = '#ccc';
+                        box.innerHTML = `Veiling afgelopen | Biedingen: ${bids}`;
+                        if (badgeEl) badgeEl.innerHTML = 'AFGELOPEN';
+                    } else if (cnt.isUrgent) {
+                        box.className = 'countdown live-countdown-box';
+                        box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
+                        if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                    } else {
+                        box.className = 'countdown-future live-countdown-box';
+                        box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
+                        if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                    }
+                }
+            });
+        }
+
+        // Tik elke seconde
+        setInterval(updateLiveTimers, 1000);
+
         function renderGrid() {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
@@ -879,8 +950,6 @@
             const filterMerk = document.getElementById('filter-merk').value;
             const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
             const filterStatus = document.getElementById('filter-status').value;
-            
-            // NIEUW: Haal actieve feedback filter op
             const filterFb = document.getElementById('filter-feedback').value;
 
             let dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
@@ -901,7 +970,6 @@
                 if (filterBouwjaar && row.Bouwjaar !== filterBouwjaar) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
 
-                // NIEUW: Feedback Filter Logica
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let userFb = feedbackData[uniqueId] || 'none';
 
@@ -947,7 +1015,6 @@
                 const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
                 const isAuction = endDateVal !== '';
                 
-                // Titel opbouwen met automatische fallback en afkorten na 60 tekens
                 let rawTitle = row.Titel || row.Title || (`${row.Merk || ''} ${row.Model || ''}`.trim()) || row.Model || 'Machine / Onbekend';
                 const fullTitle = rawTitle.length > 60 ? rawTitle.substring(0, 57) + '...' : rawTitle;
 
@@ -988,16 +1055,16 @@
                         const bidsCount = row['Aantal biedingen'] || '0';
                         if (countdownObj.isExpired) {
                             badgeHtml = `<div class="badge badge-rood">Afgelopen</div>`;
-                            imageBadgeHtml = `<div class="badge-image">AFGELOPEN</div>`;
+                            imageBadgeHtml = `<div class="badge-image live-badge-image">AFGELOPEN</div>`;
                             auctionHtml = `<div class="countdown" style="background:#eee; color:#666; border-color:#ccc;">Veiling afgelopen | Biedingen: ${bidsCount}</div>`;
                             isExpired = true;
                         } else {
-                            imageBadgeHtml = `<div class="badge-image">${countdownObj.imageBadge}</div>`;
+                            imageBadgeHtml = `<div class="badge-image live-badge-image">${countdownObj.imageBadge}</div>`;
                             if (countdownObj.isUrgent) {
                                 badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
-                                auctionHtml = `<div class="countdown">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
+                                auctionHtml = `<div class="countdown live-countdown-box" data-endtime="${row['Veiling loopt af op']}" data-bids="${bidsCount}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
                             } else {
-                                auctionHtml = `<div class="countdown-future">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
+                                auctionHtml = `<div class="countdown-future live-countdown-box" data-endtime="${row['Veiling loopt af op']}" data-bids="${bidsCount}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
                             }
                         }
                     }
@@ -1054,7 +1121,6 @@
 
                 const productUrl = row.Link ? row.Link : '#';
                 
-                // NIEUW: Koppel extra styling (Glow en classes) op basis van de feedback
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let myFb = feedbackData[uniqueId];
                 let extraClass = '';
@@ -1063,17 +1129,21 @@
 
                 if (myFb === 'positive') {
                     extraClass = ' glow-green';
-                    posBtnClass = 'active-pos';
+                    posBtnClass = ' active-pos';
                 }
                 if (myFb === 'negative') {
                     extraClass = ' glow-red';
-                    negBtnClass = 'active-neg';
+                    negBtnClass = ' active-neg';
                 }
 
                 let feedbackButtonsHtml = `
                     <div class="feedback-actions">
-                        <button class="feedback-btn ${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive')" title="Positief (Interessant)">👍</button>
-                        <button class="feedback-btn ${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief (Niet interessant)">👎</button>
+                        <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive')" title="Positief (Interessant)">
+                            ${svgThumbUp}
+                        </button>
+                        <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief (Niet interessant)">
+                            ${svgThumbDown}
+                        </button>
                     </div>
                 `;
 
@@ -1088,7 +1158,7 @@
                         <div class="card-image-container">
                             ${imageHtml}
                             ${imageBadgeHtml}
-                            ${feedbackButtonsHtml} <!-- NIEUW: Duimpjes geïnjecteerd over afbeelding -->
+                            ${feedbackButtonsHtml}
                         </div>
                         <div class="card-content">
                             <h3 class="card-title" title="${rawTitle}">${fullTitle}</h3>
