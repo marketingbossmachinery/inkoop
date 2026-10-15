@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>Equipment Platform - Boss Style</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <style>
         :root {
             --boss-red: #cc2027;
@@ -297,15 +296,13 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* Badge kleuren voor AI Prijsadvies (Kolom T) */
-        .badge-te-hoog { background-color: #dc3545; }       /* Rood */
-        .badge-goed { background-color: #28a745; }          /* Groen */
-        .badge-te-laag { background-color: #fd7e14; }       /* Oranje */
-        .badge-geen-data { background-color: #6c757d; }     /* Grijs */
+        .badge-te-hoog { background-color: #dc3545; }
+        .badge-goed { background-color: #28a745; }
+        .badge-te-laag { background-color: #fd7e14; }
+        .badge-geen-data { background-color: #6c757d; }
         
         .badge-rood { background-color: var(--boss-red); }
         .badge-urgent { background-color: var(--boss-red); color: #fff; animation: pulse-urgent 1.5s infinite; }
-        .badge-default { background-color: var(--boss-black); }
 
         @keyframes pulse-urgent {
             0% { opacity: 1; }
@@ -543,14 +540,14 @@
             </div>
 
             <div class="grid" id="product-grid">
-                <p>Gegevens ophalen uit Google Sheets...</p>
+                <p>Gegevens inladen vanaf GitHub...</p>
             </div>
         </main>
     </div>
 
     <script>
-        const sheetCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS2MZR5mkooWA08Y3GcQAbkAK_SjN0lORb5mth5VVI0fu54XFjksN9HFH_drlAii3O3MYNiCz0OvLbZ/pub?gid=0&single=true&output=csv';
-        const stockCSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS2MZR5mkooWA08Y3GcQAbkAK_SjN0lORb5mth5VVI0fu54XFjksN9HFH_drlAii3O3MYNiCz0OvLbZ/pub?gid=475849892&single=true&output=csv'; 
+        // De URL naar jouw centrale JSON-bestand op GitHub (Raw link of GitHub Pages link)
+        const jsonMasterUrl = 'https://raw.githubusercontent.com/marketingbossmachinery/inkoop/main/data/equipment-data.json';
         
         let allData = [];
         let ownStockData = [];
@@ -567,31 +564,21 @@
             wrapper.classList.toggle('open');
         }
 
-        Papa.parse(sheetCSVUrl, {
-            download: true,
-            header: true,
-            complete: function(results) {
-                allData = results.data.filter(row => row.Merk && row.Model);
+        // Inlezen van de centrale JSON vanuit GitHub in één bliksemsnelle fetch
+        fetch(jsonMasterUrl)
+            .then(response => response.json())
+            .then(masterData => {
+                allData = (masterData.listings || []).filter(row => row.Merk && row.Model);
+                ownStockData = (masterData.voorraad || []).filter(row => row.Merk && row.Model);
+
                 populateFilters();
                 updateSystemStatusHeader();
                 renderGrid();
-            }
-        });
-
-        Papa.parse(stockCSVUrl, {
-            download: true,
-            header: true,
-            complete: function(results) {
-                ownStockData = results.data.filter(row => row.Merk && row.Model);
-                if (currentTab === 'voorraad') {
-                    populateFilters();
-                    renderGrid();
-                }
-            },
-            error: function(err) {
-                console.error("Fout bij laden eigen voorraad CSV:", err);
-            }
-        });
+            })
+            .catch(err => {
+                console.error("Fout bij laden van master JSON:", err);
+                document.getElementById('product-grid').innerHTML = '<p style="color:red;">Fout bij het laden van de platform-data.</p>';
+            });
 
         function switchTab(tab) {
             currentTab = tab;
@@ -858,7 +845,6 @@
                 let isExpired = false;
 
                 if (isOwnStock) {
-                    // Alleen op het tabblad Eigen Voorraad tonen we het AI-prijsadvies als badge
                     const aiPriceStatus = (row['AI Prijs'] || 'Geen marktdata').trim();
                     let badgeClass = 'badge-geen-data';
 
@@ -892,7 +878,6 @@
                         }
                     }
                 } else if (row.Status) {
-                    // Voor listings / veilingen: alleen tonen als het expliciet 'afgeprijsd' is (geen 'voorraad' labels meer)
                     let statusLower = row.Status.toLowerCase().trim();
                     if (statusLower.includes('afgeprijsd')) {
                         badgeHtml = `<div class="badge badge-rood">${row.Status}</div>`;
