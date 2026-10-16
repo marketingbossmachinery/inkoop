@@ -646,9 +646,9 @@
         const jsonMasterUrl = './data/equipment-data.json';
         
         // ==========================================
-        // STAP 1: PLAATS HIER JOUW MAKE WEBHOOK URL
+        // GOOGLE APPS SCRIPT WEB-APP URL
         // ==========================================
-        const makeWebhookUrl = 'https://hook.eu1.make.com/jq9tlqdupib568196xhwcssxbqmr2i4y';
+        const gasWebappUrl = 'JOUW_GOOGLE_APPS_SCRIPT_URL_HIER'; // Plak hier jouw /exec URL
 
         let allData = [];
         let ownStockData = [];
@@ -675,24 +675,17 @@
             localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
             console.log("Feedback gelogd lokaal:", feedbackData);
 
-            if (makeWebhookUrl && makeWebhookUrl !== 'JOUW_MAKE_WEBHOOK_URL_HIER') {
-                fetch(makeWebhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        advertentieId: id,
-                        feedback: actionState,
-                        titel: title || '',
-                        platform: platform || '',
-                        link: link || '',
-                        timestamp: new Date().toISOString()
-                    })
+            // Stuur direct door naar Google Apps Script in plaats van Make
+            if (gasWebappUrl && gasWebappUrl !== 'JOUW_GOOGLE_APPS_SCRIPT_URL_HIER') {
+                let gasFeedbackVal = (actionState === 'positive') ? 'goed' : (actionState === 'negative' ? 'slecht' : 'removed');
+                
+                const targetUrl = `${gasWebappUrl}?id=${encodeURIComponent(id)}&feedback=${encodeURIComponent(gasFeedbackVal)}`;
+                
+                fetch(targetUrl, { method: 'GET', mode: 'no-cors' })
+                .then(() => {
+                    console.log("Feedback doorgestuurd naar Google Apps Script!");
                 })
-                .then(res => {
-                    if (res.ok) console.log("Feedback succesvol naar Make verzonden!");
-                    else console.error("Fout bij verzenden naar Make webhook");
-                })
-                .catch(err => console.error("Netwerkfout bij webhook:", err));
+                .catch(err => console.error("Netwerkfout bij Apps Script:", err));
             }
 
             renderGrid();
