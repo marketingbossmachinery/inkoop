@@ -580,6 +580,51 @@
             .sidebar-filters-wrapper.open { display: block; }
             header { padding: 12px 20px; }
         }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .search-box {
+            position: relative;
+            width: 100%;
+            max-width: 550px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px 12px 42px;
+            background-color: #222222;
+            border: 1px solid #333333;
+            color: #ffffff;
+            font-size: 14px;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        
+        .search-box input::placeholder {
+            color: #888888;
+        }
+        
+        .search-box input:focus {
+            border-color: var(--boss-red);
+            box-shadow: 0 0 8px rgba(204, 32, 39, 0.3);
+        }
+        
+        .search-box .search-icon {
+            position: absolute;
+            left: 14px;
+            color: #888888;
+            pointer-events: none;
+            width: 16px;
+            height: 16px;
+        }
     </style>
 </head>
 <body>
@@ -660,6 +705,12 @@
         </aside>
 
         <main class="main-content">
+            <div class="search-container">
+                <div class="search-box">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="searchInput" placeholder="Vrij zoeken op merk, model, titel of locatie..." oninput="renderGrid()">
+                </div>
+            </div>
             <div class="tabs-header-area">
                 <div class="tabs">
                     <div class="tab active" onclick="switchTab('listings')" id="tab-listings">Listings <span id="count-listings">(0)</span></div>
@@ -1100,6 +1151,7 @@
             const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
             const filterStatus = document.getElementById('filter-status').value;
             const filterFb = document.getElementById('filter-feedback').value;
+            const searchQuery = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase().trim() : '';
 
             let dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
 
@@ -1118,6 +1170,11 @@
 
                 if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
+
+                if (searchQuery) {
+                    const searchableText = `${row.Titel || ''} ${row.Merk || ''} ${row.brand || ''} ${row.Model || ''} ${row.Locatie || ''} ${row.Platform || ''}`.toLowerCase();
+                    if (!searchableText.includes(searchQuery)) return false;
+                }
 
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let userFb = feedbackData[uniqueId] || 'none';
@@ -1369,6 +1426,7 @@
             const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
             const filterStatus = document.getElementById('filter-status').value;
             const filterFb = document.getElementById('filter-feedback').value;
+            const searchQuery = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase().trim() : '';
         
             const countHelper = (dataSource, isAuctionTab, isStockTab) => {
                 return dataSource.filter(row => {
@@ -1390,6 +1448,11 @@
         
                     if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                     if (filterStatus && row.Status !== filterStatus) return false;
+
+                    if (searchQuery) {
+                        const searchableText = `${row.Titel || ''} ${row.Merk || ''} ${row.brand || ''} ${row.Model || ''} ${row.Locatie || ''} ${row.Platform || ''}`.toLowerCase();
+                        if (!searchableText.includes(searchQuery)) return false;
+                    }
         
                     let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                     let userFb = feedbackData[uniqueId] || 'none';
