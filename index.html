@@ -699,7 +699,7 @@
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
 
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
-        const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
+        const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41-.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
 
         function toggleFeedback(event, id, type) {
             event.preventDefault(); 
@@ -829,7 +829,6 @@
                 let parsedListings = [];
                 let parsedVoorraad = [];
 
-                // Ondersteunt zowel stockHeaders/stockRows als listings/voorraad objecten
                 if (masterData.stockHeaders && masterData.stockRows) {
                     const headers = masterData.stockHeaders;
                     const rows = masterData.stockRows.map(row => {
@@ -846,17 +845,9 @@
                     parsedVoorraad = masterData.voorraad || [];
                 }
 
-                allData = parsedListings.filter(row => {
-                    const p = (row.Platform || '').trim().toLowerCase();
-                    const m = (row.Merk || row.brand || row.Model || '').trim().toLowerCase();
-                    return p && p !== 'platform' && m !== 'merk';
-                });
-
-                ownStockData = parsedVoorraad.filter(row => {
-                    const p = (row.Platform || '').trim().toLowerCase();
-                    const m = (row.Merk || row.brand || row.Model || '').trim().toLowerCase();
-                    return p && p !== 'platform' && m !== 'merk';
-                });
+                // Betrouwbare filter op merk/model zoals in jouw werkende versie
+                allData = parsedListings.filter(row => row.Merk || row.Model || row.brand);
+                ownStockData = parsedVoorraad.filter(row => row.Merk || row.Model || row.brand);
 
                 populateFilters();
                 updateSystemStatusHeader();
@@ -1220,26 +1211,21 @@
                     locationHtml = `<div class="card-location">${flagHtml}</div>`;
                 }
 
+                // Opbouw van vergelijkbare marktdata
                 let extraContentHtml = '';
                 if (isOwnStock) {
                     let marketHtml = '';
                     let foundItemsCount = 0;
+                    
                     ['Vergelijkbaar 1', 'Vergelijkbaar 2', 'Vergelijkbaar 3'].forEach(colName => {
                         let val = row[colName] ? String(row[colName]).trim() : '';
                         if (val) {
                             foundItemsCount++;
-                            let infoText = val;
-                            let linkUrl = '#';
-                            if (val.includes('| Link:')) {
-                                let parts = val.split('| Link:');
-                                infoText = parts[0].trim();
-                                linkUrl = parts[1] ? parts[1].trim() : '#';
-                            } else if (val.includes('http')) {
-                                let httpIdx = val.indexOf('http');
-                                infoText = val.substring(0, httpIdx).trim();
-                                linkUrl = val.substring(httpIdx).trim();
-                            }
+                            let parts = val.split('| Link:');
+                            let infoText = parts[0].trim();
+                            let linkUrl = parts[1] ? parts[1].trim() : '#';
                             let linkHtml = (linkUrl && linkUrl !== '#') ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">Bekijk</a>` : '';
+
                             marketHtml += `
                                 <div class="market-item">
                                     <span style="font-size:11px;">${infoText}</span>
@@ -1248,9 +1234,11 @@
                             `;
                         }
                     });
+
                     if (foundItemsCount === 0) {
                         marketHtml = `<div style="color:#777; font-style:italic;">Geen vergelijkbare marktdata ingeladen.</div>`;
                     }
+
                     extraContentHtml = `
                         <div class="comparable-market-box">
                             <h4>Vergelijkbaar in de markt:</h4>
