@@ -110,6 +110,48 @@
             font-size: 14px;
         }
 
+        /* Lightbox voor Rode Duim Redenen */
+        .reason-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reason-modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            width: 450px;
+            max-width: 90%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .reason-btn-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .reason-btn {
+            padding: 12px;
+            background: #d9534f;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .reason-btn:hover { background: #c9302c; }
+
         .container {
             display: flex;
             max-width: 1400px;
@@ -264,7 +306,6 @@
             border-top-color: var(--boss-red);
         }
 
-        /* Glow Effecten */
         .card.glow-green { border-color: #28a745; box-shadow: 0 0 15px rgba(40,167,69,0.35); }
         .card.glow-red { border-color: #dc3545; box-shadow: 0 0 15px rgba(220,53,69,0.35); opacity: 0.85; }
 
@@ -289,7 +330,6 @@
             font-weight: bold;
         }
 
-        /* Compacte & Duidelijke Feedback Knoppen */
         .feedback-actions {
             position: absolute;
             bottom: 6px;
@@ -319,24 +359,19 @@
             background: #ffffff;
         }
 
-        /* Actieve statussen met heldere kleuren */
         .feedback-btn.active-pos {
             background: #28a745;
             border-color: #28a745;
             box-shadow: 0 0 6px rgba(40,167,69,0.6);
         }
-        .feedback-btn.active-pos svg {
-            fill: #ffffff !important;
-        }
+        .feedback-btn.active-pos svg { fill: #ffffff !important; }
 
         .feedback-btn.active-neg {
             background: #dc3545;
             border-color: #dc3545;
             box-shadow: 0 0 6px rgba(220,53,69,0.6);
         }
-        .feedback-btn.active-neg svg {
-            fill: #ffffff !important;
-        }
+        .feedback-btn.active-neg svg { fill: #ffffff !important; }
 
         .badge-image {
             position: absolute;
@@ -371,7 +406,6 @@
         .badge-goed { background-color: #28a745; }
         .badge-te-laag { background-color: #fd7e14; }
         .badge-geen-data { background-color: #6c757d; }
-        
         .badge-rood { background-color: var(--boss-red); }
         .badge-urgent { background-color: var(--boss-red); color: #fff; animation: pulse-urgent 1.5s infinite; }
 
@@ -539,25 +573,12 @@
         .market-item a:hover { text-decoration: underline; }
 
         @media (max-width: 900px) {
-            .container {
-                flex-direction: column;
-                padding: 0 10px;
-            }
-            .sidebar {
-                width: 100%;
-            }
-            .mobile-filter-btn {
-                display: block;
-            }
-            .sidebar-filters-wrapper {
-                display: none;
-            }
-            .sidebar-filters-wrapper.open {
-                display: block;
-            }
-            header {
-                padding: 12px 20px;
-            }
+            .container { flex-direction: column; padding: 0 10px; }
+            .sidebar { width: 100%; }
+            .mobile-filter-btn { display: block; }
+            .sidebar-filters-wrapper { display: none; }
+            .sidebar-filters-wrapper.open { display: block; }
+            header { padding: 12px 20px; }
         }
     </style>
 </head>
@@ -571,6 +592,7 @@
         </div>
     </header>
 
+    <!-- Modal: Portalen Status -->
     <div class="modal-overlay" id="statusModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -578,6 +600,30 @@
                 <span class="modal-close" onclick="closeStatusModal()">&times;</span>
             </div>
             <ul class="portal-status-list" id="portalStatusList"></ul>
+        </div>
+    </div>
+
+    <!-- Modal: Reden voor Slechte Feedback (Lightbox) -->
+    <div class="reason-modal-overlay" id="reasonModal">
+        <div class="reason-modal-content">
+            <div class="modal-header">
+                <h2>Waarom is dit geen goede optie?</h2>
+                <span class="modal-close" onclick="closeReasonModal()">&times;</span>
+            </div>
+            <p style="color: #666; font-size: 13px; margin-bottom: 15px;">Selecteer een reden om de AI verder te trainen:</p>
+            <div class="reason-btn-list">
+                <button class="reason-btn" onclick="submitReason('Te duur')">Te duur</button>
+                <button class="reason-btn" onclick="submitReason('Te oud of te veel km of uren')">Te oud / te veel km of uren</button>
+                <button class="reason-btn" onclick="submitReason('Sluit niet aan bij aanbod')">Sluit niet aan bij ons aanbod</button>
+                <button class="reason-btn" onclick="submitReason('Verkeerde locatie of transport')">Verkeerde locatie / te ver</button>
+            </div>
+            <div style="border-top: 1px solid #eee; padding-top: 15px; text-align: left;">
+                <p style="font-size: 12px; color: #555; margin-bottom: 5px; font-weight: bold;">Of vul zelf een andere reden in:</p>
+                <div style="display: flex; gap: 5px;">
+                    <input type="text" id="customReasonInput" placeholder="Typ hier de reden..." style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px;">
+                    <button onclick="submitCustomReason()" style="padding: 8px 12px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Verstuur</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -622,7 +668,6 @@
                 </div>
                 
                 <div class="header-controls">
-                    <!-- Feedback Filter Dropdown -->
                     <select id="filter-feedback" class="feedback-filter-select" onchange="renderGrid()">
                         <option value="relevant" selected>Relevante resultaten (Geen 👎)</option>
                         <option value="all">Alle resultaten</option>
@@ -644,54 +689,86 @@
 
     <script>
         const jsonMasterUrl = './data/equipment-data.json';
-        
-        // ==========================================
-        // GOOGLE APPS SCRIPT WEB-APP URL
-        // ==========================================
         const gasWebappUrl = 'https://script.google.com/macros/s/AKfycbzZP075DR0dLbUrv35PYQh5BenGOD70Lc67x924iaXvLcE5ZV_wmfZCetx4vhNJ-bxs/exec';
 
         let allData = [];
         let ownStockData = [];
         let currentTab = 'listings';
+        let activeFeedbackId = null; // Houdt bij voor welke advertentie de lightbox open staat
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
 
-        // SVG Icons voor strakke groene & rode duimpjes
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
         const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
 
-        function toggleFeedback(event, id, type, title, platform, link) {
+        function toggleFeedback(event, id, type) {
             event.preventDefault(); 
             event.stopPropagation(); 
 
-            let actionState = type;
-            if (feedbackData[id] === type) {
-                delete feedbackData[id]; 
-                actionState = 'removed';
-            } else {
-                feedbackData[id] = type;
-            }
-            
-            localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
-            console.log("Feedback gelogd lokaal:", feedbackData);
-
-            // Stuur direct door naar Google Apps Script via sendBeacon (altijd waterdicht)
-            if (gasWebappUrl && gasWebappUrl !== 'JOUW_GOOGLE_APPS_SCRIPT_URL_HIER') {
-                let gasFeedbackVal = (actionState === 'positive') ? 'goed' : (actionState === 'negative' ? 'slecht' : 'removed');
-                
-                const targetUrl = `${gasWebappUrl}?id=${encodeURIComponent(id)}&feedback=${encodeURIComponent(gasFeedbackVal)}`;
-                
-                // navigator.sendBeacon vuurt het verzoek gegarandeerd af op de achtergrond
-                if (navigator.sendBeacon) {
-                    navigator.sendBeacon(targetUrl);
+            if (type === 'positive') {
+                if (feedbackData[id] === 'positive') {
+                    delete feedbackData[id];
+                    sendToGoogleAppsScript(id, 'removed');
                 } else {
-                    // Fallback voor oudere browsers
-                    fetch(targetUrl, { mode: 'no-cors' });
+                    feedbackData[id] = 'positive';
+                    sendToGoogleAppsScript(id, 'goed');
                 }
-                console.log("Feedback verstuurd via sendBeacon naar:", targetUrl);
+            } else if (type === 'negative') {
+                if (feedbackData[id] === 'negative') {
+                    delete feedbackData[id];
+                    sendToGoogleAppsScript(id, 'removed');
+                } else {
+                    // Open de Lightbox om een reden te kiezen voor het rode duimpje
+                    activeFeedbackId = id;
+                    document.getElementById('reasonModal').style.display = 'flex';
+                    return; // Wacht tot reden is gekozen
+                }
             }
 
+            localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
             renderGrid();
+        }
+
+        function submitReason(reasonText) {
+            if (!activeFeedbackId) return;
+            feedbackData[activeFeedbackId] = 'negative';
+            localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
+
+            // Stuur naar Google Apps Script met de gekozen reden
+            sendToGoogleAppsScript(activeFeedbackId, "Slecht: " + reasonText);
+            
+            closeReasonModal();
+            renderGrid();
+        }
+
+        function submitCustomReason() {
+            const val = document.getElementById('customReasonInput').value.trim();
+            if (!val) {
+                alert('Vul a.u.b. een reden in.');
+                return;
+            }
+            submitReason(val);
+            document.getElementById('customReasonInput').value = '';
+        }
+
+        function closeReasonModal() {
+            document.getElementById('reasonModal').style.display = 'none';
+            activeFeedbackId = null;
+        }
+
+        function sendToGoogleAppsScript(id, feedbackVal) {
+            if (gasWebappUrl) {
+                const targetUrl = `${gasWebappUrl}?id=${encodeURIComponent(id)}&feedback=${encodeURIComponent(feedbackVal)}`;
+                
+                // Gebruik iframe/image om betrouwbaar door te sturen naar Google Apps Script
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = targetUrl;
+                document.body.appendChild(iframe);
+                setTimeout(() => iframe.remove(), 5000);
+                
+                console.log("Feedback doorgestuurd naar Apps Script:", targetUrl);
+            }
         }
 
         const TARGET_PORTALS = [
@@ -794,6 +871,7 @@
 
         window.onclick = function(event) {
             if (event.target === document.getElementById('statusModal')) closeStatusModal();
+            if (event.target === document.getElementById('reasonModal')) closeReasonModal();
         }
 
         function populateFilters() {
@@ -823,54 +901,32 @@
             let countryName = '';
 
             if (l.includes('sweden') || l.includes('zweden') || l.includes('sverige') || l.includes(', se') || l.includes('(se)') || l.includes('trollhättan')) {
-                countryCode = 'se'; 
-                countryName = 'Zweden';
+                countryCode = 'se'; countryName = 'Zweden';
             } else if (l.includes('united states') || l.includes('verenigde staten') || l.includes('usa') || l.includes(', us') || l.includes('(us)')) {
-                countryCode = 'us'; 
-                countryName = 'Verenigde Staten';
-            } else if (l.includes('denmark') || l.includes('denemarken') || l.includes(', dk') || l.includes('(dk)') ||
-                l.includes('region syddanmark') || l.includes('region hovedstaden') || 
-                l.includes('region midtjylland') || l.includes('region nordjylland') || 
-                l.includes('region sjaelland') || l.includes('region sjælland') ||
-                l.includes('gribskov') || l.includes('hjoerring') || l.includes('hjørring') || l.includes('skive')) {
-                countryCode = 'dk'; 
-                countryName = 'Denemarken';
+                countryCode = 'us'; countryName = 'Verenigde Staten';
+            } else if (l.includes('denmark') || l.includes('denemarken') || l.includes(', dk') || l.includes('(dk)') || l.includes('gribskov') || l.includes('hjoerring') || l.includes('hjørring') || l.includes('skive')) {
+                countryCode = 'dk'; countryName = 'Denemarken';
             } else if (l.includes('netherlands') || l.includes('nederland') || l.includes('holland') || l.includes(', nl') || l.includes('(nl)')) {
-                countryCode = 'nl'; 
-                countryName = 'Nederland';
-            } else if (l.includes('portugal') || l.includes('portugal') || l.includes(', pt') || l.includes('(pt)')) {
-                countryCode = 'pt'; 
-                countryName = 'Portugal';    
-            } else if (l.includes('noorwegen') || l.includes('norway') || l.includes(', no') || l.includes('(no)')) {
-                countryCode = 'no'; 
-                countryName = 'Norwegen';   
+                countryCode = 'nl'; countryName = 'Nederland';
             } else if (l.includes('germany') || l.includes('duitsland') || l.includes('deutschland') || l.includes(', de') || l.includes('(de)')) {
-                countryCode = 'de'; 
-                countryName = 'Duitsland';
+                countryCode = 'de'; countryName = 'Duitsland';
             } else if (l.includes('belgium') || l.includes('belgië') || l.includes('belgique') || l.includes(', be') || l.includes('(be)')) {
-                countryCode = 'be'; 
-                countryName = 'België';
+                countryCode = 'be'; countryName = 'België';
             } else if (l.includes('france') || l.includes('frankrijk') || l.includes(', fr') || l.includes('(fr)')) {
-                countryCode = 'fr'; 
-                countryName = 'Frankrijk';
+                countryCode = 'fr'; countryName = 'Frankrijk';
             } else if (l.includes('italy') || l.includes('italië') || l.includes('italia') || l.includes(', it') || l.includes('(it)')) {
-                countryCode = 'it'; 
-                countryName = 'Italië';
+                countryCode = 'it'; countryName = 'Italië';
             } else if (l.includes('spain') || l.includes('spanje') || l.includes('españa') || l.includes(', es') || l.includes('(es)')) {
-                countryCode = 'es'; 
-                countryName = 'Spanje';
+                countryCode = 'es'; countryName = 'Spanje';
             } else if (l.includes('poland') || l.includes('polen') || l.includes(', pl') || l.includes('(pl)')) {
-                countryCode = 'pl'; 
-                countryName = 'Polen';
+                countryCode = 'pl'; countryName = 'Polen';
             } else if (l.includes('slovenia') || l.includes('slovenië') || l.includes(', si') || l.includes('(si)')) {
-                countryCode = 'si'; 
-                countryName = 'Slovenië';
+                countryCode = 'si'; countryName = 'Slovenië';
             }
 
             if (countryCode) {
                 return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryName}" title="${countryName}"> <span>${locStr}</span>`;
             }
-            
             return `📍 <span>${locStr}</span>`;
         }
 
@@ -909,12 +965,7 @@
             const seconds = Math.floor((diff / 1000) % 60);
             const pad = (n) => String(n).padStart(2, '0');
             
-            let timeStrUpper = "";
-            if (days > 0) {
-                timeStrUpper = `⏱ ${days}D ${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S`;
-            } else {
-                timeStrUpper = `⚠️ ${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S`;
-            }
+            let timeStrUpper = days > 0 ? `⏱ ${days}D ${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S` : `⚠️ ${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S`;
 
             const d = pad(end.getDate());
             const m = pad(end.getMonth() + 1);
@@ -923,20 +974,9 @@
             const M = pad(end.getMinutes());
             
             if (days < 2) {
-                return { 
-                    boxText: `⚠️ Nog ${days > 0 ? days + 'd ' : ''}${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`, 
-                    imageBadge: timeStrUpper, 
-                    isUrgent: true, 
-                    isExpired: false 
-                };
+                return { boxText: `⚠️ Nog ${days > 0 ? days + 'd ' : ''}${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`, imageBadge: timeStrUpper, isUrgent: true, isExpired: false };
             }
-            
-            return { 
-                boxText: `Veiling op: ${d}-${m}-${y} om ${H}:${M}`, 
-                imageBadge: timeStrUpper, 
-                isUrgent: false, 
-                isExpired: false 
-            };
+            return { boxText: `Veiling op: ${d}-${m}-${y} om ${H}:${M}`, imageBadge: timeStrUpper, isUrgent: false, isExpired: false };
         }
 
         function updateLiveTimers() {
@@ -951,9 +991,7 @@
                 if (cnt) {
                     if (cnt.isExpired) {
                         box.className = 'countdown';
-                        box.style.background = '#eee';
-                        box.style.color = '#666';
-                        box.style.borderColor = '#ccc';
+                        box.style.background = '#eee'; box.style.color = '#666'; box.style.borderColor = '#ccc';
                         box.innerHTML = `Veiling afgelopen | Biedingen: ${bids}`;
                         if (badgeEl) badgeEl.innerHTML = 'AFGELOPEN';
                     } else if (cnt.isUrgent) {
@@ -1046,7 +1084,6 @@
                 
                 let rawTitle = row.Titel || row.Title || (`${row.Merk || ''} ${row.Model || ''}`.trim()) || row.Model || 'Machine / Onbekend';
                 const fullTitle = rawTitle.length > 60 ? rawTitle.substring(0, 57) + '...' : rawTitle;
-                const safeTitleEscaped = fullTitle.replace(/'/g, "\\'");
 
                 let priceHtml = '';
                 const eerstePrijs = row['Eerste prijs'] ? row['Eerste prijs'].trim() : '';
@@ -1150,7 +1187,6 @@
                 }
 
                 const productUrl = row.Link ? row.Link : '#';
-                
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let myFb = feedbackData[uniqueId];
                 let extraClass = '';
@@ -1168,10 +1204,10 @@
 
                 let feedbackButtonsHtml = `
                     <div class="feedback-actions">
-                        <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive', '${safeTitleEscaped}', '${rawPlatform}', '${productUrl}')" title="Positief (Interessant)">
+                        <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive')" title="Positief (Interessant)">
                             ${svgThumbUp}
                         </button>
-                        <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative', '${safeTitleEscaped}', '${rawPlatform}', '${productUrl}')" title="Negatief (Niet interessant)">
+                        <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief (Niet interessant)">
                             ${svgThumbDown}
                         </button>
                     </div>
