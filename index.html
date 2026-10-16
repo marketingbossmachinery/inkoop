@@ -760,14 +760,14 @@
             if (gasWebappUrl) {
                 const targetUrl = `${gasWebappUrl}?id=${encodeURIComponent(id)}&feedback=${encodeURIComponent(feedbackVal)}`;
                 
-                // Gebruik iframe/image om betrouwbaar door te sturen naar Google Apps Script
-                const iframe = document.createElement('iframe');
-                iframe.style.display = 'none';
-                iframe.src = targetUrl;
-                document.body.appendChild(iframe);
-                setTimeout(() => iframe.remove(), 5000);
-                
-                console.log("Feedback doorgestuurd naar Apps Script:", targetUrl);
+                // Gebruik fetch met no-cors om het verzoek waterdicht en zonder 403-fouten af te vure
+                fetch(targetUrl, { method: 'GET', mode: 'no-cors' })
+                    .then(() => {
+                        console.log("Feedback succesvol verzonden naar Apps Script!");
+                    })
+                    .catch(err => {
+                        console.error("Fout bij verzenden naar Apps Script:", err);
+                    });
             }
         }
 
