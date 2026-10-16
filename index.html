@@ -694,7 +694,7 @@
         let allData = [];
         let ownStockData = [];
         let currentTab = 'listings';
-        let activeFeedbackId = null; // Houdt bij voor welke advertentie de lightbox open staat
+        let activeFeedbackId = null;
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
 
@@ -718,10 +718,9 @@
                     delete feedbackData[id];
                     sendToGoogleAppsScript(id, 'removed');
                 } else {
-                    // Open de Lightbox om een reden te kiezen voor het rode duimpje
                     activeFeedbackId = id;
                     document.getElementById('reasonModal').style.display = 'flex';
-                    return; // Wacht tot reden is gekozen
+                    return;
                 }
             }
 
@@ -734,7 +733,6 @@
             feedbackData[activeFeedbackId] = 'negative';
             localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
 
-            // Stuur naar Google Apps Script met de gekozen reden
             sendToGoogleAppsScript(activeFeedbackId, "Slecht: " + reasonText);
             
             closeReasonModal();
@@ -760,18 +758,57 @@
             if (gasWebappUrl) {
                 const targetUrl = `${gasWebappUrl}?id=${encodeURIComponent(id)}&feedback=${encodeURIComponent(feedbackVal)}`;
                 
-                // Gebruik een onzichtbaar iframe om de URL betrouwbaar te triggeren (zonder CORS/redirect blokkade)
                 const iframe = document.createElement('iframe');
                 iframe.style.display = 'none';
                 iframe.src = targetUrl;
                 document.body.appendChild(iframe);
                 
-                // Ruim het iframe na 5 seconden weer op
                 setTimeout(() => {
                     iframe.remove();
                 }, 5000);
                 
                 console.log("Feedback doorgestuurd via iframe naar Apps Script:", targetUrl);
+            }
+        }
+
+        // Live status ophalen uit Google Apps Script
+        async function haalLiveFeedbackOp() {
+            if (!gasWebappUrl) return;
+            try {
+                const targetUrl = `${gasWebappUrl}?action=getLiveStatus`;
+                const response = await fetch(targetUrl);
+                if (!response.ok) return;
+
+                const liveData = await response.json();
+                console.log("Live feedback uit Google Sheets ingeladen:", liveData);
+
+                let updated = false;
+                Object.keys(liveData).forEach(id => {
+                    const val = String(liveData[id]).trim();
+                    if (val === 'goed' || val === 'positive') {
+                        if (feedbackData[id] !== 'positive') {
+                            feedbackData[id] = 'positive';
+                            updated = true;
+                        }
+                    } else if (val.startsWith('Slecht:') || val === 'slecht' || val === 'negative') {
+                        if (feedbackData[id] !== 'negative') {
+                            feedbackData[id] = 'negative';
+                            updated = true;
+                        }
+                    } else if (val === 'removed') {
+                        if (feedbackData[id]) {
+                            delete feedbackData[id];
+                            updated = true;
+                        }
+                    }
+                });
+
+                if (updated) {
+                    localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
+                    renderGrid();
+                }
+            } catch (err) {
+                console.warn("Kon live feedback niet ophalen uit Apps Script:", err);
             }
         }
 
@@ -789,13 +826,33 @@
         fetch(jsonMasterUrl)
             .then(response => response.json())
             .then(masterData => {
-                allData = (masterData.listings || []).filter(row => {
+                let parsedListings = [];
+                let parsedVoorraad = [];
+
+                // Ondersteunt zowel stockHeaders/stockRows als listings/voorraad objecten
+                if (masterData.stockHeaders && masterData.stockRows) {
+                    const headers = masterData.stockHeaders;
+                    const rows = masterData.stockRows.map(row => {
+                        let obj = {};
+                        headers.forEach((h, i) => {
+                            if (h && h.trim()) obj[h.trim()] = row[i];
+                        });
+                        return obj;
+                    });
+                    parsedVoorraad = rows.filter(r => (r.Platform || '').toLowerCase().includes('eigen voorraad'));
+                    parsedListings = rows.filter(r => !(r.Platform || '').toLowerCase().includes('eigen voorraad'));
+                } else {
+                    parsedListings = masterData.listings || (Array.isArray(masterData) ? masterData : []);
+                    parsedVoorraad = masterData.voorraad || [];
+                }
+
+                allData = parsedListings.filter(row => {
                     const p = (row.Platform || '').trim().toLowerCase();
                     const m = (row.Merk || row.brand || row.Model || '').trim().toLowerCase();
                     return p && p !== 'platform' && m !== 'merk';
                 });
 
-                ownStockData = (masterData.voorraad || []).filter(row => {
+                ownStockData = parsedVoorraad.filter(row => {
                     const p = (row.Platform || '').trim().toLowerCase();
                     const m = (row.Merk || row.brand || row.Model || '').trim().toLowerCase();
                     return p && p !== 'platform' && m !== 'merk';
@@ -804,6 +861,9 @@
                 populateFilters();
                 updateSystemStatusHeader();
                 renderGrid();
+
+                // Direct na de render live feedback ophalen uit Google Sheets
+                haalLiveFeedbackOp();
             })
             .catch(err => {
                 console.error("Fout bij laden van master JSON:", err);
@@ -1026,7 +1086,7 @@
             let dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
 
             let filteredData = dataSource.filter(row => {
-                const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
+                const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
                 const isAuction = endDateVal !== '';
 
                 if (currentTab === 'listings' && isAuction) return false;
@@ -1038,7 +1098,7 @@
                 const m = (row.Merk || row.brand || '');
                 if (filterMerk && m !== filterMerk) return false;
 
-                if (filterBouwjaar && row.Bouwjaar !== filterBouwjaar) return false;
+                if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
 
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
@@ -1083,15 +1143,15 @@
 
             filteredData.forEach(row => {
                 const isOwnStock = (currentTab === 'voorraad');
-                const endDateVal = row['Veiling loopt af op'] ? row['Veiling loopt af op'].trim() : '';
+                const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
                 const isAuction = endDateVal !== '';
                 
                 let rawTitle = row.Titel || row.Title || (`${row.Merk || ''} ${row.Model || ''}`.trim()) || row.Model || 'Machine / Onbekend';
                 const fullTitle = rawTitle.length > 60 ? rawTitle.substring(0, 57) + '...' : rawTitle;
 
                 let priceHtml = '';
-                const eerstePrijs = row['Eerste prijs'] ? row['Eerste prijs'].trim() : '';
-                const laatstePrijs = row['Laatste prijs'] || row['Prijs'] ? (row['Laatste prijs'] || row['Prijs']).trim() : '';
+                const eerstePrijs = row['Eerste prijs'] ? String(row['Eerste prijs']).trim() : '';
+                const laatstePrijs = row['Laatste prijs'] || row['Prijs'] ? String(row['Laatste prijs'] || row['Prijs']).trim() : '';
 
                 if (laatstePrijs && eerstePrijs && eerstePrijs !== laatstePrijs) {
                     priceHtml = `<span class="old-price">${eerstePrijs}</span> <span class="new-price">${laatstePrijs}</span>`;
@@ -1165,16 +1225,25 @@
                     let marketHtml = '';
                     let foundItemsCount = 0;
                     ['Vergelijkbaar 1', 'Vergelijkbaar 2', 'Vergelijkbaar 3'].forEach(colName => {
-                        let val = row[colName] ? row[colName].trim() : '';
+                        let val = row[colName] ? String(row[colName]).trim() : '';
                         if (val) {
                             foundItemsCount++;
-                            let parts = val.split('| Link:');
-                            let infoText = parts[0].trim();
-                            let linkUrl = parts[1] ? parts[1].trim() : '#';
+                            let infoText = val;
+                            let linkUrl = '#';
+                            if (val.includes('| Link:')) {
+                                let parts = val.split('| Link:');
+                                infoText = parts[0].trim();
+                                linkUrl = parts[1] ? parts[1].trim() : '#';
+                            } else if (val.includes('http')) {
+                                let httpIdx = val.indexOf('http');
+                                infoText = val.substring(0, httpIdx).trim();
+                                linkUrl = val.substring(httpIdx).trim();
+                            }
+                            let linkHtml = (linkUrl && linkUrl !== '#') ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">Bekijk</a>` : '';
                             marketHtml += `
                                 <div class="market-item">
                                     <span style="font-size:11px;">${infoText}</span>
-                                    <a href="${linkUrl}" target="_blank">Bekijk</a>
+                                    ${linkHtml}
                                 </div>
                             `;
                         }
