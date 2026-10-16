@@ -1179,7 +1179,7 @@
                 let isExpired = false;
 
                 if (isOwnStock) {
-                    // Geen beoordeling / AI-prijs badge tonen op Eigen Voorraad
+                    // Geen badges op eigen voorraad
                     badgeHtml = '';
                 } else if (isAuction) {
                     const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
@@ -1271,8 +1271,6 @@
 
                     if (foundItemsCount === 0) {
                         marketHtml = `<div style="color:#777; font-style:italic;">Geen vergelijkbare marktdata gevonden.</div>`;
-                        // Debug log om te kijken wat er dan wél in je data staat
-                        console.log("Beschikbare data voor dit eigen voorraad voertuig:", row);
                     }
 
                     extraContentHtml = `
@@ -1313,33 +1311,6 @@
                         </div>
                     `;
                 }
-
-                const productUrl = row.Link ? row.Link : '#';
-                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
-                let myFb = feedbackData[uniqueId];
-                let extraClass = '';
-                let posBtnClass = '';
-                let negBtnClass = '';
-
-                if (myFb === 'positive') {
-                    extraClass = ' glow-green';
-                    posBtnClass = ' active-pos';
-                }
-                if (myFb === 'negative') {
-                    extraClass = ' glow-red';
-                    negBtnClass = ' active-neg';
-                }
-
-                let feedbackButtonsHtml = `
-                    <div class="feedback-actions">
-                        <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive')" title="Positief (Interessant)">
-                            ${svgThumbUp}
-                        </button>
-                        <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief (Niet interessant)">
-                            ${svgThumbDown}
-                        </button>
-                    </div>
-                `;
 
                 const expiredClass = isExpired ? ' expired' : '';
                 const wrapperStart = isOwnStock ? `<div class="card${expiredClass}${extraClass}">` : `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}${extraClass}">`;
