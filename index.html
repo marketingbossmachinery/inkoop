@@ -983,15 +983,26 @@
         'latvia': 'lv', 'letland': 'lv',
         'lithuania': 'lt', 'litouwen': 'lt',
         'luxembourg': 'lu', 'luxemburg': 'lu',
-        'united states': 'us', 'us': 'us', 'verenigde staten': 'us', 'USA': 'us'
+        'united states': 'us', 'verenigde staten': 'us', 'usa': 'us'
     };
 
     let countryCode = '';
+
+    // STAP 1: Eerst streng zoeken op volledige landnamen (voorrang voor specifieke namen zoals Denmark)
     for (const [name, code] of Object.entries(euCountries)) {
-        // Zoek op naam OF op de afkorting in de string (bijv. ", pt" of "(no)")
-        if (l.includes(name) || l.includes(`, ${code}`) || l.includes(`(${code})`)) {
+        if (l.includes(name)) {
             countryCode = code;
             break;
+        }
+    }
+
+    // STAP 2: Als we nog niks hebben, veilig zoeken op landcodes met scheidingstekens (bijv. ", dk" of "(dk)")
+    if (!countryCode) {
+        for (const [name, code] of Object.entries(euCountries)) {
+            if (l.includes(`, ${code}`) || l.includes(`(${code})`) || l.includes(` ${code} `)) {
+                countryCode = code;
+                break;
+            }
         }
     }
 
