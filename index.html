@@ -30,6 +30,45 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px; /* Zorgt voor ruimte tussen logo, zoekbalk en status */
+        }
+        
+        .header-search-box {
+            position: relative;
+            flex-grow: 1;
+            max-width: 450px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-search-box input {
+            width: 100%;
+            padding: 9px 15px 9px 38px;
+            background-color: #262626; /* Grijzer dan het diepzwarte (#111111) van de header */
+            border: 1px solid #3d3d3d;
+            color: #ffffff;
+            font-size: 13px;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        
+        .header-search-box input::placeholder {
+            color: #999999;
+        }
+        
+        .header-search-box input:focus {
+            border-color: var(--boss-red);
+            background-color: #303030;
+        }
+        
+        .header-search-box .search-icon {
+            position: absolute;
+            left: 12px;
+            color: #999999;
+            pointer-events: none;
+            width: 15px;
+            height: 15px;
         }
 
         .system-status-indicator {
@@ -631,6 +670,12 @@
 
     <header>
         <img src="logo.png" alt="BOSS GLOBAL" style="height: 40px; object-fit: contain; display: block;">
+        
+        <div class="header-search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="searchInput" placeholder="Vrij zoeken op merk, model, titel of locatie..." oninput="renderGrid()">
+        </div>
+
         <div class="system-status-indicator" onclick="openStatusModal()">
             <span id="header-status-dot" class="status-dot dot-green"></span>
             <span id="header-status-text">Portalen Status</span>
@@ -705,12 +750,6 @@
         </aside>
 
         <main class="main-content">
-            <div class="search-container">
-                <div class="search-box">
-                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <input type="text" id="searchInput" placeholder="Vrij zoeken op merk, model, titel of locatie..." oninput="renderGrid()">
-                </div>
-            </div>
             <div class="tabs-header-area">
                 <div class="tabs">
                     <div class="tab active" onclick="switchTab('listings')" id="tab-listings">Listings <span id="count-listings">(0)</span></div>
