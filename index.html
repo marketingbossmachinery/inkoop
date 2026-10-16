@@ -675,16 +675,20 @@
             localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
             console.log("Feedback gelogd lokaal:", feedbackData);
 
-            // Stuur direct door naar Google Apps Script via een onzichtbare aanroep (omzeilt CORS)
+            // Stuur direct door naar Google Apps Script via sendBeacon (altijd waterdicht)
             if (gasWebappUrl && gasWebappUrl !== 'JOUW_GOOGLE_APPS_SCRIPT_URL_HIER') {
                 let gasFeedbackVal = (actionState === 'positive') ? 'goed' : (actionState === 'negative' ? 'slecht' : 'removed');
                 
                 const targetUrl = `${gasWebappUrl}?id=${encodeURIComponent(id)}&feedback=${encodeURIComponent(gasFeedbackVal)}`;
                 
-                // Veilige methode om de URL op de achtergrond te triggeren zonder CORS blokkade
-                const img = new Image();
-                img.src = targetUrl;
-                console.log("Feedback triggert Apps Script URL:", targetUrl);
+                // navigator.sendBeacon vuurt het verzoek gegarandeerd af op de achtergrond
+                if (navigator.sendBeacon) {
+                    navigator.sendBeacon(targetUrl);
+                } else {
+                    // Fallback voor oudere browsers
+                    fetch(targetUrl, { mode: 'no-cors' });
+                }
+                console.log("Feedback verstuurd via sendBeacon naar:", targetUrl);
             }
 
             renderGrid();
