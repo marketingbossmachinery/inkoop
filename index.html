@@ -30,9 +30,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 20px; /* Zorgt voor ruimte tussen logo, zoekbalk en status */
+            gap: 20px;
         }
-        
+
         .header-search-box {
             position: relative;
             flex-grow: 1;
@@ -40,11 +40,11 @@
             display: flex;
             align-items: center;
         }
-        
+
         .header-search-box input {
             width: 100%;
             padding: 9px 15px 9px 38px;
-            background-color: #262626; /* Grijzer dan het diepzwarte (#111111) van de header */
+            background-color: #262626;
             border: 1px solid #3d3d3d;
             color: #ffffff;
             font-size: 13px;
@@ -52,16 +52,16 @@
             outline: none;
             transition: border-color 0.2s, background-color 0.2s;
         }
-        
+
         .header-search-box input::placeholder {
             color: #999999;
         }
-        
+
         .header-search-box input:focus {
             border-color: var(--boss-red);
             background-color: #303030;
         }
-        
+
         .header-search-box .search-icon {
             position: absolute;
             left: 12px;
@@ -82,6 +82,7 @@
             font-size: 13px;
             font-weight: bold;
             transition: background 0.2s;
+            white-space: nowrap;
         }
 
         .system-status-indicator:hover {
@@ -149,7 +150,6 @@
             font-size: 14px;
         }
 
-        /* Lightbox voor Rode Duim Redenen */
         .reason-modal-overlay {
             display: none;
             position: fixed;
@@ -192,62 +192,72 @@
         .reason-btn:hover { background: #c9302c; }
 
         .container {
-            display: flex;
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 20px auto;
             padding: 0 20px;
-            gap: 20px;
         }
 
+        /* Inklapbare filter sidebar / drawer */
         .sidebar {
-            width: 280px;
-            flex-shrink: 0;
+            display: none;
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .sidebar.open {
+            display: grid;
         }
 
         .filter-group {
-            background: #fff;
-            padding: 15px;
-            margin-bottom: 15px;
+            background: #fafafa;
+            padding: 12px;
             border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
         }
 
         .filter-group h3 {
             margin-top: 0;
-            font-size: 15px;
+            font-size: 13px;
             border-bottom: 2px solid var(--boss-gray);
-            padding-bottom: 8px;
+            padding-bottom: 6px;
             color: var(--boss-black);
             text-transform: uppercase;
         }
 
         .filter-group select {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 13px;
             background: #fff;
         }
 
-        .mobile-filter-btn {
-            display: none;
-            width: 100%;
+        .toggle-filter-btn {
             background: var(--boss-black);
             color: #fff;
             border: none;
-            padding: 12px;
-            font-size: 14px;
+            padding: 10px 16px;
+            font-size: 13px;
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
             text-transform: uppercase;
-            margin-bottom: 15px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+        .toggle-filter-btn:hover {
+            background: var(--boss-red);
         }
 
         .main-content {
-            flex-grow: 1;
+            width: 100%;
         }
 
         .tabs-header-area {
@@ -259,6 +269,12 @@
             padding-bottom: 10px;
             flex-wrap: wrap;
             gap: 10px;
+        }
+
+        .tabs-left-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .tabs {
@@ -323,6 +339,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
+            width: 100%;
         }
 
         .card {
@@ -441,10 +458,6 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        .badge-te-hoog { background-color: #dc3545; }
-        .badge-goed { background-color: #28a745; }
-        .badge-te-laag { background-color: #fd7e14; }
-        .badge-geen-data { background-color: #6c757d; }
         .badge-rood { background-color: var(--boss-red); }
         .badge-urgent { background-color: var(--boss-red); color: #fff; animation: pulse-urgent 1.5s infinite; }
 
@@ -610,60 +623,6 @@
             font-weight: bold;
         }
         .market-item a:hover { text-decoration: underline; }
-
-        @media (max-width: 900px) {
-            .container { flex-direction: column; padding: 0 10px; }
-            .sidebar { width: 100%; }
-            .mobile-filter-btn { display: block; }
-            .sidebar-filters-wrapper { display: none; }
-            .sidebar-filters-wrapper.open { display: block; }
-            header { padding: 12px 20px; }
-        }
-
-        .search-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            width: 100%;
-        }
-        
-        .search-box {
-            position: relative;
-            width: 100%;
-            max-width: 550px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .search-box input {
-            width: 100%;
-            padding: 12px 15px 12px 42px;
-            background-color: #222222;
-            border: 1px solid #333333;
-            color: #ffffff;
-            font-size: 14px;
-            border-radius: 6px;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        
-        .search-box input::placeholder {
-            color: #888888;
-        }
-        
-        .search-box input:focus {
-            border-color: var(--boss-red);
-            box-shadow: 0 0 8px rgba(204, 32, 39, 0.3);
-        }
-        
-        .search-box .search-icon {
-            position: absolute;
-            left: 14px;
-            color: #888888;
-            pointer-events: none;
-            width: 16px;
-            height: 16px;
-        }
     </style>
 </head>
 <body>
@@ -718,43 +677,55 @@
     </div>
 
     <div class="container">
-        <button class="mobile-filter-btn" onclick="toggleMobileFilters()">🔍 Filters tonen / verbergen</button>
-
-        <aside class="sidebar">
-            <div class="sidebar-filters-wrapper" id="sidebarFilters">
-                <div class="filter-group">
-                    <h3>Platform</h3>
-                    <select id="filter-platform" onchange="renderGrid()">
-                        <option value="">Alle platformen</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <h3>Merk</h3>
-                    <select id="filter-merk" onchange="renderGrid()">
-                        <option value="">Alle merken</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <h3>Bouwjaar</h3>
-                    <select id="filter-bouwjaar" onchange="renderGrid()">
-                        <option value="">Alle bouwjaren</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <h3>Status</h3>
-                    <select id="filter-status" onchange="renderGrid()">
-                        <option value="">Alle statussen</option>
-                    </select>
-                </div>
+        <!-- Inklapbare Filter Drawer -->
+        <div class="sidebar" id="sidebarFilters">
+            <div class="filter-group">
+                <h3>Platform</h3>
+                <select id="filter-platform" onchange="renderGrid()">
+                    <option value="">Alle platformen</option>
+                </select>
             </div>
-        </aside>
+            <div class="filter-group">
+                <h3>Categorie</h3>
+                <select id="filter-categorie" onchange="renderGrid()">
+                    <option value="">Alle categorieën</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Merk</h3>
+                <select id="filter-merk" onchange="renderGrid()">
+                    <option value="">Alle merken</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Model</h3>
+                <select id="filter-model" onchange="renderGrid()">
+                    <option value="">Alle modellen</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Bouwjaar</h3>
+                <select id="filter-bouwjaar" onchange="renderGrid()">
+                    <option value="">Alle bouwjaren</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Status</h3>
+                <select id="filter-status" onchange="renderGrid()">
+                    <option value="">Alle statussen</option>
+                </select>
+            </div>
+        </div>
 
         <main class="main-content">
             <div class="tabs-header-area">
-                <div class="tabs">
-                    <div class="tab active" onclick="switchTab('listings')" id="tab-listings">Listings <span id="count-listings">(0)</span></div>
-                    <div class="tab" onclick="switchTab('auctions')" id="tab-auctions">Veilingen <span id="count-auctions">(0)</span></div>
-                    <div class="tab" onclick="switchTab('voorraad')" id="tab-voorraad">Eigen Voorraad <span id="count-voorraad">(0)</span></div>
+                <div class="tabs-left-wrapper">
+                    <button class="toggle-filter-btn" onclick="toggleFilters()">⚙️ Filters</button>
+                    <div class="tabs">
+                        <div class="tab active" onclick="switchTab('listings')" id="tab-listings">Listings <span id="count-listings">(0)</span></div>
+                        <div class="tab" onclick="switchTab('auctions')" id="tab-auctions">Veilingen <span id="count-auctions">(0)</span></div>
+                        <div class="tab" onclick="switchTab('voorraad')" id="tab-voorraad">Eigen Voorraad <span id="count-voorraad">(0)</span></div>
+                    </div>
                 </div>
                 
                 <div class="header-controls">
@@ -790,6 +761,11 @@
 
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
         const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
+
+        function toggleFilters() {
+            const wrapper = document.getElementById('sidebarFilters');
+            wrapper.classList.toggle('open');
+        }
 
         function toggleFeedback(event, id, type) {
             event.preventDefault(); 
@@ -856,12 +832,9 @@
                 setTimeout(() => {
                     iframe.remove();
                 }, 5000);
-                
-                console.log("Feedback doorgestuurd via iframe naar Apps Script:", targetUrl);
             }
         }
 
-        // Live status ophalen uit Google Apps Script
         async function haalLiveFeedbackOp() {
             if (!gasWebappUrl) return;
             try {
@@ -870,8 +843,6 @@
                 if (!response.ok) return;
 
                 const liveData = await response.json();
-                console.log("Live feedback uit Google Sheets ingeladen:", liveData);
-
                 let updated = false;
                 Object.keys(liveData).forEach(id => {
                     const val = String(liveData[id]).trim();
@@ -908,11 +879,6 @@
             "MMT Usatomacchine", "Truckscout24", "Camion Super Market", "Proxibid", "Yoder & Frey"
         ];
 
-        function toggleMobileFilters() {
-            const wrapper = document.getElementById('sidebarFilters');
-            wrapper.classList.toggle('open');
-        }
-
         fetch(jsonMasterUrl)
             .then(response => response.json())
             .then(masterData => {
@@ -935,15 +901,12 @@
                     parsedVoorraad = masterData.voorraad || [];
                 }
 
-                // Betrouwbare filter op merk/model/titel
                 allData = parsedListings.filter(row => row.Merk || row.Model || row.brand || row.Titel);
                 ownStockData = parsedVoorraad.filter(row => row.Merk || row.Model || row.brand || row.Titel);
 
                 populateFilters();
                 updateSystemStatusHeader();
                 renderGrid();
-
-                // Direct na de render live feedback ophalen uit Google Sheets
                 haalLiveFeedbackOp();
             })
             .catch(err => {
@@ -1023,7 +986,9 @@
             const dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
             
             const platforms = [...new Set(dataSource.map(item => item.Platform))].filter(Boolean).sort();
+            const categorieen = [...new Set(dataSource.map(item => item.Categorie || item.category))].filter(Boolean).sort();
             const merken = [...new Set(dataSource.map(item => item.Merk || item.brand))].filter(Boolean).sort();
+            const modellen = [...new Set(dataSource.map(item => item.Model))].filter(Boolean).sort();
             const bouwjaren = [...new Set(dataSource.map(item => item.Bouwjaar))].filter(Boolean).sort((a,b)=>b-a);
             const statussen = [...new Set(dataSource.map(item => item.Status))].filter(Boolean).sort();
 
@@ -1034,73 +999,68 @@
             };
 
             fillSelect('filter-platform', platforms, 'Alle platformen');
+            fillSelect('filter-categorie', categorieen, 'Alle categorieën');
             fillSelect('filter-merk', merken, 'Alle merken');
+            fillSelect('filter-model', modellen, 'Alle modellen');
             fillSelect('filter-bouwjaar', bouwjaren, 'Alle bouwjaren');
             fillSelect('filter-status', statussen, 'Alle statussen');
         }
 
         function getCountryFlagHtml(locStr) {
-    if (!locStr) return '📍 <span>Onbekend</span>';
-    let l = locStr.toLowerCase();
-    
-    // Uitgebreide Europese mapping
-    const euCountries = {
-        'netherlands': 'nl', 'nederland': 'nl', 'holland': 'nl',
-        'belgium': 'be', 'belgië': 'be', 'belgique': 'be',
-        'germany': 'de', 'duitsland': 'de', 'deutschland': 'de',
-        'france': 'fr', 'frankrijk': 'fr',
-        'spain': 'es', 'spanje': 'es', 'españa': 'es',
-        'portugal': 'pt',
-        'italy': 'it', 'italië': 'it', 'italia': 'it',
-        'poland': 'pl', 'polen': 'pl',
-        'sweden': 'se', 'zweden': 'se', 'sverige': 'se',
-        'norway': 'no', 'noorwegen': 'no', 'norge': 'no',
-        'denmark': 'dk', 'denemarken': 'dk', 'danmark': 'dk',
-        'finland': 'fi', 'suomi': 'fi',
-        'ireland': 'ie', 'ierland': 'ie',
-        'united kingdom': 'gb', 'uk': 'gb', 'engeland': 'gb', 'england': 'gb',
-        'switzerland': 'ch', 'zwitserland': 'ch', 'suisse': 'ch',
-        'austria': 'at', 'oostenrijk': 'at', 'österreich': 'at',
-        'slovenia': 'si', 'slovenië': 'si',
-        'slovakia': 'sk', 'slowakije': 'sk',
-        'czech': 'cz', 'tsjechië': 'cz', 'czechia': 'cz',
-        'hungary': 'hu', 'hongarije': 'hu',
-        'romania': 'ro', 'roemenië': 'ro',
-        'bulgaria': 'bg', 'bulgarije': 'bg',
-        'greece': 'gr', 'griekenland': 'gr',
-        'croatia': 'hr', 'kroatië': 'hr',
-        'estonia': 'ee', 'estland': 'ee',
-        'latvia': 'lv', 'letland': 'lv',
-        'lithuania': 'lt', 'litouwen': 'lt',
-        'luxembourg': 'lu', 'luxemburg': 'lu',
-        'united states': 'us', 'verenigde staten': 'us', 'usa': 'us'
-    };
+            if (!locStr) return '📍 <span>Onbekend</span>';
+            let l = locStr.toLowerCase();
+            const euCountries = {
+                'netherlands': 'nl', 'nederland': 'nl', 'holland': 'nl',
+                'belgium': 'be', 'belgië': 'be', 'belgique': 'be',
+                'germany': 'de', 'duitsland': 'de', 'deutschland': 'de',
+                'france': 'fr', 'frankrijk': 'fr',
+                'spain': 'es', 'spanje': 'es', 'españa': 'es',
+                'portugal': 'pt',
+                'italy': 'it', 'italië': 'it', 'italia': 'it',
+                'poland': 'pl', 'polen': 'pl',
+                'sweden': 'se', 'zweden': 'se', 'sverige': 'se',
+                'norway': 'no', 'noorwegen': 'no', 'norge': 'no',
+                'denmark': 'dk', 'denemarken': 'dk', 'danmark': 'dk',
+                'finland': 'fi', 'suomi': 'fi',
+                'ireland': 'ie', 'ierland': 'ie',
+                'united kingdom': 'gb', 'uk': 'gb', 'engeland': 'gb', 'england': 'gb',
+                'switzerland': 'ch', 'zwitserland': 'ch', 'suisse': 'ch',
+                'austria': 'at', 'oostenrijk': 'at', 'österreich': 'at',
+                'slovenia': 'si', 'slovenië': 'si',
+                'slovakia': 'sk', 'slowakije': 'sk',
+                'czech': 'cz', 'tsjechië': 'cz', 'czechia': 'cz',
+                'hungary': 'hu', 'hongarije': 'hu',
+                'romania': 'ro', 'roemenië': 'ro',
+                'bulgaria': 'bg', 'bulgarije': 'bg',
+                'greece': 'gr', 'griekenland': 'gr',
+                'croatia': 'hr', 'kroatië': 'hr',
+                'estonia': 'ee', 'estland': 'ee',
+                'latvia': 'lv', 'letland': 'lv',
+                'lithuania': 'lt', 'litouwen': 'lt',
+                'luxembourg': 'lu', 'luxemburg': 'lu',
+                'united states': 'us', 'verenigde staten': 'us', 'usa': 'us'
+            };
 
-    let countryCode = '';
-
-    // STAP 1: Eerst streng zoeken op volledige landnamen (voorrang voor specifieke namen zoals Denmark)
-    for (const [name, code] of Object.entries(euCountries)) {
-        if (l.includes(name)) {
-            countryCode = code;
-            break;
-        }
-    }
-
-    // STAP 2: Als we nog niks hebben, veilig zoeken op landcodes met scheidingstekens (bijv. ", dk" of "(dk)")
-    if (!countryCode) {
-        for (const [name, code] of Object.entries(euCountries)) {
-            if (l.includes(`, ${code}`) || l.includes(`(${code})`) || l.includes(` ${code} `)) {
-                countryCode = code;
-                break;
+            let countryCode = '';
+            for (const [name, code] of Object.entries(euCountries)) {
+                if (l.includes(name)) {
+                    countryCode = code;
+                    break;
+                }
             }
+            if (!countryCode) {
+                for (const [name, code] of Object.entries(euCountries)) {
+                    if (l.includes(`, ${code}`) || l.includes(`(${code})`) || l.includes(` ${code} `)) {
+                        countryCode = code;
+                        break;
+                    }
+                }
+            }
+            if (countryCode) {
+                return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}" title="${countryCode}"> <span>${locStr}</span>`;
+            }
+            return `📍 <span>${locStr}</span>`;
         }
-    }
-
-    if (countryCode) {
-        return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}" title="${countryCode}"> <span>${locStr}</span>`;
-    }
-    return `📍 <span>${locStr}</span>`;
-}
 
         function parseAuctionDate(str) {
             if (!str) return null;
@@ -1186,7 +1146,9 @@
             grid.innerHTML = '';
 
             const filterPlatform = document.getElementById('filter-platform').value;
+            const filterCategorie = document.getElementById('filter-categorie').value;
             const filterMerk = document.getElementById('filter-merk').value;
+            const filterModel = document.getElementById('filter-model').value;
             const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
             const filterStatus = document.getElementById('filter-status').value;
             const filterFb = document.getElementById('filter-feedback').value;
@@ -1203,9 +1165,15 @@
 
                 const p = (row.Platform || '');
                 if (filterPlatform && p !== filterPlatform) return false;
+
+                const cat = (row.Categorie || row.category || '');
+                if (filterCategorie && cat !== filterCategorie) return false;
                 
                 const m = (row.Merk || row.brand || '');
                 if (filterMerk && m !== filterMerk) return false;
+
+                const mdl = (row.Model || '');
+                if (filterModel && mdl !== filterModel) return false;
 
                 if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
@@ -1248,7 +1216,6 @@
                 });
             }
             
-            // --- TEL APARTE TOTALEN PER TAB VOOR DE TELLERS ---
             updateTabCounts();
 
             if (filteredData.length === 0) {
@@ -1290,7 +1257,6 @@
                 let isExpired = false;
 
                 if (isOwnStock) {
-                    // Geen badges op eigen voorraad
                     badgeHtml = '';
                 } else if (isAuction) {
                     const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
@@ -1332,13 +1298,11 @@
                     locationHtml = `<div class="card-location">${flagHtml}</div>`;
                 }
 
-                // Opbouw van vergelijkbare marktdata voor Eigen Voorraad
                 let extraContentHtml = '';
                 if (isOwnStock) {
                     let marketHtml = '';
                     let foundItemsCount = 0;
                     
-                    // Loop dynamisch over álle aanwezige kolommen in de data-rij
                     Object.keys(row).forEach(key => {
                         if (key.toLowerCase().includes('vergelijkbaar')) {
                             let val = row[key];
@@ -1408,7 +1372,6 @@
                     negBtnClass = ' active-neg';
                 }
 
-                // GEEN duimpjes op Eigen Voorraad
                 let feedbackButtonsHtml = '';
                 if (!isOwnStock) {
                     feedbackButtonsHtml = `
@@ -1461,7 +1424,9 @@
 
         function updateTabCounts() {
             const filterPlatform = document.getElementById('filter-platform').value;
+            const filterCategorie = document.getElementById('filter-categorie').value;
             const filterMerk = document.getElementById('filter-merk').value;
+            const filterModel = document.getElementById('filter-model').value;
             const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
             const filterStatus = document.getElementById('filter-status').value;
             const filterFb = document.getElementById('filter-feedback').value;
@@ -1481,9 +1446,15 @@
         
                     const p = (row.Platform || '');
                     if (filterPlatform && p !== filterPlatform) return false;
+
+                    const cat = (row.Categorie || row.category || '');
+                    if (filterCategorie && cat !== filterCategorie) return false;
                     
                     const m = (row.Merk || row.brand || '');
                     if (filterMerk && m !== filterMerk) return false;
+
+                    const mdl = (row.Model || '');
+                    if (filterModel && mdl !== filterModel) return false;
         
                     if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                     if (filterStatus && row.Status !== filterStatus) return false;
@@ -1504,12 +1475,10 @@
                 }).length;
             };
         
-            // Bereken en update de HTML tekst voor de tellers
             document.getElementById('count-listings').innerText = `(${countHelper(allData, false, false)})`;
             document.getElementById('count-auctions').innerText = `(${countHelper(allData, true, false)})`;
             document.getElementById('count-voorraad').innerText = `(${countHelper(ownStockData, false, true)})`;
         }
-        
     </script>
 </body>
 </html>
