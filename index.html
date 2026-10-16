@@ -950,40 +950,55 @@
         }
 
         function getCountryFlagHtml(locStr) {
-            if (!locStr) return '📍 <span>Onbekend</span>';
-            let l = locStr.toLowerCase();
-            let countryCode = '';
-            let countryName = '';
+    if (!locStr) return '📍 <span>Onbekend</span>';
+    let l = locStr.toLowerCase();
+    
+    // Uitgebreide Europese mapping
+    const euCountries = {
+        'netherlands': 'nl', 'nederland': 'nl', 'holland': 'nl',
+        'belgium': 'be', 'belgië': 'be', 'belgique': 'be',
+        'germany': 'de', 'duitsland': 'de', 'deutschland': 'de',
+        'france': 'fr', 'frankrijk': 'fr',
+        'spain': 'es', 'spanje': 'es', 'españa': 'es',
+        'portugal': 'pt',
+        'italy': 'it', 'italië': 'it', 'italia': 'it',
+        'poland': 'pl', 'polen': 'pl',
+        'sweden': 'se', 'zweden': 'se', 'sverige': 'se',
+        'norway': 'no', 'noorwegen': 'no', 'norge': 'no',
+        'denmark': 'dk', 'denemarken': 'dk', 'danmark': 'dk',
+        'finland': 'fi', 'suomi': 'fi',
+        'ireland': 'ie', 'ierland': 'ie',
+        'united kingdom': 'gb', 'uk': 'gb', 'engeland': 'gb', 'england': 'gb',
+        'switzerland': 'ch', 'zwitserland': 'ch', 'suisse': 'ch',
+        'austria': 'at', 'oostenrijk': 'at', 'österreich': 'at',
+        'slovenia': 'si', 'slovenië': 'si',
+        'slovakia': 'sk', 'slowakije': 'sk',
+        'czech': 'cz', 'tsjechië': 'cz', 'czechia': 'cz',
+        'hungary': 'hu', 'hongarije': 'hu',
+        'romania': 'ro', 'roemenië': 'ro',
+        'bulgaria': 'bg', 'bulgarije': 'bg',
+        'greece': 'gr', 'griekenland': 'gr',
+        'croatia': 'hr', 'kroatië': 'hr',
+        'estonia': 'ee', 'estland': 'ee',
+        'latvia': 'lv', 'letland': 'lv',
+        'lithuania': 'lt', 'litouwen': 'lt',
+        'luxembourg': 'lu', 'luxemburg': 'lu'
+    };
 
-            if (l.includes('sweden') || l.includes('zweden') || l.includes('sverige') || l.includes(', se') || l.includes('(se)') || l.includes('trollhättan')) {
-                countryCode = 'se'; countryName = 'Zweden';
-            } else if (l.includes('united states') || l.includes('verenigde staten') || l.includes('usa') || l.includes(', us') || l.includes('(us)')) {
-                countryCode = 'us'; countryName = 'Verenigde Staten';
-            } else if (l.includes('denmark') || l.includes('denemarken') || l.includes(', dk') || l.includes('(dk)') || l.includes('gribskov') || l.includes('hjoerring') || l.includes('hjørring') || l.includes('skive')) {
-                countryCode = 'dk'; countryName = 'Denemarken';
-            } else if (l.includes('netherlands') || l.includes('nederland') || l.includes('holland') || l.includes(', nl') || l.includes('(nl)')) {
-                countryCode = 'nl'; countryName = 'Nederland';
-            } else if (l.includes('germany') || l.includes('duitsland') || l.includes('deutschland') || l.includes(', de') || l.includes('(de)')) {
-                countryCode = 'de'; countryName = 'Duitsland';
-            } else if (l.includes('belgium') || l.includes('belgië') || l.includes('belgique') || l.includes(', be') || l.includes('(be)')) {
-                countryCode = 'be'; countryName = 'België';
-            } else if (l.includes('france') || l.includes('frankrijk') || l.includes(', fr') || l.includes('(fr)')) {
-                countryCode = 'fr'; countryName = 'Frankrijk';
-            } else if (l.includes('italy') || l.includes('italië') || l.includes('italia') || l.includes(', it') || l.includes('(it)')) {
-                countryCode = 'it'; countryName = 'Italië';
-            } else if (l.includes('spain') || l.includes('spanje') || l.includes('españa') || l.includes(', es') || l.includes('(es)')) {
-                countryCode = 'es'; countryName = 'Spanje';
-            } else if (l.includes('poland') || l.includes('polen') || l.includes(', pl') || l.includes('(pl)')) {
-                countryCode = 'pl'; countryName = 'Polen';
-            } else if (l.includes('slovenia') || l.includes('slovenië') || l.includes(', si') || l.includes('(si)')) {
-                countryCode = 'si'; countryName = 'Slovenië';
-            }
-
-            if (countryCode) {
-                return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryName}" title="${countryName}"> <span>${locStr}</span>`;
-            }
-            return `📍 <span>${locStr}</span>`;
+    let countryCode = '';
+    for (const [name, code] of Object.entries(euCountries)) {
+        // Zoek op naam OF op de afkorting in de string (bijv. ", pt" of "(no)")
+        if (l.includes(name) || l.includes(`, ${code}`) || l.includes(`(${code})`)) {
+            countryCode = code;
+            break;
         }
+    }
+
+    if (countryCode) {
+        return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}" title="${countryCode}"> <span>${locStr}</span>`;
+    }
+    return `📍 <span>${locStr}</span>`;
+}
 
         function parseAuctionDate(str) {
             if (!str) return null;
@@ -1212,58 +1227,89 @@
                     let marketHtml = '';
                     let foundItemsCount = 0;
                     
-                    ['Vergelijkbaar 1', 'Vergelijkbaar 2', 'Vergelijkbaar 3'].forEach(colName => {
-                        let val = row[colName];
-                        if (!val) {
-                            const matchedKey = Object.keys(row).find(k => k.trim().toLowerCase() === colName.toLowerCase());
-                            if (matchedKey) val = row[matchedKey];
-                        }
+                    // Loop dynamisch over álle aanwezige kolommen in de data-rij
+                    Object.keys(row).forEach(key => {
+                        if (key.toLowerCase().includes('vergelijkbaar')) {
+                            let val = row[key];
+                            if (val && String(val).trim() !== '') {
+                                val = String(val).trim();
+                                foundItemsCount++;
 
-                        if (val && String(val).trim() !== '') {
-                            val = String(val).trim();
-                            foundItemsCount++;
+                                let infoText = val;
+                                let linkUrl = '';
 
-                            let infoText = val;
-                            let linkUrl = '';
+                                if (val.includes('| Link:')) {
+                                    let parts = val.split('| Link:');
+                                    infoText = parts[0].trim();
+                                    linkUrl = parts[1] ? parts[1].trim() : '';
+                                } else if (val.includes('|')) {
+                                    let parts = val.split('|');
+                                    infoText = parts[0].trim();
+                                    linkUrl = parts[1] ? parts[1].trim() : '';
+                                } else if (val.toLowerCase().startsWith('http')) {
+                                    infoText = 'Bekijk advertentie';
+                                    linkUrl = val;
+                                } else if (val.includes('http')) {
+                                    let httpIdx = val.indexOf('http');
+                                    infoText = val.substring(0, httpIdx).trim();
+                                    linkUrl = val.substring(httpIdx).trim();
+                                }
 
-                            if (val.includes('| Link:')) {
-                                let parts = val.split('| Link:');
-                                infoText = parts[0].trim();
-                                linkUrl = parts[1] ? parts[1].trim() : '';
-                            } else if (val.includes('|')) {
-                                let parts = val.split('|');
-                                infoText = parts[0].trim();
-                                linkUrl = parts[1] ? parts[1].trim() : '';
-                            } else if (val.toLowerCase().startsWith('http')) {
-                                infoText = 'Bekijk advertentie';
-                                linkUrl = val;
-                            } else if (val.includes('http')) {
-                                let httpIdx = val.indexOf('http');
-                                infoText = val.substring(0, httpIdx).trim();
-                                linkUrl = val.substring(httpIdx).trim();
+                                let linkHtml = (linkUrl && linkUrl !== '#' && linkUrl !== '') 
+                                    ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">Bekijk</a>` 
+                                    : '';
+
+                                marketHtml += `
+                                    <div class="market-item">
+                                        <span style="font-size:11px;">${infoText}</span>
+                                        ${linkHtml}
+                                    </div>
+                                `;
                             }
-
-                            let linkHtml = (linkUrl && linkUrl !== '#' && linkUrl !== '') 
-                                ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">Bekijk</a>` 
-                                : '';
-
-                            marketHtml += `
-                                <div class="market-item">
-                                    <span style="font-size:11px;">${infoText}</span>
-                                    ${linkHtml}
-                                </div>
-                            `;
                         }
                     });
 
                     if (foundItemsCount === 0) {
-                        marketHtml = `<div style="color:#777; font-style:italic;">Geen vergelijkbare marktdata ingeladen.</div>`;
+                        marketHtml = `<div style="color:#777; font-style:italic;">Geen vergelijkbare marktdata gevonden.</div>`;
+                        // Debug log om te kijken wat er dan wél in je data staat
+                        console.log("Beschikbare data voor dit eigen voorraad voertuig:", row);
                     }
 
                     extraContentHtml = `
                         <div class="comparable-market-box">
                             <h4>Vergelijkbaar in de markt:</h4>
                             ${marketHtml}
+                        </div>
+                    `;
+                }
+
+                const productUrl = row.Link ? row.Link : '#';
+                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
+                let myFb = feedbackData[uniqueId];
+                let extraClass = '';
+                let posBtnClass = '';
+                let negBtnClass = '';
+
+                if (myFb === 'positive') {
+                    extraClass = ' glow-green';
+                    posBtnClass = ' active-pos';
+                }
+                if (myFb === 'negative') {
+                    extraClass = ' glow-red';
+                    negBtnClass = ' active-neg';
+                }
+
+                // GEEN duimpjes op Eigen Voorraad
+                let feedbackButtonsHtml = '';
+                if (!isOwnStock) {
+                    feedbackButtonsHtml = `
+                        <div class="feedback-actions">
+                            <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive')" title="Positief (Interessant)">
+                                ${svgThumbUp}
+                            </button>
+                            <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief (Niet interessant)">
+                                ${svgThumbDown}
+                            </button>
                         </div>
                     `;
                 }
