@@ -662,9 +662,9 @@
         <main class="main-content">
             <div class="tabs-header-area">
                 <div class="tabs">
-                    <div class="tab active" onclick="switchTab('listings')" id="tab-listings">Listings</div>
-                    <div class="tab" onclick="switchTab('auctions')" id="tab-auctions">Veilingen</div>
-                    <div class="tab" onclick="switchTab('voorraad')" id="tab-voorraad">Eigen Voorraad</div>
+                    <div class="tab active" onclick="switchTab('listings')" id="tab-listings">Listings <span id="count-listings">(0)</span></div>
+                    <div class="tab" onclick="switchTab('auctions')" id="tab-auctions">Veilingen <span id="count-auctions">(0)</span></div>
+                    <div class="tab" onclick="switchTab('voorraad')" id="tab-voorraad">Eigen Voorraad <span id="count-voorraad">(0)</span></div>
                 </div>
                 
                 <div class="header-controls">
@@ -1151,6 +1151,9 @@
                     return 0;
                 });
             }
+            
+            // --- TEL APARTE TOTALEN PER TAB VOOR DE TELLERS ---
+            updateTabCounts();
 
             if (filteredData.length === 0) {
                 grid.innerHTML = '<p>Geen machines gevonden binnen deze filters.</p>';
@@ -1359,6 +1362,52 @@
 
             grid.appendChild(fragment);
         }
+
+        function updateTabCounts() {
+            const filterPlatform = document.getElementById('filter-platform').value;
+            const filterMerk = document.getElementById('filter-merk').value;
+            const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
+            const filterStatus = document.getElementById('filter-status').value;
+            const filterFb = document.getElementById('filter-feedback').value;
+        
+            const countHelper = (dataSource, isAuctionTab, isStockTab) => {
+                return dataSource.filter(row => {
+                    const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
+                    const isAuction = endDateVal !== '';
+        
+                    if (isStockTab) {
+                        // Eigen voorraad telt alleen eigen voorraad
+                    } else {
+                        if (isAuctionTab && !isAuction) return false;
+                        if (!isAuctionTab && isAuction) return false;
+                    }
+        
+                    const p = (row.Platform || '');
+                    if (filterPlatform && p !== filterPlatform) return false;
+                    
+                    const m = (row.Merk || row.brand || '');
+                    if (filterMerk && m !== filterMerk) return false;
+        
+                    if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
+                    if (filterStatus && row.Status !== filterStatus) return false;
+        
+                    let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
+                    let userFb = feedbackData[uniqueId] || 'none';
+        
+                    if (filterFb === 'relevant' && userFb === 'negative') return false; 
+                    if (filterFb === 'positive' && userFb !== 'positive') return false;
+                    if (filterFb === 'negative' && userFb !== 'negative') return false;
+        
+                    return true;
+                }).length;
+            };
+        
+            // Bereken en update de HTML tekst voor de tellers
+            document.getElementById('count-listings').innerText = `(${countHelper(allData, false, false)})`;
+            document.getElementById('count-auctions').innerText = `(${countHelper(allData, true, false)})`;
+            document.getElementById('count-voorraad').innerText = `(${countHelper(ownStockData, false, true)})`;
+        }
+        
     </script>
 </body>
 </html>
