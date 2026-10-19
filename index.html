@@ -304,7 +304,7 @@
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .feedback-filter-select {
@@ -318,44 +318,66 @@
             outline: none;
         }
 
-        /* AI Toggle Knop */
-        .ai-toggle-btn {
-            background: #e2e8f0;
-            color: #475569;
+        /* Echte visuele Toggle Schakelaar Stijl */
+        .ai-toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
             border: 1px solid #cbd5e1;
-            padding: 9px 16px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 20px;
             cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            user-select: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: border-color 0.2s;
         }
-        .ai-toggle-btn.active {
-            background: var(--ai-blue);
-            color: #fff;
+        .ai-toggle-container:hover {
             border-color: var(--ai-blue);
-            box-shadow: 0 0 10px rgba(37,99,235,0.4);
         }
-
-        .ai-header-btn {
-            background: var(--ai-blue);
-            color: #fff;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 4px;
+        .ai-toggle-label {
             font-size: 13px;
             font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            color: var(--text-dark);
         }
-
-        .ai-header-btn:hover { background: #1d4ed8; }
+        .toggle-switch {
+            position: relative;
+            width: 40px;
+            height: 22px;
+            background-color: #cbd5e1;
+            border-radius: 22px;
+            transition: background-color 0.3s;
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .ai-toggle-container.active .toggle-switch {
+            background-color: var(--ai-blue);
+        }
+        .ai-toggle-container.active .toggle-switch::after {
+            transform: translateX(18px);
+        }
+        .toggle-status-text {
+            font-size: 11px;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #e2e8f0;
+            color: #64748b;
+        }
+        .ai-toggle-container.active .toggle-status-text {
+            background: #dbeafe;
+            color: var(--ai-blue);
+        }
 
         .grid {
             display: grid;
@@ -387,7 +409,7 @@
         .card.glow-green { border-color: #28a745; box-shadow: 0 0 15px rgba(40,167,69,0.35); }
         .card.glow-red { border-color: #dc3545; box-shadow: 0 0 15px rgba(220,53,69,0.35); opacity: 0.85; }
         
-        /* AI Pick Highlight Stijl (Blauw) */
+        /* AI Pick Blauwe Omlijsting */
         .card.glow-ai { 
             border-color: var(--ai-blue); 
             box-shadow: 0 0 15px rgba(37,99,235,0.35); 
@@ -472,7 +494,7 @@
             text-transform: uppercase;
         }
 
-        /* AI Pick Rondje Badge over de rechterbovenhoek */
+        /* AI Pick Rondje Badge overlappend over de rechterbovenhoek */
         .badge-ai {
             position: absolute;
             top: -8px;
@@ -792,10 +814,12 @@
                 </div>
                 
                 <div class="header-controls">
-                    <!-- AI Toggle Knop -->
-                    <button id="aiToggleBtn" class="ai-toggle-btn" onclick="toggleAiPicks()">
-                        🤖 AI Picks <span id="aiToggleState">UIT</span>
-                    </button>
+                    <!-- Visuele AI Toggle Schakelaar -->
+                    <div id="aiToggleBtn" class="ai-toggle-container" onclick="toggleAiPicks()">
+                        <span class="ai-toggle-label">🤖 AI Picks</span>
+                        <div class="toggle-switch"></div>
+                        <span id="aiToggleState" class="toggle-status-text">UIT</span>
+                    </div>
 
                     <select id="filter-feedback" class="feedback-filter-select" onchange="renderGrid()">
                         <option value="relevant" selected>Relevante resultaten (Geen 👎)</option>
@@ -803,10 +827,6 @@
                         <option value="positive">Alleen positief (👍)</option>
                         <option value="negative">Alleen negatief (👎)</option>
                     </select>
-
-                    <button class="ai-header-btn" onclick="alert('AI Inkoopanalyse actief op basis van voorraad en feedback.')">
-                        🤖 AI Marktadvies
-                    </button>
                 </div>
             </div>
 
@@ -838,17 +858,29 @@
 
         function toggleAiPicks() {
             aiPicksActive = !aiPicksActive;
-            const btn = document.getElementById('aiToggleBtn');
+            const container = document.getElementById('aiToggleBtn');
             const stateSpan = document.getElementById('aiToggleState');
             
             if (aiPicksActive) {
-                btn.classList.add('active');
+                container.classList.add('active');
                 stateSpan.innerText = 'AAN';
             } else {
-                btn.classList.remove('active');
+                container.classList.remove('active');
                 stateSpan.innerText = 'UIT';
             }
             renderGrid();
+        }
+
+        // Hulpfunctie om velden ongevoelig voor hoofdletters/spaties uit te lezen
+        function getRowValue(row, possibleKeys) {
+            for (let k of possibleKeys) {
+                for (let actualKey of Object.keys(row)) {
+                    if (actualKey.trim().toLowerCase() === k.toLowerCase()) {
+                        return row[actualKey];
+                    }
+                }
+            }
+            return '';
         }
 
         function toggleFeedback(event, id, type) {
@@ -1280,8 +1312,10 @@
             // Sortering: Als AI Picks AAN staan -> AI picks bovenaan, daarna direct eerst aflopende datums
             if (aiPicksActive && currentTab === 'auctions') {
                 filteredData.sort((a, b) => {
-                    const isAiA = (String(a['AI Pick'] || '').trim().toLowerCase() === 'ja') ? 1 : 0;
-                    const isAiB = (String(b['AI Pick'] || '').trim().toLowerCase() === 'ja') ? 1 : 0;
+                    const valA = String(getRowValue(a, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
+                    const valB = String(getRowValue(b, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
+                    const isAiA = (valA === 'ja' || valA === 'true' || valA === '1') ? 1 : 0;
+                    const isAiB = (valB === 'ja' || valB === 'true' || valB === '1') ? 1 : 0;
                     
                     if (isAiA !== isAiB) {
                         return isAiB - isAiA; // AI picks eerst
@@ -1362,9 +1396,10 @@
                 let auctionHtml = '';
                 let isExpired = false;
 
-                // AI Pick controle
-                const isAiPick = aiPicksActive && (String(row['AI Pick'] || '').trim().toLowerCase() === 'ja');
-                const aiReason = row['AI Reden'] || '';
+                // AI Pick controle (ongevoelig voor hoofdletters en veldnamen)
+                const aiPickRaw = String(getRowValue(row, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
+                const isAiPick = aiPicksActive && (aiPickRaw === 'ja' || aiPickRaw === 'true' || aiPickRaw === '1');
+                const aiReason = getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '';
 
                 if (isOwnStock) {
                     badgeHtml = '';
@@ -1487,7 +1522,7 @@
                     negBtnClass = ' active-neg';
                 }
 
-                // AI Pick omlijsting
+                // AI Pick blauwe omlijsting
                 if (isAiPick) {
                     extraClass = ' glow-ai';
                 }
