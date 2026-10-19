@@ -318,6 +318,28 @@
             outline: none;
         }
 
+        /* AI Toggle Knop */
+        .ai-toggle-btn {
+            background: #e2e8f0;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+            padding: 9px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ai-toggle-btn.active {
+            background: var(--ai-blue);
+            color: #fff;
+            border-color: var(--ai-blue);
+            box-shadow: 0 0 10px rgba(37,99,235,0.4);
+        }
+
         .ai-header-btn {
             background: var(--ai-blue);
             color: #fff;
@@ -365,7 +387,7 @@
         .card.glow-green { border-color: #28a745; box-shadow: 0 0 15px rgba(40,167,69,0.35); }
         .card.glow-red { border-color: #dc3545; box-shadow: 0 0 15px rgba(220,53,69,0.35); opacity: 0.85; }
         
-        /* AI Pick Highlight Stijl */
+        /* AI Pick Highlight Stijl (Blauw) */
         .card.glow-ai { 
             border-color: var(--ai-blue); 
             box-shadow: 0 0 15px rgba(37,99,235,0.35); 
@@ -450,23 +472,23 @@
             text-transform: uppercase;
         }
 
-        /* AI Pick Rondje Badge op afbeelding */
+        /* AI Pick Rondje Badge over de rechterbovenhoek */
         .badge-ai {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: -8px;
+            right: -8px;
             background-color: var(--ai-blue);
             color: #ffffff;
-            width: 38px;
-            height: 38px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 900;
-            z-index: 5;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            z-index: 10;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
             text-transform: uppercase;
             border: 2px solid #fff;
             text-align: center;
@@ -770,9 +792,13 @@
                 </div>
                 
                 <div class="header-controls">
+                    <!-- AI Toggle Knop -->
+                    <button id="aiToggleBtn" class="ai-toggle-btn" onclick="toggleAiPicks()">
+                        🤖 AI Picks <span id="aiToggleState">UIT</span>
+                    </button>
+
                     <select id="filter-feedback" class="feedback-filter-select" onchange="renderGrid()">
                         <option value="relevant" selected>Relevante resultaten (Geen 👎)</option>
-                        <option value="ai-first">🤖 AI Picks eerst</option>
                         <option value="all">Alle resultaten</option>
                         <option value="positive">Alleen positief (👍)</option>
                         <option value="negative">Alleen negatief (👎)</option>
@@ -798,6 +824,7 @@
         let ownStockData = [];
         let currentTab = 'listings';
         let activeFeedbackId = null;
+        let aiPicksActive = false; // Standaard uit
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
 
@@ -807,6 +834,21 @@
         function toggleFilters() {
             const wrapper = document.getElementById('sidebarFilters');
             wrapper.classList.toggle('open');
+        }
+
+        function toggleAiPicks() {
+            aiPicksActive = !aiPicksActive;
+            const btn = document.getElementById('aiToggleBtn');
+            const stateSpan = document.getElementById('aiToggleState');
+            
+            if (aiPicksActive) {
+                btn.classList.add('active');
+                stateSpan.innerText = 'AAN';
+            } else {
+                btn.classList.remove('active');
+                stateSpan.innerText = 'UIT';
+            }
+            renderGrid();
         }
 
         function toggleFeedback(event, id, type) {
@@ -1235,12 +1277,27 @@
                 return true;
             });
 
-            // Sortering op basis van tabbladen en AI Picks
-            if (filterFb === 'ai-first') {
+            // Sortering: Als AI Picks AAN staan -> AI picks bovenaan, daarna direct eerst aflopende datums
+            if (aiPicksActive && currentTab === 'auctions') {
                 filteredData.sort((a, b) => {
                     const isAiA = (String(a['AI Pick'] || '').trim().toLowerCase() === 'ja') ? 1 : 0;
                     const isAiB = (String(b['AI Pick'] || '').trim().toLowerCase() === 'ja') ? 1 : 0;
-                    return isAiB - isAiA; // AI picks altijd bovenaan
+                    
+                    if (isAiA !== isAiB) {
+                        return isAiB - isAiA; // AI picks eerst
+                    }
+                    
+                    // Daarna sorteren op eerst aflopende datum
+                    const dateA = parseAuctionDate(a['Veiling loopt af op']);
+                    const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                    const now = new Date();
+                    const isExpiredA = !dateA || (dateA - now <= 0);
+                    const isExpiredB = !dateB || (dateB - now <= 0);
+                    if (isExpiredA && !isExpiredB) return 1;
+                    if (!isExpiredA && isExpiredB) return -1;
+                    if (!dateA) return 1;
+                    if (!dateB) return -1;
+                    return dateA - dateB;
                 });
             } else if (currentTab === 'auctions') {
                 filteredData.sort((a, b) => {
@@ -1306,7 +1363,7 @@
                 let isExpired = false;
 
                 // AI Pick controle
-                const isAiPick = String(row['AI Pick'] || '').trim().toLowerCase() === 'ja';
+                const isAiPick = aiPicksActive && (String(row['AI Pick'] || '').trim().toLowerCase() === 'ja');
                 const aiReason = row['AI Reden'] || '';
 
                 if (isOwnStock) {
@@ -1337,7 +1394,7 @@
                     }
                 }
 
-                // Overschrijf of voeg AI Pick badge toe op de afbeelding
+                // AI Pick rondje overlay rechtsboven in de hoek
                 if (isAiPick) {
                     imageBadgeHtml = `<div class="badge-ai" title="${aiReason}">AI PICK</div>`;
                 }
@@ -1430,7 +1487,7 @@
                     negBtnClass = ' active-neg';
                 }
 
-                // AI Pick omlijsting prioriteit
+                // AI Pick omlijsting
                 if (isAiPick) {
                     extraClass = ' glow-ai';
                 }
@@ -1449,7 +1506,6 @@
                     `;
                 }
 
-                // AI Reden box onderaan de inhoud indien geselecteerd
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${aiReason}</div>` : '';
 
                 const expiredClass = isExpired ? ' expired' : '';
