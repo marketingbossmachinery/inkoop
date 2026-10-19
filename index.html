@@ -855,7 +855,6 @@
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
         const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
         
-        // Drie sterretjes icoon voor de stempel
         const svgThreeStars = `<svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>`;
 
         function toggleFilters() {
@@ -1315,8 +1314,8 @@
                 return true;
             });
 
-            // Sortering: Alleen sorteren op AI-picks vooraan wanneer de toggle AAN staat
-            if (aiPicksActive && currentTab === 'auctions') {
+            // Sortering: Als AI Picks AAN staat, sorteren we ZOWEL bij veilingen als listings de AI picks vooraan!
+            if (aiPicksActive && (currentTab === 'auctions' || currentTab === 'listings')) {
                 filteredData.sort((a, b) => {
                     const valA = String(getRowValue(a, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
                     const valB = String(getRowValue(b, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
@@ -1327,17 +1326,25 @@
                         return isAiB - isAiA; // AI picks eerst
                     }
                     
-                    // Daarna sorteren op eerst aflopende datum
-                    const dateA = parseAuctionDate(a['Veiling loopt af op']);
-                    const dateB = parseAuctionDate(b['Veiling loopt af op']);
-                    const now = new Date();
-                    const isExpiredA = !dateA || (dateA - now <= 0);
-                    const isExpiredB = !dateB || (dateB - now <= 0);
-                    if (isExpiredA && !isExpiredB) return 1;
-                    if (!isExpiredA && isExpiredB) return -1;
-                    if (!dateA) return 1;
-                    if (!dateB) return -1;
-                    return dateA - dateB;
+                    // Sub-sortering per tab
+                    if (currentTab === 'auctions') {
+                        const dateA = parseAuctionDate(a['Veiling loopt af op']);
+                        const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                        const now = new Date();
+                        const isExpiredA = !dateA || (dateA - now <= 0);
+                        const isExpiredB = !dateB || (dateB - now <= 0);
+                        if (isExpiredA && !isExpiredB) return 1;
+                        if (!isExpiredA && isExpiredB) return -1;
+                        if (!dateA) return 1;
+                        if (!dateB) return -1;
+                        return dateA - dateB;
+                    } else {
+                        const isSoldA = (a.Status || '').toLowerCase().includes('verkocht');
+                        const isSoldB = (b.Status || '').toLowerCase().includes('verkocht');
+                        if (isSoldA && !isSoldB) return 1;
+                        if (!isSoldA && isSoldB) return -1;
+                        return 0;
+                    }
                 });
             } else if (currentTab === 'auctions') {
                 filteredData.sort((a, b) => {
