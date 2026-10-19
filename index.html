@@ -318,7 +318,7 @@
             outline: none;
         }
 
-        /* Echte visuele Toggle Schakelaar Stijl */
+        /* Visuele AI Toggle Schakelaar */
         .ai-toggle-container {
             display: flex;
             align-items: center;
@@ -384,12 +384,15 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
             width: 100%;
+            /* Zorg dat de gestempelde badge buiten de grid-items niet wordt afgekapt */
+            padding-top: 10px;
+            padding-right: 10px;
         }
 
         .card {
             background: #fff;
             border-radius: 6px;
-            overflow: hidden;
+            overflow: visible; /* Cruciaal zodat de stempel aan de rechterbovenhoek buiten het kaartje kan vallen */
             box-shadow: 0 3px 10px rgba(0,0,0,0.06);
             position: relative;
             display: flex;
@@ -409,10 +412,11 @@
         .card.glow-green { border-color: #28a745; box-shadow: 0 0 15px rgba(40,167,69,0.35); }
         .card.glow-red { border-color: #dc3545; box-shadow: 0 0 15px rgba(220,53,69,0.35); opacity: 0.85; }
         
-        /* AI Pick Blauwe Omlijsting */
+        /* AI Pick Krachtige Blauwe Omlijsting */
         .card.glow-ai { 
-            border-color: var(--ai-blue); 
-            box-shadow: 0 0 15px rgba(37,99,235,0.35); 
+            border-color: var(--ai-blue) !important; 
+            border-top-color: var(--ai-blue) !important;
+            box-shadow: 0 0 20px rgba(37,99,235,0.4) !important; 
         }
 
         .card.expired {
@@ -424,6 +428,9 @@
             position: relative;
             height: 180px;
             background-color: #e9e9e9;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            overflow: visible; /* Zorgt dat de stempel netjes over de hoek heen valt */
         }
 
         .card-image-placeholder {
@@ -494,27 +501,26 @@
             text-transform: uppercase;
         }
 
-        /* AI Pick Rondje Badge overlappend over de rechterbovenhoek */
-        .badge-ai {
+        /* De AI Pick Stempel in de rechterbovenhoek (deels erop, deels erbuiten) */
+        .badge-ai-stamp {
             position: absolute;
-            top: -8px;
-            right: -8px;
+            top: -14px;
+            right: -14px;
             background-color: var(--ai-blue);
             color: #ffffff;
-            width: 44px;
-            height: 44px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 9px;
+            font-size: 12px;
             font-weight: 900;
-            z-index: 10;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+            z-index: 20;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
             text-transform: uppercase;
-            border: 2px solid #fff;
-            text-align: center;
-            line-height: 1.1;
+            border: 3px solid #ffffff;
+            letter-spacing: 0.5px;
         }
 
         .badge {
@@ -823,6 +829,7 @@
 
                     <select id="filter-feedback" class="feedback-filter-select" onchange="renderGrid()">
                         <option value="relevant" selected>Relevante resultaten (Geen 👎)</option>
+                        <option value="ai-first">🤖 AI Picks eerst</option>
                         <option value="all">Alle resultaten</option>
                         <option value="positive">Alleen positief (👍)</option>
                         <option value="negative">Alleen negatief (👎)</option>
@@ -871,7 +878,6 @@
             renderGrid();
         }
 
-        // Hulpfunctie om velden ongevoelig voor hoofdletters/spaties uit te lezen
         function getRowValue(row, possibleKeys) {
             for (let k of possibleKeys) {
                 for (let actualKey of Object.keys(row)) {
@@ -1309,8 +1315,8 @@
                 return true;
             });
 
-            // Sortering: Als AI Picks AAN staan -> AI picks bovenaan, daarna direct eerst aflopende datums
-            if (aiPicksActive && currentTab === 'auctions') {
+            // Sortering: AI Picks eerst wanneer de toggle AAN staat of via dropdown gekozen is
+            if ((aiPicksActive || filterFb === 'ai-first') && currentTab === 'auctions') {
                 filteredData.sort((a, b) => {
                     const valA = String(getRowValue(a, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
                     const valB = String(getRowValue(b, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
@@ -1396,9 +1402,10 @@
                 let auctionHtml = '';
                 let isExpired = false;
 
-                // AI Pick controle (ongevoelig voor hoofdletters en veldnamen)
+                // AI Pick controle
                 const aiPickRaw = String(getRowValue(row, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
-                const isAiPick = aiPicksActive && (aiPickRaw === 'ja' || aiPickRaw === 'true' || aiPickRaw === '1');
+                const isAiTagged = (aiPickRaw === 'ja' || aiPickRaw === 'true' || aiPickRaw === '1');
+                const isAiPick = aiPicksActive && isAiTagged;
                 const aiReason = getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '';
 
                 if (isOwnStock) {
@@ -1429,9 +1436,10 @@
                     }
                 }
 
-                // AI Pick rondje overlay rechtsboven in de hoek
+                // AI Pick stempel in de rechterbovenhoek (overlappend over de hoek van het kaartje)
+                let aiStampHtml = '';
                 if (isAiPick) {
-                    imageBadgeHtml = `<div class="badge-ai" title="${aiReason}">AI PICK</div>`;
+                    aiStampHtml = `<div class="badge-ai-stamp" title="${aiReason}">AI</div>`;
                 }
 
                 let rawImg = row['Afbeelding'] || row['Image URL'] || row['image url'] || '';
@@ -1439,7 +1447,7 @@
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
                 
                 if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-                    imageHtml = `<img src="${imageUrl}" alt="${fullTitle}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
+                    imageHtml = `<img src="${imageUrl}" alt="${fullTitle}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
                 }
 
                 let locationHtml = '';
@@ -1522,7 +1530,7 @@
                     negBtnClass = ' active-neg';
                 }
 
-                // AI Pick blauwe omlijsting
+                // AI Pick omlijsting van het kaartje
                 if (isAiPick) {
                     extraClass = ' glow-ai';
                 }
@@ -1550,6 +1558,7 @@
                 const cardDiv = document.createElement('div');
                 cardDiv.innerHTML = `
                     ${wrapperStart}
+                        ${aiStampHtml}
                         ${badgeHtml}
                         <div class="card-image-container">
                             ${imageHtml}
