@@ -64,8 +64,8 @@
   "Datum status wijziging": "2026-10-20",
   "Feedback": "",
   "Image URL": "https://media.dk.klaravik.com/public/productimages/08/20/1430485/extrabilder30817141_thumblarge.jpg?v=1789721812",
-  "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick Vans (Veilingpick): Voldoet aan marge & marktwaarde."
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "",
@@ -86,8 +86,8 @@
   "Datum status wijziging": "2026-10-20",
   "Feedback": "",
   "Image URL": "https://media.dk.klaravik.com/public/productimages/3f/39/1430785/extrabilder30826920_thumblarge.jpg?v=1789971419",
-  "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick Vans (Veilingpick): Voldoet aan marge & marktwaarde."
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "",
@@ -131,7 +131,7 @@
   "Feedback": "",
   "Image URL": "https://media.dk.klaravik.com/public/productimages/c6/98/1438035/extrabilder31027695_thumblarge.jpg?v=1791881675",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "",
@@ -153,7 +153,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/73/1a/3226153/extrabilder73703874_thumblarge.jpg?v=1791983163",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "",
@@ -219,7 +219,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/76/98/3306995/extrabilder75702090_thumblarge.jpg?v=1791980851",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "",
@@ -241,7 +241,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/f2/ed/3307520/extrabilder75714556_thumblarge.jpg?v=1791807541",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "",
@@ -263,7 +263,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/52/e7/3308358/extrabilder75734341_thumblarge.jpg?v=1792148711",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "",
@@ -285,7 +285,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/3b/b9/3308363/extrabilder75734468_thumblarge.jpg?v=1792148719",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "",
@@ -373,7 +373,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/eb/6a/3310337/extrabilder75782786_thumblarge.jpg?v=1792048527",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "",
@@ -417,7 +417,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/ee/4f/3311739/extrabilder75816309_thumblarge.jpg?v=1792140635",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "",
@@ -483,7 +483,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/10965722_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes",
@@ -505,7 +505,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11087371_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes",
@@ -527,7 +527,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11087383_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes F",
@@ -549,7 +549,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11087386_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -571,7 +571,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11129216_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -593,7 +593,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11182605_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -615,7 +615,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11182607_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -659,7 +659,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11182622_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Ford",
@@ -681,7 +681,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11265972-photo-vehicule_utilitaire_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Maxus E DELIVER 9",
@@ -703,7 +703,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11286627_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Volkswagen Crafter",
@@ -725,7 +725,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11340940_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Volkswagen Crafter",
@@ -747,7 +747,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11340941_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -769,7 +769,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11368853_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -791,7 +791,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11374406_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -813,7 +813,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11380869_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Volkswagen Caddy",
@@ -835,7 +835,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11440334_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -857,7 +857,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11448141_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -879,7 +879,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11448235_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -901,7 +901,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11452679_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -923,7 +923,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11453399_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -945,7 +945,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11465501_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -967,7 +967,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11466024_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -989,7 +989,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11467224_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -1011,7 +1011,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11467288_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Volkswagen Caddy",
@@ -1033,7 +1033,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11475455_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eSprinter",
@@ -1055,7 +1055,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11476998_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eSprinter",
@@ -1077,7 +1077,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11483112_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eSprinter",
@@ -1099,7 +1099,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11483138_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eSprinter",
@@ -1121,7 +1121,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11483161_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -1143,7 +1143,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11484187_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Toyota PROACE",
@@ -1165,7 +1165,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11491905_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -1187,7 +1187,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11505249_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eSprinter",
@@ -1209,7 +1209,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11538215_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -1228,10 +1228,10 @@
   "Aantal biedingen": "",
   "Veiling loopt af op": "",
   "Datum status wijziging": "2026-10-20",
-  "Feedback": "",
+  "Feedback": "Slecht: Concurrent",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11538216_th.jpg",
-  "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick Vans (Listingpick): Voldoet aan marge & marktwaarde."
+  "AI Pick": "Nee",
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -1253,7 +1253,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11538231_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Ford Transit",
@@ -1296,8 +1296,8 @@
   "Datum status wijziging": "2026-10-20",
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11565617-photo-vehicule_utilitaire_th.jpg",
-  "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick Vans (Listingpick): Voldoet aan marge & marktwaarde."
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -1319,7 +1319,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11569026_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes eVito",
@@ -1341,7 +1341,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11569027_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Volkswagen ID3",
@@ -1363,7 +1363,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11571164_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Toyota PROACE",
@@ -1385,7 +1385,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11572065_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Volkswagen Caddy",
@@ -1407,7 +1407,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11573296_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Volkswagen",
@@ -1429,7 +1429,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11591492_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Toyota",
@@ -1451,7 +1451,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11594708_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Volkswagen Caddy",
@@ -1473,7 +1473,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11594717_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Volkswagen Caddy",
@@ -1495,7 +1495,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11594800_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Volkswagen Caddy",
@@ -1517,7 +1517,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11594809_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes 250",
@@ -1539,7 +1539,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11595751_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
+  "AI Reden": "JS Filter: Prijs onrealistisch laag (< 3500) (schade of fout)"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Volkswagen Caddy",
@@ -1561,7 +1561,7 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11603981_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Bekende concurrent via ViaMobilis (Brabant)"
 },{
   "Platform": "Blocket",
   "Merk": "Maxus e-Deliver 9",
@@ -1715,7 +1715,7 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/18697240/ec00ddd2-7f6e-43c5-bfb9-fc62dccda0c7",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Truckscout24",
   "Merk": "MinibusMaxuseDELIVER",
@@ -1759,7 +1759,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/18/63/18758266-01.jpg?v=1787326456",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Truckscout24",
   "Merk": "MinibusMaxuseDELIVER",
@@ -1803,7 +1803,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/42/64/18773101-01.jpg?v=1781141543",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "DBA",
   "Merk": "VW",
@@ -1825,7 +1825,7 @@
   "Feedback": "",
   "Image URL": "https://images.dbastatic.dk/dynamic/480w/item/19017993/74dd1413-6da5-421b-b74a-4960a5d29018",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "DBA",
   "Merk": "Mercedes-Benz",
@@ -1869,7 +1869,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/54/72/21270482-01.jpg?v=1771465626",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -1891,7 +1891,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/54/72/21270487-01.jpg?v=1771465655",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -1912,8 +1912,8 @@
   "Datum status wijziging": "2026-10-20",
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/41/73/21280962-01.jpg?v=1790898034",
-  "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick Vans (Listingpick): Voldoet aan marge & marktwaarde."
 },{
   "Platform": "Truckscout24",
   "Merk": "Mercedes-benz",
@@ -1935,7 +1935,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/98/44/22139827-01.jpg?v=1788595337",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Locatie van bekende concurrent"
 },{
   "Platform": "Truckscout24",
   "Merk": "Mercedes-benz",
@@ -1957,7 +1957,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/44/53/22241372-01.jpg?v=1783498978",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Locatie van bekende concurrent"
 },{
   "Platform": "Truckscout24",
   "Merk": "Pick-up",
@@ -2001,7 +2001,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/95/69/22439437-01.jpg?v=1785233848",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -2023,7 +2023,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/95/69/22439452-01.jpg?v=1786529855",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -2045,7 +2045,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/95/69/22439457-01.jpg?v=1785233849",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Truckscout24",
   "Merk": "High",
@@ -2067,7 +2067,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/23/70/22442767-01.jpg?v=1785259397",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Blocket",
   "Merk": "Maxus e-Deliver 9",
@@ -2155,7 +2155,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/62/83/22603452-01.jpg?v=1787480248",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Truckscout24",
   "Merk": "Pick-up",
@@ -2177,7 +2177,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/52/98/22782315-01.jpg?v=1789744466",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Truckscout24",
   "Merk": "High-roof",
@@ -2221,7 +2221,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/98/03/22847820-01.jpg?v=1790836680",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Locatie van bekende concurrent"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -2242,8 +2242,8 @@
   "Datum status wijziging": "2026-10-20",
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/59/04/22855120-01.jpg?v=1790820593",
-  "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick Vans (Listingpick): Voldoet aan marge & marktwaarde."
 },{
   "Platform": "Truckscout24",
   "Merk": "High",
@@ -2265,7 +2265,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/29/05/22863565-01.jpg?v=1790898063",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -2287,7 +2287,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/22/06/22874680-01.jpg?v=1790959373",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -2309,7 +2309,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/22/06/22874685-01.jpg?v=1790959375",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Truckscout24",
   "Merk": "Mercedes-benz",
@@ -2463,14 +2463,14 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/22929809/452b55d2-5c09-4398-9df6-ed7ef6bb12a9",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Truckscout24",
   "Merk": "Maxus",
   "Titel": "MAXUS EDELIVER 3 Length 2 !! WLTP 327 km, AC, automatic transmissionMAXUSEDELIVER 3 Lengte 2 !! wltp 327 kms ac automaat",
   "Eerste registratie": "1-6-2024",
   "KMstand": "5.715 km",
-  "Eerste prijs": "€24",
+  "Eerste prijs": "€23.950",
   "Laatste prijs": "",
   "Verkoper": "",
   "Locatie": "Vuren, Nederland",
@@ -2482,17 +2482,17 @@
   "Aantal biedingen": "",
   "Veiling loopt af op": "",
   "Datum status wijziging": "2026-10-20",
-  "Feedback": "",
+  "Feedback": "Slecht: Concurrent",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/96/12/22955546-01.jpg?v=1792068462",
-  "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick Vans (Listingpick): Voldoet aan marge & marktwaarde."
+  "AI Pick": "Nee",
+  "AI Reden": "JS Filter: Locatie van bekende concurrent"
 },{
   "Platform": "Truckscout24",
   "Merk": "Maxus",
   "Titel": "MAXUS EDELIVER 3 Length 2 !! WLTP 327 km, AC, automatic transmissionMAXUSEDELIVER 3 Lengte 2 !! wltp 327 kms ac automaat",
   "Eerste registratie": "1-6-2024",
   "KMstand": "5.715 km",
-  "Eerste prijs": "€24",
+  "Eerste prijs": "€23.950",
   "Laatste prijs": "",
   "Verkoper": "",
   "Locatie": "Vuren, Nederland",
@@ -2507,14 +2507,14 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/96/12/22955566-01.jpg?v=1791881608",
   "AI Pick": "Nee",
-  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
+  "AI Reden": "JS Filter: Locatie van bekende concurrent"
 },{
   "Platform": "Truckscout24",
   "Merk": "Pick-up",
   "Titel": "Pick-up vanVWCrafter Pritsche 35 2.0 TDI lang",
   "Eerste registratie": "1-12-2011",
   "KMstand": "6.279 km",
-  "Eerste prijs": "€12",
+  "Eerste prijs": "€12.000",
   "Laatste prijs": "",
   "Verkoper": "",
   "Locatie": "Annaberg-Buchholz",
@@ -2551,7 +2551,7 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/80/16/23001711-01.jpg?v=1792221812",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Blocket",
   "Merk": "Mercedes-Benz eVito 111",
@@ -2573,7 +2573,7 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/23199336/81f87622-5c41-4768-a768-d9a396f950ef",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "DBA",
   "Merk": "Ford",
@@ -2595,7 +2595,7 @@
   "Feedback": "",
   "Image URL": "https://images.dbastatic.dk/dynamic/480w/item/23408194/a8a321e6-c434-480e-afad-7b310077380f",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Blocket",
   "Merk": "Opel",
@@ -2617,7 +2617,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "DBA",
   "Merk": "Ford",
@@ -2639,7 +2639,7 @@
   "Feedback": "",
   "Image URL": "https://images.dbastatic.dk/dynamic/480w/item/23908800/39a3db39-f797-4e34-b679-b63d3817c2f9",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "DBA",
   "Merk": "Mercedes-Benz",
@@ -2683,7 +2683,7 @@
   "Feedback": "",
   "Image URL": "https://images.dbastatic.dk/dynamic/480w/item/24167583/8b28ce31-ae3c-41ca-b0f2-1b7b75658cb9",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Blocket",
   "Merk": "Toyota Proace City",
@@ -2705,7 +2705,7 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/24285349/f680be84-cad3-4e43-831a-fd2fb9e9235e",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Blocket",
   "Merk": "Mercedes-Benz Sprinter 208",
@@ -2727,7 +2727,7 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/24341814/a48b342e-83fd-4c90-b1d1-4da346dc4176",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Blocket",
   "Merk": "Mercedes-Benz eVito 111",
@@ -2749,7 +2749,7 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/24426547/52099750-b4e7-47bf-a4fb-18815b1cd1c1",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "DBA",
   "Merk": "VW",
@@ -2771,7 +2771,7 @@
   "Feedback": "",
   "Image URL": "https://images.dbastatic.dk/dynamic/480w/item/24782514/3dea9a5d-8ba1-4454-95c7-95040c81d6db",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "DBA",
   "Merk": "Mercedes-Benz",
@@ -2793,7 +2793,7 @@
   "Feedback": "",
   "Image URL": "https://images.dbastatic.dk/dynamic/480w/item/25189810/44564334-dcb9-427d-b333-fd70d383957d",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "DBA",
   "Merk": "Mercedes-Benz",
@@ -2815,7 +2815,7 @@
   "Feedback": "",
   "Image URL": "https://images.dbastatic.dk/dynamic/480w/item/25441738/68151723-2fcf-46ff-9baf-34b70bb352e3",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "DBA",
   "Merk": "Maxus",
@@ -2859,7 +2859,7 @@
   "Feedback": "",
   "Image URL": "https://images.dbastatic.dk/dynamic/480w/item/25648829/d2eb7de9-3112-40f1-bd22-e32affc5f0de",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Blocket",
   "Merk": "Mercedes-Benz eVito Tourer",
@@ -2881,7 +2881,7 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/25662211/7bb501bb-e442-4c87-bf94-e38c6b3ec88f",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Blocket",
   "Merk": "Maxus e-Deliver 7",
@@ -2925,7 +2925,7 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/25805748/833ca8d8-a230-46c2-af6f-2626c3a2462e",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "DBA",
   "Merk": "Maxus",
@@ -2969,7 +2969,7 @@
   "Feedback": "",
   "Image URL": "https://images.dbastatic.dk/dynamic/480w/item/25874702/0a1b1e30-d676-466f-be7e-c85065a24091",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "DBA",
   "Merk": "Maxus",
@@ -3035,7 +3035,7 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/26233043/641dbea6-bb2a-4ca1-aacf-45f06da82ae4",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Blocket",
   "Merk": "Toyota Proace City",
@@ -3057,7 +3057,7 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/26561234/a44ab5ae-ae96-4445-96e6-cb2faacbf84b",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Blocket",
   "Merk": "Mercedes-Benz Citan Tourer",
@@ -3079,7 +3079,7 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/27383512/346ac3da-44fc-498d-9533-9f9c78593fe3",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Blocket",
   "Merk": "Mercedes-Benz eVito 111",
@@ -3101,7 +3101,7 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/27438813/4c3dac74-6093-4d66-8bde-3d7141b424a2",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Blocket",
   "Merk": "Maxus e-Deliver 9",
@@ -3123,7 +3123,7 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/27537601/c6430326-7014-48b7-96d7-679fcdaffd3b",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "MAXUS",
@@ -3188,8 +3188,8 @@
   "Datum status wijziging": "2026-10-08",
   "Feedback": "",
   "Image URL": "",
-  "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick Vans (Veilingpick): Voldoet aan marge & marktwaarde."
+  "AI Pick": "Nee",
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "MAXUS",
@@ -3210,8 +3210,8 @@
   "Datum status wijziging": "2026-10-20",
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/0926/0ad235cb36134d53915588fee6cad623_thb.jpg",
-  "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick Vans (Veilingpick): Voldoet aan marge & marktwaarde."
+  "AI Pick": "Nee",
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "MAXUS",
@@ -3254,8 +3254,8 @@
   "Datum status wijziging": "2026-10-20",
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/0926/e245aac250cb45bd8985d1c409f55a1f_thb.jpg",
-  "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick Vans (Veilingpick): Voldoet aan marge & marktwaarde."
+  "AI Pick": "Nee",
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -3475,7 +3475,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/18387373/74a3555b-1185-4243-8369-ea6ef04eb91c.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3497,7 +3497,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/19572437/b88081ab-7438-4cf5-b247-d0cdd7d43890.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3519,7 +3519,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/19811272/510b9eb3-dc9f-4a14-b533-d416e21e7281.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3541,7 +3541,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20227989/a8cd634c-e589-4609-9691-db8f0476c445.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Sprinter",
@@ -3563,7 +3563,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20363498/37ef1817-b55f-47bb-985b-a903ccf90b4f.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3585,7 +3585,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20379153/322f437e-f056-4ef2-a2bf-b22129011643.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3607,7 +3607,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20445538/c2ca4df2-879d-4057-821b-8da1ce4c41c1.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3629,7 +3629,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20433887/d305a8f6-492d-4f6b-9aa7-a509b929f721.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "Maxus",
@@ -3651,7 +3651,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace Verso",
@@ -3673,7 +3673,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20636814/086b379d-fe9e-4650-9d69-3c9fd23ba5ec.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace City",
@@ -3695,7 +3695,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20678355/0c5c37c4-3ac9-4fa8-b685-02a21347ed91.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MAXUS eDeliver 9",
@@ -3717,7 +3717,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20695319/fcb7dc8a-37f2-499b-aea7-11d6c87adf40.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "FORD Transit",
@@ -3739,7 +3739,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20747211/a7cd4ace-d833-4474-abff-3aff56229af9.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace City",
@@ -3761,7 +3761,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20778698/5d59f9ea-7ad9-4d06-9cf8-4a853003ad8c.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Sprinter",
@@ -3783,7 +3783,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20786617/7b9d75f0-cb6a-4fbe-9b1d-5c34a7aad140.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3805,7 +3805,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20820300/25968e7a-f9ea-450e-90ff-102e2daf6df3.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3827,7 +3827,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20820297/14ec411d-9039-4817-be83-036416ade09d.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace City",
@@ -3849,7 +3849,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20833455/5b0f4f54-8302-49e4-8f32-e3a287e46731.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MAXUS eDeliver 9",
@@ -3871,7 +3871,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20845487/dbef479e-bcc6-42b4-b94c-ae5622fa79a3.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace City",
@@ -3893,7 +3893,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20849523/c6b258b2-b9f6-4282-a32e-3e8c5a4e168a.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace City",
@@ -3915,7 +3915,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/17480538/d69ff533-adae-49d9-b0ba-74846b8c3fb8.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3937,7 +3937,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20887940/4662c09c-e881-4cfb-b171-a325fe8cf76f.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3959,7 +3959,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20900707/d9d38f2e-641c-4431-8aee-b4e1dff8f213.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3981,7 +3981,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20904915/70652c24-e70b-44be-97aa-169daf69b789.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "FORD Transit",
@@ -4003,7 +4003,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20923167/0c57dac9-81de-49fc-88f4-ccff3b30cc53.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4025,7 +4025,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20933723/d0d0351b-32bb-4b17-b908-a3943c029bf3.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4047,7 +4047,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20945374/ffd544fe-a266-4a89-9cb5-9bde09f8072f.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4069,7 +4069,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20945387/0082b5f2-9648-4523-83b1-121ccb394caa.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4091,7 +4091,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20976302/9c0deb32-578d-47f0-ad6c-34560359b166.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Sprinter",
@@ -4113,7 +4113,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20964756/e997692a-79cf-45b4-8f1c-3674ee33da76.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Sprinter",
@@ -4135,7 +4135,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20964741/3c2fbdac-da06-46eb-8720-4aa8dc97ca45.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Coches",
   "Merk": "MAXUS eDeliver 9",
@@ -4157,7 +4157,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20986212/3035121d-2a28-454b-96e4-4581b9af38b5.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Camion Super Market",
   "Merk": "Mercedes-benz",
@@ -4179,7 +4179,7 @@
   "Feedback": "",
   "Image URL": "https://media.sandhills.com/img.axd?id=9030167039&wid=8013628585&rwl=False&p=&ext=&w=350&h=220&t=&lp=&c=True&wt=False&sz=Max&rt=0&checksum=nzWDehj0uBj06H8S%2fw4TJrER8acMD3W6b1ZbUB8ipPQ%3d",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Camion Super Market",
   "Merk": "Fiat",
@@ -4201,7 +4201,7 @@
   "Feedback": "",
   "Image URL": "https://media.sandhills.com/img.axd?id=9039300176&wid=8013628585&rwl=False&p=&ext=&w=350&h=220&t=&lp=&c=True&wt=False&sz=Max&rt=0&checksum=IMsMhXD7sH%2fR8s1WgrM9G3eHnh7o29%2fmqN6Ltj%2frpCQ%3d",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -4223,7 +4223,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/39/39e6c018-f971-488c-9dcc-518f8c9cf98d?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4245,7 +4245,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/6b/6bde02e4-ca26-4ed5-94a8-caaece566c45?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -4267,7 +4267,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/2d/2d6e2a1a-c5cb-47b5-a74e-7524303e06b6?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -4289,7 +4289,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/9d/9dfa5ef4-5e49-45db-946f-820f2946bde8?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4311,7 +4311,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/0e/0eca0843-b02b-4a9c-b6d6-83f4d91cf605?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4333,7 +4333,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/ef/eff49f36-42d0-4e07-b1ec-01afba98df39?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -4355,7 +4355,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/b0/b07e31bc-e931-4de9-a684-6050e3ffdaea?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Toyota",
@@ -4377,7 +4377,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/2e/2e5e543b-4f12-4f7b-adc7-e6e1df386a30?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -4421,7 +4421,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/e5/e53eef1e-9bad-4a15-896d-17a09e1a0132?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4443,7 +4443,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/cf/cf01a059-6b7d-4545-9807-9563aa2c5492?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4465,7 +4465,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/c1/c1274585-379d-43be-820e-0055639c045d?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4487,7 +4487,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/6a/6abad803-a389-4876-bafe-7590e52811fe?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4509,7 +4509,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/c3/c3c0cdd4-e8c3-463a-b337-49698055e887?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4553,7 +4553,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/6b/6b0f010a-5acc-4e11-9fc5-cacb121d536d?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4597,7 +4597,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/44/44dcb653-d4d3-4347-9c9d-f8179df2d330?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4619,7 +4619,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4641,7 +4641,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/69b86188-45d7-4a2e-be1d-bcad2cc2eeb6?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4663,7 +4663,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4685,7 +4685,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4707,7 +4707,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Maxus",
@@ -4729,7 +4729,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Maxus",
@@ -4751,7 +4751,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/8cd033a0-66d0-47bd-bb44-eeae3e8c3bc7?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4773,7 +4773,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/fe0d8d33-f3f0-4bde-b787-c5d6cfd9255f?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4795,7 +4795,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/1a719951-9ce0-41b8-b2f0-e85725c5a7b9?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4817,7 +4817,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Maxus",
@@ -4839,7 +4839,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/3aeafb1c-fbc2-4409-bf45-c282988a251e?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4861,7 +4861,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/5e1b5391-d9d5-4fcc-8baa-ae92e4427250?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4883,7 +4883,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/23f91281-1c35-4277-806e-5b40f7a3fdf4?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4905,7 +4905,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/34a877f3-c375-4ee5-b62b-d4aafceaa602?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4927,7 +4927,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/6f34bccb-8af3-4c62-8f77-23125f7ef4db?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4949,7 +4949,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/fe610f8f-7e75-4ee2-9672-7019a0f318f8?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4971,7 +4971,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/775f6ead-b3d1-4c75-af19-5ba7e04719aa?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Maxus",
@@ -4993,7 +4993,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/7bbe283b-edf9-4d6e-abe4-cd2f60550473?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "2dehands",
   "Merk": "Ford",
@@ -5015,7 +5015,7 @@
   "Feedback": "",
   "Image URL": "https://images.2dehands.com/api/v1/hz-twh-pro-listing/images/3e180f3c-2eb6-4ea0-8a35-cad2163b044e?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
+  "AI Reden": "JS Filter: Prijs onrealistisch laag (< 3500) (schade of fout)"
 },{
   "Platform": "2dehands",
   "Merk": "Ford",
@@ -5037,7 +5037,7 @@
   "Feedback": "",
   "Image URL": "https://images.2dehands.com/api/v1/hz-twh-pro-listing/images/883110e9-6586-42b7-bf39-eb5ba7213a9e?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -5059,7 +5059,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Locatie van bekende concurrent"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-Benz",
@@ -5080,8 +5080,8 @@
   "Datum status wijziging": "2026-10-20",
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f6137454-e04c-43f6-bc84-f1f2c5ee36d4?rule=ecg_mp_eps$_85",
-  "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick Vans (Listingpick): Voldoet aan marge & marktwaarde."
 },{
   "Platform": "Marktplaats",
   "Merk": "Maxus",
@@ -5103,7 +5103,7 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/be6d2e66-949c-46ad-9ee3-5aff970100fd?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -5125,7 +5125,7 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/5edbd044-71bb-41f0-a677-057dadc1b21d?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Marktplaats",
   "Merk": "Maxus",
@@ -5235,7 +5235,7 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/57984d10-3a80-4db9-b380-34c20b5a934b?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "2dehands",
   "Merk": "Maxus",
@@ -5279,7 +5279,7 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d1705c29-c53a-4546-b8e8-636984c13da1?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Locatie van bekende concurrent"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -5301,7 +5301,7 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/30b4ee28-4f14-4eb4-97df-5787a28ccc8e?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Locatie van bekende concurrent"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -5323,7 +5323,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "2dehands",
   "Merk": "Maxus",
@@ -5389,7 +5389,7 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e640e2b4-932c-4f92-8584-cbabc1f9eaab?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-Benz",
@@ -5653,7 +5653,7 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ee392e40-5e50-4333-81e2-a523f133c267?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Marktplaats",
   "Merk": "Maxus",
@@ -5675,7 +5675,7 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e8e49fab-4461-469b-9e19-b6b48d3d94bf?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -5697,7 +5697,7 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/a35e4ad7-1596-4480-82f0-b530d55048a4?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "JS Filter: Locatie van bekende concurrent"
 },{
   "Platform": "Leboncoin",
   "Merk": "Toyota",
@@ -5719,7 +5719,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/91/57/6d/91576d0a773c90e6e05685d68cefd75db63c36af.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Maxus",
@@ -5741,7 +5741,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/d5/43/93/d543937d1619127a74f55c834a839af297f608f6.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Toyota",
@@ -5763,7 +5763,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/41/74/1f/41741f406883fe5388fbc48bafe230515a4a723f.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Maxus",
@@ -5785,7 +5785,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/4e/1a/89/4e1a892d9be1fc5ad1969873228902d04beb0848.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Ford",
@@ -5807,7 +5807,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/e2/7c/19/e27c19285f83481a7229dc09f73d64bab3493885.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5829,7 +5829,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/50/70/2e/50702e6cfca707bfbbd33e73accf87674e5e51fa.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5851,7 +5851,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/08/1d/6e/081d6eca83f5ca89de8a39f6743e7d51abd02241.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5873,7 +5873,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/67/f0/c3/67f0c36bbbf7e09cc859e2e0d1ee8f211ff3d18d.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Maxus",
@@ -5895,7 +5895,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/34/2e/ae/342eae9edcdf5a196d369c7fc9d16d143b57ce0b.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5917,7 +5917,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/4c/ba/06/4cba06a0585750cda56a4f8e362df009879e0533.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "E-sprinter",
@@ -5939,7 +5939,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/d3/4f/a2/d34fa2851f461a4dbb70fc2db43cc1c5ac63286e.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5961,7 +5961,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/07/d6/c9/07d6c9171d4d754d63ddd706496c8d16823d1c57.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Proace",
@@ -5983,7 +5983,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/68/c4/bf/68c4bfca6e133a2f0f88a895558bbce6138e865b.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Toyota",
@@ -6005,7 +6005,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/a0/6a/ea/a06aea30af6ab90a2f4af72713ce7613d42c1e2f.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Toyota",
@@ -6027,7 +6027,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/c0/39/26/c03926a8ffdec873c36c4694ae381ccb2e9df209.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -6049,7 +6049,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/cf/dd/d8/cfddd8fb3c5d044ebee90ea62194d241e32df5f2.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -6071,7 +6071,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/52/8d/a9/528da9aa99cbd3c3370bd60d0816cfe0c1005162.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "EVito",
@@ -6093,7 +6093,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/97/a8/7c/97a87c50d1c6bab2b228f034de51df7162ab3b92.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-benz",
@@ -6115,7 +6115,7 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/0e/57/99/0e57992cb155713440d11430897bc3b1f28e3cf7.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Volkswagen",
@@ -6159,7 +6159,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/34/340488f2-ebad-4d22-a5ce-fca354a35437?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -6181,7 +6181,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/15/15647baf-6b1a-4a64-93a0-2c4f20aeadbe?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-Benz",
@@ -6203,7 +6203,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/87/8753415a-946a-4d86-bca2-708eec9cf6f9?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Maxus",
@@ -6225,7 +6225,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/3b/3b47d6b3-a6b8-4aa5-a6a4-8f3b2a5f7039?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -6247,7 +6247,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/cd/cd154293-5420-4af6-bc74-ecc345439af3?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -6269,7 +6269,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/a2/a2c14135-617d-439d-a57f-d9d21761efed?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Volkswagen",
@@ -6291,7 +6291,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/5b/5b4620e4-81b7-4972-b94f-08cbdcbf71f5?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -6313,7 +6313,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/41/41e9b887-26a5-4142-9b57-b1fc479f5844?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "VW",
@@ -6357,7 +6357,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/cf/cf111186-19ae-48b4-ae24-e26c9aa67c6f?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -6379,7 +6379,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/b6/b673e8ca-f967-469e-b518-ee5290d8e7ff?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Volkswagen",
@@ -6423,7 +6423,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/bd/bd333dc1-caec-472f-b2f5-adc78debb8a2?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -6445,7 +6445,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -6467,7 +6467,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -6489,7 +6489,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/95/95df8ea0-e09d-4e28-be7c-3f782346bdad?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -6533,7 +6533,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/62/6295b2ca-5348-48c8-9156-d3cc50c1f9b1?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -6555,7 +6555,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/77/77a5bf6e-51f9-410f-be6f-e789699d096b?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -6577,7 +6577,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/3992ce6e-2537-42c7-9159-7f62ac68fbbd?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Toyota",
@@ -6599,7 +6599,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20231116/1316/37f99a3d2efd8bd8e760220eae77b27c.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6621,7 +6621,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6665,7 +6665,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20260607/2242/5ed55f5a2f62c4ca20336066b8c166be.webp",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6687,7 +6687,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20260524/2121/9dfb15e62378afe77d87d20b207086b0.webp",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6709,7 +6709,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20260408/1730/62579479c4c91d6d0dec5810f2821510.webp",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6731,7 +6731,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20260414/0045/f351a225c69523c7edd408b7d5ac17f1.webp",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6753,7 +6753,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20241022/0039/0960d763d59ac310f68c5c6048854888.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6775,7 +6775,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6797,7 +6797,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6819,7 +6819,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6841,7 +6841,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6863,7 +6863,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6885,7 +6885,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6907,7 +6907,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20260408/0351/a3e2c895734d81a1a29e58ae0efc8716.webp",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6929,7 +6929,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6951,7 +6951,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20231120/1055/e21f2434f5da5975355bc7a8d3f5a128.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6973,7 +6973,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20260615/2220/222f454d9ada40e1349adc39ce733fb8.webp",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7017,7 +7017,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-Benz",
@@ -7039,7 +7039,7 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20260710/1600/8e39e4e348601c9d573c04e5eb0d0f54.webp",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)"
+  "AI Reden": "JS Filter: Prijs onrealistisch laag (< 3500) (schade of fout)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7083,7 +7083,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/ojkcznv56cvs2-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7102,10 +7102,10 @@
   "Aantal biedingen": "",
   "Veiling loopt af op": "",
   "Datum status wijziging": "2026-10-20",
-  "Feedback": "image_url",
+  "Feedback": "Slecht: Schade voertuig",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/3cw1iq9tozrh3-OTOMOTOPL/image;s=320x240",
-  "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick Vans (Listingpick): Voldoet aan marge & marktwaarde."
+  "AI Pick": "Nee",
+  "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7127,7 +7127,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/vdckj4m3wx5o3-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7149,7 +7149,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/v9l7glcc9qjq1-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7171,7 +7171,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/zwjkssr5vfnu2-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7193,7 +7193,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/en56twb9m55c1-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7215,7 +7215,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/axwxmrzogl452-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7234,10 +7234,10 @@
   "Aantal biedingen": "",
   "Veiling loopt af op": "",
   "Datum status wijziging": "2026-10-20",
-  "Feedback": "image_url",
+  "Feedback": "Slecht: Schade voertuig",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/2pr7fks6akw92-OTOMOTOPL/image;s=320x240",
-  "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick Vans (Listingpick): Voldoet aan marge & marktwaarde."
+  "AI Pick": "Nee",
+  "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7259,7 +7259,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/b8q5piy9bju23-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7303,7 +7303,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/fpe03x3dv4n43-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7325,7 +7325,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/q6nabbcejr6e1-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7347,7 +7347,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/yb438otnbqfa2-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7369,7 +7369,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/i864duhflnvr-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7391,7 +7391,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/catch0rnvmsq1-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7413,7 +7413,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/070648qeptu51-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7435,7 +7435,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/adiv9bxbuapy2-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -7457,7 +7457,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/q5j32f32krmd-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -7479,7 +7479,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/7j7wz6pszm561-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -7501,7 +7501,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/sfnfx571mp4a3-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -7545,7 +7545,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/cxlkhnqp8f3t1-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -7589,7 +7589,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/0cdd5pcrlyph2-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7611,7 +7611,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/eztas6mysjuq-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7633,7 +7633,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/rnh01vrddlso3-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7655,7 +7655,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/p7jc83it82p12-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7677,7 +7677,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/q74046x6wucf2-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7699,7 +7699,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/4ivjtiw1kqf32-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7721,7 +7721,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/1zju5bzebobe-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7743,7 +7743,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/ghyh2rrb8y5r3-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7765,7 +7765,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/2mlrzy8c9byw-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7787,7 +7787,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/tahb0uwquazl-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7809,7 +7809,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/iu20pummhy781-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7831,7 +7831,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/jnilwe4sho9m2-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7853,7 +7853,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/tmf4ro797j7l3-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7875,7 +7875,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/x86ubi6br4g21-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7897,7 +7897,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/z0qb09jk03ok2-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Ford",
@@ -7919,7 +7919,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/t0w7amfz5nk32-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Otomoto",
   "Merk": "Maxus",
@@ -7941,7 +7941,7 @@
   "Feedback": "image_url",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/3rp67ksk977j1-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Finn",
   "Merk": "Mercedes-Benz Sprinter 209",
@@ -7963,7 +7963,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/454923034/ec76fcc2-5410-46b4-8463-6da23fdedffa",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Finn",
   "Merk": "Mercedes-Benz eSprinter 312",
@@ -7985,7 +7985,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/454925094/af3eb729-e5e1-4483-84e6-ad5552104458",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Finn",
   "Merk": "Mercedes-Benz eSprinter 312",
@@ -8007,7 +8007,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/477776062/15c93c68-e004-4386-b71c-e1a91c8c378c",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Finn",
   "Merk": "Mercedes-Benz Vito",
@@ -8029,7 +8029,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/477944526/8bd0f360-1b05-4c9f-9b42-7efe2278727f",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Finn",
   "Merk": "Mercedes-Benz eSprinter 312",
@@ -8051,7 +8051,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/478928871/fd451256-d3d4-4855-a056-7a057b9843d5",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -8073,7 +8073,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/448395496/fd82c0cb-d97d-4478-bda8-c7fb990a19f8",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -8095,7 +8095,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/462827596/8e2d6c16-b17d-49be-a07f-69cffbd6501c",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -8117,7 +8117,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/477516948/37536244-bdf2-4935-93db-4da98dc71934",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -8139,7 +8139,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/477626076/312767fe-3759-4f0c-a42b-8205d1e101b4",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -8161,7 +8161,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/477638763/81032c7f-2dd3-4a98-ad5a-c05df19d96e4",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -8183,7 +8183,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/478197248/7ada4432-73fc-4c9a-a3df-43706a4b3e17",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -8205,7 +8205,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/478305603/285b9816-de9d-4e46-9f7a-f754c64bea37",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -8227,7 +8227,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/479051637/76266634-29bf-4bc8-a6db-8aa498c22936",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -8249,7 +8249,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/da/da860f87-ae9f-47aa-be22-c0d0283e282e?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -8271,7 +8271,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/7c/7c37d3a5-1f3d-4188-a708-6c00f653d0bc?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8292,8 +8292,8 @@
   "Datum status wijziging": "2026-10-20",
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/d3/d3aa5d0b-a05c-4d6b-90f6-bce3aef692a9?rule=mo-1600.jpg",
-  "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick Vans (Listingpick): Voldoet aan marge & marktwaarde."
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -8315,7 +8315,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/76/76a8502d-3b1b-44dd-946e-f0593b932e85?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8337,7 +8337,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/b7/b701c331-2b91-4f13-86ee-02dbcaea5f3a?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8359,7 +8359,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/29/29fba130-5d7b-42ab-9ea1-ad4193e72843?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -8381,7 +8381,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/1f/1fb7642b-8025-4aff-b447-b9ea543335ca?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8403,7 +8403,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/d7/d7c88f6f-a00b-49b3-b6ba-def1b0b96569?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8447,7 +8447,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/ea/eaf9af52-c4e3-4dd5-9417-a93439cae253?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8469,7 +8469,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/a5/a58fb64b-4174-49d9-93fe-7a38d16aa986?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -8491,7 +8491,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/00/00e5d17a-74f7-4821-835c-3da1a9b693bb?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8513,7 +8513,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/ad/ad946528-d914-4a3c-a810-c788a71c98d4?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -8535,7 +8535,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/ea/eaf9af52-c4e3-4dd5-9417-a93439cae253?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -8557,7 +8557,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/90/90b747fe-8722-42c1-bf25-8ce4ae997920?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8579,7 +8579,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/28/28b3fec0-ac12-4a82-82c2-3677706a4793?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8601,7 +8601,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/fa/faf0cb2e-de72-4801-8cd1-212a5b408b67?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -8623,7 +8623,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/f1/f1793d3b-b259-4d0e-8c10-12ec3da9929c?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8667,7 +8667,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/bf/bfdaab03-73ca-4f73-a3f9-7afc2f099483?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8689,7 +8689,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/cf/cfb6702d-eb28-433b-924e-2136989481d6?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8755,7 +8755,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/38/385c9de2-f945-4b2b-8ad9-5c8a062f10a8?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8777,7 +8777,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/af/afc973fc-fda5-40f1-9a34-d2b9678f4c3e?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8799,7 +8799,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/bd/bda4d730-4b95-4c19-8f2e-2862809ec350?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8821,7 +8821,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/2c/2c870a2d-1b09-405d-9878-f295f549bb1a?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8909,7 +8909,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/2b/2ba21440-f3a2-4502-bcd5-e0f7eeaf92c1?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Ford",
@@ -8953,7 +8953,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/11/1105d909-41fe-41f3-882f-57ffea4a85cd?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -8975,7 +8975,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/d1/d1033e3d-ae6e-44d8-a6ab-35d72e01df90?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Mobile",
   "Merk": "Ford",
@@ -9019,7 +9019,7 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/E119826180_STANDARD_0.jpg?format=webp&size=352x264&watermark=lc&signature=1c2039874873bf1455543ea2b9a772389285cfa3418d906120f4c381",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "La Centrale",
   "Merk": "Mercedes-Benz",
@@ -9041,7 +9041,7 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/W103564627_STANDARD_0.jpg?format=webp&size=352x264&watermark=lc&signature=1c2039874873bf1455543ea2b9a772389285cfa3418d906120f4c381",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES SPRINTER III phase 2",
@@ -9063,7 +9063,7 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/E120038487_STANDARD_0.jpg?format=webp&size=352x264&watermark=lc&signature=1c2039874873bf1455543ea2b9a772389285cfa3418d906120f4c381",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES CITAN II",
@@ -9085,7 +9085,7 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/W103569427_STANDARD_0.jpg?format=webp&size=352x264&watermark=lc&signature=1c2039874873bf1455543ea2b9a772389285cfa3418d906120f4c381",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES VITO III phase 2",
@@ -9107,7 +9107,7 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/E120097103_STANDARD_0.jpg?format=webp&size=352x264&watermark=lc&signature=1c2039874873bf1455543ea2b9a772389285cfa3418d906120f4c381",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES SPRINTER III",
@@ -9129,7 +9129,7 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/W103572287_STANDARD_0.jpg?format=webp&size=352x264&watermark=lc&signature=1c2039874873bf1455543ea2b9a772389285cfa3418d906120f4c381",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES VITO III phase 2",
@@ -9151,7 +9151,7 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/E120138454_STANDARD_0.jpg?format=webp&size=352x264&watermark=lc&signature=1c2039874873bf1455543ea2b9a772389285cfa3418d906120f4c381",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "La Centrale",
   "Merk": "MAXUS EDELIVER9",
@@ -9173,7 +9173,7 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/E120063956_STANDARD_0.jpg?format=webp&size=352x264&watermark=lc&signature=1c2039874873bf1455543ea2b9a772389285cfa3418d906120f4c381",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9195,7 +9195,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/5b979c68-a26b-4f6b-b902-d59d80d2a067_75cb0a18-b0f0-4a35-bc46-9c3659657ed8.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9217,7 +9217,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/5bb41cd8-cda0-48cb-8bb4-f513819be564_79f46ed0-0248-426f-8227-c04419bc47ef.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9239,7 +9239,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/86e93557-dfc2-4d06-b9f7-5b8943b946a9_095bf581-1827-4c9b-85f7-3edb1537e097.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9261,7 +9261,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/bad703aa-5a74-4cba-871c-743551239607_3f524bcb-6d32-4063-b094-a421feb53379.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9283,7 +9283,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/33aba43f-81e3-4ae5-9141-6a767988c275_92ff32a9-e8fd-4055-82ab-6f2fadf534f0.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9305,7 +9305,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/c5a10c95-5ba5-46b1-a77f-d51901cdcfb0_5fa00633-4ba7-48a3-82e3-bdd9755de298.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9327,7 +9327,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9349,7 +9349,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/2419345c-b3f2-480a-a334-e8d964ea48c9_8245a2f3-1e05-4d63-982e-9aa0c89fa999.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9371,7 +9371,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/ea20f670-74b2-4802-bfde-c70ed308bc0e_952f53fd-a984-494c-9a9a-f7628d937583.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9393,7 +9393,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/0ef8edd9-7ea8-4279-b3da-a03cf04f65b1_a9de1858-339d-4bda-9170-88d2d803173f.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9415,7 +9415,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/9774d204-125a-416f-833c-adfe754c8737_f7a5952b-e216-45e4-bc3f-e1ffe6fd5129.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -9437,7 +9437,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/95eb0253-a43e-43c5-9099-d293f0d1f01f_e9452041-39cc-4407-840a-e94ae5883a0b.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9459,7 +9459,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/0f38c419-ef6f-46f7-9e73-63a94125772f_a5f6af81-2356-482b-bfd3-f667fa75a272.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9481,7 +9481,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/d0b56b4e-96ed-4a73-aed7-66f7ea1002e7_5a2d9c9f-1aaf-4fa9-958e-0f901ff76bef.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9503,7 +9503,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/6eba802d-c749-4da5-8c53-b6e0b4371089_fa61fe34-9436-4319-8755-8cdd0f4d286c.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9525,7 +9525,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/24d5802d-1a12-4148-a5cb-b85aff044d52_b246f08e-46cf-4bbe-af91-3da452ea2281.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9547,7 +9547,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/62963cb1-bd16-4a02-ae40-0549beb1b072_013aab3d-11c0-4379-8e58-612a9edfc05d.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9569,7 +9569,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/33e378a9-7554-4dda-8a05-e45d978bf534_87de4e4d-93ea-47d3-924b-ac5bfc2ce0cd.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9591,7 +9591,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/bd05f056-3aa2-40c0-9315-cb0a1a6342aa_0150aceb-9a4d-4cef-a12b-cd2fe7b8df9a.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9613,7 +9613,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/be82b0ed-4f29-4561-9178-bc47a835145d_1928b9df-b487-463e-bf6c-48b7bccd216f.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9635,7 +9635,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/cf503d8b-04fb-4f44-8fa6-747d9b5228ab_2ec9c2d3-fa08-4cfd-aa6a-f80bc8032f9c.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9657,7 +9657,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/77862fdd-139f-4ace-9314-3fcd40a6977b_d67b8b75-66c4-4619-9c05-afa7eb26c870.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9679,7 +9679,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/40048468-04c4-42a9-8ba1-b03f976691f5_fa1f7b44-f38a-45dc-91af-ced2ea4088c3.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9701,7 +9701,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/7f1aa530-1a6f-49a0-ac90-55980db453c2_e62e9947-e4c9-4365-9521-99a8640b9015.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9723,7 +9723,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/2b77290f-7f49-4e7c-9465-555bd14cf93c_dca52cbf-f5d1-454b-94b0-f14139cb8fb7.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9745,7 +9745,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/f4b2e1b2-6389-4ff5-9fec-5fa799302a03_1d4703cf-94fe-47ed-a3e7-83c6b9758a35.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9767,7 +9767,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/3be98839-e589-4e85-855e-39b0ae466d91_8ccc2e21-1ad0-46ef-b716-efc84a45ef94.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9789,7 +9789,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/be0c8e77-d05c-4499-8e14-01b44ae0248e_4e1773be-457d-47f4-922b-1b780e9d5c69.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9811,7 +9811,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/8e2d4996-7f68-4046-8c3c-61b7ef214599_88f37e9f-918c-4db2-bc6d-c43654b1ac42.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9833,7 +9833,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/019f4b0e-55ed-40d8-90ac-ba1c6b0ddf42_7d72403e-94e2-4600-86a6-2ed3e1049dd5.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -9855,7 +9855,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/6e4ed716-eeb3-4885-b381-8558952670b3_60e22301-a005-44c2-b749-ed3d10acae3c.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9877,7 +9877,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/5be0448d-ba6f-4ead-a26f-1dc540615f1a_df44f65d-b3de-4d2a-aedb-0c3e3e0dc951.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9899,7 +9899,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/927195e7-adaa-4042-9b0c-66323d19290c_844c486e-d6b0-4375-90f6-184ddcced07d.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9921,7 +9921,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/419bb62c-b83f-4630-a861-a3eb33508ffb_f413b83b-1c67-4303-993b-fb24e854b18f.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9943,7 +9943,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/9f83ee9e-e274-4aff-a841-271dd89b2298_b22dc324-9df1-4346-ac6d-70a771e4b622.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9965,7 +9965,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/feb84375-f6f3-48b2-87b6-275be7b4a089_31e4329e-41a6-43f1-be2e-c184dbbabb23.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9986,8 +9986,8 @@
   "Datum status wijziging": "2026-10-20",
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/c33cb06c-a4d8-4e7e-ae65-7d574179fa6b_b06735c6-4783-4431-b0a3-3b29728f22d7.jpg/1920x1080.jpg",
-  "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick Vans (Listingpick): Voldoet aan marge & marktwaarde."
+  "AI Pick": "Nee",
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10009,7 +10009,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/6e594e4f-a521-4f83-aa81-2ac4a62b4ec5_a1f66895-2cdb-4b6e-84d1-1958c348fb9f.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10031,7 +10031,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/8a08bd83-24dd-4270-bffc-4eaa8ccd2d9c_db5fc19b-84ed-4b4e-a0a4-a0ed0a894d34.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -10053,7 +10053,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/170d10e5-f547-4c84-abe5-9282f6c037e6_656b651c-7aec-49ef-9661-9d2faa3527fb.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -10075,7 +10075,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/c5af1b48-9224-44b5-9c67-38eecba14dc8_0fdcd740-9e50-4d05-afdc-22310fa8684d.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -10097,7 +10097,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/8acfe35b-28c2-4c3b-bac2-deec2eab0a1b_a6d51408-6c3d-46fc-a408-09f47d34f89d.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10119,7 +10119,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/f9c921a8-4513-4f1c-97dd-86fdb4f9144a_097c1064-2de5-4253-a0a0-d1d0bd732acd.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10141,7 +10141,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/fa6c18b4-efd7-45d2-813e-ae51d61da7d0_9296dae0-5457-47a7-b128-26ed57cd8f9d.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10163,7 +10163,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/787cc902-c7d0-45db-a5ce-d15bd5332933_06f83ecb-6d4a-494d-9fc6-1044a45a644b.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Volkswagen ",
@@ -10185,7 +10185,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/c882f6d6-b7bf-46be-b1fe-6eb5ffaca146_c9615091-d10c-42ca-859a-789ac466c9ea.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Volkswagen ",
@@ -10207,7 +10207,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/243cba7e-76d2-4208-90fb-19c5ece03e52_c7761f64-6e7e-4cad-927b-9aadcfd3012a.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Ford ",
@@ -10229,7 +10229,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/7ed1948a-cda2-473f-bfa2-8e391e580f3d_f389da7f-7063-47e7-9dd8-a5e07ee52ac9.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Ford ",
@@ -10251,7 +10251,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Antwerp Auctions (veilingen)",
   "Merk": "Volkswagen",
@@ -10273,7 +10273,7 @@
   "Feedback": "",
   "Image URL": "https://fd-cdn.nl/12602-antwerpauctions-prd/media/cache/ca/a2/caa20dabbd830cc3b217f3a6ac406466.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Niet geselecteerd in AI top selectie (buiten top 5)"
 },{
   "Platform": "Antwerp Auctions (veilingen)",
   "Merk": "Volkswagen",
@@ -10383,7 +10383,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-benz",
@@ -10404,8 +10404,8 @@
   "Datum status wijziging": "",
   "Feedback": "",
   "Image URL": "",
-  "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick Vans (Veilingpick): Voldoet aan marge & marktwaarde."
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-benz",
@@ -10427,7 +10427,7 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "JS Filter: Te duur vergeleken met andere kandidaten (buiten top 20)"
+  "AI Reden": "Buiten max testvolume (listing)"
 }
   ],
   "voorraad": [
