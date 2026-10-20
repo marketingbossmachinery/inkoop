@@ -575,13 +575,30 @@
             border: 1px solid #e0e0e0;
         }
 
-        .card-location {
+        /* Locatie en Verkopende Partij Styling (max 1 regel & afgekapt) */
+        .card-meta-info {
             font-size: 13px;
             color: var(--text-light);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .card-location, .card-seller {
             display: flex;
             align-items: center;
             gap: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
+        .card-location span, .card-seller span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .card-location img {
@@ -590,6 +607,7 @@
             object-fit: cover;
             border: 1px solid #ddd;
             border-radius: 2px;
+            flex-shrink: 0;
         }
 
         .card-price-box {
@@ -1315,7 +1333,6 @@
                 return true;
             });
 
-            // Sortering: Als AI Picks AAN staat, sorteren we ZOWEL bij veilingen als listings de AI picks vooraan!
             if (aiPicksActive && (currentTab === 'auctions' || currentTab === 'listings')) {
                 filteredData.sort((a, b) => {
                     const valA = String(getRowValue(a, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
@@ -1324,10 +1341,9 @@
                     const isAiB = (valB === 'ja' || valB === 'true' || valB === '1') ? 1 : 0;
                     
                     if (isAiA !== isAiB) {
-                        return isAiB - isAiA; // AI picks eerst
+                        return isAiB - isAiA;
                     }
                     
-                    // Sub-sortering per tab
                     if (currentTab === 'auctions') {
                         const dateA = parseAuctionDate(a['Veiling loopt af op']);
                         const dateB = parseAuctionDate(b['Veiling loopt af op']);
@@ -1410,7 +1426,6 @@
                 let auctionHtml = '';
                 let isExpired = false;
 
-                // AI Pick controle
                 const aiPickRaw = String(getRowValue(row, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
                 const isAiTagged = (aiPickRaw === 'ja' || aiPickRaw === 'true' || aiPickRaw === '1');
                 const isAiPick = aiPicksActive && isAiTagged;
@@ -1444,7 +1459,6 @@
                     }
                 }
 
-                // AI Pick stempel met 3 sterren in de rechterbovenhoek
                 let aiStampHtml = '';
                 if (isAiPick) {
                     aiStampHtml = `<div class="badge-ai-stamp" title="${aiReason}">${svgThreeStars}</div>`;
@@ -1458,10 +1472,27 @@
                     imageHtml = `<img src="${imageUrl}" alt="${fullTitle}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
                 }
 
+                // Locatie en Verkopende Partij (Kolom H)
+                let metaInfoHtml = '';
                 let locationHtml = '';
                 if (row['Locatie']) {
                     let flagHtml = getCountryFlagHtml(row['Locatie']);
                     locationHtml = `<div class="card-location">${flagHtml}</div>`;
+                }
+
+                let sellerName = row['Verkopende partij'] || row['Verkoper'] || row['seller'] || '';
+                let sellerHtml = '';
+                if (sellerName) {
+                    sellerHtml = `<div class="card-seller" title="${sellerName}">🏢 <span>${sellerName}</span></div>`;
+                }
+
+                if (locationHtml || sellerHtml) {
+                    metaInfoHtml = `
+                        <div class="card-meta-info">
+                            ${locationHtml}
+                            ${sellerHtml}
+                        </div>
+                    `;
                 }
 
                 let extraContentHtml = '';
@@ -1578,7 +1609,7 @@
                                 ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${row.Bouwjaar}</span>` : ''}
                                 ${row.Draaiuren ? `<span class="spec-tag">Uren: ${row.Draaiuren}</span>` : ''}
                             </div>
-                            ${locationHtml}
+                            ${metaInfoHtml}
                             <div class="card-price-box">
                                 <div class="card-price">${priceHtml}</div>
                                 ${sourceHtml}
