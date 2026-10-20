@@ -393,16 +393,13 @@
             color: var(--ai-blue);
         }
 
-        /* Specifieke kleur voor Concurrenten toggle actieve staat */
+        /* Actieve kleur voor Concurrentie tonen */
         #competitorToggleBtn.active .toggle-switch {
-            background-color: #dc3545;
+            background-color: #28a745;
         }
         #competitorToggleBtn.active .toggle-status-text {
-            background: #f8d7da;
-            color: #dc3545;
-        }
-        #competitorToggleBtn:hover {
-            border-color: #dc3545;
+            background: #d4edda;
+            color: #28a745;
         }
 
         .grid {
@@ -863,9 +860,9 @@
                         <span id="aiToggleState" class="toggle-status-text">UIT</span>
                     </div>
 
-                    <!-- Visuele Concurrenten Toggle Schakelaar (Standaard UIT) -->
+                    <!-- Toon concurrentie Toggle Schakelaar (Standaard UIT) -->
                     <div id="competitorToggleBtn" class="ai-toggle-container" onclick="toggleCompetitors()">
-                        <span class="ai-toggle-label">🚫 Concurrenten</span>
+                        <span class="ai-toggle-label">Toon concurrentie</span>
                         <div class="toggle-switch"></div>
                         <span id="competitorToggleState" class="toggle-status-text">UIT</span>
                     </div>
@@ -896,7 +893,7 @@
         let currentTab = 'listings';
         let activeFeedbackId = null;
         let aiPicksActive = false; // Standaard uit
-        let excludeCompetitors = false; // Standaard uit (concurrenten niet uitsluiten tenzij toggle aan staat)
+        let showCompetitors = false; // Standaard UIT: concurrenten worden verborgen tenzij toggle aan staat
 
         let feedbackData = JSON.parse(localStorage.getItem('bossVansFeedbackData') || '{}');
 
@@ -926,11 +923,11 @@
         }
 
         function toggleCompetitors() {
-            excludeCompetitors = !excludeCompetitors;
+            showCompetitors = !showCompetitors;
             const container = document.getElementById('competitorToggleBtn');
             const stateSpan = document.getElementById('competitorToggleState');
             
-            if (excludeCompetitors) {
+            if (showCompetitors) {
                 container.classList.add('active');
                 stateSpan.innerText = 'AAN';
             } else {
@@ -1366,10 +1363,11 @@
                 if (filterBouwjaar && !reg.includes(filterBouwjaar)) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
 
-                // Concurrenten filteren op basis van Kolom U (AI Reden) als de toggle aan staat
-                if (excludeCompetitors) {
+                // Concurrenten filteren: Als showCompetitors UIT staat, verberg dan alles wat als concurrent is gemarkeerd in AI Reden of elders
+                if (!showCompetitors) {
                     const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
-                    if (aiReasonText.includes('concurrent')) return false;
+                    const platformText = String(row['Platform'] || '').toLowerCase();
+                    if (aiReasonText.includes('concurrent') || platformText.includes('concurrent')) return false;
                 }
 
                 if (searchQuery) {
@@ -1704,9 +1702,10 @@
                     if (filterBouwjaar && !reg.includes(filterBouwjaar)) return false;
                     if (filterStatus && row.Status !== filterStatus) return false;
 
-                    if (excludeCompetitors) {
+                    if (!showCompetitors) {
                         const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
-                        if (aiReasonText.includes('concurrent')) return false;
+                        const platformText = String(row['Platform'] || '').toLowerCase();
+                        if (aiReasonText.includes('concurrent') || platformText.includes('concurrent')) return false;
                     }
 
                     if (searchQuery) {
