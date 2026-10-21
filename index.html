@@ -1074,7 +1074,7 @@
                     globalStatus = 'red';
                 } else {
                     const hasTodayData = portalRows.some(r => {
-                        const dFound = r['Laatste bijgewerkt'] || r['laatst bijgewerkt'] || r['Datum gevonden'] || r['datum gevonden'] || '';
+                        const dFound = r['Laatst bijgewerkt'];
                         return dFound.includes(todayStr);
                     });
                     if (hasTodayData) {
