@@ -1118,7 +1118,7 @@
                     if (globalStatus !== 'red') globalStatus = 'orange';
                 } else {
                     const hasTodayData = portalRows.some(r => {
-                        const dFound = r['Datum gevonden'] || r['datum gevonden'] || '';
+                        const dFound = r['Laatst bijgewerkt'] || r['laatst bijgewerkt'] || r['Datum status wijziging'] || r['datum status wijziging'] || r['Datum gevonden'] || r['datum gevonden'] || '';
                         return dFound.includes(todayStr);
                     });
                     if (hasTodayData) {
