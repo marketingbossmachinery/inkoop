@@ -837,10 +837,10 @@
                 
                 <div class="header-controls">
                     <!-- Visuele AI Toggle Schakelaar -->
-                    <div id="aiToggleBtn" class="ai-toggle-container" onclick="toggleAiPicks()">
+                    <div id="aiToggleBtn" class="ai-toggle-container active" onclick="toggleAiPicks()">
                         <span class="ai-toggle-label">🤖 AI Picks</span>
                         <div class="toggle-switch"></div>
-                        <span id="aiToggleState" class="toggle-status-text">UIT</span>
+                        <span id="aiToggleState" class="toggle-status-text">AAN</span>
                     </div>
 
                     <select id="filter-feedback" class="feedback-filter-select" onchange="renderGrid()">
@@ -866,7 +866,7 @@
         let ownStockData = [];
         let currentTab = 'listings';
         let activeFeedbackId = null;
-        let aiPicksActive = false; // Standaard uit
+        let aiPicksActive = true; // Standaard aan
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
 
