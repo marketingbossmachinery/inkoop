@@ -2421,7 +2421,7 @@
   "Model": "Fødekasse 1 styk",
   "Bouwjaar": "",
   "Draaiuren": "",
-  "Eerste prijs": "€13.000",
+  "Eerste prijs": "€13",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Thisted, Denemarken",
@@ -2442,7 +2442,7 @@
   "Model": "Sorteringsanlæg Buchtrup 3 afgangsbånd 1 styk",
   "Bouwjaar": "",
   "Draaiuren": "",
-  "Eerste prijs": "€268.000",
+  "Eerste prijs": "€268",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Thisted, Denemarken",
@@ -2568,8 +2568,8 @@
   "Model": "Minidumper / motorbør EPAC D1100",
   "Bouwjaar": "2006",
   "Draaiuren": "",
-  "Eerste prijs": "€750.000",
-  "Laatste prijs": "€777.200",
+  "Eerste prijs": "€750",
+  "Laatste prijs": "€777",
   "Verkoper": "Klaravik",
   "Locatie": "Halsnæs, Denemarken",
   "Link": "https://www.klaravik.dk/auction/product/1437488-minidumper-motorbr-epac-d1700/",
@@ -2610,8 +2610,8 @@
   "Model": "Dumper Bejco Mini Maskiner ApS CU 50",
   "Bouwjaar": "1995",
   "Draaiuren": "",
-  "Eerste prijs": "€67.000",
-  "Laatste prijs": "€214.400",
+  "Eerste prijs": "€67",
+  "Laatste prijs": "€214",
   "Verkoper": "Klaravik",
   "Locatie": "Egedal, Denemarken",
   "Link": "https://www.klaravik.dk/auction/product/1438043-dumper-bejco-mini-maskiner-aps-cu-50/",
@@ -2736,8 +2736,8 @@
   "Model": "Allu Sorteringsskovl",
   "Bouwjaar": "",
   "Draaiuren": "",
-  "Eerste prijs": "€295.000",
-  "Laatste prijs": "€469.000",
+  "Eerste prijs": "€295",
+  "Laatste prijs": "€469",
   "Verkoper": "Klaravik",
   "Locatie": "Slagelse, Denemarken",
   "Link": "https://www.klaravik.dk/auction/product/1438851-allu-sorteringsskovl/",
@@ -2841,7 +2841,7 @@
   "Model": "Dozer Cattepiller D4",
   "Bouwjaar": "1979",
   "Draaiuren": "79 h",
-  "Eerste prijs": "€696.800",
+  "Eerste prijs": "€696",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Rebild, Denemarken",
@@ -2862,7 +2862,7 @@
   "Model": "Gummiged Schaeff SKL 851 - skovl medfølger",
   "Bouwjaar": "1992",
   "Draaiuren": "7.443 h",
-  "Eerste prijs": "€670.000",
+  "Eerste prijs": "€670",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Esbjerg, Denemarken",
@@ -2883,7 +2883,7 @@
   "Model": "Minilæsser Heracles H220T",
   "Bouwjaar": "2026",
   "Draaiuren": "32 h",
-  "Eerste prijs": "€26.800",
+  "Eerste prijs": "€27",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Frederikssund, Denemarken",
@@ -2925,7 +2925,7 @@
   "Model": "Grävmaskin Bobcat E55 Z med tiltrotator och redskap",
   "Bouwjaar": "",
   "Draaiuren": "2.410 h",
-  "Eerste prijs": "€457.600",
+  "Eerste prijs": "€458",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Sjöbo, Zweden",
@@ -2946,8 +2946,8 @@
   "Model": "Grävmaskin Kobelco SK210 LC",
   "Bouwjaar": "",
   "Draaiuren": "6.040 h",
-  "Eerste prijs": "€70.000",
-  "Laatste prijs": "€123.200",
+  "Eerste prijs": "€70",
+  "Laatste prijs": "€123",
   "Verkoper": "Klaravik",
   "Locatie": "Haninge, Zweden",
   "Link": "https://www.klaravik.se/auktion/produkt/3211895-gravmaskin-kobelco-sk210-lc/",
@@ -2988,7 +2988,7 @@
   "Model": "Grävmaskin CAT 313 Next Gen med GPS & tiltrotator",
   "Bouwjaar": "",
   "Draaiuren": "5.508 h",
-  "Eerste prijs": "€880.000",
+  "Eerste prijs": "€880",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Hallstahammar, Zweden",
@@ -3366,7 +3366,7 @@
   "Model": "Hjullastare Volvo BM L70",
   "Bouwjaar": "",
   "Draaiuren": "17.781 h",
-  "Eerste prijs": "€281.600",
+  "Eerste prijs": "€281",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Skellefteå, Zweden",
@@ -3387,8 +3387,8 @@
   "Model": "Hjullastare Ljungby Maskin L12",
   "Bouwjaar": "",
   "Draaiuren": " h",
-  "Eerste prijs": "€62.000",
-  "Laatste prijs": "€79.200",
+  "Eerste prijs": "€62",
+  "Laatste prijs": "€79",
   "Verkoper": "Klaravik",
   "Locatie": "Härjedalen, Zweden",
   "Link": "https://www.klaravik.se/auktion/produkt/3300489-hjullastare-ljungby-maskin-l12/",
@@ -3450,7 +3450,7 @@
   "Model": "Grävmaskin Volvo EC250EL",
   "Bouwjaar": "",
   "Draaiuren": "10.028 h",
-  "Eerste prijs": "€26.400",
+  "Eerste prijs": "€26",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Falköping, Zweden",
@@ -3513,7 +3513,7 @@
   "Model": "Grävmaskin Hitachi EX 220LC med skopa",
   "Bouwjaar": "",
   "Draaiuren": "4.924 h",
-  "Eerste prijs": "€17.600",
+  "Eerste prijs": "€17",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Falköping, Zweden",
@@ -3660,7 +3660,7 @@
   "Model": "Grävmaskin Takeuchi TB295W med tiltrotator &  redskap",
   "Bouwjaar": "",
   "Draaiuren": "4.453 h",
-  "Eerste prijs": "€52.800",
+  "Eerste prijs": "€52",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Botkyrka, Zweden",
@@ -4290,7 +4290,7 @@
   "Model": "Väghyvel Volvo BM VHK312",
   "Bouwjaar": "",
   "Draaiuren": "",
-  "Eerste prijs": "€722.000",
+  "Eerste prijs": "€722",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Uppsala, Zweden",
@@ -4605,7 +4605,7 @@
   "Model": "Dumper Volvo A25D",
   "Bouwjaar": "",
   "Draaiuren": "",
-  "Eerste prijs": "€8.800",
+  "Eerste prijs": "€8",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Borlänge, Zweden",
@@ -5151,8 +5151,8 @@
   "Model": "Dumper CAT 666B 6x6",
   "Bouwjaar": "",
   "Draaiuren": "",
-  "Eerste prijs": "€62.000",
-  "Laatste prijs": "€105.600",
+  "Eerste prijs": "€62",
+  "Laatste prijs": "€105",
   "Verkoper": "Klaravik",
   "Locatie": "Ydre, Zweden",
   "Link": "https://www.klaravik.se/auktion/produkt/3309238-dumper-cat-666b-6x6/",
@@ -5466,7 +5466,7 @@
   "Model": "Grävmaskin Volvo EW160D",
   "Bouwjaar": "2014",
   "Draaiuren": "11.168 h",
-  "Eerste prijs": "€17.600",
+  "Eerste prijs": "€17",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Arvika, Zweden",
@@ -5550,7 +5550,7 @@
   "Model": "Dumper Bell B25D 6x6",
   "Bouwjaar": "",
   "Draaiuren": "9.482 h",
-  "Eerste prijs": "€8.800",
+  "Eerste prijs": "€8",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Skellefteå, Zweden",
@@ -5739,7 +5739,7 @@
   "Model": "Hjullastare Ljungby Maskin L15",
   "Bouwjaar": "",
   "Draaiuren": "18.820 h",
-  "Eerste prijs": "€475.200",
+  "Eerste prijs": "€475",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Hagfors, Zweden",
@@ -5928,7 +5928,7 @@
   "Model": "Grävmaskin New Holland Kobelco E235BSR-2 med skopor",
   "Bouwjaar": "",
   "Draaiuren": "14.937 h",
-  "Eerste prijs": "€44.000",
+  "Eerste prijs": "€44",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Vetlanda, Zweden",
@@ -5970,7 +5970,7 @@
   "Model": "Grävmaskin Poclain 75 CK med två skopor",
   "Bouwjaar": "",
   "Draaiuren": "",
-  "Eerste prijs": "€8.800",
+  "Eerste prijs": "€8",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Lilla Edet, Zweden",
@@ -5991,8 +5991,8 @@
   "Model": "Minigrävare hydrovåg Hultdins SG10",
   "Bouwjaar": "2008",
   "Draaiuren": "",
-  "Eerste prijs": "€9.000",
-  "Laatste prijs": "€228.800",
+  "Eerste prijs": "€90",
+  "Laatste prijs": "€228",
   "Verkoper": "Klaravik",
   "Locatie": "Motala, Zweden",
   "Link": "https://www.klaravik.se/auktion/produkt/3311971-minigravare-hydrovag-hultdins-sg10-inreggad/",
@@ -6033,7 +6033,7 @@
   "Model": "Grävmaskin Åkerman H7M C",
   "Bouwjaar": "",
   "Draaiuren": "28.043 h",
-  "Eerste prijs": "€88.000",
+  "Eerste prijs": "€88",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Emmaboda, Zweden",
@@ -6117,7 +6117,7 @@
   "Model": "Hjullastare Volvo L60H",
   "Bouwjaar": "",
   "Draaiuren": "4.741 h",
-  "Eerste prijs": "€123.200",
+  "Eerste prijs": "€123",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Hedemora, Zweden",
@@ -6138,7 +6138,7 @@
   "Model": "Dumper Hydrema 912 FS",
   "Bouwjaar": "",
   "Draaiuren": "4.199 h",
-  "Eerste prijs": "€44.000",
+  "Eerste prijs": "€44",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Strömsund, Zweden",
@@ -6180,7 +6180,7 @@
   "Model": "Bandgrävare Volvo EC220DL",
   "Bouwjaar": "",
   "Draaiuren": "6.839 h",
-  "Eerste prijs": "€26.400",
+  "Eerste prijs": "€26",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Hammarö, Zweden",
@@ -6201,7 +6201,7 @@
   "Model": "Minigrävare Kima KMZ12 med redskap",
   "Bouwjaar": "",
   "Draaiuren": "9 h",
-  "Eerste prijs": "€26.400",
+  "Eerste prijs": "€26",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Örnsköldsvik, Zweden",
@@ -6285,7 +6285,7 @@
   "Model": "Grävmaskin Volvo ECR305CL höjdrivningsaggregat",
   "Bouwjaar": "",
   "Draaiuren": "3.238 h",
-  "Eerste prijs": "€8.800",
+  "Eerste prijs": "€8",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Kristianstad, Zweden",
@@ -6306,7 +6306,7 @@
   "Model": "Grävmaskin CAT 352 Next Gen",
   "Bouwjaar": "",
   "Draaiuren": "9.836 h",
-  "Eerste prijs": "€8.800",
+  "Eerste prijs": "€8",
   "Laatste prijs": "",
   "Verkoper": "Klaravik",
   "Locatie": "Jönköping, Zweden",
@@ -30975,10 +30975,10 @@
   "Gewicht": "Gewicht",
   "Jaar": "Jaar",
   "Afbeelding": "Afbeelding",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "AI Prijs",
+  "Vergelijkbaar 1": "Vergelijkbaar 1",
+  "Vergelijkbaar 2": "Vergelijkbaar 2",
+  "Vergelijkbaar 3": "Vergelijkbaar 3"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Linde",
@@ -30997,7 +30997,7 @@
   "Gewicht": "",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/mUSIgUqC39bb92EWt2WnljoTuvbQ9JJ4qyEW81EYbpA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31019,7 +31019,7 @@
   "Gewicht": "",
   "Jaar": "2000",
   "Afbeelding": "https://channableusercontent.com/images/templated/5qAqNIy6w0FKfxFULZPeOMWKYjDerCJYeLhiUxlrISg=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31041,7 +31041,7 @@
   "Gewicht": "",
   "Jaar": "2008",
   "Afbeelding": "https://channableusercontent.com/images/templated/1vx0cRWjLsDnPa3uZkl6Wx3R6Wjyl9ErOtlVhe6D9Ow=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31063,7 +31063,7 @@
   "Gewicht": "",
   "Jaar": "1992",
   "Afbeelding": "https://channableusercontent.com/images/templated/xoi3pOtXzO-W6zKqYadaMef-opERsUxAeKDhJaN76Zc=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31085,7 +31085,7 @@
   "Gewicht": "",
   "Jaar": "2008",
   "Afbeelding": "",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31107,7 +31107,7 @@
   "Gewicht": "",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/XLV7-QEsdUh4r8I2XClCAGHzGdGszS9YgBFb3Cl6Ihs=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31129,7 +31129,7 @@
   "Gewicht": "",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/zVQL4dHicxzyo0icY0ycZkZK9YEkL6oH6T67f7hhocw=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31151,7 +31151,7 @@
   "Gewicht": "",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/241v4CQ8UrNA9fBi6wbTWOR8r4iy-lv3-qU2ExlWsl8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31173,7 +31173,7 @@
   "Gewicht": "",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/HG0auTOMADtGdfKAoxZ2FLld3TZeS7PIt1OiJmJjKKg=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31195,7 +31195,7 @@
   "Gewicht": "",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/Qyeg8IJ7GL4mW3Hu0acHGKz-QescycTEYQ0RVxbZeX0=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31217,7 +31217,7 @@
   "Gewicht": "",
   "Jaar": "2022",
   "Afbeelding": "https://channableusercontent.com/images/templated/29FHHZCF9obGvRYZBWejH8uzo3S0Tw0aSsFAeOGnyms=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31239,7 +31239,7 @@
   "Gewicht": "",
   "Jaar": "2011",
   "Afbeelding": "",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31261,7 +31261,7 @@
   "Gewicht": "",
   "Jaar": "2007",
   "Afbeelding": "https://channableusercontent.com/images/templated/KK7YGPBOTqhSOE-BzfW5b7OMQwwo1f-YHad6O2UnpGs=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31283,7 +31283,7 @@
   "Gewicht": "",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/PK0XO_-vDgd3egKn-8HF3q2XFad8sOyr0PsdR9VIlTA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31305,7 +31305,7 @@
   "Gewicht": "",
   "Jaar": "2026",
   "Afbeelding": "",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31327,7 +31327,7 @@
   "Gewicht": "",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/3iU_p47FeUQqkhj--zVmXRiFEFrAW1uXieo4tH0xRcE=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31349,7 +31349,7 @@
   "Gewicht": "",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/3HuIFhLgvBhRc4j3lXP2DY2aa324Ppq8MoQbWcxI4i8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31371,7 +31371,7 @@
   "Gewicht": "",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/3HuIFhLgvBhRc4j3lXP2DY2aa324Ppq8MoQbWcxI4i8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31393,10 +31393,10 @@
   "Gewicht": "",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/hlBAU3VRo5SUo8gve9Z-u4_Jk7ZzT_9V-FQCQbk_vGY=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "313E / 320F / 323E / 325F / 329E/ 330F / 336E / 34 | Bouwjaar: 2018 | Uren: - | Prijs: €1.460 | Link: https://nl.baupool.com/details/Reserveonderdelen/Caterpillar-313E-320F-323E-325F-329E-330F-336E-34/8993893/",
+  "Vergelijkbaar 2": "Caterpillar M320F  | Bouwjaar: 2015 | Uren: 9.493 h | Prijs: €68.400 | Link: https://www.equippo.com/en/product/wheeled-excavator/caterpillar-m320f-41025",
+  "Vergelijkbaar 3": "Caterpillar 320 | Bouwjaar: 2022 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/escavatore_cingolato/caterpillar_320-PP606"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Hitachi",
@@ -31415,7 +31415,7 @@
   "Gewicht": "",
   "Jaar": "1977",
   "Afbeelding": "",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31437,7 +31437,7 @@
   "Gewicht": "",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/zDLj8zHkPMuNSeMvNrMTRn5wNaa40tBmpZXE7DtEnSE=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31459,7 +31459,7 @@
   "Gewicht": "",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/z1WR2zOS4RbDHIBT3voQadQXPRtwwx1rZUDBEBzB6T0=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31481,7 +31481,7 @@
   "Gewicht": "10000",
   "Jaar": "2013",
   "Afbeelding": "https://channableusercontent.com/images/templated/UnIfVStbURD1NrYq9Jqwc6LhUZu47EW_KYCurnAOjEM=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31503,7 +31503,7 @@
   "Gewicht": "10500",
   "Jaar": "1994",
   "Afbeelding": "https://channableusercontent.com/images/templated/7LLWKwhWzMuhqmmXfgWLbH1zhxxKhYXvi6uHmVqSIjA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31525,7 +31525,7 @@
   "Gewicht": "10500",
   "Jaar": "1994",
   "Afbeelding": "https://channableusercontent.com/images/templated/PMiS4eUR7awp2QJ9wtDEsdyrM9BMIseuOhyrxBo57LI=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31547,7 +31547,7 @@
   "Gewicht": "10890",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/kgG4g2nrTS3ATFbL4dqf-ZD32WV8cpXYO4OcQ0fndCc=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31569,7 +31569,7 @@
   "Gewicht": "12000",
   "Jaar": "1989",
   "Afbeelding": "https://channableusercontent.com/images/templated/P7srWNZB6rUwAIOdgoTP9CDYZnCKiJ26iYEfFAZZBIc=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31591,7 +31591,7 @@
   "Gewicht": "12013",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/X9N3jzPKHBjns42Za6T0LSYG4v2Z4FM7DVYF-tGjFkA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31613,7 +31613,7 @@
   "Gewicht": "12033",
   "Jaar": "2023",
   "Afbeelding": "https://channableusercontent.com/images/templated/HgPviSDVG3N44UKxMN0lx7oEBB2LTU5bz2Ng93EG6HQ=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31635,7 +31635,7 @@
   "Gewicht": "12035",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/wQk-LGfkEfsLuZ2ssFubgXVvFgiJt4BrEJLTO_O2ynM=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31657,7 +31657,7 @@
   "Gewicht": "12580",
   "Jaar": "1998",
   "Afbeelding": "https://channableusercontent.com/images/templated/TOG2G5wBnlaAMAzBNFE9grCNdRfsYdy2IEyxmRkKQew=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31679,7 +31679,7 @@
   "Gewicht": "12600",
   "Jaar": "2010",
   "Afbeelding": "https://channableusercontent.com/images/templated/pA31U8qjJtm063Vy1GxzS4ggurVngUsbHJM2RTC1vSE=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31701,7 +31701,7 @@
   "Gewicht": "12611",
   "Jaar": "2007",
   "Afbeelding": "https://channableusercontent.com/images/templated/o-Gbe_eao_saZMI7ZPHsIbz0AibdKJ6knRTC59q7wTE=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31723,9 +31723,9 @@
   "Gewicht": "13.400",
   "Jaar": "2021",
   "Afbeelding": "https://channableusercontent.com/images/templated/7apX6ymQ71BSXznU1xUtmIsMQaqW0mUHjJU2rHCDYEE=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "926M - 990 HOURS - FORKS - 3rd VALVE | Bouwjaar: 2018 | Uren: - | Prijs: €117.500 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/926M-990-HOURS-FORKS-3rd-VALVE--26100909471016562100",
+  "Vergelijkbaar 2": "926 | Bouwjaar: 1995 | Uren: 2.557 h | Prijs: Op aanvraag | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/1995-caterpillar-cat-926e-wheel-loader-2557-hour-cab-a-c-w-rear-door-a11882553.html",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -31745,7 +31745,7 @@
   "Gewicht": "13.200",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/Dp8xU-2aQ4tuT0A9JRXoSW6CTp8h9aEFllmzJC2XzhU=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31767,9 +31767,9 @@
   "Gewicht": "13400",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/-vBHTWrIG6KwjVrbOsEIUl-E3l32udul-5oQlc8EU7w=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "926M - 990 HOURS - FORKS - 3rd VALVE | Bouwjaar: 2018 | Uren: - | Prijs: €117.500 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/926M-990-HOURS-FORKS-3rd-VALVE--26100909471016562100",
+  "Vergelijkbaar 2": "926 | Bouwjaar: 1995 | Uren: 2.557 h | Prijs: Op aanvraag | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/1995-caterpillar-cat-926e-wheel-loader-2557-hour-cab-a-c-w-rear-door-a11882553.html",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -31789,9 +31789,9 @@
   "Gewicht": "13400",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/U-f9q7Z6QM88idlKenOVSoSbyBwNOw3hNJZoL5rTY5E=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "926M - 990 HOURS - FORKS - 3rd VALVE | Bouwjaar: 2018 | Uren: - | Prijs: €117.500 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/926M-990-HOURS-FORKS-3rd-VALVE--26100909471016562100",
+  "Vergelijkbaar 2": "926 | Bouwjaar: 1995 | Uren: 2.557 h | Prijs: Op aanvraag | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/1995-caterpillar-cat-926e-wheel-loader-2557-hour-cab-a-c-w-rear-door-a11882553.html",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -31811,7 +31811,7 @@
   "Gewicht": "13463",
   "Jaar": "2021",
   "Afbeelding": "https://channableusercontent.com/images/templated/67Dh3SfX_v4HKNSkkU6sFGm2lnYW-yKe7atAXrzAi3w=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31833,8 +31833,8 @@
   "Gewicht": "13600",
   "Jaar": "2021",
   "Afbeelding": "https://channableusercontent.com/images/templated/1xGqn80RpRkk0jY0Z_rDgVgRDrrNhlUW5h_Pg5Uo9ZU=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "Volvo EW60E with 5 buckets | Bouwjaar: 2016 | Uren: 7.889 h | Prijs: €31.900 | Link: https://www.equippo.com/en/product/wheeled-excavator/volvo-ew60e-with-5-buckets-36715",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -31855,7 +31855,7 @@
   "Gewicht": "13880",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/PVa4ECEsjDjAkOlDy6WXlVkEWxptGzSvlpWi3JGT-uI=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31877,7 +31877,7 @@
   "Gewicht": "14000",
   "Jaar": "1991",
   "Afbeelding": "https://channableusercontent.com/images/templated/B57DYSfHPfZaIKPgNtcp8baF3abdDIv61dcTmzamPBk=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31899,10 +31899,10 @@
   "Gewicht": "14300",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/Tdraf9A-gp-2Ole1imzPo77PmXV3Xjdwx_gqhRBMjDg=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "Caterpillar 315FLCR | Bouwjaar: 2017 | Uren: - | Prijs: €82.000 | Link: https://www.usatomacchine.it/usato/escavatore_cingolato/caterpillar_315flcr-PZ884",
+  "Vergelijkbaar 2": "Caterpillar 315BL | Bouwjaar: 2005 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/escavatore_cingolato/caterpillar_315bl-CT821",
+  "Vergelijkbaar 3": "315 C | Bouwjaar: 2004 | Uren: - | Prijs: €29.700 | Link: https://www.werktuigen.be/caterpillar-315+c/wt-210-81697"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Hitachi",
@@ -31921,7 +31921,7 @@
   "Gewicht": "14400",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/yFM5dcpJSVOZ3O40ZxQd73IhjekOmSPPPk8D5FUsPl4=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31943,7 +31943,7 @@
   "Gewicht": "14400",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/hKVHUBHslBPM6s0CB3C9icMUFPBGOyorNEOowIO9oL8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31965,7 +31965,7 @@
   "Gewicht": "15000",
   "Jaar": "2011",
   "Afbeelding": "https://channableusercontent.com/images/templated/MGOhY4yOoLEW9R-dlWc-psuZnocy3E7DYd7QhOAI35w=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -31987,9 +31987,9 @@
   "Gewicht": "15500",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/b898q0kTcd88N_f5ed2yBCbnbT-66N1XT7LQ6K6P5LI=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "Volvo FH 500 YV2RT40A7JB867034 EURO 6. Front spring. STANDARD chassis. Refrigerator, 2x Fuel Tank MVVolvoFH 500 YV2RT40A7JB867034 EURO 6. Front spring. ... | Bouwjaar: 2018 | Uren: - | Prijs: €34.000 | Link: https://www.truckscout24.com/tsp/ts-230-89-801",
+  "Vergelijkbaar 2": "Volvo L70E | Bouwjaar: 2005 | Uren: - | Prijs: €39.000 | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l70e-MS400",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -32009,10 +32009,10 @@
   "Gewicht": "15570",
   "Jaar": "1988",
   "Afbeelding": "https://channableusercontent.com/images/templated/iOIwgxqqis1bKybquKeEPjXK3VSNjFNr5xnsm_dMovE=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "950K | Bouwjaar: 2013 | Uren: 14.632 h | Prijs: €50.500 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/caterpillar-950k-a11677542.html",
+  "Vergelijkbaar 2": "950K | Bouwjaar: 2013 | Uren: 19.707 h | Prijs: €45.000 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/cat-950-k-a9312107.html",
+  "Vergelijkbaar 3": "950K | Bouwjaar: 2014 | Uren: 10.370 h | Prijs: €39.500 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/950K--26101216205176575500"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Volvo",
@@ -32031,8 +32031,8 @@
   "Gewicht": "15780",
   "Jaar": "2011",
   "Afbeelding": "https://channableusercontent.com/images/templated/5WKM3lm486X2q5TdZR8SAiVWNBFG5ewyArDqLukPaZg=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Volvo ECR145EL with Steelwrist rototilt and 2 buckets  | Bouwjaar: 2017 | Uren: 8.643 h | Prijs: €48.496 | Link: https://www.equippo.com/en/product/tracked-excavator/volvo-ecr145el-with-steelwrist-rototilt-and-2-buckets-40039",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -32053,7 +32053,7 @@
   "Gewicht": "15800",
   "Jaar": "2002",
   "Afbeelding": "https://channableusercontent.com/images/templated/l_jwQB5Lu2gB82IuJu3nDPjwIiNExXF-fsrNgAVqZDo=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32075,7 +32075,7 @@
   "Gewicht": "15800",
   "Jaar": "2005",
   "Afbeelding": "https://channableusercontent.com/images/templated/52wOMDjFcHH0xpt5oCHA2sJNg9CGu8mvfXLIs_NRi7s=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32097,8 +32097,8 @@
   "Gewicht": "15940",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/LdtMeRZbecimEZKlXJMfszDnOM6Gdy6vFvuR2gmm9g8=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "JCB JS145LC 4F | Bouwjaar: 2019 | Uren: 3.163 h | Prijs: €44.000 | Link: https://www.equippo.com/en/product/tracked-excavator/jcb-js145lc-4f-40879",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -32119,7 +32119,7 @@
   "Gewicht": "16000",
   "Jaar": "2007",
   "Afbeelding": "https://channableusercontent.com/images/templated/dALetu2xd1ZPexEmkfnGDeYay56aT6GZIiplGYTODpQ=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32141,7 +32141,7 @@
   "Gewicht": "16000",
   "Jaar": "2010",
   "Afbeelding": "https://channableusercontent.com/images/templated/6bj7zPKAAgg4nBxw6gdoqpi04kJGwSycwXjzdIBwpso=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32163,7 +32163,7 @@
   "Gewicht": "16200",
   "Jaar": "2003",
   "Afbeelding": "https://channableusercontent.com/images/templated/l7EdkadaAx0dobQC0dezvUY3lH66TK-cZafOyNszXyE=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32185,7 +32185,7 @@
   "Gewicht": "16428",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/URW6Dm5KeWqMp6t9w1gITlkpGm8xqvvxHzg5L5RaDDI=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32207,7 +32207,7 @@
   "Gewicht": "16428",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/cicb1ydwW1BPYoihI4HhVNiAKiBkCfQU2cnqTK_p5A0=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32229,7 +32229,7 @@
   "Gewicht": "16428",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/oHEETykHzplgitnhBV4KdZTIPinoqfrWSQ8BIgUkWf0=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32251,7 +32251,7 @@
   "Gewicht": "16428",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/1mI10_NEj3FZCDInAoTBtSZbwhO7SWSc88i8RwSUqsA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32273,7 +32273,7 @@
   "Gewicht": "16428",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/k6tRAYYM-d8sMnqwCuhvbK63bg1Wgfjx4RP0dlrt06Y=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32295,7 +32295,7 @@
   "Gewicht": "16500",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/1tU9yVKYYe0VUiG5zANt_6VBGicqZAObNKhHq7spiVQ=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32317,8 +32317,8 @@
   "Gewicht": "17000",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/eXtb23XBMXzWwQ8pY8vDl5liTRMXuDDO4YUmC5wrUFo=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Volvo L90H | Bouwjaar: 2024 | Uren: - | Prijs: €155.000 | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l90h-AD315",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -32339,7 +32339,7 @@
   "Gewicht": "17150",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/__aoEPyJGHHt5i3oO_H4TaUMDZj-N4TLYs8I6ODlJiE=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32361,7 +32361,7 @@
   "Gewicht": "17150",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/N8cgt4sLpPWcyJJdojQULTsoMx0qFPyO1ls6F6utfOM=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32383,8 +32383,8 @@
   "Gewicht": "17300",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/JsVAXNTZ3i8hOfpJ3odvnXdzAv41zjfIL4_4wlJMGZo=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Volvo L90H | Bouwjaar: 2024 | Uren: - | Prijs: €155.000 | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l90h-AD315",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -32405,7 +32405,7 @@
   "Gewicht": "17340",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/U3hlzCmiQooHBOvb2ISh8CbTrxwBVdWpRxpFuFO976o=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32427,7 +32427,7 @@
   "Gewicht": "17500",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/ZTALCYGfanVgr3NVTW2edvEtTr-508wM6xxvqAJ6Nqk=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32449,7 +32449,7 @@
   "Gewicht": "17680",
   "Jaar": "2010",
   "Afbeelding": "",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32471,7 +32471,7 @@
   "Gewicht": "17680",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/tY-mKjtr5yvGl2iBVTIaNHaBEIP23x-BQaw48ZSTl_w=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32493,7 +32493,7 @@
   "Gewicht": "17810",
   "Jaar": "2008",
   "Afbeelding": "https://channableusercontent.com/images/templated/LIgb_pUUMQhr_SoARBZiXFQ-I3TlGrNr-vjHZLqcsXk=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32515,7 +32515,7 @@
   "Gewicht": "17970",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/NZ3KqN_LXSk0RXO1mWFEnw0tCsLCWU1ueof55BfQ-G8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32537,7 +32537,7 @@
   "Gewicht": "18000",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/YkSYZxq_fZ78ESncvDn4cFfuu40iofyAKBmvjYNslLs=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32559,7 +32559,7 @@
   "Gewicht": "18000",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/Yy_QqohB8ZWTJfIyeiH_sD6xt1IVu7AKgn7knuf6Aic=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32581,7 +32581,7 @@
   "Gewicht": "18100",
   "Jaar": "2004",
   "Afbeelding": "https://channableusercontent.com/images/templated/HW6kqTRjLaW_BWPpohfvb18DFcWv3u2feEwry_RuJuA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32603,7 +32603,7 @@
   "Gewicht": "18163",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/VhlM7PMtO_9izIH-yE0lRGb4Cl66oHmwGBNFJH70Ksk=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32625,7 +32625,7 @@
   "Gewicht": "18300",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/2bzF7DWneRRUVOwGjR5kcIgZ4hEWhODMUe-Jy1yExsA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32647,7 +32647,7 @@
   "Gewicht": "18300",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/UXIrX8sPCfuKjGyfeoR6c5zabjlYxLNYhlIQYiFkoRQ=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32669,7 +32669,7 @@
   "Gewicht": "18500",
   "Jaar": "2008",
   "Afbeelding": "https://channableusercontent.com/images/templated/_40JPCXyvxovUsz1_to4paklMo7RQK65DCNYgkz8bKo=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32691,10 +32691,10 @@
   "Gewicht": "18500",
   "Jaar": "2011",
   "Afbeelding": "https://channableusercontent.com/images/templated/phijdt9ydJAhdL7zPUf9SjlwVaAjVVvKYhBogfBFQZA=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "950K | Bouwjaar: 2013 | Uren: 19.707 h | Prijs: €45.000 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/cat-950-k-a9312107.html",
+  "Vergelijkbaar 2": "950K | Bouwjaar: 2013 | Uren: 14.632 h | Prijs: €50.500 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/caterpillar-950k-a11677542.html",
+  "Vergelijkbaar 3": "950K | Bouwjaar: 2014 | Uren: 10.370 h | Prijs: €39.500 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/950K--26101216205176575500"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Liebherr",
@@ -32713,8 +32713,8 @@
   "Gewicht": "19000",
   "Jaar": "2022",
   "Afbeelding": "https://channableusercontent.com/images/templated/RT_WucuNRcfksdH325S3_4cq9XEwRkw_c4NGmVvD1Wg=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "Liebherr A 918 Litronic with Tiltrotator | Bouwjaar: 2016 | Uren: 12.019 h | Prijs: €96.700 | Link: https://www.equippo.com/en/product/wheeled-excavator/liebherr-a-918-litronic-with-tiltrotator-41270",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -32735,7 +32735,7 @@
   "Gewicht": "1932",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/nTUxid2HLMHLBZdmTNX4o7AgM1JmWjWU9GeeRbYw5yk=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32757,7 +32757,7 @@
   "Gewicht": "1932",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/myZ_xHpFxTHPyyUdJeDNOTxTF-fYSd_CB6alKHi9_NU=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32779,7 +32779,7 @@
   "Gewicht": "1932",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/An3bPfG6r18gNA2h6XJWKadXwREuwRHeBtxfME2XsO8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32801,7 +32801,7 @@
   "Gewicht": "19360",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/jzKDWKNjExi1ie6XlnZyRlcSWrtNtHhT4UitpZwZtgw=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32823,7 +32823,7 @@
   "Gewicht": "19360",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/u0nB8C_ezjizpkGkktVL3DqnzBQX3LJ6LbfHHPu4eBc=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32845,7 +32845,7 @@
   "Gewicht": "19360",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/MMZCSpB7KcPJqxNg0L0ZSTDZm5jUOVsHKBcJbUn0mYs=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32867,7 +32867,7 @@
   "Gewicht": "19460",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/kBnED8PCkYUcwX_3_34uG6my1QBs4UkQPUqmV6_02G0=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32889,7 +32889,7 @@
   "Gewicht": "19560",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/q6OjSWLm3bhkoUbv9dMuX6jENdrA37CaYZHYkmhNWIE=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32911,7 +32911,7 @@
   "Gewicht": "19580",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/RBHC6a_pHwbUBNvk67ShOkrtqYxbNblYlvgeL_FxbJY=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32933,7 +32933,7 @@
   "Gewicht": "19580",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/me13JjrHdhZphfVzEZDwuH0vMc666Dk7-v4zsYGJw7E=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32955,7 +32955,7 @@
   "Gewicht": "19580",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/_lGf58uCAgpqxA8hvAlgfVUf1dP90522qAVSMt10QhY=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32977,7 +32977,7 @@
   "Gewicht": "19650",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/qJpEJn5ceZz2gbNLyifoxdsYq2ORTjX7sAjtxD9tur8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -32999,9 +32999,9 @@
   "Gewicht": "19740",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/n8ZBzXdNsXz7sSpz2fz8tUu8JSE4qwOhldCUl8Ykl0g=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Volvo L180G | Bouwjaar: 2013 | Uren: - | Prijs: €105.000 | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l180g-NE634",
+  "Vergelijkbaar 2": "Volvo L180FHL | Bouwjaar: 2008 | Uren: - | Prijs: €119.000 | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l180fhl-DZ895",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -33021,7 +33021,7 @@
   "Gewicht": "19760",
   "Jaar": "2010",
   "Afbeelding": "https://channableusercontent.com/images/templated/tfw0iivC3zXNvAVLzdWjf1Arehz1lycb0fBvhOeYeEU=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33043,10 +33043,10 @@
   "Gewicht": "19800",
   "Jaar": "2013",
   "Afbeelding": "https://channableusercontent.com/images/templated/dkbEgkzK4gDOHevp4OVxzzpfQ6x52kmtfoUnlEkbuGw=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Goed geprijsd",
+  "Vergelijkbaar 1": "950K | Bouwjaar: 2013 | Uren: 14.632 h | Prijs: €50.500 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/caterpillar-950k-a11677542.html",
+  "Vergelijkbaar 2": "950K | Bouwjaar: 2013 | Uren: 19.707 h | Prijs: €45.000 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/cat-950-k-a9312107.html",
+  "Vergelijkbaar 3": "950K | Bouwjaar: 2014 | Uren: 10.370 h | Prijs: €39.500 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/950K--26101216205176575500"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Caterpillar",
@@ -33065,10 +33065,10 @@
   "Gewicht": "20300",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/vwfdgDgacH4QPfFd4geGTmFMbbA-gC4FIdoN-0IKzCg=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "313E / 320F / 323E / 325F / 329E/ 330F / 336E / 34 | Bouwjaar: 2018 | Uren: - | Prijs: €1.460 | Link: https://nl.baupool.com/details/Reserveonderdelen/Caterpillar-313E-320F-323E-325F-329E-330F-336E-34/8993893/",
+  "Vergelijkbaar 2": "Caterpillar M320F  | Bouwjaar: 2015 | Uren: 9.493 h | Prijs: €68.400 | Link: https://www.equippo.com/en/product/wheeled-excavator/caterpillar-m320f-41025",
+  "Vergelijkbaar 3": "Caterpillar 320 | Bouwjaar: 2022 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/escavatore_cingolato/caterpillar_320-PP606"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Liebherr",
@@ -33087,7 +33087,7 @@
   "Gewicht": "20500",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/G61NQcURXYvMgVGsOVmoJJL3P2kWpD6ChsWnnX-F2DA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33109,10 +33109,10 @@
   "Gewicht": "20500",
   "Jaar": "2015",
   "Afbeelding": "https://channableusercontent.com/images/templated/z0luLXoe4C3gwQL-my77VhVfit5CBjN9F_aGxcUcmOE=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Goed geprijsd",
+  "Vergelijkbaar 1": "L 550 | Bouwjaar: 2013 | Uren: 18.036 h | Prijs: €37.500 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/liebherr-l550-a11872637.html",
+  "Vergelijkbaar 2": "L 550 | Bouwjaar: 2013 | Uren: 19.478 h | Prijs: €47.500 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/liebherr-l-550-a11669842.html",
+  "Vergelijkbaar 3": "L 550 | Bouwjaar: 2012 | Uren: 10.489 h | Prijs: €36.000 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/liebherr-l-550-quick-coupler-a11899317.html"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Volvo",
@@ -33131,7 +33131,7 @@
   "Gewicht": "20500",
   "Jaar": "2013",
   "Afbeelding": "https://channableusercontent.com/images/templated/-2Q8yCz-Lr9d_GIF7-sXJu0Fh8daf9A75-ndr5yzd98=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33153,7 +33153,7 @@
   "Gewicht": "20680",
   "Jaar": "2011",
   "Afbeelding": "https://channableusercontent.com/images/templated/UDVxZ6dsv-PV-2AxdgO33a8v-3QZG1wdeLF6tJlYBEo=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33175,9 +33175,9 @@
   "Gewicht": "20695",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/HMIuqZ1-_JjC_pItqzmKhufdJKSCR5zqhofun3FpBeo=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "963 | Bouwjaar: 1991 | Uren: 16.000 h | Prijs: Op aanvraag | Link: https://www.truck1.eu/construction-machinery/crawler-loaders/caterpillar-963-a11192383.html",
+  "Vergelijkbaar 2": "963 | Bouwjaar: 1982 | Uren: 6.950 h | Prijs: €18.500 | Link: https://www.truck1.eu/construction-machinery/crawler-loaders/caterpillar-963-a11835867.html",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -33197,9 +33197,9 @@
   "Gewicht": "20700",
   "Jaar": "2015",
   "Afbeelding": "https://channableusercontent.com/images/templated/zxdiDY6gOTxxWK2CUxd7mgMY8hdRcP_9ldQUsn18WXU=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Op aanvraag",
+  "Vergelijkbaar 1": "Volvo L110H | Bouwjaar: 2015 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l110h-QT475",
+  "Vergelijkbaar 2": "Volvo L110F | Bouwjaar: 2010 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l110f-GP860",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -33219,7 +33219,7 @@
   "Gewicht": "21390",
   "Jaar": "2008",
   "Afbeelding": "https://channableusercontent.com/images/templated/1FtRxltS5pEJ5cJiZpMdXeZsMBVMqNpRZjpx1lCHpkY=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33241,10 +33241,10 @@
   "Gewicht": "21400",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/fll9rz1rZzWGYOvoAFHXiSIlMs6YxLKR7VQNseQx8wU=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "313E / 320F / 323E / 325F / 329E/ 330F / 336E / 34 | Bouwjaar: 2018 | Uren: - | Prijs: €1.460 | Link: https://nl.baupool.com/details/Reserveonderdelen/Caterpillar-313E-320F-323E-325F-329E-330F-336E-34/8993893/",
+  "Vergelijkbaar 2": "Caterpillar M320F  | Bouwjaar: 2015 | Uren: 9.493 h | Prijs: €68.400 | Link: https://www.equippo.com/en/product/wheeled-excavator/caterpillar-m320f-41025",
+  "Vergelijkbaar 3": "Caterpillar 320 | Bouwjaar: 2022 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/escavatore_cingolato/caterpillar_320-PP606"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Caterpillar",
@@ -33263,10 +33263,10 @@
   "Gewicht": "21400",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/O3ktRE-Yx3G3kYJSdMmLTxhJ8f11uMtyLHevF7DCVoc=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "313E / 320F / 323E / 325F / 329E/ 330F / 336E / 34 | Bouwjaar: 2018 | Uren: - | Prijs: €1.460 | Link: https://nl.baupool.com/details/Reserveonderdelen/Caterpillar-313E-320F-323E-325F-329E-330F-336E-34/8993893/",
+  "Vergelijkbaar 2": "Caterpillar M320F  | Bouwjaar: 2015 | Uren: 9.493 h | Prijs: €68.400 | Link: https://www.equippo.com/en/product/wheeled-excavator/caterpillar-m320f-41025",
+  "Vergelijkbaar 3": "Caterpillar 320 | Bouwjaar: 2022 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/escavatore_cingolato/caterpillar_320-PP606"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Caterpillar",
@@ -33285,10 +33285,10 @@
   "Gewicht": "21400",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/lM0XqgTkBnFwAbKFvbJrgH-vEbaR9RLlLBLEkCWLBr8=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "313E / 320F / 323E / 325F / 329E/ 330F / 336E / 34 | Bouwjaar: 2018 | Uren: - | Prijs: €1.460 | Link: https://nl.baupool.com/details/Reserveonderdelen/Caterpillar-313E-320F-323E-325F-329E-330F-336E-34/8993893/",
+  "Vergelijkbaar 2": "Caterpillar M320F  | Bouwjaar: 2015 | Uren: 9.493 h | Prijs: €68.400 | Link: https://www.equippo.com/en/product/wheeled-excavator/caterpillar-m320f-41025",
+  "Vergelijkbaar 3": "Caterpillar 320 | Bouwjaar: 2022 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/escavatore_cingolato/caterpillar_320-PP606"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Caterpillar",
@@ -33307,10 +33307,10 @@
   "Gewicht": "21400",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/D6T96kLVxW52ZgC-WBsj-jJOdfIFvwDKKnTn0MM2Zsg=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "313E / 320F / 323E / 325F / 329E/ 330F / 336E / 34 | Bouwjaar: 2018 | Uren: - | Prijs: €1.460 | Link: https://nl.baupool.com/details/Reserveonderdelen/Caterpillar-313E-320F-323E-325F-329E-330F-336E-34/8993893/",
+  "Vergelijkbaar 2": "Caterpillar M320F  | Bouwjaar: 2015 | Uren: 9.493 h | Prijs: €68.400 | Link: https://www.equippo.com/en/product/wheeled-excavator/caterpillar-m320f-41025",
+  "Vergelijkbaar 3": "Caterpillar 320 | Bouwjaar: 2022 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/escavatore_cingolato/caterpillar_320-PP606"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Hitachi",
@@ -33329,7 +33329,7 @@
   "Gewicht": "21500",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/HCyuIFUvH6iooKC7MDhuWqUDPuJFksmqp-aZ0sgagPs=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33351,9 +33351,9 @@
   "Gewicht": "21560",
   "Jaar": "2007",
   "Afbeelding": "https://channableusercontent.com/images/templated/TV86byCS65HBGRQOMVb1KbFuppce7-wa6mUBgnpnsnY=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Volvo EC250DNL with 3 excavator buckets | Bouwjaar: 2014 | Uren: 13.287 h | Prijs: €40.400 | Link: https://www.equippo.com/en/product/tracked-excavator/volvo-ec250dnl-with-3-excavator-buckets-40205",
+  "Vergelijkbaar 2": "Volvo EC250EL  | Bouwjaar: 2023 | Uren: 1.561 h | Prijs: €148.500 | Link: https://www.equippo.com/en/product/tracked-excavator/volvo-ec250el-41426",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -33373,8 +33373,8 @@
   "Gewicht": "21600",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/4mCOMBqRinNUMj8-kgaQhKRz6Hn90kLEAA8rz5Etfo0=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "Volvo L120 | Bouwjaar: 1988 | Uren: - | Prijs: €14.000 | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l120-NT486",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -33395,8 +33395,8 @@
   "Gewicht": "21600",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/7wfGeUEQcDWvXVzGTQrQ3KsNDcyUJZJZ_p672QVig6c=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "Volvo L120 | Bouwjaar: 1988 | Uren: - | Prijs: €14.000 | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l120-NT486",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -33417,7 +33417,7 @@
   "Gewicht": "21600",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/1aI97Siqj8kmiNpnYB-Bx6NchBjHKd7yftSXp_26cjQ=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33439,7 +33439,7 @@
   "Gewicht": "21700",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/vJBIK99TF5Ojq1jEPVGxfU534H1acXGM9q3MdgsheB0=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33461,7 +33461,7 @@
   "Gewicht": "2190",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/lMaWU1gINWmlkYBbRANgueGpGoefeAW0a-U03CUdTpI=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33483,7 +33483,7 @@
   "Gewicht": "22200",
   "Jaar": "2011",
   "Afbeelding": "https://channableusercontent.com/images/templated/Tdbyrt2W3sR7DDem0H4CagY4UNjFuG9Z0qRoYTtewUA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33505,7 +33505,7 @@
   "Gewicht": "22260",
   "Jaar": "2007",
   "Afbeelding": "https://channableusercontent.com/images/templated/JFSBbbJfaRYhHMngrMhIYmbxdu8lrX-WQASgVEsv_Qs=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33527,10 +33527,10 @@
   "Gewicht": "22600",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/_CRwxiLThU8IcHxmNNpVd3QYUOl032umyICzy7Nv88Y=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Caterpillar 323FLN | Bouwjaar: 2017 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/escavatore_cingolato/caterpillar_323fln-CN423",
+  "Vergelijkbaar 2": "Caterpillar 323FLN | Bouwjaar: 2017 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/escavatore_cingolato/caterpillar_323fln-UA301",
+  "Vergelijkbaar 3": "Caterpillar 323F | Bouwjaar: 2017 | Uren: - | Prijs: €90.000 | Link: https://www.usatomacchine.it/usato/escavatore_cingolato/caterpillar_323f-RG034"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Hitachi",
@@ -33549,7 +33549,7 @@
   "Gewicht": "22700",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/LsNExXhQd5MNg2Wo3CbHX1t5YeAfnsBijNkgNj_wS6U=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33571,8 +33571,8 @@
   "Gewicht": "22850",
   "Jaar": "2011",
   "Afbeelding": "https://channableusercontent.com/images/templated/51r1B8FcsqZparP0Xbs_3gHVGi7lRio_pi4IPBDAmzc=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Caterpillar 730  | Bouwjaar: 2020 | Uren: 5.171 h | Prijs: €165.000 | Link: https://www.equippo.com/en/product/articulated-dump-truck/caterpillar-730-41349",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -33593,7 +33593,7 @@
   "Gewicht": "22900",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/Oqsm3vdymrfGwDzNGpBRTLSKpi3l4UEm6KX-ZITOHxg=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33615,7 +33615,7 @@
   "Gewicht": "23000",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/SQLM05XvxTwMnJDuspXXrKotkg_MA71wTzoWBI0HCcs=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33637,7 +33637,7 @@
   "Gewicht": "23580",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/6uVOisoB-wwV6lO3oHgLmoq8UyT-KAwCrvDsPDGumMQ=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33659,7 +33659,7 @@
   "Gewicht": "23600",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/6ni9G7vaUNUm-KrJlMpWjIxRq5CUHayVncIYZkdvdHU=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33681,10 +33681,10 @@
   "Gewicht": "24000",
   "Jaar": "2011",
   "Afbeelding": "https://channableusercontent.com/images/templated/Skqy56rM_GVRs-1Je5pt3KZFWycHA__7cYcmdQgD4Gk=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Goed geprijsd",
+  "Vergelijkbaar 1": "966K | Bouwjaar: 2012 | Uren: 17.060 h | Prijs: Op aanvraag | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/caterpillar-966-k-111694-a10345216.html",
+  "Vergelijkbaar 2": "966H | Bouwjaar: 2009 | Uren: 3.645 h | Prijs: €51.200 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/caterpillar-966h-a11634991.html",
+  "Vergelijkbaar 3": "966K | Bouwjaar: 2014 | Uren: 15.621 h | Prijs: €47.000 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/cat-966kxe-a11758963.html"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Caterpillar",
@@ -33703,10 +33703,10 @@
   "Gewicht": "24000",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/hDy-iOH96ak6s-PRvfER7-1-jDn_9d10bU0xn6YmSPw=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "966K | Bouwjaar: 2012 | Uren: 17.060 h | Prijs: Op aanvraag | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/caterpillar-966-k-111694-a10345216.html",
+  "Vergelijkbaar 2": "966K | Bouwjaar: 2014 | Uren: 15.621 h | Prijs: €47.000 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/cat-966kxe-a11758963.html",
+  "Vergelijkbaar 3": "966M | Bouwjaar: 2014 | Uren: 12.010 h | Prijs: €56.800 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/966M--26072013413436158300"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Caterpillar",
@@ -33725,10 +33725,10 @@
   "Gewicht": "24000",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/Lb72ChqxNDfIAP1YJKQ_rkosrtK_onyuUv3atvFr0Fw=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Goed geprijsd",
+  "Vergelijkbaar 1": "966F | Bouwjaar: 2016 | Uren: 3.000 h | Prijs: Op aanvraag | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/caterpillar-966f-a9444394.html",
+  "Vergelijkbaar 2": "966M - 24T - Wheel Loader - CE - Rear Camera - Airconditioning | Bouwjaar: 2016 | Uren: - | Prijs: €49.800 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/966M-24T-Wheel-Loader-CE-Rear-Camera-Airconditioning---26072115150205615600",
+  "Vergelijkbaar 3": "966M | Bouwjaar: 2015 | Uren: 11.187 h | Prijs: €65.900 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/966M--26100409471499105700"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Caterpillar",
@@ -33747,10 +33747,10 @@
   "Gewicht": "24000",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/u7SXGmpqwAh2gJGYdrd6npDRwP1zVHVlpj9Rg36L6vs=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "966MXE | Bouwjaar: 2017 | Uren: 94.000 h | Prijs: €94.000 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/966MXE--26011911145555645000",
+  "Vergelijkbaar 2": "966 M XE | Bouwjaar: 2018 | Uren: 9.614 h | Prijs: €84.000 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/966-M-XE--26101911385275899000",
+  "Vergelijkbaar 3": "966M | Bouwjaar: 2018 | Uren: 8.691 h | Prijs: €116.000 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/caterpillar-966m-a11233369.html"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Caterpillar",
@@ -33769,8 +33769,8 @@
   "Gewicht": "24500",
   "Jaar": "2022",
   "Afbeelding": "https://channableusercontent.com/images/templated/w2PoQeDvt2H6ggY_Hx88ZuX0OuBJWQbVN9OkZcdv9w8=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "Caterpillar MH3024  | Bouwjaar: 2019 | Uren: 14.105 h | Prijs: €49.300 | Link: https://www.equippo.com/en/product/material-handling-excavator/caterpillar-mh3024-40859",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -33791,7 +33791,7 @@
   "Gewicht": "24700",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/a630weXV85batrxQGzmsfo4myQNVfCigIjCdLSksNlg=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33813,7 +33813,7 @@
   "Gewicht": "24724",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/wuPM5-nGXJXVQWQLzJ6Nej-Xjic68lZ59-O2NlDiZqI=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33835,7 +33835,7 @@
   "Gewicht": "24760",
   "Jaar": "2003",
   "Afbeelding": "https://channableusercontent.com/images/templated/Ect1BD0ggHyaEwUJJhj-ywcP8tXujYK9KeKWALWjpmo=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33857,10 +33857,10 @@
   "Gewicht": "24800",
   "Jaar": "2021",
   "Afbeelding": "https://channableusercontent.com/images/templated/ewUaU3N-LsIE3Vt9aTxis9oHcmP-m4BwVs-f9D2P7iQ=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "972MXE | Bouwjaar: 2019 | Uren: 15.052 h | Prijs: €68.500 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/972MXE--26011912062480989000",
+  "Vergelijkbaar 2": "972H | Bouwjaar: 2023 | Uren: 653 h | Prijs: €69.571 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/caterpillar-972h-a11672532.html",
+  "Vergelijkbaar 3": "972M XE | Bouwjaar: 2015 | Uren: 15.675 h | Prijs: €61.900 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/972M-XE--26092222455371108900"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Caterpillar",
@@ -33879,10 +33879,10 @@
   "Gewicht": "24900",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/SSR0ZGr6rxgkv5A4fs76pcPAmPZLAaESgkpBj_L-LKc=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "972MXE | Bouwjaar: 2019 | Uren: 15.052 h | Prijs: €68.500 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/972MXE--26011912062480989000",
+  "Vergelijkbaar 2": "972H | Bouwjaar: 2023 | Uren: 653 h | Prijs: €69.571 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/caterpillar-972h-a11672532.html",
+  "Vergelijkbaar 3": "972M XE | Bouwjaar: 2015 | Uren: 15.675 h | Prijs: €61.900 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/972M-XE--26092222455371108900"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Caterpillar",
@@ -33901,10 +33901,10 @@
   "Gewicht": "24900",
   "Jaar": "2021",
   "Afbeelding": "https://channableusercontent.com/images/templated/6WkCIXUv9BZTy2hZvxeuFo6QQY6Ijthx3__z8NRQd-0=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Goed geprijsd",
+  "Vergelijkbaar 1": "972MXE | Bouwjaar: 2019 | Uren: 15.052 h | Prijs: €68.500 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/972MXE--26011912062480989000",
+  "Vergelijkbaar 2": "972H | Bouwjaar: 2023 | Uren: 653 h | Prijs: €69.571 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/caterpillar-972h-a11672532.html",
+  "Vergelijkbaar 3": "972M | Bouwjaar: 2015 | Uren: 16.355 h | Prijs: €75.000 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/972M--26011912372463274700"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Caterpillar",
@@ -33923,10 +33923,10 @@
   "Gewicht": "24900",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/FUsBMDZh2O5DKuFjzcapcNkqoMr7zMVscCq1oRllXuQ=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Goed geprijsd",
+  "Vergelijkbaar 1": "966M | Bouwjaar: 2014 | Uren: 12.010 h | Prijs: €56.800 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/966M--26072013413436158300",
+  "Vergelijkbaar 2": "966K | Bouwjaar: 2014 | Uren: 15.621 h | Prijs: €47.000 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/cat-966kxe-a11758963.html",
+  "Vergelijkbaar 3": "966M | Bouwjaar: 2015 | Uren: 11.187 h | Prijs: €65.900 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/966M--26100409471499105700"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Caterpillar",
@@ -33945,10 +33945,10 @@
   "Gewicht": "24900",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/xKYeQXR1YAlaDzN4-LOYWY-hq3mF3fwFxA56u1CejcQ=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Goed geprijsd",
+  "Vergelijkbaar 1": "972MXE | Bouwjaar: 2019 | Uren: 15.052 h | Prijs: €68.500 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/972MXE--26011912062480989000",
+  "Vergelijkbaar 2": "972M XE | Bouwjaar: 2015 | Uren: 15.675 h | Prijs: €61.900 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/972M-XE--26092222455371108900",
+  "Vergelijkbaar 3": "972M | Bouwjaar: 2015 | Uren: 16.355 h | Prijs: €75.000 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/972M--26011912372463274700"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Sherp",
@@ -33967,7 +33967,7 @@
   "Gewicht": "2500",
   "Jaar": "2021",
   "Afbeelding": "https://channableusercontent.com/images/templated/X0IjXCbuGfSMqqe5KQn1h43mtsPd3XFQ4g4QJtENCco=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -33989,7 +33989,7 @@
   "Gewicht": "2500",
   "Jaar": "2007",
   "Afbeelding": "https://channableusercontent.com/images/templated/YOQ3ei0PFEY1FkDDD-XXmQYXM_2wz2wRHFHPbv3Zn_E=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34011,7 +34011,7 @@
   "Gewicht": "2510",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/Q3FNEOnmcah30ZcKmJyva0jdD5RyeX6eqdFYfypJhmE=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34033,7 +34033,7 @@
   "Gewicht": "25600",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/-Uff5BNDATMLysLfzPYrtH1FTvViEciapLkkKFvhpv4=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34055,7 +34055,7 @@
   "Gewicht": "25845",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/brvusKdvGvvbusA6Ipzuogfgu8EbUxIuEqGLC26A-k0=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34077,8 +34077,8 @@
   "Gewicht": "26100",
   "Jaar": "2013",
   "Afbeelding": "https://channableusercontent.com/images/templated/lnrHwDqghRRXwXrqC-G_IhdcR-o060QgwhXVHfONMYU=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Op aanvraag",
+  "Vergelijkbaar 1": "Volvo L150F | Bouwjaar: 2008 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l150f-HN263",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -34099,8 +34099,8 @@
   "Gewicht": "26100",
   "Jaar": "2015",
   "Afbeelding": "https://channableusercontent.com/images/templated/K_AEigOmdnOH66AP8tVfF6ZFwEb8dbQVlTWCNUNAfAE=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Op aanvraag",
+  "Vergelijkbaar 1": "Volvo L150F | Bouwjaar: 2008 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l150f-HN263",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -34121,8 +34121,8 @@
   "Gewicht": "26100",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/mHenRPSmrFtGzIOcuLhD9vgeUDCwXEY1KKNy-b6KwqE=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Op aanvraag",
+  "Vergelijkbaar 1": "Volvo L150F | Bouwjaar: 2008 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l150f-HN263",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -34143,8 +34143,8 @@
   "Gewicht": "26100",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/puDBmQxF0fjUrzSrELFKYUq9wrz0FBw-ZJOAwTvuBmk=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Op aanvraag",
+  "Vergelijkbaar 1": "Volvo L150F | Bouwjaar: 2008 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l150f-HN263",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -34165,8 +34165,8 @@
   "Gewicht": "26100",
   "Jaar": "2015",
   "Afbeelding": "https://channableusercontent.com/images/templated/iqxWnRTE6RzbkxaSI-CkWbScY4d02b97_TWxjNgFwi8=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Op aanvraag",
+  "Vergelijkbaar 1": "Volvo L150F | Bouwjaar: 2008 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l150f-HN263",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -34187,8 +34187,8 @@
   "Gewicht": "26100",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/g7K0FUVx54MyYjC_GkzUDySIkGUPJsEjJCChd2qKp3o=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Op aanvraag",
+  "Vergelijkbaar 1": "Volvo L150F | Bouwjaar: 2008 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l150f-HN263",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -34209,8 +34209,8 @@
   "Gewicht": "26100",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/5TL3oK9ADsStGo6hYq6z2w8JSo54vlrfPd5LCGNyAnw=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Op aanvraag",
+  "Vergelijkbaar 1": "Volvo L150F | Bouwjaar: 2008 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l150f-HN263",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -34231,8 +34231,8 @@
   "Gewicht": "26100",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/JtvaXVGyeLytHUx1WyKy3YxHuU6I___oDiAwX0j1xDs=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Op aanvraag",
+  "Vergelijkbaar 1": "Volvo L150F | Bouwjaar: 2008 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l150f-HN263",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -34253,8 +34253,8 @@
   "Gewicht": "26100",
   "Jaar": "2015",
   "Afbeelding": "https://channableusercontent.com/images/templated/mepJSjQkcPZSeCPdQlpNcDme0XlcdLj30N3-YGOVl8U=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Op aanvraag",
+  "Vergelijkbaar 1": "Volvo L150F | Bouwjaar: 2008 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l150f-HN263",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -34275,7 +34275,7 @@
   "Gewicht": "26600",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/Jx2xJjOUKI3kxBQ8s-1ilJdXFr6W2qt-qHe2-re3ZNM=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34297,7 +34297,7 @@
   "Gewicht": "26600",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/-X2XNaG-d_O9XLOQDEpWrIK-527vq2M-v7VOT8XkpZw=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34319,7 +34319,7 @@
   "Gewicht": "2665",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/VkSMPVNjWf8-HNODkxhsvQt8i6sSvvf2flDezCYupgE=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34341,7 +34341,7 @@
   "Gewicht": "26900",
   "Jaar": "2008",
   "Afbeelding": "https://channableusercontent.com/images/templated/E1q9vvxlHatYtbSRj4k3zwQATVRdl0tpT88yth1x5FY=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34363,7 +34363,7 @@
   "Gewicht": "27500",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/BekmBksBPCwOR6UUhdCyfwyTW5Yg63RJ63qm9g8FvUo=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34385,7 +34385,7 @@
   "Gewicht": "27650",
   "Jaar": "2010",
   "Afbeelding": "https://channableusercontent.com/images/templated/BktyYXg6bpLIImL0cx5n0N49yXN3euVXQEvhekMKpmA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34407,7 +34407,7 @@
   "Gewicht": "2770",
   "Jaar": "2023",
   "Afbeelding": "https://channableusercontent.com/images/templated/3m3O_Dzhl3P3RiN4nYSty7S_-bXAuYkCczRR1Wc7p7o=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34429,7 +34429,7 @@
   "Gewicht": "2770",
   "Jaar": "2023",
   "Afbeelding": "https://channableusercontent.com/images/templated/3m3O_Dzhl3P3RiN4nYSty7S_-bXAuYkCczRR1Wc7p7o=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34451,7 +34451,7 @@
   "Gewicht": "28000",
   "Jaar": "2021",
   "Afbeelding": "https://channableusercontent.com/images/templated/z2n5et6twqtk-DPvlCXSRseErhzrVp5s3z9OjwmiRJQ=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34473,7 +34473,7 @@
   "Gewicht": "28000",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/cmaw9xapZ-ZDATYsubILAzcTLakut3MknTXHZwor-4I=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34495,7 +34495,7 @@
   "Gewicht": "28000",
   "Jaar": "2011",
   "Afbeelding": "https://channableusercontent.com/images/templated/hWehxDxIdjw_NDcU2sLA_44H7CA9vB2ztEgEbWdErQw=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34517,7 +34517,7 @@
   "Gewicht": "28000",
   "Jaar": "2013",
   "Afbeelding": "https://channableusercontent.com/images/templated/wB4L_pnJ9uTeNNIB5YDk-6JWtzhrHrscMLcyCZxhET0=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34539,7 +34539,7 @@
   "Gewicht": "28300",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/JymtS8cMl9NsESLDsLshakF8qHqhxCU2jzbacu5DuEU=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34561,7 +34561,7 @@
   "Gewicht": "29000",
   "Jaar": "2013",
   "Afbeelding": "https://channableusercontent.com/images/templated/gk_z9Ihsn1LAiQTG3lmWF81JTpHG43kZmD6BQ-a75B4=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34583,7 +34583,7 @@
   "Gewicht": "29100",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/DUvN5PkglhCs5wfUJJOn_q-AyiehyqH2dRppoAu9WS8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34605,9 +34605,9 @@
   "Gewicht": "29110",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/IAzl5oChBoisAGKnNGBi0Wo9g_omTc6Dcbxj68-VZrE=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Volvo EC250DNL with 3 excavator buckets | Bouwjaar: 2014 | Uren: 13.287 h | Prijs: €40.400 | Link: https://www.equippo.com/en/product/tracked-excavator/volvo-ec250dnl-with-3-excavator-buckets-40205",
+  "Vergelijkbaar 2": "Volvo EC250EL  | Bouwjaar: 2023 | Uren: 1.561 h | Prijs: €148.500 | Link: https://www.equippo.com/en/product/tracked-excavator/volvo-ec250el-41426",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -34627,10 +34627,10 @@
   "Gewicht": "29500",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/g8ZNhrOMv3URmBx9wM7yc3KX6HK3xxonjFSyMvLGBNE=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Op aanvraag",
+  "Vergelijkbaar 1": "980 K | Bouwjaar: 2014 | Uren: 14.744 h | Prijs: €69.750 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/980-K--26092615154331419000",
+  "Vergelijkbaar 2": "980 M | Bouwjaar: 2019 | Uren: 10.326 h | Prijs: €116.500 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/980-M--26092612543239509100",
+  "Vergelijkbaar 3": "980 M | Bouwjaar: 2020 | Uren: 10.831 h | Prijs: €94.950 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/980-M--26100510503613468900"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Volvo",
@@ -34649,9 +34649,9 @@
   "Gewicht": "29700",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/hRgj45JjjDjWb6buhBld-HQA4kylNNTtfJ8WWX0Fx1U=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Volvo L180G | Bouwjaar: 2013 | Uren: - | Prijs: €105.000 | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l180g-NE634",
+  "Vergelijkbaar 2": "Volvo L180FHL | Bouwjaar: 2008 | Uren: - | Prijs: €119.000 | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l180fhl-DZ895",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -34671,7 +34671,7 @@
   "Gewicht": "30000",
   "Jaar": "2023",
   "Afbeelding": "https://channableusercontent.com/images/templated/tZ7Rp2qt4FmjuNCPS9hfLx1ZZDnD5xj3R6uIO_DIXCM=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34693,7 +34693,7 @@
   "Gewicht": "30100",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/v5-oFadw6ASLU2qZ7Pg9IyGpxbe--1NWTpDwnejByT4=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34715,10 +34715,10 @@
   "Gewicht": "31000",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/yrsL316UHAXau7W3ltlmqHjF4UDd2vIOG2N37Zbp-Uc=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Op aanvraag",
+  "Vergelijkbaar 1": "L 580 | Bouwjaar: 2016 | Uren: - | Prijs: €78.000 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/liebherr-l580-a11823226.html",
+  "Vergelijkbaar 2": "L 580 | Bouwjaar: 2011 | Uren: 19.823 h | Prijs: €42.500 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/liebherr-l580-automatic-greasing-heated-seat-a11541884.html",
+  "Vergelijkbaar 3": "L 566 XPower 564 578 580 CAT 966 | Bouwjaar: 2021 | Uren: 21.288 h | Prijs: €88.100 | Link: https://machineryline.info/-/sale/wheel-loaders/Liebherr/L-566-XPower-564-578-580-CAT-966--26050711255718977900"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Hyundai",
@@ -34737,9 +34737,9 @@
   "Gewicht": "31300",
   "Jaar": "2022",
   "Afbeelding": "https://channableusercontent.com/images/templated/-uOn8_UC0zggqeWM0pO5BgkygNHvpJoko2EPG836v9U=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Hyundai HX300ANL  | Bouwjaar: 2023 | Uren: 3.888 h | Prijs: €116.000 | Link: https://www.equippo.com/en/product/rupsgraafmachine/hyundai-hx300anl-41100",
+  "Vergelijkbaar 2": "Hyundai HX300ANL  | Bouwjaar: 2023 | Uren: 4.531 h | Prijs: €116.000 | Link: https://www.equippo.com/en/product/tracked-excavator/hyundai-hx300anl-41099",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -34759,7 +34759,7 @@
   "Gewicht": "31960",
   "Jaar": "2011",
   "Afbeelding": "",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34781,7 +34781,7 @@
   "Gewicht": "32580",
   "Jaar": "2007",
   "Afbeelding": "https://channableusercontent.com/images/templated/MWdbL2P4sDobd-nB3R8oEJxHC8HlVwC-qfqhbUMJAaQ=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34803,7 +34803,7 @@
   "Gewicht": "33930",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/Kg71lvdxFT7JmfdapZO8V3UDhE7icE7FA2MJ-ZZLuT4=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34825,7 +34825,7 @@
   "Gewicht": "3400",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/iBiSpl5MzWMdAbKCf_9QMh4LZQvdhi07rOCT2n6kCVI=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34847,8 +34847,8 @@
   "Gewicht": "34000",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/I4iMuFT3ZihU8OW6w7hezd1xRu-3ZRC3EBuYv4_H37w=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "Hitachi ZX350LC-3 with standard earth boom and long-front boom | Bouwjaar: 2008 | Uren: 10.526 h | Prijs: €66.000 | Link: https://www.equippo.com/en/product/demolition-excavator/hitachi-zx350lc-3-with-standard-earth-boom-and-long-front-boom-40542",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -34869,7 +34869,7 @@
   "Gewicht": "34700",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/6IxsJg4tlgeXfND-Oo35IQ7qm4pVzGEF6mB0qqp89dM=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34891,7 +34891,7 @@
   "Gewicht": "3476",
   "Jaar": "2009",
   "Afbeelding": "https://channableusercontent.com/images/templated/FZLbMEbAlr-CNMHmYwWP4eOs4LCbPzbeY1AqgUHjzAs=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34913,9 +34913,9 @@
   "Gewicht": "34870",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/NVZHZQ_AjvF_GKv4Ozbeeu9JzAHS4EFpl5xLs2L-LaM=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Hyundai HX300ANL  | Bouwjaar: 2023 | Uren: 4.531 h | Prijs: €116.000 | Link: https://www.equippo.com/en/product/tracked-excavator/hyundai-hx300anl-41099",
+  "Vergelijkbaar 2": "Hyundai HX300ANL  | Bouwjaar: 2023 | Uren: 3.888 h | Prijs: €116.000 | Link: https://www.equippo.com/en/product/rupsgraafmachine/hyundai-hx300anl-41100",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -34935,7 +34935,7 @@
   "Gewicht": "35000",
   "Jaar": "1999",
   "Afbeelding": "https://channableusercontent.com/images/templated/oF-LK6doaxhn7HwZxjnwbVB863Cyf0aicjun1Vlpfo0=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34957,7 +34957,7 @@
   "Gewicht": "36400",
   "Jaar": "2002",
   "Afbeelding": "https://channableusercontent.com/images/templated/S-kQ4enBGl7w08voP8MXuMzou_NGCfuoVhQZ1MSdnjI=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -34979,7 +34979,7 @@
   "Gewicht": "36400",
   "Jaar": "2001",
   "Afbeelding": "https://channableusercontent.com/images/templated/VKjMuCX8-kL2psl0lmcsZgsGCosEuSkpO2bv_ujBDZk=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35001,7 +35001,7 @@
   "Gewicht": "3664",
   "Jaar": "2024",
   "Afbeelding": "https://channableusercontent.com/images/templated/3iiOn4mDUiosDg_hsbwvc8JM3sso1qRXMMvtX7TEut8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35023,7 +35023,7 @@
   "Gewicht": "36900",
   "Jaar": "2015",
   "Afbeelding": "https://channableusercontent.com/images/templated/x6FCKCjHp_xNF20fUiv4PzLVDA7LZR8D0zxUFN9IK4s=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35045,7 +35045,7 @@
   "Gewicht": "37700",
   "Jaar": "2015",
   "Afbeelding": "https://channableusercontent.com/images/templated/SCwYaaxGI2qQpPMj7pe-EaRELfUEZXu-MHVH9Zmsff4=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35067,7 +35067,7 @@
   "Gewicht": "37700",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/n95c9dA9XmW5Xzivlfb_BidHRpRb9gG2plCMkwIerCs=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35089,7 +35089,7 @@
   "Gewicht": "37700",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/VtPZjGNDCBDkZaD_6kMb-eHC5p46uosXESfEdUdtCII=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35111,7 +35111,7 @@
   "Gewicht": "37733",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/1tqmjL3gS9-84wfIOxD5Z6cNEdZtvsgeBKUW_BKcV9I=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35133,7 +35133,7 @@
   "Gewicht": "3790",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/ZWLdHeTa1jWvow7RrNrsNvaWiyDyx369ujG2ZcyzqUE=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35155,7 +35155,7 @@
   "Gewicht": "3790",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/OGZySgMyvPH_7ZSvyHTdBBVSuvgmWmU78PdhLpmr9eE=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35177,7 +35177,7 @@
   "Gewicht": "3790",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/pviRi8ciur91gJw9SDzQIUX3Y7Gis38w9YLIyPLTjxc=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35199,7 +35199,7 @@
   "Gewicht": "3790",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/XnhU9y8A1E-vEOPCuklmqBuKh75vKO7mUvX-M-lWLHw=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35221,7 +35221,7 @@
   "Gewicht": "3790",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/S_OU47Twl1ze3dr9Z3hAi8C4pSn2_te0CLkGs8QhV_w=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35243,7 +35243,7 @@
   "Gewicht": "3790",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/EUM06bJneSn99q090Ykk32g2J92L6Zt4eVjCSVQGIx0=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35265,7 +35265,7 @@
   "Gewicht": "3790",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/XN6eDbrY4BUSYCAreWNCac8cO2fMytnDVl4olPXkWdw=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35287,7 +35287,7 @@
   "Gewicht": "3790",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/0H1iutXvsKgOt7qGD3I0oj5czkEiMt7hs9Kt7jFhexs=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35309,7 +35309,7 @@
   "Gewicht": "3790",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/_PT43P6ZokAXwISWbxyKf41RIS0ACbkSVSDQ1SD7_Tw=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35331,7 +35331,7 @@
   "Gewicht": "3790",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/2wyU33E8yGX7V2NdVRZnrZshygQQZBrGcR2-EjNRfLo=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35353,7 +35353,7 @@
   "Gewicht": "38100",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/bzRmDQvrNs1E-TOg5ucdErwD2SojJZtNG-Y-ggMyd2s=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35375,7 +35375,7 @@
   "Gewicht": "38630",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/T7fdvhyawdS9igbvEMcecFP2fgjtOsmbtVTYRb7ySzs=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35397,7 +35397,7 @@
   "Gewicht": "38630",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/__yoDUESmNeYisScF4lwx-d4T28XqPgMez1KOVfc7I8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35419,7 +35419,7 @@
   "Gewicht": "38810",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/7tlDiNIvQn4Ad6HZ7li-jL8tl2X8dwAqpJSfN2jgBrk=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35441,7 +35441,7 @@
   "Gewicht": "3958",
   "Jaar": "2023",
   "Afbeelding": "https://channableusercontent.com/images/templated/hKwVAbkFj3hHMEXdJv2VGVbZIM2eb4avXqUBMCF5vnQ=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35463,7 +35463,7 @@
   "Gewicht": "39600",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/1SN0Vld7el96-guJiveVkYOVDFVlpYxj8fD_Xx8DSKw=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35485,8 +35485,8 @@
   "Gewicht": "4050",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/9T6TJpJvCJCO_ZBFyK0PIFWFAV4Oh2gIx9lOVhUg7EI=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Caterpillar 259D | Bouwjaar: 2017 | Uren: 1.301 h | Prijs: €33.000 | Link: https://www.equippo.com/en/product/tracked-skid-steer/caterpillar-259d-41115",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -35507,8 +35507,8 @@
   "Gewicht": "4050",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/8Nti_YMdg0P2dw3E5afRUY8zrPGVQRw_f36miZIoI48=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Caterpillar 259D | Bouwjaar: 2017 | Uren: 1.301 h | Prijs: €33.000 | Link: https://www.equippo.com/en/product/tracked-skid-steer/caterpillar-259d-41115",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -35529,7 +35529,7 @@
   "Gewicht": "41000",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/mh47vwl-9amh9XvKKVuz5OojXDKqc1f2mYtzzc8WDuA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35551,7 +35551,7 @@
   "Gewicht": "43000",
   "Jaar": "2015",
   "Afbeelding": "https://channableusercontent.com/images/templated/3I58qWi_YSSJ5dFZfcyH5_9ZbSOWdVKsy8unUIMUwLU=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35573,8 +35573,8 @@
   "Gewicht": "43700",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/Sua7Dt6hhxsu0ARYmIQwdol_gOO5CH0aL2qKHHqSuII=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "Volvo EW60E with 5 buckets | Bouwjaar: 2016 | Uren: 7.889 h | Prijs: €31.900 | Link: https://www.equippo.com/en/product/wheeled-excavator/volvo-ew60e-with-5-buckets-36715",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -35595,7 +35595,7 @@
   "Gewicht": "44100",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/w8ounSj7jxLj2FOPvYdqH3uXLpoozLZdwoDbmGUKPp8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35617,7 +35617,7 @@
   "Gewicht": "4662",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/xKBeim5htNWKeH0MUdh7J29Xk6dq0DgyaGA7g5TNwd8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35639,7 +35639,7 @@
   "Gewicht": "4662",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/z0COskC9lc-NAX3-jQJzh-cbQXOgEYGHEL9hkDnt3fc=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35661,7 +35661,7 @@
   "Gewicht": "4662",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/KrUAQ8sFq2l9hsLeOxVLYCyLHLCmrEBgneKbLYxlc_o=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35683,7 +35683,7 @@
   "Gewicht": "4.662",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/eF-8NMbgodSCGjlTHP3CJ8iopuSoSVbV2ZhwwcXIGus=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35705,7 +35705,7 @@
   "Gewicht": "4662",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/iRFzusEJD_NqJRQcugD65at7IAV3nROJZGlxQNamvOg=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35727,7 +35727,7 @@
   "Gewicht": "47400",
   "Jaar": "2001",
   "Afbeelding": "https://channableusercontent.com/images/templated/r7LdkOHyQFopp7oGKs9qj7UeN5puB-Q1S1grvAdXvms=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35749,7 +35749,7 @@
   "Gewicht": "4768",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/cfkAWj-jfMzNWY-bA-sDLxkPr852SZJwTJ5V44saaf0=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35771,7 +35771,7 @@
   "Gewicht": "47680",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/6pSsAAA5Tv6n0MroUvp1W6ZL3BuSokuiwvy8BnAfG_E=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35793,7 +35793,7 @@
   "Gewicht": "4792",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/waW8iqyrp00RuqvYH3KiU9wmYTbCjTI0CoOC_ycnqXg=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35815,7 +35815,7 @@
   "Gewicht": "4792",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/6zoNJBdqiF-wwAlXOmuYesYaZd5MpnU59NVFveTQ5PE=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35837,7 +35837,7 @@
   "Gewicht": "4792",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/zMrlnfpbWBg7J1HR7Sm1vV-i91abVvvRamXG5E_AAwc=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35859,7 +35859,7 @@
   "Gewicht": "48100",
   "Jaar": "2010",
   "Afbeelding": "https://channableusercontent.com/images/templated/obfR2l9pyktY-E6XC3eCJDe9oUhRJOjeKrwOTGrSuYA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35881,7 +35881,7 @@
   "Gewicht": "48400",
   "Jaar": "2009",
   "Afbeelding": "https://channableusercontent.com/images/templated/HqNKBPfO4_HO16QdMr-b901MyfT82sAcPLeRLx2APv8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35903,7 +35903,7 @@
   "Gewicht": "48784",
   "Jaar": "1998",
   "Afbeelding": "https://channableusercontent.com/images/templated/uy_2_pJ1RXcKQm1PIY4GZeNLmfWSOzz8DMkfSA8Ve4A=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35925,7 +35925,7 @@
   "Gewicht": "49340",
   "Jaar": "",
   "Afbeelding": "https://channableusercontent.com/images/templated/0JyrcqPaBULT1l7t_jxyauSMCs8k7A-4uWdZ47aKoCI=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35947,7 +35947,7 @@
   "Gewicht": "49950",
   "Jaar": "2006",
   "Afbeelding": "https://channableusercontent.com/images/templated/VbYctLB4uncv9n4Xf9Ayretksy_xqpVhZHIUyA-wRlI=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35969,7 +35969,7 @@
   "Gewicht": "5155",
   "Jaar": "2009",
   "Afbeelding": "https://channableusercontent.com/images/templated/owLfbJ4eyYr6p6KJD0Ds5p5jgxZQ5SjglWZOS5sm-Ak=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -35991,7 +35991,7 @@
   "Gewicht": "5155",
   "Jaar": "2009",
   "Afbeelding": "https://channableusercontent.com/images/templated/JHEI6bIir7HdqprAe2jCpPvpYBb_JScq8aa3QeMPfpA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36013,7 +36013,7 @@
   "Gewicht": "5170",
   "Jaar": "2006",
   "Afbeelding": "https://channableusercontent.com/images/templated/F-frLWIverIaBFXNCYr1gI3fPPrCqd_iU1BiMAu1L0U=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36035,7 +36035,7 @@
   "Gewicht": "51800",
   "Jaar": "2021",
   "Afbeelding": "https://channableusercontent.com/images/templated/rWBFAOamzYgjJwjm8fYxsPLst19M1tTCpxGbn2xuS7g=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36057,7 +36057,7 @@
   "Gewicht": "52000",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/tfbJ0q4OQVuiOCc-KtgqG-a6UUYZalSz8mDk_SibjX0=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36079,8 +36079,8 @@
   "Gewicht": "52200",
   "Jaar": "2011",
   "Afbeelding": "https://channableusercontent.com/images/templated/kSJCC8vSKY1Z-wHbQSjVlgvNsxfnGXZs7FQGbDoVM0k=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "349FL | Bouwjaar: 2016 | Uren: - | Prijs: €84.150 | Link: https://www.werktuigen.be/caterpillar-349fl/wt-227-56902",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -36101,8 +36101,8 @@
   "Gewicht": "52675",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/EMWrmFo09RjPfRXg7mSdbd6W6Jk6YOWGFWIPunJyano=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Hyundai HX520AL  | Bouwjaar: 2022 | Uren: 4.456 h | Prijs: €159.000 | Link: https://www.equippo.com/en/product/tracked-excavator/hyundai-hx520al-40825",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -36123,7 +36123,7 @@
   "Gewicht": "53000",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/dnsMyQlcdW4k5yFo-4W8xNjGwx7IbuusWEBgjG9qk_4=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36145,7 +36145,7 @@
   "Gewicht": "5444",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/08enphyV40ql3I22PZLcPmiFB9WytKLCgen6mTx21bY=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36167,7 +36167,7 @@
   "Gewicht": "56300",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/lloaOaFp4bLJPP-Xca_3s37BRhHtjvGWaiUxO-esU50=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36189,7 +36189,7 @@
   "Gewicht": "56900",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/RCRXQkph3CexGYUiLsjkpkDHmTFF7MTSUeSOfnk71Qc=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36211,7 +36211,7 @@
   "Gewicht": "57130",
   "Jaar": "2013",
   "Afbeelding": "https://channableusercontent.com/images/templated/qIt_N9yXoPkzxUN_qtSczhoJfSzYJjc1zBpeJ81HjcA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36233,7 +36233,7 @@
   "Gewicht": "5760",
   "Jaar": "2017",
   "Afbeelding": "https://channableusercontent.com/images/templated/whMrEMn3jmN6gzVJquX4zkwp8fov89Tgw_ly9Tez1Ww=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36255,7 +36255,7 @@
   "Gewicht": "5850",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/TnHUIU8lsJcbZf0MwFcMaJLGu9wIco-9ihqutLLlwdY=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36277,7 +36277,7 @@
   "Gewicht": "5850",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/TnHUIU8lsJcbZf0MwFcMaJLGu9wIco-9ihqutLLlwdY=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36299,7 +36299,7 @@
   "Gewicht": "5850",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/TnHUIU8lsJcbZf0MwFcMaJLGu9wIco-9ihqutLLlwdY=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36321,7 +36321,7 @@
   "Gewicht": "5850",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/TnHUIU8lsJcbZf0MwFcMaJLGu9wIco-9ihqutLLlwdY=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36343,7 +36343,7 @@
   "Gewicht": "58500",
   "Jaar": "2008",
   "Afbeelding": "https://channableusercontent.com/images/templated/wUxFfV3Ww0bGeaTeMMuiUfQho3sqbTGH6vKPpW0kJdg=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36365,7 +36365,7 @@
   "Gewicht": "60900",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/oU-7NGNef33sqFtKndnGbxLik-H3iFCxhhPkbAcmXTs=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36387,7 +36387,7 @@
   "Gewicht": "61200",
   "Jaar": "1991",
   "Afbeelding": "https://channableusercontent.com/images/templated/Qb0Wpo-sOjjFeoTEtPiFZKm_jVhxO6LI5G0pTLEPQOo=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36409,7 +36409,7 @@
   "Gewicht": "6210",
   "Jaar": "1998",
   "Afbeelding": "https://channableusercontent.com/images/templated/8eFLh7SZKnOQNEZg-pby-d12gEhRhn2R2WMjKCIN4go=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36431,7 +36431,7 @@
   "Gewicht": "6250",
   "Jaar": "1993",
   "Afbeelding": "https://channableusercontent.com/images/templated/6cUyyFp6w9foqBLn-8egpfD3ownL1LVFPL_OIJRbrn8=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36453,7 +36453,7 @@
   "Gewicht": "6300",
   "Jaar": "1992",
   "Afbeelding": "https://channableusercontent.com/images/templated/TyUZGBx-q8g8r3n1K4OT_paUJrJynzwpfqlklO2qgts=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36475,7 +36475,7 @@
   "Gewicht": "6300",
   "Jaar": "1998",
   "Afbeelding": "https://channableusercontent.com/images/templated/C0-8dE8FwVIulCfk597J7JhBdNCjlL09-mJ13-wxtME=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36497,9 +36497,9 @@
   "Gewicht": "6460",
   "Jaar": "2020",
   "Afbeelding": "https://channableusercontent.com/images/templated/jcRzIqzWNFSbRgymdZ2sdIaa8rt5L7XrvWA2oCqoT7M=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "908M | Bouwjaar: 2022 | Uren: 1.273 h | Prijs: €49.900 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/caterpillar-908m-a11347308.html",
+  "Vergelijkbaar 2": "908H | Bouwjaar: 2011 | Uren: 5.770 h | Prijs: €32.000 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/caterpillar-908-h-a11198479.html",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -36519,7 +36519,7 @@
   "Gewicht": "6500",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/e7qz3STtYRp49xzx7UbTH8zguEa6iukPxPhrHbe6WcI=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36541,10 +36541,10 @@
   "Gewicht": "6650",
   "Jaar": "2008",
   "Afbeelding": "https://channableusercontent.com/images/templated/oqcQg9fJBnI3LrUIOCd7nacCI4I-IuieocRvIE50Co4=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
-  "Vergelijkbaar 3": ""
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "Volvo L330E | Bouwjaar: 2006 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l330e-IA606",
+  "Vergelijkbaar 2": "Volvo L 330 E | Bouwjaar: 2006 | Uren: - | Prijs: Op aanvraag | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l_330_e-RM054",
+  "Vergelijkbaar 3": "Volvo L30G | Bouwjaar: 2013 | Uren: - | Prijs: €48.000 | Link: https://www.usatomacchine.it/usato/pala_gommata/volvo_l30g-NB522"
 },{
   "Platform": "Eigen voorraad",
   "Merk": "Kleemann",
@@ -36563,7 +36563,7 @@
   "Gewicht": "68400",
   "Jaar": "2011",
   "Afbeelding": "https://channableusercontent.com/images/templated/JDyHtU8htbaG5VgRlGlJxjWkq-0oA29t8Qyt6XR-7oY=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36585,7 +36585,7 @@
   "Gewicht": "7000",
   "Jaar": "2016",
   "Afbeelding": "https://channableusercontent.com/images/templated/2Y8LM5hanEVLkxXhuukEn-GJ4ROZXqM8FOyrSb35vgA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36607,7 +36607,7 @@
   "Gewicht": "73100",
   "Jaar": "2021",
   "Afbeelding": "https://channableusercontent.com/images/templated/CUXatiYFPUuSbzV5eMIg5nUw-7l3YKb8t4TvE7OyraY=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36629,7 +36629,7 @@
   "Gewicht": "73100",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/yGVzU9XA1QLxCWewOIj2nbcqZQICC8qKKf9jKHWeaic=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36651,7 +36651,7 @@
   "Gewicht": "73259",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/0yJl7f51OPuQ0IuJ5bdUJyojewHdacRLGSbpRWRp70k=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36673,7 +36673,7 @@
   "Gewicht": "7330",
   "Jaar": "2010",
   "Afbeelding": "https://channableusercontent.com/images/templated/9iOMAccoKz3m-gnDRTRZ231SFsZ-YK09QkIObBkVj-k=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36695,7 +36695,7 @@
   "Gewicht": "7575",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/VxoEIzNGeE6Bx01M3ggHDek9az34DY4YdGXGzPgPMBQ=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36717,7 +36717,7 @@
   "Gewicht": "770",
   "Jaar": "2026",
   "Afbeelding": "https://channableusercontent.com/images/templated/DoPbR_TQfA4sCOwXnoVx6D_2DbmSW9JM0olkxq0-NSo=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36739,7 +36739,7 @@
   "Gewicht": "770",
   "Jaar": "",
   "Afbeelding": "https://channableusercontent.com/images/templated/DoPbR_TQfA4sCOwXnoVx6D_2DbmSW9JM0olkxq0-NSo=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36761,7 +36761,7 @@
   "Gewicht": "770",
   "Jaar": "",
   "Afbeelding": "https://channableusercontent.com/images/templated/DoPbR_TQfA4sCOwXnoVx6D_2DbmSW9JM0olkxq0-NSo=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36783,8 +36783,8 @@
   "Gewicht": "80974",
   "Jaar": "2018",
   "Afbeelding": "https://channableusercontent.com/images/templated/KboiaXRU4rw_yysxYb9E9uPbKOoyqFWoRDW4S4RJuLQ=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Te hoog",
+  "Vergelijkbaar 1": "926M - 990 HOURS - FORKS - 3rd VALVE | Bouwjaar: 2018 | Uren: - | Prijs: €117.500 | Link: https://machineryline.info/-/sale/wheel-loaders/Caterpillar/926M-990-HOURS-FORKS-3rd-VALVE--26100909471016562100",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -36805,7 +36805,7 @@
   "Gewicht": "8100",
   "Jaar": "2022",
   "Afbeelding": "https://channableusercontent.com/images/templated/iEHtid7SgkOlr0xkfqGmyTrCDrZwqFB6SR-QqRsvJfo=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36827,7 +36827,7 @@
   "Gewicht": "8200",
   "Jaar": "2014",
   "Afbeelding": "https://channableusercontent.com/images/templated/yoDhEnhrDJ5IaVVrUHLu-FzM5YkVROV2lr2OOtzUMho=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36849,9 +36849,9 @@
   "Gewicht": "8560",
   "Jaar": "2012",
   "Afbeelding": "https://channableusercontent.com/images/templated/jCSNZcW50FDiMtWSHwYSD7MNpomaggsYhJv_cA4oiKc=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
-  "Vergelijkbaar 2": "",
+  "AI Prijs": "Te laag",
+  "Vergelijkbaar 1": "L 509 | Bouwjaar: 2018 | Uren: 3.000 h | Prijs: €43.105 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/liebherr-l-509-speeder-a10035888.html",
+  "Vergelijkbaar 2": "L 509 | Bouwjaar: 2000 | Uren: 5.200 h | Prijs: €13.500 | Link: https://www.truck1.eu/construction-machinery/wheel-loaders/liebherr-l509-liebherr-l509-a11182245.html",
   "Vergelijkbaar 3": ""
 },{
   "Platform": "Eigen voorraad",
@@ -36871,7 +36871,7 @@
   "Gewicht": "88400",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/c_duYG1-OKJ47FGHHPKwsF4jEywx-iS1ehRRqUROyRQ=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36893,7 +36893,7 @@
   "Gewicht": "9000",
   "Jaar": "2019",
   "Afbeelding": "https://channableusercontent.com/images/templated/6z26jAlReaMepLOahILcIrhR_uK2xIApg6rgx37_kes=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36915,7 +36915,7 @@
   "Gewicht": "9030",
   "Jaar": "2004",
   "Afbeelding": "https://channableusercontent.com/images/templated/cW2dAdOTOg2QYWiWsf5afAzSzgtOsiPnSyINmXmvkMA=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36937,7 +36937,7 @@
   "Gewicht": "9030",
   "Jaar": "2004",
   "Afbeelding": "https://channableusercontent.com/images/templated/X3hGStvhLHlFC6Cj0qKXro8NP6c_QAfZgaouSE6o2-s=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
@@ -36959,8 +36959,8 @@
   "Gewicht": "9190",
   "Jaar": "2004",
   "Afbeelding": "https://channableusercontent.com/images/templated/WEoG4P99QmW6v0ebhSUfh9viwcc3AoR9ha40Fd6okvI=.png",
-  "AI Prijs": "",
-  "Vergelijkbaar 1": "",
+  "AI Prijs": "Goed geprijsd",
+  "Vergelijkbaar 1": "Caterpillar 307B | Bouwjaar: - | Uren: - | Prijs: €16.900 | Link: https://www.usatomacchine.it/usato/escavatore_cingolato/caterpillar_307b-ML344",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
 },{
@@ -36981,7 +36981,7 @@
   "Gewicht": "98000",
   "Jaar": "2022",
   "Afbeelding": "https://channableusercontent.com/images/templated/r6T2Hfz6p-bl3jg981Q4f9K_6QEfIkokAZnMPwoTn5c=.png",
-  "AI Prijs": "",
+  "AI Prijs": "Geen marktdata",
   "Vergelijkbaar 1": "",
   "Vergelijkbaar 2": "",
   "Vergelijkbaar 3": ""
