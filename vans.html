@@ -320,16 +320,101 @@
             gap: 12px;
             flex-wrap: wrap;
         }
+        
+        /* Sort Dropdown Component */
+        .sort-container {
+            position: relative;
+        }
+
+        .sort-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-dark);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: border-color 0.2s, background 0.2s;
+            user-select: none;
+            height: 36px;
+            box-sizing: border-box;
+        }
+
+        .sort-btn:hover {
+            border-color: var(--boss-black);
+            background: #f8f9fa;
+        }
+
+        .sort-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .sort-dropdown {
+            display: none;
+            position: absolute;
+            top: 42px;
+            right: 0;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-width: 230px;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .sort-dropdown.open {
+            display: block;
+        }
+
+        .sort-option {
+            padding: 10px 15px;
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-dark);
+            cursor: pointer;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sort-option:last-child {
+            border-bottom: none;
+        }
+
+        .sort-option:hover {
+            background: #f8f9fa;
+            color: var(--boss-blue);
+        }
+
+        .sort-option.selected {
+            background: #eff6ff;
+            color: var(--ai-blue);
+        }
+
+        .sort-option[data-auction-only="true"] {
+            display: none;
+        }
 
         .feedback-filter-select {
             padding: 8px 12px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
+            height: 36px;
+            border-radius: 20px;
+            border: 1px solid #cbd5e1;
             font-size: 13px;
             font-weight: bold;
             background-color: #fff;
             cursor: pointer;
             outline: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-sizing: border-box;
         }
 
         /* Visuele Toggle Schakelaars */
@@ -345,6 +430,8 @@
             user-select: none;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             transition: border-color 0.2s;
+            height: 36px;
+            box-sizing: border-box;
         }
         .ai-toggle-container:hover {
             border-color: var(--ai-blue);
@@ -853,6 +940,32 @@
                 </div>
                 
                 <div class="header-controls">
+
+                    <!-- Sorteer Knop & Dropdown -->
+                    <div class="sort-container">
+                        <div class="sort-btn" onclick="toggleSortMenu()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <polyline points="19 12 12 19 5 12"></polyline>
+                            </svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:-10px">
+                                <line x1="12" y1="19" x2="12" y2="5"></line>
+                                <polyline points="5 12 12 5 19 12"></polyline>
+                            </svg>
+                            <span>Sorteren</span>
+                        </div>
+                        <div class="sort-dropdown" id="sortDropdown">
+                            <div class="sort-option selected" onclick="setSort('default')" id="opt-default">Standaard instelling</div>
+                            <div class="sort-option" data-auction-only="true" onclick="setSort('auction-first')" id="opt-auction-first">⏱️ Eerst aflopende veilingen</div>
+                            <div class="sort-option" onclick="setSort('price-asc')" id="opt-price-asc">💶 Prijs (Oplopend)</div>
+                            <div class="sort-option" onclick="setSort('price-desc')" id="opt-price-desc">💶 Prijs (Aflopend)</div>
+                            <div class="sort-option" onclick="setSort('year-desc')" id="opt-year-desc">📅 Bouwjaar (Nieuw > Oud)</div>
+                            <div class="sort-option" onclick="setSort('year-asc')" id="opt-year-asc">📅 Bouwjaar (Oud > Nieuw)</div>
+                            <div class="sort-option" onclick="setSort('km-asc')" id="opt-km-asc">🛣️ KM (Laag > Hoog)</div>
+                            <div class="sort-option" onclick="setSort('km-desc')" id="opt-km-desc">🛣️ KM (Hoog > Laag)</div>
+                        </div>
+                    </div>
+
                     <!-- Visuele AI Toggle Schakelaar -->
                     <div id="aiToggleBtn" class="ai-toggle-container active" onclick="toggleAiPicks()">
                         <span class="ai-toggle-label">🤖 AI Picks</span>
@@ -892,8 +1005,9 @@
         let ownStockData = [];
         let currentTab = 'listings';
         let activeFeedbackId = null;
-        let aiPicksActive = true; // Standaard aan
-        let showCompetitors = false; // Standaard UIT: concurrenten worden verborgen tenzij toggle aan staat
+        let aiPicksActive = true; 
+        let showCompetitors = false; 
+        let currentSort = 'default';
 
         let feedbackData = JSON.parse(localStorage.getItem('bossVansFeedbackData') || '{}');
 
@@ -906,6 +1020,27 @@
             const wrapper = document.getElementById('sidebarFilters');
             wrapper.classList.toggle('open');
         }
+
+        function toggleSortMenu() {
+            document.getElementById('sortDropdown').classList.toggle('open');
+        }
+
+        function setSort(sortType) {
+            currentSort = sortType;
+            
+            document.querySelectorAll('.sort-option').forEach(el => el.classList.remove('selected'));
+            const selectedOpt = document.getElementById(`opt-${sortType}`);
+            if(selectedOpt) selectedOpt.classList.add('selected');
+            
+            document.getElementById('sortDropdown').classList.remove('open');
+            renderGrid();
+        }
+
+        window.addEventListener('click', function(e) {
+            if (!document.querySelector('.sort-container').contains(e.target)) {
+                document.getElementById('sortDropdown').classList.remove('open');
+            }
+        });
 
         function toggleAiPicks() {
             aiPicksActive = !aiPicksActive;
@@ -946,6 +1081,21 @@
                 }
             }
             return '';
+        }
+
+        function parseNumericForSort(val) {
+            if (val === null || val === undefined) return null;
+            let s = String(val).toLowerCase().trim();
+            
+            if (s === '' || s.includes('aanvraag') || s.includes('bod') || s.includes('n.o.t.k')) return null;
+            
+            let digits = s.match(/[\d]+([.,]\d{3})*/); 
+            if (digits) {
+                let cleanNum = digits[0].replace(/[.,]/g, '');
+                let n = parseInt(cleanNum, 10);
+                return isNaN(n) ? null : n;
+            }
+            return null;
         }
 
         function toggleFeedback(event, id, type) {
@@ -1102,6 +1252,16 @@
             document.getElementById('tab-listings').classList.toggle('active', tab === 'listings');
             document.getElementById('tab-auctions').classList.toggle('active', tab === 'auctions');
             document.getElementById('tab-voorraad').classList.toggle('active', tab === 'voorraad');
+            
+            const auctionOpt = document.getElementById('opt-auction-first');
+            if (tab === 'auctions') {
+                auctionOpt.style.display = 'flex';
+                if(currentSort === 'default' || currentSort === 'auction-first') setSort('auction-first');
+            } else {
+                auctionOpt.style.display = 'none';
+                if(currentSort === 'auction-first') setSort('default');
+            }
+
             populateFilters();
             renderGrid();
         }
@@ -1118,7 +1278,7 @@
                     if (globalStatus !== 'red') globalStatus = 'orange';
                 } else {
                     const hasTodayData = portalRows.some(r => {
-                        const dFound = r['Laatst bijgewerkt'];
+                        const dFound = r['Laatst bijgewerkt'] || '';
                         return dFound.includes(todayStr);
                     });
                     if (hasTodayData) {
@@ -1191,7 +1351,9 @@
 
         function getCountryFlagHtml(locStr) {
             if (!locStr) return '📍 <span>Onbekend</span>';
-            let l = locStr.toLowerCase();
+            let cleanLocStr = locStr.replace(/^[📍\s]+/, '');
+            let l = cleanLocStr.toLowerCase();
+            
             const euCountries = {
                 'china': 'cn',
                 'netherlands': 'nl', 'nederland': 'nl', 'holland': 'nl',
@@ -1226,24 +1388,29 @@
             };
 
             let countryCode = '';
+            
             for (const [name, code] of Object.entries(euCountries)) {
                 if (l.includes(name)) {
                     countryCode = code;
                     break;
                 }
             }
+            
             if (!countryCode) {
-                for (const [name, code] of Object.entries(euCountries)) {
-                    if (l.includes(`, ${code}`) || l.includes(`(${code})`) || l.includes(` ${code} `)) {
+                const uniqueCodes = [...new Set(Object.values(euCountries))];
+                for (const code of uniqueCodes) {
+                    const regex = new RegExp(`\\b${code}\\b`, 'i');
+                    if (regex.test(l)) {
                         countryCode = code;
                         break;
                     }
                 }
             }
+            
             if (countryCode) {
-                return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}" title="${countryCode}"> <span>${locStr}</span>`;
+                return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}" title="${countryCode.toUpperCase()}"> <span>${cleanLocStr}</span>`;
             }
-            return `📍 <span>${locStr}</span>`;
+            return `📍 <span>${cleanLocStr}</span>`;
         }
 
         function parseAuctionDate(str) {
@@ -1363,11 +1530,19 @@
                 if (filterBouwjaar && !reg.includes(filterBouwjaar)) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
 
-                // Concurrenten filteren: Als showCompetitors UIT staat, verberg dan alles wat als concurrent is gemarkeerd in AI Reden of elders
+                // Concurrenten filteren + Blacklist
                 if (!showCompetitors) {
                     const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
                     const platformText = String(row['Platform'] || '').toLowerCase();
+                    const locLower = String(row.Locatie || '').toLowerCase();
+                    const linkLower = String(row.Link || '').toLowerCase();
+
+                    // Via AI of Platform markering
                     if (aiReasonText.includes('concurrent') || platformText.includes('concurrent')) return false;
+
+                    // Harde uitsluitingen (Blacklist)
+                    if (locLower.includes('vuren')) return false; 
+                    if (locLower.includes('gelderland') && linkLower.includes('europe-commercial-vehicle.com')) return false;
                 }
 
                 if (searchQuery) {
@@ -1385,39 +1560,26 @@
                 return true;
             });
 
-            // Sortering
-            if (aiPicksActive && (currentTab === 'auctions' || currentTab === 'listings')) {
-                filteredData.sort((a, b) => {
+            // -- SORTEER LOGICA --
+            filteredData.sort((a, b) => {
+                
+                // 1. Eerst controleren op AI Picks
+                if (aiPicksActive) {
                     const valA = String(getRowValue(a, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
                     const valB = String(getRowValue(b, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
                     const isAiA = (valA === 'ja' || valA === 'true' || valA === '1') ? 1 : 0;
                     const isAiB = (valB === 'ja' || valB === 'true' || valB === '1') ? 1 : 0;
                     
                     if (isAiA !== isAiB) {
-                        return isAiB - isAiA; // AI picks eerst
+                        return isAiB - isAiA;
                     }
-                    
-                    if (currentTab === 'auctions') {
-                        const dateA = parseAuctionDate(a['Veiling loopt af op']);
-                        const dateB = parseAuctionDate(b['Veiling loopt af op']);
-                        const now = new Date();
-                        const isExpiredA = !dateA || (dateA - now <= 0);
-                        const isExpiredB = !dateB || (dateB - now <= 0);
-                        if (isExpiredA && !isExpiredB) return 1;
-                        if (!isExpiredA && isExpiredB) return -1;
-                        if (!dateA) return 1;
-                        if (!dateB) return -1;
-                        return dateA - dateB;
-                    } else {
-                        const isSoldA = (a.Status || '').toLowerCase().includes('verkocht');
-                        const isSoldB = (b.Status || '').toLowerCase().includes('verkocht');
-                        if (isSoldA && !isSoldB) return 1;
-                        if (!isSoldA && isSoldB) return -1;
-                        return 0;
-                    }
-                });
-            } else if (currentTab === 'auctions') {
-                filteredData.sort((a, b) => {
+                }
+
+                // 2. Toepassen van de gekozen (of standaard) sortering
+                let numA = null;
+                let numB = null;
+
+                if (currentSort === 'auction-first' || (currentSort === 'default' && currentTab === 'auctions')) {
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
                     const dateB = parseAuctionDate(b['Veiling loopt af op']);
                     const now = new Date();
@@ -1428,17 +1590,54 @@
                     if (!dateA) return 1;
                     if (!dateB) return -1;
                     return dateA - dateB;
-                });
-            } else if (currentTab === 'listings') {
-                filteredData.sort((a, b) => {
+                } 
+                else if (currentSort === 'default' && currentTab === 'listings') {
+                    // Standaard listings: Nieuwste bouwjaar / registratie eerst
+                    numA = parseNumericForSort(a['Eerste registratie'] || a.Bouwjaar);
+                    numB = parseNumericForSort(b['Eerste registratie'] || b.Bouwjaar);
+                    
+                    // Verkochte items onderaan
                     const isSoldA = (a.Status || '').toLowerCase().includes('verkocht');
                     const isSoldB = (b.Status || '').toLowerCase().includes('verkocht');
                     if (isSoldA && !isSoldB) return 1;
                     if (!isSoldA && isSoldB) return -1;
-                    return 0;
-                });
-            }
-            
+
+                    if (numA === null && numB === null) return 0;
+                    if (numA === null) return 1;
+                    if (numB === null) return -1;
+                    return numB - numA; 
+                }
+                else if (currentSort.startsWith('price')) {
+                    const prijsA = a['Laatste prijs'] || a['Prijs'] || a['Eerste prijs'];
+                    const prijsB = b['Laatste prijs'] || b['Prijs'] || b['Eerste prijs'];
+                    numA = parseNumericForSort(prijsA);
+                    numB = parseNumericForSort(prijsB);
+                } 
+                else if (currentSort.startsWith('year')) {
+                    numA = parseNumericForSort(a['Eerste registratie'] || a.Bouwjaar);
+                    numB = parseNumericForSort(b['Eerste registratie'] || b.Bouwjaar);
+                } 
+                else if (currentSort.startsWith('km')) {
+                    numA = parseNumericForSort(a.KMstand || a['KM stand'] || a.Kilometerstand);
+                    numB = parseNumericForSort(b.KMstand || b['KM stand'] || b.Kilometerstand);
+                }
+
+                // Generieke afhandeling voor prijs/bouwjaar/km sorting
+                if (currentSort !== 'default' && currentSort !== 'auction-first') {
+                    if (numA === null && numB === null) return 0;
+                    if (numA === null) return 1;  // Leeg / op aanvraag naar de bodem
+                    if (numB === null) return -1; 
+
+                    if (currentSort.endsWith('asc')) {
+                        return numA - numB;
+                    } else {
+                        return numB - numA;
+                    }
+                }
+
+                return 0;
+            });
+
             updateTabCounts();
 
             if (filteredData.length === 0) {
@@ -1479,7 +1678,6 @@
                 let auctionHtml = '';
                 let isExpired = false;
 
-                // AI Pick controle
                 const aiPickRaw = String(getRowValue(row, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
                 const isAiTagged = (aiPickRaw === 'ja' || aiPickRaw === 'true' || aiPickRaw === '1');
                 const isAiPick = aiPicksActive && isAiTagged;
@@ -1513,7 +1711,6 @@
                     }
                 }
 
-                // AI Pick stempel met 3 sterren
                 let aiStampHtml = '';
                 if (isAiPick) {
                     aiStampHtml = `<div class="badge-ai-stamp" title="${aiReason}">${svgThreeStars}</div>`;
@@ -1705,11 +1902,16 @@
                     if (!showCompetitors) {
                         const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
                         const platformText = String(row['Platform'] || '').toLowerCase();
+                        const locLower = String(row.Locatie || '').toLowerCase();
+                        const linkLower = String(row.Link || '').toLowerCase();
+
                         if (aiReasonText.includes('concurrent') || platformText.includes('concurrent')) return false;
+                        if (locLower.includes('vuren')) return false; 
+                        if (locLower.includes('gelderland') && linkLower.includes('europe-commercial-vehicle.com')) return false;
                     }
 
                     if (searchQuery) {
-                        const searchableText = `${row.Titel || ''} ${row.Merk || ''} ${row.Model || ''} ${row.Locatie || ''} ${row.Platform || ''}`.toLowerCase();
+                        const searchableText = `${row.Titel || ''} ${row.Merk || ''} ${row.Model || ''} ${row.Locatie || ''} ${row.Platform || ''} ${row['Advertentie ID'] || ''}`.toLowerCase();
                         if (!searchableText.includes(searchQuery)) return false;
                     }
         
