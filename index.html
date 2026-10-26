@@ -1296,7 +1296,7 @@
             const dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
             
             const platforms = [...new Set(dataSource.map(item => item.Platform))].filter(Boolean).sort();
-            const categorieen = [...new Set(dataSource.map(item => item.Categorie || item.category))].filter(Boolean).sort();
+            const categorieen = [...new Set(dataSource.map(item => item.Categorie))].filter(Boolean).sort();
             const merken = [...new Set(dataSource.map(item => item.Merk || item.brand))].filter(Boolean).sort();
             const modellen = [...new Set(dataSource.map(item => item.Model))].filter(Boolean).sort();
             const bouwjaren = [...new Set(dataSource.map(item => item.Bouwjaar))].filter(Boolean).sort((a,b)=>b-a);
