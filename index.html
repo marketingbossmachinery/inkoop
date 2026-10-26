@@ -1490,7 +1490,7 @@
                 const p = (row.Platform || '');
                 if (filterPlatform && p !== filterPlatform) return false;
 
-                const cat = (row.Categorie || row.category || '');
+                const cat = (row.Categorie || '');
                 if (filterCategorie && cat !== filterCategorie) return false;
                 
                 const m = (row.Merk || row.brand || '');
@@ -1859,7 +1859,7 @@
                     const p = (row.Platform || '');
                     if (filterPlatform && p !== filterPlatform) return false;
 
-                    const cat = (row.Categorie || row.category || '');
+                    const cat = (row.Categorie || '');
                     if (filterCategorie && cat !== filterCategorie) return false;
                     
                     const m = (row.Merk || row.brand || '');
