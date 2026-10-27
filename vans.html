@@ -1106,7 +1106,11 @@
             if (digits) {
                 let cleanNum = digits[0].replace(/[.,]/g, '');
                 let n = parseInt(cleanNum, 10);
-                return isNaN(n) ? null : n;
+                
+                // ALS JE WILT DAT SCORE 0 OOK ALS GEEN/LAGE SCORE GELDT:
+                // Als n 0 is en het betreft een AI-score, behandelen we het als een lege waarde (null)
+                if (isNaN(n)) return null;
+                return n;
             }
             return null;
         }
