@@ -1075,7 +1075,6 @@
         function getRowValue(row, possibleKeys) {
             if (!row) return '';
             
-            // 1. Direct matchen op sleutelnamen
             for (let k of possibleKeys) {
                 for (let actualKey of Object.keys(row)) {
                     if (actualKey.trim().toLowerCase() === k.toLowerCase()) {
@@ -1084,7 +1083,6 @@
                 }
             }
             
-            // 2. Extra check voor Kolom V (Index 21) voor AI Score
             const isScoreQuery = possibleKeys.some(k => k.toLowerCase().includes('score'));
             if (isScoreQuery) {
                 const keys = Object.keys(row);
@@ -1106,11 +1104,7 @@
             if (digits) {
                 let cleanNum = digits[0].replace(/[.,]/g, '');
                 let n = parseInt(cleanNum, 10);
-                
-                // ALS JE WILT DAT SCORE 0 OOK ALS GEEN/LAGE SCORE GELDT:
-                // Als n 0 is en het betreft een AI-score, behandelen we het als een lege waarde (null)
-                if (isNaN(n)) return null;
-                return n;
+                return isNaN(n) ? null : n;
             }
             return null;
         }
@@ -1222,27 +1216,10 @@
         }
 
         const TARGET_PORTALS = [
-            "2dehands",
-            "Autoscout24",
-            "Blocket",
-            "Camion Super Market",
-            "Coches",
-            "Copart",
-            "DBA",
-            "Finn",
-            "Klaravik",
-            "Kleinanzeigen",
-            "Kvdbil",
-            "La Centrale",
-            "Leboncoin",
-            "Legal Brokers",
-            "Marktplaats",
-            "Milanuncios",
-            "Mobile",
-            "Otomoto",
-            "Quoka",
-            "Truckscout24",
-            "ViaMobilis"
+            "2dehands", "Autoscout24", "Blocket", "Camion Super Market", "Coches",
+            "Copart", "DBA", "Finn", "Klaravik", "Kleinanzeigen", "Kvdbil",
+            "La Centrale", "Leboncoin", "Legal Brokers", "Marktplaats", "Milanuncios",
+            "Mobile", "Otomoto", "Quoka", "Truckscout24", "ViaMobilis"
         ];
 
         fetch(jsonMasterUrl + '?t=' + new Date().getTime())
@@ -1393,67 +1370,64 @@
             fillSelect('filter-status', statussen, 'Alle statussen');
         }
 
+        /* VERBETERDE VLAG-DETECTIE LOGICA */
         function getCountryFlagHtml(locStr) {
             if (!locStr) return '📍 <span>Onbekend</span>';
             let cleanLocStr = locStr.replace(/^[📍\s]+/, '');
             let l = cleanLocStr.toLowerCase();
             
+            // 1. Directe check op losstaande ISO-landcode (zoals "DE", "NL", "BE", etc.)
+            const isoMatches = cleanLocStr.match(/\b([A-Z]{2})\b/);
+            if (isoMatches) {
+                const code = isoMatches[1].toLowerCase();
+                const validCodes = ['de', 'nl', 'be', 'fr', 'es', 'pt', 'it', 'pl', 'se', 'no', 'dk', 'fi', 'ie', 'gb', 'uk', 'ch', 'at', 'si', 'sk', 'cz', 'hu', 'ro', 'bg', 'gr', 'hr', 'ee', 'lv', 'lt', 'lu', 'us', 'cn'];
+                if (validCodes.includes(code)) {
+                    let displayCode = code === 'uk' ? 'gb' : code;
+                    return `<img src="https://flagcdn.com/24x18/${displayCode}.png" alt="${displayCode}" title="${displayCode.toUpperCase()}"> <span>${cleanLocStr}</span>`;
+                }
+            }
+
+            // 2. Exacte match op landnamen
             const euCountries = {
                 'china': 'cn',
-                'netherlands': 'nl', 'nederland': 'nl', 'holland': 'nl',
-                'belgium': 'be', 'belgië': 'be', 'belgique': 'be',
-                'germany': 'de', 'duitsland': 'de', 'deutschland': 'de',
-                'france': 'fr', 'frankrijk': 'fr',
-                'spain': 'es', 'spanje': 'es', 'españa': 'es',
+                'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl',
+                'belgië': 'be', 'belgium': 'be', 'belgique': 'be',
+                'duitsland': 'de', 'germany': 'de', 'deutschland': 'de',
+                'frankrijk': 'fr', 'france': 'fr',
+                'spanje': 'es', 'spain': 'es', 'españa': 'es',
                 'portugal': 'pt',
-                'italy': 'it', 'italië': 'it', 'italia': 'it',
-                'poland': 'pl', 'polen': 'pl',
-                'sweden': 'se', 'zweden': 'se', 'sverige': 'se',
-                'norway': 'no', 'noorwegen': 'no', 'norge': 'no',
-                'denmark': 'dk', 'denemarken': 'dk', 'danmark': 'dk',
+                'italië': 'it', 'italy': 'it', 'italia': 'it',
+                'polen': 'pl', 'poland': 'pl',
+                'zweden': 'se', 'sweden': 'se', 'sverige': 'se',
+                'noorwegen': 'no', 'norway': 'no', 'norge': 'no',
+                'denemarken': 'dk', 'denmark': 'dk', 'danmark': 'dk',
                 'finland': 'fi', 'suomi': 'fi',
-                'ireland': 'ie', 'ierland': 'ie',
-                'united kingdom': 'gb', 'uk': 'gb', 'engeland': 'gb', 'england': 'gb',
-                'switzerland': 'ch', 'zwitserland': 'ch', 'suisse': 'ch',
-                'austria': 'at', 'oostenrijk': 'at', 'österreich': 'at',
-                'slovenia': 'si', 'slovenië': 'si',
-                'slovakia': 'sk', 'slowakije': 'sk',
-                'czech': 'cz', 'tsjechië': 'cz', 'czechia': 'cz',
-                'hungary': 'hu', 'hongarije': 'hu',
-                'romania': 'ro', 'roemenië': 'ro',
-                'bulgaria': 'bg', 'bulgarije': 'bg',
-                'greece': 'gr', 'griekenland': 'gr',
-                'croatia': 'hr', 'kroatië': 'hr',
-                'estonia': 'ee', 'estland': 'ee',
-                'latvia': 'lv', 'letland': 'lv',
-                'lithuania': 'lt', 'litouwen': 'lt',
-                'luxembourg': 'lu', 'luxemburg': 'lu',
-                'united states': 'us', 'verenigde staten': 'us', 'usa': 'us'
+                'ierland': 'ie', 'ireland': 'ie',
+                'verenigd koninkrijk': 'gb', 'engeland': 'gb', 'england': 'gb', 'united kingdom': 'gb',
+                'zwitserland': 'ch', 'switzerland': 'ch', 'suisse': 'ch',
+                'oostenrijk': 'at', 'austria': 'at', 'österreich': 'at',
+                'slovenië': 'si', 'slovenia': 'si',
+                'slowakije': 'sk', 'slovakia': 'sk',
+                'tsjechië': 'cz', 'czech': 'cz', 'czechia': 'cz',
+                'hongarije': 'hu', 'hungary': 'hu',
+                'roemenië': 'ro', 'romania': 'ro',
+                'bulgarije': 'bg', 'bulgaria': 'bg',
+                'griekenland': 'gr', 'greece': 'gr',
+                'kroatië': 'hr', 'croatia': 'hr',
+                'estland': 'ee', 'estonia': 'ee',
+                'letland': 'lv', 'latvia': 'lv',
+                'litouwen': 'lt', 'lithuania': 'lt',
+                'luxemburg': 'lu', 'luxembourg': 'lu',
+                'verenigde staten': 'us', 'united states': 'us', 'usa': 'us'
             };
 
-            let countryCode = '';
-            
             for (const [name, code] of Object.entries(euCountries)) {
-                if (l.includes(name)) {
-                    countryCode = code;
-                    break;
+                const regex = new RegExp(`\\b${name}\\b`, 'i');
+                if (regex.test(l)) {
+                    return `<img src="https://flagcdn.com/24x18/${code}.png" alt="${code}" title="${code.toUpperCase()}"> <span>${cleanLocStr}</span>`;
                 }
             }
-            
-            if (!countryCode) {
-                const uniqueCodes = [...new Set(Object.values(euCountries))];
-                for (const code of uniqueCodes) {
-                    const regex = new RegExp(`\\b${code}\\b`, 'i');
-                    if (regex.test(l)) {
-                        countryCode = code;
-                        break;
-                    }
-                }
-            }
-            
-            if (countryCode) {
-                return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}" title="${countryCode.toUpperCase()}"> <span>${cleanLocStr}</span>`;
-            }
+
             return `📍 <span>${cleanLocStr}</span>`;
         }
 
@@ -1574,7 +1548,6 @@
                 if (filterBouwjaar && !reg.includes(filterBouwjaar)) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
 
-                // Concurrenten filteren + Blacklist
                 if (!showCompetitors) {
                     const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
                     const platformText = String(row['Platform'] || '').toLowerCase();
@@ -1601,7 +1574,7 @@
                 return true;
             });
 
-            // -- SORTEER LOGICA --
+            // -- VERBETERDE SORTEER LOGICA (HOOGSTE SCORE ALTIJD BOVENAAN) --
             filteredData.sort((a, b) => {
                 
                 // 1. ALS AI PICKS AAN STAAT -> AI PICKS ALTIJD BOVENAAN
@@ -1616,16 +1589,21 @@
                     }
                 }
 
-                // AI Score (Kolom V / AI Score) ophalen voor sortering
+                // AI Match Score ophalen
                 const scoreRawA = getRowValue(a, ['AI Score', 'AI-Score', 'AIScore', 'Score', 'Match Score', 'AI Match Score']);
                 const scoreRawB = getRowValue(b, ['AI Score', 'AI-Score', 'AIScore', 'Score', 'Match Score', 'AI Match Score']);
-                const scoreA = parseNumericForSort(scoreRawA) ?? -1;
-                const scoreB = parseNumericForSort(scoreRawB) ?? -1;
+                
+                const scoreA = parseNumericForSort(scoreRawA);
+                const scoreB = parseNumericForSort(scoreRawB);
 
-                // 2. Toepassen van de gekozen sortering (Standaard: AI Match Score Hoog > Laag)
+                // 2. Toepassen van de gekozen sortering
                 if (currentSort === 'ai-score-desc') {
-                    if (scoreA !== scoreB) {
-                        return scoreB - scoreA; // Hoogste score (bijv 95) boven laagste score (bijv 10)
+                    // Behandel leeg/null als een zeer lage waarde (-999) zodat hoogste scores (bijv. 95) écht bovenaan komen
+                    const valA = scoreA !== null ? scoreA : -999;
+                    const valB = scoreB !== null ? scoreB : -999;
+                    
+                    if (valA !== valB) {
+                        return valB - valA; // Aflopend: 95 komt BOVEN 10 of -999
                     }
                 }
 
@@ -1659,10 +1637,9 @@
                     numB = parseNumericForSort(b.KMstand || b['KM stand'] || b.Kilometerstand);
                 }
 
-                // Generieke afhandeling voor prijs/bouwjaar/km sorting
                 if (currentSort !== 'ai-score-desc' && currentSort !== 'auction-first') {
                     if (numA === null && numB === null) return 0;
-                    if (numA === null) return 1;  // Leeg / op aanvraag naar de bodem
+                    if (numA === null) return 1;  
                     if (numB === null) return -1; 
 
                     if (currentSort.endsWith('asc')) {
@@ -1672,7 +1649,6 @@
                     }
                 }
 
-                // Fallback: Verkochte items onderaan
                 const isSoldA = (a.Status || '').toLowerCase().includes('verkocht');
                 const isSoldB = (b.Status || '').toLowerCase().includes('verkocht');
                 if (isSoldA && !isSoldB) return 1;
