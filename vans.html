@@ -364,7 +364,7 @@
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-width: 230px;
+            min-width: 250px;
             z-index: 100;
             overflow: hidden;
         }
@@ -956,6 +956,7 @@
                         </div>
                         <div class="sort-dropdown" id="sortDropdown">
                             <div class="sort-option selected" onclick="setSort('default')" id="opt-default">Standaard instelling</div>
+                            <div class="sort-option" onclick="setSort('ai-score-desc')" id="opt-ai-score-desc">🤖 AI Match Score (Hoog > Laag)</div>
                             <div class="sort-option" data-auction-only="true" onclick="setSort('auction-first')" id="opt-auction-first">⏱️ Eerst aflopende veilingen</div>
                             <div class="sort-option" onclick="setSort('price-asc')" id="opt-price-asc">💶 Prijs (Oplopend)</div>
                             <div class="sort-option" onclick="setSort('price-desc')" id="opt-price-desc">💶 Prijs (Aflopend)</div>
@@ -1073,6 +1074,9 @@
         }
 
         function getRowValue(row, possibleKeys) {
+            if (!row) return '';
+            
+            // 1. Direct matchen op sleutelnamen
             for (let k of possibleKeys) {
                 for (let actualKey of Object.keys(row)) {
                     if (actualKey.trim().toLowerCase() === k.toLowerCase()) {
@@ -1080,6 +1084,16 @@
                     }
                 }
             }
+            
+            // 2. Extra check voor Kolom V (Index 21) voor AI Score
+            const isScoreQuery = possibleKeys.some(k => k.toLowerCase().includes('score'));
+            if (isScoreQuery) {
+                const keys = Object.keys(row);
+                if (keys.length > 21 && row[keys[21]] !== undefined) {
+                    return row[keys[21]];
+                }
+            }
+            
             return '';
         }
 
@@ -1286,7 +1300,6 @@
         }
 
         function checkPortalsStatus() {
-            // Genereer de datum van vandaag in YYYY-MM-DD formaat
             const today = new Date();
             const yyyy = today.getFullYear();
             const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -1297,14 +1310,12 @@
             let globalStatus = 'green';
         
             TARGET_PORTALS.forEach(portalName => {
-                // Flexibele zoekopdracht: matcht bijvoorbeeld "Copart" op "Copart (veilingen)"
                 const portalRows = allData.filter(r => (r.Platform || '').toLowerCase().includes(portalName.toLowerCase()));
         
                 if (portalRows.length === 0) {
                     statuses[portalName] = { state: 'orange', label: 'Geen data in bestand' };
                     if (globalStatus !== 'red') globalStatus = 'orange';
                 } else {
-                    // Controleer kolom N ('Laatst bijgewerkt') op de datum van vandaag
                     const hasTodayData = portalRows.some(r => {
                         const dFound = String(r['Laatst bijgewerkt'] || '').trim();
                         return dFound.includes(todayStr);
@@ -1567,10 +1578,7 @@
                     const locLower = String(row.Locatie || '').toLowerCase();
                     const linkLower = String(row.Link || '').toLowerCase();
 
-                    // Via AI of Platform markering
                     if (aiReasonText.includes('concurrent') || platformText.includes('concurrent')) return false;
-
-                    // Harde uitsluitingen (Blacklist)
                     if (locLower.includes('vuren')) return false; 
                     if (locLower.includes('gelderland') && linkLower.includes('europe-commercial-vehicle.com')) return false;
                 }
@@ -1593,8 +1601,19 @@
             // -- SORTEER LOGICA --
             filteredData.sort((a, b) => {
                 
-                // 1. Eerst controleren op AI Picks
-                if (aiPicksActive) {
+                // AI Score (Kolom V / AI Score) ophalen
+                const scoreRawA = getRowValue(a, ['AI Score', 'AI-Score', 'AIScore', 'Score', 'Match Score', 'AI Match Score']);
+                const scoreRawB = getRowValue(b, ['AI Score', 'AI-Score', 'AIScore', 'Score', 'Match Score', 'AI Match Score']);
+                const scoreA = parseNumericForSort(scoreRawA) ?? -1;
+                const scoreB = parseNumericForSort(scoreRawB) ?? -1;
+
+                // 1. Standbeeld/Primaire sortering op AI Score als 'AI Picks' op AAN staat OF handmatig 'AI Match Score' is gekozen
+                if (currentSort === 'ai-score-desc' || (aiPicksActive && currentSort === 'default')) {
+                    if (scoreA !== scoreB) {
+                        return scoreB - scoreA; // Hoogste score eerst
+                    }
+                } else if (aiPicksActive) {
+                    // Als AI picks aan staat én er een specifieke sortering is ingesteld (bijv. prijs), sorteer AI Picks toch eerst
                     const valA = String(getRowValue(a, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
                     const valB = String(getRowValue(b, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
                     const isAiA = (valA === 'ja' || valA === 'true' || valA === '1') ? 1 : 0;
@@ -1605,7 +1624,7 @@
                     }
                 }
 
-                // 2. Toepassen van de gekozen (of standaard) sortering
+                // 2. Toepassen van de gekozen (of secundaire) sortering
                 let numA = null;
                 let numB = null;
 
@@ -1622,7 +1641,7 @@
                     return dateA - dateB;
                 } 
                 else if (currentSort === 'default' && currentTab === 'listings') {
-                    // Standaard listings: Nieuwste bouwjaar / registratie eerst
+                    // Standaard fallback listings: Nieuwste bouwjaar / registratie eerst
                     numA = parseNumericForSort(a['Eerste registratie'] || a.Bouwjaar);
                     numB = parseNumericForSort(b['Eerste registratie'] || b.Bouwjaar);
                     
@@ -1653,7 +1672,7 @@
                 }
 
                 // Generieke afhandeling voor prijs/bouwjaar/km sorting
-                if (currentSort !== 'default' && currentSort !== 'auction-first') {
+                if (currentSort !== 'default' && currentSort !== 'auction-first' && currentSort !== 'ai-score-desc') {
                     if (numA === null && numB === null) return 0;
                     if (numA === null) return 1;  // Leeg / op aanvraag naar de bodem
                     if (numB === null) return -1; 
