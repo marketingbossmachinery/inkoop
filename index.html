@@ -390,7 +390,7 @@
             display: none;
         }
 
-        /* Visuele AI Toggle Schakelaar */
+        /* Visuele Toggle Schakelaars */
         .ai-toggle-container {
             display: flex;
             align-items: center;
@@ -451,6 +451,15 @@
         .ai-toggle-container.active .toggle-status-text {
             background: #dbeafe;
             color: var(--ai-blue);
+        }
+
+        /* Actieve kleur voor Concurrentie tonen */
+        #competitorToggleBtn.active .toggle-switch {
+            background-color: #28a745;
+        }
+        #competitorToggleBtn.active .toggle-status-text {
+            background: #d4edda;
+            color: #28a745;
         }
 
         .feedback-filter-select {
@@ -954,6 +963,13 @@
                         <span id="aiToggleState" class="toggle-status-text">AAN</span>
                     </div>
 
+                    <!-- Toon concurrentie Toggle Schakelaar (Standaard UIT) -->
+                    <div id="competitorToggleBtn" class="ai-toggle-container" onclick="toggleCompetitors()">
+                        <span class="ai-toggle-label">Toon concurrentie</span>
+                        <div class="toggle-switch"></div>
+                        <span id="competitorToggleState" class="toggle-status-text">UIT</span>
+                    </div>
+
                     <select id="filter-feedback" class="feedback-filter-select" onchange="renderGrid()">
                         <option value="relevant" selected>Relevante resultaten (Geen 👎)</option>
                         <option value="all">Alle resultaten</option>
@@ -978,6 +994,7 @@
         let currentTab = 'listings';
         let activeFeedbackId = null;
         let aiPicksActive = true; 
+        let showCompetitors = false; 
         let currentSort = 'default';
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
@@ -1020,6 +1037,21 @@
             const stateSpan = document.getElementById('aiToggleState');
             
             if (aiPicksActive) {
+                container.classList.add('active');
+                stateSpan.innerText = 'AAN';
+            } else {
+                container.classList.remove('active');
+                stateSpan.innerText = 'UIT';
+            }
+            renderGrid();
+        }
+
+        function toggleCompetitors() {
+            showCompetitors = !showCompetitors;
+            const container = document.getElementById('competitorToggleBtn');
+            const stateSpan = document.getElementById('competitorToggleState');
+            
+            if (showCompetitors) {
                 container.classList.add('active');
                 stateSpan.innerText = 'AAN';
             } else {
@@ -1502,6 +1534,22 @@
                 if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
 
+                // Concurrenten filteren + Blacklist
+                if (!showCompetitors) {
+                    const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
+                    const feedbackText = String(getRowValue(row, ['Feedback', 'Feedback Inkoop']) || '').toLowerCase();
+                    const platformText = String(row['Platform'] || '').toLowerCase();
+                    const locLower = String(row.Locatie || '').toLowerCase();
+                    const linkLower = String(row.Link || '').toLowerCase();
+
+                    // Via AI, Platform of Feedback markering
+                    if (aiReasonText.includes('concurrent') || platformText.includes('concurrent') || feedbackText.includes('concurrent')) return false;
+
+                    // Harde uitsluitingen (Blacklist)
+                    if (locLower.includes('vuren')) return false;
+                    if (locLower.includes('gelderland') && linkLower.includes('europe-commercial-vehicle.com')) return false;
+                }
+
                 if (searchQuery) {
                     const searchableText = `${row.Titel || ''} ${row.Merk || ''} ${row.brand || ''} ${row.Model || ''} ${row.Locatie || ''} ${row.Platform || ''}`.toLowerCase();
                     if (!searchableText.includes(searchQuery)) return false;
@@ -1870,6 +1918,22 @@
         
                     if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                     if (filterStatus && row.Status !== filterStatus) return false;
+
+                    // Concurrenten filteren + Blacklist
+                    if (!showCompetitors) {
+                        const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
+                        const feedbackText = String(getRowValue(row, ['Feedback', 'Feedback Inkoop']) || '').toLowerCase();
+                        const platformText = String(row['Platform'] || '').toLowerCase();
+                        const locLower = String(row.Locatie || '').toLowerCase();
+                        const linkLower = String(row.Link || '').toLowerCase();
+
+                        // Via AI, Platform of Feedback markering
+                        if (aiReasonText.includes('concurrent') || platformText.includes('concurrent') || feedbackText.includes('concurrent')) return false;
+
+                        // Harde uitsluitingen (Blacklist)
+                        if (locLower.includes('vuren')) return false;
+                        if (locLower.includes('gelderland') && linkLower.includes('europe-commercial-vehicle.com')) return false;
+                    }
 
                     if (searchQuery) {
                         const searchableText = `${row.Titel || ''} ${row.Merk || ''} ${row.brand || ''} ${row.Model || ''} ${row.Locatie || ''} ${row.Platform || ''}`.toLowerCase();
