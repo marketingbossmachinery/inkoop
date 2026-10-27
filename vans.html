@@ -1205,8 +1205,27 @@
         }
 
         const TARGET_PORTALS = [
-            "AutoTrack", "Marktplaats", "BCA Veilingen", "Truck1", "Mascus", 
-            "Autoscout24", "Mobile.de", "Kleyn Vans", "BAS World"
+            "2dehands",
+            "Autoscout24",
+            "Blocket",
+            "Camion Super Market",
+            "Coches",
+            "Copart",
+            "DBA",
+            "Finn",
+            "Klaravik",
+            "Kleinanzeigen",
+            "Kvdbil",
+            "La Centrale",
+            "Leboncoin",
+            "Legal Brokers",
+            "Marktplaats",
+            "Milanuncios",
+            "Mobile",
+            "Otomoto",
+            "Quoka",
+            "Truckscout24",
+            "ViaMobilis"
         ];
 
         fetch(jsonMasterUrl + '?t=' + new Date().getTime())
@@ -1267,20 +1286,30 @@
         }
 
         function checkPortalsStatus() {
-            const todayStr = new Date().toISOString().split('T')[0];
+            // Genereer de datum van vandaag in YYYY-MM-DD formaat
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const todayStr = `${yyyy}-${mm}-${dd}`;
+        
             let statuses = {};
             let globalStatus = 'green';
-
+        
             TARGET_PORTALS.forEach(portalName => {
+                // Flexibele zoekopdracht: matcht bijvoorbeeld "Copart" op "Copart (veilingen)"
                 const portalRows = allData.filter(r => (r.Platform || '').toLowerCase().includes(portalName.toLowerCase()));
+        
                 if (portalRows.length === 0) {
-                    statuses[portalName] = { state: 'orange', label: 'Geen specifieke data' };
+                    statuses[portalName] = { state: 'orange', label: 'Geen data in bestand' };
                     if (globalStatus !== 'red') globalStatus = 'orange';
                 } else {
+                    // Controleer kolom N ('Laatst bijgewerkt') op de datum van vandaag
                     const hasTodayData = portalRows.some(r => {
-                        const dFound = r['Laatst bijgewerkt'] || '';
+                        const dFound = String(r['Laatst bijgewerkt'] || '').trim();
                         return dFound.includes(todayStr);
                     });
+        
                     if (hasTodayData) {
                         statuses[portalName] = { state: 'green', label: 'Data vandaag binnen' };
                     } else {
@@ -1289,6 +1318,7 @@
                     }
                 }
             });
+        
             return { statuses, globalStatus };
         }
 
