@@ -955,8 +955,7 @@
                             <span>Sorteren</span>
                         </div>
                         <div class="sort-dropdown" id="sortDropdown">
-                            <div class="sort-option selected" onclick="setSort('default')" id="opt-default">Standaard instelling</div>
-                            <div class="sort-option" onclick="setSort('ai-score-desc')" id="opt-ai-score-desc">🤖 AI Match Score (Hoog > Laag)</div>
+                            <div class="sort-option selected" onclick="setSort('ai-score-desc')" id="opt-ai-score-desc">🤖 AI Match Score (Hoog > Laag)</div>
                             <div class="sort-option" data-auction-only="true" onclick="setSort('auction-first')" id="opt-auction-first">⏱️ Eerst aflopende veilingen</div>
                             <div class="sort-option" onclick="setSort('price-asc')" id="opt-price-asc">💶 Prijs (Oplopend)</div>
                             <div class="sort-option" onclick="setSort('price-desc')" id="opt-price-desc">💶 Prijs (Aflopend)</div>
@@ -1008,7 +1007,7 @@
         let activeFeedbackId = null;
         let aiPicksActive = true; 
         let showCompetitors = false; 
-        let currentSort = 'default';
+        let currentSort = 'ai-score-desc'; // Standaard sortering op AI Match Score
 
         let feedbackData = JSON.parse(localStorage.getItem('bossVansFeedbackData') || '{}');
 
@@ -1289,10 +1288,10 @@
             const auctionOpt = document.getElementById('opt-auction-first');
             if (tab === 'auctions') {
                 auctionOpt.style.display = 'flex';
-                if(currentSort === 'default' || currentSort === 'auction-first') setSort('auction-first');
+                if(currentSort === 'ai-score-desc' || currentSort === 'auction-first') setSort('auction-first');
             } else {
                 auctionOpt.style.display = 'none';
-                if(currentSort === 'auction-first') setSort('default');
+                if(currentSort === 'auction-first') setSort('ai-score-desc');
             }
 
             populateFilters();
@@ -1601,34 +1600,35 @@
             // -- SORTEER LOGICA --
             filteredData.sort((a, b) => {
                 
-                // AI Score (Kolom V / AI Score) ophalen
-                const scoreRawA = getRowValue(a, ['AI Score', 'AI-Score', 'AIScore', 'Score', 'Match Score', 'AI Match Score']);
-                const scoreRawB = getRowValue(b, ['AI Score', 'AI-Score', 'AIScore', 'Score', 'Match Score', 'AI Match Score']);
-                const scoreA = parseNumericForSort(scoreRawA) ?? -1;
-                const scoreB = parseNumericForSort(scoreRawB) ?? -1;
-
-                // 1. Standbeeld/Primaire sortering op AI Score als 'AI Picks' op AAN staat OF handmatig 'AI Match Score' is gekozen
-                if (currentSort === 'ai-score-desc' || (aiPicksActive && currentSort === 'default')) {
-                    if (scoreA !== scoreB) {
-                        return scoreB - scoreA; // Hoogste score eerst
-                    }
-                } else if (aiPicksActive) {
-                    // Als AI picks aan staat én er een specifieke sortering is ingesteld (bijv. prijs), sorteer AI Picks toch eerst
+                // 1. ALS AI PICKS AAN STAAT -> AI PICKS ALTIJD BOVENAAN
+                if (aiPicksActive) {
                     const valA = String(getRowValue(a, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
                     const valB = String(getRowValue(b, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
                     const isAiA = (valA === 'ja' || valA === 'true' || valA === '1') ? 1 : 0;
                     const isAiB = (valB === 'ja' || valB === 'true' || valB === '1') ? 1 : 0;
                     
                     if (isAiA !== isAiB) {
-                        return isAiB - isAiA;
+                        return isAiB - isAiA; // AI Picks (1) boven niet-AI Picks (0)
                     }
                 }
 
-                // 2. Toepassen van de gekozen (of secundaire) sortering
+                // AI Score (Kolom V / AI Score) ophalen voor sortering
+                const scoreRawA = getRowValue(a, ['AI Score', 'AI-Score', 'AIScore', 'Score', 'Match Score', 'AI Match Score']);
+                const scoreRawB = getRowValue(b, ['AI Score', 'AI-Score', 'AIScore', 'Score', 'Match Score', 'AI Match Score']);
+                const scoreA = parseNumericForSort(scoreRawA) ?? -1;
+                const scoreB = parseNumericForSort(scoreRawB) ?? -1;
+
+                // 2. Toepassen van de gekozen sortering (Standaard: AI Match Score Hoog > Laag)
+                if (currentSort === 'ai-score-desc') {
+                    if (scoreA !== scoreB) {
+                        return scoreB - scoreA; // Hoogste score (bijv 95) boven laagste score (bijv 10)
+                    }
+                }
+
                 let numA = null;
                 let numB = null;
 
-                if (currentSort === 'auction-first' || (currentSort === 'default' && currentTab === 'auctions')) {
+                if (currentSort === 'auction-first' || (currentTab === 'auctions' && currentSort === 'ai-score-desc')) {
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
                     const dateB = parseAuctionDate(b['Veiling loopt af op']);
                     const now = new Date();
@@ -1640,22 +1640,6 @@
                     if (!dateB) return -1;
                     return dateA - dateB;
                 } 
-                else if (currentSort === 'default' && currentTab === 'listings') {
-                    // Standaard fallback listings: Nieuwste bouwjaar / registratie eerst
-                    numA = parseNumericForSort(a['Eerste registratie'] || a.Bouwjaar);
-                    numB = parseNumericForSort(b['Eerste registratie'] || b.Bouwjaar);
-                    
-                    // Verkochte items onderaan
-                    const isSoldA = (a.Status || '').toLowerCase().includes('verkocht');
-                    const isSoldB = (b.Status || '').toLowerCase().includes('verkocht');
-                    if (isSoldA && !isSoldB) return 1;
-                    if (!isSoldA && isSoldB) return -1;
-
-                    if (numA === null && numB === null) return 0;
-                    if (numA === null) return 1;
-                    if (numB === null) return -1;
-                    return numB - numA; 
-                }
                 else if (currentSort.startsWith('price')) {
                     const prijsA = a['Laatste prijs'] || a['Prijs'] || a['Eerste prijs'];
                     const prijsB = b['Laatste prijs'] || b['Prijs'] || b['Eerste prijs'];
@@ -1672,7 +1656,7 @@
                 }
 
                 // Generieke afhandeling voor prijs/bouwjaar/km sorting
-                if (currentSort !== 'default' && currentSort !== 'auction-first' && currentSort !== 'ai-score-desc') {
+                if (currentSort !== 'ai-score-desc' && currentSort !== 'auction-first') {
                     if (numA === null && numB === null) return 0;
                     if (numA === null) return 1;  // Leeg / op aanvraag naar de bodem
                     if (numB === null) return -1; 
@@ -1683,6 +1667,12 @@
                         return numB - numA;
                     }
                 }
+
+                // Fallback: Verkochte items onderaan
+                const isSoldA = (a.Status || '').toLowerCase().includes('verkocht');
+                const isSoldB = (b.Status || '').toLowerCase().includes('verkocht');
+                if (isSoldA && !isSoldB) return 1;
+                if (!isSoldA && isSoldB) return -1;
 
                 return 0;
             });
