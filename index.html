@@ -945,7 +945,7 @@
                             <span>Sorteren</span>
                         </div>
                         <div class="sort-dropdown" id="sortDropdown">
-                            <div class="sort-option selected" onclick="setSort('default')" id="opt-default">🤖 AI Ranking & Picks (Standaard)</div>
+                            <div class="sort-option selected" onclick="setSort('default')" id="opt-default">🤖 AI Picks + Aflopende Veilingen (Standaard)</div>
                             <div class="sort-option" data-auction-only="true" onclick="setSort('auction-first')" id="opt-auction-first">⏱️ Eerst aflopende veilingen</div>
                             <div class="sort-option" onclick="setSort('price-asc')" id="opt-price-asc">💶 Prijs (Oplopend)</div>
                             <div class="sort-option" onclick="setSort('price-desc')" id="opt-price-desc">💶 Prijs (Aflopend)</div>
@@ -1015,7 +1015,6 @@
         function setSort(sortType) {
             currentSort = sortType;
             
-            // UI Update voor menu selectie
             document.querySelectorAll('.sort-option').forEach(el => el.classList.remove('selected'));
             const selectedOpt = document.getElementById(`opt-${sortType}`);
             if(selectedOpt) selectedOpt.classList.add('selected');
@@ -1024,7 +1023,6 @@
             renderGrid();
         }
 
-        // Close sort menu when clicking outside
         window.addEventListener('click', function(e) {
             if (!document.querySelector('.sort-container').contains(e.target)) {
                 document.getElementById('sortDropdown').classList.remove('open');
@@ -1072,20 +1070,11 @@
             return '';
         }
 
-        // Helper om AI Score uit te lezen (uit kolom W / AI Score / AI Ranking)
-        function getAiScore(row) {
-            const rawScore = getRowValue(row, ['AI Score', 'AI-Score', 'AIScore', 'AI Ranking', 'AI-Ranking', 'AIRanking', 'Score', 'W']);
-            const num = parseNumericForSort(rawScore);
-            return num !== null ? num : 0;
-        }
-
-        // Helper om te zien of een item als Top AI Pick gemarkeerd is
         function isAiPickItem(row) {
             const val = String(getRowValue(row, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
             return (val === 'ja' || val === 'true' || val === '1');
         }
 
-        // Helper om getallen uit te lezen voor sortering (zet "op aanvraag" of leeg naar null)
         function parseNumericForSort(val) {
             if (val === null || val === undefined) return null;
             let s = String(val).toLowerCase().trim();
@@ -1211,7 +1200,7 @@
             "Agorastore", "Auction Time", "Blaupool", "Camion Super Market",
             "Equippo", "Interencheres", "Klaravik", "Legal Brokers", "MMT Usatomacchine", 
             "MachineryLine", "Mascus", "Proxibid", "Purple Wave", "Surplex", "Troostwijk", 
-            "Truck1", "Truckscout24",  "werktuigen"           
+            "Truck1", "Truckscout24",  "werktuigen"            
         ];
 
         fetch(jsonMasterUrl)
@@ -1421,10 +1410,15 @@
         function parseAuctionDate(str) {
             if (!str) return null;
             str = String(str).replace(/^'/, '').trim();
-            if (str.includes('T')) {
-                const d = new Date(str);
-                if (!isNaN(d.getTime())) return d;
+            
+            if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}/.test(str)) {
+                str = str.replace(' ', 'T');
             }
+            str = str.replace(/([+-]\d{2})(\d{2})$/, '$1:$2');
+
+            let d = new Date(str);
+            if (!isNaN(d.getTime())) return d;
+
             if (/^\d+:\d{2}:\d{2}$/.test(str)) {
                 const parts = str.split(':').map(Number);
                 const ms = (parts[0] * 3600 + parts[1] * 60 + parts[2]) * 1000;
@@ -1432,8 +1426,8 @@
             }
             const euMatch = str.match(/^(\d{2})-(\d{2})-(\d{4})[, ]*\s*(\d{2}):(\d{2})$/);
             if (euMatch) {
-                const [, d, m, y, hh, mm] = euMatch;
-                return new Date(`${y}-${m}-${d}T${hh}:${mm}:00`);
+                const [, day, m, y, hh, mm] = euMatch;
+                return new Date(`${y}-${m}-${day}T${hh}:${mm}:00`);
             }
             return null;
         }
@@ -1534,7 +1528,6 @@
                 if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
 
-                // Concurrenten filteren + Blacklist
                 if (!showCompetitors) {
                     const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
                     const feedbackText = String(getRowValue(row, ['Feedback', 'Feedback Inkoop']) || '').toLowerCase();
@@ -1563,9 +1556,8 @@
                 return true;
             });
 
-            // -- VERFIJNDE AI SORTEER LOGICA --
+            // -- VERFIJNDE SORTEER LOGICA (AI PICKS BOVENAAN, DAARNA AFLOPENDE VEILINGEN) --
             filteredData.sort((a, b) => {
-                // 1. Standaard AI Sortering (Eerst AI Picks, daarna Kolom W / AI Score Ranking)
                 if (currentSort === 'default' || currentSort === 'ai-ranking') {
                     if (aiPicksActive) {
                         const isAiA = isAiPickItem(a) ? 1 : 0;
@@ -1576,32 +1568,27 @@
                         }
                     }
 
-                    // Sorteren op AI Score / Kolom W (Aflopend)
-                    const scoreA = getAiScore(a);
-                    const scoreB = getAiScore(b);
-                    if (scoreA !== scoreB) {
-                        return scoreB - scoreA;
+                    // Standaard hoofdsortering: eerst aflopende veilingen (of datum/tijd volgorde)
+                    const dateA = parseAuctionDate(a['Veiling loopt af op']);
+                    const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                    const now = new Date();
+                    
+                    const isExpiredA = !dateA || (dateA - now <= 0);
+                    const isExpiredB = !dateB || (dateB - now <= 0);
+                    
+                    if (isExpiredA && !isExpiredB) return 1;
+                    if (!isExpiredA && isExpiredB) return -1;
+                    if (!dateA && !dateB) {
+                        // Tie-breaker voor normale listings (verkochte items onderaan)
+                        const isSoldA = (a.Status || '').toLowerCase().includes('verkocht');
+                        const isSoldB = (b.Status || '').toLowerCase().includes('verkocht');
+                        if (isSoldA && !isSoldB) return 1;
+                        if (!isSoldA && isSoldB) return -1;
+                        return 0;
                     }
-
-                    // Tie-breaker voor veilingen: eerst lopende veilingen op aflopende tijd
-                    if (currentTab === 'auctions') {
-                        const dateA = parseAuctionDate(a['Veiling loopt af op']);
-                        const dateB = parseAuctionDate(b['Veiling loopt af op']);
-                        const now = new Date();
-                        const isExpiredA = !dateA || (dateA - now <= 0);
-                        const isExpiredB = !dateB || (dateB - now <= 0);
-                        if (isExpiredA && !isExpiredB) return 1;
-                        if (!isExpiredA && isExpiredB) return -1;
-                        if (!dateA) return 1;
-                        if (!dateB) return -1;
-                        return dateA - dateB;
-                    }
-
-                    // Tie-breaker voor listings: verkochte items onderaan
-                    const isSoldA = (a.Status || '').toLowerCase().includes('verkocht');
-                    const isSoldB = (b.Status || '').toLowerCase().includes('verkocht');
-                    if (isSoldA && !isSoldB) return 1;
-                    if (!isSoldA && isSoldB) return -1;
+                    if (!dateA) return 1;
+                    if (!dateB) return -1;
+                    return dateA - dateB;
                 }
                 else if (currentSort === 'auction-first') {
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
@@ -1690,7 +1677,6 @@
 
                 const isAiPick = aiPicksActive && isAiPickItem(row);
                 const aiReason = getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '';
-                const aiScoreVal = getAiScore(row);
 
                 if (isOwnStock) {
                     badgeHtml = '';
