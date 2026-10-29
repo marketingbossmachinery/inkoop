@@ -1847,7 +1847,6 @@
                 }
 
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${aiReason}</div>` : '';
-                const aiScoreBadgeHtml = aiScoreVal > 0 ? `<span class="spec-tag" style="background:#dbeafe; color:#1e40af; border-color:#bfdbfe; font-weight:bold;">Score: ${aiScoreVal}</span>` : '';
 
                 const expiredClass = isExpired ? ' expired' : '';
                 const wrapperStart = isOwnStock ? `<div class="card${expiredClass}${extraClass}">` : `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}${extraClass}">`;
@@ -1868,7 +1867,6 @@
                             <div class="card-specs">
                                 ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${row.Bouwjaar}</span>` : ''}
                                 ${row.Draaiuren ? `<span class="spec-tag">Uren: ${row.Draaiuren}</span>` : ''}
-                                ${aiScoreBadgeHtml}
                             </div>
                             ${metaInfoHtml}
                             <div class="card-price-box">
