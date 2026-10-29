@@ -1387,47 +1387,68 @@
                 }
             }
 
-            // 2. Exacte match op landnamen
+            function getCountryFlagHtml(locStr) {
+            if (!locStr) return '📍 <span>Onbekend</span>';
+            
+            let cleanLocStr = locStr.replace(/^[📍\s]+/, '');
+            let l = cleanLocStr.toLowerCase();
+            
             const euCountries = {
                 'china': 'cn',
-                'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl',
-                'belgië': 'be', 'belgium': 'be', 'belgique': 'be',
-                'duitsland': 'de', 'germany': 'de', 'deutschland': 'de',
-                'frankrijk': 'fr', 'france': 'fr',
-                'spanje': 'es', 'spain': 'es', 'españa': 'es',
-                'portugal': 'pt',
-                'italië': 'it', 'italy': 'it', 'italia': 'it',
-                'polen': 'pl', 'poland': 'pl',
-                'zweden': 'se', 'sweden': 'se', 'sverige': 'se',
-                'noorwegen': 'no', 'norway': 'no', 'norge': 'no',
-                'denemarken': 'dk', 'denmark': 'dk', 'danmark': 'dk',
-                'finland': 'fi', 'suomi': 'fi',
-                'ierland': 'ie', 'ireland': 'ie',
-                'verenigd koninkrijk': 'gb', 'engeland': 'gb', 'england': 'gb', 'united kingdom': 'gb',
-                'zwitserland': 'ch', 'switzerland': 'ch', 'suisse': 'ch',
-                'oostenrijk': 'at', 'austria': 'at', 'österreich': 'at',
-                'slovenië': 'si', 'slovenia': 'si',
-                'slowakije': 'sk', 'slovakia': 'sk',
-                'tsjechië': 'cz', 'czech': 'cz', 'czechia': 'cz',
-                'hongarije': 'hu', 'hungary': 'hu',
-                'roemenië': 'ro', 'romania': 'ro',
-                'bulgarije': 'bg', 'bulgaria': 'bg',
-                'griekenland': 'gr', 'greece': 'gr',
-                'kroatië': 'hr', 'croatia': 'hr',
-                'estland': 'ee', 'estonia': 'ee',
-                'letland': 'lv', 'latvia': 'lv',
-                'litouwen': 'lt', 'lithuania': 'lt',
-                'luxemburg': 'lu', 'luxembourg': 'lu',
-                'verenigde staten': 'us', 'united states': 'us', 'usa': 'us'
+                'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl', ' nl': 'nl',
+                'belgië': 'be', 'belgium': 'be', 'belgique': 'be', ' be': 'be',
+                'duitsland': 'de', 'germany': 'de', 'deutschland': 'de', ' de': 'de',
+                'frankrijk': 'fr', 'france': 'fr', ' fr': 'fr',
+                'spanje': 'es', 'spain': 'es', 'españa': 'es', ' es': 'es',
+                'portugal': 'pt', ' pt': 'pt',
+                'italië': 'it', 'italy': 'it', 'italia': 'it', ' it': 'it',
+                'polen': 'pl', 'poland': 'pl', ' pl': 'pl',
+                'zweden': 'se', 'sweden': 'se', 'sverige': 'se', ' se': 'se',
+                'noorwegen': 'no', 'norway': 'no', 'norge': 'no', ' no': 'no',
+                'denemarken': 'dk', 'denmark': 'dk', 'danmark': 'dk', ' dk': 'dk',
+                'finland': 'fi', 'suomi': 'fi', ' fi': 'fi',
+                'ierland': 'ie', 'ireland': 'ie', ' ie': 'ie',
+                'verenigd koninkrijk': 'gb', 'engeland': 'gb', 'england': 'gb', 'united kingdom': 'gb', ' gb': 'gb', ' uk': 'gb',
+                'zwitserland': 'ch', 'switzerland': 'ch', 'suisse': 'ch', ' ch': 'ch',
+                'oostenrijk': 'at', 'austria': 'at', 'österreich': 'at', ' at': 'at',
+                'slovenië': 'si', 'slovenia': 'si', ' si': 'si',
+                'slowakije': 'sk', 'slovakia': 'sk', ' sk': 'sk',
+                'tsjechië': 'cz', 'czech': 'cz', 'czechia': 'cz', ' cz': 'cz',
+                'hongarije': 'hu', 'hungary': 'hu', ' hu': 'hu',
+                'roemenië': 'ro', 'romania': 'ro', ' ro': 'ro',
+                'bulgarije': 'bg', 'bulgaria': 'bg', ' bg': 'bg',
+                'griekenland': 'gr', 'greece': 'gr', ' gr': 'gr',
+                'kroatië': 'hr', 'croatia': 'hr', ' hr': 'hr',
+                'estland': 'ee', 'estonia': 'ee', ' ee': 'ee',
+                'letland': 'lv', 'latvia': 'lv', ' lv': 'lv',
+                'litouwen': 'lt', 'lithuania': 'lt', ' lt': 'lt',
+                'luxemburg': 'lu', 'luxembourg': 'lu', ' lu': 'lu',
+                'verenigde staten': 'us', 'united states': 'us', 'usa': 'us', ' us': 'us'
             };
 
+            let countryCode = '';
+            
+            // 1. Check op volledige landnamen / sleutels
             for (const [name, code] of Object.entries(euCountries)) {
-                const regex = new RegExp(`\\b${name}\\b`, 'i');
-                if (regex.test(l)) {
-                    return `<img src="https://flagcdn.com/24x18/${code}.png" alt="${code}" title="${code.toUpperCase()}"> <span>${cleanLocStr}</span>`;
+                if (l.includes(name)) {
+                    countryCode = code;
+                    break;
                 }
             }
-
+            
+            // 2. Extra check: als de string eindigt op een landcode (bijv. ' it' of ' nl')
+            if (!countryCode) {
+                const words = l.split(/[\s-]+/);
+                const lastWord = words[words.length - 1];
+                const validCodes = [...new Set(Object.values(euCountries))];
+                if (validCodes.includes(lastWord)) {
+                    countryCode = lastWord;
+                }
+            }
+            
+            if (countryCode) {
+                return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}" title="${countryCode.toUpperCase()}"> <span>${cleanLocStr}</span>`;
+            }
             return `📍 <span>${cleanLocStr}</span>`;
         }
 
