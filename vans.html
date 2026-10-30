@@ -1222,38 +1222,45 @@
             "Mobile", "Otomoto", "Quoka", "Truckscout24", "ViaMobilis"
         ];
 
+        // Robuuste fetch met tekstafhandeling en try-catch om JSON parsing crashes op te vangen
         fetch(jsonMasterUrl + '?t=' + new Date().getTime())
-            .then(response => response.json())
-            .then(masterData => {
-                let parsedListings = [];
-                let parsedVoorraad = [];
+            .then(response => response.text())
+            .then(text => {
+                try {
+                    const masterData = JSON.parse(text);
+                    let parsedListings = [];
+                    let parsedVoorraad = [];
 
-                if (masterData.stockHeaders && masterData.stockRows) {
-                    const headers = masterData.stockHeaders;
-                    const rows = masterData.stockRows.map(row => {
-                        let obj = {};
-                        headers.forEach((h, i) => {
-                            if (h && h.trim()) obj[h.trim()] = row[i];
+                    if (masterData.stockHeaders && masterData.stockRows) {
+                        const headers = masterData.stockHeaders;
+                        const rows = masterData.stockRows.map(row => {
+                            let obj = {};
+                            headers.forEach((h, i) => {
+                                if (h && h.trim()) obj[h.trim()] = row[i];
+                            });
+                            return obj;
                         });
-                        return obj;
-                    });
-                    parsedVoorraad = rows.filter(r => (r.Platform || '').toLowerCase().includes('eigen voorraad'));
-                    parsedListings = rows.filter(r => !(r.Platform || '').toLowerCase().includes('eigen voorraad'));
-                } else if (Array.isArray(masterData)) {
-                    parsedVoorraad = masterData.filter(r => (r.Platform || '').toLowerCase().includes('eigen voorraad'));
-                    parsedListings = masterData.filter(r => !(r.Platform || '').toLowerCase().includes('eigen voorraad'));
-                } else {
-                    parsedListings = masterData.listings || [];
-                    parsedVoorraad = masterData.voorraad || [];
+                        parsedVoorraad = rows.filter(r => (r.Platform || '').toLowerCase().includes('eigen voorraad'));
+                        parsedListings = rows.filter(r => !(r.Platform || '').toLowerCase().includes('eigen voorraad'));
+                    } else if (Array.isArray(masterData)) {
+                        parsedVoorraad = masterData.filter(r => (r.Platform || '').toLowerCase().includes('eigen voorraad'));
+                        parsedListings = masterData.filter(r => !(r.Platform || '').toLowerCase().includes('eigen voorraad'));
+                    } else {
+                        parsedListings = masterData.listings || [];
+                        parsedVoorraad = masterData.voorraad || [];
+                    }
+
+                    allData = parsedListings.filter(row => row.Merk || row.Model || row.Titel);
+                    ownStockData = parsedVoorraad.filter(row => row.Merk || row.Model || row.Titel);
+
+                    populateFilters();
+                    updateSystemStatusHeader();
+                    renderGrid();
+                    haalLiveFeedbackOp();
+                } catch (e) {
+                    console.error("JSON Parse Fout! De ontvangen tekst was:", text.slice(-200));
+                    document.getElementById('product-grid').innerHTML = '<p style="color:red;">JSON laadfout: Het bestand is mogelijk onvolledig of afgebroken. Bekijk de console voor het laatste stukje data.</p>';
                 }
-
-                allData = parsedListings.filter(row => row.Merk || row.Model || row.Titel);
-                ownStockData = parsedVoorraad.filter(row => row.Merk || row.Model || row.Titel);
-
-                populateFilters();
-                updateSystemStatusHeader();
-                renderGrid();
-                haalLiveFeedbackOp();
             })
             .catch(err => {
                 console.error("Fout bij laden van Boss Vans JSON:", err);
@@ -1370,24 +1377,7 @@
             fillSelect('filter-status', statussen, 'Alle statussen');
         }
 
-        /* VERBETERDE VLAG-DETECTIE LOGICA */
         function getCountryFlagHtml(locStr) {
-            if (!locStr) return '📍 <span>Onbekend</span>';
-            let cleanLocStr = locStr.replace(/^[📍\s]+/, '');
-            let l = cleanLocStr.toLowerCase();
-            
-            // 1. Directe check op losstaande ISO-landcode (zoals "DE", "NL", "BE", etc.)
-            const isoMatches = cleanLocStr.match(/\b([A-Z]{2})\b/);
-            if (isoMatches) {
-                const code = isoMatches[1].toLowerCase();
-                const validCodes = ['de', 'nl', 'be', 'fr', 'es', 'pt', 'it', 'pl', 'se', 'no', 'dk', 'fi', 'ie', 'gb', 'uk', 'ch', 'at', 'si', 'sk', 'cz', 'hu', 'ro', 'bg', 'gr', 'hr', 'ee', 'lv', 'lt', 'lu', 'us', 'cn'];
-                if (validCodes.includes(code)) {
-                    let displayCode = code === 'uk' ? 'gb' : code;
-                    return `<img src="https://flagcdn.com/24x18/${displayCode}.png" alt="${displayCode}" title="${displayCode.toUpperCase()}"> <span>${cleanLocStr}</span>`;
-                }
-            }
-
-            function getCountryFlagHtml(locStr) {
             if (!locStr) return '📍 <span>Onbekend</span>';
             
             let cleanLocStr = locStr.replace(/^[📍\s]+/, '');
@@ -1428,7 +1418,6 @@
 
             let countryCode = '';
             
-            // 1. Check op volledige landnamen / sleutels
             for (const [name, code] of Object.entries(euCountries)) {
                 if (l.includes(name)) {
                     countryCode = code;
@@ -1436,7 +1425,6 @@
                 }
             }
             
-            // 2. Extra check: als de string eindigt op een landcode (bijv. ' it' of ' nl')
             if (!countryCode) {
                 const words = l.split(/[\s-]+/);
                 const lastWord = words[words.length - 1];
@@ -1595,10 +1583,8 @@
                 return true;
             });
 
-            // -- VERBETERDE SORTEER LOGICA (HOOGSTE SCORE ALTIJD BOVENAAN) --
             filteredData.sort((a, b) => {
                 
-                // 1. ALS AI PICKS AAN STAAT -> AI PICKS ALTIJD BOVENAAN
                 if (aiPicksActive) {
                     const valA = String(getRowValue(a, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
                     const valB = String(getRowValue(b, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
@@ -1606,25 +1592,22 @@
                     const isAiB = (valB === 'ja' || valB === 'true' || valB === '1') ? 1 : 0;
                     
                     if (isAiA !== isAiB) {
-                        return isAiB - isAiA; // AI Picks (1) boven niet-AI Picks (0)
+                        return isAiB - isAiA;
                     }
                 }
 
-                // AI Match Score ophalen
                 const scoreRawA = getRowValue(a, ['AI Score', 'AI-Score', 'AIScore', 'Score', 'Match Score', 'AI Match Score']);
                 const scoreRawB = getRowValue(b, ['AI Score', 'AI-Score', 'AIScore', 'Score', 'Match Score', 'AI Match Score']);
                 
                 const scoreA = parseNumericForSort(scoreRawA);
                 const scoreB = parseNumericForSort(scoreRawB);
 
-                // 2. Toepassen van de gekozen sortering
                 if (currentSort === 'ai-score-desc') {
-                    // Behandel leeg/null als een zeer lage waarde (-999) zodat hoogste scores (bijv. 95) écht bovenaan komen
                     const valA = scoreA !== null ? scoreA : -999;
                     const valB = scoreB !== null ? scoreB : -999;
                     
                     if (valA !== valB) {
-                        return valB - valA; // Aflopend: 95 komt BOVEN 10 of -999
+                        return valB - valA;
                     }
                 }
 
