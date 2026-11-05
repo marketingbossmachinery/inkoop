@@ -727,6 +727,13 @@
 
         .new-price { color: var(--boss-red); }
 
+        .card-right-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
         .card-source {
             font-size: 11px;
             font-weight: bold;
@@ -736,6 +743,17 @@
             border-radius: 3px;
             text-transform: uppercase;
             border: 1px solid #ddd;
+        }
+
+        .card-onsite-badge {
+            font-size: 10px;
+            font-weight: bold;
+            color: #ffffff;
+            background: var(--boss-black);
+            padding: 2px 6px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .countdown {
@@ -1072,7 +1090,15 @@
 
         function isAiPickItem(row) {
             const val = String(getRowValue(row, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
-            return (val === 'ja' || val === 'true' || val === '1');
+            if (val !== 'ja' && val !== 'true' && val !== '1') return false;
+
+            // Nieuwe eis: uitsluiten als reden in kolom U (AI Reden) aangeeft dat deze in het verleden al is geselecteerd
+            const reason = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').trim().toLowerCase();
+            if (reason.includes('in het verleden al geselecteerd')) {
+                return false;
+            }
+
+            return true;
         }
 
         function parseNumericForSort(val) {
@@ -1342,19 +1368,16 @@
             fillSelect('filter-status', statussen, 'Alle statussen');
         }
 
-function getCountryFlagHtml(locStr) {
+        function getCountryFlagHtml(locStr) {
             if (!locStr) return '📍 <span>Onbekend</span>';
             
             let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
             
-            // Uitgebreide wereldwijde mapping (3-letterige ISO, 2-letterige ISO en volledige namen in NL en EN)
             const worldCountries = {
-                // Noord-Amerika
                 'can': 'ca', 'ca': 'ca', 'canada': 'ca',
                 'usa': 'us', 'usm': 'us', 'us': 'us', 'united states': 'us', 'verenigde staten': 'us',
                 'mex': 'mx', 'mx': 'mx', 'mexico': 'mx',
 
-                // Latijns-Amerika & Caribisch gebied
                 'arg': 'ar', 'ar': 'ar', 'argentina': 'ar', 'argentinië': 'ar',
                 'bra': 'br', 'br': 'br', 'brazil': 'br', 'brazilië': 'br',
                 'chl': 'cl', 'cl': 'cl', 'chile': 'cl', 'chili': 'cl',
@@ -1366,7 +1389,6 @@ function getCountryFlagHtml(locStr) {
                 'pan': 'pa', 'pa': 'pa', 'panama': 'pa',
                 'dom': 'do', 'do': 'do', 'dominican republic': 'do', 'dominikaanse republiek': 'do',
 
-                // Europa
                 'nld': 'nl', 'nl': 'nl', 'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl',
                 'bel': 'be', 'be': 'be', 'belgië': 'be', 'belgium': 'be', 'belgique': 'be',
                 'deu': 'de', 'de': 'de', 'duitsland': 'de', 'germany': 'de', 'deutschland': 'de',
@@ -1402,7 +1424,6 @@ function getCountryFlagHtml(locStr) {
                 'srb': 'rs', 'rs': 'rs', 'servië': 'rs', 'serbia': 'rs',
                 'bih': 'ba', 'ba': 'ba', 'bosnië en herzegovina': 'ba', 'bosnia': 'ba',
 
-                // Azië & Midden-Oosten
                 'phl': 'ph', 'ph': 'ph', 'philippines': 'ph', 'filipijnen': 'ph',
                 'idn': 'id', 'id': 'id', 'indonesia': 'id', 'indonesië': 'id',
                 'ind': 'in', 'in': 'in', 'india': 'in',
@@ -1417,7 +1438,6 @@ function getCountryFlagHtml(locStr) {
                 'sau': 'sa', 'sa': 'sa', 'saudi-arabië': 'sa', 'saudi arabia': 'sa',
                 'isr': 'il', 'il': 'il', 'israël': 'il', 'israel': 'il',
 
-                // Oceanië & Afrika
                 'aus': 'au', 'au': 'au', 'australië': 'au', 'australia': 'au',
                 'nzl': 'nz', 'nz': 'nz', 'nieuwe-zeeland': 'nz', 'new zealand': 'nz',
                 'zaf': 'za', 'za': 'za', 'zuid-afrika': 'za', 'south africa': 'za',
@@ -1426,11 +1446,8 @@ function getCountryFlagHtml(locStr) {
             };
 
             let countryCode = '';
-            
-            // Splits de locatie op komma's, slash of streepjes (bijv. "Clarksville, AR, USA" of "Manila, PHL")
             let parts = cleanLocStr.split(/[,–\/-]+/);
             
-            // Zoek van ACHTEREN naar VOREN (aangezien het land bij veilingen bijna altijd achteraan staat)
             for (let i = parts.length - 1; i >= 0; i--) {
                 let token = parts[i].trim().toLowerCase();
                 if (worldCountries[token]) {
@@ -1439,7 +1456,6 @@ function getCountryFlagHtml(locStr) {
                 }
             }
             
-            // Mocht dat door een afwijkende indeling niets opleveren, doorzoek dan de hele string
             if (!countryCode) {
                 let lLower = cleanLocStr.toLowerCase();
                 for (const [name, code] of Object.entries(worldCountries)) {
@@ -1492,7 +1508,7 @@ function getCountryFlagHtml(locStr) {
             if (diff <= 0) return { boxText: 'Veiling afgelopen', imageBadge: 'AFGELOPEN', isUrgent: false, isExpired: true };
             
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const totalHours = Math.floor(diff / (1000 * 60 * 60)); // Totaal aantal uren tot de deadline
+            const totalHours = Math.floor(diff / (1000 * 60 * 60)); 
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
             const minutes = Math.floor((diff / 1000 / 60) % 60);
             const seconds = Math.floor((diff / 1000) % 60);
@@ -1506,7 +1522,6 @@ function getCountryFlagHtml(locStr) {
             const H = pad(end.getHours());
             const M = pad(end.getMinutes());
             
-            // Aangepast: pas urgent/bijna afgelopen bij 3 uur of minder te gaan
             if (totalHours <= 3) {
                 return { boxText: `⚠️ Nog ${days > 0 ? days + 'd ' : ''}${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`, imageBadge: timeStrUpper, isUrgent: true, isExpired: false };
             }
@@ -1608,7 +1623,6 @@ function getCountryFlagHtml(locStr) {
                 return true;
             });
 
-            // -- VERFIJNDE SORTEER LOGICA (AI PICKS BOVENAAN, DAARNA AFLOPENDE VEILINGEN) --
             filteredData.sort((a, b) => {
                 if (currentSort === 'default' || currentSort === 'ai-ranking') {
                     if (aiPicksActive) {
@@ -1616,11 +1630,10 @@ function getCountryFlagHtml(locStr) {
                         const isAiB = isAiPickItem(b) ? 1 : 0;
 
                         if (isAiA !== isAiB) {
-                            return isAiB - isAiA; // AI Picks altijd bovenaan
+                            return isAiB - isAiA; 
                         }
                     }
 
-                    // Standaard hoofdsortering: eerst aflopende veilingen (of datum/tijd volgorde)
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
                     const dateB = parseAuctionDate(b['Veiling loopt af op']);
                     const now = new Date();
@@ -1631,7 +1644,6 @@ function getCountryFlagHtml(locStr) {
                     if (isExpiredA && !isExpiredB) return 1;
                     if (!isExpiredA && isExpiredB) return -1;
                     if (!dateA && !dateB) {
-                        // Tie-breaker voor normale listings (verkochte items onderaan)
                         const isSoldA = (a.Status || '').toLowerCase().includes('verkocht');
                         const isSoldB = (b.Status || '').toLowerCase().includes('verkocht');
                         if (isSoldA && !isSoldB) return 1;
@@ -1721,6 +1733,10 @@ function getCountryFlagHtml(locStr) {
                 let rawPlatform = row['Platform'] || '';
                 let cleanSource = rawPlatform.replace(/\(veilingen\)/gi, '').trim();
                 let sourceHtml = cleanSource ? `<span class="card-source">${cleanSource}</span>` : '';
+
+                // Check voor On-site veiling op basis van kolom X ('Online veiling' = 'Nee')
+                let onlineVeilingVal = String(getRowValue(row, ['Online veiling', 'Online Veiling', 'OnlineVeiling']) || '').trim().toLowerCase();
+                let onsiteBadgeHtml = (onlineVeilingVal === 'nee') ? `<span class="card-onsite-badge">On-Site veiling</span>` : '';
 
                 let badgeHtml = '';
                 let imageBadgeHtml = '';
@@ -1910,7 +1926,10 @@ function getCountryFlagHtml(locStr) {
                             ${metaInfoHtml}
                             <div class="card-price-box">
                                 <div class="card-price">${priceHtml}</div>
-                                ${sourceHtml}
+                                <div class="card-right-meta">
+                                    ${sourceHtml}
+                                    ${onsiteBadgeHtml}
+                                </div>
                             </div>
                             ${auctionHtml}
                             ${aiReasonHtml}
