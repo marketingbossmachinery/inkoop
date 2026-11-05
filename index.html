@@ -580,17 +580,35 @@
         }
         .feedback-btn.active-neg svg { fill: #ffffff !important; }
 
-        .badge-image {
+        .badge-image-container {
             position: absolute;
             top: 10px;
             right: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+            z-index: 2;
+        }
+
+        .badge-image {
             background-color: var(--boss-red);
             color: #ffffff;
             padding: 5px 10px;
             font-size: 12px;
             font-weight: 900;
             border-radius: 4px;
-            z-index: 2;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+        }
+
+        .badge-onsite {
+            background-color: #111111;
+            color: #ffffff;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 900;
+            border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
             text-transform: uppercase;
         }
@@ -743,17 +761,6 @@
             border-radius: 3px;
             text-transform: uppercase;
             border: 1px solid #ddd;
-        }
-
-        .card-onsite-badge {
-            font-size: 10px;
-            font-weight: bold;
-            color: #ffffff;
-            background: var(--boss-black);
-            padding: 2px 6px;
-            border-radius: 3px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .countdown {
@@ -1092,7 +1099,6 @@
             const val = String(getRowValue(row, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
             if (val !== 'ja' && val !== 'true' && val !== '1') return false;
 
-            // Nieuwe eis: uitsluiten als reden in kolom U (AI Reden) aangeeft dat deze in het verleden al is geselecteerd
             const reason = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').trim().toLowerCase();
             if (reason.includes('in het verleden al geselecteerd')) {
                 return false;
@@ -1372,6 +1378,15 @@
             if (!locStr) return '📍 <span>Onbekend</span>';
             
             let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
+            let lLower = cleanLocStr.toLowerCase();
+
+            // Harde uitsluitingen voor bekende conflicten / substrings
+            if (lLower.includes('überherrn') || lLower.includes('saarland')) {
+                return `<img src="https://flagcdn.com/24x18/de.png" alt="de" title="DE"> <span>${cleanLocStr}</span>`;
+            }
+            if (lLower.includes('roma') || lLower.includes('bologna') || lLower.includes('cuneo') || lLower.includes('piemonte') || lLower.includes('bari') || lLower.includes('puglia') || lLower.includes('lazio') || lLower.includes('emilia')) {
+                return `<img src="https://flagcdn.com/24x18/it.png" alt="it" title="IT"> <span>${cleanLocStr}</span>`;
+            }
             
             const worldCountries = {
                 'can': 'ca', 'ca': 'ca', 'canada': 'ca',
@@ -1457,7 +1472,6 @@
             }
             
             if (!countryCode) {
-                let lLower = cleanLocStr.toLowerCase();
                 for (const [name, code] of Object.entries(worldCountries)) {
                     if (lLower.includes(name)) {
                         countryCode = code;
@@ -1734,12 +1748,12 @@
                 let cleanSource = rawPlatform.replace(/\(veilingen\)/gi, '').trim();
                 let sourceHtml = cleanSource ? `<span class="card-source">${cleanSource}</span>` : '';
 
-                // Check voor On-site veiling op basis van kolom X ('Online veiling' = 'Nee')
-                let onlineVeilingVal = String(getRowValue(row, ['Online veiling', 'Online Veiling', 'OnlineVeiling']) || '').trim().toLowerCase();
-                let onsiteBadgeHtml = (onlineVeilingVal === 'nee') ? `<span class="card-onsite-badge">On-Site veiling</span>` : '';
+                // Check op basis van kolom 'Online Auction' = 'Nee'
+                let onlineAuctionVal = String(getRowValue(row, ['Online Auction', 'Online-Auction', 'OnlineAuction']) || '').trim().toLowerCase();
+                let onsiteBadgeHtml = (onlineAuctionVal === 'nee') ? `<div class="badge-onsite">On-site</div>` : '';
 
                 let badgeHtml = '';
-                let imageBadgeHtml = '';
+                let imageBadgeContainerHtml = '';
                 let auctionHtml = '';
                 let isExpired = false;
 
@@ -1754,11 +1768,21 @@
                         const bidsCount = row['Aantal biedingen'] || '0';
                         if (countdownObj.isExpired) {
                             badgeHtml = `<div class="badge badge-rood">Afgelopen</div>`;
-                            imageBadgeHtml = `<div class="badge-image live-badge-image">AFGELOPEN</div>`;
+                            imageBadgeContainerHtml = `
+                                <div class="badge-image-container">
+                                    <div class="badge-image live-badge-image">AFGELOPEN</div>
+                                    ${onsiteBadgeHtml}
+                                </div>
+                            `;
                             auctionHtml = `<div class="countdown" style="background:#eee; color:#666; border-color:#ccc;">Veiling afgelopen | Biedingen: ${bidsCount}</div>`;
                             isExpired = true;
                         } else {
-                            imageBadgeHtml = `<div class="badge-image live-badge-image">${countdownObj.imageBadge}</div>`;
+                            imageBadgeContainerHtml = `
+                                <div class="badge-image-container">
+                                    <div class="badge-image live-badge-image">${countdownObj.imageBadge}</div>
+                                    ${onsiteBadgeHtml}
+                                </div>
+                            `;
                             if (countdownObj.isUrgent) {
                                 badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
                                 auctionHtml = `<div class="countdown live-countdown-box" data-endtime="${row['Veiling loopt af op']}" data-bids="${bidsCount}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
@@ -1914,7 +1938,7 @@
                         ${badgeHtml}
                         <div class="card-image-container">
                             ${imageHtml}
-                            ${imageBadgeHtml}
+                            ${imageBadgeContainerHtml}
                             ${feedbackButtonsHtml}
                         </div>
                         <div class="card-content">
@@ -1928,7 +1952,6 @@
                                 <div class="card-price">${priceHtml}</div>
                                 <div class="card-right-meta">
                                     ${sourceHtml}
-                                    ${onsiteBadgeHtml}
                                 </div>
                             </div>
                             ${auctionHtml}
