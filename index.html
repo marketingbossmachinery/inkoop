@@ -1380,11 +1380,18 @@
             let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
             let lLower = cleanLocStr.toLowerCase();
 
-            // Harde uitsluitingen voor bekende conflicten / substrings
+            // Harde uitsluitingen en directe fixes voor bekende sub-string conflicten (Italië, Duitsland, etc.)
             if (lLower.includes('überherrn') || lLower.includes('saarland')) {
                 return `<img src="https://flagcdn.com/24x18/de.png" alt="de" title="DE"> <span>${cleanLocStr}</span>`;
             }
-            if (lLower.includes('roma') || lLower.includes('bologna') || lLower.includes('cuneo') || lLower.includes('piemonte') || lLower.includes('bari') || lLower.includes('puglia') || lLower.includes('lazio') || lLower.includes('emilia')) {
+            if (
+                lLower.includes('mantova') || lLower.includes('bergamo') || lLower.includes('napoli') || 
+                lLower.includes('padova') || lLower.includes('avellino') || lLower.includes('perugia') || 
+                lLower.includes('roma') || lLower.includes('bologna') || lLower.includes('cuneo') || 
+                lLower.includes('piemonte') || lLower.includes('bari') || lLower.includes('puglia') || 
+                lLower.includes('lazio') || lLower.includes('emilia') || lLower.includes('lombardia') || 
+                lLower.includes('campania') || lLower.includes('veneto') || lLower.includes('umbria')
+            ) {
                 return `<img src="https://flagcdn.com/24x18/it.png" alt="it" title="IT"> <span>${cleanLocStr}</span>`;
             }
             
@@ -1748,7 +1755,6 @@
                 let cleanSource = rawPlatform.replace(/\(veilingen\)/gi, '').trim();
                 let sourceHtml = cleanSource ? `<span class="card-source">${cleanSource}</span>` : '';
 
-                // Check op basis van kolom 'Online Auction' = 'Nee'
                 let onlineAuctionVal = String(getRowValue(row, ['Online Auction', 'Online-Auction', 'OnlineAuction']) || '').trim().toLowerCase();
                 let onsiteBadgeHtml = (onlineAuctionVal === 'nee') ? `<div class="badge-onsite">On-site</div>` : '';
 
