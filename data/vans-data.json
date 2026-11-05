@@ -90,7 +90,7 @@
   "Feedback": "",
   "Image URL": "https://kvdbil-images.imgix.net/7293044/d4b1c07a.jpg",
   "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick: Zeer courante Toyota Proace Electric uit 2023 met slechts 22.400 km op de teller en uitstekende restwaarde.",
+  "AI Reden": "AI pick in het verleden al geselecteerd",
   "AI Ranking": "90"
 },{
   "Platform": "Kvdbil (veilingen)",
@@ -136,7 +136,7 @@
   "Feedback": "",
   "Image URL": "https://www.kvd.se/images/soon.jpg",
   "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick: Uitstekende Mercedes eCitan uit 2023 met een zeer lage kilometerstand van 19.120 km en het gewilde 45kWh accupakket.",
+  "AI Reden": "AI pick in het verleden al geselecteerd",
   "AI Ranking": "92"
 },{
   "Platform": "Kvdbil (veilingen)",
@@ -159,7 +159,7 @@
   "Feedback": "",
   "Image URL": "https://kvdbil-images.imgix.net/7287547/2f51e6e8.jpg",
   "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick: Maxus e-Deliver 3 met het grotere 50,2kWh accupakket en een zeer scherpe startprijs met hoge margepotentie.",
+  "AI Reden": "AI pick in het verleden al geselecteerd",
   "AI Ranking": "78"
 },{
   "Platform": "Klaravik (veilingen)",
@@ -205,8 +205,8 @@
   "Feedback": "",
   "Image URL": "https://media.dk.klaravik.com/public/productimages/c8/af/1429016/extrabilder30777196_thumblarge.jpg?v=1789463620",
   "AI Pick": "Nee",
-  "AI Reden": "Te oud bouwjaar uit 2015 en ontbrekende kilometerstand, sluit niet aan bij onze jonge benchmarkvoorraad.",
-  "AI Ranking": "35"
+  "AI Reden": "Veiling reeds verlopen",
+  "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -274,7 +274,7 @@
   "Feedback": "",
   "Image URL": "https://media.dk.klaravik.com/public/productimages/2b/0a/1443184/extrabilder31177356_thumblarge.jpg?v=1793607708",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit pas over > 4 dagen (komt later aan bod)",
+  "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
@@ -320,7 +320,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/ae/9d/3259600/extrabilder74545360_thumblarge.jpg?v=1793365744",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit pas over > 4 dagen (komt later aan bod)",
+  "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
@@ -343,7 +343,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/fb/77/3263850/extrabilder74645798_thumblarge.jpg?v=1787135172",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit pas over > 4 dagen (komt later aan bod)",
+  "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
@@ -366,8 +366,8 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/8f/f1/3290779/extrabilder75303248_thumblarge.jpg?v=1790055914",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit pas over > 4 dagen (komt later aan bod)",
-  "AI Ranking": "0"
+  "AI Reden": "Autotransporter met ontbrekende kilometerstand en bouwjaar brengt te veel risico met zich mee.",
+  "AI Ranking": "42"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -389,7 +389,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/75/10/3293220/extrabilder75360785_thumblarge.jpg?v=1790174383",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit pas over > 4 dagen (komt later aan bod)",
+  "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
@@ -504,8 +504,8 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/77/cb/3313759/extrabilder75864919_thumblarge.jpg?v=1792479797",
   "AI Pick": "Nee",
-  "AI Reden": "Lage richtprijs maar ontbrekende kilometerstand en registratiehistorie geven te veel inkooprisico.",
-  "AI Ranking": "42"
+  "AI Reden": "Veiling sluit te snel (< 3 uur)",
+  "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -711,8 +711,8 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/05/3d/3318749/extrabilder75989780_thumblarge.jpg?v=1793010464",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit pas over > 4 dagen (komt later aan bod)",
-  "AI Ranking": "0"
+  "AI Reden": "Klassieke oldtimer uit 1965 zonder commerciële courantheid voor onze vloot.",
+  "AI Ranking": "15"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -734,7 +734,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/4c/87/3318755/extrabilder75990105_thumblarge.jpg?v=1793705685",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit pas over > 4 dagen (komt later aan bod)",
+  "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
@@ -780,7 +780,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/c8/f7/3319487/extrabilder76008357_thumblarge.jpg?v=1793089222",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit pas over > 4 dagen (komt later aan bod)",
+  "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
@@ -849,8 +849,8 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/62/7b/3320528/extrabilder76036614_thumblarge.jpg?v=1793174650",
   "AI Pick": "Nee",
-  "AI Reden": "Interessante Transit chassis cabine met Ecoblue automaat maar registratiedatum en kilometerstand ontbreken.",
-  "AI Ranking": "48"
+  "AI Reden": "Veiling sluit te snel (< 3 uur)",
+  "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -872,8 +872,8 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/c3/3c/3320784/extrabilder76041648_thumblarge.jpg?v=1793180075",
   "AI Pick": "Nee",
-  "AI Reden": "Betreft een set losse zomerbanden met velgen en geen bedrijfswagen, direct afgekeurd.",
-  "AI Ranking": "2"
+  "AI Reden": "Betreft een losse set banden met velgen en geen compleet voertuig.",
+  "AI Ranking": "10"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -895,7 +895,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/39/78/3320866/extrabilder76043216_thumblarge.jpg?v=1793182029",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit te snel (< 3 uur)",
+  "AI Reden": "Veiling reeds verlopen",
   "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
@@ -918,7 +918,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/af/9f/3321007/extrabilder76046249_thumblarge.jpg?v=1793197931",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit te snel (< 3 uur)",
+  "AI Reden": "Veiling reeds verlopen",
   "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
@@ -941,7 +941,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/be/58/3321268/extrabilder76052820_thumblarge.jpg?v=1793191606",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit pas over > 4 dagen (komt later aan bod)",
+  "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
@@ -964,7 +964,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/8d/f7/3322705/extrabilder76088115_thumblarge.jpg?v=1793291849",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit pas over > 4 dagen (komt later aan bod)",
+  "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
@@ -987,7 +987,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/7e/76/3323492/extrabilder76106409_thumblarge.jpg?v=1793363889",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit pas over > 4 dagen (komt later aan bod)",
+  "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0"
 },{
   "Platform": "Klaravik (veilingen)",
@@ -1010,7 +1010,7 @@
   "Feedback": "",
   "Image URL": "https://media.se.klaravik.com/public/productimages/22/8e/3324436/extrabilder76127496_thumblarge.jpg?v=1793618766",
   "AI Pick": "Nee",
-  "AI Reden": "Veiling sluit pas over > 4 dagen (komt later aan bod)",
+  "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0"
 },{
   "Platform": "ViaMobilis",
@@ -1240,8 +1240,8 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11207163_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Identiek aan zustervoertuig met te beperkt margepotentieel.",
-  "AI Ranking": "58"
+  "AI Reden": "Dubbele aanbieding Citan met beperkte restmarge.",
+  "AI Ranking": "64"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Mercedes Citan",
@@ -1263,8 +1263,8 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11207235_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Recente Citan met zeer lage tellerstand maar prijs drukt de marge.",
-  "AI Ranking": "58"
+  "AI Reden": "Mercedes Citan 2023 met 13k km maar prijs boven achttienduizend euro.",
+  "AI Ranking": "64"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Ford",
@@ -1700,8 +1700,8 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11565617-photo-vehicule_utilitaire_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Nauwelijks kilometers maar achttienduizend euro voor 2023 eSprinter.",
-  "AI Ranking": "65"
+  "AI Reden": "Vrijwel nieuwe eSprinter met 1600 km voor 18k maar kleine 41kWh batterij.",
+  "AI Ranking": "73"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Volkswagen ID3",
@@ -1769,8 +1769,8 @@
   "Feedback": "",
   "Image URL": "https://photo.static-viamobilis.com/37/1/11591492_th.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Volkswagen bestelbus sluit historisch niet aan bij het gewenste profiel.",
-  "AI Ranking": "28"
+  "AI Reden": "Volkswagen bestelbus met beperkte specificaties en marge.",
+  "AI Ranking": "58"
 },{
   "Platform": "ViaMobilis",
   "Merk": "Toyota",
@@ -2252,8 +2252,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/18/63/18758266-01.jpg?v=1787326456",
   "AI Pick": "Nee",
-  "AI Reden": "Maxus EV80 kofferbakwagen is minder courant en relatief prijzig.",
-  "AI Ranking": "27"
+  "AI Reden": "Oudere EV80 techniek met beperkte 56kWh accu voor zware kofferopbouw.",
+  "AI Ranking": "45"
 },{
   "Platform": "Truckscout24",
   "Merk": "MinibusMaxuseDELIVER",
@@ -2298,8 +2298,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/42/64/18773101-01.jpg?v=1781141543",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter modelreeks past historisch niet binnen onze inkoopfocus.",
-  "AI Ranking": "28"
+  "AI Reden": "Crafter L3H3 diesel voor ruim 24k euro sluit minder aan bij focus.",
+  "AI Ranking": "45"
 },{
   "Platform": "DBA",
   "Merk": "VW",
@@ -2321,8 +2321,8 @@
   "Feedback": "",
   "Image URL": "https://images.dbastatic.dk/dynamic/480w/item/19017993/74dd1413-6da5-421b-b74a-4960a5d29018",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter past historisch niet binnen ons gewenste productportfolio.",
-  "AI Ranking": "28"
+  "AI Reden": "Veel te dure Deense Crafter diesel.",
+  "AI Ranking": "48"
 },{
   "Platform": "DBA",
   "Merk": "Mercedes-Benz",
@@ -2367,8 +2367,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/54/72/21270482-01.jpg?v=1771465626",
   "AI Pick": "Nee",
-  "AI Reden": "Zeer lage tellerstand op 2022 Sprinter maar inkoopprijs is stevig.",
-  "AI Ranking": "67"
+  "AI Reden": "Sprinter 312 uit 2022 met extreem lage km maar marge net onder top 5.",
+  "AI Ranking": "71"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -2390,8 +2390,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/54/72/21270487-01.jpg?v=1771465655",
   "AI Pick": "Nee",
-  "AI Reden": "Lage tellerstand op 2022 Sprinter maar marge blijft beperkt.",
-  "AI Ranking": "67"
+  "AI Reden": "Zusterlisting Sprinter 312 met lage km-stand.",
+  "AI Ranking": "71"
 },{
   "Platform": "Truckscout24",
   "Merk": "Pick-up",
@@ -2436,8 +2436,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/95/69/22439437-01.jpg?v=1785233848",
   "AI Pick": "Nee",
-  "AI Reden": "Extreem lage stand maar 2021 model voor bijna 15 duizend euro.",
-  "AI Ranking": "68"
+  "AI Reden": "eVito 111 met extreem lage km maar 41kWh batterij.",
+  "AI Ranking": "72"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -2459,8 +2459,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/95/69/22439457-01.jpg?v=1785233849",
   "AI Pick": "Nee",
-  "AI Reden": "2022 eVito met lage stand maar 16 duizend euro vraagprijs.",
-  "AI Ranking": "66"
+  "AI Reden": "eVito 111 2022 met lage km voor bijna 16k euro.",
+  "AI Ranking": "71"
 },{
   "Platform": "Truckscout24",
   "Merk": "High",
@@ -2505,8 +2505,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/25/73/22479047-01.jpg?v=1788261308",
   "AI Pick": "Nee",
-  "AI Reden": "Lage stand maar negentienduizend euro voor 41 kWh accu is te veel.",
-  "AI Ranking": "55"
+  "AI Reden": "eVito 41kWh voor bijna negentienduizend euro is te duur.",
+  "AI Ranking": "64"
 },{
   "Platform": "Truckscout24",
   "Merk": "TOYOTA",
@@ -2550,9 +2550,9 @@
   "Datum status wijziging": "2026-11-05",
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/62/83/22603452-01.jpg?v=1787480248",
-  "AI Pick": "Nee",
-  "AI Reden": "Zeer lage tellerstand voor eSprinter maar prijs drukt de handelsmarge.",
-  "AI Ranking": "71"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick: Extreem lage km-stand met automaat en afgeprijsd ruim onder marktwaarde.",
+  "AI Ranking": "89"
 },{
   "Platform": "Truckscout24",
   "Merk": "Pick-up",
@@ -2574,8 +2574,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/52/98/22782315-01.jpg?v=1789744466",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter open laadbak past historisch niet bij ons aanbod.",
-  "AI Ranking": "24"
+  "AI Reden": "Crafter open laadbak voor bijna 25k euro valt buiten de wensen.",
+  "AI Ranking": "40"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -2643,8 +2643,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/22/06/22874685-01.jpg?v=1790959375",
   "AI Pick": "Nee",
-  "AI Reden": "2022 model met zeer lage tellerstand voor nette prijs.",
-  "AI Ranking": "69"
+  "AI Reden": "eVito 2022 met lage km-stand en nette prijs.",
+  "AI Ranking": "72"
 },{
   "Platform": "Blocket",
   "Merk": "Mercedes-Benz eVito Tourer",
@@ -2666,8 +2666,8 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/22929809/452b55d2-5c09-4398-9df6-ed7ef6bb12a9",
   "AI Pick": "Nee",
-  "AI Reden": "Lage kilometerstand maar Tourer personenuitvoering is minder gewild.",
-  "AI Ranking": "64"
+  "AI Reden": "eVito Tourer personenbus valt minder binnen core business.",
+  "AI Ranking": "66"
 },{
   "Platform": "Truckscout24",
   "Merk": "Maxus",
@@ -2735,8 +2735,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/29/32/23187566-01.jpg?v=1793277596",
   "AI Pick": "Nee",
-  "AI Reden": "Bouwjaar 2016 personenbus zonder inkoopprijs.",
-  "AI Ranking": "20"
+  "AI Reden": "Personenbus configuratie 2016 zonder prijs.",
+  "AI Ranking": "42"
 },{
   "Platform": "Truckscout24",
   "Merk": "Mercedes-benz",
@@ -2758,8 +2758,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/29/32/23187571-01.jpg?v=1793277597",
   "AI Pick": "Nee",
-  "AI Reden": "Geen prijs bekend en oudere diesel minibusopbouw.",
-  "AI Ranking": "20"
+  "AI Reden": "Personenbus configuratie Euro 5 uit 2015 zonder prijs.",
+  "AI Ranking": "40"
 },{
   "Platform": "Truckscout24",
   "Merk": "Mercedes-benz",
@@ -2781,8 +2781,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/30/32/23187656-01.jpg?v=1793277600",
   "AI Pick": "Nee",
-  "AI Reden": "Oudere Sprinter minibus zonder prijsopgave.",
-  "AI Ranking": "20"
+  "AI Reden": "Personenbus configuratie Euro 5 uit 2015 en prijs ontbreekt.",
+  "AI Ranking": "40"
 },{
   "Platform": "Blocket",
   "Merk": "Mercedes-Benz eVito 111",
@@ -2804,8 +2804,8 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/23199336/4b5a6825-d59a-4d7e-badb-a77b0e1273cd",
   "AI Pick": "Nee",
-  "AI Reden": "2020 eVito met redelijke stand en prijs maar gemiddelde marge.",
-  "AI Ranking": "63"
+  "AI Reden": "eVito 111 met 57k km voor dertienduizend euro in Zweden.",
+  "AI Ranking": "68"
 },{
   "Platform": "Truckscout24",
   "Merk": "Mercedes-benz",
@@ -2896,8 +2896,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/20/37/23246491-01.jpg?v=1793328811",
   "AI Pick": "Nee",
-  "AI Reden": "Zeer lage kilometerstand op eSprinter met DC laden voor minder dan 15.000 euro.",
-  "AI Ranking": "70"
+  "AI Reden": "Lage kilometerstand en eSprinter L2 maar marge net niet toereikend voor top 5.",
+  "AI Ranking": "73"
 },{
   "Platform": "Truckscout24",
   "Merk": "Mercedes-benz",
@@ -2919,8 +2919,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/70/39/23276452-01.jpg?v=1793705637",
   "AI Pick": "Nee",
-  "AI Reden": "Grote personenbus uit 2009 wijkt volledig af van bestelwagenfocus.",
-  "AI Ranking": "10"
+  "AI Reden": "Touringcar met 74 zitplaatsen valt volledig buiten categorie lichte bedrijfswagens.",
+  "AI Ranking": "15"
 },{
   "Platform": "Truckscout24",
   "Merk": "Mercedes-benz",
@@ -2942,8 +2942,8 @@
   "Feedback": "",
   "Image URL": "https://cdn.truckscout24.com/data/listing/img/vga/ts/70/39/23276464-01.jpg?v=1793705638",
   "AI Pick": "Nee",
-  "AI Reden": "Touringcar autobus uit 2008 hoort absoluut niet thuis in ons assortiment.",
-  "AI Ranking": "10"
+  "AI Reden": "Touringcar met 71 zitplaatsen valt volledig buiten categorie lichte bedrijfswagens.",
+  "AI Ranking": "15"
 },{
   "Platform": "DBA",
   "Merk": "Ford",
@@ -3057,8 +3057,8 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/24341814/a48b342e-83fd-4c90-b1d1-4da346dc4176",
   "AI Pick": "Nee",
-  "AI Reden": "Scherpe inkoopprijs voor 2021 Sprinter met 55 kWh batterij.",
-  "AI Ranking": "68"
+  "AI Reden": "Sprinter 55kWh uit 2021 met 46k km voor nette prijs maar Zweedse import.",
+  "AI Ranking": "73"
 },{
   "Platform": "Blocket",
   "Merk": "Mercedes-Benz eVito 111",
@@ -3080,8 +3080,8 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/24426547/52099750-b4e7-47bf-a4fb-18815b1cd1c1",
   "AI Pick": "Nee",
-  "AI Reden": "35 duizend kilometer maar 17500 euro vraagprijs laat te weinig over.",
-  "AI Ranking": "56"
+  "AI Reden": "eVito 111 te duur geprijsd in Zweden.",
+  "AI Ranking": "62"
 },{
   "Platform": "DBA",
   "Merk": "Mercedes-Benz",
@@ -3149,8 +3149,8 @@
   "Feedback": "",
   "Image URL": "https://images.dbastatic.dk/dynamic/480w/item/25537932/f35bcd27-c913-4db6-88ab-906535ff69b2",
   "AI Pick": "Nee",
-  "AI Reden": "Praktisch nieuw maar inkoopbedrag boven 26 duizend euro is te fors.",
-  "AI Ranking": "53"
+  "AI Reden": "Bijna nieuw maar forse aanschafprijs drukt potentiële marge.",
+  "AI Ranking": "65"
 },{
   "Platform": "Blocket",
   "Merk": "Mercedes-Benz eVito Tourer",
@@ -3172,8 +3172,8 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/25662211/7bb501bb-e442-4c87-bf94-e38c6b3ec88f",
   "AI Pick": "Nee",
-  "AI Reden": "2022 eVito Tourer personenversie met nette stand maar minder courant.",
-  "AI Ranking": "61"
+  "AI Reden": "eVito Tourer personenbus minder gewild dan gesloten bestel.",
+  "AI Ranking": "64"
 },{
   "Platform": "Blocket",
   "Merk": "Maxus e-Deliver 7",
@@ -3241,8 +3241,8 @@
   "Feedback": "",
   "Image URL": "https://images.dbastatic.dk/dynamic/480w/item/25874702/0a1b1e30-d676-466f-be7e-c85065a24091",
   "AI Pick": "Nee",
-  "AI Reden": "eDeliver 3 is compact en minder courant met forse vraagprijs.",
-  "AI Ranking": "45"
+  "AI Reden": "Maxus eDeliver 3 SWB te duur voor zijn marktwaarde.",
+  "AI Ranking": "51"
 },{
   "Platform": "DBA",
   "Merk": "Maxus",
@@ -3333,8 +3333,8 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/26233043/641dbea6-bb2a-4ca1-aacf-45f06da82ae4",
   "AI Pick": "Nee",
-  "AI Reden": "Bouwjaar 2019 met 43 duizend kilometer voor dertienduizend euro.",
-  "AI Ranking": "58"
+  "AI Reden": "eVito 2019 met 43k km voor dertienduizend euro.",
+  "AI Ranking": "66"
 },{
   "Platform": "DBA",
   "Merk": "VW",
@@ -3356,8 +3356,8 @@
   "Feedback": "",
   "Image URL": "https://images.dbastatic.dk/dynamic/480w/item/26269876/19f98857-b362-4ac7-a06a-c1d061679d79",
   "AI Pick": "Nee",
-  "AI Reden": "Chassis cabine Crafter sluit historisch niet aan bij het aanbod.",
-  "AI Ranking": "25"
+  "AI Reden": "Chassis cabine Crafter met hoge Deense prijsstelling.",
+  "AI Ranking": "48"
 },{
   "Platform": "DBA",
   "Merk": "Maxus",
@@ -3379,8 +3379,8 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "Maxus kofferopbouw met lift sluit historisch niet aan bij vraag.",
-  "AI Ranking": "27"
+  "AI Reden": "Maxus kofferbak met laadklep maar stevige prijs in Denemarken.",
+  "AI Ranking": "56"
 },{
   "Platform": "Blocket",
   "Merk": "Toyota Proace City",
@@ -3402,8 +3402,8 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/26561234/a44ab5ae-ae96-4445-96e6-cb2faacbf84b",
   "AI Pick": "Nee",
-  "AI Reden": "Vraagprijs van bijna negentienduizend euro voor compacte besteller.",
-  "AI Ranking": "52"
+  "AI Reden": "Proace City 50kWh in Zweden laat te weinig marge over.",
+  "AI Ranking": "61"
 },{
   "Platform": "Blocket",
   "Merk": "Mercedes-Benz eVito 111",
@@ -3425,8 +3425,8 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/27587999/62f24df6-690f-46f8-8ae3-ba23049239a3",
   "AI Pick": "Nee",
-  "AI Reden": "Courante eVito 111 met nette stand en redelijke prijs.",
-  "AI Ranking": "65"
+  "AI Reden": "eVito 111 met 63k km voor redelijke prijs.",
+  "AI Ranking": "67"
 },{
   "Platform": "Blocket",
   "Merk": "Maxus e-Deliver 9",
@@ -3448,8 +3448,8 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/27737331/b67f57a8-684f-4979-87a0-5a404cede9a9",
   "AI Pick": "Nee",
-  "AI Reden": "Maxus met ton op de teller en historisch afgewezen modelcode.",
-  "AI Ranking": "25"
+  "AI Reden": "Maxus met 110k km en Zweedse import.",
+  "AI Ranking": "55"
 },{
   "Platform": "Blocket",
   "Merk": "Maxus e-Deliver 3",
@@ -3471,8 +3471,8 @@
   "Feedback": "",
   "Image URL": "https://images.blocketcdn.se/dynamic/default/item/27905070/558e455e-be86-4eea-bf71-2459ed31022d",
   "AI Pick": "Nee",
-  "AI Reden": "eDeliver 3 is compact en minder courant met te hoge aanschafprijs.",
-  "AI Ranking": "45"
+  "AI Reden": "eDeliver 3 te duur voor het marktsegment.",
+  "AI Ranking": "53"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -3517,8 +3517,8 @@
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/1026/203670f24d7248d9a46e164794b9f710_thb.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Prijs ontbreekt in de advertentiegegevens.",
-  "AI Ranking": "20"
+  "AI Reden": "E-Transit 2023 met 86k km zonder prijs.",
+  "AI Ranking": "48"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -3540,8 +3540,8 @@
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/1026/f124e8eb7e5b4bb49060c6e78dc9e004_thb.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Prijs ontbreekt volledig in de listing.",
-  "AI Ranking": "20"
+  "AI Reden": "Ford E-Transit met hogere km-stand zonder prijs.",
+  "AI Ranking": "48"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -3608,9 +3608,9 @@
   "Datum status wijziging": "2026-11-05",
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/1026/f2ed772e2b0740369a6924b1b86dd44a_thb.jpg",
-  "AI Pick": "Nee",
-  "AI Reden": "Acceptabele elektrische bestelbus maar de korte L1H1 uitvoering is aanzienlijk minder gewild dan de L2 variant.",
-  "AI Ranking": "58"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick: Courante compacte elektrische bestelwagen uit 2023 met nette kilometerstand passend bij onze voorraad.",
+  "AI Ranking": "80"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "MAXUS",
@@ -3632,7 +3632,7 @@
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/1026/b1bf2fa2821d430997d50ef6b4217d40_thb.jpg",
   "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick: Jonge Maxus E-Deliver 3 in de gewilde verlengde L2 uitvoering met een gunstige kilometerstand van slechts 37.000 km.",
+  "AI Reden": "AI pick in het verleden al geselecteerd",
   "AI Ranking": "80"
 },{
   "Platform": "Copart (veilingen)",
@@ -3655,8 +3655,8 @@
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/1026/d75785464398453ab5adafb8c51293dd_bg_replace_thb.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Betreft een personenauto SUV en geen bestelbus of bakwagen, sluit niet aan bij het Boss Vans profiel.",
-  "AI Ranking": "12"
+  "AI Reden": "Personenauto SUV en sluit niet aan bij onze focus op commerciële bedrijfswagens.",
+  "AI Ranking": "35"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -3701,8 +3701,8 @@
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/1026/9650f96d15a64dbdba0cd75fbd6dff0e_thb.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Prijs ontbreekt in het advertentieoverzicht.",
-  "AI Ranking": "20"
+  "AI Reden": "Maxus Deliver 9 zonder inkoopprijs.",
+  "AI Ranking": "45"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -3724,8 +3724,8 @@
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/1026/5c82b9d4712c4af5a48260322668f74f_thb.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Prijs staat op nul waardoor marge niet calculeerbaar is.",
-  "AI Ranking": "20"
+  "AI Reden": "E-Transit 2023 zonder inkoopprijs.",
+  "AI Ranking": "55"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -3747,7 +3747,7 @@
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/1026/3312b351654c4e71b8f03f72250e7e61_thb.jpg",
   "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick: Gloednieuwe elektrische Ford Transit Custom L2 Trend uit 2025, uiterst courant model voor onze vloot.",
+  "AI Reden": "AI pick in het verleden al geselecteerd",
   "AI Ranking": "88"
 },{
   "Platform": "Copart (veilingen)",
@@ -3770,8 +3770,8 @@
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/1026/0411e5e1fa0c4d9da90f01d838fcb6ad_thb.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Geen prijsinformatie beschikbaar voor rendementsanalyse.",
-  "AI Ranking": "20"
+  "AI Reden": "E-Transit 2023 zonder prijsindicatie.",
+  "AI Ranking": "55"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -3793,8 +3793,8 @@
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/1026/ddc5bfb7a72d4e579a55254d12443b6f_thb.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Vraagprijs ontbreekt volledig in de listing.",
-  "AI Ranking": "20"
+  "AI Reden": "Courante E-Transit met nette stand maar zonder inkoopprijs.",
+  "AI Ranking": "55"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -3816,8 +3816,8 @@
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/1026/37c87d5eadfc4eb3a6e56bd8fbbc41ae_thb.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Personenauto Mach-E met extreem hoge kilometerstand en zonder prijs.",
-  "AI Ranking": "12"
+  "AI Reden": "Personenauto Mustang Mach-E en te hoge kilometerstand.",
+  "AI Ranking": "20"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "MAXUS",
@@ -3839,8 +3839,8 @@
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/1026/c6c736915d7c41d79daf0407793c4b72_thb.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Geen prijs vermeld en model eDeliver 3 is minder courant.",
-  "AI Ranking": "22"
+  "AI Reden": "Prijs ontbreekt en eDeliver 3 is weinig courant.",
+  "AI Ranking": "45"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -3862,8 +3862,8 @@
   "Feedback": "",
   "Image URL": "https://g-static.copart.com/v1/AUTH_svc_depdoc/ids-g-prod-lpp/1026/c486f8b1673246b7aa2074e1f271061d_thb.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Prijs ontbreekt bij deze Ford Transit e-kasten.",
-  "AI Ranking": "20"
+  "AI Reden": "Courante Ford E-Transit maar prijs ontbreekt.",
+  "AI Ranking": "55"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace",
@@ -3885,8 +3885,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/18387373/74a3555b-1185-4243-8369-ea6ef04eb91c.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Schappelijke prijs voor 2021 Proace met nette kilometerstand.",
-  "AI Ranking": "64"
+  "AI Reden": "Compacte Proace L1 met gemiddelde marge.",
+  "AI Ranking": "66"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3931,8 +3931,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/19811272/510b9eb3-dc9f-4a14-b533-d416e21e7281.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Extralang model is historisch afgekeurd door inkoop.",
-  "AI Ranking": "28"
+  "AI Reden": "Extralang model werd eerder negatief beoordeeld.",
+  "AI Ranking": "60"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3954,8 +3954,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20227989/a8cd634c-e589-4609-9691-db8f0476c445.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Hoge tellerstand van 143 duizend kilometer voor een 2021 eVito.",
-  "AI Ranking": "47"
+  "AI Reden": "Hoge kilometerstand van 143k km op een vroege kleine batterij.",
+  "AI Ranking": "58"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3977,8 +3977,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20445538/c2ca4df2-879d-4057-821b-8da1ce4c41c1.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "eVito met 127.000 km kent beperkte restwaarde.",
-  "AI Ranking": "48"
+  "AI Reden": "eVito met 127k km op de teller.",
+  "AI Ranking": "60"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4000,8 +4000,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20433887/d305a8f6-492d-4f6b-9aa7-a509b929f721.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Lage kilometerstand maar 19 duizend euro vraagprijs is te hoog.",
-  "AI Ranking": "53"
+  "AI Reden": "Lage km-stand maar bijna negentienduizend euro voor eVito 111.",
+  "AI Ranking": "62"
 },{
   "Platform": "Coches",
   "Merk": "MAXUS eDeliver 9",
@@ -4046,8 +4046,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20786617/7b9d75f0-cb6a-4fbe-9b1d-5c34a7aad140.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "2022 eSprinter met 55 kWh accu voor bijna 17 duizend euro.",
-  "AI Ranking": "64"
+  "AI Reden": "eSprinter 55kWh uit 2022 met 46k km voor nette prijs.",
+  "AI Ranking": "70"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4069,8 +4069,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20820300/2a563e10-8860-420a-b358-d51af9d739ab.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "2019 Tourer met lage stand maar personenuitvoering is minder courant.",
-  "AI Ranking": "58"
+  "AI Reden": "Tourer personenbus valt buiten hoofdfocus.",
+  "AI Ranking": "63"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4092,8 +4092,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20820297/7a7e82c5-39bb-477e-9506-b657d9f088dd.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "2019 eVito met redelijke stand maar margeruimte is matig.",
-  "AI Ranking": "58"
+  "AI Reden": "eVito 2019 met lage stand maar gedateerde techniek.",
+  "AI Ranking": "64"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace City",
@@ -4115,8 +4115,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/17480538/d69ff533-adae-49d9-b0ba-74846b8c3fb8.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Lage tellerstand maar margepotentieel op compacte Proace blijft matig.",
-  "AI Ranking": "62"
+  "AI Reden": "Compacte Proace City EV met weinig marge.",
+  "AI Ranking": "64"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4138,8 +4138,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20900707/d9d38f2e-641c-4431-8aee-b4e1dff8f213.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Vraagprijs van twintigduizend euro voor 2021 eVito met 57 duizend km.",
-  "AI Ranking": "46"
+  "AI Reden": "eVito 111 met 57k km voor bijna twintigduizend euro is te duur.",
+  "AI Ranking": "56"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4161,7 +4161,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20904915/70652c24-e70b-44be-97aa-169daf69b789.jpg/359x269cut/",
   "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick: Slechts 16 duizend km voor 7800 euro en afgeprijsd, ongekende marge.",
+  "AI Reden": "AI pick in het verleden al geselecteerd",
   "AI Ranking": "92"
 },{
   "Platform": "Coches",
@@ -4184,8 +4184,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20923167/0c57dac9-81de-49fc-88f4-ccff3b30cc53.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Ford Transit met bijna zeventigduizend kilometer en krappe marge.",
-  "AI Ranking": "56"
+  "AI Reden": "Ford Transit 68kWh Trend RWD met 68k km voor marktconforme prijs.",
+  "AI Ranking": "67"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4207,7 +4207,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20933723/d0d0351b-32bb-4b17-b908-a3943c029bf3.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "2020 eVito met 44 duizend kilometer en aantrekkelijke inkoopprijs.",
+  "AI Reden": "Scherpe prijs voor eVito 2020 maar standaard accupakket.",
   "AI Ranking": "69"
 },{
   "Platform": "Coches",
@@ -4230,8 +4230,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20945374/ffd544fe-a266-4a89-9cb5-9bde09f8072f.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Afgeprijsd en redelijke prijs maar niet onderscheidend genoeg.",
-  "AI Ranking": "66"
+  "AI Reden": "eVito Larga netjes geprijsd maar courantheid kleine batterij blijft matig.",
+  "AI Ranking": "65"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4253,8 +4253,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20945387/0082b5f2-9648-4523-83b1-121ccb394caa.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Identiek aan zustervoertuig met redelijke marge maar geen uitblinker.",
-  "AI Ranking": "66"
+  "AI Reden": "Dubbele listing met 35-41kWh batterij.",
+  "AI Ranking": "65"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4276,8 +4276,8 @@
   "Feedback": "",
   "Image URL": "https://pro.fastly.ccdn.es/pro/pro/vehicles/images/7f/7f407041-c7c1-47f6-97cc-3f9a10f30805/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "2020 eVito met 70 duizend kilometer voor twaalfduizend euro.",
-  "AI Ranking": "56"
+  "AI Reden": "eVito 2020 met 70k km voor twaalfduizend euro.",
+  "AI Ranking": "62"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Sprinter",
@@ -4299,8 +4299,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20964756/e997692a-79cf-45b4-8f1c-3674ee33da76.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Afgeprijsde eSprinter uit 2022 met acceptabele stand maar beperkte handelsmarge.",
-  "AI Ranking": "63"
+  "AI Reden": "eSprinter met 41kWh batterij en prijs boven zestien mille.",
+  "AI Ranking": "66"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Sprinter",
@@ -4322,8 +4322,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20964741/3c2fbdac-da06-46eb-8720-4aa8dc97ca45.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Gelijke specificaties als zusterauto maar marge te krap voor top vijf.",
-  "AI Ranking": "63"
+  "AI Reden": "Dubbele listing met 41kWh accupakket.",
+  "AI Ranking": "66"
 },{
   "Platform": "Coches",
   "Merk": "MAXUS eDeliver 9",
@@ -4345,8 +4345,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20986212/3035121d-2a28-454b-96e4-4581b9af38b5.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Hoge tellerstand en historisch afgewezen eDeliver 9 model.",
-  "AI Ranking": "27"
+  "AI Reden": "Maxus 72kWh met ruim een ton ervaring.",
+  "AI Ranking": "53"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4368,8 +4368,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20994437/93bcebfe-e85e-450b-bcc9-424f5199a10f.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Lage tellerstand maar vraagprijs van 17500 euro is aan de maat.",
-  "AI Ranking": "57"
+  "AI Reden": "eVito 111 met 31k km te hoog geprijsd.",
+  "AI Ranking": "62"
 },{
   "Platform": "Coches",
   "Merk": "FORD Transit",
@@ -4391,8 +4391,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/20997167/17168a30-ce9c-44dd-99da-fa47d1877669.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Ford Transit met meer dan een ton op de teller laat te weinig marge over.",
-  "AI Ranking": "55"
+  "AI Reden": "Ford Transit 68kWh met meer dan een ton op de teller.",
+  "AI Ranking": "63"
 },{
   "Platform": "Coches",
   "Merk": "MAXUS eDeliver 9",
@@ -4414,8 +4414,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/21020194/ca978286-b2dd-4cae-a207-5a50528bb602.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Maxus eDeliver 9 heeft historisch negatieve feedback.",
-  "AI Ranking": "28"
+  "AI Reden": "Maxus 72kWh matcht negatieve feedback voor dit type.",
+  "AI Ranking": "60"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4437,8 +4437,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/2026/10/25/71826760/2140851490_g.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Bouwjaar 2020 met gemiddelde kilometerstand en beperkte handelsmarge.",
-  "AI Ranking": "57"
+  "AI Reden": "Vito 111 uit 2020 met 62k km en kleine batterij.",
+  "AI Ranking": "62"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4460,7 +4460,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/21047753/1ef26684-242a-4908-9adc-d2f331961082.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Scherpe prijs voor eVito met afgeprijsde status en nette kilometerstand.",
+  "AI Reden": "Afgeprijsde eVito 111 met nette km-stand maar kleine 35-41kWh batterij.",
   "AI Ranking": "68"
 },{
   "Platform": "Coches",
@@ -4483,7 +4483,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/21047868/7e944f03-4621-4bc0-bbec-3c09f98ac3ea.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Onder tienduizend euro en afgeprijsd maar hogere kilometerstand dan de absolute top.",
+  "AI Reden": "Afgeprijsde eVito onder tienduizend euro maar beperkte actieradius.",
   "AI Ranking": "69"
 },{
   "Platform": "Coches",
@@ -4506,7 +4506,7 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/21048292/84fd6ac4-27af-4274-bd62-4833e0a4b594.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Gunstige afprijsing en goede margepotentie maar net buiten de topselectie.",
+  "AI Reden": "Scherp afgeprijsd maar standaard accupakket.",
   "AI Ranking": "69"
 },{
   "Platform": "Coches",
@@ -4529,8 +4529,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/21061393/ef2daac3-10e4-422e-af19-a9c17038c658.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Scherpe inkoopprijs voor 2021 model met minder dan vijftigduizend kilometer.",
-  "AI Ranking": "72"
+  "AI Reden": "Goede prijs rond tienduizend euro maar beperkte batterijcapaciteit.",
+  "AI Ranking": "69"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4552,8 +4552,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/21072404/53cacb58-3a91-4b65-a2fa-66f5807634c9.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Lage kilometerstand maar inkoopprijs ligt op regulier marktniveau.",
-  "AI Ranking": "65"
+  "AI Reden": "Goede km-stand maar beperkte marge.",
+  "AI Ranking": "68"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4575,8 +4575,8 @@
   "Feedback": "",
   "Image URL": "https://a.ccdn.es/cnet/vehicles/21072597/a3b402bd-7715-45dd-b740-12fb48f0c6a7.jpg/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Vrijwel 80 duizend kilometer op een 2020 eVito met te weinig marge.",
-  "AI Ranking": "51"
+  "AI Reden": "eVito met 79k km en kleine accu.",
+  "AI Ranking": "61"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4598,8 +4598,8 @@
   "Feedback": "",
   "Image URL": "https://pro.fastly.ccdn.es/pro/pro/vehicles/images/fb/fb9ce473-6105-4968-b2be-9fe098244f9a/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "2019 model voor bijna zeventienduizend euro is niet competitief.",
-  "AI Ranking": "43"
+  "AI Reden": "eVito 2019 met te kleine marge.",
+  "AI Ranking": "54"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace",
@@ -4621,8 +4621,8 @@
   "Feedback": "",
   "Image URL": "https://pro.fastly.ccdn.es/pro/pro/vehicles/images/24/241ea253-e5af-4320-a46f-881d3025d8e3/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "75 kWh Proace is courant maar prijsstelling te ambitieus.",
-  "AI Ranking": "50"
+  "AI Reden": "75kWh accu is gewild maar 19.500 euro is aan de hoge kant voor compacte L1.",
+  "AI Ranking": "62"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -4644,8 +4644,8 @@
   "Feedback": "",
   "Image URL": "https://pro.fastly.ccdn.es/pro/pro/vehicles/images/64/643e3c50-c643-4c74-a01a-d5f02578d825/359x269cut/",
   "AI Pick": "Nee",
-  "AI Reden": "Gemiddelde specificaties met te weinig margepotentieel.",
-  "AI Ranking": "45"
+  "AI Reden": "Boven marktwaarde voor een 2020 model met kleine accu.",
+  "AI Ranking": "54"
 },{
   "Platform": "Camion Super Market",
   "Merk": "Mercedes-benz",
@@ -4667,8 +4667,8 @@
   "Feedback": "",
   "Image URL": "https://media.sandhills.com/img.axd?id=9030167039&wid=8013628585&rwl=False&p=&ext=&w=350&h=220&t=&lp=&c=True&wt=False&sz=Max&rt=0&checksum=nzWDehj0uBj06H8S%2fw4TJrER8acMD3W6b1ZbUB8ipPQ%3d",
   "AI Pick": "Nee",
-  "AI Reden": "Zeer lage tellerstand maar inkoopprijs boven twintigduizend euro.",
-  "AI Ranking": "60"
+  "AI Reden": "Zeer jonge eCitan met 1399 km maar inkoopprijs laat weinig ruimte.",
+  "AI Ranking": "66"
 },{
   "Platform": "Camion Super Market",
   "Merk": "Fiat",
@@ -4713,8 +4713,8 @@
   "Feedback": "",
   "Image URL": "https://media.sandhills.com/img.axd?id=11057905303&wid=8013628585&rwl=False&p=&ext=&w=350&h=220&t=&lp=&c=True&wt=False&sz=Max&rt=0&checksum=s27InuO1eBcdjsBje3NrYfP%2bwcrQ422Mo3r8cSs%2b6sM%3d",
   "AI Pick": "Nee",
-  "AI Reden": "Hoge tellerstand voor een kleine compacte elektrische bestelwagen.",
-  "AI Ranking": "54"
+  "AI Reden": "Hoge kilometerstand van 91k km voor een compacte Proace City.",
+  "AI Ranking": "55"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -4736,8 +4736,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/d7/d78ad276-a606-457f-9077-2aca04481b95?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter past historisch niet bij het commerciële busaanbod.",
-  "AI Ranking": "28"
+  "AI Reden": "Crafter diesel past minder in de huidige voorraadstrategie.",
+  "AI Ranking": "58"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -4759,8 +4759,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/39/39e6c018-f971-488c-9dcc-518f8c9cf98d?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Maxus eDeliver 9 heeft historisch afkeuring gekregen.",
-  "AI Ranking": "26"
+  "AI Reden": "Maxus eDeliver 9 voor 25k euro biedt geen marge.",
+  "AI Ranking": "52"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4782,8 +4782,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/6b/6bde02e4-ca26-4ed5-94a8-caaece566c45?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Bouwjaar 2018 is aan de oude kant voor een elektrische bestelauto.",
-  "AI Ranking": "48"
+  "AI Reden": "Vroeg bouwjaar 2018 met lage km maar gedateerd batterijpakket.",
+  "AI Ranking": "64"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -4805,8 +4805,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/9d/9dfa5ef4-5e49-45db-946f-820f2946bde8?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Bouwjaar 2016 zware Crafter sluit historisch niet aan bij het gewenste profiel.",
-  "AI Ranking": "22"
+  "AI Reden": "Zware 5 tons Crafter uit 2016 sluit niet aan bij regulier aanbod.",
+  "AI Ranking": "40"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4828,8 +4828,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/ef/eff49f36-42d0-4e07-b1ec-01afba98df39?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Nette eVito met lage kilometerstand maar marge is gemiddeld.",
-  "AI Ranking": "65"
+  "AI Reden": "Nette kilometerstand en LED verlichting maar marge is beperkt.",
+  "AI Ranking": "67"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -4897,8 +4897,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/cf/cf01a059-6b7d-4545-9807-9563aa2c5492?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "2021 eVito met complete opties maar gemiddelde handelsmarge.",
-  "AI Ranking": "64"
+  "AI Reden": "eVito 111 Lang met navigatie en stoelverwarming voor veertienduizend euro is courant.",
+  "AI Ranking": "70"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4920,8 +4920,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/c1/c1274585-379d-43be-820e-0055639c045d?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "eVito Lang met achterklep en 38.000 km voor 13.999 euro.",
-  "AI Ranking": "70"
+  "AI Reden": "eVito met achterklep en ruit voor nette marktprijs.",
+  "AI Ranking": "69"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4943,8 +4943,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/40/4069315e-b4c1-4879-a95b-f722988786d4?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Prijs ontbreekt waardoor marges niet berekend kunnen worden.",
-  "AI Ranking": "20"
+  "AI Reden": "Prijs ontbreekt of staat op nul euro waardoor handelsmarge niet vast te stellen is.",
+  "AI Ranking": "50"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -4989,8 +4989,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/6b/6b0f010a-5acc-4e11-9fc5-cacb121d536d?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Vraagprijs van bijna vijftienduizend euro voor 47 duizend kilometer.",
-  "AI Ranking": "62"
+  "AI Reden": "eVito 111 met Parktronic voor marktconforme prijs.",
+  "AI Ranking": "68"
 },{
   "Platform": "Milanuncios",
   "Merk": "TOYOTA",
@@ -5012,8 +5012,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/ba2ebb60-57d7-46f7-b32a-9c17613dd409?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "2021 Proace met 42 duizend kilometer voor redelijke inkoopprijs.",
-  "AI Ranking": "64"
+  "AI Reden": "Proace 50kWh redelijk geprijsd maar L1 is minder courant.",
+  "AI Ranking": "67"
 },{
   "Platform": "Milanuncios",
   "Merk": "Renault",
@@ -5035,8 +5035,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/905326e3-be55-4491-89b2-8bb222942fc1?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Kangoo ZE uit 2016 is verouderd met beperkte actieradius en marktwaarde.",
-  "AI Ranking": "38"
+  "AI Reden": "Kangoo ZE uit 2016 is verouderd en heeft beperkte actieradius.",
+  "AI Ranking": "48"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -5058,8 +5058,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/69b86188-45d7-4a2e-be1d-bcad2cc2eeb6?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Extralang model uit 2019 met hoge vraagprijs is oninteressant.",
-  "AI Ranking": "27"
+  "AI Reden": "Extralang model 2019 met beperkte interesse en te dure prijs.",
+  "AI Ranking": "52"
 },{
   "Platform": "Milanuncios",
   "Merk": "TOYOTA",
@@ -5081,7 +5081,7 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/dba1d1f3-79c8-42f8-b610-4441ed67575c?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "2023 Proace City met 28 duizend kilometer voor scherpe prijs.",
+  "AI Reden": "Jonge Proace City EV uit 2023 met lage km maar compact formaat.",
   "AI Ranking": "68"
 },{
   "Platform": "Milanuncios",
@@ -5104,8 +5104,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/8cd033a0-66d0-47bd-bb44-eeae3e8c3bc7?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Maxus eDeliver 9 heeft historisch negatieve feedback.",
-  "AI Ranking": "28"
+  "AI Reden": "Maxus eDeliver 9 72kWh matcht negatieve feedback.",
+  "AI Ranking": "59"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -5127,8 +5127,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/51d1c7c2-04dd-4d47-aca2-25adf310e0c3?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Lage kilometerstand maar 2019 model drukt de courantheid.",
-  "AI Ranking": "58"
+  "AI Reden": "2019 model met lage km maar gedateerd accupakket.",
+  "AI Ranking": "63"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -5150,8 +5150,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/24bb5fea-afb5-4b1e-b8f7-849e910bb7e9?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Tourer personenuitvoering is minder gewild dan gesloten bestel.",
-  "AI Ranking": "56"
+  "AI Reden": "Tourer personenuitvoering valt buiten kernfocus bestelbussen.",
+  "AI Ranking": "52"
 },{
   "Platform": "Milanuncios",
   "Merk": "TOYOTA",
@@ -5173,8 +5173,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/8721080c-96fc-40d5-a6e2-4d13756128ee?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Jonge Proace City met 10.000 km maar met 15.900 euro iets aan de prijs.",
-  "AI Ranking": "54"
+  "AI Reden": "Compacte EV bestelwagen met te beperkte marge.",
+  "AI Ranking": "63"
 },{
   "Platform": "Milanuncios",
   "Merk": "Citroen",
@@ -5196,8 +5196,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/4f7ea3bb-cfbd-4bce-a1ac-1595e2f725dc?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Combi personenuitvoering is minder gewild dan gesloten bestelwagen.",
-  "AI Ranking": "60"
+  "AI Reden": "Combi personenuitvoering sluit minder aan bij bedrijfsvoertuigen.",
+  "AI Ranking": "55"
 },{
   "Platform": "Milanuncios",
   "Merk": "Citroen",
@@ -5219,8 +5219,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/374f9c6f-39eb-4c8f-8be2-a7edd18b50c5?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Jonge Citroen e-Jumpy met lage tellerstand maar marge is gemiddeld.",
-  "AI Ranking": "63"
+  "AI Reden": "Jonge eJumpy 2024 maar vraagprijs ligt rond marktgemiddelde.",
+  "AI Ranking": "65"
 },{
   "Platform": "Milanuncios",
   "Merk": "Nissan",
@@ -5242,8 +5242,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/8a193184-c380-4dbf-8e81-64a9d923265b?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Verouderd e-NV200 model met beperkt laadvermogen en bereik.",
-  "AI Ranking": "52"
+  "AI Reden": "e-NV200 met CHAdeMO snelladen is lastig courant verkoopbaar.",
+  "AI Ranking": "50"
 },{
   "Platform": "Milanuncios",
   "Merk": "Maxus",
@@ -5265,8 +5265,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/7bbe283b-edf9-4d6e-abe4-cd2f60550473?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "eDeliver 9 met ton op de teller en historisch negatieve feedback.",
-  "AI Ranking": "27"
+  "AI Reden": "Maxus Deliver 9 met 104k km en 72kWh accu werd eerder afgekeurd.",
+  "AI Ranking": "53"
 },{
   "Platform": "Milanuncios",
   "Merk": "Maxus",
@@ -5288,8 +5288,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/a23f0770-c968-408e-9a36-0da2a730d67b?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "eDeliver 9 met 72 kWh accupakket sluit niet aan bij inkoopfeedback.",
-  "AI Ranking": "28"
+  "AI Reden": "Maxus eDeliver 9 met 72kWh accu werd historisch afgekeurd door inkoop.",
+  "AI Ranking": "60"
 },{
   "Platform": "Milanuncios",
   "Merk": "Nissan",
@@ -5311,8 +5311,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/db431465-1ae7-4f24-8dd2-b092ab64ac83?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Nissan e-NV200 met hogere kilometerstand en matige handelsvraag.",
-  "AI Ranking": "34"
+  "AI Reden": "e-NV200 met hoge km-stand en verouderde laadtechniek.",
+  "AI Ranking": "48"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -5334,8 +5334,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/12a442fa-10be-404d-8b93-0b38ca5a5d8e?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Prijs ontbreekt in de advertentiegegevens.",
-  "AI Ranking": "20"
+  "AI Reden": "Nul euro notering waardoor handelsmarge onbepaald blijft.",
+  "AI Ranking": "48"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -5357,8 +5357,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/6b928a2f-cd51-4182-aa19-2873161f9c34?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Vraagprijs staat op nul euro waardoor marge niet te bepalen is.",
-  "AI Ranking": "20"
+  "AI Reden": "Nul euro notering waardoor handelsmarge onbepaald blijft.",
+  "AI Ranking": "48"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -5380,8 +5380,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/1d5c68de-abd9-423f-8156-c4a201d74bc4?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Geen inkoopprijs bekend om rendement vast te stellen.",
-  "AI Ranking": "20"
+  "AI Reden": "Nul euro notering waardoor handelsmarge onbepaald blijft.",
+  "AI Ranking": "48"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -5403,8 +5403,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/c7a500aa-854e-4077-9a47-dd700e8ba74b?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Zeer nette prijs voor 2021 eVito met minder dan vijftigduizend kilometer.",
-  "AI Ranking": "72"
+  "AI Reden": "Scherpe inkoopprijs maar standaard accupakket met beperkt bereik.",
+  "AI Ranking": "69"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -5426,8 +5426,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/74fc23fc-b6fc-40cf-a767-81e336762709?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Hogere kilometerstand voor een 2020 eVito met middelmatige marge.",
-  "AI Ranking": "51"
+  "AI Reden": "Relatief hoge km-stand van 79k km voor een vroege eVito.",
+  "AI Ranking": "61"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -5449,8 +5449,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/400b2fef-558d-4aea-9434-b206f8d5ec15?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Mooie kilometerstand voor 2021 model maar prijs laat weinig ruimte.",
-  "AI Ranking": "65"
+  "AI Reden": "Nette stand van 25k km maar prijs is marktconform.",
+  "AI Ranking": "68"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -5472,8 +5472,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/1d62e943-1531-4936-9e13-81cd77974615?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Bouwjaar 2019 met stevige vraagprijs voor een eVito.",
-  "AI Ranking": "45"
+  "AI Reden": "eVito 2019 te duur voor de kleine accucapaciteit.",
+  "AI Ranking": "55"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -5495,8 +5495,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/b7650530-3db9-4ee1-b8be-010d0eaa6b0c?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Oudere eVito met zestigduizend kilometer is te duur aangeboden.",
-  "AI Ranking": "44"
+  "AI Reden": "Vito 2020 te hoog geprijsd in Spanje.",
+  "AI Ranking": "54"
 },{
   "Platform": "2dehands",
   "Merk": "Ford",
@@ -5518,8 +5518,8 @@
   "Feedback": "",
   "Image URL": "https://images.2dehands.com/api/v1/hz-twh-pro-listing/images/883110e9-6586-42b7-bf39-eb5ba7213a9e?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "Onvolledige data zonder kilometerstand en registratiedatum.",
-  "AI Ranking": "26"
+  "AI Reden": "Specificaties zoals bouwjaar en kilometerstand ontbreken geheel.",
+  "AI Ranking": "35"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -5541,8 +5541,8 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e640e2b4-932c-4f92-8584-cbabc1f9eaab?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "Nette 2021 eVito maar marge blijft te bescheiden.",
-  "AI Ranking": "63"
+  "AI Reden": "Nette eVito Lang met 26k km maar prijs is marktconform.",
+  "AI Ranking": "69"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-Benz",
@@ -5748,8 +5748,8 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ee392e40-5e50-4333-81e2-a523f133c267?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "Lage stand en goede accustatus maar prijs van 18 duizend euro is fors.",
-  "AI Ranking": "61"
+  "AI Reden": "Mooie staat met stoelverwarming maar 41kWh batterij voor bijna 18k.",
+  "AI Ranking": "64"
 },{
   "Platform": "Marktplaats",
   "Merk": "Maxus",
@@ -5771,8 +5771,8 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/e29186c8-efe9-4386-9612-200067be57ef?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "Maxus eDeliver 9 heeft historisch negatieve feedback.",
-  "AI Ranking": "28"
+  "AI Reden": "Maxus eDeliver 9 72kWh matcht eerdere negatieve inkoopfeedback.",
+  "AI Ranking": "57"
 },{
   "Platform": "2dehands",
   "Merk": "Maxus",
@@ -5840,8 +5840,8 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/28755105-50b9-4079-af1a-0d9535efd532?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "Maxus eDeliver 9 sluit historisch niet aan bij het aanbod.",
-  "AI Ranking": "28"
+  "AI Reden": "Nieuwe Maxus 72kWh maar catalogusprijs zonder handelsruimte.",
+  "AI Ranking": "58"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -5863,8 +5863,8 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ba0bb606-7cd2-488d-bc58-41f319461378?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "Zeer lage stand en scherpe prijs maar 2020 bouwjaar.",
-  "AI Ranking": "71"
+  "AI Reden": "Lage km-stand van 15k km maar vroege 41kWh batterij.",
+  "AI Ranking": "72"
 },{
   "Platform": "Marktplaats",
   "Merk": "Maxus",
@@ -5978,8 +5978,8 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f880b7e5-7317-41c6-883b-2ba48d6bb7d0?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "Ontbrekende vraagprijs maakt margewaardering onmogelijk.",
-  "AI Ranking": "20"
+  "AI Reden": "Prijs ontbreekt en model uit 2019 met kleine accucapaciteit.",
+  "AI Ranking": "52"
 },{
   "Platform": "Marktplaats",
   "Merk": "Maxus",
@@ -6001,8 +6001,8 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/f77ddff3-4343-4de3-a088-1492fc7c09a2?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "Maxus eDeliver 9 heeft historisch negatieve feedback.",
-  "AI Ranking": "27"
+  "AI Reden": "Maxus eDeliver 9 met 81k km heeft een te smalle handelsmarge.",
+  "AI Ranking": "58"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -6024,8 +6024,8 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/7f5567df-2ebc-4d68-aa30-13c06e68c0f4?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "Recente 2024 Citan met 45 kWh accupakket maar prijs is aan de maat.",
-  "AI Ranking": "61"
+  "AI Reden": "Jonge eCitan 2024 maar prijs van twintig mille laat te weinig marge.",
+  "AI Ranking": "66"
 },{
   "Platform": "2dehands",
   "Merk": "Ford",
@@ -6116,8 +6116,8 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/782fec0a-0fee-4666-9f03-871ad51d6c4b?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "Bouwjaar 2020 met ruim zeventienduizend euro is te hoog geprijsd.",
-  "AI Ranking": "53"
+  "AI Reden": "eVito 2020 met 41kWh accu te duur aangeboden.",
+  "AI Ranking": "60"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -6139,8 +6139,8 @@
   "Feedback": "",
   "Image URL": "https://images.marktplaats.com/api/v1/hz-mp-pro-listing/images/d844e1f6-b1a6-4c1c-8d99-9157d48f068d?rule=ecg_mp_eps$_85",
   "AI Pick": "Nee",
-  "AI Reden": "Extralang model is historisch afgewezen en prijs is te hoog.",
-  "AI Ranking": "26"
+  "AI Reden": "Extralang model werd eerder afgekeurd door inkoop.",
+  "AI Ranking": "55"
 },{
   "Platform": "Leboncoin",
   "Merk": "Toyota",
@@ -6162,8 +6162,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/91/57/6d/91576d0a773c90e6e05685d68cefd75db63c36af.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Toyota Proace elektrisch heeft beperkte marge bij deze vraagprijs.",
-  "AI Ranking": "52"
+  "AI Reden": "Toyota Proace City Electric te dicht tegen nieuwwaarde aan.",
+  "AI Ranking": "61"
 },{
   "Platform": "Leboncoin",
   "Merk": "Maxus",
@@ -6208,8 +6208,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/27/b4/83/27b483340ccdcfa027e0f58cb668c8bc876a2b6a.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Bouwjaar 2024 met slechts 850 km voor zeventienduizend euro, zeer interessant.",
-  "AI Ranking": "74"
+  "AI Reden": "Bijna nieuw met 850 km maar vraagprijs van 17k voor 41kWh eSprinter laat beperkte marge.",
+  "AI Ranking": "72"
 },{
   "Platform": "Leboncoin",
   "Merk": "Toyota",
@@ -6231,8 +6231,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/41/74/1f/41741f406883fe5388fbc48bafe230515a4a723f.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "75 kWh pakket en 2023 bouwjaar maar 74 duizend kilometerstand.",
-  "AI Ranking": "58"
+  "AI Reden": "Proace Long met 75kWh batterij en 74k km is redelijk courant.",
+  "AI Ranking": "68"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -6254,8 +6254,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/b7/56/40/b756408f86b034ab04e67d4e0e0a4667696dd4bc.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Locatie Martinique brengt te hoge logistieke kosten met zich mee.",
-  "AI Ranking": "53"
+  "AI Reden": "Locatie Martinique maakt transport economisch niet haalbaar.",
+  "AI Ranking": "40"
 },{
   "Platform": "Leboncoin",
   "Merk": "Proace",
@@ -6277,8 +6277,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/99/9c/a4/999ca4a25cb7c56b3701092429059d875af879eb.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Boven anderhalve ton op de teller voor een elektrische Proace.",
-  "AI Ranking": "38"
+  "AI Reden": "Kilometerstand van ruim 150k km is te hoog voor elektrische bestelbus.",
+  "AI Ranking": "40"
 },{
   "Platform": "Leboncoin",
   "Merk": "Maxus",
@@ -6323,8 +6323,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/50/70/2e/50702e6cfca707bfbbd33e73accf87674e5e51fa.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "2019 model voor zeventienduizend euro laat onvoldoende winst over.",
-  "AI Ranking": "53"
+  "AI Reden": "eVito 2019 voor zeventienduizend euro biedt onvoldoende marge.",
+  "AI Ranking": "63"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -6346,8 +6346,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/08/1d/6e/081d6eca83f5ca89de8a39f6743e7d51abd02241.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Kleine 35 kWh accu voor bijna negentienduizend euro is niet competitief.",
-  "AI Ranking": "52"
+  "AI Reden": "Bijna negentienduizend euro voor 35kWh eVito is te kostbaar.",
+  "AI Ranking": "58"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -6369,8 +6369,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/67/f0/c3/67f0c36bbbf7e09cc859e2e0d1ee8f211ff3d18d.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Nette accutest maar 65 duizend km op eSprinter met te krappe marge.",
-  "AI Ranking": "57"
+  "AI Reden": "eSprinter met 65k km en 41kWh batterij net iets te duur.",
+  "AI Ranking": "65"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -6392,8 +6392,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/4c/ba/06/4cba06a0585750cda56a4f8e362df009879e0533.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "2019 eVito voor veertienduizend euro biedt onvoldoende handelsruimte.",
-  "AI Ranking": "53"
+  "AI Reden": "Oudere eVito uit 2019 voor veertienduizend euro.",
+  "AI Ranking": "61"
 },{
   "Platform": "Leboncoin",
   "Merk": "E-sprinter",
@@ -6415,8 +6415,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/d3/4f/a2/d34fa2851f461a4dbb70fc2db43cc1c5ac63286e.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Redelijke eSprinter maar net wat te duur vergeleken met markttop.",
-  "AI Ranking": "65"
+  "AI Reden": "eSprinter 2021 met 45k km voor 14.500 euro is marktconform.",
+  "AI Ranking": "68"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -6438,8 +6438,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/07/d6/c9/07d6c9171d4d754d63ddd706496c8d16823d1c57.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Lage kilometerstand maar 35 kWh pakket en stevige vraagprijs.",
-  "AI Ranking": "58"
+  "AI Reden": "Vito met 35kWh accupakket is aan de prijs voor deze capaciteit.",
+  "AI Ranking": "63"
 },{
   "Platform": "Leboncoin",
   "Merk": "Proace",
@@ -6461,8 +6461,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/68/c4/bf/68c4bfca6e133a2f0f88a895558bbce6138e865b.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Vraagprijs van 18500 euro op Proace City laat weinig handelsruimte.",
-  "AI Ranking": "53"
+  "AI Reden": "Compacte Proace City EV laat te weinig handelsmarge.",
+  "AI Ranking": "61"
 },{
   "Platform": "Leboncoin",
   "Merk": "Toyota",
@@ -6484,8 +6484,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/a0/6a/ea/a06aea30af6ab90a2f4af72713ce7613d42c1e2f.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Gelijke vraagprijs als zusterauto met beperkte winstpotentie.",
-  "AI Ranking": "53"
+  "AI Reden": "Proace Electric 2024 te duur voor snelle doorverkoop.",
+  "AI Ranking": "61"
 },{
   "Platform": "Leboncoin",
   "Merk": "Toyota",
@@ -6507,8 +6507,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/c0/39/26/c03926a8ffdec873c36c4694ae381ccb2e9df209.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Compacte Proace met nette prijs maar gemiddelde marge.",
-  "AI Ranking": "62"
+  "AI Reden": "Proace City met 55k km voor marktconforme prijs.",
+  "AI Ranking": "64"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -6530,8 +6530,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/cf/dd/d8/cfddd8fb3c5d044ebee90ea62194d241e32df5f2.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Vrijwel nieuwe eSprinter met 1.386 km en 100 procent accustatus voor 18.500 euro.",
-  "AI Ranking": "65"
+  "AI Reden": "Vrijwel nieuwe eSprinter met 1386 km maar 41kWh batterij en prijs boven 18k.",
+  "AI Ranking": "71"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -6553,8 +6553,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/52/8d/a9/528da9aa99cbd3c3370bd60d0816cfe0c1005162.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "eSprinter met 8.650 km en 100 procent accustatus voor 18.500 euro.",
-  "AI Ranking": "64"
+  "AI Reden": "eSprinter 2023 met 8650 km voor 18.500 euro.",
+  "AI Ranking": "70"
 },{
   "Platform": "Leboncoin",
   "Merk": "Ford",
@@ -6576,8 +6576,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/bc/a2/fb/bca2fbc6e9105469fd5b0f7fd1fc4e9fa370bcc2.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "E-Transit 75 kWh met hoge kilometerstand en historische afkeuring op batterijtype.",
-  "AI Ranking": "35"
+  "AI Reden": "Transit 75kWh Trend Business met 142k km matcht eerdere afkeur kleine batterij.",
+  "AI Ranking": "58"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -6599,8 +6599,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/20/14/01/20140196dccdc5b7a34319df10a6d32967728701.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Mooie kilometerstand en scherpe prijs voor 2021 eVito.",
-  "AI Ranking": "73"
+  "AI Reden": "eVito met lage stand van 28k km voor 11.800 euro maar kleine 150km actieradius.",
+  "AI Ranking": "72"
 },{
   "Platform": "Leboncoin",
   "Merk": "Maxus",
@@ -6622,8 +6622,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/9a/83/8f/9a838f32111c4bfab5fa6db0d1be4a3c9056fcd6.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Hoge inkoopprijs voor compacte eDeliver 3 bestelwagen.",
-  "AI Ranking": "42"
+  "AI Reden": "eDeliver 3 met 50kW batterij veel te duur geprijsd.",
+  "AI Ranking": "50"
 },{
   "Platform": "Leboncoin",
   "Merk": "EVito",
@@ -6645,8 +6645,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/97/a8/7c/97a87c50d1c6bab2b228f034de51df7162ab3b92.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Vrijwel nieuw 2024 model met 60 kWh accupakket maar stevig geprijsd.",
-  "AI Ranking": "68"
+  "AI Reden": "Jonge eVito met 60kWh accu maar prijs van 17.500 euro valt net buiten de topselectie.",
+  "AI Ranking": "74"
 },{
   "Platform": "Leboncoin",
   "Merk": "Toyota",
@@ -6668,8 +6668,8 @@
   "Feedback": "",
   "Image URL": "https://img.leboncoin.fr/api/v1/lbcpb1/images/87/9d/99/879d99b20a4b84b557a527bfde529476f95e726f.jpg?rule=ad-thumb",
   "AI Pick": "Nee",
-  "AI Reden": "Proace City elektrisch heeft te weinig margepotentieel bij deze vraagprijs.",
-  "AI Ranking": "50"
+  "AI Reden": "Compacte elektrische Proace City met te hoge inkoopprijs.",
+  "AI Ranking": "59"
 },{
   "Platform": "Leboncoin",
   "Merk": "Transfert",
@@ -6737,8 +6737,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/34/340488f2-ebad-4d22-a5ce-fca354a35437?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter kofferopbouw zonder bouwjaar en sluit niet aan bij doelgroep.",
-  "AI Ranking": "25"
+  "AI Reden": "Geen registratiedatum vermeld en Crafter koffer zonder laadklep.",
+  "AI Ranking": "45"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -6760,8 +6760,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/15/15647baf-6b1a-4a64-93a0-2c4f20aeadbe?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Vraagprijs van 25 duizend euro op Proace City biedt geen handelsmarge.",
-  "AI Ranking": "45"
+  "AI Reden": "Compacte Proace City EV veel te duur geprijsd.",
+  "AI Ranking": "48"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Maxus",
@@ -6783,8 +6783,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/ca/ca2b53cf-bf20-4349-9e6e-1ef1390c314a?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Kleine Maxus bestelwagen met te beperkte marge voor handelsdoeleinden.",
-  "AI Ranking": "48"
+  "AI Reden": "Kleine Maxus eDeliver 3 met beperkte restwaarde en vraagprijs boven 18k.",
+  "AI Ranking": "58"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -6806,8 +6806,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/c5/c5fafe1c-febd-4ef3-acec-ab3d16200337?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Lage stand maar achttienduizend euro voor een 111 is te veel.",
-  "AI Ranking": "55"
+  "AI Reden": "eVito 111 voor bijna 18k euro biedt onvoldoende handelsmarge.",
+  "AI Ranking": "61"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -6829,8 +6829,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/b0/b03ced0e-484e-4b06-a822-727af339b0d1?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Bijna zeventienduizend euro voor een 2021 eVito 111 is te prijzig.",
-  "AI Ranking": "58"
+  "AI Reden": "eVito 111 compleet uitgevoerd maar te weinig marge.",
+  "AI Ranking": "63"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -6852,8 +6852,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/a2/a2c14135-617d-439d-a57f-d9d21761efed?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "2022 Proace voor ruim twintigduizend euro is te duur.",
-  "AI Ranking": "49"
+  "AI Reden": "Proace 50kW voor ruim twintig mille laat geen handelsmarge.",
+  "AI Ranking": "58"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Volkswagen",
@@ -6875,8 +6875,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/5b/5b4620e4-81b7-4972-b94f-08cbdcbf71f5?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter modelreeks past historisch niet binnen onze inkoopselectie.",
-  "AI Ranking": "28"
+  "AI Reden": "Jonge Crafter 2023 diesel voor nette prijs maar model sluit minder aan bij aanbod.",
+  "AI Ranking": "65"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -6898,7 +6898,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/dc/dc261d28-e3be-4ae2-a945-dfc34e70a5a4?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Nette staat en keuring maar prijs aan de hoge kant voor 2020.",
+  "AI Reden": "eSprinter 2020 voor ruim 16.500 euro biedt te weinig handelsmarge.",
   "AI Ranking": "61"
 },{
   "Platform": "Kleinanzeigen",
@@ -6921,8 +6921,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/34/347d9915-6677-4617-a7a9-692603a5d59f?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Zeer lage kilometerstand op 2021 eVito maar stevige prijs voor 35 kWh accupakket.",
-  "AI Ranking": "57"
+  "AI Reden": "Dubbele vermelding van dure eVito 111.",
+  "AI Ranking": "62"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -6967,8 +6967,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/bd/bd2a91cd-3adf-4c32-8ae9-ffc6b46791de?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "2022 eVito met 48 duizend kilometer voor vijftienduizend euro.",
-  "AI Ranking": "65"
+  "AI Reden": "eVito 2022 met 48k km voor 14.900 euro is marktconform.",
+  "AI Ranking": "68"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -7013,8 +7013,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/0d/0d36be54-3a2d-4c47-b8cf-b2795361046e?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "TÜV en accutest aanwezig maar prijs is te hoog voor 2020.",
-  "AI Ranking": "59"
+  "AI Reden": "eSprinter 2020 met prijs boven zestien mille.",
+  "AI Ranking": "62"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Ford",
@@ -7036,8 +7036,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/f2/f27f82ec-5e75-4fc9-b20c-0ea1e0336c5a?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Geen kilometerstand en registratie vermeld en Ford Transit is minder courant.",
-  "AI Ranking": "26"
+  "AI Reden": "Registratie en kilometerstand ontbreken.",
+  "AI Ranking": "52"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -7059,8 +7059,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/06/067db094-9136-405e-912f-d0a76e9fe642?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Personenbusuitvoering Proace City met te hoge inkoopprijs.",
-  "AI Ranking": "47"
+  "AI Reden": "Verso personenuitvoering valt buiten de kernselectie.",
+  "AI Ranking": "48"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -7082,8 +7082,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/5c/5c3401c1-1dc0-448f-b344-815d169f67c7?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Vraagprijs van achttienduizend euro voor 2021 eVito is niet competitief.",
-  "AI Ranking": "53"
+  "AI Reden": "eVito 111 met 48k km boven zeventienduizend euro biedt geen marge.",
+  "AI Ranking": "60"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -7105,8 +7105,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/10/1027c17c-7658-4e78-bb9b-ef7039e47fb4?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Prima eSprinter met DC snelladen en lage kilometerstand echter prijs is marktconform.",
-  "AI Ranking": "60"
+  "AI Reden": "Prijs boven zeventienduizend euro voor 35kWh eSprinter is te hoog.",
+  "AI Ranking": "64"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -7151,8 +7151,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/1e/1e04f1b7-5d73-42ca-985d-066a973ef6da?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Courante L2 elektrische bestelbus met gewild 75 kWh accupakket en acceptabele kilometerstand.",
-  "AI Ranking": "58"
+  "AI Reden": "75kWh Proace maar km-stand en prijs zijn gemiddeld.",
+  "AI Ranking": "65"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -7174,8 +7174,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/24/24a5c0d3-af0a-49ea-ac94-3db5750a04fd?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Proace Verso personenbus is te duur voor onze handelsactiviteiten.",
-  "AI Ranking": "46"
+  "AI Reden": "Verso personenbus uitvoering valt buiten focusgebied commerciële vans.",
+  "AI Ranking": "50"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -7197,8 +7197,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/cd/cd5ab686-b5ed-47b0-b06d-fc16199ff678?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Vrijwel nieuw maar 25 duizend euro vraagprijs laat geen handelsruimte.",
-  "AI Ranking": "47"
+  "AI Reden": "Vraagprijs van bijna 25k euro voor L1 formaat is veel te hoog.",
+  "AI Ranking": "52"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -7220,7 +7220,7 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/7e/7eba9372-612e-4eb8-a208-1b3201a7cb14?rule=$_59.AUTO",
   "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick: Bouwjaar 2024 eCitan met 19 duizend km voor slechts 7900 euro, topexemplaar.",
+  "AI Reden": "AI pick in het verleden al geselecteerd",
   "AI Ranking": "95"
 },{
   "Platform": "Kleinanzeigen",
@@ -7243,8 +7243,8 @@
   "Feedback": "",
   "Image URL": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/de/de7f35db-5d72-4e81-b9b5-3ddac37d7cfa?rule=$_59.AUTO",
   "AI Pick": "Nee",
-  "AI Reden": "Prijzig voor een 2020 Vito met kleine accucapaciteit.",
-  "AI Ranking": "53"
+  "AI Reden": "eVito 111 met standaard specificaties te hoog geprijsd.",
+  "AI Ranking": "60"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -7266,8 +7266,8 @@
   "Feedback": "",
   "Image URL": "https://images.milanuncios.com/api/v1/ma-ad-media-pro/images/18e98b1e-5f05-470f-8da0-6db987c45ee2?rule=hw396_70",
   "AI Pick": "Nee",
-  "AI Reden": "Prijs is redelijk maar 70 duizend kilometer voor 2020 eVito.",
-  "AI Ranking": "57"
+  "AI Reden": "Redelijke prijs maar 70k km op een vroege kleine batterij.",
+  "AI Ranking": "60"
 },{
   "Platform": "Quoka",
   "Merk": "Toyota",
@@ -7289,8 +7289,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20231116/1316/37f99a3d2efd8bd8e760220eae77b27c.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Zeer weinig kilometers maar aanschafprijs te hoog voor handel.",
-  "AI Ranking": "54"
+  "AI Reden": "Compacte Proace City EV met te geringe winstmarge.",
+  "AI Ranking": "62"
 },{
   "Platform": "Quoka",
   "Merk": "Toyota",
@@ -7312,8 +7312,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "Proace elektrisch zit te dicht tegen de consumentenmarktwaarde.",
-  "AI Ranking": "48"
+  "AI Reden": "Toyota Proace Electric vraagt net te hoge inkoop voor een medium bus.",
+  "AI Ranking": "60"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7334,9 +7334,9 @@
   "Datum status wijziging": "2026-11-05",
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
-  "AI Pick": "Nee",
-  "AI Reden": "2024 eCitan met lage tellerstand en scherpe prijs onder dertienduizend euro.",
-  "AI Ranking": "73"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick: Zeer jong model 2024 met automaat en lage km-stand voor een uitzonderlijk lage inkoopprijs die exact matcht met eerdere topbeoordelingen.",
+  "AI Ranking": "92"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7381,8 +7381,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20260607/2242/5ed55f5a2f62c4ca20336066b8c166be.webp",
   "AI Pick": "Nee",
-  "AI Reden": "2022 model met nette tellerstand en redelijke inkoopprijs.",
-  "AI Ranking": "66"
+  "AI Reden": "eVito 2022 met 29k km en goede opties maar marge net onder topselectie.",
+  "AI Ranking": "72"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7404,8 +7404,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "Vraagprijs van bijna negentienduizend euro is te fors voor 2021 model.",
-  "AI Ranking": "53"
+  "AI Reden": "Vito 111 met 26k km maar forse vraagprijs van 18.700 euro.",
+  "AI Ranking": "61"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7427,8 +7427,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "Complete uitrusting met lage stand voor veertienduizend euro.",
-  "AI Ranking": "67"
+  "AI Reden": "eVito 111 lang met 28k km en Apple CarPlay voor 13.990 euro is courant maar net buiten top 5.",
+  "AI Ranking": "73"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7450,8 +7450,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "Scherpe tienduizend euro vraagprijs maar Tourer personenversie.",
-  "AI Ranking": "68"
+  "AI Reden": "Scherp geprijsde Tourer personenuitvoering maar past minder in bestelwagenfocus.",
+  "AI Ranking": "65"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7473,8 +7473,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "Lage stand maar te hoge inkoopprijs voor een eVito 111.",
-  "AI Ranking": "58"
+  "AI Reden": "eVito 111 te hoog geprijsd.",
+  "AI Ranking": "63"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7496,8 +7496,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "Met garantie maar prijs van 17500 euro drukt de marge.",
-  "AI Ranking": "58"
+  "AI Reden": "Junge Sterne garantie maar inkoopprijs is aan de hoge kant.",
+  "AI Ranking": "65"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7519,8 +7519,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "Identiek geprijsd en te duur voor groothandelsverkoop.",
-  "AI Ranking": "53"
+  "AI Reden": "Vito 111 met te weinig handelsmarge.",
+  "AI Ranking": "61"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7565,8 +7565,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20260615/2220/222f454d9ada40e1349adc39ce733fb8.webp",
   "AI Pick": "Nee",
-  "AI Reden": "Uitvoering en model komen overeen met historisch afgekeurde configuratie.",
-  "AI Ranking": "29"
+  "AI Reden": "eVito 111 L2H1 matcht eerdere negatieve feedback op verkeerd model.",
+  "AI Ranking": "63"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7588,8 +7588,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "Extralang model is historisch afgewezen en prijs is te hoog.",
-  "AI Ranking": "28"
+  "AI Reden": "Extralang model werd eerder negatief beoordeeld door inkoop.",
+  "AI Ranking": "55"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7610,9 +7610,9 @@
   "Datum status wijziging": "2026-11-05",
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
-  "AI Pick": "Nee",
-  "AI Reden": "Bouwjaar 2020 met 31 duizend km voor slechts 8000 euro, zeer sterk.",
-  "AI Ranking": "74"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick: Courante eVito Lang met lage kilometerstand van 31000 km tegen een extreem lage inkoopprijs van onder achtduizend euro.",
+  "AI Ranking": "90"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7634,8 +7634,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20231120/1055/e21f2434f5da5975355bc7a8d3f5a128.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Ouder 2019 model met te hoge vraagprijs ondanks lage kilometerstand.",
-  "AI Ranking": "57"
+  "AI Reden": "Lage km-stand maar 2019 model met kleine accu voor bijna 16k euro.",
+  "AI Ranking": "66"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7657,8 +7657,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20260408/0351/a3e2c895734d81a1a29e58ae0efc8716.webp",
   "AI Pick": "Nee",
-  "AI Reden": "Bouwjaar 2020 met 55 duizend kilometer voor 14680 euro.",
-  "AI Ranking": "58"
+  "AI Reden": "eVito 2020 met 54k km en marktconforme prijs.",
+  "AI Ranking": "64"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-Benz",
@@ -7703,8 +7703,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/top/20260610/2312/b6635f481d27b07db2b95867e5a26a60.webp",
   "AI Pick": "Nee",
-  "AI Reden": "Bouwjaar 2020 met kleine 35 kWh accu en zestigduizend kilometer.",
-  "AI Ranking": "48"
+  "AI Reden": "eVito met 35kWh kleine batterij en 65k km te duur aangeboden.",
+  "AI Ranking": "58"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -7726,8 +7726,8 @@
   "Feedback": "",
   "Image URL": "https://s3.quoka.de/quoka/no_img.png",
   "AI Pick": "Nee",
-  "AI Reden": "Redelijke stand en bouwjaar maar prijs biedt weinig marge.",
-  "AI Ranking": "60"
+  "AI Reden": "eVito Lang 2021 marktconform geprijsd zonder extra marge.",
+  "AI Ranking": "64"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7818,8 +7818,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/i864duhflnvr-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Ruim twintigduizend euro voor 2022 eVito met 65 duizend kilometer.",
-  "AI Ranking": "49"
+  "AI Reden": "eVito 2022 met 64k km voor bijna 21k euro biedt geen marge.",
+  "AI Ranking": "59"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7841,8 +7841,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/yb438otnbqfa2-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Scherpe inkoop onder 8000 euro maar 2020 model met 52 duizend km.",
-  "AI Ranking": "73"
+  "AI Reden": "Zeer scherpe prijs voor Vito 2020 maar Poolse aanbieder met beperkte specificaties.",
+  "AI Ranking": "74"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7864,8 +7864,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/phjxwe8kc3q52-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Extralang model is historisch niet gewenst ondanks de scherpe prijs.",
-  "AI Ranking": "29"
+  "AI Reden": "Scherpe prijs maar extra long XXL model is niet geliefd bij inkoop.",
+  "AI Ranking": "68"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7887,8 +7887,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/szv5zffy9in53-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Zeer scherpe prijs voor eSprinter maar negentigduizend kilometer.",
-  "AI Ranking": "64"
+  "AI Reden": "Scherpe prijs maar 90k km op een eSprinter drukt courantheid.",
+  "AI Ranking": "66"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7910,8 +7910,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/k0x9tqooj1n41-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Recente eCitan maar 40 duizend km en forse vraagprijs.",
-  "AI Ranking": "52"
+  "AI Reden": "eCitan 2024 maar te hoge vraagprijs van 24.500 euro.",
+  "AI Ranking": "58"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7933,8 +7933,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/167yg4e88cdu-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Splinternieuw maar inkoopprijs boven 28 duizend euro is te hoog gegrepen.",
-  "AI Ranking": "46"
+  "AI Reden": "Veel te dure eCitan voor meer dan 28 mille.",
+  "AI Ranking": "50"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7956,8 +7956,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/sojafgv7sxau1-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "2022 eSprinter met nette stand maar net te krap qua marge.",
-  "AI Ranking": "62"
+  "AI Reden": "eSprinter 2022 met 47k km aan de prijs.",
+  "AI Ranking": "65"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -7979,8 +7979,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/v9l7glcc9qjq1-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Zeer jonge Citan met lage stand maar marge blijft gemiddeld.",
-  "AI Ranking": "64"
+  "AI Reden": "Jonge Mercedes Citan met 11k km voor nette prijs maar kleine bestelwagen.",
+  "AI Ranking": "68"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -8002,8 +8002,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/ojkcznv56cvs2-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Bijna twintigduizend euro voor een 2021 eSprinter is te fors.",
-  "AI Ranking": "53"
+  "AI Reden": "eSprinter 2021 voor bijna twintigduizend euro is te kostbaar.",
+  "AI Ranking": "60"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -8025,8 +8025,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/uwqc4sb2chyl3-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Hoogdak eSprinter met schappelijke prijs maar hogere tellerstand.",
-  "AI Ranking": "62"
+  "AI Reden": "eSprinter met 61k km uit Polen biedt marktconforme prijs zonder extra voordeel.",
+  "AI Ranking": "64"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -8048,8 +8048,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/adiv9bxbuapy2-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Identiek geprijsd en te duur voor een 2022 Vito in de groothandel.",
-  "AI Ranking": "49"
+  "AI Reden": "Zusterlisting met identieke te hoge vraagprijs.",
+  "AI Ranking": "59"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -8071,7 +8071,7 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/b8q5piy9bju23-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Jong gebruikt maar inkoopprijs boven 25 duizend euro is te hoog.",
+  "AI Reden": "Mercedes Progressive te duur voor handelsvoorraad.",
   "AI Ranking": "52"
 },{
   "Platform": "Otomoto",
@@ -8094,8 +8094,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/ouu5jofjqwqq2-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Nette prijs voor eSprinter maar kilometerstand is aan de hogere kant.",
-  "AI Ranking": "63"
+  "AI Reden": "eSprinter met scherpe basisprijs maar hogere km-stand en Poolse import.",
+  "AI Ranking": "67"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -8117,8 +8117,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/ta5x0gpgqmh-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "2023 eSprinter met lage stand maar stevige vraagprijs.",
-  "AI Ranking": "58"
+  "AI Reden": "eSprinter 2023 met 24k km maar vraagprijs boven 21k euro.",
+  "AI Ranking": "62"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -8163,8 +8163,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/nhn63v2gntep-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter model past niet binnen de actuele categoriestrategie.",
-  "AI Ranking": "28"
+  "AI Reden": "Crafter sluit historisch niet optimaal aan bij het Boss Vans aanbod.",
+  "AI Ranking": "57"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -8209,8 +8209,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/7j7wz6pszm561-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter past volgens feedback niet binnen ons verkoopkanaal.",
-  "AI Ranking": "28"
+  "AI Reden": "Crafter 2023 sluit historisch niet optimaal aan bij het Boss Vans aanbod.",
+  "AI Ranking": "60"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -8232,8 +8232,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/tbx85d3gnwui2-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter modelreeks past historisch niet binnen onze inkoopformule.",
-  "AI Ranking": "28"
+  "AI Reden": "Crafter uit 2016 met extreem lage km wijst op foutieve opgave of schade.",
+  "AI Ranking": "35"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -8255,8 +8255,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/5jejowjif75s-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter modelreeks past historisch niet binnen onze inkoopdoelstellingen.",
-  "AI Ranking": "28"
+  "AI Reden": "Crafter sluit historisch minder aan bij bedrijfsvoorraad.",
+  "AI Ranking": "60"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -8278,8 +8278,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/jdmh76hikvhf-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter modelreeks past historisch niet binnen de focus.",
-  "AI Ranking": "28"
+  "AI Reden": "Jonge Crafter maar model sluit niet direct aan bij doelstelling.",
+  "AI Ranking": "58"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -8301,7 +8301,7 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/xcmo129f3o6y1-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Nieuw voertuig maar marge is nihil bij deze inkoopprijs.",
+  "AI Reden": "Nieuw voertuig met hoge instapprijs en minimale handelsmarge.",
   "AI Ranking": "45"
 },{
   "Platform": "Otomoto",
@@ -8324,8 +8324,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/iu20pummhy781-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Inkoopprijs boven 29 duizend euro biedt geen enkel margepotentieel.",
-  "AI Ranking": "41"
+  "AI Reden": "Nieuw voertuig met catalogusprijs en nul marge.",
+  "AI Ranking": "42"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -8347,7 +8347,7 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/jnilwe4sho9m2-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Inkoopprijs boven 24 duizend euro biedt geen handelspotentieel.",
+  "AI Reden": "Nieuwe compacte besteller zonder restmarge.",
   "AI Ranking": "46"
 },{
   "Platform": "Otomoto",
@@ -8370,8 +8370,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/eztas6mysjuq-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Te hoge inkoopprijs op compacte besteller.",
-  "AI Ranking": "43"
+  "AI Reden": "Nieuw voertuig zonder margepotentiëel.",
+  "AI Ranking": "45"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -8393,8 +8393,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/rnh01vrddlso3-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Vraagprijs van ruim 26 duizend euro laat geen handelsmarge toe.",
-  "AI Ranking": "44"
+  "AI Reden": "Nieuw voertuig zonder handelskorting.",
+  "AI Ranking": "45"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -8416,8 +8416,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/p7jc83it82p12-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Geen gezonde handelsmarge mogelijk bij deze vraagprijs.",
-  "AI Ranking": "44"
+  "AI Reden": "Nieuw voertuig met reguliere dealerprijs.",
+  "AI Ranking": "45"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -8439,7 +8439,7 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/bvxyz18tdk8b2-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Te hoge inkoopwaarde voor een compacte elektrische besteller.",
+  "AI Reden": "Nieuw voertuig zonder handelsmarge.",
   "AI Ranking": "45"
 },{
   "Platform": "Otomoto",
@@ -8462,8 +8462,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/x86ubi6br4g21-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Te duur in aanschaf waardoor gezonde handelsmarge onmogelijk is.",
-  "AI Ranking": "44"
+  "AI Reden": "Nieuw voertuig zonder marge voor de handel.",
+  "AI Ranking": "45"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -8485,7 +8485,7 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/52he6xx5k4e1-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Te duur voor een compacte elektrische bestelauto.",
+  "AI Reden": "Nieuw voertuig met catalogusprijs en nul marge.",
   "AI Ranking": "45"
 },{
   "Platform": "Otomoto",
@@ -8508,8 +8508,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/z0qb09jk03ok2-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Te hoge inkoopprijs voor een compacte bestelbus.",
-  "AI Ranking": "43"
+  "AI Reden": "Nieuw voertuig met volledige nieuwprijs.",
+  "AI Ranking": "45"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -8531,7 +8531,7 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/gdotqexxgbct2-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Hoge inkoopprijs voor compacte Proace laat geen winstmarge over.",
+  "AI Reden": "Nieuw voertuig zonder noemenswaardige marge.",
   "AI Ranking": "45"
 },{
   "Platform": "Otomoto",
@@ -8554,8 +8554,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/ris1modxwqha3-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Vraagprijs van 29 duizend euro laat geen ruimte voor handelsmarge.",
-  "AI Ranking": "41"
+  "AI Reden": "Extreem dure Proace City aanbieding.",
+  "AI Ranking": "42"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -8577,8 +8577,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/tmf4ro797j7l3-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Te hoge inkoopprijs op compacte besteller.",
-  "AI Ranking": "44"
+  "AI Reden": "Nieuw voertuig met hoge inkoopprijs.",
+  "AI Ranking": "45"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -8600,8 +8600,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/q74046x6wucf2-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Prijsstelling van 26 duizend euro laat geen ruimte voor marge.",
-  "AI Ranking": "44"
+  "AI Reden": "Nieuw elektrisch voertuig zonder korting.",
+  "AI Ranking": "45"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -8623,8 +8623,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/1zju5bzebobe-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Inkoopprijs laat geen gezonde doorverkoopmarge toe.",
-  "AI Ranking": "44"
+  "AI Reden": "Nieuwe compacte bestelwagen zonder margepotentiëel.",
+  "AI Ranking": "45"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -8646,8 +8646,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/90td797e8y921-OTOMOTOPL/image;s=644x461",
   "AI Pick": "Nee",
-  "AI Reden": "Nieuw geleverde Proace City laat geen gezonde handelsmarge toe.",
-  "AI Ranking": "44"
+  "AI Reden": "Nieuwe Proace City EV laat geen commerciële handelsruimte.",
+  "AI Ranking": "45"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -8692,8 +8692,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/0u7gm8czyq843-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "EV80 model is verouderd en historisch niet populair.",
-  "AI Ranking": "25"
+  "AI Reden": "Oudere EV80 techniek uit 2019.",
+  "AI Ranking": "44"
 },{
   "Platform": "Finn",
   "Merk": "Mercedes-Benz Sprinter 209",
@@ -8715,7 +8715,7 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/454923034/ec76fcc2-5410-46b4-8463-6da23fdedffa",
   "AI Pick": "Nee",
-  "AI Reden": "Scherpe inkoopprijs voor 2022 eSprinter met 48 duizend kilometer.",
+  "AI Reden": "eSprinter 2022 met 48k km voor tienduizend euro maar Noorse invoer.",
   "AI Ranking": "73"
 },{
   "Platform": "Finn",
@@ -8738,8 +8738,8 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/454925094/af3eb729-e5e1-4483-84e6-ad5552104458",
   "AI Pick": "Nee",
-  "AI Reden": "Lage tellerstand op 2022 eSprinter voor minder dan dertienduizend euro.",
-  "AI Ranking": "73"
+  "AI Reden": "eSprinter 2022 met lage km van 29k km voor twaalfduizend euro maar Noorse herkomst.",
+  "AI Ranking": "74"
 },{
   "Platform": "Finn",
   "Merk": "Mercedes-Benz Vito",
@@ -8761,8 +8761,8 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/477944526/8bd0f360-1b05-4c9f-9b42-7efe2278727f",
   "AI Pick": "Nee",
-  "AI Reden": "2020 eVito met 44 duizend kilometer voor redelijke inkoopprijs.",
-  "AI Ranking": "65"
+  "AI Reden": "eVito 2020 met 44k km voor twaalfduizend euro in Noorwegen.",
+  "AI Ranking": "68"
 },{
   "Platform": "Finn",
   "Merk": "Mercedes-Benz eSprinter 312",
@@ -8784,8 +8784,8 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/478928871/fd451256-d3d4-4855-a056-7a057b9843d5",
   "AI Pick": "Nee",
-  "AI Reden": "Scherpe inkoopprijs voor 2022 eSprinter met nette kilometerstand.",
-  "AI Ranking": "72"
+  "AI Reden": "eSprinter 2022 met camera voor nette prijs maar Noorse invoer.",
+  "AI Ranking": "71"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -8853,8 +8853,8 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/477192825/77d2bb44-067d-4365-91f7-08ed02f14937",
   "AI Pick": "Nee",
-  "AI Reden": "Zeer hoge kilometerstand en historisch afgewezen model.",
-  "AI Ranking": "29"
+  "AI Reden": "Goedkope Maxus maar met 125k km en kleine 65kWh batterij op lange L4.",
+  "AI Ranking": "52"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -8922,8 +8922,8 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/478197248/7ada4432-73fc-4c9a-a3df-43706a4b3e17",
   "AI Pick": "Nee",
-  "AI Reden": "Zeer hoge tellerstand op historisch afgekeurd model.",
-  "AI Ranking": "25"
+  "AI Reden": "Hoge km-stand van 114k km op een Maxus voor ruim twintig mille.",
+  "AI Ranking": "48"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -8945,8 +8945,8 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/479681257/edfca0f9-4f7e-42ad-99f4-a5c244f96922",
   "AI Pick": "Nee",
-  "AI Reden": "Hoge kilometerstand en historisch afgewezen Maxus model.",
-  "AI Ranking": "26"
+  "AI Reden": "Hoge kilometerstand en stevige prijs voor Maxus uit Noorwegen.",
+  "AI Ranking": "48"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -8968,8 +8968,8 @@
   "Feedback": "",
   "Image URL": "https://images.finncdn.no/dynamic/default/item/480096659/b963a32c-7740-4eca-a010-e4f732b7997e",
   "AI Pick": "Nee",
-  "AI Reden": "eDeliver 9 met 79 duizend kilometer past niet bij voorkeursmodellen.",
-  "AI Ranking": "27"
+  "AI Reden": "Historische feedback op Deliver 9 is terughoudend en Noorse import.",
+  "AI Ranking": "52"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8991,7 +8991,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/38/385c9de2-f945-4b2b-8ad9-5c8a062f10a8?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Goede prijs-kwaliteitverhouding met lage kilometerstand en complete opties.",
+  "AI Reden": "Goede uitrusting met achteruitrijcamera en nette km-stand voor redelijke prijs.",
   "AI Ranking": "71"
 },{
   "Platform": "Mobile",
@@ -9014,8 +9014,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/5e/5e041b34-d2aa-4b74-999f-d530b7ea5bd9?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Scherpere prijs voor eSprinter met SoH keuring maar 2020 registratie.",
-  "AI Ranking": "67"
+  "AI Reden": "eSprinter 2020 netjes geprijsd maar actieradius blijft beperkt.",
+  "AI Ranking": "68"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -9037,8 +9037,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/cf/cfb6702d-eb28-433b-924e-2136989481d6?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "2021 eVito met 47 duizend kilometer voor ruim veertienduizend euro.",
-  "AI Ranking": "64"
+  "AI Reden": "eVito 111 met Parktronic en stoelverwarming marktconform geprijsd.",
+  "AI Ranking": "69"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -9060,8 +9060,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/92/924962ed-ad7c-4310-a676-b181278131ef?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "2022 model met nette kilometerstand en redelijke inkoopprijs.",
-  "AI Ranking": "68"
+  "AI Reden": "Jonger bouwjaar 2022 en nette kilometerstand maar 35kWh accu blijft minpunt.",
+  "AI Ranking": "72"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -9083,8 +9083,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/1c/1cb153ce-6039-4654-9937-765bce8612c6?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Courante eSprinter met gunstige kilometerstand en nette prijs.",
-  "AI Ranking": "71"
+  "AI Reden": "eSprinter L2 met camera en nette stand maar net geen absolute topmarge.",
+  "AI Ranking": "72"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -9106,8 +9106,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/16/16111458-a5c6-47fe-ac86-3ac5b9ddf41b?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Model en uitvoering komen overeen met historisch afgekeurde configuraties.",
-  "AI Ranking": "29"
+  "AI Reden": "Vito eVito 111 matcht met historische afkeur qua model en batterij.",
+  "AI Ranking": "63"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -9129,8 +9129,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/d5/d51fde21-a340-480d-9632-1e24b83f754d?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Late 2022 eVito 112 met lage stand en goede uitrusting.",
-  "AI Ranking": "72"
+  "AI Reden": "eVito 112 uit eind 2022 met lage km-stand maar prijs laat weinig marge over.",
+  "AI Ranking": "71"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -9152,8 +9152,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/bf/bfdaab03-73ca-4f73-a3f9-7afc2f099483?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Goede staat met keuring maar 2020 bouwjaar drukt de score.",
-  "AI Ranking": "66"
+  "AI Reden": "eSprinter L2 uit 2020 voor redelijke prijs maar kleine actieradius.",
+  "AI Ranking": "67"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -9175,8 +9175,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/c8/c89efeec-48cc-4aa0-a5b3-2f88122d4eec?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Nette Vito maar net wat duurder dan vergelijkbare alternatieven.",
-  "AI Ranking": "64"
+  "AI Reden": "eVito 111 met gemiddelde handelsmarge.",
+  "AI Ranking": "66"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -9221,8 +9221,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/32/3265b362-e0fd-48cb-8ca8-fa6a55e9a5ff?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Lage tellerstand en compleet uitgerust met acceptabele vraagprijs.",
-  "AI Ranking": "67"
+  "AI Reden": "Lage km-stand van onder 20k maar kleine batterijcapaciteit.",
+  "AI Ranking": "71"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -9244,8 +9244,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/0b/0bc02852-2e58-4630-810b-b99f4c177300?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Zeer lage kilometerstand en afgeprijsd maar prijsstelling ligt wat forser.",
-  "AI Ranking": "66"
+  "AI Reden": "Mooie kilometerstand en afgeprijsd maar marge is net te krap voor top 5.",
+  "AI Ranking": "71"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -9267,8 +9267,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/28/28b3fec0-ac12-4a82-82c2-3677706a4793?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Lage stand voor eSprinter hoogdak maar 2020 bouwjaar drukt marge.",
-  "AI Ranking": "67"
+  "AI Reden": "eSprinter L2H2 met slechts 27k km voor veertienduizend euro is courant.",
+  "AI Ranking": "73"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -9290,7 +9290,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/ad/adc61d0b-c605-49a1-b5b0-bcae66decfa7?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Goede eSprinter met SoH test en keuring maar iets ouder bouwjaar.",
+  "AI Reden": "eSprinter 2020 met nette stand maar relatief beperkt marktbereik.",
   "AI Ranking": "67"
 },{
   "Platform": "Mobile",
@@ -9313,8 +9313,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/42/42069202-ba72-43d3-b917-585bb5369f51?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Courante eSprinter met gunstige kilometerstand en afgeprijsde status.",
-  "AI Ranking": "70"
+  "AI Reden": "Nette eSprinter met lage km en automaat maar marge net onder absolute toppers.",
+  "AI Ranking": "73"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -9359,8 +9359,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/bd/bda4d730-4b95-4c19-8f2e-2862809ec350?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Scherpe afprijsing onder elfduizend euro maar al wel vier jaar oud.",
-  "AI Ranking": "68"
+  "AI Reden": "Scherpe prijs maar bouwjaar 2020 met kleine batterij.",
+  "AI Ranking": "69"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -9382,8 +9382,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/62/627d53f3-b073-4d65-a8a9-f3d1afdeea38?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Maxus eDeliver 9 heeft historisch een afkeuringsstraf gekregen.",
-  "AI Ranking": "27"
+  "AI Reden": "Maxus eDeliver 9 met 89kWh accu heeft te hoge afschrijving en vraagprijs.",
+  "AI Ranking": "59"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -9405,8 +9405,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/e3/e3e12319-c54e-4695-99c2-5b0503ff5f86?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Maxus eDeliver 9 heeft historisch negatieve beoordeling.",
-  "AI Ranking": "28"
+  "AI Reden": "Recente Maxus met 89kWh maar hoge aanschafprijs.",
+  "AI Ranking": "60"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -9474,8 +9474,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/a9/a9fe0f67-e5b6-4489-b3f9-0238f78e7cf0?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Maxus eDeliver 9 heeft historisch negatieve beoordeling ontvangen.",
-  "AI Ranking": "27"
+  "AI Reden": "Maxus eDeliver 9 met 89kWh accu maar forse afschrijving en hoge vraagprijs.",
+  "AI Ranking": "61"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -9520,8 +9520,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/7c/7c37d3a5-1f3d-4188-a708-6c00f653d0bc?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter uit 2011 is te oud en sluit historisch niet aan bij het aanbod.",
-  "AI Ranking": "24"
+  "AI Reden": "Ouder bouwjaar 2011 open laadbak past minder in core assortiment.",
+  "AI Ranking": "38"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -9543,8 +9543,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/da/da860f87-ae9f-47aa-be22-c0d0283e282e?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Bouwjaar 2009 Crafter is veel te oud voor de actuele bedrijfswagenvoorraad.",
-  "AI Ranking": "18"
+  "AI Reden": "Te oud bouwjaar 2009 en Crafter sluit historisch minder goed aan bij aanbod.",
+  "AI Ranking": "42"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -9566,8 +9566,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/f1/f1793d3b-b259-4d0e-8c10-12ec3da9929c?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Zware Crafter koffer past historisch niet binnen de actuele inkoopfocus.",
-  "AI Ranking": "25"
+  "AI Reden": "Crafter 5 ton kofferbakwagen sluit niet optimaal aan bij doelgroep.",
+  "AI Ranking": "45"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -9589,8 +9589,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/e3/e32438a9-3265-402d-ae63-97e2f4be2b27?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter modelreeks past historisch niet binnen de actuele vraag.",
-  "AI Ranking": "28"
+  "AI Reden": "Crafter diesel met 32k km maar Crafter past historisch minder goed.",
+  "AI Ranking": "58"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -9612,8 +9612,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/64/64c872cd-b6e8-4446-b8af-6122f0ed9cd1?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter sluit niet aan bij het gewenste profiel volgens feedback.",
-  "AI Ranking": "28"
+  "AI Reden": "Crafter L2H2 diesel aan de hoge kant qua inkoopprijs.",
+  "AI Ranking": "57"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -9635,8 +9635,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/76/76a8502d-3b1b-44dd-946e-f0593b932e85?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter open laadbak sluit niet aan bij onze bedrijfswagendoelgroep.",
-  "AI Ranking": "25"
+  "AI Reden": "Crafter open laadbak uit 2018 past minder in assortiment.",
+  "AI Ranking": "46"
 },{
   "Platform": "Mobile",
   "Merk": "Ford",
@@ -9727,7 +9727,7 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/E120038487_STANDARD_0.jpg?format=webp&lastUpdated=1790939871&size=352x264&watermark=lc&signature=0691dbdd3134e52d48afc5cdd179c3b6666cb5e7cd8c67e1b3f38963",
   "AI Pick": "Nee",
-  "AI Reden": "Weinig kilometers maar stevige prijs voor een 2021 model.",
+  "AI Reden": "Bijna twintigduizend euro voor eSprinter 2021 met kleine actieradius.",
   "AI Ranking": "60"
 },{
   "Platform": "La Centrale",
@@ -9750,8 +9750,8 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/W103572287_STANDARD_0.jpg?format=webp&lastUpdated=1791563011&size=352x264&watermark=lc&signature=5f6c0ebd226142028a312f8deb3d578fec0473cf88091e94fff5e2de",
   "AI Pick": "Nee",
-  "AI Reden": "65 duizend kilometer voor zeventienduizend euro laat te weinig marge over.",
-  "AI Ranking": "58"
+  "AI Reden": "eSprinter met 65k km en 41kWh batterij te duur.",
+  "AI Ranking": "64"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES VITO III phase 2",
@@ -9773,8 +9773,8 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/W103579221_STANDARD_0.jpg?format=webp&lastUpdated=1792509176&size=352x264&watermark=lc&signature=a176e8ab2902759e2d0608a7aae8ad84a49f2bd6dcf0424fa48acc64",
   "AI Pick": "Nee",
-  "AI Reden": "Interessante 60 kWh eVito met lage kilometerstand en scherpe afprijsing.",
-  "AI Ranking": "73"
+  "AI Reden": "Gunstige prijs en grotere 60kWh accu maar extralang model is historisch minder gevraagd.",
+  "AI Ranking": "72"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES SPRINTER III",
@@ -9796,8 +9796,8 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/B104336096_STANDARD_0.jpg?format=webp&lastUpdated=1793111494&size=352x264&watermark=lc&signature=442d5bf009cde6944acfa32d19c673a14fc551e051e3b4e0eda1a108",
   "AI Pick": "Nee",
-  "AI Reden": "Extreem lage kilometerstand maar met 41 kWh accupakket relatief prijzig.",
-  "AI Ranking": "62"
+  "AI Reden": "Zeer lage km-stand maar stevige prijs voor 41kWh Sprinter.",
+  "AI Ranking": "70"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES VITO III phase 2",
@@ -9819,8 +9819,8 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/E120241144_STANDARD_0.jpg?format=webp&lastUpdated=1793201748&size=352x264&watermark=lc&signature=402c20d2cc0959b2276713a18d3f79ead2f7fc54a77558cd0633a478",
   "AI Pick": "Nee",
-  "AI Reden": "Vraagprijs van bijna twintigduizend euro is te gortig voor 2021 model.",
-  "AI Ranking": "50"
+  "AI Reden": "Vito 116 met 35kWh accu te duur voor bijna twintig mille.",
+  "AI Ranking": "56"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES VITO III phase 2",
@@ -9842,8 +9842,8 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/E120241272_STANDARD_0.jpg?format=webp&lastUpdated=1793201962&size=352x264&watermark=lc&signature=bb9d57573c718f7340e38ab69387a39384757438b05465700ca990ab",
   "AI Pick": "Nee",
-  "AI Reden": "Prijzige Vito met vijftigduizend kilometer op de teller.",
-  "AI Ranking": "48"
+  "AI Reden": "Vito 2020 met 50k km te hoog geprijsd.",
+  "AI Ranking": "55"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES SPRINTER III phase 2",
@@ -9865,8 +9865,8 @@
   "Feedback": "",
   "Image URL": "https://pictures.lacentrale.fr/classifieds/W103584577_STANDARD_0.jpg?format=webp&lastUpdated=1793261051&size=352x264&watermark=lc&signature=2cea26c10c4ce712764d807f3dc56295b2a3705fc332b40611b41ff8",
   "AI Pick": "Nee",
-  "AI Reden": "Weinig kilometers op eSprinter maar prijs drukt de potentiële handelsmarge.",
-  "AI Ranking": "64"
+  "AI Reden": "eSprinter met 15k km maar 41kWh batterij en prijs bijna 18k.",
+  "AI Ranking": "67"
 },{
   "Platform": "La Centrale",
   "Merk": "MAXUS EDELIVER9",
@@ -9911,8 +9911,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/3bdab1de-a8e2-4e32-b237-46cc698e8391_07fd41db-5d83-4e28-90da-953e249cfefc.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "eSprinter uit 2022 met redelijke stand maar matige handelsmarge.",
-  "AI Ranking": "63"
+  "AI Reden": "Standaard eSprinter 41kWh aanbod met gemiddelde marge.",
+  "AI Ranking": "66"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -9980,8 +9980,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/33aba43f-81e3-4ae5-9141-6a767988c275_92ff32a9-e8fd-4055-82ab-6f2fadf534f0.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "2020 eVito met te hoge inkoopprijs voor de handelsvoorraad.",
-  "AI Ranking": "56"
+  "AI Reden": "eVito 2020 met 20k km maar prijs biedt te weinig marge.",
+  "AI Ranking": "63"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Citan",
@@ -10003,8 +10003,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/8e8df2c7-c18f-49ae-824c-189a857ecf7e_8a79fac4-bc0e-42f6-bd8d-6e4a61a987de.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Bijna nieuw maar prijs van 19500 euro laat beperkte handelsmarge.",
-  "AI Ranking": "65"
+  "AI Reden": "Zeer jonge Citan 45kWh met 9k km maar prijs aan de hoge kant.",
+  "AI Ranking": "67"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10026,8 +10026,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/ea20f670-74b2-4802-bfde-c70ed308bc0e_952f53fd-a984-494c-9a9a-f7628d937583.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Mooie eSprinter hoogdak maar aan de bovenkant van het prijssegment.",
-  "AI Ranking": "59"
+  "AI Reden": "eSprinter Hochdach aan de dure kant met ruim achttienduizend euro.",
+  "AI Ranking": "64"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10049,8 +10049,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/24d5802d-1a12-4148-a5cb-b85aff044d52_b246f08e-46cf-4bbe-af91-3da452ea2281.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Achttienduizend euro voor een 2021 eVito 111 is te prijzig.",
-  "AI Ranking": "55"
+  "AI Reden": "eVito 111 te duur met bijna achttienduizend euro.",
+  "AI Ranking": "62"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -10072,8 +10072,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/85267151-a085-4b59-b311-6ff409db8016_6dd836c5-4c9e-45c9-ba69-254ec5ae7138.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Vraagprijs van ruim achttienduizend euro is te gortig voor een 111.",
-  "AI Ranking": "52"
+  "AI Reden": "Boven achttienduizend euro voor eVito 111 met 41k km.",
+  "AI Ranking": "56"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -10095,8 +10095,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/b7fc42d1-a555-413a-b043-3ae9c1b7211b_7a4b5e96-b32f-45d2-bebf-5ab5bb204f20.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Nette 2021 eSprinter maar net wat te duur vergeleken met concurrenten.",
-  "AI Ranking": "65"
+  "AI Reden": "eSprinter 2021 met nette stand maar doorsnee prijs.",
+  "AI Ranking": "68"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10118,8 +10118,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/f9c921a8-4513-4f1c-97dd-86fdb4f9144a_097c1064-2de5-4253-a0a0-d1d0bd732acd.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "2022 eVito met 39 duizend km maar inkoopprijs aan de hoge kant.",
-  "AI Ranking": "59"
+  "AI Reden": "eVito 2022 voor ruim zeventien mille biedt te weinig marge.",
+  "AI Ranking": "63"
 },{
   "Platform": "Autoscout24",
   "Merk": "Volkswagen ",
@@ -10141,8 +10141,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/243cba7e-76d2-4208-90fb-19c5ece03e52_c7761f64-6e7e-4cad-927b-9aadcfd3012a.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter modelreeks past historisch niet binnen onze inkoopselectie.",
-  "AI Ranking": "28"
+  "AI Reden": "Crafter 180cv diesel sluit historisch minder aan bij bedrijfsprofiel.",
+  "AI Ranking": "58"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10164,8 +10164,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/2419345c-b3f2-480a-a334-e8d964ea48c9_8245a2f3-1e05-4d63-982e-9aa0c89fa999.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "66 kWh accupakket uit 2022 met lage stand maar prijs is aan de maat.",
-  "AI Ranking": "67"
+  "AI Reden": "eVito 2022 met 31k km maar inkoopprijs van 18k laat weinig ruimte.",
+  "AI Ranking": "68"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10187,8 +10187,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/8a08bd83-24dd-4270-bffc-4eaa8ccd2d9c_db5fc19b-84ed-4b4e-a0a4-a0ed0a894d34.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Identiek aan zusterauto met te krappe handelsmarge.",
-  "AI Ranking": "59"
+  "AI Reden": "Dubbele aanbieding eVito 111 met te hoge vraagprijs.",
+  "AI Ranking": "63"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10210,8 +10210,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/40048468-04c4-42a9-8ba1-b03f976691f5_fa1f7b44-f38a-45dc-91af-ced2ea4088c3.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Bijna 18 duizend euro voor een 2021 eVito met 47 duizend kilometer.",
-  "AI Ranking": "56"
+  "AI Reden": "eVito 111 met 46k km voor bijna achttienduizend euro.",
+  "AI Ranking": "62"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10233,8 +10233,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/ea99d23f-4f79-494c-82f5-a3d8303ca1bc_9cd6e368-f0c3-408a-abd9-207903fcdb7a.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Redelijke eSprinter uit 2022 maar marge blijft gemiddeld.",
-  "AI Ranking": "63"
+  "AI Reden": "Marktconforme Spaanse eSprinter met 41kWh batterij.",
+  "AI Ranking": "65"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10256,8 +10256,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/4111d391-7d97-4023-94bc-86aa5cf777c7_324e2c19-6ef9-44b7-ac4d-abfc8a330e0b.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Gelijke specificaties aan zusterauto met acceptabele marge.",
-  "AI Ranking": "63"
+  "AI Reden": "Zelfde voertuig meervoudig aangeboden zonder margevoordeel.",
+  "AI Ranking": "65"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10279,8 +10279,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/cf503d8b-04fb-4f44-8fa6-747d9b5228ab_d6e3174e-978d-4400-a9f8-61e0831d20e5.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "2020 eVito met te hoge inkoopprijs van bijna 18 duizend euro.",
-  "AI Ranking": "55"
+  "AI Reden": "eVito 2020 voor ruim zeventienduizend euro laat geen handelsruimte.",
+  "AI Ranking": "63"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10302,8 +10302,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/be0c8e77-d05c-4499-8e14-01b44ae0248e_4e1773be-457d-47f4-922b-1b780e9d5c69.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Nette kilometerstand maar prijs laat te weinig handelsmarge.",
-  "AI Ranking": "60"
+  "AI Reden": "eVito met achterklep en ruit aan de prijs.",
+  "AI Ranking": "65"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10325,8 +10325,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/8e2d4996-7f68-4046-8c3c-61b7ef214599_88f37e9f-918c-4db2-bc6d-c43654b1ac42.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "66 kWh accupakket met lage tellerstand maar inkoopprijs is stevig.",
-  "AI Ranking": "66"
+  "AI Reden": "eVito 2021 met lage km maar marktconforme inkoopprijs.",
+  "AI Ranking": "68"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10348,8 +10348,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/bad703aa-5a74-4cba-871c-743551239607_3f524bcb-6d32-4063-b094-a421feb53379.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Complete uitrusting maar prijs van 16600 euro drukt het rendement.",
-  "AI Ranking": "60"
+  "AI Reden": "eVito 111 Lang met opties maar marge is net te krap.",
+  "AI Ranking": "66"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10371,8 +10371,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/2b77290f-7f49-4e7c-9465-555bd14cf93c_7523bf20-84cc-4368-830d-79dbb320a6f4.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Stevige vraagprijs voor 2022 eVito met ruim veertigduizend kilometer.",
-  "AI Ranking": "57"
+  "AI Reden": "eVito 111 Lang 2022 voor ruim 17.500 euro.",
+  "AI Ranking": "62"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -10393,9 +10393,9 @@
   "Datum status wijziging": "2026-11-05",
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/0ef8edd9-7ea8-4279-b3da-a03cf04f65b1_a9de1858-339d-4bda-9170-88d2d803173f.jpg/1920x1080.jpg",
-  "AI Pick": "Nee",
-  "AI Reden": "Recente 2023 eVito met 60 kWh batterij maar net te hoge inkoopprijs.",
-  "AI Ranking": "71"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick: Jong exemplaar 2023 met gewilde 60kWh accu en scherpe afgeprijsde conditie.",
+  "AI Ranking": "88"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10440,8 +10440,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/f4b2e1b2-6389-4ff5-9fec-5fa799302a03_1d4703cf-94fe-47ed-a3e7-83c6b9758a35.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Uitzonderlijk lage tellerstand en afgeprijsd maar kleinere accucapaciteit.",
-  "AI Ranking": "72"
+  "AI Reden": "Zeer lage stand van 3283 km maar kleine 180km WLTP actieradius.",
+  "AI Ranking": "73"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10463,8 +10463,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/9774d204-125a-416f-833c-adfe754c8737_f7a5952b-e216-45e4-bc3f-e1ffe6fd5129.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Extralang model is historisch afgekeurd en vraagprijs is te hoog.",
-  "AI Ranking": "28"
+  "AI Reden": "Extralang model werd historisch afgekeurd door inkoop en prijs is stevig.",
+  "AI Ranking": "58"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -10486,7 +10486,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/6624e8e9-7456-498c-9049-ddf4d3cd3139_083cc16e-1166-4d93-876c-9f64bdc56ecb.jpg/1920x1080.jpg",
   "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick: eSprinter 2022 onder tienduizend euro met courante kilometerstand.",
+  "AI Reden": "AI pick in het verleden al geselecteerd",
   "AI Ranking": "88"
 },{
   "Platform": "Autoscout24",
@@ -10509,8 +10509,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/9a50d988-5e8f-46da-b3f9-e28eda1f6cf4_c047f334-607c-466f-b02f-b43595855a6c.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "2019 registratie met 15 duizend euro vraagprijs biedt weinig ruimte.",
-  "AI Ranking": "49"
+  "AI Reden": "Bouwjaar 2019 en marge is onvoldoende.",
+  "AI Ranking": "62"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10532,8 +10532,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/9f83ee9e-e274-4aff-a841-271dd89b2298_c377c73a-2434-43bf-9f96-ae63d07099d0.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "66 kWh accu voor twaalfduizend euro maar 2019 registratie.",
-  "AI Ranking": "67"
+  "AI Reden": "eVito 2019 met 38k km voor twaalfduizend euro maar oudere accutechniek.",
+  "AI Ranking": "71"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10555,8 +10555,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/7cab735f-16f1-484d-a374-3d12f4f3bed2_4a89a59d-7124-45e5-8587-38773dbed9c1.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Identiek aan zustervoertuig met te lage marge voor handelsinkoop.",
-  "AI Ranking": "49"
+  "AI Reden": "Oud model met matige batterijprestaties.",
+  "AI Ranking": "62"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -10601,8 +10601,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/5be0448d-ba6f-4ead-a26f-1dc540615f1a_df44f65d-b3de-4d2a-aedb-0c3e3e0dc951.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Inclusief batterij en afgeprijsd maar bouwjaar 2020 drukt de score.",
-  "AI Ranking": "65"
+  "AI Reden": "eSprinter 2020 met standaard uitrusting en normale marktprijs.",
+  "AI Ranking": "66"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10624,8 +10624,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/d43b19fa-f87c-4008-8549-0a1e747d8426_c97c5a07-67de-4b21-a687-d62b7ddf57d0.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "2022 eSprinter L2H2 met nette tellerstand voor vijftienduizend euro.",
-  "AI Ranking": "70"
+  "AI Reden": "eSprinter L2H2 uit 2022 met 32k km voor vijftienduizend euro is netjes maar net geen top 5.",
+  "AI Ranking": "73"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -10693,8 +10693,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/2ebcdc5d-56fc-40d3-833b-e1bcd7b78d36_efd3c584-30a6-451b-99b4-d04837750eda.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "66 kWh accupakket met nette kilometerstand voor tienduizend euro, net buiten top vijf.",
-  "AI Ranking": "74"
+  "AI Reden": "Scherpe prijs maar betreft standaard 41kWh batterij ondanks advertentietitel.",
+  "AI Ranking": "69"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -10716,8 +10716,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/170d10e5-f547-4c84-abe5-9282f6c037e6_297cb2c2-effc-478c-bbcd-65efb2b9802b.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Lage kilometerstand en interessante prijs maar klein accupakket.",
-  "AI Ranking": "71"
+  "AI Reden": "Lage km-stand en scherpe prijs maar vroege 41kWh batterijgeneratie.",
+  "AI Ranking": "72"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10762,7 +10762,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/c5af1b48-9224-44b5-9c67-38eecba14dc8_0fdcd740-9e50-4d05-afdc-22310fa8684d.jpg/1920x1080.jpg",
   "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick: 2022 eSprinter met 31 duizend km voor minder dan tienduizend euro.",
+  "AI Reden": "AI pick in het verleden al geselecteerd",
   "AI Ranking": "90"
 },{
   "Platform": "Autoscout24",
@@ -10785,7 +10785,7 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/c33cb06c-a4d8-4e7e-ae65-7d574179fa6b_b06735c6-4783-4431-b0a3-3b29728f22d7.jpg/1920x1080.jpg",
   "AI Pick": "Ja",
-  "AI Reden": "AI Top Pick: eVito Lang met 31 duizend km voor slechts 6721 euro, uitzonderlijke marge.",
+  "AI Reden": "AI pick in het verleden al geselecteerd",
   "AI Ranking": "87"
 },{
   "Platform": "Autoscout24",
@@ -10808,8 +10808,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/5289900e-cf27-4467-b542-1e4277cb33d9_de39c351-9760-4ec1-a87a-a42eef431fe4.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Extreem lage stand en prima SoH maar bouwjaar 2019 drukt courantheid.",
-  "AI Ranking": "71"
+  "AI Reden": "Slechts 9647 km en scherp geprijsd maar bouwjaar 2019 met 41kWh accu.",
+  "AI Ranking": "73"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10831,8 +10831,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/fa6c18b4-efd7-45d2-813e-ae51d61da7d0_9296dae0-5457-47a7-b128-26ed57cd8f9d.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Duurdere duplicatie van identiek voertuig in de lijst.",
-  "AI Ranking": "62"
+  "AI Reden": "Prijs ligt hoger dan vergelijkbare zusterlisting.",
+  "AI Ranking": "63"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10854,8 +10854,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/bd05f056-3aa2-40c0-9315-cb0a1a6342aa_0150aceb-9a4d-4cef-a12b-cd2fe7b8df9a.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Stevige prijs voor een 2021 eSprinter waardoor marge ontbreekt.",
-  "AI Ranking": "56"
+  "AI Reden": "eSprinter met hogere prijsstelling voor 2021.",
+  "AI Ranking": "62"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10877,8 +10877,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/d0676a3c-c6b1-4984-aee3-26683a0a7ec0_7a3ab255-ded1-472f-b4f7-732dc198838b.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "eVito 111 met te hoge prijsstelling in de huidige markt.",
-  "AI Ranking": "52"
+  "AI Reden": "Te duur voor een 111 uitvoering.",
+  "AI Ranking": "56"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10900,8 +10900,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/7bd3983a-1033-4fac-ae99-6c343c8a3be8_b54f4cc1-7f66-4504-bc0b-986bd6618a53.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "2019 eVito met gemiddelde marge en te hoge inkoopprijs.",
-  "AI Ranking": "49"
+  "AI Reden": "Beperkte marge op deze 2019 Vito.",
+  "AI Ranking": "62"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10923,8 +10923,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/7f1aa530-1a6f-49a0-ac90-55980db453c2_e62e9947-e4c9-4365-9521-99a8640b9015.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Prima auto maar elders aanzienlijk scherper aangeboden.",
-  "AI Ranking": "63"
+  "AI Reden": "eVito 111 netjes uitgevoerd maar marges zijn marktconform.",
+  "AI Ranking": "66"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -10969,8 +10969,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/73fb6243-109e-47fc-b5cd-f03f8689d733_f3ae505f-9060-4f44-a283-f3b3b329e541.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "eDeliver 9 met 72 kWh pakket is historisch niet het gewenste model.",
-  "AI Ranking": "28"
+  "AI Reden": "Maxus Deliver 9 kreeg eerder negatieve feedback van inkoop.",
+  "AI Ranking": "58"
 },{
   "Platform": "Autoscout24",
   "Merk": "Ford ",
@@ -10992,8 +10992,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/c83f2a34-c281-44d4-a019-98004b15180c_63445ff9-53e1-4248-b1d1-7a4d72326327.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Ford Transit met ton op de teller laat te weinig handelsruimte.",
-  "AI Ranking": "55"
+  "AI Reden": "Goede 68kWh Trend uitvoering maar km-stand boven een ton.",
+  "AI Ranking": "65"
 },{
   "Platform": "Autoscout24",
   "Merk": "Maxus eDeliver 9",
@@ -11015,8 +11015,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/e4559a02-4805-4267-8eff-a50eb4476341_83622f54-4f76-40b4-b8b3-72f009115589.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Maxus eDeliver 9 heeft historisch negatieve score ontvangen.",
-  "AI Ranking": "26"
+  "AI Reden": "Te duur voor Maxus met 81k km.",
+  "AI Ranking": "54"
 },{
   "Platform": "Legal Brokers (veilingen)",
   "Merk": "Volkswagen",
@@ -11659,8 +11659,8 @@
   "Feedback": "",
   "Image URL": "https://ireland.apollo.olxcdn.com/v1/files/8vcyvmdsdwj52-OTOMOTOPL/image;s=320x240",
   "AI Pick": "Nee",
-  "AI Reden": "Fabrieksnieuwe E-Transit met lage prijsindicatie maar risico op Poolse bijkomende kosten.",
-  "AI Ranking": "46"
+  "AI Reden": "Onrealistische prijsindicatie wijst op leaseconstructie of foutieve data.",
+  "AI Ranking": "30"
 },{
   "Platform": "Otomoto",
   "Merk": "Ford",
@@ -11843,8 +11843,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/da/da860f87-ae9f-47aa-be22-c0d0283e282e?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Bouwjaar 2009 Crafter is te oud en sluit historisch niet aan.",
-  "AI Ranking": "18"
+  "AI Reden": "Crafter uit 2009 met forse vraagprijs voor die leeftijd.",
+  "AI Ranking": "40"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -11866,7 +11866,7 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/33/331d3340-e280-4727-8e38-89c29cecdb51?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Crafter open laadbak met lage kilometerstand maar hoge vraagprijs voor een 2019 model.",
+  "AI Reden": "Open laadbak Crafter 2019 sluit minder goed aan bij aanbod.",
   "AI Ranking": "42"
 },{
   "Platform": "Mobile",
@@ -11889,8 +11889,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/12/12ff4319-671d-40a3-b382-c3b72a287d63?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "eSprinter met snelladen en lage kilometerstand onder 15.000 euro.",
-  "AI Ranking": "68"
+  "AI Reden": "eSprinter met snelladen en lage km maar prijs is marktconform.",
+  "AI Ranking": "72"
 },{
   "Platform": "Mobile",
   "Merk": "Toyota",
@@ -11935,8 +11935,8 @@
   "Feedback": "",
   "Image URL": "",
   "AI Pick": "Nee",
-  "AI Reden": "eVito 35 kWh met 8.000 km maar vraagprijs van ruim 19.000 euro is te hoog.",
-  "AI Ranking": "52"
+  "AI Reden": "Lage km-stand maar 35kWh accu voor ruim 19k euro is te duur.",
+  "AI Ranking": "60"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -11958,8 +11958,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/eb180ea0-b84a-48a9-a721-500f8ae760ba_8bd1abbf-5434-432f-a426-e3d995e1ec51.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Dezelfde eSprinter maar met een aanzienlijk hogere vraagprijs van 17.731 euro.",
-  "AI Ranking": "58"
+  "AI Reden": "Hogere vraagprijs dan zusterlisting.",
+  "AI Ranking": "64"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -11981,8 +11981,8 @@
   "Feedback": "",
   "Image URL": "https://prod.pictures.autoscout24.net/listing-images/77862fdd-139f-4ace-9314-3fcd40a6977b_d67b8b75-66c4-4619-9c05-afa7eb26c870.jpg/1920x1080.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "eVito met lage kilometerstand maar vraagprijs van 18.000 euro is te hoog voor 35 kWh.",
-  "AI Ranking": "56"
+  "AI Reden": "Lage stand maar te hoge vraagprijs voor eVito 111.",
+  "AI Ranking": "62"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -12050,8 +12050,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/6a/6a94dc96-49ca-4538-825c-61524ce2f4ad?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Transit Custom diesel hybride met hoge kilometerstand boven 160.000 km.",
-  "AI Ranking": "38"
+  "AI Reden": "Hoge kilometerstand van 165k km overschrijdt de gewenste grens.",
+  "AI Ranking": "46"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -12072,9 +12072,9 @@
   "Datum status wijziging": "2026-11-02",
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/7e/7e310f56-1d40-46d6-8da4-2e64d6d4c6c2?rule=mo-1600.jpg",
-  "AI Pick": "Nee",
-  "AI Reden": "Zeer scherpe prijs voor Duitse eSprinter met camera mits geen schadeverleden.",
-  "AI Ranking": "72"
+  "AI Pick": "Ja",
+  "AI Reden": "AI Top Pick: Extreem scherpe prijs voor courante eSprinter L2 die positief aansluit op historische feedback.",
+  "AI Ranking": "94"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -12096,8 +12096,8 @@
   "Feedback": "",
   "Image URL": "https://img.classistatic.de/api/v1/mo-prod/images/db/db557a88-e44b-4e88-8a1b-42200801809d?rule=mo-1600.jpg",
   "AI Pick": "Nee",
-  "AI Reden": "Goede eSprinter L2 met camera en airco voor een nette handelsprijs.",
-  "AI Ranking": "68"
+  "AI Reden": "eSprinter L2 met camera voor redelijke prijs maar marge net niet onderscheidend.",
+  "AI Ranking": "70"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
