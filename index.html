@@ -390,7 +390,7 @@
         }
 
         /* ---------------------------------------------------- */
-        /* NIEUWE STYLING VOOR DE RONDE VLAGGEN-GLOBE KNOP & DROPDOWN */
+        /* RONDE VLAGGEN-GLOBE KNOP & SCROLLBARE DROPDOWN */
         /* ---------------------------------------------------- */
         .flag-filter-container {
             position: relative;
@@ -419,7 +419,7 @@
         .flag-globe-btn svg {
             width: 18px;
             height: 18px;
-            fill: #333333; /* Zwart/grijs monotoon */
+            fill: #333333;
         }
 
         .flag-dropdown {
@@ -431,7 +431,9 @@
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-width: 90px;
+            min-width: 130px;
+            max-height: 340px; /* Ongeveer 10 items zichtbaar, daarna scrollbaar */
+            overflow-y: auto;
             z-index: 100;
         }
 
@@ -444,8 +446,11 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            gap: 10px;
             border-bottom: 1px solid #f1f5f9;
+            font-size: 12px;
+            font-weight: bold;
         }
 
         .flag-dropdown-option:last-child {
@@ -458,14 +463,29 @@
 
         .flag-dropdown-option.selected {
             background: #eff6ff;
+            color: var(--ai-blue);
         }
 
         .flag-dropdown-option img {
-            width: 24px;
-            height: 18px;
+            width: 22px;
+            height: 15px;
             object-fit: cover;
             border: 1px solid #ddd;
             border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .flag-count {
+            background: #e2e8f0;
+            color: #475569;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 900;
+        }
+        .flag-dropdown-option.selected .flag-count {
+            background: #dbeafe;
+            color: var(--ai-blue);
         }
         /* ---------------------------------------------------- */
 
@@ -1108,7 +1128,7 @@
                         </div>
                     </div>
 
-                    <!-- Vlaggen / Globe Filter (Vereenvoudigd o.b.v. getoonde vlaggen) -->
+                    <!-- Vlaggen / Globe Filter (Scrollbaar, gesorteerd op frequentie, alleen actieve vlaggen met tellers) -->
                     <div class="flag-filter-container">
                         <div class="flag-globe-btn" onclick="toggleFlagMenu()" title="Filter op vlag">
                             <svg viewBox="0 0 24 24">
@@ -1160,7 +1180,7 @@
         let aiPicksActive = true; 
         let showCompetitors = false; 
         let currentSort = 'default';
-        let selectedFlagFilter = ''; // Geselecteerde vlag (bijv. 'nl.png', 'no.png')
+        let selectedFlagFilter = '';
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
         let hiddenCardsData = JSON.parse(localStorage.getItem('bossHiddenCards') || '{}');
@@ -1198,7 +1218,6 @@
         function selectFlagFilter(flagFile) {
             selectedFlagFilter = flagFile;
             document.getElementById('flagDropdown').classList.remove('open');
-            populateFlagDropdown();
             renderGrid();
         }
 
@@ -1498,6 +1517,7 @@
                 }
             }
 
+            selectedFlagFilter = ''; // Reset vlag-filter bij tabwissel
             populateFilters();
             renderGrid();
         }
@@ -1710,26 +1730,100 @@
             return `📍 <span>${cleanLocStr}</span>`;
         }
 
+        // Hulpfunctie om te controleren of een rij voldoet aan alle actieve filters BEHALVE de vlaggenfilter zelf
+        function matchesOtherFilters(row) {
+            const filterPlatform = document.getElementById('filter-platform').value;
+            const filterCategorie = document.getElementById('filter-categorie').value;
+            const filterMerk = document.getElementById('filter-merk').value;
+            const filterModel = document.getElementById('filter-model').value;
+            const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
+            const filterStatus = document.getElementById('filter-status').value;
+            const filterFb = document.getElementById('filter-feedback').value;
+            const searchQuery = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase().trim() : '';
+
+            let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
+            if (filterFb !== 'all' && filterFb !== 'positive') {
+                if (hiddenCardsData[uniqueId]) return false;
+            }
+
+            const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
+            const isAuction = endDateVal !== '';
+
+            if (currentTab === 'listings' && isAuction) return false;
+            if (currentTab === 'auctions' && !isAuction) return false;
+
+            const p = (row.Platform || '');
+            if (filterPlatform && p !== filterPlatform) return false;
+
+            const cat = (row.Categorie || '');
+            if (filterCategorie && cat !== filterCategorie) return false;
+            
+            const m = (row.Merk || row.brand || '');
+            if (filterMerk && m !== filterMerk) return false;
+
+            const mdl = (row.Model || '');
+            if (filterModel && mdl !== filterModel) return false;
+
+            if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
+            if (filterStatus && row.Status !== filterStatus) return false;
+
+            if (!showCompetitors) {
+                const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
+                const feedbackText = String(getRowValue(row, ['Feedback', 'Feedback Inkoop']) || '').toLowerCase();
+                const platformText = String(row['Platform'] || '').toLowerCase();
+                const locLower = String(row.Locatie || '').toLowerCase();
+                const linkLower = String(row.Link || '').toLowerCase();
+
+                if (aiReasonText.includes('concurrent') || platformText.includes('concurrent') || feedbackText.includes('concurrent')) return false;
+
+                if (locLower.includes('vuren')) return false;
+                if (locLower.includes('gelderland') && linkLower.includes('europe-commercial-vehicle.com')) return false;
+            }
+
+            if (searchQuery) {
+                const searchableText = `${row.Titel || ''} ${row.Merk || ''} ${row.brand || ''} ${row.Model || ''} ${row.Locatie || ''} ${row.Platform || ''}`.toLowerCase();
+                if (!searchableText.includes(searchQuery)) return false;
+            }
+
+            let userFb = feedbackData[uniqueId] || 'none';
+            if (filterFb === 'relevant' && userFb === 'negative') return false; 
+            if (filterFb === 'positive' && userFb !== 'positive') return false;
+            if (filterFb === 'negative' && userFb !== 'negative') return false;
+
+            return true;
+        }
+
         function populateFlagDropdown() {
             const dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
-            let foundFlags = new Set();
+            let flagCounts = {};
 
+            // Tel alleen vlaggen van items die door de overige filters heen komen
             dataSource.forEach(row => {
-                if (row['Locatie']) {
-                    let f = extractFlagFile(row['Locatie']);
-                    if (f) foundFlags.add(f);
+                if (matchesOtherFilters(row)) {
+                    if (row['Locatie']) {
+                        let f = extractFlagFile(row['Locatie']);
+                        if (f) {
+                            flagCounts[f] = (flagCounts[f] || 0) + 1;
+                        }
+                    }
                 }
             });
 
-            let sortedFlags = [...foundFlags].sort();
+            // Sorteer op aantal resultaten (aflopend van hoog naar laag)
+            let sortedFlags = Object.keys(flagCounts).sort((a, b) => flagCounts[b] - flagCounts[a]);
+
             const dropdown = document.getElementById('flagDropdown');
+            let totalMatchingCount = dataSource.filter(row => matchesOtherFilters(row)).length;
             
-            let html = `<div class="flag-dropdown-option ${selectedFlagFilter === '' ? 'selected' : ''}" onclick="selectFlagFilter('')" title="Alle vlaggen">🌍</div>`;
+            let html = `<div class="flag-dropdown-option ${selectedFlagFilter === '' ? 'selected' : ''}" onclick="selectFlagFilter('')"><span>🌍</span><span class="flag-count">${totalMatchingCount}</span></div>`;
+            
             sortedFlags.forEach(flag => {
                 let isSel = (selectedFlagFilter === flag) ? 'selected' : '';
+                let count = flagCounts[flag];
                 html += `
                     <div class="flag-dropdown-option ${isSel}" onclick="selectFlagFilter('${flag}')">
                         <img src="https://flagcdn.com/24x18/${flag}" alt="${flag}">
+                        <span class="flag-count">${count}</span>
                     </div>
                 `;
             });
@@ -1825,74 +1919,16 @@
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
 
-            const filterPlatform = document.getElementById('filter-platform').value;
-            const filterCategorie = document.getElementById('filter-categorie').value;
-            const filterMerk = document.getElementById('filter-merk').value;
-            const filterModel = document.getElementById('filter-model').value;
-            const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
-            const filterStatus = document.getElementById('filter-status').value;
-            const filterFb = document.getElementById('filter-feedback').value;
-            const searchQuery = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase().trim() : '';
-
             let dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
 
             let filteredData = dataSource.filter(row => {
-                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
-                
-                if (filterFb !== 'all' && filterFb !== 'positive') {
-                    if (hiddenCardsData[uniqueId]) return false;
-                }
+                if (!matchesOtherFilters(row)) return false;
 
-                const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
-                const isAuction = endDateVal !== '';
-
-                if (currentTab === 'listings' && isAuction) return false;
-                if (currentTab === 'auctions' && !isAuction) return false;
-
-                const p = (row.Platform || '');
-                if (filterPlatform && p !== filterPlatform) return false;
-
-                const cat = (row.Categorie || '');
-                if (filterCategorie && cat !== filterCategorie) return false;
-                
-                const m = (row.Merk || row.brand || '');
-                if (filterMerk && m !== filterMerk) return false;
-
-                const mdl = (row.Model || '');
-                if (filterModel && mdl !== filterModel) return false;
-
-                if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
-                if (filterStatus && row.Status !== filterStatus) return false;
-
-                // Vlagfilter logica gebaseerd op de opgebouwde vlag v.h. object
+                // Vlagfilter toepassen
                 if (selectedFlagFilter) {
                     let cardFlag = extractFlagFile(row['Locatie']);
                     if (cardFlag !== selectedFlagFilter) return false;
                 }
-
-                if (!showCompetitors) {
-                    const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
-                    const feedbackText = String(getRowValue(row, ['Feedback', 'Feedback Inkoop']) || '').toLowerCase();
-                    const platformText = String(row['Platform'] || '').toLowerCase();
-                    const locLower = String(row.Locatie || '').toLowerCase();
-                    const linkLower = String(row.Link || '').toLowerCase();
-
-                    if (aiReasonText.includes('concurrent') || platformText.includes('concurrent') || feedbackText.includes('concurrent')) return false;
-
-                    if (locLower.includes('vuren')) return false;
-                    if (locLower.includes('gelderland') && linkLower.includes('europe-commercial-vehicle.com')) return false;
-                }
-
-                if (searchQuery) {
-                    const searchableText = `${row.Titel || ''} ${row.Merk || ''} ${row.brand || ''} ${row.Model || ''} ${row.Locatie || ''} ${row.Platform || ''}`.toLowerCase();
-                    if (!searchableText.includes(searchQuery)) return false;
-                }
-
-                let userFb = feedbackData[uniqueId] || 'none';
-
-                if (filterFb === 'relevant' && userFb === 'negative') return false; 
-                if (filterFb === 'positive' && userFb !== 'positive') return false;
-                if (filterFb === 'negative' && userFb !== 'negative') return false;
 
                 return true;
             });
@@ -2246,19 +2282,11 @@
         }
 
         function updateTabCounts() {
-            const filterPlatform = document.getElementById('filter-platform').value;
-            const filterCategorie = document.getElementById('filter-categorie').value;
-            const filterMerk = document.getElementById('filter-merk').value;
-            const filterModel = document.getElementById('filter-model').value;
-            const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
-            const filterStatus = document.getElementById('filter-status').value;
-            const filterFb = document.getElementById('filter-feedback').value;
-            const searchQuery = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase().trim() : '';
-        
             const countHelper = (dataSource, isAuctionTab, isStockTab) => {
                 return dataSource.filter(row => {
                     let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
-                    
+                    const filterFb = document.getElementById('filter-feedback').value;
+
                     if (filterFb !== 'all' && filterFb !== 'positive') {
                         if (hiddenCardsData[uniqueId]) return false;
                     }
@@ -2273,49 +2301,12 @@
                         if (!isAuctionTab && isAuction) return false;
                     }
         
-                    const p = (row.Platform || '');
-                    if (filterPlatform && p !== filterPlatform) return false;
-
-                    const cat = (row.Categorie || '');
-                    if (filterCategorie && cat !== filterCategorie) return false;
-                    
-                    const m = (row.Merk || row.brand || '');
-                    if (filterMerk && m !== filterMerk) return false;
-
-                    const mdl = (row.Model || '');
-                    if (filterModel && mdl !== filterModel) return false;
-        
-                    if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
-                    if (filterStatus && row.Status !== filterStatus) return false;
+                    if (!matchesOtherFilters(row)) return false;
 
                     if (selectedFlagFilter) {
                         let cardFlag = extractFlagFile(row['Locatie']);
                         if (cardFlag !== selectedFlagFilter) return false;
                     }
-
-                    if (!showCompetitors) {
-                        const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
-                        const feedbackText = String(getRowValue(row, ['Feedback', 'Feedback Inkoop']) || '').toLowerCase();
-                        const platformText = String(row['Platform'] || '').toLowerCase();
-                        const locLower = String(row.Locatie || '').toLowerCase();
-                        const linkLower = String(row.Link || '').toLowerCase();
-
-                        if (aiReasonText.includes('concurrent') || platformText.includes('concurrent') || feedbackText.includes('concurrent')) return false;
-
-                        if (locLower.includes('vuren')) return false;
-                        if (locLower.includes('gelderland') && linkLower.includes('europe-commercial-vehicle.com')) return false;
-                    }
-
-                    if (searchQuery) {
-                        const searchableText = `${row.Titel || ''} ${row.Merk || ''} ${row.brand || ''} ${row.Model || ''} ${row.Locatie || ''} ${row.Platform || ''}`.toLowerCase();
-                        if (!searchableText.includes(searchQuery)) return false;
-                    }
-        
-                    let userFb = feedbackData[uniqueId] || 'none';
-        
-                    if (filterFb === 'relevant' && userFb === 'negative') return false; 
-                    if (filterFb === 'positive' && userFb !== 'positive') return false;
-                    if (filterFb === 'negative' && userFb !== 'negative') return false;
         
                     return true;
                 }).length;
