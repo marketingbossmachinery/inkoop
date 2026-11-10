@@ -389,6 +389,86 @@
             display: none;
         }
 
+        /* ---------------------------------------------------- */
+        /* NIEUWE STYLING VOOR DE RONDE VLAGGEN-GLOBE KNOP & DROPDOWN */
+        /* ---------------------------------------------------- */
+        .flag-filter-container {
+            position: relative;
+        }
+
+        .flag-globe-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: border-color 0.2s, background 0.2s;
+            box-sizing: border-box;
+        }
+
+        .flag-globe-btn:hover {
+            border-color: var(--boss-black);
+            background: #f8f9fa;
+        }
+
+        .flag-globe-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: #333333; /* Zwart/grijs monotoon */
+        }
+
+        .flag-dropdown {
+            display: none;
+            position: absolute;
+            top: 42px;
+            right: 0;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-width: 90px;
+            z-index: 100;
+        }
+
+        .flag-dropdown.open {
+            display: block;
+        }
+
+        .flag-dropdown-option {
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .flag-dropdown-option:last-child {
+            border-bottom: none;
+        }
+
+        .flag-dropdown-option:hover {
+            background: #f8f9fa;
+        }
+
+        .flag-dropdown-option.selected {
+            background: #eff6ff;
+        }
+
+        .flag-dropdown-option img {
+            width: 24px;
+            height: 18px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+        }
+        /* ---------------------------------------------------- */
+
         .ai-toggle-container {
             display: flex;
             align-items: center;
@@ -577,7 +657,6 @@
         }
         .feedback-btn.active-neg svg { fill: #ffffff !important; }
 
-        /* Kruisje knop links onder over de foto (of herstel knop) */
         .hide-card-btn {
             position: absolute;
             bottom: 6px;
@@ -603,7 +682,6 @@
             transform: scale(1.12);
         }
 
-        /* Rode knop met wit kruis voor verborgen items om ze weer te activeren */
         .restore-card-btn {
             position: absolute;
             bottom: 6px;
@@ -1030,6 +1108,18 @@
                         </div>
                     </div>
 
+                    <!-- Vlaggen / Globe Filter (Vereenvoudigd o.b.v. getoonde vlaggen) -->
+                    <div class="flag-filter-container">
+                        <div class="flag-globe-btn" onclick="toggleFlagMenu()" title="Filter op vlag">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                        </div>
+                        <div class="flag-dropdown" id="flagDropdown">
+                            <!-- Dynamisch gevuld -->
+                        </div>
+                    </div>
+
                     <!-- Visuele AI Toggle Schakelaar -->
                     <div id="aiToggleBtn" class="ai-toggle-container active" onclick="toggleAiPicks()">
                         <span class="ai-toggle-label">🤖 AI Picks</span>
@@ -1070,6 +1160,7 @@
         let aiPicksActive = true; 
         let showCompetitors = false; 
         let currentSort = 'default';
+        let selectedFlagFilter = ''; // Geselecteerde vlag (bijv. 'nl.png', 'no.png')
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
         let hiddenCardsData = JSON.parse(localStorage.getItem('bossHiddenCards') || '{}');
@@ -1085,6 +1176,12 @@
 
         function toggleSortMenu() {
             document.getElementById('sortDropdown').classList.toggle('open');
+            document.getElementById('flagDropdown').classList.remove('open');
+        }
+
+        function toggleFlagMenu() {
+            document.getElementById('flagDropdown').classList.toggle('open');
+            document.getElementById('sortDropdown').classList.remove('open');
         }
 
         function setSort(sortType) {
@@ -1098,9 +1195,19 @@
             renderGrid();
         }
 
+        function selectFlagFilter(flagFile) {
+            selectedFlagFilter = flagFile;
+            document.getElementById('flagDropdown').classList.remove('open');
+            populateFlagDropdown();
+            renderGrid();
+        }
+
         window.addEventListener('click', function(e) {
             if (!document.querySelector('.sort-container').contains(e.target)) {
                 document.getElementById('sortDropdown').classList.remove('open');
+            }
+            if (!document.querySelector('.flag-filter-container').contains(e.target)) {
+                document.getElementById('flagDropdown').classList.remove('open');
             }
         });
 
@@ -1478,14 +1585,13 @@
             fillSelect('filter-status', statussen, 'Alle statussen');
         }
 
-        function getCountryFlagHtml(locStr) {
-            if (!locStr) return '📍 <span>Onbekend</span>';
-            
+        function extractFlagFile(locStr) {
+            if (!locStr) return null;
             let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
             let lLower = cleanLocStr.toLowerCase();
 
             if (lLower.includes('überherrn') || lLower.includes('saarland')) {
-                return `<img src="https://flagcdn.com/24x18/de.png" alt="de" title="DE"> <span>${cleanLocStr}</span>`;
+                return 'de.png';
             }
             if (
                 lLower.includes('mantova') || lLower.includes('bergamo') || lLower.includes('napoli') || 
@@ -1495,7 +1601,7 @@
                 lLower.includes('lazio') || lLower.includes('emilia') || lLower.includes('lombardia') || 
                 lLower.includes('campania') || lLower.includes('veneto') || lLower.includes('umbria')
             ) {
-                return `<img src="https://flagcdn.com/24x18/it.png" alt="it" title="IT"> <span>${cleanLocStr}</span>`;
+                return 'it.png';
             }
             
             const worldCountries = {
@@ -1587,10 +1693,47 @@
             }
             
             if (countryCode) {
-                return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}" title="${cleanLocStr}"> <span>${cleanLocStr}</span>`;
+                return countryCode + '.png';
             }
             
+            return null;
+        }
+
+        function getCountryFlagHtml(locStr) {
+            if (!locStr) return '📍 <span>Onbekend</span>';
+            let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
+            let flagFile = extractFlagFile(cleanLocStr);
+
+            if (flagFile) {
+                return `<img src="https://flagcdn.com/24x18/${flagFile}" alt="${flagFile.split('.')[0]}" title="${cleanLocStr}"> <span>${cleanLocStr}</span>`;
+            }
             return `📍 <span>${cleanLocStr}</span>`;
+        }
+
+        function populateFlagDropdown() {
+            const dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
+            let foundFlags = new Set();
+
+            dataSource.forEach(row => {
+                if (row['Locatie']) {
+                    let f = extractFlagFile(row['Locatie']);
+                    if (f) foundFlags.add(f);
+                }
+            });
+
+            let sortedFlags = [...foundFlags].sort();
+            const dropdown = document.getElementById('flagDropdown');
+            
+            let html = `<div class="flag-dropdown-option ${selectedFlagFilter === '' ? 'selected' : ''}" onclick="selectFlagFilter('')" title="Alle vlaggen">🌍</div>`;
+            sortedFlags.forEach(flag => {
+                let isSel = (selectedFlagFilter === flag) ? 'selected' : '';
+                html += `
+                    <div class="flag-dropdown-option ${isSel}" onclick="selectFlagFilter('${flag}')">
+                        <img src="https://flagcdn.com/24x18/${flag}" alt="${flag}">
+                    </div>
+                `;
+            });
+            dropdown.innerHTML = html;
         }
 
         function parseAuctionDate(str) {
@@ -1696,8 +1839,6 @@
             let filteredData = dataSource.filter(row => {
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
                 
-                // CRUCIALE FIX: Verberg verborgen objecten ALLEEN als de feedbackfilter op 'relevant' of 'negative' staat. 
-                // Bij 'all' (Alle resultaten) of 'positive' mogen verborgen items niet worden achtergehouden.
                 if (filterFb !== 'all' && filterFb !== 'positive') {
                     if (hiddenCardsData[uniqueId]) return false;
                 }
@@ -1722,6 +1863,12 @@
 
                 if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
+
+                // Vlagfilter logica gebaseerd op de opgebouwde vlag v.h. object
+                if (selectedFlagFilter) {
+                    let cardFlag = extractFlagFile(row['Locatie']);
+                    if (cardFlag !== selectedFlagFilter) return false;
+                }
 
                 if (!showCompetitors) {
                     const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
@@ -1827,6 +1974,7 @@
             });
             
             updateTabCounts();
+            populateFlagDropdown();
 
             if (filteredData.length === 0) {
                 grid.innerHTML = '<p>Geen machines gevonden binnen deze filters.</p>';
@@ -2037,19 +2185,16 @@
                     `;
                 }
 
-                // Bepaal of het item verborgen is (kolom Y op Nee via hiddenCardsData)
                 let isHidden = hiddenCardsData[uniqueId];
                 let hideButtonHtml = '';
                 
                 if (isHidden) {
-                    // Als het item verborgen is, tonen we de rode knop met wit kruis (of plus-icoon) om hem weer te activeren
                     hideButtonHtml = `
                         <button class="restore-card-btn" onclick="restoreCard(event, '${uniqueId}')" title="Zet object weer aan (kolom Y naar Ja)">
                             &#x2715;
                         </button>
                     `;
                 } else {
-                    // Anders tonen we de normale verbergknop
                     hideButtonHtml = `
                         <button class="hide-card-btn" onclick="hideCard(event, '${uniqueId}')" title="Verberg object (kolom Y naar Nee)">
                             &#x2715;
@@ -2142,6 +2287,11 @@
         
                     if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                     if (filterStatus && row.Status !== filterStatus) return false;
+
+                    if (selectedFlagFilter) {
+                        let cardFlag = extractFlagFile(row['Locatie']);
+                        if (cardFlag !== selectedFlagFilter) return false;
+                    }
 
                     if (!showCompetitors) {
                         const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
