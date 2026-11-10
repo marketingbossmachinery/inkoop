@@ -308,7 +308,7 @@
             position: relative;
         }
 
-        /* Landen Filter Dropdown Styling */
+        /* Landen Filter Dropdown Styling (Alleen wereldbol icoon) */
         .country-dropdown-container {
             position: relative;
         }
@@ -316,15 +316,12 @@
         .country-btn {
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
             background: #fff;
             border: 1px solid #cbd5e1;
-            padding: 6px 12px;
+            padding: 6px 10px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 13px;
-            font-weight: bold;
-            color: var(--text-dark);
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             transition: border-color 0.2s, background 0.2s;
             user-select: none;
@@ -337,10 +334,9 @@
             background: #f8f9fa;
         }
 
-        /* Zwart-wit wereldbol icoon */
         .globe-icon {
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             filter: grayscale(100%);
         }
 
@@ -353,7 +349,7 @@
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-width: 220px;
+            min-width: 60px;
             max-height: 300px;
             overflow-y: auto;
             z-index: 100;
@@ -365,14 +361,11 @@
 
         .country-option {
             padding: 8px 12px;
-            font-size: 13px;
-            font-weight: bold;
-            color: var(--text-dark);
             cursor: pointer;
             border-bottom: 1px solid #f1f5f9;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
         }
 
         .country-option:last-child {
@@ -381,17 +374,15 @@
 
         .country-option:hover {
             background: #f8f9fa;
-            color: var(--boss-red);
         }
 
         .country-option.selected {
             background: #eff6ff;
-            color: var(--ai-blue);
         }
 
-        .country-option img {
-            width: 20px;
-            height: 14px;
+        .country-option img, .country-option svg {
+            width: 24px;
+            height: 18px;
             object-fit: cover;
             border: 1px solid #ddd;
             border-radius: 2px;
@@ -909,23 +900,6 @@
             line-height: 1.3;
         }
 
-        .card-link {
-            display: block;
-            text-align: center;
-            background: var(--boss-black);
-            color: #fff;
-            text-decoration: none;
-            padding: 10px;
-            font-size: 13px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 12px;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-
-        .card-link:hover { background: var(--boss-red); }
-
         .comparable-market-box {
             margin-top: 15px;
             background: #fafafa;
@@ -1068,19 +1042,20 @@
                 
                 <div class="header-controls">
                     
-                    <!-- Landen Filter Dropdown -->
+                    <!-- Landen Filter Dropdown (Alleen wereldbol / vlaggen) -->
                     <div class="country-dropdown-container">
-                        <div class="country-btn" onclick="toggleCountryMenu()">
+                        <div class="country-btn" onclick="toggleCountryMenu()" title="Filter op land">
                             <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <line x1="2" y1="12" x2="22" y2="12"></line>
                                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                             </svg>
-                            <span id="selectedCountryLabel">Alle landen</span>
                         </div>
                         <div class="country-dropdown" id="countryDropdown">
-                            <div class="country-option selected" onclick="setCountry('', 'Alle landen', '')">🌐 Alle landen</div>
-                            <!-- Wordt dynamisch gevuld -->
+                            <div class="country-option selected" onclick="setCountry('', this)" title="Alle landen">
+                                <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                            </div>
+                            <!-- Wordt dynamisch gevuld met vlaggen -->
                         </div>
                     </div>
 
@@ -1149,7 +1124,7 @@
         let aiPicksActive = true; 
         let showCompetitors = false; 
         let currentSort = 'default';
-        let currentCountryFilter = ''; // Geselecteerd land code
+        let currentCountryFilter = ''; 
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
         let hiddenCardsData = JSON.parse(localStorage.getItem('bossHiddenCards') || '{}');
@@ -1182,18 +1157,10 @@
             renderGrid();
         }
 
-        function setCountry(code, name, flagImgHtml) {
+        function setCountry(code, element) {
             currentCountryFilter = code;
-            const labelEl = document.getElementById('selectedCountryLabel');
-            if (code === '') {
-                labelEl.innerHTML = 'Alle landen';
-            } else {
-                labelEl.innerHTML = `${flagImgHtml} ${name}`;
-            }
-
             document.querySelectorAll('.country-option').forEach(el => el.classList.remove('selected'));
-            event.currentTarget.classList.add('selected');
-
+            if(element) element.classList.add('selected');
             document.getElementById('countryDropdown').classList.remove('open');
             renderGrid();
         }
@@ -1411,7 +1378,6 @@
             "Truck1", "Truckscout24",  "werktuigen", "Yoder & Frey"            
         ];
 
-        // Helper dictionary voor landcodes en nette namen
         const worldCountries = {
             'ca': 'Canada', 'us': 'Verenigde Staten', 'mx': 'Mexico', 'ar': 'Argentinië',
             'br': 'Brazilië', 'cl': 'Chili', 'co': 'Colombia', 'pe': 'Peru', 'uy': 'Uruguay',
@@ -1459,8 +1425,8 @@
                 'portugal': 'pt', 'italië': 'it', 'italy': 'it', 'polen': 'pl',
                 'zweden': 'se', 'noorwegen': 'no', 'denemarken': 'dk', 'finland': 'fi',
                 'ierland': 'ie', 'verenigd koninkrijk': 'gb', 'uk': 'gb', 'engeland': 'gb',
-                'zwitserland': 'ch', 'oostenrijk': 'at', 'tsjechië': 'cz', 'polen': 'pl',
-                'turkije': 'tr', 'oekraïne': 'ua', 'australië': 'au', 'zuid-afrika': 'za'
+                'zwitserland': 'ch', 'oostenrijk': 'at', 'tsjechië': 'cz', 'turkije': 'tr',
+                'oekraïne': 'ua', 'australië': 'au', 'zuid-afrika': 'za', 'japan': 'jp', 'jpn': 'jp'
             };
 
             let countryCode = '';
@@ -1489,8 +1455,11 @@
 
         function populateCountryDropdown() {
             const dropdown = document.getElementById('countryDropdown');
-            // Behoud optie 'Alle landen'
-            dropdown.innerHTML = `<div class="country-option selected" onclick="setCountry('', 'Alle landen', '')">🌐 Alle landen</div>`;
+            dropdown.innerHTML = `
+                <div class="country-option selected" onclick="setCountry('', this)" title="Alle landen">
+                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </div>
+            `;
 
             let dataSource = [...allData, ...ownStockData];
             let foundCountries = new Set();
@@ -1510,10 +1479,9 @@
 
             sortedCodes.forEach(code => {
                 let countryName = worldCountries[code] || code.toUpperCase();
-                let flagImg = `<img src="https://flagcdn.com/24x18/${code}.png" alt="${code}">`;
                 dropdown.innerHTML += `
-                    <div class="country-option" onclick="setCountry('${code}', '${countryName}', '${flagImg.replace(/'/g, "\\'")}')">
-                        ${flagImg} <span>${countryName}</span>
+                    <div class="country-option" onclick="setCountry('${code}', this)" title="${countryName}">
+                        <img src="https://flagcdn.com/24x18/${code}.png" alt="${code}">
                     </div>
                 `;
             });
@@ -1719,7 +1687,8 @@
             if (totalHours <= 3) {
                 return { boxText: `⚠️ Nog ${days > 0 ? days + 'd ' : ''}${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`, imageBadge: timeStrUpper, isUrgent: true, isExpired: false };
             }
-            return { boxText: `Veiling op: ${d}-${m}-${y} om ${H}:${M}`, imageBadge: timeStrUpper, isUrgent: false, isExpired: false };
+            // AANGEPAST: "Veiling op:" ingekort naar "Veiling:" zodat het niet naar de volgende regel springt
+            return { boxText: `Veiling: ${d}-${m}-${y} om ${H}:${M}`, imageBadge: timeStrUpper, isUrgent: false, isExpired: false };
         }
 
         function updateLiveTimers() {
@@ -1774,7 +1743,6 @@
                     if (hiddenCardsData[uniqueId]) return false;
                 }
 
-                // Landen filter check
                 if (currentCountryFilter) {
                     let info = parseCountryInfo(row['Locatie']);
                     if (info.code !== currentCountryFilter) return false;
@@ -2124,8 +2092,9 @@
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${aiReason}</div>` : '';
 
                 const expiredClass = isExpired ? ' expired' : '';
-                const wrapperStart = isOwnStock ? `<div class="card${expiredClass}${extraClass}">` : `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}${extraClass}">`;
-                const wrapperEnd = isOwnStock ? `</div>` : `</a>`;
+                // AANGEPAST: Gehele kaart is nu de link, knop 'Bekijk machine' is verwijderd
+                const wrapperStart = `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}${extraClass}">`;
+                const wrapperEnd = `</a>`;
 
                 const cardDiv = document.createElement('div');
                 cardDiv.innerHTML = `
@@ -2153,7 +2122,6 @@
                             </div>
                             ${auctionHtml}
                             ${aiReasonHtml}
-                            ${!isOwnStock ? `<div class="card-link">Bekijk machine</div>` : ''}
                             ${extraContentHtml}
                         </div>
                     ${wrapperEnd}
