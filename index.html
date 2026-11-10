@@ -308,7 +308,6 @@
             position: relative;
         }
 
-        /* Sort Dropdown Component */
         .sort-container {
             position: relative;
         }
@@ -390,7 +389,6 @@
             display: none;
         }
 
-        /* Visuele Toggle Schakelaars */
         .ai-toggle-container {
             display: flex;
             align-items: center;
@@ -453,7 +451,6 @@
             color: var(--ai-blue);
         }
 
-        /* Actieve kleur voor Concurrentie tonen */
         #competitorToggleBtn.active .toggle-switch {
             background-color: #28a745;
         }
@@ -579,6 +576,32 @@
             box-shadow: 0 0 6px rgba(220,53,69,0.6);
         }
         .feedback-btn.active-neg svg { fill: #ffffff !important; }
+
+        /* Kruisje knop links onder over de foto */
+        .hide-card-btn {
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+            background: rgba(17, 17, 17, 0.75);
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 5;
+            transition: background 0.2s, transform 0.1s;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+        }
+        .hide-card-btn:hover {
+            background: rgba(204, 32, 39, 0.9);
+            transform: scale(1.12);
+        }
 
         .badge-image-container {
             position: absolute;
@@ -996,7 +1019,7 @@
                     </div>
 
                     <select id="filter-feedback" class="feedback-filter-select" onchange="renderGrid()">
-                        <option value="relevant" selected>Relevante resultaten (Geen 👎)</option>
+                        <option value="relevant" selected>Relevante resultaten</option>
                         <option value="all">Alle resultaten</option>
                         <option value="positive">Alleen positief (👍)</option>
                         <option value="negative">Alleen negatief (👎)</option>
@@ -1023,6 +1046,7 @@
         let currentSort = 'default';
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
+        let hiddenCardsData = JSON.parse(localStorage.getItem('bossHiddenCards') || '{}');
 
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
         const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
@@ -1122,6 +1146,25 @@
             return null;
         }
 
+        function hideCard(event, id) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            hiddenCardsData[id] = true;
+            localStorage.setItem('bossHiddenCards', JSON.stringify(hiddenCardsData));
+
+            if (gasWebappUrl) {
+                const targetUrl = `${gasWebappUrl}?action=verberg&id=${encodeURIComponent(id)}`;
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = targetUrl;
+                document.body.appendChild(iframe);
+                setTimeout(() => { iframe.remove(); }, 5000);
+            }
+
+            renderGrid();
+        }
+
         function toggleFeedback(event, id, type) {
             event.preventDefault(); 
             event.stopPropagation(); 
@@ -1200,18 +1243,34 @@
                 const liveData = await response.json();
                 let updated = false;
                 Object.keys(liveData).forEach(id => {
-                    const val = String(liveData[id]).trim();
-                    if (val === 'goed' || val === 'positive') {
+                    const item = liveData[id];
+                    const status = typeof item === 'object' ? item.status : String(item);
+                    const tonen = typeof item === 'object' ? item.tonen : '';
+
+                    // Real-time controle op Kolom Y vanuit de live status
+                    if (tonen && tonen.toLowerCase() === 'nee') {
+                        if (!hiddenCardsData[id]) {
+                            hiddenCardsData[id] = true;
+                            updated = true;
+                        }
+                    } else if (tonen && tonen.toLowerCase() === 'ja') {
+                        if (hiddenCardsData[id]) {
+                            delete hiddenCardsData[id];
+                            updated = true;
+                        }
+                    }
+
+                    if (status === 'goed' || status === 'positive') {
                         if (feedbackData[id] !== 'positive') {
                             feedbackData[id] = 'positive';
                             updated = true;
                         }
-                    } else if (val.startsWith('Slecht:') || val === 'slecht' || val === 'negative') {
+                    } else if (status.startsWith('Slecht:') || status === 'slecht' || status === 'negative') {
                         if (feedbackData[id] !== 'negative') {
                             feedbackData[id] = 'negative';
                             updated = true;
                         }
-                    } else if (val === 'removed') {
+                    } else if (status === 'removed') {
                         if (feedbackData[id]) {
                             delete feedbackData[id];
                             updated = true;
@@ -1221,6 +1280,7 @@
 
                 if (updated) {
                     localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
+                    localStorage.setItem('bossHiddenCards', JSON.stringify(hiddenCardsData));
                     renderGrid();
                 }
             } catch (err) {
@@ -1380,7 +1440,6 @@
             let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
             let lLower = cleanLocStr.toLowerCase();
 
-            // Harde uitsluitingen en directe fixes voor bekende sub-string conflicten (Italië, Duitsland, etc.)
             if (lLower.includes('überherrn') || lLower.includes('saarland')) {
                 return `<img src="https://flagcdn.com/24x18/de.png" alt="de" title="DE"> <span>${cleanLocStr}</span>`;
             }
@@ -1399,7 +1458,6 @@
                 'can': 'ca', 'ca': 'ca', 'canada': 'ca',
                 'usa': 'us', 'usm': 'us', 'us': 'us', 'united states': 'us', 'verenigde staten': 'us',
                 'mex': 'mx', 'mx': 'mx', 'mexico': 'mx',
-
                 'arg': 'ar', 'ar': 'ar', 'argentina': 'ar', 'argentinië': 'ar',
                 'bra': 'br', 'br': 'br', 'brazil': 'br', 'brazilië': 'br',
                 'chl': 'cl', 'cl': 'cl', 'chile': 'cl', 'chili': 'cl',
@@ -1410,7 +1468,6 @@
                 'cri': 'cr', 'cr': 'cr', 'costa rica': 'cr',
                 'pan': 'pa', 'pa': 'pa', 'panama': 'pa',
                 'dom': 'do', 'do': 'do', 'dominican republic': 'do', 'dominikaanse republiek': 'do',
-
                 'nld': 'nl', 'nl': 'nl', 'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl',
                 'bel': 'be', 'be': 'be', 'belgië': 'be', 'belgium': 'be', 'belgique': 'be',
                 'deu': 'de', 'de': 'de', 'duitsland': 'de', 'germany': 'de', 'deutschland': 'de',
@@ -1445,7 +1502,6 @@
                 'rus': 'ru', 'ru': 'ru', 'rusland': 'ru', 'russia': 'ru',
                 'srb': 'rs', 'rs': 'rs', 'servië': 'rs', 'serbia': 'rs',
                 'bih': 'ba', 'ba': 'ba', 'bosnië en herzegovina': 'ba', 'bosnia': 'ba',
-
                 'phl': 'ph', 'ph': 'ph', 'philippines': 'ph', 'filipijnen': 'ph',
                 'idn': 'id', 'id': 'id', 'indonesia': 'id', 'indonesië': 'id',
                 'ind': 'in', 'in': 'in', 'india': 'in',
@@ -1459,7 +1515,6 @@
                 'are': 'ae', 'ae': 'ae', 'verenigde arabische emiraten': 'ae', 'uae': 'ae', 'dubai': 'ae',
                 'sau': 'sa', 'sa': 'sa', 'saudi-arabië': 'sa', 'saudi arabia': 'sa',
                 'isr': 'il', 'il': 'il', 'israël': 'il', 'israel': 'il',
-
                 'aus': 'au', 'au': 'au', 'australië': 'au', 'australia': 'au',
                 'nzl': 'nz', 'nz': 'nz', 'nieuwe-zeeland': 'nz', 'new zealand': 'nz',
                 'zaf': 'za', 'za': 'za', 'zuid-afrika': 'za', 'south africa': 'za',
@@ -1595,6 +1650,11 @@
             let dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
 
             let filteredData = dataSource.filter(row => {
+                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
+                
+                // 1. Verberg als lokaal of via kolom Y (real-time/sheet) op 'Nee' gezet is
+                if (hiddenCardsData[uniqueId]) return false;
+
                 const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
                 const isAuction = endDateVal !== '';
 
@@ -1634,9 +1694,9 @@
                     if (!searchableText.includes(searchQuery)) return false;
                 }
 
-                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let userFb = feedbackData[uniqueId] || 'none';
 
+                // 2. 'Relevante resultaten' filter filtert nu automatisch elementen met een negatief duimpje weg
                 if (filterFb === 'relevant' && userFb === 'negative') return false; 
                 if (filterFb === 'positive' && userFb !== 'positive') return false;
                 if (filterFb === 'negative' && userFb !== 'negative') return false;
@@ -1897,7 +1957,7 @@
                     `;
                 }
 
-                const productUrl = row.Link ? row.Link : '#';
+                let productUrl = row.Link ? row.Link : '#';
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let myFb = feedbackData[uniqueId];
                 let extraClass = '';
@@ -1931,6 +1991,12 @@
                     `;
                 }
 
+                let hideButtonHtml = `
+                    <button class="hide-card-btn" onclick="hideCard(event, '${uniqueId}')" title="Verberg object (kolom Y naar Nee)">
+                        &#x2715;
+                    </button>
+                `;
+
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${aiReason}</div>` : '';
 
                 const expiredClass = isExpired ? ' expired' : '';
@@ -1945,6 +2011,7 @@
                         <div class="card-image-container">
                             ${imageHtml}
                             ${imageBadgeContainerHtml}
+                            ${hideButtonHtml}
                             ${feedbackButtonsHtml}
                         </div>
                         <div class="card-content">
@@ -1985,6 +2052,9 @@
         
             const countHelper = (dataSource, isAuctionTab, isStockTab) => {
                 return dataSource.filter(row => {
+                    let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
+                    if (hiddenCardsData[uniqueId]) return false;
+
                     const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
                     const isAuction = endDateVal !== '';
         
@@ -2028,7 +2098,6 @@
                         if (!searchableText.includes(searchQuery)) return false;
                     }
         
-                    let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                     let userFb = feedbackData[uniqueId] || 'none';
         
                     if (filterFb === 'relevant' && userFb === 'negative') return false; 
