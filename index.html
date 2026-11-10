@@ -308,84 +308,6 @@
             position: relative;
         }
 
-        /* Country Dropdown (Clean Globe knop) */
-        .country-dropdown-container {
-            position: relative;
-        }
-
-        .country-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-            transition: transform 0.1s;
-            box-sizing: border-box;
-            user-select: none;
-        }
-
-        .country-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .country-dropdown {
-            display: none;
-            position: absolute;
-            top: 42px;
-            right: 0;
-            background: #fff;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-width: 220px;
-            max-height: 300px;
-            overflow-y: auto;
-            z-index: 100;
-        }
-
-        .country-dropdown.open {
-            display: block;
-        }
-
-        .country-option {
-            padding: 9px 15px;
-            font-size: 13px;
-            font-weight: bold;
-            color: var(--text-dark);
-            cursor: pointer;
-            border-bottom: 1px solid #f1f5f9;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .country-option:last-child {
-            border-bottom: none;
-        }
-
-        .country-option:hover {
-            background: #f8f9fa;
-            color: var(--boss-red);
-        }
-
-        .country-option.selected {
-            background: #eff6ff;
-            color: var(--ai-blue);
-        }
-
-        .country-option img {
-            width: 20px;
-            height: 14px;
-            object-fit: cover;
-            border: 1px solid #ddd;
-            border-radius: 2px;
-        }
-
         .sort-container {
             position: relative;
         }
@@ -655,6 +577,7 @@
         }
         .feedback-btn.active-neg svg { fill: #ffffff !important; }
 
+        /* Kruisje knop links onder over de foto (of herstel knop) */
         .hide-card-btn {
             position: absolute;
             bottom: 6px;
@@ -680,6 +603,7 @@
             transform: scale(1.12);
         }
 
+        /* Rode knop met wit kruis voor verborgen items om ze weer te activeren */
         .restore-card-btn {
             position: absolute;
             bottom: 6px;
@@ -922,6 +846,23 @@
             line-height: 1.3;
         }
 
+        .card-link {
+            display: block;
+            text-align: center;
+            background: var(--boss-black);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 12px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .card-link:hover { background: var(--boss-red); }
+
         .comparable-market-box {
             margin-top: 15px;
             background: #fafafa;
@@ -1064,17 +1005,6 @@
                 
                 <div class="header-controls">
                     
-                    <!-- Clean Globe knop voor landenfilter -->
-                    <div class="country-dropdown-container">
-                        <div class="country-btn" onclick="toggleCountryMenu()" title="Filter op land">
-                            🌍
-                        </div>
-                        <div class="country-dropdown" id="countryDropdown">
-                            <div class="country-option selected" onclick="selectCountry('')">🌍 Alle landen</div>
-                            <!-- Wordt dynamisch gevuld -->
-                        </div>
-                    </div>
-
                     <!-- Sorteer Knop & Dropdown -->
                     <div class="sort-container">
                         <div class="sort-btn" onclick="toggleSortMenu()">
@@ -1140,7 +1070,6 @@
         let aiPicksActive = true; 
         let showCompetitors = false; 
         let currentSort = 'default';
-        let selectedCountryFilter = ''; // Geselecteerd land via globus knop
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
         let hiddenCardsData = JSON.parse(localStorage.getItem('bossHiddenCards') || '{}');
@@ -1156,19 +1085,6 @@
 
         function toggleSortMenu() {
             document.getElementById('sortDropdown').classList.toggle('open');
-            document.getElementById('countryDropdown').classList.remove('open');
-        }
-
-        function toggleCountryMenu() {
-            document.getElementById('countryDropdown').classList.toggle('open');
-            document.getElementById('sortDropdown').classList.remove('open');
-        }
-
-        function selectCountry(countryName) {
-            selectedCountryFilter = countryName;
-            document.getElementById('countryDropdown').classList.remove('open');
-            populateCountryDropdown();
-            renderGrid();
         }
 
         function setSort(sortType) {
@@ -1185,9 +1101,6 @@
         window.addEventListener('click', function(e) {
             if (!document.querySelector('.sort-container').contains(e.target)) {
                 document.getElementById('sortDropdown').classList.remove('open');
-            }
-            if (!document.querySelector('.country-dropdown-container').contains(e.target)) {
-                document.getElementById('countryDropdown').classList.remove('open');
             }
         });
 
@@ -1452,7 +1365,6 @@
                 ownStockData = parsedVoorraad.filter(row => row.Merk || row.Model || row.brand || row.Titel);
 
                 populateFilters();
-                populateCountryDropdown();
                 updateSystemStatusHeader();
                 
                 switchTab('listings'); 
@@ -1480,7 +1392,6 @@
             }
 
             populateFilters();
-            populateCountryDropdown();
             renderGrid();
         }
 
@@ -1567,71 +1478,14 @@
             fillSelect('filter-status', statussen, 'Alle statussen');
         }
 
-        // Centrale dictionary en logica voor landherkenning uit locatie strings
-        const worldCountriesMap = {
-            'can': { code: 'ca', name: 'Canada' }, 'ca': { code: 'ca', name: 'Canada' }, 'canada': { code: 'ca', name: 'Canada' },
-            'usa': { code: 'us', name: 'Verenigde Staten' }, 'us': { code: 'us', name: 'Verenigde Staten' }, 'united states': { code: 'us', name: 'Verenigde Staten' }, 'verenigde staten': { code: 'us', name: 'Verenigde Staten' },
-            'mex': { code: 'mx', name: 'Mexico' }, 'mx': { code: 'mx', name: 'Mexico' }, 'mexico': { code: 'mx', name: 'Mexico' },
-            'arg': { code: 'ar', name: 'Argentinië' }, 'ar': { code: 'ar', name: 'Argentinië' }, 'argentina': { code: 'ar', name: 'Argentinië' }, 'argentinië': { code: 'ar', name: 'Argentinië' },
-            'bra': { code: 'br', name: 'Brazilië' }, 'br': { code: 'br', name: 'Brazilië' }, 'brazil': { code: 'br', name: 'Brazilië' }, 'brazilië': { code: 'br', name: 'Brazilië' },
-            'chl': { code: 'cl', name: 'Chili' }, 'cl': { code: 'cl', name: 'Chili' }, 'chile': { code: 'cl', name: 'Chili' }, 'chili': { code: 'cl', name: 'Chili' },
-            'col': { code: 'co', name: 'Colombia' }, 'co': { code: 'co', name: 'Colombia' }, 'colombia': { code: 'co', name: 'Colombia' },
-            'per': { code: 'pe', name: 'Peru' }, 'pe': { code: 'pe', name: 'Peru' }, 'peru': { code: 'pe', name: 'Peru' },
-            'nld': { code: 'nl', name: 'Nederland' }, 'nl': { code: 'nl', name: 'Nederland' }, 'nederland': { code: 'nl', name: 'Nederland' }, 'netherlands': { code: 'nl', name: 'Nederland' }, 'holland': { code: 'nl', name: 'Nederland' },
-            'bel': { code: 'be', name: 'België' }, 'be': { code: 'be', name: 'België' }, 'belgië': { code: 'be', name: 'België' }, 'belgium': { code: 'be', name: 'België' }, 'belgique': { code: 'be', name: 'België' },
-            'deu': { code: 'de', name: 'Duitsland' }, 'de': { code: 'de', name: 'Duitsland' }, 'duitsland': { code: 'de', name: 'Duitsland' }, 'germany': { code: 'de', name: 'Duitsland' }, 'deutschland': { code: 'de', name: 'Duitsland' }, 'germania': { code: 'de', name: 'Duitsland' },
-            'fra': { code: 'fr', name: 'Frankrijk' }, 'fr': { code: 'fr', name: 'Frankrijk' }, 'frankrijk': { code: 'fr', name: 'Frankrijk' }, 'france': { code: 'fr', name: 'Frankrijk' },
-            'esp': { code: 'es', name: 'Spanje' }, 'es': { code: 'es', name: 'Spanje' }, 'spanje': { code: 'es', name: 'Spanje' }, 'spain': { code: 'es', name: 'Spanje' }, 'españa': { code: 'es', name: 'Spanje' }, 'spagna': { code: 'es', name: 'Spanje' },
-            'prt': { code: 'pt', name: 'Portugal' }, 'pt': { code: 'pt', name: 'Portugal' }, 'portugal': { code: 'pt', name: 'Portugal' },
-            'ita': { code: 'it', name: 'Italië' }, 'it': { code: 'it', name: 'Italië' }, 'italië': { code: 'it', name: 'Italië' }, 'italy': { code: 'it', name: 'Italië' }, 'italia': { code: 'it', name: 'Italië' },
-            'pol': { code: 'pl', name: 'Polen' }, 'pl': { code: 'pl', name: 'Polen' }, 'polen': { code: 'pl', name: 'Polen' }, 'poland': { code: 'pl', name: 'Polen' },
-            'swe': { code: 'se', name: 'Zweden' }, 'se': { code: 'se', name: 'Zweden' }, 'zweden': { code: 'se', name: 'Zweden' }, 'sweden': { code: 'se', name: 'Zweden' }, 'sverige': { code: 'se', name: 'Zweden' },
-            'nor': { code: 'no', name: 'Noorwegen' }, 'no': { code: 'no', name: 'Noorwegen' }, 'noorwegen': { code: 'no', name: 'Noorwegen' }, 'norway': { code: 'no', name: 'Noorwegen' }, 'norge': { code: 'no', name: 'Noorwegen' },
-            'dnk': { code: 'dk', name: 'Denemarken' }, 'dk': { code: 'dk', name: 'Denemarken' }, 'denemarken': { code: 'dk', name: 'Denemarken' }, 'denmark': { code: 'dk', name: 'Denemarken' }, 'danmark': { code: 'dk', name: 'Denemarken' },
-            'fin': { code: 'fi', name: 'Finland' }, 'fi': { code: 'fi', name: 'Finland' }, 'finland': { code: 'fi', name: 'Finland' }, 'suomi': { code: 'fi', name: 'Finland' },
-            'irl': { code: 'ie', name: 'Ierland' }, 'ie': { code: 'ie', name: 'Ierland' }, 'ierland': { code: 'ie', name: 'Ierland' }, 'ireland': { code: 'ie', name: 'Ierland' },
-            'gbr': { code: 'gb', name: 'Verenigd Koninkrijk' }, 'uk': { code: 'gb', name: 'Verenigd Koninkrijk' }, 'gb': { code: 'gb', name: 'Verenigd Koninkrijk' }, 'verenigd koninkrijk': { code: 'gb', name: 'Verenigd Koninkrijk' }, 'engeland': { code: 'gb', name: 'Verenigd Koninkrijk' }, 'england': { code: 'gb', name: 'Verenigd Koninkrijk' }, 'united kingdom': { code: 'gb', name: 'Verenigd Koninkrijk' }, 'gran-bretagna': { code: 'gb', name: 'Verenigd Koninkrijk' },
-            'che': { code: 'ch', name: 'Zwitserland' }, 'ch': { code: 'ch', name: 'Zwitserland' }, 'zwitserland': { code: 'ch', name: 'Zwitserland' }, 'switzerland': { code: 'ch', name: 'Zwitserland' }, 'suisse': { code: 'ch', name: 'Zwitserland' },
-            'aut': { code: 'at', name: 'Oostenrijk' }, 'at': { code: 'at', name: 'Oostenrijk' }, 'oostenrijk': { code: 'at', name: 'Oostenrijk' }, 'austria': { code: 'at', name: 'Oostenrijk' }, 'österreich': { code: 'at', name: 'Oostenrijk' },
-            'svn': { code: 'si', name: 'Slovenië' }, 'si': { code: 'si', name: 'Slovenië' }, 'slovenië': { code: 'si', name: 'Slovenië' }, 'slovenia': { code: 'si', name: 'Slovenië' },
-            'svk': { code: 'sk', name: 'Slowakije' }, 'sk': { code: 'sk', name: 'Slowakije' }, 'slowakije': { code: 'sk', name: 'Slowakije' }, 'slovakia': { code: 'sk', name: 'Slowakije' },
-            'cze': { code: 'cz', name: 'Tsjechië' }, 'cz': { code: 'cz', name: 'Tsjechië' }, 'tsjechië': { code: 'cz', name: 'Tsjechië' }, 'czechia': { code: 'cz', name: 'Tsjechië' },
-            'hun': { code: 'hu', name: 'Hongarije' }, 'hu': { code: 'hu', name: 'Hongarije' }, 'hongarije': { code: 'hu', name: 'Hongarije' }, 'hungary': { code: 'hu', name: 'Hongarije' },
-            'rou': { code: 'ro', name: 'Roemenië' }, 'ro': { code: 'ro', name: 'Roemenië' }, 'roemenië': { code: 'ro', name: 'Roemenië' }, 'romania': { code: 'ro', name: 'Roemenië' }, 'ro': { code: 'ro', name: 'Roemenië' },
-            'bgr': { code: 'bg', name: 'Bulgarije' }, 'bg': { code: 'bg', name: 'Bulgarije' }, 'bulgarije': { code: 'bg', name: 'Bulgarije' }, 'bulgaria': { code: 'bg', name: 'Bulgarije' },
-            'grc': { code: 'gr', name: 'Griekenland' }, 'gr': { code: 'gr', name: 'Griekenland' }, 'griekenland': { code: 'gr', name: 'Griekenland' }, 'greece': { code: 'gr', name: 'Griekenland' },
-            'hrv': { code: 'hr', name: 'Kroatië' }, 'hr': { code: 'hr', name: 'Kroatië' }, 'kroatië': { code: 'hr', name: 'Kroatië' }, 'croatia': { code: 'hr', name: 'Kroatië' },
-            'est': { code: 'ee', name: 'Estland' }, 'ee': { code: 'ee', name: 'Estland' }, 'estland': { code: 'ee', name: 'Estland' }, 'estonia': { code: 'ee', name: 'Estland' },
-            'lva': { code: 'lv', name: 'Letland' }, 'lv': { code: 'lv', name: 'Letland' }, 'letland': { code: 'lv', name: 'Letland' }, 'latvia': { code: 'lv', name: 'Letland' },
-            'ltu': { code: 'lt', name: 'Litouwen' }, 'lt': { code: 'lt', name: 'Litouwen' }, 'litouwen': { code: 'lt', name: 'Litouwen' }, 'lithuania': { code: 'lt', name: 'Litouwen' },
-            'lux': { code: 'lu', name: 'Luxemburg' }, 'lu': { code: 'lu', name: 'Luxemburg' }, 'luxemburg': { code: 'lu', name: 'Luxemburg' }, 'luxembourg': { code: 'lu', name: 'Luxemburg' },
-            'ukr': { code: 'ua', name: 'Oekraïne' }, 'ua': { code: 'ua', name: 'Oekraïne' }, 'oekraïne': { code: 'ua', name: 'Oekraïne' }, 'ukraine': { code: 'ua', name: 'Oekraïne' },
-            'tur': { code: 'tr', name: 'Turkije' }, 'tr': { code: 'tr', name: 'Turkije' }, 'turkije': { code: 'tr', name: 'Turkije' }, 'turkey': { code: 'tr', name: 'Turkije' },
-            'rus': { code: 'ru', name: 'Rusland' }, 'ru': { code: 'ru', name: 'Rusland' }, 'rusland': { code: 'ru', name: 'Rusland' }, 'russia': { code: 'ru', name: 'Rusland' },
-            'srb': { code: 'rs', name: 'Servië' }, 'rs': { code: 'rs', name: 'Servië' }, 'servië': { code: 'rs', name: 'Servië' }, 'serbia': { code: 'rs', name: 'Servië' },
-            'are': { code: 'ae', name: 'Verenigde Arabische Emiraten' }, 'ae': { code: 'ae', name: 'Verenigde Arabische Emiraten' }, 'dubai': { code: 'ae', name: 'Verenigde Arabische Emiraten' }, 'uae': { code: 'ae', name: 'Verenigde Arabische Emiraten' },
-            'aus': { code: 'au', name: 'Australië' }, 'au': { code: 'au', name: 'Australië' }, 'australië': { code: 'au', name: 'Australië' }, 'australia': { code: 'au', name: 'Australië' },
-            'zaf': { code: 'za', name: 'Zuid-Afrika' }, 'za': { code: 'za', name: 'Zuid-Afrika' }, 'zuid-afrika': { code: 'za', name: 'Zuid-Afrika' }, 'south africa': { code: 'za', name: 'Zuid-Afrika' }
-        };
-
         function getCountryFlagHtml(locStr) {
             if (!locStr) return '📍 <span>Onbekend</span>';
-            let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
-            let info = extractCountryInfo(locStr);
-            if (info.code) {
-                return `<img src="https://flagcdn.com/24x18/${info.code}.png" alt="${info.code}" title="${cleanLocStr}"> <span>${cleanLocStr}</span>`;
-            }
-            return `📍 <span>${cleanLocStr}</span>`;
-        }
-
-        // Aangescherpte logica om strikt het land eruit te vissen (geen steden/plaatsen)
-        function extractCountryInfo(locStr) {
-            if (!locStr) return { code: '', name: 'Onbekend' };
+            
             let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
             let lLower = cleanLocStr.toLowerCase();
 
-            if (lLower.includes('überherrn') || lLower.includes('saarland') || lLower.includes('alsfeld') || lLower.includes('böblingen')) {
-                return { code: 'de', name: 'Duitsland' };
+            if (lLower.includes('überherrn') || lLower.includes('saarland')) {
+                return `<img src="https://flagcdn.com/24x18/de.png" alt="de" title="DE"> <span>${cleanLocStr}</span>`;
             }
             if (
                 lLower.includes('mantova') || lLower.includes('bergamo') || lLower.includes('napoli') || 
@@ -1641,67 +1495,102 @@
                 lLower.includes('lazio') || lLower.includes('emilia') || lLower.includes('lombardia') || 
                 lLower.includes('campania') || lLower.includes('veneto') || lLower.includes('umbria')
             ) {
-                return { code: 'it', name: 'Italië' };
+                return `<img src="https://flagcdn.com/24x18/it.png" alt="it" title="IT"> <span>${cleanLocStr}</span>`;
             }
-            if (lLower.includes('madrid') || lLower.includes('arganda')) {
-                return { code: 'es', name: 'Spanje' };
-            }
-            if (lLower.includes('bruntingthorpe') || lLower.includes('england')) {
-                return { code: 'gb', name: 'Verenigd Koninkrijk' };
-            }
-            if (lLower.includes('bihor') || lLower.includes('romania') || lLower.includes('ro')) {
-                return { code: 'ro', name: 'Roemenië' };
-            }
+            
+            const worldCountries = {
+                'can': 'ca', 'ca': 'ca', 'canada': 'ca',
+                'usa': 'us', 'usm': 'us', 'us': 'us', 'united states': 'us', 'verenigde staten': 'us',
+                'mex': 'mx', 'mx': 'mx', 'mexico': 'mx',
+                'arg': 'ar', 'ar': 'ar', 'argentina': 'ar', 'argentinië': 'ar',
+                'bra': 'br', 'br': 'br', 'brazil': 'br', 'brazilië': 'br',
+                'chl': 'cl', 'cl': 'cl', 'chile': 'cl', 'chili': 'cl',
+                'col': 'co', 'co': 'co', 'colombia': 'co',
+                'per': 'pe', 'pe': 'pe', 'peru': 'pe',
+                'ury': 'uy', 'uy': 'uy', 'uruguay': 'uy',
+                'ven': 've', 've': 've', 'venezuela': 've',
+                'cri': 'cr', 'cr': 'cr', 'costa rica': 'cr',
+                'pan': 'pa', 'pa': 'pa', 'panama': 'pa',
+                'dom': 'do', 'do': 'do', 'dominican republic': 'do', 'dominikaanse republiek': 'do',
+                'nld': 'nl', 'nl': 'nl', 'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl',
+                'bel': 'be', 'be': 'be', 'belgië': 'be', 'belgium': 'be', 'belgique': 'be',
+                'deu': 'de', 'de': 'de', 'duitsland': 'de', 'germany': 'de', 'deutschland': 'de',
+                'fra': 'fr', 'fr': 'fr', 'frankrijk': 'fr', 'france': 'fr',
+                'esp': 'es', 'es': 'es', 'spanje': 'es', 'spain': 'es', 'españa': 'es',
+                'prt': 'pt', 'pt': 'pt', 'portugal': 'pt',
+                'ita': 'it', 'it': 'it', 'italië': 'it', 'italy': 'it', 'italia': 'it',
+                'pol': 'pl', 'pl': 'pl', 'polen': 'pl', 'poland': 'pl',
+                'swe': 'se', 'se': 'se', 'zweden': 'se', 'sweden': 'se', 'sverige': 'se',
+                'nor': 'no', 'no': 'no', 'noorwegen': 'no', 'norway': 'no', 'norge': 'no',
+                'dnk': 'dk', 'dk': 'dk', 'denemarken': 'dk', 'denmark': 'dk', 'danmark': 'dk',
+                'fin': 'fi', 'fi': 'fi', 'finland': 'fi', 'suomi': 'fi',
+                'irl': 'ie', 'ie': 'ie', 'ierland': 'ie', 'ireland': 'ie',
+                'gbr': 'gb', 'uk': 'gb', 'gb': 'gb', 'verenigd koninkrijk': 'gb', 'engeland': 'gb', 'england': 'gb', 'united kingdom': 'gb',
+                'che': 'ch', 'ch': 'ch', 'zwitserland': 'ch', 'switzerland': 'ch', 'suisse': 'ch',
+                'aut': 'at', 'at': 'at', 'oostenrijk': 'at', 'austria': 'at', 'österreich': 'at',
+                'svn': 'si', 'si': 'si', 'slovenië': 'si', 'slovenia': 'si',
+                'svk': 'sk', 'sk': 'sk', 'slowakije': 'sk', 'slovakia': 'sk',
+                'cze': 'cz', 'cz': 'cz', 'tsjechië': 'cz', 'czech': 'cz', 'czechia': 'cz',
+                'hun': 'hu', 'hu': 'hu', 'hongarije': 'hu', 'hungary': 'hu',
+                'rou': 'ro', 'ro': 'ro', 'roemenië': 'ro', 'romania': 'ro',
+                'bgr': 'bg', 'bg': 'bg', 'bulgarije': 'bg', 'bulgaria': 'bg',
+                'grc': 'gr', 'gr': 'gr', 'griekenland': 'gr', 'greece': 'gr',
+                'hrv': 'hr', 'hr': 'hr', 'kroatië': 'hr', 'croatia': 'hr',
+                'est': 'ee', 'ee': 'ee', 'estland': 'ee', 'estonia': 'ee',
+                'lva': 'lv', 'lv': 'lv', 'letland': 'lv', 'latvia': 'lv',
+                'ltu': 'lt', 'lt': 'lt', 'litouwen': 'lt', 'lithuania': 'lt',
+                'lux': 'lu', 'lu': 'lu', 'luxemburg': 'lu', 'luxembourg': 'lu',
+                'isl': 'is', 'is': 'is', 'ijsland': 'is', 'iceland': 'is',
+                'ukr': 'ua', 'ua': 'ua', 'oekraïne': 'ua', 'ukraine': 'ua',
+                'tur': 'tr', 'tr': 'tr', 'turkije': 'tr', 'turkey': 'tr',
+                'rus': 'ru', 'ru': 'ru', 'rusland': 'ru', 'russia': 'ru',
+                'srb': 'rs', 'rs': 'rs', 'servië': 'rs', 'serbia': 'rs',
+                'bih': 'ba', 'ba': 'ba', 'bosnië en herzegovina': 'ba', 'bosnia': 'ba',
+                'phl': 'ph', 'ph': 'ph', 'philippines': 'ph', 'filipijnen': 'ph',
+                'idn': 'id', 'id': 'id', 'indonesia': 'id', 'indonesië': 'id',
+                'ind': 'in', 'in': 'in', 'india': 'in',
+                'chn': 'cn', 'cn': 'cn', 'china': 'cn',
+                'jpn': 'jp', 'jp': 'jp', 'japan': 'jp',
+                'kor': 'kr', 'kr': 'kr', 'zuid-korea': 'kr', 'south korea': 'kr',
+                'vnm': 'vn', 'vn': 'vn', 'vietnam': 'vn',
+                'tha': 'th', 'th': 'th', 'thailand': 'th',
+                'mys': 'my', 'my': 'my', 'maleisië': 'my', 'malaysia': 'my',
+                'sgp': 'sg', 'sg': 'sg', 'singapore': 'sg',
+                'are': 'ae', 'ae': 'ae', 'verenigde arabische emiraten': 'ae', 'uae': 'ae', 'dubai': 'ae',
+                'sau': 'sa', 'sa': 'sa', 'saudi-arabië': 'sa', 'saudi arabia': 'sa',
+                'isr': 'il', 'il': 'il', 'israël': 'il', 'israel': 'il',
+                'aus': 'au', 'au': 'au', 'australië': 'au', 'australia': 'au',
+                'nzl': 'nz', 'nz': 'nz', 'nieuwe-zeeland': 'nz', 'new zealand': 'nz',
+                'zaf': 'za', 'za': 'za', 'zuid-afrika': 'za', 'south africa': 'za',
+                'egy': 'eg', 'eg': 'eg', 'egypte': 'eg', 'egypt': 'eg',
+                'mar': 'ma', 'ma': 'ma', 'marokko': 'ma', 'morocco': 'ma'
+            };
 
-            let foundCountry = null;
+            let countryCode = '';
             let parts = cleanLocStr.split(/[,–\/-]+/);
             
             for (let i = parts.length - 1; i >= 0; i--) {
                 let token = parts[i].trim().toLowerCase();
-                if (worldCountriesMap[token]) {
-                    foundCountry = worldCountriesMap[token];
+                if (worldCountries[token]) {
+                    countryCode = worldCountries[token];
                     break;
                 }
             }
             
-            if (!foundCountry) {
-                for (const [name, info] of Object.entries(worldCountriesMap)) {
+            if (!countryCode) {
+                for (const [name, code] of Object.entries(worldCountries)) {
                     if (lLower.includes(name)) {
-                        foundCountry = info;
+                        countryCode = code;
                         break;
                     }
                 }
             }
             
-            if (foundCountry) return foundCountry;
-            return { code: '', name: cleanLocStr };
-        }
-
-        function populateCountryDropdown() {
-            const dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
-            const dropdownEl = document.getElementById('countryDropdown');
+            if (countryCode) {
+                return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}" title="${cleanLocStr}"> <span>${cleanLocStr}</span>`;
+            }
             
-            let countryMap = {};
-            dataSource.forEach(item => {
-                if (item.Locatie) {
-                    let info = extractCountryInfo(item.Locatie);
-                    if (info.name && info.name !== 'Onbekend') {
-                        countryMap[info.name] = info.code;
-                    }
-                }
-            });
-
-            let sortedCountries = Object.keys(countryMap).sort();
-
-            let html = `<div class="country-option ${selectedCountryFilter === '' ? 'selected' : ''}" onclick="selectCountry('')">🌍 Alle landen</div>`;
-            sortedCountries.forEach(countryName => {
-                let code = countryMap[countryName];
-                let flagImg = code ? `<img src="https://flagcdn.com/24x18/${code}.png" alt="${code}">` : '📍';
-                let isSel = (selectedCountryFilter === countryName) ? 'selected' : '';
-                html += `<div class="country-option ${isSel}" onclick="selectCountry('${countryName}')">${flagImg} ${countryName}</div>`;
-            });
-
-            dropdownEl.innerHTML = html;
+            return `📍 <span>${cleanLocStr}</span>`;
         }
 
         function parseAuctionDate(str) {
@@ -1756,7 +1645,7 @@
             if (totalHours <= 3) {
                 return { boxText: `⚠️ Nog ${days > 0 ? days + 'd ' : ''}${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`, imageBadge: timeStrUpper, isUrgent: true, isExpired: false };
             }
-            return { boxText: `Veiling: ${d}-${m}-${y} om ${H}:${M}`, imageBadge: timeStrUpper, isUrgent: false, isExpired: false };
+            return { boxText: `Veiling op: ${d}-${m}-${y} om ${H}:${M}`, imageBadge: timeStrUpper, isUrgent: false, isExpired: false };
         }
 
         function updateLiveTimers() {
@@ -1807,6 +1696,8 @@
             let filteredData = dataSource.filter(row => {
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
                 
+                // CRUCIALE FIX: Verberg verborgen objecten ALLEEN als de feedbackfilter op 'relevant' of 'negative' staat. 
+                // Bij 'all' (Alle resultaten) of 'positive' mogen verborgen items niet worden achtergehouden.
                 if (filterFb !== 'all' && filterFb !== 'positive') {
                     if (hiddenCardsData[uniqueId]) return false;
                 }
@@ -1831,12 +1722,6 @@
 
                 if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
-
-                // Filter op geselecteerd land via de globus knop
-                if (selectedCountryFilter) {
-                    let info = extractCountryInfo(row.Locatie || '');
-                    if (info.name !== selectedCountryFilter) return false;
-                }
 
                 if (!showCompetitors) {
                     const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
@@ -2152,16 +2037,19 @@
                     `;
                 }
 
+                // Bepaal of het item verborgen is (kolom Y op Nee via hiddenCardsData)
                 let isHidden = hiddenCardsData[uniqueId];
                 let hideButtonHtml = '';
                 
                 if (isHidden) {
+                    // Als het item verborgen is, tonen we de rode knop met wit kruis (of plus-icoon) om hem weer te activeren
                     hideButtonHtml = `
                         <button class="restore-card-btn" onclick="restoreCard(event, '${uniqueId}')" title="Zet object weer aan (kolom Y naar Ja)">
                             &#x2715;
                         </button>
                     `;
                 } else {
+                    // Anders tonen we de normale verbergknop
                     hideButtonHtml = `
                         <button class="hide-card-btn" onclick="hideCard(event, '${uniqueId}')" title="Verberg object (kolom Y naar Nee)">
                             &#x2715;
@@ -2201,6 +2089,7 @@
                             </div>
                             ${auctionHtml}
                             ${aiReasonHtml}
+                            ${!isOwnStock ? `<div class="card-link">Bekijk machine</div>` : ''}
                             ${extraContentHtml}
                         </div>
                     ${wrapperEnd}
@@ -2253,11 +2142,6 @@
         
                     if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                     if (filterStatus && row.Status !== filterStatus) return false;
-
-                    if (selectedCountryFilter) {
-                        let info = extractCountryInfo(row.Locatie || '');
-                        if (info.name !== selectedCountryFilter) return false;
-                    }
 
                     if (!showCompetitors) {
                         const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
