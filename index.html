@@ -308,6 +308,94 @@
             position: relative;
         }
 
+        /* Landenfilter Knop & Dropdown (Wereldbol stijl) */
+        .country-filter-container {
+            position: relative;
+        }
+
+        .country-filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-dark);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: border-color 0.2s, background 0.2s;
+            user-select: none;
+            height: 36px;
+            box-sizing: border-box;
+        }
+
+        .country-filter-btn:hover {
+            border-color: var(--boss-black);
+            background: #f8f9fa;
+        }
+
+        .country-filter-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .country-dropdown {
+            display: none;
+            position: absolute;
+            top: 42px;
+            right: 0;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-width: 220px;
+            z-index: 100;
+            overflow: hidden;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .country-dropdown.open {
+            display: block;
+        }
+
+        .country-option {
+            padding: 9px 15px;
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-dark);
+            cursor: pointer;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .country-option:last-child {
+            border-bottom: none;
+        }
+
+        .country-option:hover {
+            background: #f8f9fa;
+            color: var(--boss-red);
+        }
+
+        .country-option.selected {
+            background: #eff6ff;
+            color: var(--ai-blue);
+        }
+
+        .country-option img {
+            width: 20px;
+            height: 14px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+        }
+
         /* Sort Dropdown Component */
         .sort-container {
             position: relative;
@@ -956,6 +1044,22 @@
                 
                 <div class="header-controls">
                     
+                    <!-- Landenfilter Knop & Dropdown (Wereldbol stijl) -->
+                    <div class="country-filter-container">
+                        <div class="country-filter-btn" onclick="toggleCountryMenu()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            <span id="selectedCountryLabel">Alle landen</span>
+                        </div>
+                        <div class="country-dropdown" id="countryDropdown">
+                            <div class="country-option selected" onclick="setCountryFilter('', 'Alle landen')">🌍 Alle landen</div>
+                            <div id="countryOptionsList"></div>
+                        </div>
+                    </div>
+
                     <!-- Sorteer Knop & Dropdown -->
                     <div class="sort-container">
                         <div class="sort-btn" onclick="toggleSortMenu()">
@@ -1021,6 +1125,7 @@
         let aiPicksActive = true; 
         let showCompetitors = false; 
         let currentSort = 'default';
+        let selectedCountryCode = '';
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
         let tonenStatusData = JSON.parse(localStorage.getItem('bossTonenStatusData') || '{}');
@@ -1036,6 +1141,23 @@
 
         function toggleSortMenu() {
             document.getElementById('sortDropdown').classList.toggle('open');
+            document.getElementById('countryDropdown').classList.remove('open');
+        }
+
+        function toggleCountryMenu() {
+            document.getElementById('countryDropdown').classList.toggle('open');
+            document.getElementById('sortDropdown').classList.remove('open');
+        }
+
+        function setCountryFilter(code, label) {
+            selectedCountryCode = code;
+            document.getElementById('selectedCountryLabel').innerText = label;
+            
+            document.querySelectorAll('.country-option').forEach(el => el.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+
+            document.getElementById('countryDropdown').classList.remove('open');
+            renderGrid();
         }
 
         function setSort(sortType) {
@@ -1052,6 +1174,9 @@
         window.addEventListener('click', function(e) {
             if (!document.querySelector('.sort-container').contains(e.target)) {
                 document.getElementById('sortDropdown').classList.remove('open');
+            }
+            if (!document.querySelector('.country-filter-container').contains(e.target)) {
+                document.getElementById('countryDropdown').classList.remove('open');
             }
         });
 
@@ -1136,7 +1261,6 @@
                     sendToGoogleAppsScript(id, 'goed');
                 }
             } else if (type === 'negative') {
-                // Als het al negatief is (rood kruisje), betekent dit dat we het object WEER AAN willen zetten!
                 if (feedbackData[id] === 'negative' || tonenStatusData[id] === 'Nee') {
                     delete feedbackData[id];
                     tonenStatusData[id] = 'Ja';
@@ -1225,7 +1349,6 @@
                 let updated = false;
                 Object.keys(liveData).forEach(id => {
                     const info = liveData[id];
-                    // info is een object met { status: '...', tonen: '...' } of een string in oudere versies
                     let statusVal = typeof info === 'object' ? info.status : info;
                     let tonenVal = typeof info === 'object' ? info.tonen : '';
 
@@ -1302,6 +1425,7 @@
                 ownStockData = parsedVoorraad.filter(row => row.Merk || row.Model || row.brand || row.Titel);
 
                 populateFilters();
+                populateCountryDropdown();
                 updateSystemStatusHeader();
                 
                 switchTab('listings'); 
@@ -1329,6 +1453,7 @@
             }
 
             populateFilters();
+            populateCountryDropdown();
             renderGrid();
         }
 
@@ -1534,6 +1659,148 @@
             return `📍 <span>${cleanLocStr}</span>`;
         }
 
+        function extractCountryCodeAndName(locStr) {
+            if (!locStr) return { code: 'unknown', name: 'Onbekend' };
+            let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
+            let lLower = cleanLocStr.toLowerCase();
+
+            if (lLower.includes('überherrn') || lLower.includes('saarland')) {
+                return { code: 'de', name: 'Duitsland' };
+            }
+            if (
+                lLower.includes('mantova') || lLower.includes('bergamo') || lLower.includes('napoli') || 
+                lLower.includes('padova') || lLower.includes('avellino') || lLower.includes('perugia') || 
+                lLower.includes('roma') || lLower.includes('bologna') || lLower.includes('cuneo') || 
+                lLower.includes('piemonte') || lLower.includes('bari') || lLower.includes('puglia') || 
+                lLower.includes('lazio') || lLower.includes('emilia') || lLower.includes('lombardia') || 
+                lLower.includes('campania') || lLower.includes('veneto') || lLower.includes('umbria')
+            ) {
+                return { code: 'it', name: 'Italië' };
+            }
+
+            const worldCountries = {
+                'can': 'ca', 'ca': 'ca', 'canada': 'ca',
+                'usa': 'us', 'usm': 'us', 'us': 'us', 'united states': 'us', 'verenigde staten': 'us',
+                'mex': 'mx', 'mx': 'mx', 'mexico': 'mx',
+                'arg': 'ar', 'ar': 'ar', 'argentina': 'ar', 'argentinië': 'ar',
+                'bra': 'br', 'br': 'br', 'brazil': 'br', 'brazilië': 'br',
+                'chl': 'cl', 'cl': 'cl', 'chile': 'cl', 'chili': 'cl',
+                'col': 'co', 'co': 'co', 'colombia': 'co',
+                'per': 'pe', 'pe': 'pe', 'peru': 'pe',
+                'ury': 'uy', 'uy': 'uy', 'uruguay': 'uy',
+                'ven': 've', 've': 've', 'venezuela': 've',
+                'cri': 'cr', 'cr': 'cr', 'costa rica': 'cr',
+                'pan': 'pa', 'pa': 'pa', 'panama': 'pa',
+                'dom': 'do', 'do': 'do', 'dominican republic': 'do', 'dominikaanse republiek': 'do',
+                'nld': 'nl', 'nl': 'nl', 'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl',
+                'bel': 'be', 'be': 'be', 'belgië': 'be', 'belgium': 'be', 'belgique': 'be',
+                'deu': 'de', 'de': 'de', 'duitsland': 'de', 'germany': 'de', 'deutschland': 'de',
+                'fra': 'fr', 'fr': 'fr', 'frankrijk': 'fr', 'france': 'fr',
+                'esp': 'es', 'es': 'es', 'spanje': 'es', 'spain': 'es', 'españa': 'es',
+                'prt': 'pt', 'pt': 'pt', 'portugal': 'pt',
+                'ita': 'it', 'it': 'it', 'italië': 'it', 'italy': 'it', 'italia': 'it',
+                'pol': 'pl', 'pl': 'pl', 'polen': 'pl', 'poland': 'pl',
+                'swe': 'se', 'se': 'se', 'zweden': 'se', 'sweden': 'se', 'sverige': 'se',
+                'nor': 'no', 'no': 'no', 'noorwegen': 'no', 'norway': 'no', 'norge': 'no',
+                'dnk': 'dk', 'dk': 'dk', 'denemarken': 'dk', 'denmark': 'dk', 'danmark': 'dk',
+                'fin': 'fi', 'fi': 'fi', 'finland': 'fi', 'suomi': 'fi',
+                'irl': 'ie', 'ie': 'ie', 'ierland': 'ie', 'ireland': 'ie',
+                'gbr': 'gb', 'uk': 'gb', 'gb': 'gb', 'verenigd koninkrijk': 'gb', 'engeland': 'gb', 'england': 'gb', 'united kingdom': 'gb',
+                'che': 'ch', 'ch': 'ch', 'zwitserland': 'ch', 'switzerland': 'ch', 'suisse': 'ch',
+                'aut': 'at', 'at': 'at', 'oostenrijk': 'at', 'austria': 'at', 'österreich': 'at',
+                'svn': 'si', 'si': 'si', 'slovenië': 'si', 'slovenia': 'si',
+                'svk': 'sk', 'sk': 'sk', 'slowakije': 'sk', 'slovakia': 'sk',
+                'cze': 'cz', 'cz': 'cz', 'tsjechië': 'cz', 'czech': 'cz', 'czechia': 'cz',
+                'hun': 'hu', 'hu': 'hu', 'hongarije': 'hu', 'hungary': 'hu',
+                'rou': 'ro', 'ro': 'ro', 'roemenië': 'ro', 'romania': 'ro',
+                'bgr': 'bg', 'bg': 'bg', 'bulgarije': 'bg', 'bulgaria': 'bg',
+                'grc': 'gr', 'gr': 'gr', 'griekenland': 'gr', 'greece': 'gr',
+                'hrv': 'hr', 'hr': 'hr', 'kroatië': 'hr', 'croatia': 'hr',
+                'est': 'ee', 'ee': 'ee', 'estland': 'ee', 'estonia': 'ee',
+                'lva': 'lv', 'lv': 'lv', 'letland': 'lv', 'latvia': 'lv',
+                'ltu': 'lt', 'lt': 'lt', 'litouwen': 'lt', 'lithuania': 'lt',
+                'lux': 'lu', 'lu': 'lu', 'luxemburg': 'lu', 'luxembourg': 'lu',
+                'isl': 'is', 'is': 'is', 'ijsland': 'is', 'iceland': 'is',
+                'ukr': 'ua', 'ua': 'ua', 'oekraïne': 'ua', 'ukraine': 'ua',
+                'tur': 'tr', 'tr': 'tr', 'turkije': 'tr', 'turkey': 'tr',
+                'rus': 'ru', 'ru': 'ru', 'rusland': 'ru', 'russia': 'ru',
+                'srb': 'rs', 'rs': 'rs', 'servië': 'rs', 'serbia': 'rs',
+                'bih': 'ba', 'ba': 'ba', 'bosnië en herzegovina': 'ba', 'bosnia': 'ba',
+                'phl': 'ph', 'ph': 'ph', 'philippines': 'ph', 'filipijnen': 'ph',
+                'idn': 'id', 'id': 'id', 'indonesia': 'id', 'indonesië': 'id',
+                'ind': 'in', 'in': 'in', 'india': 'in',
+                'chn': 'cn', 'cn': 'cn', 'china': 'cn',
+                'jpn': 'jp', 'jp': 'jp', 'japan': 'jp',
+                'kor': 'kr', 'kr': 'kr', 'zuid-korea': 'kr', 'south korea': 'kr',
+                'vnm': 'vn', 'vn': 'vn', 'vietnam': 'vn',
+                'tha': 'th', 'th': 'th', 'thailand': 'th',
+                'mys': 'my', 'my': 'my', 'maleisië': 'my', 'malaysia': 'my',
+                'sgp': 'sg', 'sg': 'sg', 'singapore': 'sg',
+                'are': 'ae', 'ae': 'ae', 'verenigde arabische emiraten': 'ae', 'uae': 'ae', 'dubai': 'ae',
+                'sau': 'sa', 'sa': 'sa', 'saudi-arabië': 'sa', 'saudi arabia': 'sa',
+                'isr': 'il', 'il': 'il', 'israël': 'il', 'israel': 'il',
+                'aus': 'au', 'au': 'au', 'australië': 'au', 'australia': 'au',
+                'nzl': 'nz', 'nz': 'nz', 'nieuwe-zeeland': 'nz', 'new zealand': 'nz',
+                'zaf': 'za', 'za': 'za', 'zuid-afrika': 'za', 'south africa': 'za',
+                'egy': 'eg', 'eg': 'eg', 'egypte': 'eg', 'egypt': 'eg',
+                'mar': 'ma', 'ma': 'ma', 'marokko': 'ma', 'morocco': 'ma'
+            };
+
+            let countryCode = '';
+            let parts = cleanLocStr.split(/[,–\/-]+/);
+            
+            for (let i = parts.length - 1; i >= 0; i--) {
+                let token = parts[i].trim().toLowerCase();
+                if (worldCountries[token]) {
+                    countryCode = worldCountries[token];
+                    break;
+                }
+            }
+            
+            if (!countryCode) {
+                for (const [name, code] of Object.entries(worldCountries)) {
+                    if (lLower.includes(name)) {
+                        countryCode = code;
+                        break;
+                    }
+                }
+            }
+
+            if (countryCode) {
+                return { code: countryCode, name: countryCode.toUpperCase() };
+            }
+
+            return { code: 'unknown', name: cleanLocStr };
+        }
+
+        function populateCountryDropdown() {
+            const dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
+            let countryMap = {};
+
+            dataSource.forEach(item => {
+                if (item.Locatie) {
+                    let info = extractCountryCodeAndName(item.Locatie);
+                    if (info.code && info.code !== 'unknown') {
+                        countryMap[info.code] = info.name;
+                    }
+                }
+            });
+
+            let sortedCountries = Object.keys(countryMap).sort((a, b) => countryMap[a].localeCompare(countryMap[b]));
+            const listContainer = document.getElementById('countryOptionsList');
+            listContainer.innerHTML = '';
+
+            sortedCountries.forEach(code => {
+                let displayName = code.toUpperCase();
+                listContainer.innerHTML += `
+                    <div class="country-option" onclick="setCountryFilter('${code}', '${displayName}')">
+                        <img src="https://flagcdn.com/24x18/${code}.png" alt="${code}">
+                        <span>${displayName}</span>
+                    </div>
+                `;
+            });
+        }
+
         function parseAuctionDate(str) {
             if (!str) return null;
             str = String(str).replace(/^'/, '').trim();
@@ -1655,6 +1922,12 @@
 
                 if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
+
+                // Landenfilter op basis van de exacte vlaggen-/landenlogica
+                if (selectedCountryCode) {
+                    let itemCountryInfo = extractCountryCodeAndName(row.Locatie);
+                    if (itemCountryInfo.code !== selectedCountryCode) return false;
+                }
 
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let tonenVal = tonenStatusData[uniqueId];
@@ -2053,6 +2326,11 @@
         
                     if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                     if (filterStatus && row.Status !== filterStatus) return false;
+
+                    if (selectedCountryCode) {
+                        let itemCountryInfo = extractCountryCodeAndName(row.Locatie);
+                        if (itemCountryInfo.code !== selectedCountryCode) return false;
+                    }
 
                     let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                     let tonenVal = tonenStatusData[uniqueId];
