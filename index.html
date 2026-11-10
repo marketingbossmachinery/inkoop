@@ -1247,7 +1247,6 @@
                     const status = typeof item === 'object' ? item.status : String(item);
                     const tonen = typeof item === 'object' ? item.tonen : '';
 
-                    // Real-time controle op Kolom Y vanuit de live status
                     if (tonen && tonen.toLowerCase() === 'nee') {
                         if (!hiddenCardsData[id]) {
                             hiddenCardsData[id] = true;
@@ -1652,8 +1651,11 @@
             let filteredData = dataSource.filter(row => {
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
                 
-                // 1. Verberg als lokaal of via kolom Y (real-time/sheet) op 'Nee' gezet is
-                if (hiddenCardsData[uniqueId]) return false;
+                // CRUCIALE FIX: Verberg verborgen objecten ALLEEN als de feedbackfilter op 'relevant' of 'negative' staat. 
+                // Bij 'all' (Alle resultaten) of 'positive' mogen verborgen items niet worden achtergehouden.
+                if (filterFb !== 'all' && filterFb !== 'positive') {
+                    if (hiddenCardsData[uniqueId]) return false;
+                }
 
                 const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
                 const isAuction = endDateVal !== '';
@@ -1696,7 +1698,6 @@
 
                 let userFb = feedbackData[uniqueId] || 'none';
 
-                // 2. 'Relevante resultaten' filter filtert nu automatisch elementen met een negatief duimpje weg
                 if (filterFb === 'relevant' && userFb === 'negative') return false; 
                 if (filterFb === 'positive' && userFb !== 'positive') return false;
                 if (filterFb === 'negative' && userFb !== 'negative') return false;
@@ -2053,7 +2054,10 @@
             const countHelper = (dataSource, isAuctionTab, isStockTab) => {
                 return dataSource.filter(row => {
                     let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
-                    if (hiddenCardsData[uniqueId]) return false;
+                    
+                    if (filterFb !== 'all' && filterFb !== 'positive') {
+                        if (hiddenCardsData[uniqueId]) return false;
+                    }
 
                     const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
                     const isAuction = endDateVal !== '';
