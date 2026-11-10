@@ -1023,6 +1023,7 @@
         let currentSort = 'default';
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
+        let tonenStatusData = JSON.parse(localStorage.getItem('bossTonenStatusData') || '{}');
 
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
         const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
@@ -1135,9 +1136,15 @@
                     sendToGoogleAppsScript(id, 'goed');
                 }
             } else if (type === 'negative') {
-                if (feedbackData[id] === 'negative') {
+                // Als het al negatief is (rood kruisje), betekent dit dat we het object WEER AAN willen zetten!
+                if (feedbackData[id] === 'negative' || tonenStatusData[id] === 'Nee') {
                     delete feedbackData[id];
-                    sendToGoogleAppsScript(id, 'removed');
+                    tonenStatusData[id] = 'Ja';
+                    localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
+                    localStorage.setItem('bossTonenStatusData', JSON.stringify(tonenStatusData));
+                    sendToGoogleAppsScriptTonen(id, 'tonenJa');
+                    renderGrid();
+                    return;
                 } else {
                     activeFeedbackId = id;
                     document.getElementById('reasonModal').style.display = 'flex';
@@ -1152,7 +1159,9 @@
         function submitReason(reasonText) {
             if (!activeFeedbackId) return;
             feedbackData[activeFeedbackId] = 'negative';
+            tonenStatusData[activeFeedbackId] = 'Nee';
             localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
+            localStorage.setItem('bossTonenStatusData', JSON.stringify(tonenStatusData));
 
             sendToGoogleAppsScript(activeFeedbackId, "Slecht: " + reasonText);
             
@@ -1190,6 +1199,21 @@
             }
         }
 
+        function sendToGoogleAppsScriptTonen(id, actionType) {
+            if (gasWebappUrl) {
+                const targetUrl = `${gasWebappUrl}?action=${encodeURIComponent(actionType)}&id=${encodeURIComponent(id)}`;
+                
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = targetUrl;
+                document.body.appendChild(iframe);
+                
+                setTimeout(() => {
+                    iframe.remove();
+                }, 5000);
+            }
+        }
+
         async function haalLiveFeedbackOp() {
             if (!gasWebappUrl) return;
             try {
@@ -1200,18 +1224,34 @@
                 const liveData = await response.json();
                 let updated = false;
                 Object.keys(liveData).forEach(id => {
-                    const val = String(liveData[id]).trim();
-                    if (val === 'goed' || val === 'positive') {
+                    const info = liveData[id];
+                    // info is een object met { status: '...', tonen: '...' } of een string in oudere versies
+                    let statusVal = typeof info === 'object' ? info.status : info;
+                    let tonenVal = typeof info === 'object' ? info.tonen : '';
+
+                    if (tonenVal === 'Nee') {
+                        tonenStatusData[id] = 'Nee';
+                        if (!feedbackData[id]) feedbackData[id] = 'negative';
+                        updated = true;
+                    } else if (tonenVal === 'Ja') {
+                        if (tonenStatusData[id] === 'Nee') {
+                            delete tonenStatusData[id];
+                            if (feedbackData[id] === 'negative') delete feedbackData[id];
+                            updated = true;
+                        }
+                    }
+
+                    if (statusVal === 'goed' || statusVal === 'positive') {
                         if (feedbackData[id] !== 'positive') {
                             feedbackData[id] = 'positive';
                             updated = true;
                         }
-                    } else if (val.startsWith('Slecht:') || val === 'slecht' || val === 'negative') {
+                    } else if (String(statusVal).toLowerCase().startsWith('slecht:') || statusVal === 'slecht' || statusVal === 'negative') {
                         if (feedbackData[id] !== 'negative') {
                             feedbackData[id] = 'negative';
                             updated = true;
                         }
-                    } else if (val === 'removed') {
+                    } else if (statusVal === 'removed') {
                         if (feedbackData[id]) {
                             delete feedbackData[id];
                             updated = true;
@@ -1221,6 +1261,7 @@
 
                 if (updated) {
                     localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
+                    localStorage.setItem('bossTonenStatusData', JSON.stringify(tonenStatusData));
                     renderGrid();
                 }
             } catch (err) {
@@ -1615,6 +1656,10 @@
                 if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                 if (filterStatus && row.Status !== filterStatus) return false;
 
+                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
+                let tonenVal = tonenStatusData[uniqueId];
+                if (tonenVal === 'Nee' && filterFb !== 'negative' && filterFb !== 'all') return false;
+
                 if (!showCompetitors) {
                     const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
                     const feedbackText = String(getRowValue(row, ['Feedback', 'Feedback Inkoop']) || '').toLowerCase();
@@ -1633,12 +1678,11 @@
                     if (!searchableText.includes(searchQuery)) return false;
                 }
 
-                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let userFb = feedbackData[uniqueId] || 'none';
 
-                if (filterFb === 'relevant' && userFb === 'negative') return false; 
+                if (filterFb === 'relevant' && (userFb === 'negative' || tonenVal === 'Nee')) return false; 
                 if (filterFb === 'positive' && userFb !== 'positive') return false;
-                if (filterFb === 'negative' && userFb !== 'negative') return false;
+                if (filterFb === 'negative' && userFb !== 'negative' && tonenVal !== 'Nee') return false;
 
                 return true;
             });
@@ -1899,6 +1943,7 @@
                 const productUrl = row.Link ? row.Link : '#';
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let myFb = feedbackData[uniqueId];
+                let tonenVal = tonenStatusData[uniqueId];
                 let extraClass = '';
                 let posBtnClass = '';
                 let negBtnClass = '';
@@ -1907,7 +1952,7 @@
                     extraClass = ' glow-green';
                     posBtnClass = ' active-pos';
                 }
-                if (myFb === 'negative') {
+                if (myFb === 'negative' || tonenVal === 'Nee') {
                     extraClass = ' glow-red';
                     negBtnClass = ' active-neg';
                 }
@@ -1923,7 +1968,7 @@
                             <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive')" title="Positief (Interessant)">
                                 ${svgThumbUp}
                             </button>
-                            <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief (Niet interessant)">
+                            <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief / Uitvinken (Klik nogmaals om weer in te vinken)">
                                 ${svgThumbDown}
                             </button>
                         </div>
@@ -2009,6 +2054,10 @@
                     if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
                     if (filterStatus && row.Status !== filterStatus) return false;
 
+                    let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
+                    let tonenVal = tonenStatusData[uniqueId];
+                    if (tonenVal === 'Nee' && filterFb !== 'negative' && filterFb !== 'all') return false;
+
                     if (!showCompetitors) {
                         const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
                         const feedbackText = String(getRowValue(row, ['Feedback', 'Feedback Inkoop']) || '').toLowerCase();
@@ -2027,12 +2076,11 @@
                         if (!searchableText.includes(searchQuery)) return false;
                     }
         
-                    let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                     let userFb = feedbackData[uniqueId] || 'none';
         
-                    if (filterFb === 'relevant' && userFb === 'negative') return false; 
+                    if (filterFb === 'relevant' && (userFb === 'negative' || tonenVal === 'Nee')) return false; 
                     if (filterFb === 'positive' && userFb !== 'positive') return false;
-                    if (filterFb === 'negative' && userFb !== 'negative') return false;
+                    if (filterFb === 'negative' && userFb !== 'negative' && tonenVal !== 'Nee') return false;
         
                     return true;
                 }).length;
