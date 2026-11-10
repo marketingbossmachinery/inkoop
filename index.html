@@ -1055,7 +1055,6 @@
                             <div class="country-option selected" onclick="setCountry('', this)" title="Alle landen">
                                 <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                             </div>
-                            <!-- Wordt dynamisch gevuld met vlaggen -->
                         </div>
                     </div>
 
@@ -1687,7 +1686,6 @@
             if (totalHours <= 3) {
                 return { boxText: `⚠️ Nog ${days > 0 ? days + 'd ' : ''}${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`, imageBadge: timeStrUpper, isUrgent: true, isExpired: false };
             }
-            // AANGEPAST: "Veiling op:" ingekort naar "Veiling:" zodat het niet naar de volgende regel springt
             return { boxText: `Veiling: ${d}-${m}-${y} om ${H}:${M}`, imageBadge: timeStrUpper, isUrgent: false, isExpired: false };
         }
 
@@ -2092,7 +2090,6 @@
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${aiReason}</div>` : '';
 
                 const expiredClass = isExpired ? ' expired' : '';
-                // AANGEPAST: Gehele kaart is nu de link, knop 'Bekijk machine' is verwijderd
                 const wrapperStart = `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}${extraClass}">`;
                 const wrapperEnd = `</a>`;
 
