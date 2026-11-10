@@ -308,86 +308,7 @@
             position: relative;
         }
 
-        /* Landen Filter Dropdown Styling (Alleen wereldbol icoon) */
-        .country-dropdown-container {
-            position: relative;
-        }
-
-        .country-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #fff;
-            border: 1px solid #cbd5e1;
-            padding: 6px 10px;
-            border-radius: 20px;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: border-color 0.2s, background 0.2s;
-            user-select: none;
-            height: 36px;
-            box-sizing: border-box;
-        }
-
-        .country-btn:hover {
-            border-color: var(--boss-black);
-            background: #f8f9fa;
-        }
-
-        .globe-icon {
-            width: 20px;
-            height: 20px;
-            filter: grayscale(100%);
-        }
-
-        .country-dropdown {
-            display: none;
-            position: absolute;
-            top: 42px;
-            left: 0;
-            background: #fff;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-width: 60px;
-            max-height: 300px;
-            overflow-y: auto;
-            z-index: 100;
-        }
-
-        .country-dropdown.open {
-            display: block;
-        }
-
-        .country-option {
-            padding: 8px 12px;
-            cursor: pointer;
-            border-bottom: 1px solid #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .country-option:last-child {
-            border-bottom: none;
-        }
-
-        .country-option:hover {
-            background: #f8f9fa;
-        }
-
-        .country-option.selected {
-            background: #eff6ff;
-        }
-
-        .country-option img, .country-option svg {
-            width: 24px;
-            height: 18px;
-            object-fit: cover;
-            border: 1px solid #ddd;
-            border-radius: 2px;
-        }
-
+        /* Sort Dropdown Component */
         .sort-container {
             position: relative;
         }
@@ -469,6 +390,7 @@
             display: none;
         }
 
+        /* Visuele Toggle Schakelaars */
         .ai-toggle-container {
             display: flex;
             align-items: center;
@@ -531,6 +453,7 @@
             color: var(--ai-blue);
         }
 
+        /* Actieve kleur voor Concurrentie tonen */
         #competitorToggleBtn.active .toggle-switch {
             background-color: #28a745;
         }
@@ -656,32 +579,6 @@
             box-shadow: 0 0 6px rgba(220,53,69,0.6);
         }
         .feedback-btn.active-neg svg { fill: #ffffff !important; }
-
-        /* Kruisje knop links onder over de foto */
-        .hide-card-btn {
-            position: absolute;
-            bottom: 6px;
-            left: 6px;
-            background: rgba(17, 17, 17, 0.75);
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            width: 28px;
-            height: 28px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 5;
-            transition: background 0.2s, transform 0.1s;
-            font-size: 16px;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.25);
-        }
-        .hide-card-btn:hover {
-            background: rgba(204, 32, 39, 0.9);
-            transform: scale(1.12);
-        }
 
         .badge-image-container {
             position: absolute;
@@ -900,6 +797,23 @@
             line-height: 1.3;
         }
 
+        .card-link {
+            display: block;
+            text-align: center;
+            background: var(--boss-black);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 12px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .card-link:hover { background: var(--boss-red); }
+
         .comparable-market-box {
             margin-top: 15px;
             background: #fafafa;
@@ -1042,22 +956,6 @@
                 
                 <div class="header-controls">
                     
-                    <!-- Landen Filter Dropdown (Alleen wereldbol / vlaggen) -->
-                    <div class="country-dropdown-container">
-                        <div class="country-btn" onclick="toggleCountryMenu()" title="Filter op land">
-                            <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="2" y1="12" x2="22" y2="12"></line>
-                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                            </svg>
-                        </div>
-                        <div class="country-dropdown" id="countryDropdown">
-                            <div class="country-option selected" onclick="setCountry('', this)" title="Alle landen">
-                                <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Sorteer Knop & Dropdown -->
                     <div class="sort-container">
                         <div class="sort-btn" onclick="toggleSortMenu()">
@@ -1098,7 +996,7 @@
                     </div>
 
                     <select id="filter-feedback" class="feedback-filter-select" onchange="renderGrid()">
-                        <option value="relevant" selected>Relevante resultaten</option>
+                        <option value="relevant" selected>Relevante resultaten (Geen 👎)</option>
                         <option value="all">Alle resultaten</option>
                         <option value="positive">Alleen positief (👍)</option>
                         <option value="negative">Alleen negatief (👎)</option>
@@ -1123,10 +1021,8 @@
         let aiPicksActive = true; 
         let showCompetitors = false; 
         let currentSort = 'default';
-        let currentCountryFilter = ''; 
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
-        let hiddenCardsData = JSON.parse(localStorage.getItem('bossHiddenCards') || '{}');
 
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
         const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
@@ -1139,28 +1035,16 @@
 
         function toggleSortMenu() {
             document.getElementById('sortDropdown').classList.toggle('open');
-            document.getElementById('countryDropdown').classList.remove('open');
-        }
-
-        function toggleCountryMenu() {
-            document.getElementById('countryDropdown').classList.toggle('open');
-            document.getElementById('sortDropdown').classList.remove('open');
         }
 
         function setSort(sortType) {
             currentSort = sortType;
+            
             document.querySelectorAll('.sort-option').forEach(el => el.classList.remove('selected'));
             const selectedOpt = document.getElementById(`opt-${sortType}`);
             if(selectedOpt) selectedOpt.classList.add('selected');
+            
             document.getElementById('sortDropdown').classList.remove('open');
-            renderGrid();
-        }
-
-        function setCountry(code, element) {
-            currentCountryFilter = code;
-            document.querySelectorAll('.country-option').forEach(el => el.classList.remove('selected'));
-            if(element) element.classList.add('selected');
-            document.getElementById('countryDropdown').classList.remove('open');
             renderGrid();
         }
 
@@ -1168,15 +1052,13 @@
             if (!document.querySelector('.sort-container').contains(e.target)) {
                 document.getElementById('sortDropdown').classList.remove('open');
             }
-            if (!document.querySelector('.country-dropdown-container').contains(e.target)) {
-                document.getElementById('countryDropdown').classList.remove('open');
-            }
         });
 
         function toggleAiPicks() {
             aiPicksActive = !aiPicksActive;
             const container = document.getElementById('aiToggleBtn');
             const stateSpan = document.getElementById('aiToggleState');
+            
             if (aiPicksActive) {
                 container.classList.add('active');
                 stateSpan.innerText = 'AAN';
@@ -1191,6 +1073,7 @@
             showCompetitors = !showCompetitors;
             const container = document.getElementById('competitorToggleBtn');
             const stateSpan = document.getElementById('competitorToggleState');
+            
             if (showCompetitors) {
                 container.classList.add('active');
                 stateSpan.innerText = 'AAN';
@@ -1220,13 +1103,16 @@
             if (reason.includes('in het verleden al geselecteerd')) {
                 return false;
             }
+
             return true;
         }
 
         function parseNumericForSort(val) {
             if (val === null || val === undefined) return null;
             let s = String(val).toLowerCase().trim();
+            
             if (s === '' || s.includes('aanvraag') || s.includes('bod') || s.includes('n.o.t.k')) return null;
+            
             let digits = s.match(/[\d]+([.,]\d{3})*/); 
             if (digits) {
                 let cleanNum = digits[0].replace(/[.,]/g, '');
@@ -1234,24 +1120,6 @@
                 return isNaN(n) ? null : n;
             }
             return null;
-        }
-
-        function hideCard(event, id) {
-            event.preventDefault();
-            event.stopPropagation();
-
-            hiddenCardsData[id] = true;
-            localStorage.setItem('bossHiddenCards', JSON.stringify(hiddenCardsData));
-
-            if (gasWebappUrl) {
-                const targetUrl = `${gasWebappUrl}?action=verberg&id=${encodeURIComponent(id)}`;
-                const iframe = document.createElement('iframe');
-                iframe.style.display = 'none';
-                iframe.src = targetUrl;
-                document.body.appendChild(iframe);
-                setTimeout(() => { iframe.remove(); }, 5000);
-            }
-            renderGrid();
         }
 
         function toggleFeedback(event, id, type) {
@@ -1285,7 +1153,9 @@
             if (!activeFeedbackId) return;
             feedbackData[activeFeedbackId] = 'negative';
             localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
+
             sendToGoogleAppsScript(activeFeedbackId, "Slecht: " + reasonText);
+            
             closeReasonModal();
             renderGrid();
         }
@@ -1308,11 +1178,15 @@
         function sendToGoogleAppsScript(id, feedbackVal) {
             if (gasWebappUrl) {
                 const targetUrl = `${gasWebappUrl}?id=${encodeURIComponent(id)}&feedback=${encodeURIComponent(feedbackVal)}`;
+                
                 const iframe = document.createElement('iframe');
                 iframe.style.display = 'none';
                 iframe.src = targetUrl;
                 document.body.appendChild(iframe);
-                setTimeout(() => { iframe.remove(); }, 5000);
+                
+                setTimeout(() => {
+                    iframe.remove();
+                }, 5000);
             }
         }
 
@@ -1326,33 +1200,18 @@
                 const liveData = await response.json();
                 let updated = false;
                 Object.keys(liveData).forEach(id => {
-                    const item = liveData[id];
-                    const status = typeof item === 'object' ? item.status : String(item);
-                    const tonen = typeof item === 'object' ? item.tonen : '';
-
-                    if (tonen && tonen.toLowerCase() === 'nee') {
-                        if (!hiddenCardsData[id]) {
-                            hiddenCardsData[id] = true;
-                            updated = true;
-                        }
-                    } else if (tonen && tonen.toLowerCase() === 'ja') {
-                        if (hiddenCardsData[id]) {
-                            delete hiddenCardsData[id];
-                            updated = true;
-                        }
-                    }
-
-                    if (status === 'goed' || status === 'positive') {
+                    const val = String(liveData[id]).trim();
+                    if (val === 'goed' || val === 'positive') {
                         if (feedbackData[id] !== 'positive') {
                             feedbackData[id] = 'positive';
                             updated = true;
                         }
-                    } else if (status.startsWith('Slecht:') || status === 'slecht' || status === 'negative') {
+                    } else if (val.startsWith('Slecht:') || val === 'slecht' || val === 'negative') {
                         if (feedbackData[id] !== 'negative') {
                             feedbackData[id] = 'negative';
                             updated = true;
                         }
-                    } else if (status === 'removed') {
+                    } else if (val === 'removed') {
                         if (feedbackData[id]) {
                             delete feedbackData[id];
                             updated = true;
@@ -1362,7 +1221,6 @@
 
                 if (updated) {
                     localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
-                    localStorage.setItem('bossHiddenCards', JSON.stringify(hiddenCardsData));
                     renderGrid();
                 }
             } catch (err) {
@@ -1376,115 +1234,6 @@
             "MachineryLine", "Mascus", "Proxibid", "Purple Wave", "Ritchie", "Surplex", "Troostwijk", 
             "Truck1", "Truckscout24",  "werktuigen", "Yoder & Frey"            
         ];
-
-        const worldCountries = {
-            'ca': 'Canada', 'us': 'Verenigde Staten', 'mx': 'Mexico', 'ar': 'Argentinië',
-            'br': 'Brazilië', 'cl': 'Chili', 'co': 'Colombia', 'pe': 'Peru', 'uy': 'Uruguay',
-            've': 'Venezuela', 'cr': 'Costa Rica', 'pa': 'Panama', 'do': 'Dominikaanse Republiek',
-            'nl': 'Nederland', 'be': 'België', 'de': 'Duitsland', 'fr': 'Frankrijk',
-            'es': 'Spanje', 'pt': 'Portugal', 'it': 'Italië', 'pl': 'Polen', 'se': 'Zweden',
-            'no': 'Noorwegen', 'dk': 'Denemarken', 'fi': 'Finland', 'ie': 'Ierland',
-            'gb': 'Verenigd Koninkrijk', 'ch': 'Zwitserland', 'at': 'Oostenrijk', 'si': 'Slovenië',
-            'sk': 'Slowakije', 'cz': 'Tsjechië', 'hu': 'Hongarije', 'ro': 'Roemenië',
-            'bg': 'Bulgarije', 'gr': 'Griekenland', 'hr': 'Kroatië', 'ee': 'Estland',
-            'lv': 'Letland', 'lt': 'Litouwen', 'lu': 'Luxemburg', 'is': 'IJsland',
-            'ua': 'Oekraïne', 'tr': 'Turkije', 'ru': 'Rusland', 'rs': 'Servië', 'ba': 'Bosnië',
-            'ph': 'Filipijnen', 'id': 'Indonesië', 'in': 'India', 'cn': 'China', 'jp': 'Japan',
-            'kr': 'Zuid-Korea', 'vn': 'Vietnam', 'th': 'Thailand', 'my': 'Maleisië',
-            'sg': 'Singapore', 'ae': 'VAE', 'sa': 'Saoedi-Arabië', 'il': 'Israël',
-            'au': 'Australië', 'nz': 'Nieuw-Zeeland', 'za': 'Zuid-Afrika', 'eg': 'Egypte', 'ma': 'Marokko'
-        };
-
-        function parseCountryInfo(locStr) {
-            if (!locStr) return { code: '', name: 'Onbekend' };
-            let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
-            let lLower = cleanLocStr.toLowerCase();
-
-            if (lLower.includes('überherrn') || lLower.includes('saarland')) {
-                return { code: 'de', name: cleanLocStr };
-            }
-            if (
-                lLower.includes('mantova') || lLower.includes('bergamo') || lLower.includes('napoli') || 
-                lLower.includes('padova') || lLower.includes('avellino') || lLower.includes('perugia') || 
-                lLower.includes('roma') || lLower.includes('bologna') || lLower.includes('cuneo') || 
-                lLower.includes('piemonte') || lLower.includes('bari') || lLower.includes('puglia') || 
-                lLower.includes('lazio') || lLower.includes('emilia') || lLower.includes('lombardia') || 
-                lLower.includes('campania') || lLower.includes('veneto') || lLower.includes('umbria')
-            ) {
-                return { code: 'it', name: cleanLocStr };
-            }
-
-            const countryNameMap = {
-                'canada': 'ca', 'usa': 'us', 'united states': 'us', 'verenigde staten': 'us',
-                'mexico': 'mx', 'argentina': 'ar', 'brazil': 'br', 'chile': 'cl',
-                'colombia': 'co', 'peru': 'pe', 'uruguay': 'uy', 'venezuela': 've',
-                'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl',
-                'belgië': 'be', 'belgium': 'be', 'duitsland': 'de', 'germany': 'de',
-                'frankrijk': 'fr', 'france': 'fr', 'spanje': 'es', 'spain': 'es',
-                'portugal': 'pt', 'italië': 'it', 'italy': 'it', 'polen': 'pl',
-                'zweden': 'se', 'noorwegen': 'no', 'denemarken': 'dk', 'finland': 'fi',
-                'ierland': 'ie', 'verenigd koninkrijk': 'gb', 'uk': 'gb', 'engeland': 'gb',
-                'zwitserland': 'ch', 'oostenrijk': 'at', 'tsjechië': 'cz', 'turkije': 'tr',
-                'oekraïne': 'ua', 'australië': 'au', 'zuid-afrika': 'za', 'japan': 'jp', 'jpn': 'jp'
-            };
-
-            let countryCode = '';
-            let parts = cleanLocStr.split(/[,–\/-]+/);
-            for (let i = parts.length - 1; i >= 0; i--) {
-                let token = parts[i].trim().toLowerCase();
-                if (countryNameMap[token]) {
-                    countryCode = countryNameMap[token];
-                    break;
-                }
-            }
-            if (!countryCode) {
-                for (const [name, code] of Object.entries(countryNameMap)) {
-                    if (lLower.includes(name)) {
-                        countryCode = code;
-                        break;
-                    }
-                }
-            }
-
-            if (countryCode && worldCountries[countryCode]) {
-                return { code: countryCode, name: cleanLocStr };
-            }
-            return { code: '', name: cleanLocStr };
-        }
-
-        function populateCountryDropdown() {
-            const dropdown = document.getElementById('countryDropdown');
-            dropdown.innerHTML = `
-                <div class="country-option selected" onclick="setCountry('', this)" title="Alle landen">
-                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                </div>
-            `;
-
-            let dataSource = [...allData, ...ownStockData];
-            let foundCountries = new Set();
-
-            dataSource.forEach(row => {
-                if (row['Locatie']) {
-                    let info = parseCountryInfo(row['Locatie']);
-                    if (info.code) {
-                        foundCountries.add(info.code);
-                    }
-                }
-            });
-
-            let sortedCodes = Array.from(foundCountries).sort((a, b) => {
-                return (worldCountries[a] || '').localeCompare(worldCountries[b] || '');
-            });
-
-            sortedCodes.forEach(code => {
-                let countryName = worldCountries[code] || code.toUpperCase();
-                dropdown.innerHTML += `
-                    <div class="country-option" onclick="setCountry('${code}', this)" title="${countryName}">
-                        <img src="https://flagcdn.com/24x18/${code}.png" alt="${code}">
-                    </div>
-                `;
-            });
-        }
 
         fetch(jsonMasterUrl)
             .then(response => response.json())
@@ -1512,7 +1261,6 @@
                 ownStockData = parsedVoorraad.filter(row => row.Merk || row.Model || row.brand || row.Titel);
 
                 populateFilters();
-                populateCountryDropdown();
                 updateSystemStatusHeader();
                 
                 switchTab('listings'); 
@@ -1628,16 +1376,127 @@
 
         function getCountryFlagHtml(locStr) {
             if (!locStr) return '📍 <span>Onbekend</span>';
-            let info = parseCountryInfo(locStr);
-            if (info.code) {
-                return `<img src="https://flagcdn.com/24x18/${info.code}.png" alt="${info.code}" title="${locStr}"> <span>${info.name}</span>`;
+            
+            let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
+            let lLower = cleanLocStr.toLowerCase();
+
+            if (lLower.includes('überherrn') || lLower.includes('saarland')) {
+                return `<img src="https://flagcdn.com/24x18/de.png" alt="de" title="DE"> <span>${cleanLocStr}</span>`;
             }
-            return `📍 <span>${locStr}</span>`;
+            if (
+                lLower.includes('mantova') || lLower.includes('bergamo') || lLower.includes('napoli') || 
+                lLower.includes('padova') || lLower.includes('avellino') || lLower.includes('perugia') || 
+                lLower.includes('roma') || lLower.includes('bologna') || lLower.includes('cuneo') || 
+                lLower.includes('piemonte') || lLower.includes('bari') || lLower.includes('puglia') || 
+                lLower.includes('lazio') || lLower.includes('emilia') || lLower.includes('lombardia') || 
+                lLower.includes('campania') || lLower.includes('veneto') || lLower.includes('umbria')
+            ) {
+                return `<img src="https://flagcdn.com/24x18/it.png" alt="it" title="IT"> <span>${cleanLocStr}</span>`;
+            }
+            
+            const worldCountries = {
+                'can': 'ca', 'ca': 'ca', 'canada': 'ca',
+                'usa': 'us', 'usm': 'us', 'us': 'us', 'united states': 'us', 'verenigde staten': 'us',
+                'mex': 'mx', 'mx': 'mx', 'mexico': 'mx',
+
+                'arg': 'ar', 'ar': 'ar', 'argentina': 'ar', 'argentinië': 'ar',
+                'bra': 'br', 'br': 'br', 'brazil': 'br', 'brazilië': 'br',
+                'chl': 'cl', 'cl': 'cl', 'chile': 'cl', 'chili': 'cl',
+                'col': 'co', 'co': 'co', 'colombia': 'co',
+                'per': 'pe', 'pe': 'pe', 'peru': 'pe',
+                'ury': 'uy', 'uy': 'uy', 'uruguay': 'uy',
+                'ven': 've', 've': 've', 'venezuela': 've',
+                'cri': 'cr', 'cr': 'cr', 'costa rica': 'cr',
+                'pan': 'pa', 'pa': 'pa', 'panama': 'pa',
+                'dom': 'do', 'do': 'do', 'dominican republic': 'do', 'dominikaanse republiek': 'do',
+
+                'nld': 'nl', 'nl': 'nl', 'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl',
+                'bel': 'be', 'be': 'be', 'belgië': 'be', 'belgium': 'be', 'belgique': 'be',
+                'deu': 'de', 'de': 'de', 'duitsland': 'de', 'germany': 'de', 'deutschland': 'de',
+                'fra': 'fr', 'fr': 'fr', 'frankrijk': 'fr', 'france': 'fr',
+                'esp': 'es', 'es': 'es', 'spanje': 'es', 'spain': 'es', 'españa': 'es',
+                'prt': 'pt', 'pt': 'pt', 'portugal': 'pt',
+                'ita': 'it', 'it': 'it', 'italië': 'it', 'italy': 'it', 'italia': 'it',
+                'pol': 'pl', 'pl': 'pl', 'polen': 'pl', 'poland': 'pl',
+                'swe': 'se', 'se': 'se', 'zweden': 'se', 'sweden': 'se', 'sverige': 'se',
+                'nor': 'no', 'no': 'no', 'noorwegen': 'no', 'norway': 'no', 'norge': 'no',
+                'dnk': 'dk', 'dk': 'dk', 'denemarken': 'dk', 'denmark': 'dk', 'danmark': 'dk',
+                'fin': 'fi', 'fi': 'fi', 'finland': 'fi', 'suomi': 'fi',
+                'irl': 'ie', 'ie': 'ie', 'ierland': 'ie', 'ireland': 'ie',
+                'gbr': 'gb', 'uk': 'gb', 'gb': 'gb', 'verenigd koninkrijk': 'gb', 'engeland': 'gb', 'england': 'gb', 'united kingdom': 'gb',
+                'che': 'ch', 'ch': 'ch', 'zwitserland': 'ch', 'switzerland': 'ch', 'suisse': 'ch',
+                'aut': 'at', 'at': 'at', 'oostenrijk': 'at', 'austria': 'at', 'österreich': 'at',
+                'svn': 'si', 'si': 'si', 'slovenië': 'si', 'slovenia': 'si',
+                'svk': 'sk', 'sk': 'sk', 'slowakije': 'sk', 'slovakia': 'sk',
+                'cze': 'cz', 'cz': 'cz', 'tsjechië': 'cz', 'czech': 'cz', 'czechia': 'cz',
+                'hun': 'hu', 'hu': 'hu', 'hongarije': 'hu', 'hungary': 'hu',
+                'rou': 'ro', 'ro': 'ro', 'roemenië': 'ro', 'romania': 'ro',
+                'bgr': 'bg', 'bg': 'bg', 'bulgarije': 'bg', 'bulgaria': 'bg',
+                'grc': 'gr', 'gr': 'gr', 'griekenland': 'gr', 'greece': 'gr',
+                'hrv': 'hr', 'hr': 'hr', 'kroatië': 'hr', 'croatia': 'hr',
+                'est': 'ee', 'ee': 'ee', 'estland': 'ee', 'estonia': 'ee',
+                'lva': 'lv', 'lv': 'lv', 'letland': 'lv', 'latvia': 'lv',
+                'ltu': 'lt', 'lt': 'lt', 'litouwen': 'lt', 'lithuania': 'lt',
+                'lux': 'lu', 'lu': 'lu', 'luxemburg': 'lu', 'luxembourg': 'lu',
+                'isl': 'is', 'is': 'is', 'ijsland': 'is', 'iceland': 'is',
+                'ukr': 'ua', 'ua': 'ua', 'oekraïne': 'ua', 'ukraine': 'ua',
+                'tur': 'tr', 'tr': 'tr', 'turkije': 'tr', 'turkey': 'tr',
+                'rus': 'ru', 'ru': 'ru', 'rusland': 'ru', 'russia': 'ru',
+                'srb': 'rs', 'rs': 'rs', 'servië': 'rs', 'serbia': 'rs',
+                'bih': 'ba', 'ba': 'ba', 'bosnië en herzegovina': 'ba', 'bosnia': 'ba',
+
+                'phl': 'ph', 'ph': 'ph', 'philippines': 'ph', 'filipijnen': 'ph',
+                'idn': 'id', 'id': 'id', 'indonesia': 'id', 'indonesië': 'id',
+                'ind': 'in', 'in': 'in', 'india': 'in',
+                'chn': 'cn', 'cn': 'cn', 'china': 'cn',
+                'jpn': 'jp', 'jp': 'jp', 'japan': 'jp',
+                'kor': 'kr', 'kr': 'kr', 'zuid-korea': 'kr', 'south korea': 'kr',
+                'vnm': 'vn', 'vn': 'vn', 'vietnam': 'vn',
+                'tha': 'th', 'th': 'th', 'thailand': 'th',
+                'mys': 'my', 'my': 'my', 'maleisië': 'my', 'malaysia': 'my',
+                'sgp': 'sg', 'sg': 'sg', 'singapore': 'sg',
+                'are': 'ae', 'ae': 'ae', 'verenigde arabische emiraten': 'ae', 'uae': 'ae', 'dubai': 'ae',
+                'sau': 'sa', 'sa': 'sa', 'saudi-arabië': 'sa', 'saudi arabia': 'sa',
+                'isr': 'il', 'il': 'il', 'israël': 'il', 'israel': 'il',
+
+                'aus': 'au', 'au': 'au', 'australië': 'au', 'australia': 'au',
+                'nzl': 'nz', 'nz': 'nz', 'nieuwe-zeeland': 'nz', 'new zealand': 'nz',
+                'zaf': 'za', 'za': 'za', 'zuid-afrika': 'za', 'south africa': 'za',
+                'egy': 'eg', 'eg': 'eg', 'egypte': 'eg', 'egypt': 'eg',
+                'mar': 'ma', 'ma': 'ma', 'marokko': 'ma', 'morocco': 'ma'
+            };
+
+            let countryCode = '';
+            let parts = cleanLocStr.split(/[,–\/-]+/);
+            
+            for (let i = parts.length - 1; i >= 0; i--) {
+                let token = parts[i].trim().toLowerCase();
+                if (worldCountries[token]) {
+                    countryCode = worldCountries[token];
+                    break;
+                }
+            }
+            
+            if (!countryCode) {
+                for (const [name, code] of Object.entries(worldCountries)) {
+                    if (lLower.includes(name)) {
+                        countryCode = code;
+                        break;
+                    }
+                }
+            }
+            
+            if (countryCode) {
+                return `<img src="https://flagcdn.com/24x18/${countryCode}.png" alt="${countryCode}" title="${cleanLocStr}"> <span>${cleanLocStr}</span>`;
+            }
+            
+            return `📍 <span>${cleanLocStr}</span>`;
         }
 
         function parseAuctionDate(str) {
             if (!str) return null;
             str = String(str).replace(/^'/, '').trim();
+            
             if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}/.test(str)) {
                 str = str.replace(' ', 'T');
             }
@@ -1686,7 +1545,7 @@
             if (totalHours <= 3) {
                 return { boxText: `⚠️ Nog ${days > 0 ? days + 'd ' : ''}${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`, imageBadge: timeStrUpper, isUrgent: true, isExpired: false };
             }
-            return { boxText: `Veiling: ${d}-${m}-${y} om ${H}:${M}`, imageBadge: timeStrUpper, isUrgent: false, isExpired: false };
+            return { boxText: `Veiling op: ${d}-${m}-${y} om ${H}:${M}`, imageBadge: timeStrUpper, isUrgent: false, isExpired: false };
         }
 
         function updateLiveTimers() {
@@ -1735,17 +1594,6 @@
             let dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
 
             let filteredData = dataSource.filter(row => {
-                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
-                
-                if (filterFb !== 'all' && filterFb !== 'positive') {
-                    if (hiddenCardsData[uniqueId]) return false;
-                }
-
-                if (currentCountryFilter) {
-                    let info = parseCountryInfo(row['Locatie']);
-                    if (info.code !== currentCountryFilter) return false;
-                }
-
                 const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
                 const isAuction = endDateVal !== '';
 
@@ -1785,6 +1633,7 @@
                     if (!searchableText.includes(searchQuery)) return false;
                 }
 
+                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let userFb = feedbackData[uniqueId] || 'none';
 
                 if (filterFb === 'relevant' && userFb === 'negative') return false; 
@@ -2047,7 +1896,7 @@
                     `;
                 }
 
-                let productUrl = row.Link ? row.Link : '#';
+                const productUrl = row.Link ? row.Link : '#';
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let myFb = feedbackData[uniqueId];
                 let extraClass = '';
@@ -2081,17 +1930,11 @@
                     `;
                 }
 
-                let hideButtonHtml = `
-                    <button class="hide-card-btn" onclick="hideCard(event, '${uniqueId}')" title="Verberg object (kolom Y naar Nee)">
-                        &#x2715;
-                    </button>
-                `;
-
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${aiReason}</div>` : '';
 
                 const expiredClass = isExpired ? ' expired' : '';
-                const wrapperStart = `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}${extraClass}">`;
-                const wrapperEnd = `</a>`;
+                const wrapperStart = isOwnStock ? `<div class="card${expiredClass}${extraClass}">` : `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}${extraClass}">`;
+                const wrapperEnd = isOwnStock ? `</div>` : `</a>`;
 
                 const cardDiv = document.createElement('div');
                 cardDiv.innerHTML = `
@@ -2101,7 +1944,6 @@
                         <div class="card-image-container">
                             ${imageHtml}
                             ${imageBadgeContainerHtml}
-                            ${hideButtonHtml}
                             ${feedbackButtonsHtml}
                         </div>
                         <div class="card-content">
@@ -2119,6 +1961,7 @@
                             </div>
                             ${auctionHtml}
                             ${aiReasonHtml}
+                            ${!isOwnStock ? `<div class="card-link">Bekijk machine</div>` : ''}
                             ${extraContentHtml}
                         </div>
                     ${wrapperEnd}
@@ -2141,17 +1984,6 @@
         
             const countHelper = (dataSource, isAuctionTab, isStockTab) => {
                 return dataSource.filter(row => {
-                    let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
-                    
-                    if (filterFb !== 'all' && filterFb !== 'positive') {
-                        if (hiddenCardsData[uniqueId]) return false;
-                    }
-
-                    if (currentCountryFilter) {
-                        let info = parseCountryInfo(row['Locatie']);
-                        if (info.code !== currentCountryFilter) return false;
-                    }
-
                     const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
                     const isAuction = endDateVal !== '';
         
@@ -2195,6 +2027,7 @@
                         if (!searchableText.includes(searchQuery)) return false;
                     }
         
+                    let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                     let userFb = feedbackData[uniqueId] || 'none';
         
                     if (filterFb === 'relevant' && userFb === 'negative') return false; 
