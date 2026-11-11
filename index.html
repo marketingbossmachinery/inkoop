@@ -1703,15 +1703,23 @@
             return null;
         }
 
-        function getCountryFlagHtml(locStr) {
+        function getCountryFlagHtml(locStr, transportKosten) {
             if (!locStr) return '📍 <span>Onbekend</span>';
             let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
             let flagFile = extractFlagFile(cleanLocStr);
 
+            // Google Maps URL genereren met aankomstadres Veldhoven (Eindhovensebaan 3)
+            let mapsQuery = encodeURIComponent(`${cleanLocStr} to Eindhovensebaan 3, Veldhoven, Netherlands`);
+            let mapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
+
+            let transportHtml = (transportKosten && Number(transportKosten) > 0) ? ` (€${transportKosten})` : '';
+
+            let innerContent = `<span>${cleanLocStr}${transportHtml}</span>`;
+
             if (flagFile) {
-                return `<img src="https://flagcdn.com/24x18/${flagFile}" alt="${flagFile.split('.')[0]}" title="${cleanLocStr}"> <span>${cleanLocStr}</span>`;
+                return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:6px;" title="Klik om locatie te bekijken in Google Maps"><img src="https://flagcdn.com/24x18/${flagFile}" alt="${flagFile.split('.')[0]}"> ${innerContent}</a>`;
             }
-            return `📍 <span>${cleanLocStr}</span>`;
+            return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:6px;" title="Klik om locatie te bekijken in Google Maps">📍 ${innerContent}</a>`;
         }
 
         function matchesOtherFilters(row, isAuctionTabContext = null, isStockTabContext = null) {
@@ -2101,7 +2109,8 @@
                 let metaInfoHtml = '';
                 let locationHtml = '';
                 if (row['Locatie']) {
-                    let flagHtml = getCountryFlagHtml(row['Locatie']);
+                    let transportCost = row['Transportkosten'] || row[25] || 0;
+                    let flagHtml = getCountryFlagHtml(row['Locatie'], transportCost);
                     locationHtml = `<div class="card-location">${flagHtml}</div>`;
                 }
 
