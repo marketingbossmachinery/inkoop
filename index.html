@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Equipment Platform - Boss Style</title>
+    <title>Equipment Platform - Boss Style (Test)</title>
     <style>
         :root {
             --boss-red: #cc2027;
@@ -32,6 +32,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .header-search-box {
@@ -275,6 +276,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            flex-wrap: wrap;
         }
 
         .tabs {
@@ -306,6 +308,7 @@
             align-items: center;
             gap: 12px;
             position: relative;
+            flex-wrap: wrap;
         }
 
         .sort-container {
@@ -1126,7 +1129,7 @@
                             <span>Sorteren</span>
                         </div>
                         <div class="sort-dropdown" id="sortDropdown">
-                            <div class="sort-option selected" onclick="setSort('default')" id="opt-default">🤖 AI Picks + Aflopende Veilingen (Standaard)</div>
+                            <div class="sort-option selected" onclick="setSort('default')" id="opt-default">🤖 AI Ranking / AI Picks (Standaard)</div>
                             <div class="sort-option" data-auction-only="true" onclick="setSort('auction-first')" id="opt-auction-first">⏱️ Eerst aflopende veilingen</div>
                             <div class="sort-option" onclick="setSort('price-asc')" id="opt-price-asc">💶 Prijs (Oplopend)</div>
                             <div class="sort-option" onclick="setSort('price-desc')" id="opt-price-desc">💶 Prijs (Aflopend)</div>
@@ -1196,7 +1199,7 @@
 
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
         const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
-        const svgThreeStars = `<svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>`;
+        const svgThreeStars = `<svg viewBox="0 0 24 24" fill="#ffffff"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>`;
         const svgGlobeIcon = `<svg class="flag-globe-icon-sm" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
 
         let searchTimeout = null;
@@ -1295,6 +1298,12 @@
                     }
                 }
             }
+            for (let actualKey of Object.keys(row)) {
+                let kl = actualKey.trim().toLowerCase();
+                if (kl.includes('ranking') || kl.includes('score') || kl.includes('ai') || kl.includes('kolom w') || kl.includes('punt') || kl.includes('match')) {
+                    return row[actualKey];
+                }
+            }
             return '';
         }
 
@@ -1310,17 +1319,14 @@
         }
 
         function parseNumericForSort(val) {
-            if (val === null || val === undefined) return null;
-            let s = String(val).toLowerCase().trim();
-            if (s === '' || s.includes('aanvraag') || s.includes('bod') || s.includes('n.o.t.k')) return null;
+            if (val === null || val === undefined) return 0;
+            let s = String(val).trim();
+            if (s === '' || s.toLowerCase().includes('aanvraag') || s.toLowerCase().includes('bod') || s.toLowerCase().includes('n.o.t.k')) return 0;
             
-            let digits = s.match(/[\d]+([.,]\d{3})*/); 
-            if (digits) {
-                let cleanNum = digits[0].replace(/[.,]/g, '');
-                let n = parseInt(cleanNum, 10);
-                return isNaN(n) ? null : n;
-            }
-            return null;
+            s = s.replace(',', '.');
+            s = s.replace(/[^0-9.\-]/g, '');
+            let n = parseFloat(s);
+            return isNaN(n) ? 0 : n;
         }
 
         function hideCard(event, id) {
@@ -1505,6 +1511,11 @@
                 allData = parsedListings.filter(row => row.Merk || row.Model || row.brand || row.Titel);
                 ownStockData = parsedVoorraad.filter(row => row.Merk || row.Model || row.brand || row.Titel);
 
+                if (allData.length > 0) {
+                    console.log("🔍 [Boss Debug] Beschikbare kolommen:", Object.keys(allData[0]));
+                    console.log("📊 [Boss Debug] AI Ranking waarde eerste rij:", getRowValue(allData[0], ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
+                }
+
                 populateFilters();
                 updateSystemStatusHeader();
                 switchTab('listings'); 
@@ -1644,7 +1655,6 @@
             }
             
             const worldCountries = {
-                // Noord- & Zuid-Amerika
                 'canada': 'ca', 'can': 'ca', 'ca': 'ca',
                 'usa': 'us', 'united states': 'us', 'verenigde staten': 'us', 'v.s.': 'us', 'usm': 'us',
                 'mexico': 'mx', 'mex': 'mx', 'mx': 'mx',
@@ -1652,8 +1662,6 @@
                 'brazil': 'br', 'brazilië': 'br', 'bra': 'br', 'br': 'br',
                 'chile': 'cl', 'cl': 'cl', 'colombia': 'co', 'co': 'co', 'peru': 'pe', 'pe': 'pe', 'uruguay': 'uy', 'uy': 'uy', 'venezuela': 've', 've': 've',
                 'costa rica': 'cr', 'panama': 'pa', 'dominikaanse republiek': 'do',
-                
-                // Europa
                 'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl', 'nld': 'nl', 'nl': 'nl',
                 'belgië': 'be', 'belgium': 'be', 'bel': 'be', 'be': 'be',
                 'duitsland': 'de', 'germany': 'de', 'deu': 'de', 'de': 'de',
@@ -1675,16 +1683,12 @@
                 'griekenland': 'gr', 'gr': 'gr', 'kroatië': 'hr', 'hr': 'hr', 'estland': 'ee', 'ee': 'ee', 'letland': 'lv', 'latvia': 'lv', 'lv': 'lv',
                 'litouwen': 'lt', 'lt': 'lt', 'luxemburg': 'lu', 'lu': 'lu', 'ijsland': 'is', 'is': 'is', 'oekraïne': 'ua', 'ua': 'ua',
                 'turkije': 'tr', 'turkey': 'tr', 'tr': 'tr', 'rusland': 'ru', 'ru': 'ru', 'servië': 'rs', 'rs': 'rs', 'bosnië': 'ba', 'ba': 'ba',
-                
-                // Azië & Midden-Oosten
                 'japan': 'jp', 'jpn': 'jp', 'jp': 'jp',
                 'china': 'cn', 'cn': 'cn', 'zuid-korea': 'kr', 'korea': 'kr', 'kr': 'kr',
                 'filipijnen': 'ph', 'ph': 'ph', 'indonesië': 'id', 'id': 'id', 'india': 'in', 'in': 'in',
                 'vietnam': 'vn', 'vn': 'vn', 'thailand': 'th', 'th': 'th', 'maleisië': 'my', 'my': 'my', 'singapore': 'sg', 'sg': 'sg',
                 'vae': 'ae', 'united arab emirates': 'ae', 'dubai': 'ae', 'are': 'ae', 'ae': 'ae',
                 'saoedi-arabië': 'sa', 'sa': 'sa', 'israël': 'il', 'il': 'il',
-                
-                // Oceanië & Afrika
                 'australië': 'au', 'australia': 'au', 'au': 'au', 'nieuws-zeeland': 'nz', 'new zealand': 'nz', 'nz': 'nz',
                 'zuid-afrika': 'za', 'south africa': 'za', 'za': 'za', 'egypte': 'eg', 'eg': 'eg', 'marokko': 'ma', 'ma': 'ma'
             };
@@ -1905,6 +1909,58 @@
         }
         setInterval(updateLiveTimers, 1000);
 
+        function checkLiveAuctionPrices() {
+            const now = new Date();
+            document.querySelectorAll('.card').forEach(card => {
+                const endTimeStr = card.getAttribute('data-endtime');
+                const productUrl = card.getAttribute('data-producturl'); 
+                
+                if (!endTimeStr || !productUrl || productUrl === '#') return;
+
+                const endDate = parseAuctionDate(endTimeStr);
+                if (!endDate) return;
+
+                const diffMs = endDate - now;
+                const diffMins = diffMs / (1000 * 60);
+
+                if (diffMins > 0 && diffMins <= 60) {
+                    let fetchInterval = diffMins <= 15 ? 60000 : 300000;
+                    
+                    if (!card._lastFetch || (now - card._lastFetch > fetchInterval)) {
+                        card._lastFetch = now;
+                        fetchLivePriceForCard(card, productUrl);
+                    }
+                }
+            });
+        }
+
+        async function fetchLivePriceForCard(cardEl, url) {
+            try {
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+                const response = await fetch(proxyUrl);
+                if (!response.ok) return;
+                
+                const data = await response.json();
+                if (data && data.contents) {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data.contents, 'text/html');
+                    const priceElement = doc.querySelector('.current-bid-price, .price, [itemprop="price"], .bid-value');
+                    
+                    if (priceElement) {
+                        const livePriceText = priceElement.innerText.trim();
+                        const priceBox = cardEl.querySelector('.card-price');
+                        
+                        if (priceBox && livePriceText) {
+                            priceBox.innerHTML = `<span class="new-price" style="color:var(--boss-red);">${escapeHtml(livePriceText)}</span>`;
+                        }
+                    }
+                }
+            } catch (e) {
+                console.warn("Kon live prijs niet ophalen voor:", url, e);
+            }
+        }
+        setInterval(checkLiveAuctionPrices, 30000);
+
         function renderGrid() {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
@@ -1923,26 +1979,40 @@
             });
 
             filteredData.sort((a, b) => {
-                if (currentSort === 'default' || currentSort === 'ai-ranking') {
+                if (currentTab === 'listings' || currentSort === 'default' || currentSort === 'ai-ranking') {
                     if (aiPicksActive) {
                         const isAiA = isAiPickItem(a) ? 1 : 0;
                         const isAiB = isAiPickItem(b) ? 1 : 0;
                         if (isAiA !== isAiB) return isAiB - isAiA; 
                     }
-                    const dateA = parseAuctionDate(a['Veiling loopt af op']);
-                    const dateB = parseAuctionDate(b['Veiling loopt af op']);
-                    const now = new Date();
-                    const isExpiredA = !dateA || (dateA - now <= 0);
-                    const isExpiredB = !dateB || (dateB - now <= 0);
-                    
-                    if (isExpiredA && !isExpiredB) return 1;
-                    if (!isExpiredA && isExpiredB) return -1;
-                    if (!dateA && !dateB) return 0;
-                    if (!dateA) return 1;
-                    if (!dateB) return -1;
-                    return dateA - dateB;
+
+                    if (currentTab === 'listings') {
+                        const scoreA = parseNumericForSort(getRowValue(a, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
+                        const scoreB = parseNumericForSort(getRowValue(b, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
+                        
+                        if (scoreA !== scoreB) {
+                            return scoreB - scoreA; // Hoogste score/ranking eerst!
+                        }
+                    }
+
+                    if (currentTab === 'auctions') {
+                        const dateA = parseAuctionDate(a['Veiling loopt af op']);
+                        const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                        const now = new Date();
+                        const isExpiredA = !dateA || (dateA - now <= 0);
+                        const isExpiredB = !dateB || (dateB - now <= 0);
+                        
+                        if (isExpiredA && !isExpiredB) return 1;
+                        if (!isExpiredA && isExpiredB) return -1;
+                        if (!dateA && !dateB) return 0;
+                        if (!dateA) return 1;
+                        if (!dateB) return -1;
+                        return dateA - dateB;
+                    }
+
+                    return 0;
                 }
-                else if (currentSort === 'auction-first') {
+                else if (currentSort === 'auction-first' || currentTab === 'auctions') {
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
                     const dateB = parseAuctionDate(b['Veiling loopt af op']);
                     const now = new Date();
@@ -2180,8 +2250,8 @@
 
                 let isHidden = hiddenCardsData[uniqueId];
                 let hideButtonHtml = isHidden ? 
-                    `<button class="restore-card-btn" onclick="restoreCard(event, '${escapeHtml(uniqueId)}')")" title="Herstel">&#x2715;</button>` : 
-                    `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')")" title="Verberg">&#x2715;</button>`;
+                    `<button class="restore-card-btn" onclick="restoreCard(event, '${escapeHtml(uniqueId)}')'" title="Herstel">&#x2715;</button>` : 
+                    `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')'" title="Verberg">&#x2715;</button>`;
 
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${escapeHtml(aiReason)}</div>` : '';
                 const expiredClass = isExpired ? ' expired' : '';
@@ -2190,8 +2260,12 @@
 
                 const cardWrapper = document.createElement('div');
                 cardWrapper.className = `card${expiredClass}${extraClass}`;
+                
+                cardWrapper.setAttribute('data-producturl', productUrl);
+                if (row['Veiling loopt af op']) {
+                    cardWrapper.setAttribute('data-endtime', row['Veiling loopt af op']);
+                }
 
-                // Maak de hele kaart klikbaar naar de product URL, behalve als er op de vlag/maps-link of feedback wordt geklikt
                 if (!isOwnStock && productUrl !== '#') {
                     cardWrapper.onclick = () => {
                         window.open(productUrl, '_blank', 'noopener,noreferrer');
@@ -2258,6 +2332,6 @@
             document.getElementById('count-auctions').innerText = `(${countHelper(allData, true, false)})`;
             document.getElementById('count-voorraad').innerText = `(${countHelper(ownStockData, false, true)})`;
         }
-    </script>
+    </script>    
 </body>
 </html>
