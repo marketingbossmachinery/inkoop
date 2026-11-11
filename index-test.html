@@ -1970,7 +1970,7 @@
                 return true;
             });
 
-            filteredData.sort((a, b) => {
+filteredData.sort((a, b) => {
                 if (currentSort === 'default' || currentSort === 'ai-ranking') {
                     // 1. AI Picks altijd absoluut bovenaan als de toggle aan staat
                     if (aiPicksActive) {
@@ -1979,28 +1979,34 @@
                         if (isAiA !== isAiB) return isAiB - isAiA; 
                     }
 
-                    // 2. Als we op de Listings tab zitten: Sorteer primair op AI-score (hoog > laag)
+                    // 2. Als we op de Listings tab zitten: Sorteer strikt primair op Kolom W / AI Score (hoog > laag)
                     if (currentTab === 'listings') {
-                        const scoreA = parseNumericForSort(getRowValue(a, ['AI Score', 'Score', 'Match'])) || 0;
-                        const scoreB = parseNumericForSort(getRowValue(b, ['AI Score', 'Score', 'Match'])) || 0;
+                        // Zoek expliciet naar kolommen die met score/match/kolom w te maken hebben
+                        const scoreA = parseNumericForSort(getRowValue(a, ['Kolom W', 'AI Score', 'Score', 'Match', 'Relevantie', 'AI-Score'])) || 0;
+                        const scoreB = parseNumericForSort(getRowValue(b, ['Kolom W', 'AI Score', 'Score', 'Match', 'Relevantie', 'AI-Score'])) || 0;
+                        
                         if (scoreA !== scoreB) {
                             return scoreB - scoreA; // Hoogste score eerst!
                         }
                     }
 
-                    // 3. Voor Veilingen tab: Altijd strikt op aflopende veilingtijd laten staan!
-                    const dateA = parseAuctionDate(a['Veiling loopt af op']);
-                    const dateB = parseAuctionDate(b['Veiling loopt af op']);
-                    const now = new Date();
-                    const isExpiredA = !dateA || (dateA - now <= 0);
-                    const isExpiredB = !dateB || (dateB - now <= 0);
-                    
-                    if (isExpiredA && !isExpiredB) return 1;
-                    if (!isExpiredA && isExpiredB) return -1;
-                    if (!dateA && !dateB) return 0;
-                    if (!dateA) return 1;
-                    if (!dateB) return -1;
-                    return dateA - dateB;
+                    // 3. Voor Veilingen tab: Altijd strikt op aflopende veilingtijd laten staan
+                    if (currentTab === 'auctions') {
+                        const dateA = parseAuctionDate(a['Veiling loopt af op']);
+                        const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                        const now = new Date();
+                        const isExpiredA = !dateA || (dateA - now <= 0);
+                        const isExpiredB = !dateB || (dateB - now <= 0);
+                        
+                        if (isExpiredA && !isExpiredB) return 1;
+                        if (!isExpiredA && isExpiredB) return -1;
+                        if (!dateA && !dateB) return 0;
+                        if (!dateA) return 1;
+                        if (!dateB) return -1;
+                        return dateA - dateB;
+                    }
+
+                    return 0;
                 }
                 else if (currentSort === 'auction-first') {
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
