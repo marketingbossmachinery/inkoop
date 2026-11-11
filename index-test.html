@@ -834,7 +834,7 @@
             margin-bottom: 12px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
         }
 
         .card-location, .card-seller {
@@ -944,16 +944,14 @@
         }
 
         .transport-info-box {
-            margin-top: 8px;
-            padding: 6px 8px;
-            background: #fdf8f6;
-            border: 1px solid #f2e3df;
-            border-radius: 4px;
-            font-size: 11px;
+            margin-top: 4px;
+            font-size: 12px;
             color: #663322;
+            font-weight: bold;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 6px;
+            padding-left: 2px;
         }
 
         .comparable-market-box {
@@ -1666,7 +1664,6 @@
 
             let countryCode = '';
 
-            // Stap 1: Controleer komma/streepje gescheiden delen
             let parts = cleanLocStr.split(/[,–\/-]+/);
             for (let i = parts.length - 1; i >= 0; i--) {
                 let token = parts[i].trim().toLowerCase();
@@ -1677,7 +1674,6 @@
                 }
             }
 
-            // Stap 2: Veilige woordgrenzen regex check over de gehele string
             if (!countryCode) {
                 for (const [name, code] of Object.entries(worldCountries)) {
                     let regex = new RegExp(`\\b${name}\\b`, 'i');
@@ -1695,8 +1691,10 @@
             if (!locStr) return '📍 <span>Onbekend</span>';
             let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
             let mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cleanLocStr)}`;
+            let flagFile = extractFlagFile(locStr);
+            let flagImgHtml = flagFile ? `<img src="https://flagcdn.com/24x18/${flagFile}" alt="vlag" style="width:18px; height:14px; object-fit:cover; border-radius:2px; border:1px solid #cbd5e1; flex-shrink:0;">` : '📍';
 
-            return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-link" title="Open in Google Maps">📍 <span>${escapeHtml(cleanLocStr)}</span> 🗺️</a>`;
+            return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-link" title="Open in Google Maps">${flagImgHtml} <span>${escapeHtml(cleanLocStr)}</span></a>`;
         }
 
         function escapeHtml(str) {
@@ -1803,7 +1801,7 @@
                 let count = flagCounts[flag];
                 html += `
                     <div class="flag-dropdown-option ${isSel}" onclick="selectFlagFilter('${flag}')">
-                        <img src="https://flagcdn.com/24x18/${flag}" alt="${flag}" style="width:24px; height:24px; object-fit:cover; border-radius:50%; border:1px solid #cbd5e1;">
+                        <img src="https://flagcdn.com/24x18/${flag}" alt="${flag}" style="width:24px; height:18px; object-fit:cover; border-radius:2px; border:1px solid #cbd5e1;">
                         <span class="flag-count">${count}</span>
                     </div>
                 `;
@@ -2056,23 +2054,24 @@
                     locationHtml = `<div class="card-location">${flagHtml}</div>`;
                 }
 
+                let transportCost = row['Geschatte vervoerskosten (AI)'] || row['Transportprijs'] || row['Transport'] || '';
+                let transportHtml = transportCost ? `<div class="transport-info-box">🚚 €${escapeHtml(transportCost)}</div>` : '';
+
                 let sellerName = row['Verkopende partij'] || row['Verkoper'] || row['seller'] || '';
                 let sellerHtml = '';
                 if (sellerName) {
                     sellerHtml = `<div class="card-seller" title="${escapeHtml(sellerName)}">🏢 <span>${escapeHtml(sellerName)}</span></div>`;
                 }
 
-                if (locationHtml || sellerHtml) {
+                if (locationHtml || transportHtml || sellerHtml) {
                     metaInfoHtml = `
                         <div class="card-meta-info">
                             ${locationHtml}
+                            ${transportHtml}
                             ${sellerHtml}
                         </div>
                     `;
                 }
-
-                let transportCost = row['Geschatte vervoerskosten (AI)'] || row['Transportprijs'] || row['Transport'] || '';
-                let transportHtml = transportCost ? `<div class="transport-info-box"><span>🚚 Geschat transport:</span> <strong>€${escapeHtml(transportCost)}</strong></div>` : '';
 
                 let extraContentHtml = '';
                 if (isOwnStock) {
@@ -2182,7 +2181,6 @@
                                 ${row.Draaiuren ? `<span class="spec-tag">Uren: ${escapeHtml(row.Draaiuren)}</span>` : ''}
                             </div>
                             ${metaInfoHtml}
-                            ${transportHtml}
                             <div class="card-price-box">
                                 <div class="card-price">${priceHtml}</div>
                                 <div class="card-right-meta">
