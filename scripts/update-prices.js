@@ -94,25 +94,31 @@ async function updatePrices() {
 
         const diffMins = (endDate - now) / (1000 * 60);
 
-        // VENSTER: Tussen 30 minuten en 3 uur (180 min) voor het einde
+        // Venster: Tussen 30 minuten en 3 uur voor het einde
         if (diffMins > 30 && diffMins <= 180) {
             const productUrl = row['link'] || row['Link'];
             const platformName = row['platform'] || row['Platform'] || '';
             if (!productUrl || productUrl === '#') continue;
 
-            console.log(`Check live prijs (tussen 30m en 3u voor einde): ${productUrl} (Nog ${Math.round(diffMins)} min)`);
+            console.log(`Check live prijs (tussen 30m en 3u): ${productUrl} (Nog ${Math.round(diffMins)} min)`);
             
             const nieuwBedrag = await fetchLivePrice(productUrl, platformName);
             const huidigePrijsField = row['eerste_prijs'] || row['Prijs'] || '';
             const oudBedrag = parseNum(huidigePrijsField);
 
             if (!isNaN(nieuwBedrag) && nieuwBedrag > 0) {
-                // Sanity check: negeer bedragen onder € 100
-                if (nieuwBedrag < 100) continue;
-
+                // Alleen controleren of het bod niet omlaag is gegaan (een veilingprijs stijgt of blijft gelijk)
                 if (!isNaN(oudBedrag) && oudBedrag > 0) {
-                    if (nieuwBedrag < oudBedrag) continue;
-                    if (nieuwBedrag > (oudBedrag * 5) && oudBedrag > 1000) continue;
+                    if (nieuwBedrag < oudBedrag) {
+                        // Bod kan in een veiling niet opeens lager zijn dan wat er al stond
+                        continue; 
+                    }
+                    
+                    // Alleen ingrijpen bij echt bizarre, onlogische uitschieters (bijv. een sprong van € 50 naar € 500.000 in één keer door een foute ID-uitlezing)
+                    if (nieuwBedrag > (oudBedrag * 50) && oudBedrag > 500) {
+                        console.log(`[BLOCKED] Onrealistische prijssprong gedetecteerd (${oudBedrag} -> ${nieuwBedrag})`);
+                        continue;
+                    }
                 }
 
                 const geformatteerdePrijs = formatDutchCurrency(nieuwBedrag);
@@ -121,7 +127,7 @@ async function updatePrices() {
                     row['laatst_bijgewerkt'] = new Date().toISOString().split('T')[0];
                     row['status'] = "Bod Verhoogd";
                     updatedCount++;
-                    console.log(`[SUCCESS] Prijs bijgewerkt naar ${geformatteerdePrijs}`);
+                    console.log(`[SUCCESS] Prijs succesvol meegegroeid naar ${geformatteerdePrijs}`);
                 }
             }
         }
@@ -131,7 +137,7 @@ async function updatePrices() {
         fs.writeFileSync(dataPath, JSON.stringify(masterData, null, 2), 'utf8');
         console.log(`${updatedCount} prijzen succesvol bijgewerkt.`);
     } else {
-        console.log("Geen actieve veilingen in dit 3-uurs venster gevonden.");
+        console.log("Geen prijswijzigingen binnen het venster gevonden.");
     }
 }
 
