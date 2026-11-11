@@ -586,6 +586,7 @@
             border: 2px solid transparent;
             border-top: 3px solid transparent;
             transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
+            cursor: pointer;
         }
 
         .card:hover {
@@ -605,16 +606,6 @@
         .card.expired {
             opacity: 0.55;
             background-color: #e9e9e9;
-        }
-
-        .card-link-wrapper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            text-decoration: none;
         }
 
         .card-image-container {
@@ -821,11 +812,6 @@
             text-align: left;
             position: relative;
             z-index: 2;
-            pointer-events: none; /* zorgt dat kliks doorsluizen naar de card-link-wrapper, behalve voor specifiek aanklikbare elementen */
-        }
-
-        .card-content > * {
-            pointer-events: auto; /* maakt tekst/elementen binnen de content weer klikbaar/selecteerbaar indien nodig, maar de link blijft eroverheen liggen */
         }
 
         .card-title {
@@ -892,7 +878,6 @@
             text-align: left;
             position: relative;
             z-index: 5;
-            pointer-events: auto;
         }
         .card-location a.maps-link span {
             overflow: hidden;
@@ -1018,7 +1003,6 @@
             font-weight: bold;
             position: relative;
             z-index: 5;
-            pointer-events: auto;
         }
         .market-item a:hover { text-decoration: underline; }
     </style>
@@ -2207,13 +2191,14 @@
                 const cardWrapper = document.createElement('div');
                 cardWrapper.className = `card${expiredClass}${extraClass}`;
 
-                let innerCardHtml = '';
-
+                // Maak de hele kaart klikbaar naar de product URL, behalve als er op de vlag/maps-link of feedback wordt geklikt
                 if (!isOwnStock && productUrl !== '#') {
-                    innerCardHtml += `<a href="${escapeHtml(productUrl)}" target="_blank" rel="noopener noreferrer" class="card-link-wrapper" title="${escapeHtml(rawTitle)}"></a>`;
+                    cardWrapper.onclick = () => {
+                        window.open(productUrl, '_blank', 'noopener,noreferrer');
+                    };
                 }
 
-                innerCardHtml += `
+                let innerCardHtml = `
                     ${aiStampHtml}
                     ${badgeHtml}
                     <div class="card-image-container">
