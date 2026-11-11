@@ -2311,15 +2311,16 @@
             document.getElementById('count-voorraad').innerText = `(${countHelper(ownStockData, false, true)})`;
         }
     </script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
+
+    <script>
+(function() {
     const STORAGE_KEY = "boss_inkoop_filters";
+    console.log("Boss Inkoop: Filter- en refresh-script gestart!");
 
     // 1. Functie om huidige filterwaarden op te slaan
     function saveFilters() {
         const filterData = {};
-        // Zoek alle inputs, selects en checkboxes in je filterformulier of tabel
-        const inputs = document.querySelectorAll(".filter-element, .filter-input, select, input[type='text'], input[type='checkbox']");
+        const inputs = document.querySelectorAll("select, input[type='text'], input[type='checkbox']");
         
         inputs.forEach(el => {
             if (el.id || el.name) {
@@ -2349,7 +2350,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     } else {
                         el.value = filterData[key];
                     }
-                    // Trigger een change event zodat eventuele JavaScript filter-functies van de tabel meedraaien
                     el.dispatchEvent(new Event('change', { bubbles: true }));
                     el.dispatchEvent(new Event('input', { bubbles: true }));
                 }
@@ -2359,23 +2359,22 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Herstel de filters direct zodra de pagina laadt
+    // Direct uitvoeren bij laden
     restoreFilters();
 
-    // Luister naar wijzigingen in de filters om ze direct op te slaan
+    // Luister naar wijzigingen om direct op te slaan
     document.addEventListener("change", function(e) {
-        if (e.target.matches(".filter-element, .filter-input, select, input")) {
+        if (e.target.matches("select, input")) {
             saveFilters();
         }
     });
     document.addEventListener("input", function(e) {
-        if (e.target.matches(".filter-element, .filter-input, input[type='text']")) {
+        if (e.target.matches("input[type='text']")) {
             saveFilters();
         }
     });
 
-    // 3. Automatische pagina-refresh elke 60 seconden (1 minuut)
-    // Voeg een kleine check toe zodat het niet ververst als iemand midden in een formulier typt
+    // 3. Automatische pagina-refresh elke 60 seconden
     setInterval(function() {
         const activeElement = document.activeElement;
         const isTyping = activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'SELECT');
@@ -2383,9 +2382,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!isTyping) {
             console.log("Automatische achtergrond-refresh om de lijst actueel te houden...");
             location.reload();
+        } else {
+            console.log("Refresh overgeslagen: gebruiker is aan het typen/klikken.");
         }
-    }, 60000); // 60000 ms = 1 minuut
-});
+    }, 60000);
+})();
 </script>
 
     
