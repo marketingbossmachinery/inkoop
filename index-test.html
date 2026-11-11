@@ -1,0 +1,2160 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Equipment Platform - Boss Style (Testversie)</title>
+    <style>
+        :root {
+            --boss-red: #cc2027;
+            --boss-black: #111111;
+            --boss-gray: #f4f4f4;
+            --text-dark: #333;
+            --text-light: #777;
+            --ai-blue: #2563eb;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--boss-gray);
+            color: var(--text-dark);
+        }
+
+        header {
+            background-color: var(--boss-black);
+            color: #fff;
+            padding: 15px 40px;
+            border-bottom: 4px solid var(--boss-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-search-box {
+            position: relative;
+            flex-grow: 1;
+            max-width: 450px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-search-box input {
+            width: 100%;
+            padding: 9px 15px 9px 38px;
+            background-color: #262626;
+            border: 1px solid #3d3d3d;
+            color: #ffffff;
+            font-size: 13px;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .header-search-box input::placeholder {
+            color: #999999;
+        }
+
+        .header-search-box input:focus {
+            border-color: var(--boss-red);
+            background-color: #303030;
+        }
+
+        .header-search-box .search-icon {
+            position: absolute;
+            left: 12px;
+            color: #999999;
+            pointer-events: none;
+            width: 15px;
+            height: 15px;
+        }
+
+        .system-status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .system-status-indicator:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot-green { background-color: #28a745; box-shadow: 0 0 8px #28a745; }
+        .dot-orange { background-color: #ffc107; box-shadow: 0 0 8px #ffc107; }
+        .dot-red { background-color: #dc3545; box-shadow: 0 0 8px #dc3545; animation: pulse-urgent 1.5s infinite; }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            width: 450px;
+            max-width: 90%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: var(--text-dark);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--boss-gray);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .modal-header h2 { margin: 0; font-size: 18px; color: var(--boss-black); text-transform: uppercase; }
+        .modal-close { cursor: pointer; font-size: 20px; font-weight: bold; color: #777; }
+        .modal-close:hover { color: var(--boss-red); }
+
+        .portal-status-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .portal-status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .reason-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reason-modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            width: 450px;
+            max-width: 90%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .reason-btn-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .reason-btn {
+            padding: 12px;
+            background: #d9534f;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .reason-btn:hover { background: #c9302c; }
+
+        .container {
+            max-width: 1600px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .sidebar {
+            display: none;
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .sidebar.open {
+            display: grid;
+        }
+
+        .filter-group {
+            background: #fafafa;
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+        }
+
+        .filter-group h3 {
+            margin-top: 0;
+            font-size: 13px;
+            border-bottom: 2px solid var(--boss-gray);
+            padding-bottom: 6px;
+            color: var(--boss-black);
+            text-transform: uppercase;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+            background: #fff;
+        }
+
+        .toggle-filter-btn {
+            background: var(--boss-black);
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+        .toggle-filter-btn:hover {
+            background: var(--boss-red);
+        }
+
+        .main-content {
+            width: 100%;
+        }
+
+        .tabs-header-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tabs-left-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.2s;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+
+        .tab.active {
+            background-color: var(--boss-red);
+            color: #fff;
+            border-color: var(--boss-red);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .sort-container {
+            position: relative;
+        }
+
+        .sort-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-dark);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: border-color 0.2s, background 0.2s;
+            user-select: none;
+            height: 36px;
+            box-sizing: border-box;
+        }
+
+        .sort-btn:hover {
+            border-color: var(--boss-black);
+            background: #f8f9fa;
+        }
+
+        .sort-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .sort-dropdown {
+            display: none;
+            position: absolute;
+            top: 42px;
+            right: 0;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-width: 240px;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .sort-dropdown.open {
+            display: block;
+        }
+
+        .sort-option {
+            padding: 10px 15px;
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-dark);
+            cursor: pointer;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sort-option:last-child {
+            border-bottom: none;
+        }
+
+        .sort-option:hover {
+            background: #f8f9fa;
+            color: var(--boss-red);
+        }
+
+        .sort-option.selected {
+            background: #eff6ff;
+            color: var(--ai-blue);
+        }
+
+        .sort-option[data-auction-only="true"] {
+            display: none;
+        }
+
+        /* ---------------------------------------------------- */
+        /* RONDE VLAGGEN-GLOBE KNOP & DYNAMISCHE VLAG WISSEL */
+        /* ---------------------------------------------------- */
+        .flag-filter-container {
+            position: relative;
+        }
+
+        .flag-globe-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: border-color 0.2s, background 0.2s;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .flag-globe-btn:hover {
+            border-color: var(--boss-black);
+            background: #f8f9fa;
+        }
+
+        .flag-globe-btn svg, .flag-globe-icon-sm {
+            width: 18px;
+            height: 18px;
+            fill: #333333;
+        }
+
+        .flag-globe-btn img.active-flag-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .flag-dropdown {
+            display: none;
+            position: absolute;
+            top: 42px;
+            right: 0;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-width: 130px;
+            max-height: 340px;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .flag-dropdown.open {
+            display: block;
+        }
+
+        .flag-dropdown-option {
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .flag-dropdown-option:last-child {
+            border-bottom: none;
+        }
+
+        .flag-dropdown-option:hover {
+            background: #f8f9fa;
+        }
+
+        .flag-dropdown-option.selected {
+            background: #eff6ff;
+            color: var(--ai-blue);
+        }
+
+        .flag-dropdown-option img {
+            width: 22px;
+            height: 15px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .flag-count {
+            background: #e2e8f0;
+            color: #475569;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 900;
+        }
+        .flag-dropdown-option.selected .flag-count {
+            background: #dbeafe;
+            color: var(--ai-blue);
+        }
+        /* ---------------------------------------------------- */
+
+        .ai-toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: border-color 0.2s;
+            height: 36px;
+            box-sizing: border-box;
+        }
+        .ai-toggle-container:hover {
+            border-color: var(--ai-blue);
+        }
+        .ai-toggle-label {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+        .toggle-switch {
+            position: relative;
+            width: 40px;
+            height: 22px;
+            background-color: #cbd5e1;
+            border-radius: 22px;
+            transition: background-color 0.3s;
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .ai-toggle-container.active .toggle-switch {
+            background-color: var(--ai-blue);
+        }
+        .ai-toggle-container.active .toggle-switch::after {
+            transform: translateX(18px);
+        }
+        .toggle-status-text {
+            font-size: 11px;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #e2e8f0;
+            color: #64748b;
+        }
+        .ai-toggle-container.active .toggle-status-text {
+            background: #dbeafe;
+            color: var(--ai-blue);
+        }
+
+        #competitorToggleBtn.active .toggle-switch {
+            background-color: #28a745;
+        }
+        #competitorToggleBtn.active .toggle-status-text {
+            background: #d4edda;
+            color: #28a745;
+        }
+
+        .feedback-filter-select {
+            padding: 0 12px;
+            height: 36px;
+            border-radius: 4px;
+            border: 1px solid #cbd5e1;
+            font-size: 13px;
+            font-weight: bold;
+            background-color: #fff;
+            cursor: pointer;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            padding-top: 10px;
+            padding-right: 10px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: visible;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid transparent;
+            border-top: 3px solid transparent;
+            transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-top-color: var(--boss-red);
+        }
+
+        .card.glow-green { border-color: #28a745; box-shadow: 0 0 15px rgba(40,167,69,0.35); }
+        .card.glow-red { border-color: #dc3545; box-shadow: 0 0 15px rgba(220,53,69,0.35); opacity: 0.85; }
+        
+        .card.glow-ai { 
+            border-color: var(--ai-blue) !important; 
+            border-top-color: var(--ai-blue) !important;
+            box-shadow: 0 0 20px rgba(37,99,235,0.4) !important; 
+        }
+
+        .card.expired {
+            opacity: 0.55;
+            background-color: #e9e9e9;
+        }
+
+        .card-image-container {
+            position: relative;
+            height: 180px;
+            background-color: #e9e9e9;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            overflow: visible;
+        }
+
+        .card-image-placeholder {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .feedback-actions {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            display: flex;
+            gap: 5px;
+            z-index: 5;
+        }
+        
+        .feedback-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.1s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+            padding: 0;
+        }
+        
+        .feedback-btn:hover {
+            transform: scale(1.12);
+            background: #ffffff;
+        }
+
+        .feedback-btn.active-pos {
+            background: #28a745;
+            border-color: #28a745;
+            box-shadow: 0 0 6px rgba(40,167,69,0.6);
+        }
+        .feedback-btn.active-pos svg { fill: #ffffff !important; }
+
+        .feedback-btn.active-neg {
+            background: #dc3545;
+            border-color: #dc3545;
+            box-shadow: 0 0 6px rgba(220,53,69,0.6);
+        }
+        .feedback-btn.active-neg svg { fill: #ffffff !important; }
+
+        .hide-card-btn {
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+            background: rgba(17, 17, 17, 0.75);
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 5;
+            transition: background 0.2s, transform 0.1s;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+        }
+        .hide-card-btn:hover {
+            background: rgba(204, 32, 39, 0.9);
+            transform: scale(1.12);
+        }
+
+        .restore-card-btn {
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+            background: #dc3545;
+            color: #ffffff;
+            border: 1px solid #b21f2d;
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 5;
+            transition: background 0.2s, transform 0.1s;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .restore-card-btn:hover {
+            background: #c9302c;
+            transform: scale(1.12);
+        }
+
+        .badge-image-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+            z-index: 2;
+        }
+
+        .badge-image {
+            background-color: var(--boss-red);
+            color: #ffffff;
+            padding: 5px 10px;
+            font-size: 12px;
+            font-weight: 900;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+        }
+
+        .badge-onsite {
+            background-color: #111111;
+            color: #ffffff;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 900;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+        }
+
+        .badge-ai-stamp {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--ai-blue);
+            color: #ffffff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+        }
+        .badge-ai-stamp svg {
+            width: 20px;
+            height: 20px;
+            fill: #ffffff;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 3px;
+            text-transform: uppercase;
+            z-index: 2;
+            color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .badge-rood { background-color: var(--boss-red); }
+        .badge-urgent { background-color: var(--boss-red); color: #fff; animation: pulse-urgent 1.5s infinite; }
+
+        @keyframes pulse-urgent {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        .card-content {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;             
+            flex-direction: column;    
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            color: var(--boss-black);
+            line-height: 1.3;
+        }
+
+        .card-specs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            color: var(--text-light);
+            flex-wrap: wrap;
+        }
+
+        .spec-tag {
+            background: var(--boss-gray);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .card-meta-info {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .card-location, .card-seller {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
+        .card-location span, .card-seller span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .card-location a.maps-link {
+            color: inherit;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .card-location a.maps-link:hover {
+            color: var(--boss-red);
+            text-decoration: underline;
+        }
+
+        .card-location img {
+            width: 20px;
+            height: 14px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .card-price-box {
+            margin-top: auto;        
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-price {
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 13px;
+            margin-right: 6px;
+        }
+
+        .new-price { color: var(--boss-red); }
+
+        .card-right-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .card-source {
+            font-size: 11px;
+            font-weight: bold;
+            color: #555;
+            background: var(--boss-gray);
+            padding: 3px 7px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            border: 1px solid #ddd;
+        }
+
+        .countdown {
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #fff3f3;
+            border: 1px solid var(--boss-red);
+            border-radius: 4px;
+            color: var(--boss-red);
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .countdown-future {
+            margin-top: 10px;
+            padding: 8px;
+            font-size: 12px;
+            color: #555;
+            text-align: center;
+            font-weight: bold;
+            border-top: 1px solid #eee;
+        }
+
+        .ai-reason-box {
+            margin-top: 10px;
+            padding: 8px 10px;
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 4px;
+            color: #1e40af;
+            font-size: 11px;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .comparable-market-box {
+            margin-top: 15px;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 12px;
+        }
+        .comparable-market-box h4 {
+            margin: 0 0 8px 0;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 4px;
+        }
+        .market-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 4px;
+        }
+        .market-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .market-item a {
+            color: var(--boss-red);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .market-item a:hover { text-decoration: underline; }
+
+        /* Transport info stijl */
+        .transport-info-box {
+            margin-top: 8px;
+            padding: 6px 8px;
+            background: #fdf8f6;
+            border: 1px solid #f2e3df;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #663322;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="BOSS GLOBAL" style="height: 40px; object-fit: contain; display: block;" onerror="this.style.display='none'">
+        
+        <div class="header-search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="searchInput" placeholder="Vrij zoeken op merk, model, titel of locatie..." oninput="debouncedRenderGrid()">
+        </div>
+
+        <div class="system-status-indicator" onclick="openStatusModal()">
+            <span id="header-status-dot" class="status-dot dot-green"></span>
+            <span id="header-status-text">Portalen Status</span>
+        </div>
+    </header>
+
+    <!-- Modal: Portalen Status -->
+    <div class="modal-overlay" id="statusModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Status Portalen Vandaag</h2>
+                <span class="modal-close" onclick="closeStatusModal()">&times;</span>
+            </div>
+            <ul class="portal-status-list" id="portalStatusList"></ul>
+        </div>
+    </div>
+
+    <!-- Modal: Reden voor Slechte Feedback (Lightbox) -->
+    <div class="reason-modal-overlay" id="reasonModal">
+        <div class="reason-modal-content">
+            <div class="modal-header">
+                <h2>Waarom is dit geen goede optie?</h2>
+                <span class="modal-close" onclick="closeReasonModal()">&times;</span>
+            </div>
+            <p style="color: #666; font-size: 13px; margin-bottom: 15px;">Selecteer een reden om de AI verder te trainen:</p>
+            <div class="reason-btn-list">
+                <button class="reason-btn" onclick="submitReason('Te duur')">Te duur</button>
+                <button class="reason-btn" onclick="submitReason('Te oud of te veel km of uren')">Te oud / te veel km of uren</button>
+                <button class="reason-btn" onclick="submitReason('Sluit niet aan bij aanbod')">Sluit niet aan bij ons aanbod</button>
+                <button class="reason-btn" onclick="submitReason('Verkeerde locatie of transport')">Verkeerde locatie / te ver</button>
+            </div>
+            <div style="border-top: 1px solid #eee; padding-top: 15px; text-align: left;">
+                <p style="font-size: 12px; color: #555; margin-bottom: 5px; font-weight: bold;">Of vul zelf een andere reden in:</p>
+                <div style="display: flex; gap: 5px;">
+                    <input type="text" id="customReasonInput" placeholder="Typ hier de reden..." style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px;">
+                    <button onclick="submitCustomReason()" style="padding: 8px 12px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Verstuur</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Inklapbare Filter Drawer -->
+        <div class="sidebar" id="sidebarFilters">
+            <div class="filter-group">
+                <h3>Platform</h3>
+                <select id="filter-platform" onchange="renderGrid()">
+                    <option value="">Alle platformen</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Categorie</h3>
+                <select id="filter-categorie" onchange="renderGrid()">
+                    <option value="">Alle categorieën</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Merk</h3>
+                <select id="filter-merk" onchange="renderGrid()">
+                    <option value="">Alle merken</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Model</h3>
+                <select id="filter-model" onchange="renderGrid()">
+                    <option value="">Alle modellen</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Bouwjaar</h3>
+                <select id="filter-bouwjaar" onchange="renderGrid()">
+                    <option value="">Alle bouwjaren</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Status</h3>
+                <select id="filter-status" onchange="renderGrid()">
+                    <option value="">Alle statussen</option>
+                </select>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <div class="tabs-header-area">
+                <div class="tabs-left-wrapper">
+                    <button class="toggle-filter-btn" onclick="toggleFilters()">⚙️ Filters</button>
+                    <div class="tabs">
+                        <div class="tab active" onclick="switchTab('listings')" id="tab-listings">Listings <span id="count-listings">(0)</span></div>
+                        <div class="tab" onclick="switchTab('auctions')" id="tab-auctions">Veilingen <span id="count-auctions">(0)</span></div>
+                        <div class="tab" onclick="switchTab('voorraad')" id="tab-voorraad">Eigen Voorraad <span id="count-voorraad">(0)</span></div>
+                    </div>
+                </div>
+                
+                <div class="header-controls">
+                    
+                    <!-- Sorteer Knop & Dropdown -->
+                    <div class="sort-container">
+                        <div class="sort-btn" onclick="toggleSortMenu()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <polyline points="19 12 12 19 5 12"></polyline>
+                            </svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:-10px">
+                                <line x1="12" y1="19" x2="12" y2="5"></line>
+                                <polyline points="5 12 12 5 19 12"></polyline>
+                            </svg>
+                            <span>Sorteren</span>
+                        </div>
+                        <div class="sort-dropdown" id="sortDropdown">
+                            <div class="sort-option selected" onclick="setSort('default')" id="opt-default">🤖 AI Picks + Aflopende Veilingen (Standaard)</div>
+                            <div class="sort-option" data-auction-only="true" onclick="setSort('auction-first')" id="opt-auction-first">⏱️ Eerst aflopende veilingen</div>
+                            <div class="sort-option" onclick="setSort('price-asc')" id="opt-price-asc">💶 Prijs (Oplopend)</div>
+                            <div class="sort-option" onclick="setSort('price-desc')" id="opt-price-desc">💶 Prijs (Aflopend)</div>
+                            <div class="sort-option" onclick="setSort('year-desc')" id="opt-year-desc">📅 Bouwjaar (Nieuw > Oud)</div>
+                            <div class="sort-option" onclick="setSort('year-asc')" id="opt-year-asc">📅 Bouwjaar (Oud > Nieuw)</div>
+                            <div class="sort-option" onclick="setSort('hours-asc')" id="opt-hours-asc">⏳ Uren (Laag > Hoog)</div>
+                            <div class="sort-option" onclick="setSort('hours-desc')" id="opt-hours-desc">⏳ Uren (Hoog > Laag)</div>
+                        </div>
+                    </div>
+
+                    <!-- Vlaggen / Globe Filter met dynamische vlag wissel -->
+                    <div class="flag-filter-container">
+                        <div class="flag-globe-btn" id="flagGlobeBtn" onclick="toggleFlagMenu()" title="Filter op vlag">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                        </div>
+                        <div class="flag-dropdown" id="flagDropdown">
+                            <!-- Dynamisch gevuld -->
+                        </div>
+                    </div>
+
+                    <!-- Visuele AI Toggle Schakelaar -->
+                    <div id="aiToggleBtn" class="ai-toggle-container active" onclick="toggleAiPicks()">
+                        <span class="ai-toggle-label">🤖 AI Picks</span>
+                        <div class="toggle-switch"></div>
+                        <span id="aiToggleState" class="toggle-status-text">AAN</span>
+                    </div>
+
+                    <!-- Toon concurrentie Toggle Schakelaar -->
+                    <div id="competitorToggleBtn" class="ai-toggle-container" onclick="toggleCompetitors()">
+                        <span class="ai-toggle-label">Toon concurrentie</span>
+                        <div class="toggle-switch"></div>
+                        <span id="competitorToggleState" class="toggle-status-text">UIT</span>
+                    </div>
+
+                    <select id="filter-feedback" class="feedback-filter-select" onchange="renderGrid()">
+                        <option value="relevant" selected>Relevante resultaten</option>
+                        <option value="all">Alle resultaten</option>
+                        <option value="positive">Alleen positief (👍)</option>
+                        <option value="negative">Alleen negatief (👎)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid" id="product-grid">
+                <p>Gegevens inladen vanaf platform...</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const jsonMasterUrl = './data/equipment-data.json';
+        const gasWebappUrl = 'https://script.google.com/macros/s/AKfycbyqMHbCWi4IkO5Rr5yXFWkMjdQauNEmLdtFk21mC8LTRiX2a9bzPN7MsuGvwkzVmHRexw/exec';
+
+        let allData = [];
+        let ownStockData = [];
+        let currentTab = 'listings';
+        let activeFeedbackId = null;
+        let aiPicksActive = true; 
+        let showCompetitors = false; 
+        let currentSort = 'default';
+        let selectedFlagFilter = '';
+
+        let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
+        let hiddenCardsData = JSON.parse(localStorage.getItem('bossHiddenCards') || '{}');
+
+        const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
+        const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
+        const svgThreeStars = `<svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>`;
+        const svgGlobeIcon = `<svg class="flag-globe-icon-sm" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
+
+        // Debounce voor zoekbalk om snelheid te verhogen bij typen
+        let searchTimeout = null;
+        function debouncedRenderGrid() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                renderGrid();
+            }, 150);
+        }
+
+        function toggleFilters() {
+            const wrapper = document.getElementById('sidebarFilters');
+            wrapper.classList.toggle('open');
+        }
+
+        function toggleSortMenu() {
+            document.getElementById('sortDropdown').classList.toggle('open');
+            document.getElementById('flagDropdown').classList.remove('open');
+        }
+
+        function toggleFlagMenu() {
+            document.getElementById('flagDropdown').classList.toggle('open');
+            document.getElementById('sortDropdown').classList.remove('open');
+        }
+
+        function setSort(sortType) {
+            currentSort = sortType;
+            document.querySelectorAll('.sort-option').forEach(el => el.classList.remove('selected'));
+            const selectedOpt = document.getElementById(`opt-${sortType}`);
+            if(selectedOpt) selectedOpt.classList.add('selected');
+            
+            document.getElementById('sortDropdown').classList.remove('open');
+            renderGrid();
+        }
+
+        function selectFlagFilter(flagFile) {
+            selectedFlagFilter = flagFile;
+            updateFlagGlobeButtonVisual();
+            document.getElementById('flagDropdown').classList.remove('open');
+            renderGrid();
+        }
+
+        function updateFlagGlobeButtonVisual() {
+            const btn = document.getElementById('flagGlobeBtn');
+            if (selectedFlagFilter) {
+                btn.innerHTML = `<img src="https://flagcdn.com/24x18/${selectedFlagFilter}" class="active-flag-icon" alt="Geselecteerde vlag">`;
+            } else {
+                btn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
+            }
+        }
+
+        window.addEventListener('click', function(e) {
+            if (!document.querySelector('.sort-container').contains(e.target)) {
+                document.getElementById('sortDropdown').classList.remove('open');
+            }
+            if (!document.querySelector('.flag-filter-container').contains(e.target)) {
+                document.getElementById('flagDropdown').classList.remove('open');
+            }
+        });
+
+        function toggleAiPicks() {
+            aiPicksActive = !aiPicksActive;
+            const container = document.getElementById('aiToggleBtn');
+            const stateSpan = document.getElementById('aiToggleState');
+            
+            if (aiPicksActive) {
+                container.classList.add('active');
+                stateSpan.innerText = 'AAN';
+            } else {
+                container.classList.remove('active');
+                stateSpan.innerText = 'UIT';
+            }
+            renderGrid();
+        }
+
+        function toggleCompetitors() {
+            showCompetitors = !showCompetitors;
+            const container = document.getElementById('competitorToggleBtn');
+            const stateSpan = document.getElementById('competitorToggleState');
+            
+            if (showCompetitors) {
+                container.classList.add('active');
+                stateSpan.innerText = 'AAN';
+            } else {
+                container.classList.remove('active');
+                stateSpan.innerText = 'UIT';
+            }
+            renderGrid();
+        }
+
+        function getRowValue(row, possibleKeys) {
+            for (let k of possibleKeys) {
+                for (let actualKey of Object.keys(row)) {
+                    if (actualKey.trim().toLowerCase() === k.toLowerCase()) {
+                        return row[actualKey];
+                    }
+                }
+            }
+            return '';
+        }
+
+        function isAiPickItem(row) {
+            const val = String(getRowValue(row, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
+            if (val !== 'ja' && val !== 'true' && val !== '1') return false;
+
+            const reason = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').trim().toLowerCase();
+            if (reason.includes('in het verleden al geselecteerd')) {
+                return false;
+            }
+            return true;
+        }
+
+        function parseNumericForSort(val) {
+            if (val === null || val === undefined) return null;
+            let s = String(val).toLowerCase().trim();
+            if (s === '' || s.includes('aanvraag') || s.includes('bod') || s.includes('n.o.t.k')) return null;
+            
+            let digits = s.match(/[\d]+([.,]\d{3})*/); 
+            if (digits) {
+                let cleanNum = digits[0].replace(/[.,]/g, '');
+                let n = parseInt(cleanNum, 10);
+                return isNaN(n) ? null : n;
+            }
+            return null;
+        }
+
+        function hideCard(event, id) {
+            event.preventDefault();
+            event.stopPropagation();
+            hiddenCardsData[id] = true;
+            localStorage.setItem('bossHiddenCards', JSON.stringify(hiddenCardsData));
+
+            if (gasWebappUrl) {
+                const targetUrl = `${gasWebappUrl}?action=verberg&id=${encodeURIComponent(id)}`;
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = targetUrl;
+                document.body.appendChild(iframe);
+                setTimeout(() => { iframe.remove(); }, 5000);
+            }
+            renderGrid();
+        }
+
+        function restoreCard(event, id) {
+            event.preventDefault();
+            event.stopPropagation();
+            delete hiddenCardsData[id];
+            localStorage.setItem('bossHiddenCards', JSON.stringify(hiddenCardsData));
+
+            if (gasWebappUrl) {
+                const targetUrl = `${gasWebappUrl}?action=tonenJa&id=${encodeURIComponent(id)}`;
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = targetUrl;
+                document.body.appendChild(iframe);
+                setTimeout(() => { iframe.remove(); }, 5000);
+            }
+            renderGrid();
+        }
+
+        function toggleFeedback(event, id, type) {
+            event.preventDefault(); 
+            event.stopPropagation(); 
+
+            if (type === 'positive') {
+                if (feedbackData[id] === 'positive') {
+                    delete feedbackData[id];
+                    sendToGoogleAppsScript(id, 'removed');
+                } else {
+                    feedbackData[id] = 'positive';
+                    sendToGoogleAppsScript(id, 'goed');
+                }
+            } else if (type === 'negative') {
+                if (feedbackData[id] === 'negative') {
+                    delete feedbackData[id];
+                    sendToGoogleAppsScript(id, 'removed');
+                } else {
+                    activeFeedbackId = id;
+                    document.getElementById('reasonModal').style.display = 'flex';
+                    return;
+                }
+            }
+
+            localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
+            renderGrid();
+        }
+
+        function submitReason(reasonText) {
+            if (!activeFeedbackId) return;
+            feedbackData[activeFeedbackId] = 'negative';
+            localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
+            sendToGoogleAppsScript(activeFeedbackId, "Slecht: " + reasonText);
+            closeReasonModal();
+            renderGrid();
+        }
+
+        function submitCustomReason() {
+            const val = document.getElementById('customReasonInput').value.trim();
+            if (!val) {
+                alert('Vul a.u.b. een reden in.');
+                return;
+            }
+            submitReason(val);
+            document.getElementById('customReasonInput').value = '';
+        }
+
+        function closeReasonModal() {
+            document.getElementById('reasonModal').style.display = 'none';
+            activeFeedbackId = null;
+        }
+
+        function sendToGoogleAppsScript(id, feedbackVal) {
+            if (gasWebappUrl) {
+                const targetUrl = `${gasWebappUrl}?id=${encodeURIComponent(id)}&feedback=${encodeURIComponent(feedbackVal)}`;
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = targetUrl;
+                document.body.appendChild(iframe);
+                setTimeout(() => { iframe.remove(); }, 5000);
+            }
+        }
+
+        async function haalLiveFeedbackOp() {
+            if (!gasWebappUrl) return;
+            try {
+                const targetUrl = `${gasWebappUrl}?action=getLiveStatus`;
+                const response = await fetch(targetUrl);
+                if (!response.ok) return;
+
+                const liveData = await response.json();
+                let updated = false;
+                Object.keys(liveData).forEach(id => {
+                    const item = liveData[id];
+                    const status = typeof item === 'object' ? item.status : String(item);
+                    const tonen = typeof item === 'object' ? item.tonen : '';
+
+                    if (tonen && tonen.toLowerCase() === 'nee') {
+                        if (!hiddenCardsData[id]) {
+                            hiddenCardsData[id] = true;
+                            updated = true;
+                        }
+                    } else if (tonen && tonen.toLowerCase() === 'ja') {
+                        if (hiddenCardsData[id]) {
+                            delete hiddenCardsData[id];
+                            updated = true;
+                        }
+                    }
+
+                    if (status === 'goed' || status === 'positive') {
+                        if (feedbackData[id] !== 'positive') {
+                            feedbackData[id] = 'positive';
+                            updated = true;
+                        }
+                    } else if (status.startsWith('Slecht:') || status === 'slecht' || status === 'negative') {
+                        if (feedbackData[id] !== 'negative') {
+                            feedbackData[id] = 'negative';
+                            updated = true;
+                        }
+                    } else if (status === 'removed') {
+                        if (feedbackData[id]) {
+                            delete feedbackData[id];
+                            updated = true;
+                        }
+                    }
+                });
+
+                if (updated) {
+                    localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
+                    localStorage.setItem('bossHiddenCards', JSON.stringify(hiddenCardsData));
+                    renderGrid();
+                }
+            } catch (err) {
+                console.warn("Kon live feedback niet ophalen uit Apps Script:", err);
+            }
+        }
+
+        const TARGET_PORTALS = [
+            "Agorastore", "Auctelia", "Auction Time", "Blaupool", "Camion Super Market",
+            "Equippo", "Euro Auctions", "Interencheres", "Klaravik", "Legal Brokers", "MMT Usatomacchine", 
+            "MachineryLine", "Mascus", "Proxibid", "Purple Wave", "Ritchie", "Surplex", "Troostwijk", 
+            "Truck1", "Truckscout24", "werktuigen", "Yoder & Frey"            
+        ];
+
+        fetch(jsonMasterUrl)
+            .then(response => response.json())
+            .then(masterData => {
+                let parsedListings = [];
+                let parsedVoorraad = [];
+
+                if (masterData.stockHeaders && masterData.stockRows) {
+                    const headers = masterData.stockHeaders;
+                    const rows = masterData.stockRows.map(row => {
+                        let obj = {};
+                        headers.forEach((h, i) => {
+                            if (h && h.trim()) obj[h.trim()] = row[i];
+                        });
+                        return obj;
+                    });
+                    parsedVoorraad = rows.filter(r => (r.Platform || '').toLowerCase().includes('eigen voorraad'));
+                    parsedListings = rows.filter(r => !(r.Platform || '').toLowerCase().includes('eigen voorraad'));
+                } else {
+                    parsedListings = masterData.listings || (Array.isArray(masterData) ? masterData : []);
+                    parsedVoorraad = masterData.voorraad || [];
+                }
+
+                allData = parsedListings.filter(row => row.Merk || row.Model || row.brand || row.Titel);
+                ownStockData = parsedVoorraad.filter(row => row.Merk || row.Model || row.brand || row.Titel);
+
+                populateFilters();
+                updateSystemStatusHeader();
+                switchTab('listings'); 
+                haalLiveFeedbackOp();
+            })
+            .catch(err => {
+                console.error("Fout bij laden van master JSON:", err);
+                document.getElementById('product-grid').innerHTML = '<p style="color:red;">Fout bij het laden van de platform-data.</p>';
+            });
+
+        function switchTab(tab) {
+            currentTab = tab;
+            document.getElementById('tab-listings').classList.toggle('active', tab === 'listings');
+            document.getElementById('tab-auctions').classList.toggle('active', tab === 'auctions');
+            document.getElementById('tab-voorraad').classList.toggle('active', tab === 'voorraad');
+            
+            const auctionOpt = document.getElementById('opt-auction-first');
+            if (tab === 'auctions') {
+                auctionOpt.style.display = 'flex';
+            } else {
+                auctionOpt.style.display = 'none';
+                if (currentSort === 'auction-first') {
+                    setSort('default');
+                }
+            }
+
+            selectedFlagFilter = '';
+            updateFlagGlobeButtonVisual();
+            populateFilters();
+            renderGrid();
+        }
+
+        function checkPortalsStatus() {
+            const todayStr = new Date().toISOString().split('T')[0];
+            let statuses = {};
+            let globalStatus = 'green';
+
+            TARGET_PORTALS.forEach(portalName => {
+                const portalRows = allData.filter(r => (r.Platform || '').toLowerCase().includes(portalName.toLowerCase()));
+                if (portalRows.length === 0) {
+                    statuses[portalName] = { state: 'red', label: 'Geen data in sheet' };
+                    globalStatus = 'red';
+                } else {
+                    const hasTodayData = portalRows.some(r => {
+                        const dFound = r['Laatst bijgewerkt'];
+                        return dFound && dFound.includes(todayStr);
+                    });
+                    if (hasTodayData) {
+                        statuses[portalName] = { state: 'green', label: 'Data vandaag binnen' };
+                    } else {
+                        statuses[portalName] = { state: 'orange', label: 'Geen data vandaag' };
+                        if (globalStatus !== 'red') globalStatus = 'orange';
+                    }
+                }
+            });
+            return { statuses, globalStatus };
+        }
+
+        function updateSystemStatusHeader() {
+            const { globalStatus } = checkPortalsStatus();
+            const dot = document.getElementById('header-status-dot');
+            if(dot) dot.className = 'status-dot dot-' + globalStatus;
+        }
+
+        function openStatusModal() {
+            const { statuses } = checkPortalsStatus();
+            const listEl = document.getElementById('portalStatusList');
+            listEl.innerHTML = '';
+            for (const [portal, info] of Object.entries(statuses)) {
+                listEl.innerHTML += `
+                    <li class="portal-status-item">
+                        <span><strong>${portal}</strong></span>
+                        <span style="display:flex; align-items:center; gap:8px;">
+                            <small style="color:#777;">${info.label}</small>
+                            <span class="status-dot dot-${info.state}"></span>
+                        </span>
+                    </li>
+                `;
+            }
+            document.getElementById('statusModal').style.display = 'flex';
+        }
+
+        function closeStatusModal() {
+            document.getElementById('statusModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('statusModal')) closeStatusModal();
+            if (event.target === document.getElementById('reasonModal')) closeReasonModal();
+        }
+
+        function populateFilters() {
+            const dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
+            
+            const platforms = [...new Set(dataSource.map(item => item.Platform))].filter(Boolean).sort();
+            const categorieen = [...new Set(dataSource.map(item => item.Categorie))].filter(Boolean).sort();
+            const merken = [...new Set(dataSource.map(item => item.Merk || item.brand))].filter(Boolean).sort();
+            const modellen = [...new Set(dataSource.map(item => item.Model))].filter(Boolean).sort();
+            const bouwjaren = [...new Set(dataSource.map(item => item.Bouwjaar))].filter(Boolean).sort((a,b)=>b-a);
+            const statussen = [...new Set(dataSource.map(item => item.Status))].filter(Boolean).sort();
+
+            const fillSelect = (id, arr, labelText) => {
+                const select = document.getElementById(id);
+                select.innerHTML = `<option value="">${labelText}</option>`;
+                arr.forEach(val => select.innerHTML += `<option value="${val}">${val}</option>`);
+            };
+
+            fillSelect('filter-platform', platforms, 'Alle platformen');
+            fillSelect('filter-categorie', categorieen, 'Alle categorieën');
+            fillSelect('filter-merk', merken, 'Alle merken');
+            fillSelect('filter-model', modellen, 'Alle modellen');
+            fillSelect('filter-bouwjaar', bouwjaren, 'Alle bouwjaren');
+            fillSelect('filter-status', statussen, 'Alle statussen');
+        }
+
+        function extractFlagFile(locStr) {
+            if (!locStr) return null;
+            let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
+            let lLower = cleanLocStr.toLowerCase();
+
+            if (lLower.includes('überherrn') || lLower.includes('saarland')) return 'de.png';
+            if (
+                lLower.includes('mantova') || lLower.includes('bergamo') || lLower.includes('napoli') || 
+                lLower.includes('padova') || lLower.includes('avellino') || lLower.includes('perugia') || 
+                lLower.includes('roma') || lLower.includes('bologna') || lLower.includes('cuneo') || 
+                lLower.includes('piemonte') || lLower.includes('bari') || lLower.includes('puglia') || 
+                lLower.includes('lazio') || lLower.includes('emilia') || lLower.includes('lombardia') || 
+                lLower.includes('campania') || lLower.includes('veneto') || lLower.includes('umbria')
+            ) {
+                return 'it.png';
+            }
+            
+            const worldCountries = {
+                'can': 'ca', 'ca': 'ca', 'canada': 'ca',
+                'usa': 'us', 'usm': 'us', 'us': 'us', 'united states': 'us', 'verenigde staten': 'us',
+                'mex': 'mx', 'mx': 'mx', 'mexico': 'mx',
+                'arg': 'ar', 'ar': 'ar', 'argentina': 'ar', 'argentinië': 'ar',
+                'bra': 'br', 'br': 'br', 'brazil': 'br', 'brazilië': 'br',
+                'nld': 'nl', 'nl': 'nl', 'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl',
+                'bel': 'be', 'be': 'be', 'belgië': 'be', 'belgium': 'be',
+                'deu': 'de', 'de': 'de', 'duitsland': 'de', 'germany': 'de',
+                'fra': 'fr', 'fr': 'fr', 'frankrijk': 'fr', 'france': 'fr',
+                'esp': 'es', 'es': 'es', 'spanje': 'es', 'spain': 'es',
+                'prt': 'pt', 'pt': 'pt', 'portugal': 'pt',
+                'ita': 'it', 'it': 'it', 'italië': 'it', 'italy': 'it',
+                'pol': 'pl', 'pl': 'pl', 'polen': 'pl', 'poland': 'pl',
+                'swe': 'se', 'se': 'se', 'zweden': 'se', 'sweden': 'se',
+                'nor': 'no', 'no': 'no', 'noorwegen': 'no', 'norway': 'no',
+                'dnk': 'dk', 'dk': 'dk', 'denemarken': 'dk', 'denmark': 'dk',
+                'fin': 'fi', 'fi': 'fi', 'finland': 'fi',
+                'irl': 'ie', 'ie': 'ie', 'ierland': 'ie', 'ireland': 'ie',
+                'gbr': 'gb', 'uk': 'gb', 'gb': 'gb', 'verenigd koninkrijk': 'gb', 'engeland': 'gb',
+                'che': 'ch', 'ch': 'ch', 'zwitserland': 'ch', 'switzerland': 'ch',
+                'aut': 'at', 'at': 'at', 'oostenrijk': 'at', 'austria': 'at',
+                'are': 'ae', 'ae': 'ae', 'dubai': 'ae', 'uae': 'ae'
+            };
+
+            let countryCode = '';
+            let parts = cleanLocStr.split(/[,–\/-]+/);
+            for (let i = parts.length - 1; i >= 0; i--) {
+                let token = parts[i].trim().toLowerCase();
+                if (worldCountries[token]) {
+                    countryCode = worldCountries[token];
+                    break;
+                }
+            }
+            if (!countryCode) {
+                for (const [name, code] of Object.entries(worldCountries)) {
+                    if (lLower.includes(name)) {
+                        countryCode = code;
+                        break;
+                    }
+                }
+            }
+            return countryCode ? countryCode + '.png' : null;
+        }
+
+        function getCountryFlagHtml(locStr) {
+            if (!locStr) return '📍 <span>Onbekend</span>';
+            let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
+            let flagFile = extractFlagFile(cleanLocStr);
+            let mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cleanLocStr)}`;
+
+            if (flagFile) {
+                return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-link" title="Open in Google Maps"><img src="https://flagcdn.com/24x18/${flagFile}" alt="Vlag"> <span>${cleanLocStr}</span> 🗺️</a>`;
+            }
+            return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-link" title="Open in Google Maps">📍 <span>${cleanLocStr}</span> 🗺️</a>`;
+        }
+
+        function matchesOtherFilters(row, isAuctionTabContext = null, isStockTabContext = null) {
+            const filterPlatform = document.getElementById('filter-platform').value;
+            const filterCategorie = document.getElementById('filter-categorie').value;
+            const filterMerk = document.getElementById('filter-merk').value;
+            const filterModel = document.getElementById('filter-model').value;
+            const filterBouwjaar = document.getElementById('filter-bouwjaar').value;
+            const filterStatus = document.getElementById('filter-status').value;
+            const filterFb = document.getElementById('filter-feedback').value;
+            const searchQuery = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase().trim() : '';
+
+            let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
+            if (filterFb !== 'all' && filterFb !== 'positive') {
+                if (hiddenCardsData[uniqueId]) return false;
+            }
+
+            const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
+            const isAuction = endDateVal !== '';
+
+            if (isStockTabContext !== null) {
+                if (!isStockTabContext) {
+                    if (isAuctionTabContext && !isAuction) return false;
+                    if (!isAuctionTabContext && isAuction) return false;
+                }
+            }
+
+            const p = (row.Platform || '');
+            if (filterPlatform && p !== filterPlatform) return false;
+
+            const cat = (row.Categorie || '');
+            if (filterCategorie && cat !== filterCategorie) return false;
+            
+            const m = (row.Merk || row.brand || '');
+            if (filterMerk && m !== filterMerk) return false;
+
+            const mdl = (row.Model || '');
+            if (filterModel && mdl !== filterModel) return false;
+
+            if (filterBouwjaar && String(row.Bouwjaar) !== String(filterBouwjaar)) return false;
+            if (filterStatus && row.Status !== filterStatus) return false;
+
+            if (!showCompetitors) {
+                const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
+                const feedbackText = String(getRowValue(row, ['Feedback', 'Feedback Inkoop']) || '').toLowerCase();
+                const platformText = String(row['Platform'] || '').toLowerCase();
+                const locLower = String(row.Locatie || '').toLowerCase();
+                const linkLower = String(row.Link || '').toLowerCase();
+
+                if (aiReasonText.includes('concurrent') || platformText.includes('concurrent') || feedbackText.includes('concurrent')) return false;
+                if (locLower.includes('vuren')) return false;
+                if (locLower.includes('gelderland') && linkLower.includes('europe-commercial-vehicle.com')) return false;
+            }
+
+            if (searchQuery) {
+                const searchableText = `${row.Titel || ''} ${row.Merk || ''} ${row.brand || ''} ${row.Model || ''} ${row.Locatie || ''} ${row.Platform || ''}`.toLowerCase();
+                if (!searchableText.includes(searchQuery)) return false;
+            }
+
+            let userFb = feedbackData[uniqueId] || 'none';
+            if (filterFb === 'relevant' && userFb === 'negative') return false; 
+            if (filterFb === 'positive' && userFb !== 'positive') return false;
+            if (filterFb === 'negative' && userFb !== 'negative') return false;
+
+            return true;
+        }
+
+        function populateFlagDropdown() {
+            const dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
+            let flagCounts = {};
+
+            const isAuctionTab = (currentTab === 'auctions');
+            const isStockTab = (currentTab === 'voorraad');
+
+            dataSource.forEach(row => {
+                if (matchesOtherFilters(row, isAuctionTab, isStockTab)) {
+                    if (row['Locatie']) {
+                        let f = extractFlagFile(row['Locatie']);
+                        if (f) {
+                            flagCounts[f] = (flagCounts[f] || 0) + 1;
+                        }
+                    }
+                }
+            });
+
+            let sortedFlags = Object.keys(flagCounts).sort((a, b) => flagCounts[b] - flagCounts[a]);
+            const dropdown = document.getElementById('flagDropdown');
+            let totalMatchingCount = dataSource.filter(row => matchesOtherFilters(row, isAuctionTab, isStockTab)).length;
+            
+            let html = `<div class="flag-dropdown-option ${selectedFlagFilter === '' ? 'selected' : ''}" onclick="selectFlagFilter('')"><span>${svgGlobeIcon}</span><span class="flag-count">${totalMatchingCount}</span></div>`;
+            
+            sortedFlags.forEach(flag => {
+                let isSel = (selectedFlagFilter === flag) ? 'selected' : '';
+                let count = flagCounts[flag];
+                html += `
+                    <div class="flag-dropdown-option ${isSel}" onclick="selectFlagFilter('${flag}')">
+                        <img src="https://flagcdn.com/24x18/${flag}" alt="${flag}">
+                        <span class="flag-count">${count}</span>
+                    </div>
+                `;
+            });
+            dropdown.innerHTML = html;
+        }
+
+        function parseAuctionDate(str) {
+            if (!str) return null;
+            str = String(str).replace(/^'/, '').trim();
+            if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}/.test(str)) {
+                str = str.replace(' ', 'T');
+            }
+            str = str.replace(/([+-]\d{2})(\d{2})$/, '$1:$2');
+            let d = new Date(str);
+            if (!isNaN(d.getTime())) return d;
+            return null;
+        }
+
+        function getCountdownDetails(endTimeString) {
+            const end = parseAuctionDate(endTimeString);
+            if (!end) return null;
+            const now = new Date();
+            const diff = end - now;
+            
+            if (diff <= 0) return { boxText: 'Veiling afgelopen', imageBadge: 'AFGELOPEN', isUrgent: false, isExpired: true };
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const totalHours = Math.floor(diff / (1000 * 60 * 60)); 
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+            const pad = (n) => String(n).padStart(2, '0');
+            
+            let timeStrUpper = totalHours > 0 ? `⏱ ${days > 0 ? days + 'd ' : ''}${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S` : `⚠️ ${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S`;
+            const d = pad(end.getDate());
+            const m = pad(end.getMonth() + 1);
+            const y = end.getFullYear();
+            const H = pad(end.getHours());
+            const M = pad(end.getMinutes());
+            
+            if (totalHours <= 3) {
+                return { boxText: `⚠️ Nog ${days > 0 ? days + 'd ' : ''}${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`, imageBadge: timeStrUpper, isUrgent: true, isExpired: false };
+            }
+            return { boxText: `Veiling: ${d}-${m}-${y} om ${H}:${M}`, imageBadge: timeStrUpper, isUrgent: false, isExpired: false };
+        }
+
+        function updateLiveTimers() {
+            const timerBoxes = document.querySelectorAll('.live-countdown-box');
+            timerBoxes.forEach(box => {
+                const endTime = box.getAttribute('data-endtime');
+                const bids = box.getAttribute('data-bids') || '0';
+                const cardEl = box.closest('.card');
+                const badgeEl = cardEl ? cardEl.querySelector('.live-badge-image') : null;
+                
+                const cnt = getCountdownDetails(endTime);
+                if (cnt) {
+                    if (cnt.isExpired) {
+                        box.className = 'countdown';
+                        box.style.background = '#eee'; box.style.color = '#666'; box.style.borderColor = '#ccc';
+                        box.innerHTML = `Veiling afgelopen | Biedingen: ${bids}`;
+                        if (badgeEl) badgeEl.innerHTML = 'AFGELOPEN';
+                    } else if (cnt.isUrgent) {
+                        box.className = 'countdown live-countdown-box';
+                        box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
+                        if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                    } else {
+                        box.className = 'countdown-future live-countdown-box';
+                        box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
+                        if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                    }
+                }
+            });
+        }
+        setInterval(updateLiveTimers, 1000);
+
+        function renderGrid() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            let dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
+            const isAuctionTab = (currentTab === 'auctions');
+            const isStockTab = (currentTab === 'voorraad');
+
+            let filteredData = dataSource.filter(row => {
+                if (!matchesOtherFilters(row, isAuctionTab, isStockTab)) return false;
+                if (selectedFlagFilter) {
+                    let cardFlag = extractFlagFile(row['Locatie']);
+                    if (cardFlag !== selectedFlagFilter) return false;
+                }
+                return true;
+            });
+
+            filteredData.sort((a, b) => {
+                if (currentSort === 'default' || currentSort === 'ai-ranking') {
+                    if (aiPicksActive) {
+                        const isAiA = isAiPickItem(a) ? 1 : 0;
+                        const isAiB = isAiPickItem(b) ? 1 : 0;
+                        if (isAiA !== isAiB) return isAiB - isAiA; 
+                    }
+                    const dateA = parseAuctionDate(a['Veiling loopt af op']);
+                    const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                    const now = new Date();
+                    const isExpiredA = !dateA || (dateA - now <= 0);
+                    const isExpiredB = !dateB || (dateB - now <= 0);
+                    
+                    if (isExpiredA && !isExpiredB) return 1;
+                    if (!isExpiredA && isExpiredB) return -1;
+                    if (!dateA && !dateB) return 0;
+                    if (!dateA) return 1;
+                    if (!dateB) return -1;
+                    return dateA - dateB;
+                }
+                else if (currentSort === 'auction-first') {
+                    const dateA = parseAuctionDate(a['Veiling loopt af op']);
+                    const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                    const now = new Date();
+                    const isExpiredA = !dateA || (dateA - now <= 0);
+                    const isExpiredB = !dateB || (dateB - now <= 0);
+                    if (isExpiredA && !isExpiredB) return 1;
+                    if (!isExpiredA && isExpiredB) return -1;
+                    if (!dateA) return 1;
+                    if (!dateB) return -1;
+                    return dateA - dateB;
+                } 
+                else {
+                    let numA = null;
+                    let numB = null;
+                    if (currentSort.startsWith('price')) {
+                        numA = parseNumericForSort(a['Laatste prijs'] || a['Prijs'] || a['Eerste prijs']);
+                        numB = parseNumericForSort(b['Laatste prijs'] || b['Prijs'] || b['Eerste prijs']);
+                    } else if (currentSort.startsWith('year')) {
+                        numA = parseNumericForSort(a.Bouwjaar);
+                        numB = parseNumericForSort(b.Bouwjaar);
+                    } else if (currentSort.startsWith('hours')) {
+                        numA = parseNumericForSort(a.Draaiuren);
+                        numB = parseNumericForSort(b.Draaiuren);
+                    }
+                    if (numA === null && numB === null) return 0;
+                    if (numA === null) return 1;  
+                    if (numB === null) return -1; 
+                    return currentSort.endsWith('asc') ? numA - numB : numB - numA;
+                }
+            });
+            
+            updateTabCounts();
+            populateFlagDropdown();
+
+            if (filteredData.length === 0) {
+                grid.innerHTML = '<p>Geen machines gevonden binnen deze filters.</p>';
+                return;
+            }
+
+            const fragment = document.createDocumentFragment();
+
+            filteredData.forEach(row => {
+                const isOwnStock = (currentTab === 'voorraad');
+                const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
+                const isAuction = endDateVal !== '';
+                
+                let rawTitle = row.Titel || row.Title || (`${row.Merk || ''} ${row.Model || ''}`.trim()) || row.Model || 'Machine / Onbekend';
+                let fullTitle = rawTitle.length > 60 ? rawTitle.substring(0, 57) + '...' : rawTitle;
+
+                let priceHtml = '';
+                const eerstePrijs = row['Eerste prijs'] ? String(row['Eerste prijs']).trim() : '';
+                const laatstePrijs = row['Laatste prijs'] || row['Prijs'] ? String(row['Laatste prijs'] || row['Prijs']).trim() : '';
+
+                if (laatstePrijs && eerstePrijs && eerstePrijs !== laatstePrijs) {
+                    priceHtml = `<span class="old-price">${eerstePrijs}</span> <span class="new-price">${laatstePrijs}</span>`;
+                } else if (laatstePrijs) {
+                    priceHtml = laatstePrijs;
+                } else if (eerstePrijs) {
+                    priceHtml = eerstePrijs;
+                } else {
+                    priceHtml = isAuction ? 'Actueel bod' : 'Op aanvraag';
+                }
+
+                let rawPlatform = row['Platform'] || '';
+                let cleanSource = rawPlatform.replace(/\(veilingen\)/gi, '').trim();
+                let sourceHtml = cleanSource ? `<span class="card-source">${cleanSource}</span>` : '';
+
+                let onlineAuctionVal = String(getRowValue(row, ['Online Auction', 'Online-Auction', 'OnlineAuction']) || '').trim().toLowerCase();
+                let onsiteBadgeHtml = (onlineAuctionVal === 'nee') ? `<div class="badge-onsite">On-site</div>` : '';
+
+                let badgeHtml = '';
+                let imageBadgeContainerHtml = '';
+                let auctionHtml = '';
+                let isExpired = false;
+
+                const isAiPick = aiPicksActive && isAiPickItem(row);
+                const aiReason = getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '';
+
+                if (!isOwnStock && isAuction) {
+                    const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
+                    if (countdownObj) {
+                        const bidsCount = row['Aantal biedingen'] || '0';
+                        if (countdownObj.isExpired) {
+                            badgeHtml = `<div class="badge badge-rood">Afgelopen</div>`;
+                            imageBadgeContainerHtml = `<div class="badge-image-container"><div class="badge-image live-badge-image">AFGELOPEN</div>${onsiteBadgeHtml}</div>`;
+                            auctionHtml = `<div class="countdown" style="background:#eee; color:#666; border-color:#ccc;">Veiling afgelopen | Biedingen: ${bidsCount}</div>`;
+                            isExpired = true;
+                        } else {
+                            imageBadgeContainerHtml = `<div class="badge-image-container"><div class="badge-image live-badge-image">${countdownObj.imageBadge}</div>${onsiteBadgeHtml}</div>`;
+                            if (countdownObj.isUrgent) {
+                                badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
+                                auctionHtml = `<div class="countdown live-countdown-box" data-endtime="${row['Veiling loopt af op']}" data-bids="${bidsCount}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
+                            } else {
+                                auctionHtml = `<div class="countdown-future live-countdown-box" data-endtime="${row['Veiling loopt af op']}" data-bids="${bidsCount}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
+                            }
+                        }
+                    }
+                } else if (row.Status) {
+                    let statusLower = row.Status.toLowerCase().trim();
+                    if (statusLower.includes('afgeprijsd')) {
+                        badgeHtml = `<div class="badge badge-rood">${row.Status}</div>`;
+                    }
+                }
+
+                let aiStampHtml = isAiPick ? `<div class="badge-ai-stamp" title="${aiReason}">${svgThreeStars}</div>` : '';
+
+                let rawImg = row['Afbeelding'] || row['Image URL'] || row['image url'] || '';
+                let imageUrl = String(rawImg).trim();
+                let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
+                
+                if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+                    imageHtml = `<img src="${imageUrl}" alt="${fullTitle}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
+                }
+
+                let metaInfoHtml = '';
+                if (row['Locatie']) {
+                    let flagHtml = getCountryFlagHtml(row['Locatie']);
+                    metaInfoHtml += `<div class="card-location">${flagHtml}</div>`;
+                }
+                let sellerName = row['Verkopende partij'] || row['Verkoper'] || row['seller'] || '';
+                if (sellerName) {
+                    metaInfoHtml += `<div class="card-seller" title="${sellerName}">🏢 <span>${sellerName}</span></div>`;
+                }
+                if (metaInfoHtml) {
+                    metaInfoHtml = `<div class="card-meta-info">${metaInfoHtml}</div>`;
+                }
+
+                // Transportprijs integratie indien aanwezig in kolom/data
+                let transportPrice = row['Transportprijs'] || row['Transport'] || '';
+                let transportHtml = transportPrice ? `<div class="transport-info-box"><span>🚚 Geschat transport:</span> <strong>${transportPrice}</strong></div>` : '';
+
+                let extraContentHtml = '';
+                if (isOwnStock) {
+                    let marketHtml = '';
+                    let foundItemsCount = 0;
+                    Object.keys(row).forEach(key => {
+                        if (key.toLowerCase().includes('vergelijkbaar')) {
+                            let val = row[key];
+                            if (val && String(val).trim() !== '') {
+                                foundItemsCount++;
+                                let infoText = val;
+                                let linkUrl = '';
+                                if (val.includes('| Link:')) {
+                                    let parts = val.split('| Link:');
+                                    infoText = parts[0].trim();
+                                    linkUrl = parts[1] ? parts[1].trim() : '';
+                                }
+                                let linkHtml = (linkUrl && linkUrl !== '#') ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">Bekijk</a>` : '';
+                                marketHtml += `<div class="market-item"><span style="font-size:11px;">${infoText}</span>${linkHtml}</div>`;
+                            }
+                        }
+                    });
+                    if (foundItemsCount === 0) {
+                        marketHtml = `<div style="color:#777; font-style:italic;">Geen vergelijkbare marktdata gevonden.</div>`;
+                    }
+                    extraContentHtml = `<div class="comparable-market-box"><h4>Vergelijkbaar in de markt:</h4>${marketHtml}</div>`;
+                }
+
+                let productUrl = row.Link ? row.Link : '#';
+                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
+                let myFb = feedbackData[uniqueId];
+                let extraClass = '';
+                let posBtnClass = '';
+                let negBtnClass = '';
+
+                if (myFb === 'positive') { extraClass = ' glow-green'; posBtnClass = ' active-pos'; }
+                if (myFb === 'negative') { extraClass = ' glow-red'; negBtnClass = ' active-neg'; }
+                if (isAiPick) { extraClass = ' glow-ai'; }
+
+                let feedbackButtonsHtml = !isOwnStock ? `
+                    <div class="feedback-actions">
+                        <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive')" title="Positief">${svgThumbUp}</button>
+                        <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief">${svgThumbDown}</button>
+                    </div>
+                ` : '';
+
+                let isHidden = hiddenCardsData[uniqueId];
+                let hideButtonHtml = isHidden ? 
+                    `<button class="restore-card-btn" onclick="restoreCard(event, '${uniqueId}')" title="Herstel">&#x2715;</button>` : 
+                    `<button class="hide-card-btn" onclick="hideCard(event, '${uniqueId}')" title="Verberg">&#x2715;</button>`;
+
+                const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${aiReason}</div>` : '';
+                const expiredClass = isExpired ? ' expired' : '';
+                const wrapperStart = isOwnStock ? `<div class="card${expiredClass}${extraClass}">` : `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}${extraClass}">`;
+                const wrapperEnd = isOwnStock ? `</div>` : `</a>`;
+
+                const cardDiv = document.createElement('div');
+                cardDiv.innerHTML = `
+                    ${wrapperStart}
+                        ${aiStampHtml}
+                        ${badgeHtml}
+                        <div class="card-image-container">
+                            ${imageHtml}
+                            ${imageBadgeContainerHtml}
+                            ${hideButtonHtml}
+                            ${feedbackButtonsHtml}
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title" title="${rawTitle}">${fullTitle}</h3>
+                            <div class="card-specs">
+                                ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${row.Bouwjaar}</span>` : ''}
+                                ${row.Draaiuren ? `<span class="spec-tag">Uren: ${row.Draaiuren}</span>` : ''}
+                            </div>
+                            ${metaInfoHtml}
+                            ${transportHtml}
+                            <div class="card-price-box">
+                                <div class="card-price">${priceHtml}</div>
+                                <div class="card-right-meta">${sourceHtml}</div>
+                            </div>
+                            ${auctionHtml}
+                            ${aiReasonHtml}
+                            ${extraContentHtml}
+                        </div>
+                    ${wrapperEnd}
+                `;
+                fragment.appendChild(cardDiv.firstElementChild);
+            });
+
+            grid.appendChild(fragment);
+        }
+
+        function updateTabCounts() {
+            const countHelper = (dataSource, isAuctionTab, isStockTab) => {
+                return dataSource.filter(row => {
+                    let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
+                    const filterFb = document.getElementById('filter-feedback').value;
+                    if (filterFb !== 'all' && filterFb !== 'positive' && hiddenCardsData[uniqueId]) return false;
+                    if (!matchesOtherFilters(row, isAuctionTab, isStockTab)) return false;
+                    if (selectedFlagFilter) {
+                        let cardFlag = extractFlagFile(row['Locatie']);
+                        if (cardFlag !== selectedFlagFilter) return false;
+                    }
+                    return true;
+                }).length;
+            };
+            
+            document.getElementById('count-listings').innerText = `(${countHelper(allData, false, false)})`;
+            document.getElementById('count-auctions').innerText = `(${countHelper(allData, true, false)})`;
+            document.getElementById('count-voorraad').innerText = `(${countHelper(ownStockData, false, true)})`;
+        }
+    </script>
+</body>
+</html>
