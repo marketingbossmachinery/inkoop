@@ -1313,17 +1313,14 @@
         }
 
         function parseNumericForSort(val) {
-            if (val === null || val === undefined) return null;
-            let s = String(val).toLowerCase().trim();
-            if (s === '' || s.includes('aanvraag') || s.includes('bod') || s.includes('n.o.t.k')) return null;
+            if (val === null || val === undefined) return 0;
+            let s = String(val).trim();
+            if (s === '' || s.toLowerCase().includes('aanvraag') || s.toLowerCase().includes('bod') || s.toLowerCase().includes('n.o.t.k')) return 0;
             
-            let digits = s.match(/[\d]+([.,]\d{3})*/); 
-            if (digits) {
-                let cleanNum = digits[0].replace(/[.,]/g, '');
-                let n = parseInt(cleanNum, 10);
-                return isNaN(n) ? null : n;
-            }
-            return null;
+            // Vervang komma door punt voor decimale getallen indien nodig, of haal direct getallen eruit
+            let clean = s.replace(/\./g, '').replace(',', '.');
+            let n = parseFloat(clean);
+            return isNaN(n) ? 0 : n;
         }
 
         function hideCard(event, id) {
@@ -1971,7 +1968,8 @@
             });
 
             filteredData.sort((a, b) => {
-                if (currentSort === 'default' || currentSort === 'ai-ranking') {
+                // Sorteerlogica voor Listings tab en standaard AI-ranking
+                if (currentTab === 'listings' || currentSort === 'default' || currentSort === 'ai-ranking') {
                     // 1. AI Picks altijd absoluut bovenaan als de toggle aan staat
                     if (aiPicksActive) {
                         const isAiA = isAiPickItem(a) ? 1 : 0;
@@ -1979,18 +1977,17 @@
                         if (isAiA !== isAiB) return isAiB - isAiA; 
                     }
 
-                    // 2. Als we op de Listings tab zitten: Sorteer strikt op AI-score / Kolom W (hoog > laag)
+                    // 2. Strikt op Kolom W / AI Score (hoog > laag) voor listings
                     if (currentTab === 'listings') {
-                        // We zoeken breed naar alle mogelijke benamingen van Kolom W / Score in je data
-                        const scoreA = parseNumericForSort(getRowValue(a, ['Score', 'AI Score', 'Match', 'Kolom W', 'AI-Score', 'Relevantie', 'Puntental'])) || 0;
-                        const scoreB = parseNumericForSort(getRowValue(b, ['Score', 'AI Score', 'Match', 'Kolom W', 'AI-Score', 'Relevantie', 'Puntental'])) || 0;
+                        const scoreA = parseNumericForSort(getRowValue(a, ['Kolom W', 'Score', 'AI Score', 'Match', 'AI-Score', 'Relevantie', 'Puntental']));
+                        const scoreB = parseNumericForSort(getRowValue(b, ['Kolom W', 'Score', 'AI Score', 'Match', 'AI-Score', 'Relevantie', 'Puntental']));
                         
                         if (scoreA !== scoreB) {
                             return scoreB - scoreA; // Hoogste score eerst!
                         }
                     }
 
-                    // 3. Voor Veilingen tab: Altijd strikt op aflopende veilingtijd laten staan
+                    // 3. Voor Veilingen tab: Altijd op aflopende veilingtijd
                     if (currentTab === 'auctions') {
                         const dateA = parseAuctionDate(a['Veiling loopt af op']);
                         const dateB = parseAuctionDate(b['Veiling loopt af op']);
@@ -2008,7 +2005,7 @@
 
                     return 0;
                 }
-                else if (currentSort === 'auction-first') {
+                else if (currentSort === 'auction-first' || currentTab === 'auctions') {
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
                     const dateB = parseAuctionDate(b['Veiling loopt af op']);
                     const now = new Date();
