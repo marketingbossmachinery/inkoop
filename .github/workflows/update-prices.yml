@@ -2,9 +2,11 @@ name: Update Live Auction Prices
 
 on:
   schedule:
-    # Draait automatisch elke 5 minuten
     - cron: '*/5 * * * *'
-  workflow_dispatch: # Zodat je hem ook handmatig kunt testen in GitHub
+  workflow_dispatch:
+
+permissions:
+  contents: write  # Cruciaal: hiermee mag de Action wijzigingen terugcommitteren naar GitHub!
 
 jobs:
   update-prices:
