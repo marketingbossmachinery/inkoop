@@ -389,9 +389,7 @@
             display: none;
         }
 
-        /* ---------------------------------------------------- */
-        /* HIGH-END RONDE VLAGGEN-KNOP (Cirkelvormig & Strak) */
-        /* ---------------------------------------------------- */
+        /* High-end ronde vlaggen-knop */
         .flag-filter-container {
             position: relative;
         }
@@ -498,7 +496,6 @@
             background: #dbeafe;
             color: var(--ai-blue);
         }
-        /* ---------------------------------------------------- */
 
         .ai-toggle-container {
             display: flex;
@@ -1212,7 +1209,6 @@
         const svgThreeStars = `<svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>`;
         const svgGlobeIcon = `<svg class="flag-globe-icon-sm" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
 
-        // Veilig escapen van HTML attributes om afbreken door aanhalingstekens in titels te voorkomen
         function escapeHtml(str) {
             if (!str) return '';
             return String(str)
@@ -1223,7 +1219,6 @@
                 .replace(/'/g, '&#039;');
         }
 
-        // Debounce voor soepele zoekprestaties
         let searchTimeout = null;
         function debouncedRenderGrid() {
             clearTimeout(searchTimeout);
@@ -1540,6 +1535,9 @@
                 document.getElementById('product-grid').innerHTML = '<p style="color:red;">Fout bij het laden van de platform-data.</p>';
             });
 
+        // ----------------------------------------------------
+        // AANGEPASTE SWITCHTAB MET VISUELE LAAD-INDICATIE
+        // ----------------------------------------------------
         function switchTab(tab) {
             currentTab = tab;
             document.getElementById('tab-listings').classList.toggle('active', tab === 'listings');
@@ -1558,9 +1556,18 @@
 
             selectedFlagFilter = '';
             updateFlagGlobeButtonVisual();
-            populateFilters();
-            renderGrid();
+
+            // Direct visuele feedback tonen voordat de zware berekening start
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '<p style="padding: 20px; font-weight: bold; color: #555;">⏳ Voertuigen worden geladen...</p>';
+
+            // Kleine pauze zodat de browser de loader kan renderen
+            setTimeout(() => {
+                populateFilters();
+                renderGrid();
+            }, 20);
         }
+        // ----------------------------------------------------
 
         function checkPortalsStatus() {
             const todayStr = new Date().toISOString().split('T')[0];
@@ -1714,9 +1721,9 @@
             let mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cleanLocStr)}`;
 
             if (flagFile) {
-                return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-link" title="Open in Google Maps"><img src="https://flagcdn.com/48x36/${flagFile}" alt="Vlag"> <span>${cleanLocStr}</span> 🗺️</a>`;
+                return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-link" title="Open in Google Maps"><img src="https://flagcdn.com/48x36/${flagFile}" alt="Vlag"> <span>${escapeHtml(cleanLocStr)}</span> 🗺️</a>`;
             }
-            return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-link" title="Open in Google Maps">📍 <span>${cleanLocStr}</span> 🗺️</a>`;
+            return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-link" title="Open in Google Maps">📍 <span>${escapeHtml(cleanLocStr)}</span> 🗺️</a>`;
         }
 
         function matchesOtherFilters(row, isAuctionTabContext = null, isStockTabContext = null) {
@@ -2107,8 +2114,8 @@
 
                 let isHidden = hiddenCardsData[uniqueId];
                 let hideButtonHtml = isHidden ? 
-                    `<button class="restore-card-btn" onclick="restoreCard(event, '${escapeHtml(uniqueId)}')" title="Herstel">&#x2715;</button>` : 
-                    `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')" title="Verberg">&#x2715;</button>`;
+                    `<button class="restore-card-btn" onclick="restoreCard(event, '${escapeHtml(uniqueId)}')")" title="Herstel">&#x2715;</button>` : 
+                    `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')")" title="Verberg">&#x2715;</button>`;
 
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${escapeHtml(aiReason)}</div>` : '';
                 const expiredClass = isExpired ? ' expired' : '';
