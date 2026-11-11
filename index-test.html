@@ -578,7 +578,7 @@
         .card {
             background: #fff;
             border-radius: 6px;
-            overflow: visible;
+            overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.06);
             position: relative;
             display: flex;
@@ -608,12 +608,13 @@
         }
 
         .card-link-wrapper {
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            z-index: 1;
+            text-decoration: none;
         }
 
         .card-image-container {
@@ -740,7 +741,8 @@
             flex-direction: column;
             align-items: flex-end;
             gap: 4px;
-            z-index: 2;
+            z-index: 5;
+            pointer-events: none;
         }
 
         .badge-image {
@@ -777,8 +779,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 20;
+            z-index: 5;
             box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+            pointer-events: none;
         }
         .badge-ai-stamp svg {
             width: 20px;
@@ -795,9 +798,10 @@
             font-weight: bold;
             border-radius: 3px;
             text-transform: uppercase;
-            z-index: 2;
+            z-index: 5;
             color: #fff;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            pointer-events: none;
         }
 
         .badge-rood { background-color: var(--boss-red); }
@@ -815,6 +819,13 @@
             display: flex;             
             flex-direction: column;    
             text-align: left;
+            position: relative;
+            z-index: 2;
+            pointer-events: none; /* zorgt dat kliks doorsluizen naar de card-link-wrapper, behalve voor specifiek aanklikbare elementen */
+        }
+
+        .card-content > * {
+            pointer-events: auto; /* maakt tekst/elementen binnen de content weer klikbaar/selecteerbaar indien nodig, maar de link blijft eroverheen liggen */
         }
 
         .card-title {
@@ -874,13 +885,19 @@
         .card-location a.maps-link {
             color: inherit;
             text-decoration: none;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
+            max-width: 100%;
+            text-align: left;
+            position: relative;
+            z-index: 5;
+            pointer-events: auto;
+        }
+        .card-location a.maps-link span {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            text-align: left;
         }
         .card-location a.maps-link:hover {
             color: var(--boss-red);
@@ -999,6 +1016,9 @@
             color: var(--boss-red);
             text-decoration: none;
             font-weight: bold;
+            position: relative;
+            z-index: 5;
+            pointer-events: auto;
         }
         .market-item a:hover { text-decoration: underline; }
     </style>
@@ -2187,48 +2207,39 @@
                 const cardWrapper = document.createElement('div');
                 cardWrapper.className = `card${expiredClass}${extraClass}`;
 
-                let innerCardHtml = `
-                    ${aiStampHtml}
-                    ${badgeHtml}
-                `;
+                let innerCardHtml = '';
 
                 if (!isOwnStock && productUrl !== '#') {
-                    innerCardHtml += `<a href="${escapeHtml(productUrl)}" target="_blank" rel="noopener noreferrer" class="card-link-wrapper" title="${escapeHtml(rawTitle)}">`;
-                } else {
-                    innerCardHtml += `<div class="card-link-wrapper">`;
+                    innerCardHtml += `<a href="${escapeHtml(productUrl)}" target="_blank" rel="noopener noreferrer" class="card-link-wrapper" title="${escapeHtml(rawTitle)}"></a>`;
                 }
 
                 innerCardHtml += `
-                        <div class="card-image-container">
-                            ${imageHtml}
-                            ${imageBadgeContainerHtml}
-                            ${hideButtonHtml}
-                            ${feedbackButtonsHtml}
+                    ${aiStampHtml}
+                    ${badgeHtml}
+                    <div class="card-image-container">
+                        ${imageHtml}
+                        ${imageBadgeContainerHtml}
+                        ${hideButtonHtml}
+                        ${feedbackButtonsHtml}
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${titleHtml}</h3>
+                        <div class="card-specs">
+                            ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${escapeHtml(row.Bouwjaar)}</span>` : ''}
+                            ${row.Draaiuren ? `<span class="spec-tag">Uren: ${escapeHtml(row.Draaiuren)}</span>` : ''}
                         </div>
-                        <div class="card-content">
-                            <h3 class="card-title">${titleHtml}</h3>
-                            <div class="card-specs">
-                                ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${escapeHtml(row.Bouwjaar)}</span>` : ''}
-                                ${row.Draaiuren ? `<span class="spec-tag">Uren: ${escapeHtml(row.Draaiuren)}</span>` : ''}
+                        ${metaInfoHtml}
+                        <div class="card-price-box">
+                            <div class="card-price">${priceHtml}</div>
+                            <div class="card-right-meta">
+                                ${sourceHtml}
                             </div>
-                            ${metaInfoHtml}
-                            <div class="card-price-box">
-                                <div class="card-price">${priceHtml}</div>
-                                <div class="card-right-meta">
-                                    ${sourceHtml}
-                                </div>
-                            </div>
-                            ${auctionHtml}
-                            ${aiReasonHtml}
-                            ${extraContentHtml}
                         </div>
+                        ${auctionHtml}
+                        ${aiReasonHtml}
+                        ${extraContentHtml}
+                    </div>
                 `;
-
-                if (!isOwnStock && productUrl !== '#') {
-                    innerCardHtml += `</a>`;
-                } else {
-                    innerCardHtml += `</div>`;
-                }
 
                 cardWrapper.innerHTML = innerCardHtml;
                 fragment.appendChild(cardWrapper);
