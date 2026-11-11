@@ -389,6 +389,9 @@
             display: none;
         }
 
+        /* ---------------------------------------------------- */
+        /* RONDE VLAGGEN-GLOBE KNOP & SCROLLBARE DROPDOWN */
+        /* ---------------------------------------------------- */
         .flag-filter-container {
             position: relative;
         }
@@ -484,6 +487,7 @@
             background: #dbeafe;
             color: var(--ai-blue);
         }
+        /* ---------------------------------------------------- */
 
         .ai-toggle-container {
             display: flex;
@@ -580,7 +584,7 @@
         .card {
             background: #fff;
             border-radius: 6px;
-            overflow: visible; /* Cruciaal zodat de AI ster-badge niet wordt afgekapt */
+            overflow: visible;
             box-shadow: 0 3px 10px rgba(0,0,0,0.06);
             position: relative;
             display: flex;
@@ -590,7 +594,6 @@
             transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
             text-decoration: none;
             color: inherit;
-            height: 100%;
         }
 
         .card:hover {
@@ -618,7 +621,7 @@
             background-color: #e9e9e9;
             border-top-left-radius: 6px;
             border-top-right-radius: 6px;
-            overflow: hidden; /* Houdt de foto netjes binnen de afgeronde hoeken */
+            overflow: visible;
         }
 
         .card-image-placeholder {
@@ -867,7 +870,7 @@
         }
 
         .card-price-box {
-            margin-top: 10px;        
+            margin-top: auto;        
             padding-top: 10px;
             border-top: 1px solid #eee;
             display: flex;
@@ -1700,26 +1703,15 @@
             return null;
         }
 
-        function getCountryFlagHtml(locStr, transportKosten) {
-            if (!locStr || String(locStr).trim() === '') {
-                return '📍 <span>Locatie onbekend</span>';
-            }
-            
-            let cleanLocStr = String(locStr).replace(/^[📍\s🏢]+/, '').trim();
+        function getCountryFlagHtml(locStr) {
+            if (!locStr) return '📍 <span>Onbekend</span>';
+            let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
             let flagFile = extractFlagFile(cleanLocStr);
 
-            let mapsQuery = encodeURIComponent(`${cleanLocStr} to Eindhovensebaan 3, Veldhoven, Netherlands`);
-            let mapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
-
-            let cleanTransport = parseNumericForSort(transportKosten);
-            let transportHtml = (cleanTransport !== null && cleanTransport > 0) ? ` (€${cleanTransport})` : '';
-
-            let innerContent = `<span>${cleanLocStr}${transportHtml}</span>`;
-
             if (flagFile) {
-                return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:6px;" title="Klik om locatie te bekijken in Google Maps"><img src="https://flagcdn.com/24x18/${flagFile}" alt="${flagFile.split('.')[0]}"> ${innerContent}</a>`;
+                return `<img src="https://flagcdn.com/24x18/${flagFile}" alt="${flagFile.split('.')[0]}" title="${cleanLocStr}"> <span>${cleanLocStr}</span>`;
             }
-            return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:6px;" title="Klik om locatie te bekijken in Google Maps">📍 ${innerContent}</a>`;
+            return `📍 <span>${cleanLocStr}</span>`;
         }
 
         function matchesOtherFilters(row, isAuctionTabContext = null, isStockTabContext = null) {
@@ -1880,7 +1872,7 @@
             if (totalHours <= 3) {
                 return { boxText: `⚠️ Nog ${days > 0 ? days + 'd ' : ''}${pad(hours)}u ${pad(minutes)}m ${pad(seconds)}s`, imageBadge: timeStrUpper, isUrgent: true, isExpired: false };
             }
-            return { boxText: `Veiling op: ${d}-${m}-${y} om ${H}:${M}`, imageBadge: timeStrUpper, isUrgent: false, isExpired: false };
+            return { boxText: `Veiling: ${d}-${m}-${y} om ${H}:${M}`, imageBadge: timeStrUpper, isUrgent: false, isExpired: false };
         }
 
         function updateLiveTimers() {
@@ -2107,10 +2099,11 @@
                 }
 
                 let metaInfoHtml = '';
-                let locValue = row['Locatie'] || '';
-                let transportCost = row['Transportkosten'] || row['Geschatte vervoerskosten (AI)'] || row[25] || 0;
-                let flagHtml = getCountryFlagHtml(locValue, transportCost);
-                let locationHtml = `<div class="card-location">${flagHtml}</div>`;
+                let locationHtml = '';
+                if (row['Locatie']) {
+                    let flagHtml = getCountryFlagHtml(row['Locatie']);
+                    locationHtml = `<div class="card-location">${flagHtml}</div>`;
+                }
 
                 let sellerName = row['Verkopende partij'] || row['Verkoper'] || row['seller'] || '';
                 let sellerHtml = '';
@@ -2118,12 +2111,14 @@
                     sellerHtml = `<div class="card-seller" title="${sellerName}">🏢 <span>${sellerName}</span></div>`;
                 }
 
-                metaInfoHtml = `
-                    <div class="card-meta-info">
-                        ${locationHtml}
-                        ${sellerHtml}
-                    </div>
-                `;
+                if (locationHtml || sellerHtml) {
+                    metaInfoHtml = `
+                        <div class="card-meta-info">
+                            ${locationHtml}
+                            ${sellerHtml}
+                        </div>
+                    `;
+                }
 
                 let extraContentHtml = '';
                 if (isOwnStock) {
