@@ -32,6 +32,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .header-search-box {
@@ -275,6 +276,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            flex-wrap: wrap;
         }
 
         .tabs {
@@ -306,6 +308,7 @@
             align-items: center;
             gap: 12px;
             position: relative;
+            flex-wrap: wrap;
         }
 
         .sort-container {
@@ -1126,7 +1129,7 @@
                             <span>Sorteren</span>
                         </div>
                         <div class="sort-dropdown" id="sortDropdown">
-                            <div class="sort-option selected" onclick="setSort('default')" id="opt-default">🤖 AI Picks + Aflopende Veilingen (Standaard)</div>
+                            <div class="sort-option selected" onclick="setSort('default')" id="opt-default">🤖 AI Picks + Score / Veilingen (Standaard)</div>
                             <div class="sort-option" data-auction-only="true" onclick="setSort('auction-first')" id="opt-auction-first">⏱️ Eerst aflopende veilingen</div>
                             <div class="sort-option" onclick="setSort('price-asc')" id="opt-price-asc">💶 Prijs (Oplopend)</div>
                             <div class="sort-option" onclick="setSort('price-desc')" id="opt-price-desc">💶 Prijs (Aflopend)</div>
@@ -1196,7 +1199,7 @@
 
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
         const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
-        const svgThreeStars = `<svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>`;
+        const svgThreeStars = `<svg viewBox="0 0 24 24" fill="#ffffff"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>`;
         const svgGlobeIcon = `<svg class="flag-globe-icon-sm" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
 
         let searchTimeout = null;
@@ -1898,7 +1901,6 @@
         }
         setInterval(updateLiveTimers, 1000);
 
-        // --- TEST: Live prijs ophalen in het laatste uur ---
         function checkLiveAuctionPrices() {
             const now = new Date();
             document.querySelectorAll('.card').forEach(card => {
@@ -1914,7 +1916,7 @@
                 const diffMins = diffMs / (1000 * 60);
 
                 if (diffMins > 0 && diffMins <= 60) {
-                    let fetchInterval = diffMins <= 15 ? 60000 : 300000; // Laatste 15 min = 1 minuut, daarboven 5 minuten
+                    let fetchInterval = diffMins <= 15 ? 60000 : 300000;
                     
                     if (!card._lastFetch || (now - card._lastFetch > fetchInterval)) {
                         card._lastFetch = now;
@@ -1950,7 +1952,6 @@
             }
         }
         setInterval(checkLiveAuctionPrices, 30000);
-        // ----------------------------------------------------
 
         function renderGrid() {
             const grid = document.getElementById('product-grid');
@@ -1971,11 +1972,23 @@
 
             filteredData.sort((a, b) => {
                 if (currentSort === 'default' || currentSort === 'ai-ranking') {
+                    // 1. AI Picks altijd absoluut bovenaan als de toggle aan staat
                     if (aiPicksActive) {
                         const isAiA = isAiPickItem(a) ? 1 : 0;
                         const isAiB = isAiPickItem(b) ? 1 : 0;
                         if (isAiA !== isAiB) return isAiB - isAiA; 
                     }
+
+                    // 2. Als we op de Listings tab zitten: Sorteer primair op AI-score (hoog > laag)
+                    if (currentTab === 'listings') {
+                        const scoreA = parseNumericForSort(getRowValue(a, ['AI Score', 'Score', 'Match'])) || 0;
+                        const scoreB = parseNumericForSort(getRowValue(b, ['AI Score', 'Score', 'Match'])) || 0;
+                        if (scoreA !== scoreB) {
+                            return scoreB - scoreA; // Hoogste score eerst!
+                        }
+                    }
+
+                    // 3. Voor Veilingen tab: Altijd strikt op aflopende veilingtijd laten staan!
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
                     const dateB = parseAuctionDate(b['Veiling loopt af op']);
                     const now = new Date();
@@ -2227,8 +2240,8 @@
 
                 let isHidden = hiddenCardsData[uniqueId];
                 let hideButtonHtml = isHidden ? 
-                    `<button class="restore-card-btn" onclick="restoreCard(event, '${escapeHtml(uniqueId)}')")" title="Herstel">&#x2715;</button>` : 
-                    `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')")" title="Verberg">&#x2715;</button>`;
+                    `<button class="restore-card-btn" onclick="restoreCard(event, '${escapeHtml(uniqueId)}')'" title="Herstel">&#x2715;</button>` : 
+                    `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')'" title="Verberg">&#x2715;</button>`;
 
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${escapeHtml(aiReason)}</div>` : '';
                 const expiredClass = isExpired ? ' expired' : '';
@@ -2238,7 +2251,6 @@
                 const cardWrapper = document.createElement('div');
                 cardWrapper.className = `card${expiredClass}${extraClass}`;
                 
-                // Attributen meegeven voor de live prijs checker
                 cardWrapper.setAttribute('data-producturl', productUrl);
                 if (row['Veiling loopt af op']) {
                     cardWrapper.setAttribute('data-endtime', row['Veiling loopt af op']);
