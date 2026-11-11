@@ -1970,7 +1970,7 @@
                 return true;
             });
 
-filteredData.sort((a, b) => {
+            filteredData.sort((a, b) => {
                 if (currentSort === 'default' || currentSort === 'ai-ranking') {
                     // 1. AI Picks altijd absoluut bovenaan als de toggle aan staat
                     if (aiPicksActive) {
@@ -1979,11 +1979,11 @@ filteredData.sort((a, b) => {
                         if (isAiA !== isAiB) return isAiB - isAiA; 
                     }
 
-                    // 2. Als we op de Listings tab zitten: Sorteer strikt primair op Kolom W / AI Score (hoog > laag)
+                    // 2. Als we op de Listings tab zitten: Sorteer strikt op AI-score / Kolom W (hoog > laag)
                     if (currentTab === 'listings') {
-                        // Zoek expliciet naar kolommen die met score/match/kolom w te maken hebben
-                        const scoreA = parseNumericForSort(getRowValue(a, ['Kolom W', 'AI Score', 'Score', 'Match', 'Relevantie', 'AI-Score'])) || 0;
-                        const scoreB = parseNumericForSort(getRowValue(b, ['Kolom W', 'AI Score', 'Score', 'Match', 'Relevantie', 'AI-Score'])) || 0;
+                        // We zoeken breed naar alle mogelijke benamingen van Kolom W / Score in je data
+                        const scoreA = parseNumericForSort(getRowValue(a, ['Score', 'AI Score', 'Match', 'Kolom W', 'AI-Score', 'Relevantie', 'Puntental'])) || 0;
+                        const scoreB = parseNumericForSort(getRowValue(b, ['Score', 'AI Score', 'Match', 'Kolom W', 'AI-Score', 'Relevantie', 'Puntental'])) || 0;
                         
                         if (scoreA !== scoreB) {
                             return scoreB - scoreA; // Hoogste score eerst!
