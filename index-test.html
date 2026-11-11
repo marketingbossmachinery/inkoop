@@ -419,7 +419,6 @@
             fill: #333333;
         }
 
-        /* Aangepast zodat het wereldbolletje even groot is als de vlaggen */
         .flag-globe-icon-sm {
             width: 24px;
             height: 24px;
@@ -1620,47 +1619,75 @@
             }
             
             const worldCountries = {
-                'can': 'ca', 'ca': 'ca', 'canada': 'ca',
-                'usa': 'us', 'usm': 'us', 'us': 'us', 'united states': 'us', 'verenigde staten': 'us',
-                'mex': 'mx', 'mx': 'mx', 'mexico': 'mx',
-                'arg': 'ar', 'ar': 'ar', 'argentina': 'ar', 'argentinië': 'ar',
-                'bra': 'br', 'br': 'br', 'brazil': 'br', 'brazilië': 'br',
-                'nld': 'nl', 'nl': 'nl', 'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl',
-                'bel': 'be', 'be': 'be', 'belgië': 'be', 'belgium': 'be',
-                'deu': 'de', 'de': 'de', 'duitsland': 'de', 'germany': 'de',
-                'fra': 'fr', 'fr': 'fr', 'frankrijk': 'fr', 'france': 'fr',
-                'esp': 'es', 'es': 'es', 'spanje': 'es', 'spain': 'es',
-                'prt': 'pt', 'pt': 'pt', 'portugal': 'pt',
-                'ita': 'it', 'it': 'it', 'italië': 'it', 'italy': 'it',
-                'pol': 'pl', 'pl': 'pl', 'polen': 'pl', 'poland': 'pl',
-                'swe': 'se', 'se': 'se', 'zweden': 'se', 'sweden': 'se',
-                'nor': 'no', 'no': 'no', 'noorwegen': 'no', 'norway': 'no',
-                'dnk': 'dk', 'dk': 'dk', 'denemarken': 'dk', 'denmark': 'dk',
-                'fin': 'fi', 'fi': 'fi', 'finland': 'fi',
-                'irl': 'ie', 'ie': 'ie', 'ierland': 'ie', 'ireland': 'ie',
-                'gbr': 'gb', 'uk': 'gb', 'gb': 'gb', 'verenigd koninkrijk': 'gb', 'engeland': 'gb',
-                'che': 'ch', 'ch': 'ch', 'zwitserland': 'ch', 'switzerland': 'ch',
-                'aut': 'at', 'at': 'at', 'oostenrijk': 'at', 'austria': 'at',
-                'are': 'ae', 'ae': 'ae', 'dubai': 'ae', 'uae': 'ae'
+                // Noord- & Zuid-Amerika
+                'canada': 'ca', 'can': 'ca', 'ca': 'ca',
+                'usa': 'us', 'united states': 'us', 'verenigde staten': 'us', 'v.s.': 'us', 'usm': 'us',
+                'mexico': 'mx', 'mex': 'mx', 'mx': 'mx',
+                'argentina': 'ar', 'argentinië': 'ar', 'arg': 'ar', 'ar': 'ar',
+                'brazil': 'br', 'brazilië': 'br', 'bra': 'br', 'br': 'br',
+                'chile': 'cl', 'cl': 'cl', 'colombia': 'co', 'co': 'co', 'peru': 'pe', 'pe': 'pe', 'uruguay': 'uy', 'uy': 'uy', 'venezuela': 've', 've': 've',
+                'costa rica': 'cr', 'panama': 'pa', 'dominikaanse republiek': 'do',
+                
+                // Europa
+                'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl', 'nld': 'nl', 'nl': 'nl',
+                'belgië': 'be', 'belgium': 'be', 'bel': 'be', 'be': 'be',
+                'duitsland': 'de', 'germany': 'de', 'deu': 'de', 'de': 'de',
+                'frankrijk': 'fr', 'france': 'fr', 'fra': 'fr', 'fr': 'fr',
+                'spanje': 'es', 'spain': 'es', 'espana': 'es', 'esp': 'es', 'es': 'es',
+                'portugal': 'pt', 'prt': 'pt', 'pt': 'pt',
+                'italië': 'it', 'italy': 'it', 'ita': 'it', 'it': 'it',
+                'polen': 'pl', 'poland': 'pl', 'pol': 'pl', 'pl': 'pl',
+                'zweden': 'se', 'sweden': 'se', 'swe': 'se', 'se': 'se',
+                'noorwegen': 'no', 'norway': 'no', 'nor': 'no', 'no': 'no',
+                'denemarken': 'dk', 'denmark': 'dk', 'dnk': 'dk', 'dk': 'dk',
+                'finland': 'fi', 'fin': 'fi', 'fi': 'fi',
+                'ierland': 'ie', 'ireland': 'ie', 'irl': 'ie', 'ie': 'ie',
+                'verenigd koninkrijk': 'gb', 'uk': 'gb', 'engeland': 'gb', 'gran-bretagna': 'gb', 'great britain': 'gb', 'scotland': 'gb', 'wales': 'gb', 'gbr': 'gb', 'gb': 'gb',
+                'zwitserland': 'ch', 'switzerland': 'ch', 'che': 'ch', 'ch': 'ch',
+                'oostenrijk': 'at', 'austria': 'at', 'aut': 'at', 'at': 'at',
+                'slovenië': 'si', 'si': 'si', 'slowakije': 'sk', 'sk': 'sk', 'tsjechië': 'cz', 'czech republic': 'cz', 'cz': 'cz',
+                'hongarije': 'hu', 'hu': 'hu', 'roemenië': 'ro', 'ro': 'ro', 'bulgarije': 'bg', 'bulgaria': 'bg', 'bg': 'bg',
+                'griekenland': 'gr', 'gr': 'gr', 'kroatië': 'hr', 'hr': 'hr', 'estland': 'ee', 'ee': 'ee', 'letland': 'lv', 'latvia': 'lv', 'lv': 'lv',
+                'litouwen': 'lt', 'lt': 'lt', 'luxemburg': 'lu', 'lu': 'lu', 'ijsland': 'is', 'is': 'is', 'oekraïne': 'ua', 'ua': 'ua',
+                'turkije': 'tr', 'turkey': 'tr', 'tr': 'tr', 'rusland': 'ru', 'ru': 'ru', 'servië': 'rs', 'rs': 'rs', 'bosnië': 'ba', 'ba': 'ba',
+                
+                // Azië & Midden-Oosten
+                'japan': 'jp', 'jpn': 'jp', 'jp': 'jp',
+                'china': 'cn', 'cn': 'cn', 'zuid-korea': 'kr', 'korea': 'kr', 'kr': 'kr',
+                'filipijnen': 'ph', 'ph': 'ph', 'indonesië': 'id', 'id': 'id', 'india': 'in', 'in': 'in',
+                'vietnam': 'vn', 'vn': 'vn', 'thailand': 'th', 'th': 'th', 'maleisië': 'my', 'my': 'my', 'singapore': 'sg', 'sg': 'sg',
+                'vae': 'ae', 'united arab emirates': 'ae', 'dubai': 'ae', 'are': 'ae', 'ae': 'ae',
+                'saoedi-arabië': 'sa', 'sa': 'sa', 'israël': 'il', 'il': 'il',
+                
+                // Oceanië & Afrika
+                'australië': 'au', 'australia': 'au', 'au': 'au', 'nieuws-zeeland': 'nz', 'new zealand': 'nz', 'nz': 'nz',
+                'zuid-afrika': 'za', 'south africa': 'za', 'za': 'za', 'egypte': 'eg', 'eg': 'eg', 'marokko': 'ma', 'ma': 'ma'
             };
 
             let countryCode = '';
+
+            // Stap 1: Controleer komma/streepje gescheiden delen
             let parts = cleanLocStr.split(/[,–\/-]+/);
             for (let i = parts.length - 1; i >= 0; i--) {
                 let token = parts[i].trim().toLowerCase();
+                token = token.replace(/\d+/g, '').trim();
                 if (worldCountries[token]) {
                     countryCode = worldCountries[token];
                     break;
                 }
             }
+
+            // Stap 2: Veilige woordgrenzen regex check over de gehele string
             if (!countryCode) {
                 for (const [name, code] of Object.entries(worldCountries)) {
-                    if (lLower.includes(name)) {
+                    let regex = new RegExp(`\\b${name}\\b`, 'i');
+                    if (regex.test(lLower)) {
                         countryCode = code;
                         break;
                     }
                 }
             }
+
             return countryCode ? countryCode + '.png' : null;
         }
 
@@ -1769,7 +1796,6 @@
             const dropdown = document.getElementById('flagDropdown');
             let totalMatchingCount = dataSource.filter(row => matchesOtherFilters(row, isAuctionTab, isStockTab)).length;
             
-            // Aangepast zodat het wereldbol-icoontje exact 24x24 is (even groot als de vlaggen)
             let html = `<div class="flag-dropdown-option ${selectedFlagFilter === '' ? 'selected' : ''}" onclick="selectFlagFilter('')"><span style="display:flex; align-items:center; width:24px; height:24px;">${svgGlobeIcon}</span><span class="flag-count">${totalMatchingCount}</span></div>`;
             
             sortedFlags.forEach(flag => {
