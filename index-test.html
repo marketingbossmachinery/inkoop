@@ -1983,26 +1983,24 @@
                 
                 let rawTitle = row.Titel || row.Title || (`${row.Merk || ''} ${row.Model || ''}`.trim()) || row.Model || 'Machine / Onbekend';
                 let fullTitle = rawTitle.length > 60 ? rawTitle.substring(0, 57) + '...' : rawTitle;
-                let escapedTitle = escapeHtml(fullTitle);
-                let escapedRawTitle = escapeHtml(rawTitle);
 
                 let priceHtml = '';
                 const eerstePrijs = row['Eerste prijs'] ? String(row['Eerste prijs']).trim() : '';
                 const laatstePrijs = row['Laatste prijs'] || row['Prijs'] ? String(row['Laatste prijs'] || row['Prijs']).trim() : '';
 
                 if (laatstePrijs && eerstePrijs && eerstePrijs !== laatstePrijs) {
-                    priceHtml = `<span class="old-price">${escapeHtml(eerstePrijs)}</span> <span class="new-price">${escapeHtml(laatstePrijs)}</span>`;
+                    priceHtml = `<span class="old-price">${eerstePrijs}</span> <span class="new-price">${laatstePrijs}</span>`;
                 } else if (laatstePrijs) {
-                    priceHtml = escapeHtml(laatstePrijs);
+                    priceHtml = laatstePrijs;
                 } else if (eerstePrijs) {
-                    priceHtml = escapeHtml(eerstePrijs);
+                    priceHtml = eerstePrijs;
                 } else {
                     priceHtml = isAuction ? 'Actueel bod' : 'Op aanvraag';
                 }
 
                 let rawPlatform = row['Platform'] || '';
                 let cleanSource = rawPlatform.replace(/\(veilingen\)/gi, '').trim();
-                let sourceHtml = cleanSource ? `<span class="card-source">${escapeHtml(cleanSource)}</span>` : '';
+                let sourceHtml = cleanSource ? `<span class="card-source">${cleanSource}</span>` : '';
 
                 let onlineAuctionVal = String(getRowValue(row, ['Online Auction', 'Online-Auction', 'OnlineAuction']) || '').trim().toLowerCase();
                 let onsiteBadgeHtml = (onlineAuctionVal === 'nee') ? `<div class="badge-onsite">On-site</div>` : '';
@@ -2015,86 +2013,139 @@
                 const isAiPick = aiPicksActive && isAiPickItem(row);
                 const aiReason = getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '';
 
-                if (!isOwnStock && isAuction) {
+                if (isOwnStock) {
+                    badgeHtml = '';
+                } else if (isAuction) {
                     const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
                     if (countdownObj) {
                         const bidsCount = row['Aantal biedingen'] || '0';
                         if (countdownObj.isExpired) {
                             badgeHtml = `<div class="badge badge-rood">Afgelopen</div>`;
-                            imageBadgeContainerHtml = `<div class="badge-image-container"><div class="badge-image live-badge-image">AFGELOPEN</div>${onsiteBadgeHtml}</div>`;
+                            imageBadgeContainerHtml = `
+                                <div class="badge-image-container">
+                                    <div class="badge-image live-badge-image">AFGELOPEN</div>
+                                    ${onsiteBadgeHtml}
+                                </div>
+                            `;
                             auctionHtml = `<div class="countdown" style="background:#eee; color:#666; border-color:#ccc;">Veiling afgelopen | Biedingen: ${bidsCount}</div>`;
                             isExpired = true;
                         } else {
-                            imageBadgeContainerHtml = `<div class="badge-image-container"><div class="badge-image live-badge-image">${countdownObj.imageBadge}</div>${onsiteBadgeHtml}</div>`;
+                            imageBadgeContainerHtml = `
+                                <div class="badge-image-container">
+                                    <div class="badge-image live-badge-image">${countdownObj.imageBadge}</div>
+                                    ${onsiteBadgeHtml}
+                                </div>
+                            `;
                             if (countdownObj.isUrgent) {
                                 badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
-                                auctionHtml = `<div class="countdown live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
+                                auctionHtml = `<div class="countdown live-countdown-box" data-endtime="${row['Veiling loopt af op']}" data-bids="${bidsCount}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
                             } else {
-                                auctionHtml = `<div class="countdown-future live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
+                                auctionHtml = `<div class="countdown-future live-countdown-box" data-endtime="${row['Veiling loopt af op']}" data-bids="${bidsCount}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
                             }
                         }
                     }
                 } else if (row.Status) {
                     let statusLower = row.Status.toLowerCase().trim();
                     if (statusLower.includes('afgeprijsd')) {
-                        badgeHtml = `<div class="badge badge-rood">${escapeHtml(row.Status)}</div>`;
+                        badgeHtml = `<div class="badge badge-rood">${row.Status}</div>`;
                     }
                 }
 
-                let aiStampHtml = isAiPick ? `<div class="badge-ai-stamp" title="${escapeHtml(aiReason)}">${svgThreeStars}</div>` : '';
+                let aiStampHtml = '';
+                if (isAiPick) {
+                    aiStampHtml = `<div class="badge-ai-stamp" title="${aiReason}">${svgThreeStars}</div>`;
+                }
 
                 let rawImg = row['Afbeelding'] || row['Image URL'] || row['image url'] || '';
                 let imageUrl = String(rawImg).trim();
+                let productUrl = row.Link ? row.Link : '#';
+
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
-                
                 if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-                    imageHtml = `<img src="${escapeHtml(imageUrl)}" alt="${escapedTitle}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
+                    let imgTag = `<img src="${imageUrl}" alt="${fullTitle}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
+                    imageHtml = !isOwnStock && productUrl !== '#' ? `<a href="${productUrl}" target="_blank" rel="noopener noreferrer">${imgTag}</a>` : imgTag;
                 }
 
                 let metaInfoHtml = '';
+                let locationHtml = '';
                 if (row['Locatie']) {
                     let flagHtml = getCountryFlagHtml(row['Locatie']);
-                    metaInfoHtml += `<div class="card-location">${flagHtml}</div>`;
-                }
-                let sellerName = row['Verkopende partij'] || row['Verkoper'] || row['seller'] || '';
-                if (sellerName) {
-                    metaInfoHtml += `<div class="card-seller" title="${escapeHtml(sellerName)}">🏢 <span>${escapeHtml(sellerName)}</span></div>`;
-                }
-                if (metaInfoHtml) {
-                    metaInfoHtml = `<div class="card-meta-info">${metaInfoHtml}</div>`;
+                    locationHtml = `<div class="card-location">${flagHtml}</div>`;
                 }
 
-                let transportPrice = row['Transportprijs'] || row['Transport'] || '';
-                let transportHtml = transportPrice ? `<div class="transport-info-box"><span>🚚 Geschat transport:</span> <strong>${escapeHtml(transportPrice)}</strong></div>` : '';
+                let sellerName = row['Verkopende partij'] || row['Verkoper'] || row['seller'] || '';
+                let sellerHtml = '';
+                if (sellerName) {
+                    sellerHtml = `<div class="card-seller" title="${sellerName}">🏢 <span>${sellerName}</span></div>`;
+                }
+
+                if (locationHtml || sellerHtml) {
+                    metaInfoHtml = `
+                        <div class="card-meta-info">
+                            ${locationHtml}
+                            ${sellerHtml}
+                        </div>
+                    `;
+                }
 
                 let extraContentHtml = '';
                 if (isOwnStock) {
                     let marketHtml = '';
                     let foundItemsCount = 0;
+                    
                     Object.keys(row).forEach(key => {
                         if (key.toLowerCase().includes('vergelijkbaar')) {
                             let val = row[key];
                             if (val && String(val).trim() !== '') {
+                                val = String(val).trim();
                                 foundItemsCount++;
+
                                 let infoText = val;
                                 let linkUrl = '';
+
                                 if (val.includes('| Link:')) {
                                     let parts = val.split('| Link:');
                                     infoText = parts[0].trim();
                                     linkUrl = parts[1] ? parts[1].trim() : '';
+                                } else if (val.includes('|')) {
+                                    let parts = val.split('|');
+                                    infoText = parts[0].trim();
+                                    linkUrl = parts[1] ? parts[1].trim() : '';
+                                } else if (val.toLowerCase().startsWith('http')) {
+                                    infoText = 'Bekijk advertentie';
+                                    linkUrl = val;
+                                } else if (val.includes('http')) {
+                                    let httpIdx = val.indexOf('http');
+                                    infoText = val.substring(0, httpIdx).trim();
+                                    linkUrl = val.substring(httpIdx).trim();
                                 }
-                                let linkHtml = (linkUrl && linkUrl !== '#') ? `<a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer">Bekijk</a>` : '';
-                                marketHtml += `<div class="market-item"><span style="font-size:11px;">${escapeHtml(infoText)}</span>${linkHtml}</div>`;
+
+                                let linkHtml = (linkUrl && linkUrl !== '#' && linkUrl !== '') 
+                                    ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">Bekijk</a>` 
+                                    : '';
+
+                                marketHtml += `
+                                    <div class="market-item">
+                                        <span style="font-size:11px;">${infoText}</span>
+                                        ${linkHtml}
+                                    </div>
+                                `;
                             }
                         }
                     });
+
                     if (foundItemsCount === 0) {
                         marketHtml = `<div style="color:#777; font-style:italic;">Geen vergelijkbare marktdata gevonden.</div>`;
                     }
-                    extraContentHtml = `<div class="comparable-market-box"><h4>Vergelijkbaar in de markt:</h4>${marketHtml}</div>`;
+
+                    extraContentHtml = `
+                        <div class="comparable-market-box">
+                            <h4>Vergelijkbaar in de markt:</h4>
+                            ${marketHtml}
+                        </div>
+                    `;
                 }
 
-                let productUrl = row.Link ? row.Link : '#';
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let myFb = feedbackData[uniqueId];
                 let extraClass = '';
@@ -2105,26 +2156,31 @@
                 if (myFb === 'negative') { extraClass = ' glow-red'; negBtnClass = ' active-neg'; }
                 if (isAiPick) { extraClass = ' glow-ai'; }
 
-                let feedbackButtonsHtml = !isOwnStock ? `
-                    <div class="feedback-actions">
-                        <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${escapeHtml(uniqueId)}', 'positive')" title="Positief">${svgThumbUp}</button>
-                        <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${escapeHtml(uniqueId)}', 'negative')" title="Negatief">${svgThumbDown}</button>
-                    </div>
-                ` : '';
+                let feedbackButtonsHtml = '';
+                if (!isOwnStock) {
+                    feedbackButtonsHtml = `
+                        <div class="feedback-actions">
+                            <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive')" title="Positief (Interessant)">${svgThumbUp}</button>
+                            <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief (Niet interessant)">${svgThumbDown}</button>
+                        </div>
+                    `;
+                }
 
                 let isHidden = hiddenCardsData[uniqueId];
                 let hideButtonHtml = isHidden ? 
-                    `<button class="restore-card-btn" onclick="restoreCard(event, '${escapeHtml(uniqueId)}')")" title="Herstel">&#x2715;</button>` : 
-                    `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')")" title="Verberg">&#x2715;</button>`;
+                    `<button class="restore-card-btn" onclick="restoreCard(event, '${uniqueId}')" title="Herstel">&#x2715;</button>` : 
+                    `<button class="hide-card-btn" onclick="hideCard(event, '${uniqueId}')" title="Verberg">&#x2715;</button>`;
 
-                const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${escapeHtml(aiReason)}</div>` : '';
+                const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${aiReason}</div>` : '';
                 const expiredClass = isExpired ? ' expired' : '';
-                const wrapperStart = isOwnStock ? `<div class="card${expiredClass}${extraClass}">` : `<a href="${escapeHtml(productUrl)}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}${extraClass}">`;
-                const wrapperEnd = isOwnStock ? `</div>` : `</a>`;
+                
+                let titleHtml = (!isOwnStock && productUrl !== '#') 
+                    ? `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;" title="${rawTitle}">${fullTitle}</a>` 
+                    : fullTitle;
 
                 const cardDiv = document.createElement('div');
                 cardDiv.innerHTML = `
-                    ${wrapperStart}
+                    <div class="card${expiredClass}${extraClass}">
                         ${aiStampHtml}
                         ${badgeHtml}
                         <div class="card-image-container">
@@ -2134,22 +2190,23 @@
                             ${feedbackButtonsHtml}
                         </div>
                         <div class="card-content">
-                            <h3 class="card-title" title="${escapedRawTitle}">${escapedTitle}</h3>
+                            <h3 class="card-title">${titleHtml}</h3>
                             <div class="card-specs">
-                                ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${escapeHtml(row.Bouwjaar)}</span>` : ''}
-                                ${row.Draaiuren ? `<span class="spec-tag">Uren: ${escapeHtml(row.Draaiuren)}</span>` : ''}
+                                ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${row.Bouwjaar}</span>` : ''}
+                                ${row.Draaiuren ? `<span class="spec-tag">Uren: ${row.Draaiuren}</span>` : ''}
                             </div>
                             ${metaInfoHtml}
-                            ${transportHtml}
                             <div class="card-price-box">
                                 <div class="card-price">${priceHtml}</div>
-                                <div class="card-right-meta">${sourceHtml}</div>
+                                <div class="card-right-meta">
+                                    ${sourceHtml}
+                                </div>
                             </div>
                             ${auctionHtml}
                             ${aiReasonHtml}
                             ${extraContentHtml}
                         </div>
-                    ${wrapperEnd}
+                    </div>
                 `;
                 fragment.appendChild(cardDiv.firstElementChild);
             });
