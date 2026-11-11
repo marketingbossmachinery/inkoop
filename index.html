@@ -416,7 +416,7 @@
             background: #f8f9fa;
         }
 
-        .flag-globe-btn svg {
+        .flag-globe-btn svg, .flag-globe-icon-sm {
             width: 18px;
             height: 18px;
             fill: #333333;
@@ -432,7 +432,7 @@
             border-radius: 6px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             min-width: 130px;
-            max-height: 340px; /* Ongeveer 10 items zichtbaar, daarna scrollbaar */
+            max-height: 340px;
             overflow-y: auto;
             z-index: 100;
         }
@@ -944,23 +944,6 @@
             line-height: 1.3;
         }
 
-        .card-link {
-            display: block;
-            text-align: center;
-            background: var(--boss-black);
-            color: #fff;
-            text-decoration: none;
-            padding: 10px;
-            font-size: 13px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 12px;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-
-        .card-link:hover { background: var(--boss-red); }
-
         .comparable-market-box {
             margin-top: 15px;
             background: #fafafa;
@@ -1128,7 +1111,7 @@
                         </div>
                     </div>
 
-                    <!-- Vlaggen / Globe Filter (Scrollbaar, gesorteerd op frequentie, alleen actieve vlaggen met tellers) -->
+                    <!-- Vlaggen / Globe Filter -->
                     <div class="flag-filter-container">
                         <div class="flag-globe-btn" onclick="toggleFlagMenu()" title="Filter op vlag">
                             <svg viewBox="0 0 24 24">
@@ -1147,7 +1130,7 @@
                         <span id="aiToggleState" class="toggle-status-text">AAN</span>
                     </div>
 
-                    <!-- Toon concurrentie Toggle Schakelaar (Standaard UIT) -->
+                    <!-- Toon concurrentie Toggle Schakelaar -->
                     <div id="competitorToggleBtn" class="ai-toggle-container" onclick="toggleCompetitors()">
                         <span class="ai-toggle-label">Toon concurrentie</span>
                         <div class="toggle-switch"></div>
@@ -1188,6 +1171,7 @@
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
         const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
         const svgThreeStars = `<svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>`;
+        const svgGlobeIcon = `<svg class="flag-globe-icon-sm" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
 
         function toggleFilters() {
             const wrapper = document.getElementById('sidebarFilters');
@@ -1517,7 +1501,7 @@
                 }
             }
 
-            selectedFlagFilter = ''; // Reset vlag-filter bij tabwissel
+            selectedFlagFilter = '';
             populateFilters();
             renderGrid();
         }
@@ -1730,8 +1714,7 @@
             return `📍 <span>${cleanLocStr}</span>`;
         }
 
-        // Hulpfunctie om te controleren of een rij voldoet aan alle actieve filters BEHALVE de vlaggenfilter zelf
-        function matchesOtherFilters(row) {
+        function matchesOtherFilters(row, isAuctionTabContext = null, isStockTabContext = null) {
             const filterPlatform = document.getElementById('filter-platform').value;
             const filterCategorie = document.getElementById('filter-categorie').value;
             const filterMerk = document.getElementById('filter-merk').value;
@@ -1749,8 +1732,14 @@
             const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
             const isAuction = endDateVal !== '';
 
-            if (currentTab === 'listings' && isAuction) return false;
-            if (currentTab === 'auctions' && !isAuction) return false;
+            if (isStockTabContext !== null) {
+                if (isStockTabContext) {
+                    // Eigen voorraad
+                } else {
+                    if (isAuctionTabContext && !isAuction) return false;
+                    if (!isAuctionTabContext && isAuction) return false;
+                }
+            }
 
             const p = (row.Platform || '');
             if (filterPlatform && p !== filterPlatform) return false;
@@ -1797,9 +1786,11 @@
             const dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
             let flagCounts = {};
 
-            // Tel alleen vlaggen van items die door de overige filters heen komen
+            const isAuctionTab = (currentTab === 'auctions');
+            const isStockTab = (currentTab === 'voorraad');
+
             dataSource.forEach(row => {
-                if (matchesOtherFilters(row)) {
+                if (matchesOtherFilters(row, isAuctionTab, isStockTab)) {
                     if (row['Locatie']) {
                         let f = extractFlagFile(row['Locatie']);
                         if (f) {
@@ -1809,13 +1800,12 @@
                 }
             });
 
-            // Sorteer op aantal resultaten (aflopend van hoog naar laag)
             let sortedFlags = Object.keys(flagCounts).sort((a, b) => flagCounts[b] - flagCounts[a]);
 
             const dropdown = document.getElementById('flagDropdown');
-            let totalMatchingCount = dataSource.filter(row => matchesOtherFilters(row)).length;
+            let totalMatchingCount = dataSource.filter(row => matchesOtherFilters(row, isAuctionTab, isStockTab)).length;
             
-            let html = `<div class="flag-dropdown-option ${selectedFlagFilter === '' ? 'selected' : ''}" onclick="selectFlagFilter('')"><span>🌍</span><span class="flag-count">${totalMatchingCount}</span></div>`;
+            let html = `<div class="flag-dropdown-option ${selectedFlagFilter === '' ? 'selected' : ''}" onclick="selectFlagFilter('')"><span>${svgGlobeIcon}</span><span class="flag-count">${totalMatchingCount}</span></div>`;
             
             sortedFlags.forEach(flag => {
                 let isSel = (selectedFlagFilter === flag) ? 'selected' : '';
@@ -1920,11 +1910,12 @@
             grid.innerHTML = '';
 
             let dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
+            const isAuctionTab = (currentTab === 'auctions');
+            const isStockTab = (currentTab === 'voorraad');
 
             let filteredData = dataSource.filter(row => {
-                if (!matchesOtherFilters(row)) return false;
+                if (!matchesOtherFilters(row, isAuctionTab, isStockTab)) return false;
 
-                // Vlagfilter toepassen
                 if (selectedFlagFilter) {
                     let cardFlag = extractFlagFile(row['Locatie']);
                     if (cardFlag !== selectedFlagFilter) return false;
@@ -2270,7 +2261,6 @@
                             </div>
                             ${auctionHtml}
                             ${aiReasonHtml}
-                            ${!isOwnStock ? `<div class="card-link">Bekijk machine</div>` : ''}
                             ${extraContentHtml}
                         </div>
                     ${wrapperEnd}
@@ -2290,18 +2280,8 @@
                     if (filterFb !== 'all' && filterFb !== 'positive') {
                         if (hiddenCardsData[uniqueId]) return false;
                     }
-
-                    const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
-                    const isAuction = endDateVal !== '';
         
-                    if (isStockTab) {
-                        // Eigen voorraad
-                    } else {
-                        if (isAuctionTab && !isAuction) return false;
-                        if (!isAuctionTab && isAuction) return false;
-                    }
-        
-                    if (!matchesOtherFilters(row)) return false;
+                    if (!matchesOtherFilters(row, isAuctionTab, isStockTab)) return false;
 
                     if (selectedFlagFilter) {
                         let cardFlag = extractFlagFile(row['Locatie']);
