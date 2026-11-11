@@ -1129,7 +1129,7 @@
                             <span>Sorteren</span>
                         </div>
                         <div class="sort-dropdown" id="sortDropdown">
-                            <div class="sort-option selected" onclick="setSort('default')" id="opt-default">🤖 AI Picks + Score / Veilingen (Standaard)</div>
+                            <div class="sort-option selected" onclick="setSort('default')" id="opt-default">🤖 AI Ranking / AI Picks (Standaard)</div>
                             <div class="sort-option" data-auction-only="true" onclick="setSort('auction-first')" id="opt-auction-first">⏱️ Eerst aflopende veilingen</div>
                             <div class="sort-option" onclick="setSort('price-asc')" id="opt-price-asc">💶 Prijs (Oplopend)</div>
                             <div class="sort-option" onclick="setSort('price-desc')" id="opt-price-desc">💶 Prijs (Aflopend)</div>
@@ -1298,6 +1298,12 @@
                     }
                 }
             }
+            for (let actualKey of Object.keys(row)) {
+                let kl = actualKey.trim().toLowerCase();
+                if (kl.includes('ranking') || kl.includes('score') || kl.includes('ai') || kl.includes('kolom w') || kl.includes('punt') || kl.includes('match')) {
+                    return row[actualKey];
+                }
+            }
             return '';
         }
 
@@ -1317,9 +1323,9 @@
             let s = String(val).trim();
             if (s === '' || s.toLowerCase().includes('aanvraag') || s.toLowerCase().includes('bod') || s.toLowerCase().includes('n.o.t.k')) return 0;
             
-            // Vervang komma door punt voor decimale getallen indien nodig, of haal direct getallen eruit
-            let clean = s.replace(/\./g, '').replace(',', '.');
-            let n = parseFloat(clean);
+            s = s.replace(',', '.');
+            s = s.replace(/[^0-9.\-]/g, '');
+            let n = parseFloat(s);
             return isNaN(n) ? 0 : n;
         }
 
@@ -1504,6 +1510,11 @@
 
                 allData = parsedListings.filter(row => row.Merk || row.Model || row.brand || row.Titel);
                 ownStockData = parsedVoorraad.filter(row => row.Merk || row.Model || row.brand || row.Titel);
+
+                if (allData.length > 0) {
+                    console.log("🔍 [Boss Debug] Beschikbare kolommen:", Object.keys(allData[0]));
+                    console.log("📊 [Boss Debug] AI Ranking waarde eerste rij:", getRowValue(allData[0], ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
+                }
 
                 populateFilters();
                 updateSystemStatusHeader();
@@ -1968,26 +1979,22 @@
             });
 
             filteredData.sort((a, b) => {
-                // Sorteerlogica voor Listings tab en standaard AI-ranking
                 if (currentTab === 'listings' || currentSort === 'default' || currentSort === 'ai-ranking') {
-                    // 1. AI Picks altijd absoluut bovenaan als de toggle aan staat
                     if (aiPicksActive) {
                         const isAiA = isAiPickItem(a) ? 1 : 0;
                         const isAiB = isAiPickItem(b) ? 1 : 0;
                         if (isAiA !== isAiB) return isAiB - isAiA; 
                     }
 
-                    // 2. Strikt op Kolom W / AI Score (hoog > laag) voor listings
                     if (currentTab === 'listings') {
-                        const scoreA = parseNumericForSort(getRowValue(a, ['Kolom W', 'Score', 'AI Score', 'Match', 'AI-Score', 'Relevantie', 'Puntental']));
-                        const scoreB = parseNumericForSort(getRowValue(b, ['Kolom W', 'Score', 'AI Score', 'Match', 'AI-Score', 'Relevantie', 'Puntental']));
+                        const scoreA = parseNumericForSort(getRowValue(a, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
+                        const scoreB = parseNumericForSort(getRowValue(b, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
                         
                         if (scoreA !== scoreB) {
-                            return scoreB - scoreA; // Hoogste score eerst!
+                            return scoreB - scoreA; // Hoogste score/ranking eerst!
                         }
                     }
 
-                    // 3. Voor Veilingen tab: Altijd op aflopende veilingtijd
                     if (currentTab === 'auctions') {
                         const dateA = parseAuctionDate(a['Veiling loopt af op']);
                         const dateB = parseAuctionDate(b['Veiling loopt af op']);
