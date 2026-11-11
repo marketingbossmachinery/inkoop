@@ -586,7 +586,6 @@
             border: 2px solid transparent;
             border-top: 3px solid transparent;
             transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
-            cursor: pointer;
         }
 
         .card:hover {
@@ -606,6 +605,14 @@
         .card.expired {
             opacity: 0.55;
             background-color: #e9e9e9;
+        }
+
+        .card-link-wrapper {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .card-image-container {
@@ -633,7 +640,7 @@
             right: 6px;
             display: flex;
             gap: 5px;
-            z-index: 5;
+            z-index: 10;
         }
         
         .feedback-btn {
@@ -684,7 +691,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 5;
+            z-index: 10;
             transition: background 0.2s, transform 0.1s;
             font-size: 16px;
             font-weight: bold;
@@ -709,7 +716,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 5;
+            z-index: 10;
             transition: background 0.2s, transform 0.1s;
             font-size: 16px;
             font-weight: bold;
@@ -841,8 +848,10 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             width: 100%;
-            text-align: left;
         }
 
         .card-location span, .card-seller span, .transport-info-box span {
@@ -2041,7 +2050,8 @@
 
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
                 if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-                    imageHtml = `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(fullTitle)}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
+                    let imgTag = `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(fullTitle)}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
+                    imageHtml = imgTag;
                 }
 
                 let metaInfoHtml = '';
@@ -2158,34 +2168,42 @@
                 
                 let titleHtml = escapeHtml(fullTitle);
 
+                const cardAnchor = (!isOwnStock && productUrl !== '#') 
+                    ? `<a href="${escapeHtml(productUrl)}" target="_blank" rel="noopener noreferrer" class="card-link-wrapper" title="${escapeHtml(rawTitle)}">` 
+                    : `<div class="card-link-wrapper">`;
+                
+                const cardAnchorClose = (!isOwnStock && productUrl !== '#') ? `</a>` : `</div>`;
+
                 const cardDiv = document.createElement('div');
                 cardDiv.innerHTML = `
-                    <div class="card${expiredClass}${extraClass}" ${(!isOwnStock && productUrl !== '#') ? `onclick="window.open('${escapeHtml(productUrl)}', '_blank')"` : ''} title="${escapeHtml(rawTitle)}">
+                    <div class="card${expiredClass}${extraClass}">
                         ${aiStampHtml}
                         ${badgeHtml}
-                        <div class="card-image-container">
-                            ${imageHtml}
-                            ${imageBadgeContainerHtml}
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">${titleHtml}</h3>
-                            <div class="card-specs">
-                                ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${escapeHtml(row.Bouwjaar)}</span>` : ''}
-                                ${row.Draaiuren ? `<span class="spec-tag">Uren: ${escapeHtml(row.Draaiuren)}</span>` : ''}
+                        ${cardAnchor}
+                            <div class="card-image-container">
+                                ${imageHtml}
+                                ${imageBadgeContainerHtml}
+                                ${hideButtonHtml}
+                                ${feedbackButtonsHtml}
                             </div>
-                            ${metaInfoHtml}
-                            <div class="card-price-box">
-                                <div class="card-price">${priceHtml}</div>
-                                <div class="card-right-meta">
-                                    ${sourceHtml}
+                            <div class="card-content">
+                                <h3 class="card-title">${titleHtml}</h3>
+                                <div class="card-specs">
+                                    ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${escapeHtml(row.Bouwjaar)}</span>` : ''}
+                                    ${row.Draaiuren ? `<span class="spec-tag">Uren: ${escapeHtml(row.Draaiuren)}</span>` : ''}
                                 </div>
+                                ${metaInfoHtml}
+                                <div class="card-price-box">
+                                    <div class="card-price">${priceHtml}</div>
+                                    <div class="card-right-meta">
+                                        ${sourceHtml}
+                                    </div>
+                                </div>
+                                ${auctionHtml}
+                                ${aiReasonHtml}
+                                ${extraContentHtml}
                             </div>
-                            ${auctionHtml}
-                            ${aiReasonHtml}
-                            ${extraContentHtml}
-                        </div>
-                        ${hideButtonHtml}
-                        ${feedbackButtonsHtml}
+                        ${cardAnchorClose}
                     </div>
                 `;
                 fragment.appendChild(cardDiv.firstElementChild);
