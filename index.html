@@ -2092,10 +2092,12 @@
 
                 let rawImg = row['Afbeelding'] || row['Image URL'] || row['image url'] || '';
                 let imageUrl = String(rawImg).trim();
+                let productUrl = row.Link ? row.Link : '#';
+
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
-                
                 if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-                    imageHtml = `<img src="${imageUrl}" alt="${fullTitle}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
+                    let imgTag = `<img src="${imageUrl}" alt="${fullTitle}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
+                    imageHtml = !isOwnStock && productUrl !== '#' ? `<a href="${productUrl}" target="_blank" rel="noopener noreferrer">${imgTag}</a>` : imgTag;
                 }
 
                 let metaInfoHtml = '';
@@ -2178,66 +2180,41 @@
                     `;
                 }
 
-                let productUrl = row.Link ? row.Link : '#';
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let myFb = feedbackData[uniqueId];
                 let extraClass = '';
                 let posBtnClass = '';
                 let negBtnClass = '';
 
-                if (myFb === 'positive') {
-                    extraClass = ' glow-green';
-                    posBtnClass = ' active-pos';
-                }
-                if (myFb === 'negative') {
-                    extraClass = ' glow-red';
-                    negBtnClass = ' active-neg';
-                }
-
-                if (isAiPick) {
-                    extraClass = ' glow-ai';
-                }
+                if (myFb === 'positive') { extraClass = ' glow-green'; posBtnClass = ' active-pos'; }
+                if (myFb === 'negative') { extraClass = ' glow-red'; negBtnClass = ' active-neg'; }
+                if (isAiPick) { extraClass = ' glow-ai'; }
 
                 let feedbackButtonsHtml = '';
                 if (!isOwnStock) {
                     feedbackButtonsHtml = `
                         <div class="feedback-actions">
-                            <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive')" title="Positief (Interessant)">
-                                ${svgThumbUp}
-                            </button>
-                            <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief (Niet interessant)">
-                                ${svgThumbDown}
-                            </button>
+                            <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive')" title="Positief (Interessant)">${svgThumbUp}</button>
+                            <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief (Niet interessant)">${svgThumbDown}</button>
                         </div>
                     `;
                 }
 
                 let isHidden = hiddenCardsData[uniqueId];
-                let hideButtonHtml = '';
-                
-                if (isHidden) {
-                    hideButtonHtml = `
-                        <button class="restore-card-btn" onclick="restoreCard(event, '${uniqueId}')" title="Zet object weer aan (kolom Y naar Ja)">
-                            &#x2715;
-                        </button>
-                    `;
-                } else {
-                    hideButtonHtml = `
-                        <button class="hide-card-btn" onclick="hideCard(event, '${uniqueId}')" title="Verberg object (kolom Y naar Nee)">
-                            &#x2715;
-                        </button>
-                    `;
-                }
+                let hideButtonHtml = isHidden ? 
+                    `<button class="restore-card-btn" onclick="restoreCard(event, '${uniqueId}')" title="Herstel">&#x2715;</button>` : 
+                    `<button class="hide-card-btn" onclick="hideCard(event, '${uniqueId}')" title="Verberg">&#x2715;</button>`;
 
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${aiReason}</div>` : '';
-
                 const expiredClass = isExpired ? ' expired' : '';
-                const wrapperStart = isOwnStock ? `<div class="card${expiredClass}${extraClass}">` : `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}${extraClass}">`;
-                const wrapperEnd = isOwnStock ? `</div>` : `</a>`;
+                
+                let titleHtml = (!isOwnStock && productUrl !== '#') 
+                    ? `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;" title="${rawTitle}">${fullTitle}</a>` 
+                    : fullTitle;
 
                 const cardDiv = document.createElement('div');
                 cardDiv.innerHTML = `
-                    ${wrapperStart}
+                    <div class="card${expiredClass}${extraClass}">
                         ${aiStampHtml}
                         ${badgeHtml}
                         <div class="card-image-container">
@@ -2247,7 +2224,7 @@
                             ${feedbackButtonsHtml}
                         </div>
                         <div class="card-content">
-                            <h3 class="card-title" title="${rawTitle}">${fullTitle}</h3>
+                            <h3 class="card-title">${titleHtml}</h3>
                             <div class="card-specs">
                                 ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${row.Bouwjaar}</span>` : ''}
                                 ${row.Draaiuren ? `<span class="spec-tag">Uren: ${row.Draaiuren}</span>` : ''}
@@ -2263,7 +2240,7 @@
                             ${aiReasonHtml}
                             ${extraContentHtml}
                         </div>
-                    ${wrapperEnd}
+                    </div>
                 `;
                 fragment.appendChild(cardDiv.firstElementChild);
             });
