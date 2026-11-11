@@ -389,9 +389,6 @@
             display: none;
         }
 
-        /* ---------------------------------------------------- */
-        /* RONDE VLAGGEN-GLOBE KNOP & SCROLLBARE DROPDOWN */
-        /* ---------------------------------------------------- */
         .flag-filter-container {
             position: relative;
         }
@@ -409,6 +406,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             transition: border-color 0.2s, background 0.2s;
             box-sizing: border-box;
+            overflow: hidden;
         }
 
         .flag-globe-btn:hover {
@@ -416,9 +414,15 @@
             background: #f8f9fa;
         }
 
-        .flag-globe-btn svg, .flag-globe-icon-sm {
+        .flag-globe-btn svg {
             width: 18px;
             height: 18px;
+            fill: #333333;
+        }
+
+        .flag-globe-icon-sm {
+            width: 24px;
+            height: 24px;
             fill: #333333;
         }
 
@@ -466,15 +470,6 @@
             color: var(--ai-blue);
         }
 
-        .flag-dropdown-option img {
-            width: 22px;
-            height: 15px;
-            object-fit: cover;
-            border: 1px solid #ddd;
-            border-radius: 2px;
-            flex-shrink: 0;
-        }
-
         .flag-count {
             background: #e2e8f0;
             color: #475569;
@@ -487,7 +482,6 @@
             background: #dbeafe;
             color: var(--ai-blue);
         }
-        /* ---------------------------------------------------- */
 
         .ai-toggle-container {
             display: flex;
@@ -584,7 +578,7 @@
         .card {
             background: #fff;
             border-radius: 6px;
-            overflow: visible;
+            overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.06);
             position: relative;
             display: flex;
@@ -592,8 +586,7 @@
             border: 2px solid transparent;
             border-top: 3px solid transparent;
             transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
-            text-decoration: none;
-            color: inherit;
+            cursor: pointer;
         }
 
         .card:hover {
@@ -640,7 +633,7 @@
             right: 6px;
             display: flex;
             gap: 5px;
-            z-index: 5;
+            z-index: 10;
         }
         
         .feedback-btn {
@@ -687,15 +680,17 @@
             border-radius: 4px;
             width: 28px;
             height: 28px;
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 5;
+            z-index: 10;
             transition: background 0.2s, transform 0.1s;
             font-size: 16px;
             font-weight: bold;
             box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+            line-height: 1;
+            padding: 0;
         }
         .hide-card-btn:hover {
             background: rgba(204, 32, 39, 0.9);
@@ -712,15 +707,17 @@
             border-radius: 4px;
             width: 28px;
             height: 28px;
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 5;
+            z-index: 10;
             transition: background 0.2s, transform 0.1s;
             font-size: 16px;
             font-weight: bold;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            line-height: 1;
+            padding: 0;
         }
         .restore-card-btn:hover {
             background: #c9302c;
@@ -735,7 +732,8 @@
             flex-direction: column;
             align-items: flex-end;
             gap: 4px;
-            z-index: 2;
+            z-index: 5;
+            pointer-events: none;
         }
 
         .badge-image {
@@ -772,8 +770,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 20;
+            z-index: 5;
             box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+            pointer-events: none;
         }
         .badge-ai-stamp svg {
             width: 20px;
@@ -790,9 +789,10 @@
             font-weight: bold;
             border-radius: 3px;
             text-transform: uppercase;
-            z-index: 2;
+            z-index: 5;
             color: #fff;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            pointer-events: none;
         }
 
         .badge-rood { background-color: var(--boss-red); }
@@ -809,6 +809,9 @@
             flex-grow: 1;
             display: flex;             
             flex-direction: column;    
+            text-align: left;
+            position: relative;
+            z-index: 2;
         }
 
         .card-title {
@@ -817,6 +820,7 @@
             margin: 0 0 10px 0;
             color: var(--boss-black);
             line-height: 1.3;
+            text-align: left;
         }
 
         .card-specs {
@@ -826,6 +830,7 @@
             font-size: 12px;
             color: var(--text-light);
             flex-wrap: wrap;
+            justify-content: flex-start;
         }
 
         .spec-tag {
@@ -841,32 +846,47 @@
             margin-bottom: 12px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
-        }
-
-        .card-location, .card-seller {
-            display: flex;
-            align-items: center;
             gap: 6px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            align-items: flex-start;
+            text-align: left;
             width: 100%;
         }
 
-        .card-location span, .card-seller span {
+        .card-location, .card-seller, .transport-info-box {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            justify-content: flex-start;
+            text-align: left;
+        }
+
+        .card-location span, .card-seller span, .transport-info-box span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-align: left;
+        }
+
+        .card-location a.maps-link {
+            color: inherit;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            max-width: 100%;
+            text-align: left;
+            position: relative;
+            z-index: 5;
+        }
+        .card-location a.maps-link span {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-
-        .card-location img {
-            width: 20px;
-            height: 14px;
-            object-fit: cover;
-            border: 1px solid #ddd;
-            border-radius: 2px;
-            flex-shrink: 0;
+        .card-location a.maps-link:hover {
+            color: var(--boss-red);
+            text-decoration: underline;
         }
 
         .card-price-box {
@@ -876,11 +896,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
         }
 
         .card-price {
             font-size: 18px;
             font-weight: 900;
+            text-align: left;
         }
 
         .old-price {
@@ -942,6 +964,7 @@
             font-size: 11px;
             font-weight: bold;
             line-height: 1.3;
+            text-align: left;
         }
 
         .comparable-market-box {
@@ -951,6 +974,7 @@
             border-radius: 4px;
             padding: 10px;
             font-size: 12px;
+            text-align: left;
         }
         .comparable-market-box h4 {
             margin: 0 0 8px 0;
@@ -977,6 +1001,8 @@
             color: var(--boss-red);
             text-decoration: none;
             font-weight: bold;
+            position: relative;
+            z-index: 5;
         }
         .market-item a:hover { text-decoration: underline; }
     </style>
@@ -988,7 +1014,7 @@
         
         <div class="header-search-box">
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" id="searchInput" placeholder="Vrij zoeken op merk, model, titel of locatie..." oninput="renderGrid()">
+            <input type="text" id="searchInput" placeholder="Vrij zoeken op merk, model, titel of locatie..." oninput="debouncedRenderGrid()">
         </div>
 
         <div class="system-status-indicator" onclick="openStatusModal()">
@@ -1113,7 +1139,7 @@
 
                     <!-- Vlaggen / Globe Filter -->
                     <div class="flag-filter-container">
-                        <div class="flag-globe-btn" onclick="toggleFlagMenu()" title="Filter op vlag">
+                        <div class="flag-globe-btn" id="activeFlagBtn" onclick="toggleFlagMenu()" title="Filter op vlag">
                             <svg viewBox="0 0 24 24">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                             </svg>
@@ -1173,6 +1199,14 @@
         const svgThreeStars = `<svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>`;
         const svgGlobeIcon = `<svg class="flag-globe-icon-sm" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
 
+        let searchTimeout = null;
+        function debouncedRenderGrid() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                renderGrid();
+            }, 150);
+        }
+
         function toggleFilters() {
             const wrapper = document.getElementById('sidebarFilters');
             wrapper.classList.toggle('open');
@@ -1190,7 +1224,6 @@
 
         function setSort(sortType) {
             currentSort = sortType;
-            
             document.querySelectorAll('.sort-option').forEach(el => el.classList.remove('selected'));
             const selectedOpt = document.getElementById(`opt-${sortType}`);
             if(selectedOpt) selectedOpt.classList.add('selected');
@@ -1202,7 +1235,17 @@
         function selectFlagFilter(flagFile) {
             selectedFlagFilter = flagFile;
             document.getElementById('flagDropdown').classList.remove('open');
+            updateActiveFlagButton();
             renderGrid();
+        }
+
+        function updateActiveFlagButton() {
+            const btn = document.getElementById('activeFlagBtn');
+            if (!selectedFlagFilter) {
+                btn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
+            } else {
+                btn.innerHTML = `<img src="https://flagcdn.com/24x18/${selectedFlagFilter}" alt="vlag" style="width:26px; height:26px; object-fit:cover; border-radius:50%; display:block;">`;
+            }
         }
 
         window.addEventListener('click', function(e) {
@@ -1263,14 +1306,12 @@
             if (reason.includes('in het verleden al geselecteerd')) {
                 return false;
             }
-
             return true;
         }
 
         function parseNumericForSort(val) {
             if (val === null || val === undefined) return null;
             let s = String(val).toLowerCase().trim();
-            
             if (s === '' || s.includes('aanvraag') || s.includes('bod') || s.includes('n.o.t.k')) return null;
             
             let digits = s.match(/[\d]+([.,]\d{3})*/); 
@@ -1285,7 +1326,6 @@
         function hideCard(event, id) {
             event.preventDefault();
             event.stopPropagation();
-
             hiddenCardsData[id] = true;
             localStorage.setItem('bossHiddenCards', JSON.stringify(hiddenCardsData));
 
@@ -1297,14 +1337,12 @@
                 document.body.appendChild(iframe);
                 setTimeout(() => { iframe.remove(); }, 5000);
             }
-
             renderGrid();
         }
 
         function restoreCard(event, id) {
             event.preventDefault();
             event.stopPropagation();
-
             delete hiddenCardsData[id];
             localStorage.setItem('bossHiddenCards', JSON.stringify(hiddenCardsData));
 
@@ -1316,7 +1354,6 @@
                 document.body.appendChild(iframe);
                 setTimeout(() => { iframe.remove(); }, 5000);
             }
-
             renderGrid();
         }
 
@@ -1351,9 +1388,7 @@
             if (!activeFeedbackId) return;
             feedbackData[activeFeedbackId] = 'negative';
             localStorage.setItem('bossFeedbackData', JSON.stringify(feedbackData));
-
             sendToGoogleAppsScript(activeFeedbackId, "Slecht: " + reasonText);
-            
             closeReasonModal();
             renderGrid();
         }
@@ -1376,15 +1411,11 @@
         function sendToGoogleAppsScript(id, feedbackVal) {
             if (gasWebappUrl) {
                 const targetUrl = `${gasWebappUrl}?id=${encodeURIComponent(id)}&feedback=${encodeURIComponent(feedbackVal)}`;
-                
                 const iframe = document.createElement('iframe');
                 iframe.style.display = 'none';
                 iframe.src = targetUrl;
                 document.body.appendChild(iframe);
-                
-                setTimeout(() => {
-                    iframe.remove();
-                }, 5000);
+                setTimeout(() => { iframe.remove(); }, 5000);
             }
         }
 
@@ -1446,7 +1477,7 @@
             "Agorastore", "Auctelia", "Auction Time", "Blaupool", "Camion Super Market",
             "Equippo", "Euro Auctions", "Interencheres", "Klaravik", "Legal Brokers", "MMT Usatomacchine", 
             "MachineryLine", "Mascus", "Proxibid", "Purple Wave", "Ritchie", "Surplex", "Troostwijk", 
-            "Truck1", "Truckscout24",  "werktuigen", "Yoder & Frey"            
+            "Truck1", "Truckscout24", "werktuigen", "Yoder & Frey"            
         ];
 
         fetch(jsonMasterUrl)
@@ -1476,7 +1507,6 @@
 
                 populateFilters();
                 updateSystemStatusHeader();
-                
                 switchTab('listings'); 
                 haalLiveFeedbackOp();
             })
@@ -1502,8 +1532,15 @@
             }
 
             selectedFlagFilter = '';
-            populateFilters();
-            renderGrid();
+            updateActiveFlagButton();
+            
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '<p style="padding: 20px; font-weight: bold; color: #555;">⏳ Voertuigen worden geladen...</p>';
+
+            setTimeout(() => {
+                populateFilters();
+                renderGrid();
+            }, 20);
         }
 
         function checkPortalsStatus() {
@@ -1594,9 +1631,7 @@
             let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
             let lLower = cleanLocStr.toLowerCase();
 
-            if (lLower.includes('überherrn') || lLower.includes('saarland')) {
-                return 'de.png';
-            }
+            if (lLower.includes('überherrn') || lLower.includes('saarland')) return 'de.png';
             if (
                 lLower.includes('mantova') || lLower.includes('bergamo') || lLower.includes('napoli') || 
                 lLower.includes('padova') || lLower.includes('avellino') || lLower.includes('perugia') || 
@@ -1609,109 +1644,94 @@
             }
             
             const worldCountries = {
-                'can': 'ca', 'ca': 'ca', 'canada': 'ca',
-                'usa': 'us', 'usm': 'us', 'us': 'us', 'united states': 'us', 'verenigde staten': 'us',
-                'mex': 'mx', 'mx': 'mx', 'mexico': 'mx',
-                'arg': 'ar', 'ar': 'ar', 'argentina': 'ar', 'argentinië': 'ar',
-                'bra': 'br', 'br': 'br', 'brazil': 'br', 'brazilië': 'br',
-                'chl': 'cl', 'cl': 'cl', 'chile': 'cl', 'chili': 'cl',
-                'col': 'co', 'co': 'co', 'colombia': 'co',
-                'per': 'pe', 'pe': 'pe', 'peru': 'pe',
-                'ury': 'uy', 'uy': 'uy', 'uruguay': 'uy',
-                'ven': 've', 've': 've', 'venezuela': 've',
-                'cri': 'cr', 'cr': 'cr', 'costa rica': 'cr',
-                'pan': 'pa', 'pa': 'pa', 'panama': 'pa',
-                'dom': 'do', 'do': 'do', 'dominican republic': 'do', 'dominikaanse republiek': 'do',
-                'nld': 'nl', 'nl': 'nl', 'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl',
-                'bel': 'be', 'be': 'be', 'belgië': 'be', 'belgium': 'be', 'belgique': 'be',
-                'deu': 'de', 'de': 'de', 'duitsland': 'de', 'germany': 'de', 'deutschland': 'de',
-                'fra': 'fr', 'fr': 'fr', 'frankrijk': 'fr', 'france': 'fr',
-                'esp': 'es', 'es': 'es', 'spanje': 'es', 'spain': 'es', 'españa': 'es',
-                'prt': 'pt', 'pt': 'pt', 'portugal': 'pt',
-                'ita': 'it', 'it': 'it', 'italië': 'it', 'italy': 'it', 'italia': 'it',
-                'pol': 'pl', 'pl': 'pl', 'polen': 'pl', 'poland': 'pl',
-                'swe': 'se', 'se': 'se', 'zweden': 'se', 'sweden': 'se', 'sverige': 'se',
-                'nor': 'no', 'no': 'no', 'noorwegen': 'no', 'norway': 'no', 'norge': 'no',
-                'dnk': 'dk', 'dk': 'dk', 'denemarken': 'dk', 'denmark': 'dk', 'danmark': 'dk',
-                'fin': 'fi', 'fi': 'fi', 'finland': 'fi', 'suomi': 'fi',
-                'irl': 'ie', 'ie': 'ie', 'ierland': 'ie', 'ireland': 'ie',
-                'gbr': 'gb', 'uk': 'gb', 'gb': 'gb', 'verenigd koninkrijk': 'gb', 'engeland': 'gb', 'england': 'gb', 'united kingdom': 'gb',
-                'che': 'ch', 'ch': 'ch', 'zwitserland': 'ch', 'switzerland': 'ch', 'suisse': 'ch',
-                'aut': 'at', 'at': 'at', 'oostenrijk': 'at', 'austria': 'at', 'österreich': 'at',
-                'svn': 'si', 'si': 'si', 'slovenië': 'si', 'slovenia': 'si',
-                'svk': 'sk', 'sk': 'sk', 'slowakije': 'sk', 'slovakia': 'sk',
-                'cze': 'cz', 'cz': 'cz', 'tsjechië': 'cz', 'czech': 'cz', 'czechia': 'cz',
-                'hun': 'hu', 'hu': 'hu', 'hongarije': 'hu', 'hungary': 'hu',
-                'rou': 'ro', 'ro': 'ro', 'roemenië': 'ro', 'romania': 'ro',
-                'bgr': 'bg', 'bg': 'bg', 'bulgarije': 'bg', 'bulgaria': 'bg',
-                'grc': 'gr', 'gr': 'gr', 'griekenland': 'gr', 'greece': 'gr',
-                'hrv': 'hr', 'hr': 'hr', 'kroatië': 'hr', 'croatia': 'hr',
-                'est': 'ee', 'ee': 'ee', 'estland': 'ee', 'estonia': 'ee',
-                'lva': 'lv', 'lv': 'lv', 'letland': 'lv', 'latvia': 'lv',
-                'ltu': 'lt', 'lt': 'lt', 'litouwen': 'lt', 'lithuania': 'lt',
-                'lux': 'lu', 'lu': 'lu', 'luxemburg': 'lu', 'luxembourg': 'lu',
-                'isl': 'is', 'is': 'is', 'ijsland': 'is', 'iceland': 'is',
-                'ukr': 'ua', 'ua': 'ua', 'oekraïne': 'ua', 'ukraine': 'ua',
-                'tur': 'tr', 'tr': 'tr', 'turkije': 'tr', 'turkey': 'tr',
-                'rus': 'ru', 'ru': 'ru', 'rusland': 'ru', 'russia': 'ru',
-                'srb': 'rs', 'rs': 'rs', 'servië': 'rs', 'serbia': 'rs',
-                'bih': 'ba', 'ba': 'ba', 'bosnië en herzegovina': 'ba', 'bosnia': 'ba',
-                'phl': 'ph', 'ph': 'ph', 'philippines': 'ph', 'filipijnen': 'ph',
-                'idn': 'id', 'id': 'id', 'indonesia': 'id', 'indonesië': 'id',
-                'ind': 'in', 'in': 'in', 'india': 'in',
-                'chn': 'cn', 'cn': 'cn', 'china': 'cn',
-                'jpn': 'jp', 'jp': 'jp', 'japan': 'jp',
-                'kor': 'kr', 'kr': 'kr', 'zuid-korea': 'kr', 'south korea': 'kr',
-                'vnm': 'vn', 'vn': 'vn', 'vietnam': 'vn',
-                'tha': 'th', 'th': 'th', 'thailand': 'th',
-                'mys': 'my', 'my': 'my', 'maleisië': 'my', 'malaysia': 'my',
-                'sgp': 'sg', 'sg': 'sg', 'singapore': 'sg',
-                'are': 'ae', 'ae': 'ae', 'verenigde arabische emiraten': 'ae', 'uae': 'ae', 'dubai': 'ae',
-                'sau': 'sa', 'sa': 'sa', 'saudi-arabië': 'sa', 'saudi arabia': 'sa',
-                'isr': 'il', 'il': 'il', 'israël': 'il', 'israel': 'il',
-                'aus': 'au', 'au': 'au', 'australië': 'au', 'australia': 'au',
-                'nzl': 'nz', 'nz': 'nz', 'nieuwe-zeeland': 'nz', 'new zealand': 'nz',
-                'zaf': 'za', 'za': 'za', 'zuid-afrika': 'za', 'south africa': 'za',
-                'egy': 'eg', 'eg': 'eg', 'egypte': 'eg', 'egypt': 'eg',
-                'mar': 'ma', 'ma': 'ma', 'marokko': 'ma', 'morocco': 'ma'
+                // Noord- & Zuid-Amerika
+                'canada': 'ca', 'can': 'ca', 'ca': 'ca',
+                'usa': 'us', 'united states': 'us', 'verenigde staten': 'us', 'v.s.': 'us', 'usm': 'us',
+                'mexico': 'mx', 'mex': 'mx', 'mx': 'mx',
+                'argentina': 'ar', 'argentinië': 'ar', 'arg': 'ar', 'ar': 'ar',
+                'brazil': 'br', 'brazilië': 'br', 'bra': 'br', 'br': 'br',
+                'chile': 'cl', 'cl': 'cl', 'colombia': 'co', 'co': 'co', 'peru': 'pe', 'pe': 'pe', 'uruguay': 'uy', 'uy': 'uy', 'venezuela': 've', 've': 've',
+                'costa rica': 'cr', 'panama': 'pa', 'dominikaanse republiek': 'do',
+                
+                // Europa
+                'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl', 'nld': 'nl', 'nl': 'nl',
+                'belgië': 'be', 'belgium': 'be', 'bel': 'be', 'be': 'be',
+                'duitsland': 'de', 'germany': 'de', 'deu': 'de', 'de': 'de',
+                'frankrijk': 'fr', 'france': 'fr', 'fra': 'fr', 'fr': 'fr',
+                'spanje': 'es', 'spain': 'es', 'espana': 'es', 'esp': 'es', 'es': 'es',
+                'portugal': 'pt', 'prt': 'pt', 'pt': 'pt',
+                'italië': 'it', 'italy': 'it', 'ita': 'it', 'it': 'it',
+                'polen': 'pl', 'poland': 'pl', 'pol': 'pl', 'pl': 'pl',
+                'zweden': 'se', 'sweden': 'se', 'swe': 'se', 'se': 'se',
+                'noorwegen': 'no', 'norway': 'no', 'nor': 'no', 'no': 'no',
+                'denemarken': 'dk', 'denmark': 'dk', 'dnk': 'dk', 'dk': 'dk',
+                'finland': 'fi', 'fin': 'fi', 'fi': 'fi',
+                'ierland': 'ie', 'ireland': 'ie', 'irl': 'ie', 'ie': 'ie',
+                'verenigd koninkrijk': 'gb', 'uk': 'gb', 'engeland': 'gb', 'gran-bretagna': 'gb', 'great britain': 'gb', 'scotland': 'gb', 'wales': 'gb', 'gbr': 'gb', 'gb': 'gb',
+                'zwitserland': 'ch', 'switzerland': 'ch', 'che': 'ch', 'ch': 'ch',
+                'oostenrijk': 'at', 'austria': 'at', 'aut': 'at', 'at': 'at',
+                'slovenië': 'si', 'si': 'si', 'slowakije': 'sk', 'sk': 'sk', 'tsjechië': 'cz', 'czech republic': 'cz', 'cz': 'cz',
+                'hongarije': 'hu', 'hu': 'hu', 'roemenië': 'ro', 'ro': 'ro', 'bulgarije': 'bg', 'bulgaria': 'bg', 'bg': 'bg',
+                'griekenland': 'gr', 'gr': 'gr', 'kroatië': 'hr', 'hr': 'hr', 'estland': 'ee', 'ee': 'ee', 'letland': 'lv', 'latvia': 'lv', 'lv': 'lv',
+                'litouwen': 'lt', 'lt': 'lt', 'luxemburg': 'lu', 'lu': 'lu', 'ijsland': 'is', 'is': 'is', 'oekraïne': 'ua', 'ua': 'ua',
+                'turkije': 'tr', 'turkey': 'tr', 'tr': 'tr', 'rusland': 'ru', 'ru': 'ru', 'servië': 'rs', 'rs': 'rs', 'bosnië': 'ba', 'ba': 'ba',
+                
+                // Azië & Midden-Oosten
+                'japan': 'jp', 'jpn': 'jp', 'jp': 'jp',
+                'china': 'cn', 'cn': 'cn', 'zuid-korea': 'kr', 'korea': 'kr', 'kr': 'kr',
+                'filipijnen': 'ph', 'ph': 'ph', 'indonesië': 'id', 'id': 'id', 'india': 'in', 'in': 'in',
+                'vietnam': 'vn', 'vn': 'vn', 'thailand': 'th', 'th': 'th', 'maleisië': 'my', 'my': 'my', 'singapore': 'sg', 'sg': 'sg',
+                'vae': 'ae', 'united arab emirates': 'ae', 'dubai': 'ae', 'are': 'ae', 'ae': 'ae',
+                'saoedi-arabië': 'sa', 'sa': 'sa', 'israël': 'il', 'il': 'il',
+                
+                // Oceanië & Afrika
+                'australië': 'au', 'australia': 'au', 'au': 'au', 'nieuws-zeeland': 'nz', 'new zealand': 'nz', 'nz': 'nz',
+                'zuid-afrika': 'za', 'south africa': 'za', 'za': 'za', 'egypte': 'eg', 'eg': 'eg', 'marokko': 'ma', 'ma': 'ma'
             };
 
             let countryCode = '';
+
             let parts = cleanLocStr.split(/[,–\/-]+/);
-            
             for (let i = parts.length - 1; i >= 0; i--) {
                 let token = parts[i].trim().toLowerCase();
+                token = token.replace(/\d+/g, '').trim();
                 if (worldCountries[token]) {
                     countryCode = worldCountries[token];
                     break;
                 }
             }
-            
+
             if (!countryCode) {
                 for (const [name, code] of Object.entries(worldCountries)) {
-                    if (lLower.includes(name)) {
+                    let regex = new RegExp(`\\b${name}\\b`, 'i');
+                    if (regex.test(lLower)) {
                         countryCode = code;
                         break;
                     }
                 }
             }
-            
-            if (countryCode) {
-                return countryCode + '.png';
-            }
-            
-            return null;
+
+            return countryCode ? countryCode + '.png' : null;
         }
 
         function getCountryFlagHtml(locStr) {
             if (!locStr) return '📍 <span>Onbekend</span>';
             let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
-            let flagFile = extractFlagFile(cleanLocStr);
+            let mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cleanLocStr)}`;
+            let flagFile = extractFlagFile(locStr);
+            let flagImgHtml = flagFile ? `<img src="https://flagcdn.com/24x18/${flagFile}" alt="vlag" style="width:18px; height:18px; object-fit:cover; border-radius:50%; border:1px solid #cbd5e1; flex-shrink:0; display:block;">` : '📍';
 
-            if (flagFile) {
-                return `<img src="https://flagcdn.com/24x18/${flagFile}" alt="${flagFile.split('.')[0]}" title="${cleanLocStr}"> <span>${cleanLocStr}</span>`;
-            }
-            return `📍 <span>${cleanLocStr}</span>`;
+            return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-link" title="Open in Google Maps" onclick="event.stopPropagation();">${flagImgHtml} <span>${escapeHtml(cleanLocStr)}</span></a>`;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
         }
 
         function matchesOtherFilters(row, isAuctionTabContext = null, isStockTabContext = null) {
@@ -1733,9 +1753,7 @@
             const isAuction = endDateVal !== '';
 
             if (isStockTabContext !== null) {
-                if (isStockTabContext) {
-                    // Eigen voorraad
-                } else {
+                if (!isStockTabContext) {
                     if (isAuctionTabContext && !isAuction) return false;
                     if (!isAuctionTabContext && isAuction) return false;
                 }
@@ -1764,7 +1782,6 @@
                 const linkLower = String(row.Link || '').toLowerCase();
 
                 if (aiReasonText.includes('concurrent') || platformText.includes('concurrent') || feedbackText.includes('concurrent')) return false;
-
                 if (locLower.includes('vuren')) return false;
                 if (locLower.includes('gelderland') && linkLower.includes('europe-commercial-vehicle.com')) return false;
             }
@@ -1801,18 +1818,17 @@
             });
 
             let sortedFlags = Object.keys(flagCounts).sort((a, b) => flagCounts[b] - flagCounts[a]);
-
             const dropdown = document.getElementById('flagDropdown');
             let totalMatchingCount = dataSource.filter(row => matchesOtherFilters(row, isAuctionTab, isStockTab)).length;
             
-            let html = `<div class="flag-dropdown-option ${selectedFlagFilter === '' ? 'selected' : ''}" onclick="selectFlagFilter('')"><span>${svgGlobeIcon}</span><span class="flag-count">${totalMatchingCount}</span></div>`;
+            let html = `<div class="flag-dropdown-option ${selectedFlagFilter === '' ? 'selected' : ''}" onclick="selectFlagFilter('')"><span style="display:flex; align-items:center; width:24px; height:24px;">${svgGlobeIcon}</span><span class="flag-count">${totalMatchingCount}</span></div>`;
             
             sortedFlags.forEach(flag => {
                 let isSel = (selectedFlagFilter === flag) ? 'selected' : '';
                 let count = flagCounts[flag];
                 html += `
                     <div class="flag-dropdown-option ${isSel}" onclick="selectFlagFilter('${flag}')">
-                        <img src="https://flagcdn.com/24x18/${flag}" alt="${flag}">
+                        <img src="https://flagcdn.com/24x18/${flag}" alt="${flag}" style="width:24px; height:24px; object-fit:cover; border-radius:50%; border:1px solid #cbd5e1;">
                         <span class="flag-count">${count}</span>
                     </div>
                 `;
@@ -1823,32 +1839,18 @@
         function parseAuctionDate(str) {
             if (!str) return null;
             str = String(str).replace(/^'/, '').trim();
-            
             if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}/.test(str)) {
                 str = str.replace(' ', 'T');
             }
             str = str.replace(/([+-]\d{2})(\d{2})$/, '$1:$2');
-
             let d = new Date(str);
             if (!isNaN(d.getTime())) return d;
-
-            if (/^\d+:\d{2}:\d{2}$/.test(str)) {
-                const parts = str.split(':').map(Number);
-                const ms = (parts[0] * 3600 + parts[1] * 60 + parts[2]) * 1000;
-                return new Date(Date.now() + ms);
-            }
-            const euMatch = str.match(/^(\d{2})-(\d{2})-(\d{4})[, ]*\s*(\d{2}):(\d{2})$/);
-            if (euMatch) {
-                const [, day, m, y, hh, mm] = euMatch;
-                return new Date(`${y}-${m}-${day}T${hh}:${mm}:00`);
-            }
             return null;
         }
 
         function getCountdownDetails(endTimeString) {
             const end = parseAuctionDate(endTimeString);
             if (!end) return null;
-            
             const now = new Date();
             const diff = end - now;
             
@@ -1862,7 +1864,6 @@
             const pad = (n) => String(n).padStart(2, '0');
             
             let timeStrUpper = totalHours > 0 ? `⏱ ${days > 0 ? days + 'd ' : ''}${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S` : `⚠️ ${pad(hours)}U ${pad(minutes)}M ${pad(seconds)}S`;
-
             const d = pad(end.getDate());
             const m = pad(end.getMonth() + 1);
             const y = end.getFullYear();
@@ -1902,7 +1903,6 @@
                 }
             });
         }
-
         setInterval(updateLiveTimers, 1000);
 
         function renderGrid() {
@@ -1915,12 +1915,10 @@
 
             let filteredData = dataSource.filter(row => {
                 if (!matchesOtherFilters(row, isAuctionTab, isStockTab)) return false;
-
                 if (selectedFlagFilter) {
                     let cardFlag = extractFlagFile(row['Locatie']);
                     if (cardFlag !== selectedFlagFilter) return false;
                 }
-
                 return true;
             });
 
@@ -1929,28 +1927,17 @@
                     if (aiPicksActive) {
                         const isAiA = isAiPickItem(a) ? 1 : 0;
                         const isAiB = isAiPickItem(b) ? 1 : 0;
-
-                        if (isAiA !== isAiB) {
-                            return isAiB - isAiA; 
-                        }
+                        if (isAiA !== isAiB) return isAiB - isAiA; 
                     }
-
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
                     const dateB = parseAuctionDate(b['Veiling loopt af op']);
                     const now = new Date();
-                    
                     const isExpiredA = !dateA || (dateA - now <= 0);
                     const isExpiredB = !dateB || (dateB - now <= 0);
                     
                     if (isExpiredA && !isExpiredB) return 1;
                     if (!isExpiredA && isExpiredB) return -1;
-                    if (!dateA && !dateB) {
-                        const isSoldA = (a.Status || '').toLowerCase().includes('verkocht');
-                        const isSoldB = (b.Status || '').toLowerCase().includes('verkocht');
-                        if (isSoldA && !isSoldB) return 1;
-                        if (!isSoldA && isSoldB) return -1;
-                        return 0;
-                    }
+                    if (!dateA && !dateB) return 0;
                     if (!dateA) return 1;
                     if (!dateB) return -1;
                     return dateA - dateB;
@@ -1970,34 +1957,21 @@
                 else {
                     let numA = null;
                     let numB = null;
-
                     if (currentSort.startsWith('price')) {
-                        const prijsA = a['Laatste prijs'] || a['Prijs'] || a['Eerste prijs'];
-                        const prijsB = b['Laatste prijs'] || b['Prijs'] || b['Eerste prijs'];
-                        numA = parseNumericForSort(prijsA);
-                        numB = parseNumericForSort(prijsB);
-                    } 
-                    else if (currentSort.startsWith('year')) {
+                        numA = parseNumericForSort(a['Laatste prijs'] || a['Prijs'] || a['Eerste prijs']);
+                        numB = parseNumericForSort(b['Laatste prijs'] || b['Prijs'] || b['Eerste prijs']);
+                    } else if (currentSort.startsWith('year')) {
                         numA = parseNumericForSort(a.Bouwjaar);
                         numB = parseNumericForSort(b.Bouwjaar);
-                    } 
-                    else if (currentSort.startsWith('hours')) {
+                    } else if (currentSort.startsWith('hours')) {
                         numA = parseNumericForSort(a.Draaiuren);
                         numB = parseNumericForSort(b.Draaiuren);
                     }
-
                     if (numA === null && numB === null) return 0;
                     if (numA === null) return 1;  
                     if (numB === null) return -1; 
-
-                    if (currentSort.endsWith('asc')) {
-                        return numA - numB;
-                    } else {
-                        return numB - numA;
-                    }
+                    return currentSort.endsWith('asc') ? numA - numB : numB - numA;
                 }
-
-                return 0;
             });
             
             updateTabCounts();
@@ -2023,18 +1997,18 @@
                 const laatstePrijs = row['Laatste prijs'] || row['Prijs'] ? String(row['Laatste prijs'] || row['Prijs']).trim() : '';
 
                 if (laatstePrijs && eerstePrijs && eerstePrijs !== laatstePrijs) {
-                    priceHtml = `<span class="old-price">${eerstePrijs}</span> <span class="new-price">${laatstePrijs}</span>`;
+                    priceHtml = `<span class="old-price">${escapeHtml(eerstePrijs)}</span> <span class="new-price">${escapeHtml(laatstePrijs)}</span>`;
                 } else if (laatstePrijs) {
-                    priceHtml = laatstePrijs;
+                    priceHtml = escapeHtml(laatstePrijs);
                 } else if (eerstePrijs) {
-                    priceHtml = eerstePrijs;
+                    priceHtml = escapeHtml(eerstePrijs);
                 } else {
                     priceHtml = isAuction ? 'Actueel bod' : 'Op aanvraag';
                 }
 
                 let rawPlatform = row['Platform'] || '';
                 let cleanSource = rawPlatform.replace(/\(veilingen\)/gi, '').trim();
-                let sourceHtml = cleanSource ? `<span class="card-source">${cleanSource}</span>` : '';
+                let sourceHtml = cleanSource ? `<span class="card-source">${escapeHtml(cleanSource)}</span>` : '';
 
                 let onlineAuctionVal = String(getRowValue(row, ['Online Auction', 'Online-Auction', 'OnlineAuction']) || '').trim().toLowerCase();
                 let onsiteBadgeHtml = (onlineAuctionVal === 'nee') ? `<div class="badge-onsite">On-site</div>` : '';
@@ -2072,22 +2046,22 @@
                             `;
                             if (countdownObj.isUrgent) {
                                 badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
-                                auctionHtml = `<div class="countdown live-countdown-box" data-endtime="${row['Veiling loopt af op']}" data-bids="${bidsCount}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
+                                auctionHtml = `<div class="countdown live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
                             } else {
-                                auctionHtml = `<div class="countdown-future live-countdown-box" data-endtime="${row['Veiling loopt af op']}" data-bids="${bidsCount}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
+                                auctionHtml = `<div class="countdown-future live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
                             }
                         }
                     }
                 } else if (row.Status) {
                     let statusLower = row.Status.toLowerCase().trim();
                     if (statusLower.includes('afgeprijsd')) {
-                        badgeHtml = `<div class="badge badge-rood">${row.Status}</div>`;
+                        badgeHtml = `<div class="badge badge-rood">${escapeHtml(row.Status)}</div>`;
                     }
                 }
 
                 let aiStampHtml = '';
                 if (isAiPick) {
-                    aiStampHtml = `<div class="badge-ai-stamp" title="${aiReason}">${svgThreeStars}</div>`;
+                    aiStampHtml = `<div class="badge-ai-stamp" title="${escapeHtml(aiReason)}">${svgThreeStars}</div>`;
                 }
 
                 let rawImg = row['Afbeelding'] || row['Image URL'] || row['image url'] || '';
@@ -2096,8 +2070,8 @@
 
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
                 if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-                    let imgTag = `<img src="${imageUrl}" alt="${fullTitle}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
-                    imageHtml = !isOwnStock && productUrl !== '#' ? `<a href="${productUrl}" target="_blank" rel="noopener noreferrer">${imgTag}</a>` : imgTag;
+                    let imgTag = `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(fullTitle)}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
+                    imageHtml = imgTag;
                 }
 
                 let metaInfoHtml = '';
@@ -2107,16 +2081,20 @@
                     locationHtml = `<div class="card-location">${flagHtml}</div>`;
                 }
 
+                let transportCost = row['Geschatte vervoerskosten (AI)'] || row['Transportprijs'] || row['Transport'] || '';
+                let transportHtml = transportCost ? `<div class="transport-info-box">🚚 <span>€${escapeHtml(transportCost)}</span></div>` : '';
+
                 let sellerName = row['Verkopende partij'] || row['Verkoper'] || row['seller'] || '';
                 let sellerHtml = '';
                 if (sellerName) {
-                    sellerHtml = `<div class="card-seller" title="${sellerName}">🏢 <span>${sellerName}</span></div>`;
+                    sellerHtml = `<div class="card-seller" title="${escapeHtml(sellerName)}">🏢 <span>${escapeHtml(sellerName)}</span></div>`;
                 }
 
-                if (locationHtml || sellerHtml) {
+                if (locationHtml || transportHtml || sellerHtml) {
                     metaInfoHtml = `
                         <div class="card-meta-info">
                             ${locationHtml}
+                            ${transportHtml}
                             ${sellerHtml}
                         </div>
                     `;
@@ -2155,12 +2133,12 @@
                                 }
 
                                 let linkHtml = (linkUrl && linkUrl !== '#' && linkUrl !== '') 
-                                    ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">Bekijk</a>` 
+                                    ? `<a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">Bekijk</a>` 
                                     : '';
 
                                 marketHtml += `
                                     <div class="market-item">
-                                        <span style="font-size:11px;">${infoText}</span>
+                                        <span style="font-size:11px;">${escapeHtml(infoText)}</span>
                                         ${linkHtml}
                                     </div>
                                 `;
@@ -2194,55 +2172,62 @@
                 if (!isOwnStock) {
                     feedbackButtonsHtml = `
                         <div class="feedback-actions">
-                            <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive')" title="Positief (Interessant)">${svgThumbUp}</button>
-                            <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief (Niet interessant)">${svgThumbDown}</button>
+                            <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${escapeHtml(uniqueId)}', 'positive')" title="Positief (Interessant)">${svgThumbUp}</button>
+                            <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${escapeHtml(uniqueId)}', 'negative')" title="Negatief (Niet interessant)">${svgThumbDown}</button>
                         </div>
                     `;
                 }
 
                 let isHidden = hiddenCardsData[uniqueId];
                 let hideButtonHtml = isHidden ? 
-                    `<button class="restore-card-btn" onclick="restoreCard(event, '${uniqueId}')" title="Herstel">&#x2715;</button>` : 
-                    `<button class="hide-card-btn" onclick="hideCard(event, '${uniqueId}')" title="Verberg">&#x2715;</button>`;
+                    `<button class="restore-card-btn" onclick="restoreCard(event, '${escapeHtml(uniqueId)}')")" title="Herstel">&#x2715;</button>` : 
+                    `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')")" title="Verberg">&#x2715;</button>`;
 
-                const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${aiReason}</div>` : '';
+                const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${escapeHtml(aiReason)}</div>` : '';
                 const expiredClass = isExpired ? ' expired' : '';
                 
-                let titleHtml = (!isOwnStock && productUrl !== '#') 
-                    ? `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;" title="${rawTitle}">${fullTitle}</a>` 
-                    : fullTitle;
+                let titleHtml = escapeHtml(fullTitle);
 
-                const cardDiv = document.createElement('div');
-                cardDiv.innerHTML = `
-                    <div class="card${expiredClass}${extraClass}">
-                        ${aiStampHtml}
-                        ${badgeHtml}
-                        <div class="card-image-container">
-                            ${imageHtml}
-                            ${imageBadgeContainerHtml}
-                            ${hideButtonHtml}
-                            ${feedbackButtonsHtml}
+                const cardWrapper = document.createElement('div');
+                cardWrapper.className = `card${expiredClass}${extraClass}`;
+
+                // Maak de hele kaart klikbaar naar de product URL, behalve als er op de vlag/maps-link of feedback wordt geklikt
+                if (!isOwnStock && productUrl !== '#') {
+                    cardWrapper.onclick = () => {
+                        window.open(productUrl, '_blank', 'noopener,noreferrer');
+                    };
+                }
+
+                let innerCardHtml = `
+                    ${aiStampHtml}
+                    ${badgeHtml}
+                    <div class="card-image-container">
+                        ${imageHtml}
+                        ${imageBadgeContainerHtml}
+                        ${hideButtonHtml}
+                        ${feedbackButtonsHtml}
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${titleHtml}</h3>
+                        <div class="card-specs">
+                            ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${escapeHtml(row.Bouwjaar)}</span>` : ''}
+                            ${row.Draaiuren ? `<span class="spec-tag">Uren: ${escapeHtml(row.Draaiuren)}</span>` : ''}
                         </div>
-                        <div class="card-content">
-                            <h3 class="card-title">${titleHtml}</h3>
-                            <div class="card-specs">
-                                ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${row.Bouwjaar}</span>` : ''}
-                                ${row.Draaiuren ? `<span class="spec-tag">Uren: ${row.Draaiuren}</span>` : ''}
+                        ${metaInfoHtml}
+                        <div class="card-price-box">
+                            <div class="card-price">${priceHtml}</div>
+                            <div class="card-right-meta">
+                                ${sourceHtml}
                             </div>
-                            ${metaInfoHtml}
-                            <div class="card-price-box">
-                                <div class="card-price">${priceHtml}</div>
-                                <div class="card-right-meta">
-                                    ${sourceHtml}
-                                </div>
-                            </div>
-                            ${auctionHtml}
-                            ${aiReasonHtml}
-                            ${extraContentHtml}
                         </div>
+                        ${auctionHtml}
+                        ${aiReasonHtml}
+                        ${extraContentHtml}
                     </div>
                 `;
-                fragment.appendChild(cardDiv.firstElementChild);
+
+                cardWrapper.innerHTML = innerCardHtml;
+                fragment.appendChild(cardWrapper);
             });
 
             grid.appendChild(fragment);
