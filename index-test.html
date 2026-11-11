@@ -406,6 +406,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             transition: border-color 0.2s, background 0.2s;
             box-sizing: border-box;
+            overflow: hidden;
         }
 
         .flag-globe-btn:hover {
@@ -606,6 +607,14 @@
         .card.expired {
             opacity: 0.55;
             background-color: #e9e9e9;
+        }
+
+        .card-link-wrapper {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .card-image-container {
@@ -837,7 +846,7 @@
             gap: 6px;
         }
 
-        .card-location, .card-seller {
+        .card-location, .card-seller, .transport-info-box {
             display: flex;
             align-items: center;
             gap: 6px;
@@ -847,7 +856,7 @@
             width: 100%;
         }
 
-        .card-location span, .card-seller span {
+        .card-location span, .card-seller span, .transport-info-box span {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -941,17 +950,6 @@
             font-size: 11px;
             font-weight: bold;
             line-height: 1.3;
-        }
-
-        .transport-info-box {
-            margin-top: 4px;
-            font-size: 12px;
-            color: #663322;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding-left: 2px;
         }
 
         .comparable-market-box {
@@ -1123,7 +1121,7 @@
 
                     <!-- Vlaggen / Globe Filter -->
                     <div class="flag-filter-container">
-                        <div class="flag-globe-btn" onclick="toggleFlagMenu()" title="Filter op vlag">
+                        <div class="flag-globe-btn" id="activeFlagBtn" onclick="toggleFlagMenu()" title="Filter op vlag">
                             <svg viewBox="0 0 24 24">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                             </svg>
@@ -1219,7 +1217,17 @@
         function selectFlagFilter(flagFile) {
             selectedFlagFilter = flagFile;
             document.getElementById('flagDropdown').classList.remove('open');
+            updateActiveFlagButton();
             renderGrid();
+        }
+
+        function updateActiveFlagButton() {
+            const btn = document.getElementById('activeFlagBtn');
+            if (!selectedFlagFilter) {
+                btn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
+            } else {
+                btn.innerHTML = `<img src="https://flagcdn.com/24x18/${selectedFlagFilter}" alt="vlag" style="width:26px; height:26px; object-fit:cover; border-radius:50%; display:block;">`;
+            }
         }
 
         window.addEventListener('click', function(e) {
@@ -1506,6 +1514,7 @@
             }
 
             selectedFlagFilter = '';
+            updateActiveFlagButton();
             
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '<p style="padding: 20px; font-weight: bold; color: #555;">⏳ Voertuigen worden geladen...</p>';
@@ -1692,9 +1701,9 @@
             let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
             let mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cleanLocStr)}`;
             let flagFile = extractFlagFile(locStr);
-            let flagImgHtml = flagFile ? `<img src="https://flagcdn.com/24x18/${flagFile}" alt="vlag" style="width:18px; height:14px; object-fit:cover; border-radius:2px; border:1px solid #cbd5e1; flex-shrink:0;">` : '📍';
+            let flagImgHtml = flagFile ? `<img src="https://flagcdn.com/24x18/${flagFile}" alt="vlag" style="width:18px; height:18px; object-fit:cover; border-radius:50%; border:1px solid #cbd5e1; flex-shrink:0; display:block;">` : '📍';
 
-            return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-link" title="Open in Google Maps">${flagImgHtml} <span>${escapeHtml(cleanLocStr)}</span></a>`;
+            return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-link" title="Open in Google Maps" onclick="event.stopPropagation();">${flagImgHtml} <span>${escapeHtml(cleanLocStr)}</span></a>`;
         }
 
         function escapeHtml(str) {
@@ -1801,7 +1810,7 @@
                 let count = flagCounts[flag];
                 html += `
                     <div class="flag-dropdown-option ${isSel}" onclick="selectFlagFilter('${flag}')">
-                        <img src="https://flagcdn.com/24x18/${flag}" alt="${flag}" style="width:24px; height:18px; object-fit:cover; border-radius:2px; border:1px solid #cbd5e1;">
+                        <img src="https://flagcdn.com/24x18/${flag}" alt="${flag}" style="width:24px; height:24px; object-fit:cover; border-radius:50%; border:1px solid #cbd5e1;">
                         <span class="flag-count">${count}</span>
                     </div>
                 `;
@@ -2044,7 +2053,7 @@
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
                 if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
                     let imgTag = `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(fullTitle)}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
-                    imageHtml = !isOwnStock && productUrl !== '#' ? `<a href="${escapeHtml(productUrl)}" target="_blank" rel="noopener noreferrer">${imgTag}</a>` : imgTag;
+                    imageHtml = imgTag;
                 }
 
                 let metaInfoHtml = '';
@@ -2055,7 +2064,7 @@
                 }
 
                 let transportCost = row['Geschatte vervoerskosten (AI)'] || row['Transportprijs'] || row['Transport'] || '';
-                let transportHtml = transportCost ? `<div class="transport-info-box">🚚 €${escapeHtml(transportCost)}</div>` : '';
+                let transportHtml = transportCost ? `<div class="transport-info-box">🚚 <span>€${escapeHtml(transportCost)}</span></div>` : '';
 
                 let sellerName = row['Verkopende partij'] || row['Verkoper'] || row['seller'] || '';
                 let sellerHtml = '';
@@ -2106,7 +2115,7 @@
                                 }
 
                                 let linkHtml = (linkUrl && linkUrl !== '#' && linkUrl !== '') 
-                                    ? `<a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer">Bekijk</a>` 
+                                    ? `<a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">Bekijk</a>` 
                                     : '';
 
                                 marketHtml += `
@@ -2159,38 +2168,44 @@
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${escapeHtml(aiReason)}</div>` : '';
                 const expiredClass = isExpired ? ' expired' : '';
                 
-                let titleHtml = (!isOwnStock && productUrl !== '#') 
-                    ? `<a href="${escapeHtml(productUrl)}" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;" title="${escapeHtml(rawTitle)}">${escapeHtml(fullTitle)}</a>` 
-                    : escapeHtml(fullTitle);
+                let titleHtml = escapeHtml(fullTitle);
+
+                const cardAnchor = (!isOwnStock && productUrl !== '#') 
+                    ? `<a href="${escapeHtml(productUrl)}" target="_blank" rel="noopener noreferrer" class="card-link-wrapper" title="${escapeHtml(rawTitle)}">` 
+                    : `<div class="card-link-wrapper">`;
+                
+                const cardAnchorClose = (!isOwnStock && productUrl !== '#') ? `</a>` : `</div>`;
 
                 const cardDiv = document.createElement('div');
                 cardDiv.innerHTML = `
                     <div class="card${expiredClass}${extraClass}">
                         ${aiStampHtml}
                         ${badgeHtml}
-                        <div class="card-image-container">
-                            ${imageHtml}
-                            ${imageBadgeContainerHtml}
-                            ${hideButtonHtml}
-                            ${feedbackButtonsHtml}
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">${titleHtml}</h3>
-                            <div class="card-specs">
-                                ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${escapeHtml(row.Bouwjaar)}</span>` : ''}
-                                ${row.Draaiuren ? `<span class="spec-tag">Uren: ${escapeHtml(row.Draaiuren)}</span>` : ''}
+                        ${cardAnchor}
+                            <div class="card-image-container">
+                                ${imageHtml}
+                                ${imageBadgeContainerHtml}
                             </div>
-                            ${metaInfoHtml}
-                            <div class="card-price-box">
-                                <div class="card-price">${priceHtml}</div>
-                                <div class="card-right-meta">
-                                    ${sourceHtml}
+                            <div class="card-content">
+                                <h3 class="card-title">${titleHtml}</h3>
+                                <div class="card-specs">
+                                    ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${escapeHtml(row.Bouwjaar)}</span>` : ''}
+                                    ${row.Draaiuren ? `<span class="spec-tag">Uren: ${escapeHtml(row.Draaiuren)}</span>` : ''}
                                 </div>
+                                ${metaInfoHtml}
+                                <div class="card-price-box">
+                                    <div class="card-price">${priceHtml}</div>
+                                    <div class="card-right-meta">
+                                        ${sourceHtml}
+                                    </div>
+                                </div>
+                                ${auctionHtml}
+                                ${aiReasonHtml}
+                                ${extraContentHtml}
                             </div>
-                            ${auctionHtml}
-                            ${aiReasonHtml}
-                            ${extraContentHtml}
-                        </div>
+                        ${cardAnchorClose}
+                        ${hideButtonHtml}
+                        ${feedbackButtonsHtml}
                     </div>
                 `;
                 fragment.appendChild(cardDiv.firstElementChild);
