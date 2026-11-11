@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Equipment Platform - Boss Style (Testversie)</title>
+    <title>Equipment Platform - Boss Style</title>
     <style>
         :root {
             --boss-red: #cc2027;
@@ -389,7 +389,6 @@
             display: none;
         }
 
-        /* High-end ronde vlaggen-knop */
         .flag-filter-container {
             position: relative;
         }
@@ -405,30 +404,26 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: border-color 0.2s, background 0.2s, transform 0.1s;
+            transition: border-color 0.2s, background 0.2s;
             box-sizing: border-box;
-            overflow: hidden;
-            position: relative;
         }
 
         .flag-globe-btn:hover {
             border-color: var(--boss-black);
             background: #f8f9fa;
-            transform: scale(1.05);
         }
 
-        .flag-globe-btn svg, .flag-globe-icon-sm {
+        .flag-globe-btn svg {
             width: 18px;
             height: 18px;
             fill: #333333;
         }
 
-        .flag-globe-btn img.active-flag-icon {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            display: block;
+        /* Aangepast zodat het wereldbolletje even groot is als de vlaggen */
+        .flag-globe-icon-sm {
+            width: 24px;
+            height: 24px;
+            fill: #333333;
         }
 
         .flag-dropdown {
@@ -440,7 +435,7 @@
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-width: 140px;
+            min-width: 130px;
             max-height: 340px;
             overflow-y: auto;
             z-index: 100;
@@ -473,15 +468,6 @@
         .flag-dropdown-option.selected {
             background: #eff6ff;
             color: var(--ai-blue);
-        }
-
-        .flag-dropdown-option img {
-            width: 24px;
-            height: 24px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 1px solid #cbd5e1;
-            flex-shrink: 0;
         }
 
         .flag-count {
@@ -883,15 +869,6 @@
             text-decoration: underline;
         }
 
-        .card-location img {
-            width: 18px;
-            height: 18px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 1px solid #cbd5e1;
-            flex-shrink: 0;
-        }
-
         .card-price-box {
             margin-top: auto;        
             padding-top: 10px;
@@ -967,6 +944,19 @@
             line-height: 1.3;
         }
 
+        .transport-info-box {
+            margin-top: 8px;
+            padding: 6px 8px;
+            background: #fdf8f6;
+            border: 1px solid #f2e3df;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #663322;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .comparable-market-box {
             margin-top: 15px;
             background: #fafafa;
@@ -1002,25 +992,12 @@
             font-weight: bold;
         }
         .market-item a:hover { text-decoration: underline; }
-
-        .transport-info-box {
-            margin-top: 8px;
-            padding: 6px 8px;
-            background: #fdf8f6;
-            border: 1px solid #f2e3df;
-            border-radius: 4px;
-            font-size: 11px;
-            color: #663322;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo.png" alt="BOSS GLOBAL" style="height: 40px; object-fit: contain; display: block;" onerror="this.style.display='none'">
+        <img src="logo.png" alt="BOSS GLOBAL" style="height: 40px; object-fit: contain; display: block;">
         
         <div class="header-search-box">
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -1147,9 +1124,9 @@
                         </div>
                     </div>
 
-                    <!-- Vlaggen / Globe Filter met high-end ronde vlag -->
+                    <!-- Vlaggen / Globe Filter -->
                     <div class="flag-filter-container">
-                        <div class="flag-globe-btn" id="flagGlobeBtn" onclick="toggleFlagMenu()" title="Filter op vlag">
+                        <div class="flag-globe-btn" onclick="toggleFlagMenu()" title="Filter op vlag">
                             <svg viewBox="0 0 24 24">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                             </svg>
@@ -1209,16 +1186,6 @@
         const svgThreeStars = `<svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>`;
         const svgGlobeIcon = `<svg class="flag-globe-icon-sm" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
 
-        function escapeHtml(str) {
-            if (!str) return '';
-            return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
-
         let searchTimeout = null;
         function debouncedRenderGrid() {
             clearTimeout(searchTimeout);
@@ -1254,18 +1221,8 @@
 
         function selectFlagFilter(flagFile) {
             selectedFlagFilter = flagFile;
-            updateFlagGlobeButtonVisual();
             document.getElementById('flagDropdown').classList.remove('open');
             renderGrid();
-        }
-
-        function updateFlagGlobeButtonVisual() {
-            const btn = document.getElementById('flagGlobeBtn');
-            if (selectedFlagFilter) {
-                btn.innerHTML = `<img src="https://flagcdn.com/48x36/${selectedFlagFilter}" class="active-flag-icon" alt="Geselecteerde vlag">`;
-            } else {
-                btn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
-            }
         }
 
         window.addEventListener('click', function(e) {
@@ -1535,9 +1492,6 @@
                 document.getElementById('product-grid').innerHTML = '<p style="color:red;">Fout bij het laden van de platform-data.</p>';
             });
 
-        // ----------------------------------------------------
-        // AANGEPASTE SWITCHTAB MET VISUELE LAAD-INDICATIE
-        // ----------------------------------------------------
         function switchTab(tab) {
             currentTab = tab;
             document.getElementById('tab-listings').classList.toggle('active', tab === 'listings');
@@ -1555,19 +1509,15 @@
             }
 
             selectedFlagFilter = '';
-            updateFlagGlobeButtonVisual();
-
-            // Direct visuele feedback tonen voordat de zware berekening start
+            
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '<p style="padding: 20px; font-weight: bold; color: #555;">⏳ Voertuigen worden geladen...</p>';
 
-            // Kleine pauze zodat de browser de loader kan renderen
             setTimeout(() => {
                 populateFilters();
                 renderGrid();
             }, 20);
         }
-        // ----------------------------------------------------
 
         function checkPortalsStatus() {
             const todayStr = new Date().toISOString().split('T')[0];
@@ -1717,13 +1667,19 @@
         function getCountryFlagHtml(locStr) {
             if (!locStr) return '📍 <span>Onbekend</span>';
             let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
-            let flagFile = extractFlagFile(cleanLocStr);
             let mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cleanLocStr)}`;
 
-            if (flagFile) {
-                return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-link" title="Open in Google Maps"><img src="https://flagcdn.com/48x36/${flagFile}" alt="Vlag"> <span>${escapeHtml(cleanLocStr)}</span> 🗺️</a>`;
-            }
             return `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-link" title="Open in Google Maps">📍 <span>${escapeHtml(cleanLocStr)}</span> 🗺️</a>`;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
         }
 
         function matchesOtherFilters(row, isAuctionTabContext = null, isStockTabContext = null) {
@@ -1813,14 +1769,15 @@
             const dropdown = document.getElementById('flagDropdown');
             let totalMatchingCount = dataSource.filter(row => matchesOtherFilters(row, isAuctionTab, isStockTab)).length;
             
-            let html = `<div class="flag-dropdown-option ${selectedFlagFilter === '' ? 'selected' : ''}" onclick="selectFlagFilter('')"><span>${svgGlobeIcon}</span><span class="flag-count">${totalMatchingCount}</span></div>`;
+            // Aangepast zodat het wereldbol-icoontje exact 24x24 is (even groot als de vlaggen)
+            let html = `<div class="flag-dropdown-option ${selectedFlagFilter === '' ? 'selected' : ''}" onclick="selectFlagFilter('')"><span style="display:flex; align-items:center; width:24px; height:24px;">${svgGlobeIcon}</span><span class="flag-count">${totalMatchingCount}</span></div>`;
             
             sortedFlags.forEach(flag => {
                 let isSel = (selectedFlagFilter === flag) ? 'selected' : '';
                 let count = flagCounts[flag];
                 html += `
                     <div class="flag-dropdown-option ${isSel}" onclick="selectFlagFilter('${flag}')">
-                        <img src="https://flagcdn.com/48x36/${flag}" alt="${flag}">
+                        <img src="https://flagcdn.com/24x18/${flag}" alt="${flag}" style="width:24px; height:24px; object-fit:cover; border-radius:50%; border:1px solid #cbd5e1;">
                         <span class="flag-count">${count}</span>
                     </div>
                 `;
@@ -1989,18 +1946,18 @@
                 const laatstePrijs = row['Laatste prijs'] || row['Prijs'] ? String(row['Laatste prijs'] || row['Prijs']).trim() : '';
 
                 if (laatstePrijs && eerstePrijs && eerstePrijs !== laatstePrijs) {
-                    priceHtml = `<span class="old-price">${eerstePrijs}</span> <span class="new-price">${laatstePrijs}</span>`;
+                    priceHtml = `<span class="old-price">${escapeHtml(eerstePrijs)}</span> <span class="new-price">${escapeHtml(laatstePrijs)}</span>`;
                 } else if (laatstePrijs) {
-                    priceHtml = laatstePrijs;
+                    priceHtml = escapeHtml(laatstePrijs);
                 } else if (eerstePrijs) {
-                    priceHtml = eerstePrijs;
+                    priceHtml = escapeHtml(eerstePrijs);
                 } else {
                     priceHtml = isAuction ? 'Actueel bod' : 'Op aanvraag';
                 }
 
                 let rawPlatform = row['Platform'] || '';
                 let cleanSource = rawPlatform.replace(/\(veilingen\)/gi, '').trim();
-                let sourceHtml = cleanSource ? `<span class="card-source">${cleanSource}</span>` : '';
+                let sourceHtml = cleanSource ? `<span class="card-source">${escapeHtml(cleanSource)}</span>` : '';
 
                 let onlineAuctionVal = String(getRowValue(row, ['Online Auction', 'Online-Auction', 'OnlineAuction']) || '').trim().toLowerCase();
                 let onsiteBadgeHtml = (onlineAuctionVal === 'nee') ? `<div class="badge-onsite">On-site</div>` : '';
@@ -2038,22 +1995,22 @@
                             `;
                             if (countdownObj.isUrgent) {
                                 badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
-                                auctionHtml = `<div class="countdown live-countdown-box" data-endtime="${row['Veiling loopt af op']}" data-bids="${bidsCount}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
+                                auctionHtml = `<div class="countdown live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
                             } else {
-                                auctionHtml = `<div class="countdown-future live-countdown-box" data-endtime="${row['Veiling loopt af op']}" data-bids="${bidsCount}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
+                                auctionHtml = `<div class="countdown-future live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
                             }
                         }
                     }
                 } else if (row.Status) {
                     let statusLower = row.Status.toLowerCase().trim();
                     if (statusLower.includes('afgeprijsd')) {
-                        badgeHtml = `<div class="badge badge-rood">${row.Status}</div>`;
+                        badgeHtml = `<div class="badge badge-rood">${escapeHtml(row.Status)}</div>`;
                     }
                 }
 
                 let aiStampHtml = '';
                 if (isAiPick) {
-                    aiStampHtml = `<div class="badge-ai-stamp" title="${aiReason}">${svgThreeStars}</div>`;
+                    aiStampHtml = `<div class="badge-ai-stamp" title="${escapeHtml(aiReason)}">${svgThreeStars}</div>`;
                 }
 
                 let rawImg = row['Afbeelding'] || row['Image URL'] || row['image url'] || '';
@@ -2062,8 +2019,8 @@
 
                 let imageHtml = `<div class="card-image-placeholder">Geen afbeelding</div>`;
                 if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-                    let imgTag = `<img src="${imageUrl}" alt="${fullTitle}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
-                    imageHtml = !isOwnStock && productUrl !== '#' ? `<a href="${productUrl}" target="_blank" rel="noopener noreferrer">${imgTag}</a>` : imgTag;
+                    let imgTag = `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(fullTitle)}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
+                    imageHtml = !isOwnStock && productUrl !== '#' ? `<a href="${escapeHtml(productUrl)}" target="_blank" rel="noopener noreferrer">${imgTag}</a>` : imgTag;
                 }
 
                 let metaInfoHtml = '';
@@ -2076,7 +2033,7 @@
                 let sellerName = row['Verkopende partij'] || row['Verkoper'] || row['seller'] || '';
                 let sellerHtml = '';
                 if (sellerName) {
-                    sellerHtml = `<div class="card-seller" title="${sellerName}">🏢 <span>${sellerName}</span></div>`;
+                    sellerHtml = `<div class="card-seller" title="${escapeHtml(sellerName)}">🏢 <span>${escapeHtml(sellerName)}</span></div>`;
                 }
 
                 if (locationHtml || sellerHtml) {
@@ -2087,6 +2044,9 @@
                         </div>
                     `;
                 }
+
+                let transportCost = row['Geschatte vervoerskosten (AI)'] || row['Transportprijs'] || row['Transport'] || '';
+                let transportHtml = transportCost ? `<div class="transport-info-box"><span>🚚 Geschat transport:</span> <strong>€${escapeHtml(transportCost)}</strong></div>` : '';
 
                 let extraContentHtml = '';
                 if (isOwnStock) {
@@ -2121,12 +2081,12 @@
                                 }
 
                                 let linkHtml = (linkUrl && linkUrl !== '#' && linkUrl !== '') 
-                                    ? `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">Bekijk</a>` 
+                                    ? `<a href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer">Bekijk</a>` 
                                     : '';
 
                                 marketHtml += `
                                     <div class="market-item">
-                                        <span style="font-size:11px;">${infoText}</span>
+                                        <span style="font-size:11px;">${escapeHtml(infoText)}</span>
                                         ${linkHtml}
                                     </div>
                                 `;
@@ -2160,23 +2120,23 @@
                 if (!isOwnStock) {
                     feedbackButtonsHtml = `
                         <div class="feedback-actions">
-                            <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'positive')" title="Positief (Interessant)">${svgThumbUp}</button>
-                            <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${uniqueId}', 'negative')" title="Negatief (Niet interessant)">${svgThumbDown}</button>
+                            <button class="feedback-btn${posBtnClass}" onclick="toggleFeedback(event, '${escapeHtml(uniqueId)}', 'positive')" title="Positief (Interessant)">${svgThumbUp}</button>
+                            <button class="feedback-btn${negBtnClass}" onclick="toggleFeedback(event, '${escapeHtml(uniqueId)}', 'negative')" title="Negatief (Niet interessant)">${svgThumbDown}</button>
                         </div>
                     `;
                 }
 
                 let isHidden = hiddenCardsData[uniqueId];
                 let hideButtonHtml = isHidden ? 
-                    `<button class="restore-card-btn" onclick="restoreCard(event, '${uniqueId}')" title="Herstel">&#x2715;</button>` : 
-                    `<button class="hide-card-btn" onclick="hideCard(event, '${uniqueId}')" title="Verberg">&#x2715;</button>`;
+                    `<button class="restore-card-btn" onclick="restoreCard(event, '${escapeHtml(uniqueId)}')")" title="Herstel">&#x2715;</button>` : 
+                    `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')")" title="Verberg">&#x2715;</button>`;
 
-                const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${aiReason}</div>` : '';
+                const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${escapeHtml(aiReason)}</div>` : '';
                 const expiredClass = isExpired ? ' expired' : '';
                 
                 let titleHtml = (!isOwnStock && productUrl !== '#') 
-                    ? `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;" title="${rawTitle}">${fullTitle}</a>` 
-                    : fullTitle;
+                    ? `<a href="${escapeHtml(productUrl)}" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;" title="${escapeHtml(rawTitle)}">${escapeHtml(fullTitle)}</a>` 
+                    : escapeHtml(fullTitle);
 
                 const cardDiv = document.createElement('div');
                 cardDiv.innerHTML = `
@@ -2192,10 +2152,11 @@
                         <div class="card-content">
                             <h3 class="card-title">${titleHtml}</h3>
                             <div class="card-specs">
-                                ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${row.Bouwjaar}</span>` : ''}
-                                ${row.Draaiuren ? `<span class="spec-tag">Uren: ${row.Draaiuren}</span>` : ''}
+                                ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${escapeHtml(row.Bouwjaar)}</span>` : ''}
+                                ${row.Draaiuren ? `<span class="spec-tag">Uren: ${escapeHtml(row.Draaiuren)}</span>` : ''}
                             </div>
                             ${metaInfoHtml}
+                            ${transportHtml}
                             <div class="card-price-box">
                                 <div class="card-price">${priceHtml}</div>
                                 <div class="card-right-meta">
@@ -2219,16 +2180,22 @@
                 return dataSource.filter(row => {
                     let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
                     const filterFb = document.getElementById('filter-feedback').value;
-                    if (filterFb !== 'all' && filterFb !== 'positive' && hiddenCardsData[uniqueId]) return false;
+
+                    if (filterFb !== 'all' && filterFb !== 'positive') {
+                        if (hiddenCardsData[uniqueId]) return false;
+                    }
+        
                     if (!matchesOtherFilters(row, isAuctionTab, isStockTab)) return false;
+
                     if (selectedFlagFilter) {
                         let cardFlag = extractFlagFile(row['Locatie']);
                         if (cardFlag !== selectedFlagFilter) return false;
                     }
+        
                     return true;
                 }).length;
             };
-            
+        
             document.getElementById('count-listings').innerText = `(${countHelper(allData, false, false)})`;
             document.getElementById('count-auctions').innerText = `(${countHelper(allData, true, false)})`;
             document.getElementById('count-voorraad').innerText = `(${countHelper(ownStockData, false, true)})`;
