@@ -389,9 +389,6 @@
             display: none;
         }
 
-        /* ---------------------------------------------------- */
-        /* RONDE VLAGGEN-GLOBE KNOP & SCROLLBARE DROPDOWN */
-        /* ---------------------------------------------------- */
         .flag-filter-container {
             position: relative;
         }
@@ -487,7 +484,6 @@
             background: #dbeafe;
             color: var(--ai-blue);
         }
-        /* ---------------------------------------------------- */
 
         .ai-toggle-container {
             display: flex;
@@ -584,7 +580,7 @@
         .card {
             background: #fff;
             border-radius: 6px;
-            overflow: visible;
+            overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.06);
             position: relative;
             display: flex;
@@ -594,6 +590,7 @@
             transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
             text-decoration: none;
             color: inherit;
+            height: 100%;
         }
 
         .card:hover {
@@ -870,7 +867,7 @@
         }
 
         .card-price-box {
-            margin-top: auto;        
+            margin-top: 10px;        
             padding-top: 10px;
             border-top: 1px solid #eee;
             display: flex;
@@ -1704,15 +1701,20 @@
         }
 
         function getCountryFlagHtml(locStr, transportKosten) {
-            if (!locStr) return '📍 <span>Onbekend</span>';
-            let cleanLocStr = locStr.replace(/^[📍\s🏢]+/, '').trim();
+            // Weerbaar tegen ontbrekende of lege locatie
+            if (!locStr || String(locStr).trim() === '') {
+                return '📍 <span>Locatie onbekend</span>';
+            }
+            
+            let cleanLocStr = String(locStr).replace(/^[📍\s🏢]+/, '').trim();
             let flagFile = extractFlagFile(cleanLocStr);
 
-            // Google Maps URL genereren met aankomstadres Veldhoven (Eindhovensebaan 3)
             let mapsQuery = encodeURIComponent(`${cleanLocStr} to Eindhovensebaan 3, Veldhoven, Netherlands`);
             let mapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
 
-            let transportHtml = (transportKosten && Number(transportKosten) > 0) ? ` (€${transportKosten})` : '';
+            // Weerbaar tegen ontbrekende of ongeldige transportkosten
+            let cleanTransport = parseNumericForSort(transportKosten);
+            let transportHtml = (cleanTransport !== null && cleanTransport > 0) ? ` (€${cleanTransport})` : '';
 
             let innerContent = `<span>${cleanLocStr}${transportHtml}</span>`;
 
@@ -2106,13 +2108,12 @@
                     imageHtml = `<img src="${imageUrl}" alt="${fullTitle}" loading="lazy" style="width:100%; height:180px; object-fit:cover; display:block; border-top-left-radius:6px; border-top-right-radius:6px;" onerror="this.parentElement.innerHTML='<div class=\\'card-image-placeholder\\'>Geen afbeelding</div>'">`;
                 }
 
+                // Weerbare locatie & transportkosten opbouw
                 let metaInfoHtml = '';
-                let locationHtml = '';
-                if (row['Locatie']) {
-                    let transportCost = row['Transportkosten'] || row[25] || 0;
-                    let flagHtml = getCountryFlagHtml(row['Locatie'], transportCost);
-                    locationHtml = `<div class="card-location">${flagHtml}</div>`;
-                }
+                let locValue = row['Locatie'] || '';
+                let transportCost = row['Transportkosten'] || row['Geschatte vervoerskosten (AI)'] || row[25] || 0;
+                let flagHtml = getCountryFlagHtml(locValue, transportCost);
+                let locationHtml = `<div class="card-location">${flagHtml}</div>`;
 
                 let sellerName = row['Verkopende partij'] || row['Verkoper'] || row['seller'] || '';
                 let sellerHtml = '';
@@ -2120,14 +2121,12 @@
                     sellerHtml = `<div class="card-seller" title="${sellerName}">🏢 <span>${sellerName}</span></div>`;
                 }
 
-                if (locationHtml || sellerHtml) {
-                    metaInfoHtml = `
-                        <div class="card-meta-info">
-                            ${locationHtml}
-                            ${sellerHtml}
-                        </div>
-                    `;
-                }
+                metaInfoHtml = `
+                    <div class="card-meta-info">
+                        ${locationHtml}
+                        ${sellerHtml}
+                    </div>
+                `;
 
                 let extraContentHtml = '';
                 if (isOwnStock) {
@@ -2240,6 +2239,15 @@
 
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${aiReason}</div>` : '';
 
+                // Weerbare specificatie tags (alleen tonen als ze gevuld zijn)
+                let specsHtml = '';
+                if (row.Bouwjaar) {
+                    specsHtml += `<span class="spec-tag">Bouwjaar: ${row.Bouwjaar}</span>`;
+                }
+                if (row.Draaiuren) {
+                    specsHtml += `<span class="spec-tag">Uren: ${row.Draaiuren}</span>`;
+                }
+
                 const expiredClass = isExpired ? ' expired' : '';
                 const wrapperStart = isOwnStock ? `<div class="card${expiredClass}${extraClass}">` : `<a href="${productUrl}" target="_blank" rel="noopener noreferrer" class="card${expiredClass}${extraClass}">`;
                 const wrapperEnd = isOwnStock ? `</div>` : `</a>`;
@@ -2257,10 +2265,7 @@
                         </div>
                         <div class="card-content">
                             <h3 class="card-title" title="${rawTitle}">${fullTitle}</h3>
-                            <div class="card-specs">
-                                ${row.Bouwjaar ? `<span class="spec-tag">Bouwjaar: ${row.Bouwjaar}</span>` : ''}
-                                ${row.Draaiuren ? `<span class="spec-tag">Uren: ${row.Draaiuren}</span>` : ''}
-                            </div>
+                            ${specsHtml ? `<div class="card-specs">${specsHtml}</div>` : ''}
                             ${metaInfoHtml}
                             <div class="card-price-box">
                                 <div class="card-price">${priceHtml}</div>
