@@ -588,7 +588,7 @@
             flex-direction: column;
             border: 2px solid transparent;
             border-top: 3px solid transparent;
-            transition: transform 0.2s, border 0.2s, box-shadow 0.2s, filter 0.5s ease, opacity 0.5s ease;
+            transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
             cursor: pointer;
         }
 
@@ -606,10 +606,15 @@
             box-shadow: 0 0 20px rgba(37,99,235,0.4) !important; 
         }
 
-        /* Vergrijzen functionaliteit 15s voor afloop */
+        /* Direct vergrijzen bij <= 10 sec zonder transitie */
         .card.fading-gray {
             filter: grayscale(100%);
             opacity: 0.55;
+        }
+
+        .card.expired {
+            opacity: 0.55;
+            background-color: #e9e9e9;
         }
 
         .card-image-container {
@@ -1304,17 +1309,7 @@
             }
             for (let actualKey of Object.keys(row)) {
                 let kl = actualKey.trim().toLowerCase();
-                if (kl.includes('ranking') || kl.includes('score') || kl.includes('kolom w') || kl.includes('punt') || kl.includes('match')) {
-                    return row[actualKey];
-                }
-            }
-            return '';
-        }
-
-        function getAiPickValue(row) {
-            for (let actualKey of Object.keys(row)) {
-                let kl = actualKey.trim().toLowerCase();
-                if (kl === 'ai pick' || kl === 'ai-pick' || kl === 'aipick' || kl.includes('ai pick') || kl.includes('ai-pick')) {
+                if (kl.includes('ranking') || kl.includes('score') || kl.includes('ai') || kl.includes('kolom w') || kl.includes('punt') || kl.includes('match')) {
                     return row[actualKey];
                 }
             }
@@ -1322,8 +1317,8 @@
         }
 
         function isAiPickItem(row) {
-            const val = String(getAiPickValue(row) || '').trim().toLowerCase();
-            if (val !== 'ja' && val !== 'true' && val !== '1' && val !== 'yes') return false;
+            const val = String(getRowValue(row, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
+            if (val !== 'ja' && val !== 'true' && val !== '1') return false;
 
             const reason = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').trim().toLowerCase();
             if (reason.includes('in het verleden al geselecteerd')) {
@@ -1494,7 +1489,7 @@
         }
 
         const TARGET_PORTALS = [
-            "Agorastore", "Auctelia", "Auction Port", "Auction Time", "Blaupool", "Camion Super Market",
+            "Agorastore", "Auctelia", "Auction Time", "Blaupool", "Camion Super Market",
             "Equippo", "Euro Auctions", "Interencheres", "Klaravik", "Legal Brokers", "MMT Usatomacchine", 
             "MachineryLine", "Mascus", "Proxibid", "Purple Wave", "Ritchie", "Surplex", "Troostwijk", 
             "Truck1", "Truckscout24", "werktuigen", "Yoder & Frey"            
@@ -1673,14 +1668,14 @@
                 'costa rica': 'cr', 'panama': 'pa', 'dominikaanse republiek': 'do',
                 'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl', 'nld': 'nl', 'nl': 'nl',
                 'belgië': 'be', 'belgium': 'be', 'bel': 'be', 'be': 'be',
-                'duitsland': 'de', 'germany': 'de', 'germania': 'de', 'deu': 'de', 'de': 'de',
+                'duitsland': 'de', 'germany': 'de', 'deu': 'de', 'de': 'de',
                 'frankrijk': 'fr', 'france': 'fr', 'fra': 'fr', 'fr': 'fr',
-                'spanje': 'es', 'spain': 'es', 'espana': 'es', 'spagna': 'es', 'esp': 'es', 'es': 'es',
+                'spanje': 'es', 'spain': 'es', 'espana': 'es', 'esp': 'es', 'es': 'es',
                 'portugal': 'pt', 'prt': 'pt', 'pt': 'pt',
-                'italië': 'it', 'italy': 'it', 'italia': 'it', 'ita': 'it', 'it': 'it',
+                'italië': 'it', 'italy': 'it', 'ita': 'it', 'it': 'it',
                 'polen': 'pl', 'poland': 'pl', 'pol': 'pl', 'pl': 'pl',
                 'zweden': 'se', 'sweden': 'se', 'swe': 'se', 'se': 'se',
-                'noorwegen': 'no', 'norway': 'no', 'norvegia': 'no', 'nor': 'no', 'no': 'no',
+                'noorwegen': 'no', 'norway': 'no', 'nor': 'no', 'no': 'no',
                 'denemarken': 'dk', 'denmark': 'dk', 'dnk': 'dk', 'dk': 'dk',
                 'finland': 'fi', 'fin': 'fi', 'fi': 'fi',
                 'ierland': 'ie', 'ireland': 'ie', 'irl': 'ie', 'ie': 'ie',
@@ -1758,7 +1753,6 @@
             const searchQuery = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase().trim() : '';
 
             let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
-            
             if (sessionExpiredCardIds[uniqueId]) return false;
 
             if (filterFb !== 'all' && filterFb !== 'positive') {
@@ -1870,8 +1864,8 @@
             const now = new Date();
             const diff = end - now;
             
-            // <= 5 seconden is verlopen (wordt verwijderd)
-            if (diff <= 5000) return { boxText: 'Veiling afgelopen', imageBadge: 'AFGELOPEN', isUrgent: false, isExpired: true };
+            // <= 1 seconde is verlopen (wordt direct verborgen)
+            if (diff <= 1000) return { boxText: 'Veiling afgelopen', imageBadge: 'AFGELOPEN', isUrgent: false, isExpired: true };
             
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const totalHours = Math.floor(diff / (1000 * 60 * 60)); 
@@ -1908,16 +1902,16 @@
                 if (end) {
                     const diff = end - now;
 
-                    // 5 sec of minder -> verdwijnen
-                    if (diff <= 5000) {
+                    // 1 sec of minder -> verdwijnen
+                    if (diff <= 1000) {
                         const uniqueId = cardEl ? cardEl.getAttribute('data-uniqueid') : null;
                         if (uniqueId) {
                             sessionExpiredCardIds[uniqueId] = true;
                             needsRerender = true;
                         }
                     } 
-                    // Tussen 15 en 5 seconden -> vergrijzen (fading-gray)
-                    else if (diff <= 15000) {
+                    // Tussen 10 seconden en 1 seconde -> direct vergrijzen
+                    else if (diff <= 10000) {
                         if (cardEl) cardEl.classList.add('fading-gray');
                         const cnt = getCountdownDetails(endTime);
                         if (cnt) {
@@ -2024,20 +2018,29 @@
             filteredData.sort((a, b) => {
                 const now = new Date();
 
+                // 1. AI Picks ALTIJD bovenaan overal wanneer aan
                 if (aiPicksActive) {
                     const isAiA = isAiPickItem(a) ? 1 : 0;
                     const isAiB = isAiPickItem(b) ? 1 : 0;
                     if (isAiA !== isAiB) return isAiB - isAiA; 
                 }
 
-                const dateA = parseAuctionDate(a['Veiling loopt af op']);
-                const dateB = parseAuctionDate(b['Veiling loopt af op']);
-                const isExpiredA = !dateA || (dateA - now <= 5000);
-                const isExpiredB = !dateB || (dateB - now <= 5000);
+                // 2. Aflopende veilingen sortering
+                if (currentTab === 'auctions' || currentSort === 'auction-first') {
+                    const dateA = parseAuctionDate(a['Veiling loopt af op']);
+                    const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                    const isExpiredA = !dateA || (dateA - now <= 1000);
+                    const isExpiredB = !dateB || (dateB - now <= 1000);
 
-                if (isExpiredA && !isExpiredB) return 1;  
-                if (!isExpiredA && isExpiredB) return -1; 
+                    if (isExpiredA && !isExpiredB) return 1;  
+                    if (!isExpiredA && isExpiredB) return -1; 
+                    if (!dateA && !dateB) return 0;
+                    if (!dateA) return 1;
+                    if (!dateB) return -1;
+                    return dateA - dateB; 
+                }
 
+                // 3. Specifieke sortering (Prijs, Bouwjaar, Uren)
                 if (currentSort && currentSort !== 'default' && currentSort !== 'ai-ranking' && currentSort !== 'auction-first') {
                     let numA = null;
                     let numB = null;
@@ -2059,6 +2062,7 @@
                     }
                 }
 
+                // 4. Standaard Listings AI Ranking score
                 if (currentTab === 'listings') {
                     const scoreA = parseNumericForSort(getRowValue(a, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
                     const scoreB = parseNumericForSort(getRowValue(b, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
@@ -2068,15 +2072,9 @@
                     }
                 }
 
-                if (currentTab === 'auctions' || currentSort === 'auction-first') {
-                    if (!dateA && !dateB) return 0;
-                    if (!dateA) return 1;
-                    if (!dateB) return -1;
-                    return dateA - dateB; 
-                }
-
                 return 0;
             });
+
             updateTabCounts();
             populateFlagDropdown();
 
@@ -2092,18 +2090,17 @@
                 const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
                 const isAuction = endDateVal !== '';
 
-                let isExpiredCard = false;
-                if (isAuction) {
-                    const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
-                    if (countdownObj && countdownObj.isExpired) {
-                        isExpiredCard = true;
+                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
+
+                // Controleer of de veiling op 1 sec of minder staat (direct verbergen)
+                if (isAuction && endDateVal) {
+                    const end = parseAuctionDate(endDateVal);
+                    if (end && (end - new Date() <= 1000)) {
+                        sessionExpiredCardIds[uniqueId] = true;
+                        return;
                     }
                 }
 
-                if (isExpiredCard) {
-                    return; 
-                }
-                
                 let rawTitle = row.Titel || row.Title || (`${row.Merk || ''} ${row.Model || ''}`.trim()) || row.Model || 'Machine / Onbekend';
                 let fullTitle = rawTitle.length > 60 ? rawTitle.substring(0, 57) + '...' : rawTitle;
 
@@ -2260,7 +2257,6 @@
                     `;
                 }
 
-                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let myFb = feedbackData[uniqueId];
                 let extraClass = '';
                 let posBtnClass = '';
@@ -2269,6 +2265,17 @@
                 if (myFb === 'positive') { extraClass = ' glow-green'; posBtnClass = ' active-pos'; }
                 if (myFb === 'negative') { extraClass = ' glow-red'; negBtnClass = ' active-neg'; }
                 if (isAiPick) { extraClass = ' glow-ai'; }
+
+                // Controleer of de kavel zich binnen de 10 seconden bevindt om direct te vergrijzen
+                if (isAuction && endDateVal) {
+                    const end = parseAuctionDate(endDateVal);
+                    if (end) {
+                        const diffMs = end - new Date();
+                        if (diffMs > 1000 && diffMs <= 10000) {
+                            extraClass += ' fading-gray';
+                        }
+                    }
+                }
 
                 let feedbackButtonsHtml = '';
                 if (!isOwnStock) {
