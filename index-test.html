@@ -588,7 +588,7 @@
             flex-direction: column;
             border: 2px solid transparent;
             border-top: 3px solid transparent;
-            transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, border 0.2s, box-shadow 0.2s, opacity 0.5s;
             cursor: pointer;
         }
 
@@ -1882,6 +1882,9 @@
 
         function updateLiveTimers() {
             const timerBoxes = document.querySelectorAll('.live-countdown-box');
+            let needsRerender = false;
+            const now = new Date();
+
             timerBoxes.forEach(box => {
                 const endTime = box.getAttribute('data-endtime');
                 const bids = box.getAttribute('data-bids') || '0';
@@ -1895,6 +1898,19 @@
                         box.style.background = '#eee'; box.style.color = '#666'; box.style.borderColor = '#ccc';
                         box.innerHTML = `Veiling afgelopen | Biedingen: ${bids}`;
                         if (badgeEl) badgeEl.innerHTML = 'AFGELOPEN';
+
+                        // UX Logica: Beheer 3 seconden vertraging voor verspringen naar onderen
+                        const uniqueId = cardEl.getAttribute('data-uniqueid');
+                        if (uniqueId) {
+                            if (!window._expiredTimestamps) window._expiredTimestamps = {};
+                            if (!window._expiredTimestamps[uniqueId]) {
+                                window._expiredTimestamps[uniqueId] = now.getTime();
+                                cardEl.classList.add('expired'); // Direct visueel uitvaaien/grijze status
+                            } else if (now.getTime() - window._expiredTimestamps[uniqueId] > 3000) {
+                                // Na 3 seconden triggeren we een herberekening van de sortering/grid
+                                needsRerender = true;
+                            }
+                        }
                     } else if (cnt.isUrgent) {
                         box.className = 'countdown live-countdown-box';
                         box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
@@ -1906,6 +1922,10 @@
                     }
                 }
             });
+
+            if (needsRerender) {
+                renderGrid();
+            }
         }
         setInterval(updateLiveTimers, 1000);
 
@@ -1979,24 +1999,25 @@
             });
 
             filteredData.sort((a, b) => {
-                // 0. CHECK: Veilingen die al afgelopen zijn MOETEN ALTIJD naar beneden springen!
-                const dateA = parseAuctionDate(a['Veiling loopt af op']);
-                const dateB = parseAuctionDate(b['Veiling loopt af op']);
                 const now = new Date();
-                const isExpiredA = !dateA || (dateA - now <= 0);
-                const isExpiredB = !dateB || (dateB - now <= 0);
 
-                if (isExpiredA && !isExpiredB) return 1;  // A is afgelopen -> naar onderen
-                if (!isExpiredA && isExpiredB) return -1; // B is afgelopen -> A komt hoger
-
-                // 1. Als de AI Picks toggle aan staat, moeten de AI-picks ALTIJD bovenaan staan
+                // 0. AI PICKS ALTIJD BOVENAAN (indien toggle AAN staat)
                 if (aiPicksActive) {
                     const isAiA = isAiPickItem(a) ? 1 : 0;
                     const isAiB = isAiPickItem(b) ? 1 : 0;
                     if (isAiA !== isAiB) return isAiB - isAiA; 
                 }
 
-                // 2. Als er een specifieke handmatige sortering is gekozen (prijs, bouwjaar, draaiuren):
+                // 1. VERLOPEN / AFGELOPEN VEILINGEN NAAR ONDEREN
+                const dateA = parseAuctionDate(a['Veiling loopt af op']);
+                const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                const isExpiredA = !dateA || (dateA - now <= 0);
+                const isExpiredB = !dateB || (dateB - now <= 0);
+
+                if (isExpiredA && !isExpiredB) return 1;  // A is afgelopen -> naar onderen
+                if (!isExpiredA && isExpiredB) return -1; // B is afgelopen -> A komt hoger
+
+                // 2. HANDMATIGE SORTERING (Prijs, Bouwjaar, Draaiuren)
                 if (currentSort && currentSort !== 'default' && currentSort !== 'ai-ranking' && currentSort !== 'auction-first') {
                     let numA = null;
                     let numB = null;
@@ -2018,7 +2039,7 @@
                     }
                 }
 
-                // 3. Standaard / AI-ranking gedrag per tab
+                // 3. STANDAARD / TAB SORTERING
                 if (currentTab === 'listings') {
                     const scoreA = parseNumericForSort(getRowValue(a, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
                     const scoreB = parseNumericForSort(getRowValue(b, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
@@ -2253,6 +2274,7 @@
 
                 const cardWrapper = document.createElement('div');
                 cardWrapper.className = `card${expiredClass}${extraClass}`;
+                cardWrapper.setAttribute('data-uniqueid', uniqueId);
                 
                 cardWrapper.setAttribute('data-producturl', productUrl);
                 if (row['Veiling loopt af op']) {
