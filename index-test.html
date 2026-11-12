@@ -1197,7 +1197,6 @@
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
         let hiddenCardsData = JSON.parse(localStorage.getItem('bossHiddenCards') || '{}');
         
-        // Houd bij wanneer een kavel verlopen is voor de 3-seconden vertraging
         let expiredTimestamps = {};
 
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
@@ -1904,7 +1903,6 @@
                             if (!expiredTimestamps[uniqueId]) {
                                 expiredTimestamps[uniqueId] = now.getTime();
                             } else if (now.getTime() - expiredTimestamps[uniqueId] > 3000) {
-                                // Na exact 3 seconden getriggerd om naar onderen te schuiven
                                 needsRerender = true;
                             }
                         }
@@ -2003,7 +2001,6 @@
                 const dateA = parseAuctionDate(a['Veiling loopt af op']);
                 const dateB = parseAuctionDate(b['Veiling loopt af op']);
                 
-                // Bepaal of het item is verlopen EN of de 3 seconden vertraging reeds verstreken is
                 const isExpiredTimeA = !dateA || (dateA - now <= 0);
                 const isExpiredTimeB = !dateB || (dateB - now <= 0);
 
@@ -2021,7 +2018,7 @@
                     }
                 }
 
-                // 1. VERLOPEN KAVELS (NA 3 SEC) ALTIJD NAAR ONDEREN VERWIJZEN
+                // 1. VERLOPEN KAVELS (NA 3 SEC) ALTIJD NAAR ONDEREN
                 if (isActuallyExpiredA && !isActuallyExpiredB) return 1;
                 if (!isActuallyExpiredA && isActuallyExpiredB) return -1;
 
@@ -2029,7 +2026,7 @@
                 if (aiPicksActive) {
                     const isAiA = isAiPickItem(a) ? 1 : 0;
                     const isAiB = isAiPickItem(b) ? 1 : 0;
-                    if (isAiA !== isAiB) return isAiB - isAiA; 
+                    if (isAiA !== isAiB) return isAiB - isAiA; // 1 komt voor 0 (dus AI picks bovenaan)
                 }
 
                 // 3. HANDMATIGE SORTERING (Prijs, Bouwjaar, Draaiuren)
