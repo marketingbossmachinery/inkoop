@@ -606,7 +606,6 @@
             box-shadow: 0 0 20px rgba(37,99,235,0.4) !important; 
         }
 
-        /* Direct vergrijzen bij <= 10 sec zonder transitie */
         .card.fading-gray {
             filter: grayscale(100%);
             opacity: 0.55;
@@ -1864,7 +1863,6 @@
             const now = new Date();
             const diff = end - now;
             
-            // <= 1 seconde is verlopen (wordt direct verborgen)
             if (diff <= 1000) return { boxText: 'Veiling afgelopen', imageBadge: 'AFGELOPEN', isUrgent: false, isExpired: true };
             
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -1902,7 +1900,6 @@
                 if (end) {
                     const diff = end - now;
 
-                    // 1 sec of minder -> verdwijnen
                     if (diff <= 1000) {
                         const uniqueId = cardEl ? cardEl.getAttribute('data-uniqueid') : null;
                         if (uniqueId) {
@@ -1910,7 +1907,6 @@
                             needsRerender = true;
                         }
                     } 
-                    // Tussen 10 seconden en 1 seconde -> direct vergrijzen
                     else if (diff <= 10000) {
                         if (cardEl) cardEl.classList.add('fading-gray');
                         const cnt = getCountdownDetails(endTime);
@@ -2092,7 +2088,6 @@
 
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
 
-                // Controleer of de veiling op 1 sec of minder staat (direct verbergen)
                 if (isAuction && endDateVal) {
                     const end = parseAuctionDate(endDateVal);
                     if (end && (end - new Date() <= 1000)) {
@@ -2266,7 +2261,6 @@
                 if (myFb === 'negative') { extraClass = ' glow-red'; negBtnClass = ' active-neg'; }
                 if (isAiPick) { extraClass = ' glow-ai'; }
 
-                // Controleer of de kavel zich binnen de 10 seconden bevindt om direct te vergrijzen
                 if (isAuction && endDateVal) {
                     const end = parseAuctionDate(endDateVal);
                     if (end) {
@@ -2288,9 +2282,10 @@
                 }
 
                 let isHidden = hiddenCardsData[uniqueId];
+                // Gecorrigeerde syntax (geen dubbel aanhalingsteken achter de haakjes)
                 let hideButtonHtml = isHidden ? 
-                    `<button class="restore-card-btn" onclick="restoreCard(event, '${escapeHtml(uniqueId)}')'" title="Herstel">&#x2715;</button>` : 
-                    `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')'" title="Verberg">&#x2715;</button>`;
+                    `<button class="restore-card-btn" onclick="restoreCard(event, '${escapeHtml(uniqueId)}')" title="Herstel">&#x2715;</button>` : 
+                    `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')" title="Verberg">&#x2715;</button>`;
 
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${escapeHtml(aiReason)}</div>` : '';
                 
