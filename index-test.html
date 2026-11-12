@@ -588,7 +588,7 @@
             flex-direction: column;
             border: 2px solid transparent;
             border-top: 3px solid transparent;
-            transition: transform 0.2s, border 0.2s, box-shadow 0.2s, opacity 0.5s;
+            transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
             cursor: pointer;
         }
 
@@ -604,11 +604,6 @@
             border-color: var(--ai-blue) !important; 
             border-top-color: var(--ai-blue) !important;
             box-shadow: 0 0 20px rgba(37,99,235,0.4) !important; 
-        }
-
-        .card.expired {
-            opacity: 0.55;
-            background-color: #e9e9e9;
         }
 
         .card-image-container {
@@ -1196,6 +1191,7 @@
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
         let hiddenCardsData = JSON.parse(localStorage.getItem('bossHiddenCards') || '{}');
+        let sessionExpiredCardIds = {}; // Houdt bij welke veilingen tijdens deze sessie zijn afgelopen en direct weg zijn
 
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
         const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
@@ -1749,6 +1745,10 @@
             const searchQuery = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase().trim() : '';
 
             let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
+            
+            // Als de veiling tijdens deze sessie is afgelopen, overslaan
+            if (sessionExpiredCardIds[uniqueId]) return false;
+
             if (filterFb !== 'all' && filterFb !== 'positive') {
                 if (hiddenCardsData[uniqueId]) return false;
             }
@@ -1883,7 +1883,6 @@
         function updateLiveTimers() {
             const timerBoxes = document.querySelectorAll('.live-countdown-box');
             let needsRerender = false;
-            const now = new Date();
 
             timerBoxes.forEach(box => {
                 const endTime = box.getAttribute('data-endtime');
@@ -1894,20 +1893,10 @@
                 const cnt = getCountdownDetails(endTime);
                 if (cnt) {
                     if (cnt.isExpired) {
-                        box.className = 'countdown';
-                        box.style.background = '#eee'; box.style.color = '#666'; box.style.borderColor = '#ccc';
-                        box.innerHTML = `Veiling afgelopen | Biedingen: ${bids}`;
-                        if (badgeEl) badgeEl.innerHTML = 'AFGELOPEN';
-
-                        const uniqueId = cardEl.getAttribute('data-uniqueid');
+                        const uniqueId = cardEl ? cardEl.getAttribute('data-uniqueid') : null;
                         if (uniqueId) {
-                            if (!window._expiredTimestamps) window._expiredTimestamps = {};
-                            if (!window._expiredTimestamps[uniqueId]) {
-                                window._expiredTimestamps[uniqueId] = now.getTime();
-                                cardEl.classList.add('expired'); 
-                            } else if (now.getTime() - window._expiredTimestamps[uniqueId] > 3000) {
-                                needsRerender = true;
-                            }
+                            sessionExpiredCardIds[uniqueId] = true;
+                            needsRerender = true;
                         }
                     } else if (cnt.isUrgent) {
                         box.className = 'countdown live-countdown-box';
@@ -1988,6 +1977,9 @@
             const isStockTab = (currentTab === 'voorraad');
 
             let filteredData = dataSource.filter(row => {
+                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
+                if (sessionExpiredCardIds[uniqueId]) return false;
+
                 if (!matchesOtherFilters(row, isAuctionTab, isStockTab)) return false;
                 if (selectedFlagFilter) {
                     let cardFlag = extractFlagFile(row['Locatie']);
@@ -2012,8 +2004,8 @@
                 const isExpiredA = !dateA || (dateA - now <= 0);
                 const isExpiredB = !dateB || (dateB - now <= 0);
 
-                if (isExpiredA && !isExpiredB) return 1;  // A is afgelopen -> naar onderen
-                if (!isExpiredA && isExpiredB) return -1; // B is afgelopen -> A komt hoger
+                if (isExpiredA && !isExpiredB) return 1;  
+                if (!isExpiredA && isExpiredB) return -1; 
 
                 // 2. HANDMATIGE SORTERING (Prijs, Bouwjaar, Draaiuren)
                 if (currentSort && currentSort !== 'default' && currentSort !== 'ai-ranking' && currentSort !== 'auction-first') {
@@ -2043,7 +2035,7 @@
                     const scoreB = parseNumericForSort(getRowValue(b, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
                     
                     if (scoreA !== scoreB) {
-                        return scoreB - scoreA; // Hoogste AI-score/ranking eerst
+                        return scoreB - scoreA; 
                     }
                 }
 
@@ -2051,7 +2043,7 @@
                     if (!dateA && !dateB) return 0;
                     if (!dateA) return 1;
                     if (!dateB) return -1;
-                    return dateA - dateB; // Eerst aflopende actieve veilingen bovenaan
+                    return dateA - dateB; 
                 }
 
                 return 0;
@@ -2079,7 +2071,6 @@
                     }
                 }
 
-                // Als een veiling afgelopen is, direct weggooien / overslaan in deze weergave
                 if (isExpiredCard) {
                     return; 
                 }
@@ -2323,6 +2314,8 @@
             const countHelper = (dataSource, isAuctionTab, isStockTab) => {
                 return dataSource.filter(row => {
                     let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
+                    if (sessionExpiredCardIds[uniqueId]) return false;
+
                     const filterFb = document.getElementById('filter-feedback').value;
 
                     if (filterFb !== 'all' && filterFb !== 'positive') {
