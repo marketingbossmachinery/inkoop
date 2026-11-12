@@ -606,6 +606,12 @@
             box-shadow: 0 0 20px rgba(37,99,235,0.4) !important; 
         }
 
+        /* Direct vergrijzen bij <= 10 sec zonder transitie */
+        .card.fading-gray {
+            filter: grayscale(100%);
+            opacity: 0.55;
+        }
+
         .card.expired {
             opacity: 0.55;
             background-color: #e9e9e9;
@@ -1013,7 +1019,9 @@
 <body>
 
     <header>
-        <img src="logo.png" alt="BOSS GLOBAL" style="height: 40px; object-fit: contain; display: block;">
+        <a href="./" style="display: flex; align-items: center; text-decoration: none;">
+            <img src="logo.png" alt="BOSS GLOBAL" style="height: 40px; object-fit: contain; display: block;">
+        </a>
         
         <div class="header-search-box">
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -1196,6 +1204,7 @@
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
         let hiddenCardsData = JSON.parse(localStorage.getItem('bossHiddenCards') || '{}');
+        let sessionExpiredCardIds = {}; 
 
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
         const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
@@ -1480,7 +1489,7 @@
         }
 
         const TARGET_PORTALS = [
-            "Agorastore", "Auctelia", "Auction Port", "Auction Time", "Blaupool", "Camion Super Market",
+            "Agorastore", "Auctelia", "Auction Time", "Blaupool", "Camion Super Market",
             "Equippo", "Euro Auctions", "Interencheres", "Klaravik", "Legal Brokers", "MMT Usatomacchine", 
             "MachineryLine", "Mascus", "Proxibid", "Purple Wave", "Ritchie", "Surplex", "Troostwijk", 
             "Truck1", "Truckscout24", "werktuigen", "Yoder & Frey"            
@@ -1510,11 +1519,6 @@
 
                 allData = parsedListings.filter(row => row.Merk || row.Model || row.brand || row.Titel);
                 ownStockData = parsedVoorraad.filter(row => row.Merk || row.Model || row.brand || row.Titel);
-
-                if (allData.length > 0) {
-                    console.log("🔍 [Boss Debug] Beschikbare kolommen:", Object.keys(allData[0]));
-                    console.log("📊 [Boss Debug] AI Ranking waarde eerste rij:", getRowValue(allData[0], ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
-                }
 
                 populateFilters();
                 updateSystemStatusHeader();
@@ -1664,14 +1668,14 @@
                 'costa rica': 'cr', 'panama': 'pa', 'dominikaanse republiek': 'do',
                 'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl', 'nld': 'nl', 'nl': 'nl',
                 'belgië': 'be', 'belgium': 'be', 'bel': 'be', 'be': 'be',
-                'duitsland': 'de', 'germany': 'de', 'germania': 'de', 'deu': 'de', 'de': 'de',
+                'duitsland': 'de', 'germany': 'de', 'deu': 'de', 'de': 'de',
                 'frankrijk': 'fr', 'france': 'fr', 'fra': 'fr', 'fr': 'fr',
-                'spanje': 'es', 'spain': 'es', 'espana': 'es', 'spagna': 'es', 'esp': 'es', 'es': 'es',
+                'spanje': 'es', 'spain': 'es', 'espana': 'es', 'esp': 'es', 'es': 'es',
                 'portugal': 'pt', 'prt': 'pt', 'pt': 'pt',
-                'italië': 'it', 'italy': 'it', 'italia': 'it', 'ita': 'it', 'it': 'it',
+                'italië': 'it', 'italy': 'it', 'ita': 'it', 'it': 'it',
                 'polen': 'pl', 'poland': 'pl', 'pol': 'pl', 'pl': 'pl',
                 'zweden': 'se', 'sweden': 'se', 'swe': 'se', 'se': 'se',
-                'noorwegen': 'no', 'norway': 'no', 'norvegia': 'no', 'nor': 'no', 'no': 'no',
+                'noorwegen': 'no', 'norway': 'no', 'nor': 'no', 'no': 'no',
                 'denemarken': 'dk', 'denmark': 'dk', 'dnk': 'dk', 'dk': 'dk',
                 'finland': 'fi', 'fin': 'fi', 'fi': 'fi',
                 'ierland': 'ie', 'ireland': 'ie', 'irl': 'ie', 'ie': 'ie',
@@ -1749,6 +1753,8 @@
             const searchQuery = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase().trim() : '';
 
             let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
+            if (sessionExpiredCardIds[uniqueId]) return false;
+
             if (filterFb !== 'all' && filterFb !== 'positive') {
                 if (hiddenCardsData[uniqueId]) return false;
             }
@@ -1858,7 +1864,8 @@
             const now = new Date();
             const diff = end - now;
             
-            if (diff <= 0) return { boxText: 'Veiling afgelopen', imageBadge: 'AFGELOPEN', isUrgent: false, isExpired: true };
+            // <= 1 seconde is verlopen (wordt direct verborgen)
+            if (diff <= 1000) return { boxText: 'Veiling afgelopen', imageBadge: 'AFGELOPEN', isUrgent: false, isExpired: true };
             
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const totalHours = Math.floor(diff / (1000 * 60 * 60)); 
@@ -1882,30 +1889,57 @@
 
         function updateLiveTimers() {
             const timerBoxes = document.querySelectorAll('.live-countdown-box');
+            let needsRerender = false;
+            const now = new Date();
+
             timerBoxes.forEach(box => {
                 const endTime = box.getAttribute('data-endtime');
                 const bids = box.getAttribute('data-bids') || '0';
                 const cardEl = box.closest('.card');
                 const badgeEl = cardEl ? cardEl.querySelector('.live-badge-image') : null;
                 
-                const cnt = getCountdownDetails(endTime);
-                if (cnt) {
-                    if (cnt.isExpired) {
-                        box.className = 'countdown';
-                        box.style.background = '#eee'; box.style.color = '#666'; box.style.borderColor = '#ccc';
-                        box.innerHTML = `Veiling afgelopen | Biedingen: ${bids}`;
-                        if (badgeEl) badgeEl.innerHTML = 'AFGELOPEN';
-                    } else if (cnt.isUrgent) {
-                        box.className = 'countdown live-countdown-box';
-                        box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
-                        if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                const end = parseAuctionDate(endTime);
+                if (end) {
+                    const diff = end - now;
+
+                    // 1 sec of minder -> verdwijnen
+                    if (diff <= 1000) {
+                        const uniqueId = cardEl ? cardEl.getAttribute('data-uniqueid') : null;
+                        if (uniqueId) {
+                            sessionExpiredCardIds[uniqueId] = true;
+                            needsRerender = true;
+                        }
+                    } 
+                    // Tussen 10 seconden en 1 seconde -> direct vergrijzen
+                    else if (diff <= 10000) {
+                        if (cardEl) cardEl.classList.add('fading-gray');
+                        const cnt = getCountdownDetails(endTime);
+                        if (cnt) {
+                            box.className = 'countdown live-countdown-box';
+                            box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
+                            if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                        }
                     } else {
-                        box.className = 'countdown-future live-countdown-box';
-                        box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
-                        if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                        if (cardEl) cardEl.classList.remove('fading-gray');
+                        const cnt = getCountdownDetails(endTime);
+                        if (cnt) {
+                            if (cnt.isUrgent) {
+                                box.className = 'countdown live-countdown-box';
+                                box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
+                                if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                            } else {
+                                box.className = 'countdown-future live-countdown-box';
+                                box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
+                                if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                            }
+                        }
                     }
                 }
             });
+
+            if (needsRerender) {
+                renderGrid();
+            }
         }
         setInterval(updateLiveTimers, 1000);
 
@@ -1970,6 +2004,9 @@
             const isStockTab = (currentTab === 'voorraad');
 
             let filteredData = dataSource.filter(row => {
+                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
+                if (sessionExpiredCardIds[uniqueId]) return false;
+
                 if (!matchesOtherFilters(row, isAuctionTab, isStockTab)) return false;
                 if (selectedFlagFilter) {
                     let cardFlag = extractFlagFile(row['Locatie']);
@@ -1979,15 +2016,31 @@
             });
 
             filteredData.sort((a, b) => {
-                // 1. Als de AI Picks toggle aan staat, moeten de AI-picks ALTIJD bovenaan staan,
-                // ongeacht welke tab of sortering er is geselecteerd.
+                const now = new Date();
+
+                // 1. AI Picks ALTIJD bovenaan overal wanneer aan
                 if (aiPicksActive) {
                     const isAiA = isAiPickItem(a) ? 1 : 0;
                     const isAiB = isAiPickItem(b) ? 1 : 0;
                     if (isAiA !== isAiB) return isAiB - isAiA; 
                 }
 
-                // 2. Als er een specifieke handmatige sortering is gekozen (prijs, bouwjaar, draaiuren):
+                // 2. Aflopende veilingen sortering
+                if (currentTab === 'auctions' || currentSort === 'auction-first') {
+                    const dateA = parseAuctionDate(a['Veiling loopt af op']);
+                    const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                    const isExpiredA = !dateA || (dateA - now <= 1000);
+                    const isExpiredB = !dateB || (dateB - now <= 1000);
+
+                    if (isExpiredA && !isExpiredB) return 1;  
+                    if (!isExpiredA && isExpiredB) return -1; 
+                    if (!dateA && !dateB) return 0;
+                    if (!dateA) return 1;
+                    if (!dateB) return -1;
+                    return dateA - dateB; 
+                }
+
+                // 3. Specifieke sortering (Prijs, Bouwjaar, Uren)
                 if (currentSort && currentSort !== 'default' && currentSort !== 'ai-ranking' && currentSort !== 'auction-first') {
                     let numA = null;
                     let numB = null;
@@ -2009,33 +2062,19 @@
                     }
                 }
 
-                // 3. Standaard / AI-ranking gedrag per tab (als er niet handmatig op prijs/jaar/uren is gesorteerd)
+                // 4. Standaard Listings AI Ranking score
                 if (currentTab === 'listings') {
                     const scoreA = parseNumericForSort(getRowValue(a, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
                     const scoreB = parseNumericForSort(getRowValue(b, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
                     
                     if (scoreA !== scoreB) {
-                        return scoreB - scoreA; // Hoogste AI-score/ranking eerst
+                        return scoreB - scoreA; 
                     }
-                }
-
-                if (currentTab === 'auctions' || currentSort === 'auction-first') {
-                    const dateA = parseAuctionDate(a['Veiling loopt af op']);
-                    const dateB = parseAuctionDate(b['Veiling loopt af op']);
-                    const now = new Date();
-                    const isExpiredA = !dateA || (dateA - now <= 0);
-                    const isExpiredB = !dateB || (dateB - now <= 0);
-                    
-                    if (isExpiredA && !isExpiredB) return 1;
-                    if (!isExpiredA && isExpiredB) return -1;
-                    if (!dateA && !dateB) return 0;
-                    if (!dateA) return 1;
-                    if (!dateB) return -1;
-                    return dateA - dateB; // Eerst aflopende veilingen bovenaan
                 }
 
                 return 0;
             });
+
             updateTabCounts();
             populateFlagDropdown();
 
@@ -2050,7 +2089,18 @@
                 const isOwnStock = (currentTab === 'voorraad');
                 const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
                 const isAuction = endDateVal !== '';
-                
+
+                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
+
+                // Controleer of de veiling op 1 sec of minder staat (direct verbergen)
+                if (isAuction && endDateVal) {
+                    const end = parseAuctionDate(endDateVal);
+                    if (end && (end - new Date() <= 1000)) {
+                        sessionExpiredCardIds[uniqueId] = true;
+                        return;
+                    }
+                }
+
                 let rawTitle = row.Titel || row.Title || (`${row.Merk || ''} ${row.Model || ''}`.trim()) || row.Model || 'Machine / Onbekend';
                 let fullTitle = rawTitle.length > 60 ? rawTitle.substring(0, 57) + '...' : rawTitle;
 
@@ -2078,7 +2128,6 @@
                 let badgeHtml = '';
                 let imageBadgeContainerHtml = '';
                 let auctionHtml = '';
-                let isExpired = false;
 
                 const isAiPick = aiPicksActive && isAiPickItem(row);
                 const aiReason = getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '';
@@ -2089,29 +2138,17 @@
                     const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
                     if (countdownObj) {
                         const bidsCount = row['Aantal biedingen'] || '0';
-                        if (countdownObj.isExpired) {
-                            badgeHtml = `<div class="badge badge-rood">Afgelopen</div>`;
-                            imageBadgeContainerHtml = `
-                                <div class="badge-image-container">
-                                    <div class="badge-image live-badge-image">AFGELOPEN</div>
-                                    ${onsiteBadgeHtml}
-                                </div>
-                            `;
-                            auctionHtml = `<div class="countdown" style="background:#eee; color:#666; border-color:#ccc;">Veiling afgelopen | Biedingen: ${bidsCount}</div>`;
-                            isExpired = true;
+                        imageBadgeContainerHtml = `
+                            <div class="badge-image-container">
+                                <div class="badge-image live-badge-image">${countdownObj.imageBadge}</div>
+                                ${onsiteBadgeHtml}
+                            </div>
+                        `;
+                        if (countdownObj.isUrgent) {
+                            badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
+                            auctionHtml = `<div class="countdown live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
                         } else {
-                            imageBadgeContainerHtml = `
-                                <div class="badge-image-container">
-                                    <div class="badge-image live-badge-image">${countdownObj.imageBadge}</div>
-                                    ${onsiteBadgeHtml}
-                                </div>
-                            `;
-                            if (countdownObj.isUrgent) {
-                                badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
-                                auctionHtml = `<div class="countdown live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
-                            } else {
-                                auctionHtml = `<div class="countdown-future live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
-                            }
+                            auctionHtml = `<div class="countdown-future live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
                         }
                     }
                 } else if (row.Status) {
@@ -2220,7 +2257,6 @@
                     `;
                 }
 
-                let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
                 let myFb = feedbackData[uniqueId];
                 let extraClass = '';
                 let posBtnClass = '';
@@ -2229,6 +2265,17 @@
                 if (myFb === 'positive') { extraClass = ' glow-green'; posBtnClass = ' active-pos'; }
                 if (myFb === 'negative') { extraClass = ' glow-red'; negBtnClass = ' active-neg'; }
                 if (isAiPick) { extraClass = ' glow-ai'; }
+
+                // Controleer of de kavel zich binnen de 10 seconden bevindt om direct te vergrijzen
+                if (isAuction && endDateVal) {
+                    const end = parseAuctionDate(endDateVal);
+                    if (end) {
+                        const diffMs = end - new Date();
+                        if (diffMs > 1000 && diffMs <= 10000) {
+                            extraClass += ' fading-gray';
+                        }
+                    }
+                }
 
                 let feedbackButtonsHtml = '';
                 if (!isOwnStock) {
@@ -2246,12 +2293,12 @@
                     `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')'" title="Verberg">&#x2715;</button>`;
 
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${escapeHtml(aiReason)}</div>` : '';
-                const expiredClass = isExpired ? ' expired' : '';
                 
                 let titleHtml = escapeHtml(fullTitle);
 
                 const cardWrapper = document.createElement('div');
-                cardWrapper.className = `card${expiredClass}${extraClass}`;
+                cardWrapper.className = `card${extraClass}`;
+                cardWrapper.setAttribute('data-uniqueid', uniqueId);
                 
                 cardWrapper.setAttribute('data-producturl', productUrl);
                 if (row['Veiling loopt af op']) {
@@ -2303,6 +2350,8 @@
             const countHelper = (dataSource, isAuctionTab, isStockTab) => {
                 return dataSource.filter(row => {
                     let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || '';
+                    if (sessionExpiredCardIds[uniqueId]) return false;
+
                     const filterFb = document.getElementById('filter-feedback').value;
 
                     if (filterFb !== 'all' && filterFb !== 'positive') {
