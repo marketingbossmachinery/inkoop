@@ -1196,6 +1196,9 @@
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
         let hiddenCardsData = JSON.parse(localStorage.getItem('bossHiddenCards') || '{}');
+        
+        // Houd bij wanneer een kavel verlopen is voor de 3-seconden vertraging
+        let expiredTimestamps = {};
 
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
         const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
@@ -1510,11 +1513,6 @@
 
                 allData = parsedListings.filter(row => row.Merk || row.Model || row.brand || row.Titel);
                 ownStockData = parsedVoorraad.filter(row => row.Merk || row.Model || row.brand || row.Titel);
-
-                if (allData.length > 0) {
-                    console.log("🔍 [Boss Debug] Beschikbare kolommen:", Object.keys(allData[0]));
-                    console.log("📊 [Boss Debug] AI Ranking waarde eerste rij:", getRowValue(allData[0], ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
-                }
 
                 populateFilters();
                 updateSystemStatusHeader();
@@ -1899,15 +1897,14 @@
                         box.innerHTML = `Veiling afgelopen | Biedingen: ${bids}`;
                         if (badgeEl) badgeEl.innerHTML = 'AFGELOPEN';
 
-                        // UX Logica: Beheer 3 seconden vertraging voor verspringen naar onderen
                         const uniqueId = cardEl.getAttribute('data-uniqueid');
                         if (uniqueId) {
-                            if (!window._expiredTimestamps) window._expiredTimestamps = {};
-                            if (!window._expiredTimestamps[uniqueId]) {
-                                window._expiredTimestamps[uniqueId] = now.getTime();
-                                cardEl.classList.add('expired'); // Direct visueel uitvaaien/grijze status
-                            } else if (now.getTime() - window._expiredTimestamps[uniqueId] > 3000) {
-                                // Na 3 seconden triggeren we een herberekening van de sortering/grid
+                            cardEl.classList.add('expired'); // Direct grijs maken
+                            
+                            if (!expiredTimestamps[uniqueId]) {
+                                expiredTimestamps[uniqueId] = now.getTime();
+                            } else if (now.getTime() - expiredTimestamps[uniqueId] > 3000) {
+                                // Na exact 3 seconden getriggerd om naar onderen te schuiven
                                 needsRerender = true;
                             }
                         }
@@ -2000,24 +1997,42 @@
 
             filteredData.sort((a, b) => {
                 const now = new Date();
+                const uniqueIdA = a['Advertentie ID'] || a['Link'] || a.Titel || '';
+                const uniqueIdB = b['Advertentie ID'] || b['Link'] || b.Titel || '';
 
-                // 0. AI PICKS ALTIJD BOVENAAN (indien toggle AAN staat)
+                const dateA = parseAuctionDate(a['Veiling loopt af op']);
+                const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                
+                // Bepaal of het item is verlopen EN of de 3 seconden vertraging reeds verstreken is
+                const isExpiredTimeA = !dateA || (dateA - now <= 0);
+                const isExpiredTimeB = !dateB || (dateB - now <= 0);
+
+                let isActuallyExpiredA = false;
+                if (isExpiredTimeA) {
+                    if (expiredTimestamps[uniqueIdA] && (now.getTime() - expiredTimestamps[uniqueIdA] > 3000)) {
+                        isActuallyExpiredA = true;
+                    }
+                }
+
+                let isActuallyExpiredB = false;
+                if (isExpiredTimeB) {
+                    if (expiredTimestamps[uniqueIdB] && (now.getTime() - expiredTimestamps[uniqueIdB] > 3000)) {
+                        isActuallyExpiredB = true;
+                    }
+                }
+
+                // 1. VERLOPEN KAVELS (NA 3 SEC) ALTIJD NAAR ONDEREN VERWIJZEN
+                if (isActuallyExpiredA && !isActuallyExpiredB) return 1;
+                if (!isActuallyExpiredA && isActuallyExpiredB) return -1;
+
+                // 2. AI PICKS ALTIJD BOVENAAN (indien toggle AAN staat)
                 if (aiPicksActive) {
                     const isAiA = isAiPickItem(a) ? 1 : 0;
                     const isAiB = isAiPickItem(b) ? 1 : 0;
                     if (isAiA !== isAiB) return isAiB - isAiA; 
                 }
 
-                // 1. VERLOPEN / AFGELOPEN VEILINGEN NAAR ONDEREN
-                const dateA = parseAuctionDate(a['Veiling loopt af op']);
-                const dateB = parseAuctionDate(b['Veiling loopt af op']);
-                const isExpiredA = !dateA || (dateA - now <= 0);
-                const isExpiredB = !dateB || (dateB - now <= 0);
-
-                if (isExpiredA && !isExpiredB) return 1;  // A is afgelopen -> naar onderen
-                if (!isExpiredA && isExpiredB) return -1; // B is afgelopen -> A komt hoger
-
-                // 2. HANDMATIGE SORTERING (Prijs, Bouwjaar, Draaiuren)
+                // 3. HANDMATIGE SORTERING (Prijs, Bouwjaar, Draaiuren)
                 if (currentSort && currentSort !== 'default' && currentSort !== 'ai-ranking' && currentSort !== 'auction-first') {
                     let numA = null;
                     let numB = null;
@@ -2039,13 +2054,13 @@
                     }
                 }
 
-                // 3. STANDAARD / TAB SORTERING
+                // 4. STANDAARD / TAB SORTERING
                 if (currentTab === 'listings') {
                     const scoreA = parseNumericForSort(getRowValue(a, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
                     const scoreB = parseNumericForSort(getRowValue(b, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
                     
                     if (scoreA !== scoreB) {
-                        return scoreB - scoreA; // Hoogste AI-score/ranking eerst
+                        return scoreB - scoreA; 
                     }
                 }
 
@@ -2053,11 +2068,12 @@
                     if (!dateA && !dateB) return 0;
                     if (!dateA) return 1;
                     if (!dateB) return -1;
-                    return dateA - dateB; // Eerst aflopende actieve veilingen bovenaan
+                    return dateA - dateB; 
                 }
 
                 return 0;
             });
+
             updateTabCounts();
             populateFlagDropdown();
 
