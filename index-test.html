@@ -606,6 +606,7 @@
             box-shadow: 0 0 20px rgba(37,99,235,0.4) !important; 
         }
 
+        /* Direct vergrijzen bij <= 10 sec zonder transitie */
         .card.fading-gray {
             filter: grayscale(100%);
             opacity: 0.55;
@@ -1300,21 +1301,16 @@
 
         function getRowValue(row, possibleKeys) {
             for (let k of possibleKeys) {
-                let kLower = k.toLowerCase();
                 for (let actualKey of Object.keys(row)) {
-                    if (actualKey.trim().toLowerCase() === kLower) {
+                    if (actualKey.trim().toLowerCase() === k.toLowerCase()) {
                         return row[actualKey];
                     }
                 }
             }
-            // Veiligere fallback: zoek alleen op gedeeltelijke match met de gevraagde sleutels
-            for (let k of possibleKeys) {
-                let kLower = k.toLowerCase();
-                for (let actualKey of Object.keys(row)) {
-                    let akLower = actualKey.trim().toLowerCase();
-                    if (akLower.includes(kLower)) {
-                        return row[actualKey];
-                    }
+            for (let actualKey of Object.keys(row)) {
+                let kl = actualKey.trim().toLowerCase();
+                if (kl.includes('ranking') || kl.includes('score') || kl.includes('ai') || kl.includes('kolom w') || kl.includes('punt') || kl.includes('match')) {
+                    return row[actualKey];
                 }
             }
             return '';
@@ -1868,6 +1864,7 @@
             const now = new Date();
             const diff = end - now;
             
+            // <= 1 seconde is verlopen (wordt direct verborgen)
             if (diff <= 1000) return { boxText: 'Veiling afgelopen', imageBadge: 'AFGELOPEN', isUrgent: false, isExpired: true };
             
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -1905,6 +1902,7 @@
                 if (end) {
                     const diff = end - now;
 
+                    // 1 sec of minder -> verdwijnen
                     if (diff <= 1000) {
                         const uniqueId = cardEl ? cardEl.getAttribute('data-uniqueid') : null;
                         if (uniqueId) {
@@ -1912,6 +1910,7 @@
                             needsRerender = true;
                         }
                     } 
+                    // Tussen 10 seconden en 1 seconde -> direct vergrijzen
                     else if (diff <= 10000) {
                         if (cardEl) cardEl.classList.add('fading-gray');
                         const cnt = getCountdownDetails(endTime);
@@ -2093,6 +2092,7 @@
 
                 let uniqueId = row['Advertentie ID'] || row['Link'] || row.Titel || Math.random().toString();
 
+                // Controleer of de veiling op 1 sec of minder staat (direct verbergen)
                 if (isAuction && endDateVal) {
                     const end = parseAuctionDate(endDateVal);
                     if (end && (end - new Date() <= 1000)) {
@@ -2266,6 +2266,7 @@
                 if (myFb === 'negative') { extraClass = ' glow-red'; negBtnClass = ' active-neg'; }
                 if (isAiPick) { extraClass = ' glow-ai'; }
 
+                // Controleer of de kavel zich binnen de 10 seconden bevindt om direct te vergrijzen
                 if (isAuction && endDateVal) {
                     const end = parseAuctionDate(endDateVal);
                     if (end) {
