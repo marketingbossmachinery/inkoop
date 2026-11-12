@@ -588,7 +588,7 @@
             flex-direction: column;
             border: 2px solid transparent;
             border-top: 3px solid transparent;
-            transition: transform 0.2s, border 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, border 0.2s, box-shadow 0.2s, filter 0.5s ease, opacity 0.5s ease;
             cursor: pointer;
         }
 
@@ -604,6 +604,12 @@
             border-color: var(--ai-blue) !important; 
             border-top-color: var(--ai-blue) !important;
             box-shadow: 0 0 20px rgba(37,99,235,0.4) !important; 
+        }
+
+        /* Vergrijzen functionaliteit 15s voor afloop */
+        .card.fading-gray {
+            filter: grayscale(100%);
+            opacity: 0.55;
         }
 
         .card-image-container {
@@ -1008,7 +1014,9 @@
 <body>
 
     <header>
-        <img src="logo.png" alt="BOSS GLOBAL" style="height: 40px; object-fit: contain; display: block;">
+        <a href="./" style="display: flex; align-items: center; text-decoration: none;">
+            <img src="logo.png" alt="BOSS GLOBAL" style="height: 40px; object-fit: contain; display: block;">
+        </a>
         
         <div class="header-search-box">
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -1296,7 +1304,17 @@
             }
             for (let actualKey of Object.keys(row)) {
                 let kl = actualKey.trim().toLowerCase();
-                if (kl.includes('ranking') || kl.includes('score') || kl.includes('ai') || kl.includes('kolom w') || kl.includes('punt') || kl.includes('match')) {
+                if (kl.includes('ranking') || kl.includes('score') || kl.includes('kolom w') || kl.includes('punt') || kl.includes('match')) {
+                    return row[actualKey];
+                }
+            }
+            return '';
+        }
+
+        function getAiPickValue(row) {
+            for (let actualKey of Object.keys(row)) {
+                let kl = actualKey.trim().toLowerCase();
+                if (kl === 'ai pick' || kl === 'ai-pick' || kl === 'aipick' || kl.includes('ai pick') || kl.includes('ai-pick')) {
                     return row[actualKey];
                 }
             }
@@ -1304,8 +1322,8 @@
         }
 
         function isAiPickItem(row) {
-            const val = String(getRowValue(row, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
-            if (val !== 'ja' && val !== 'true' && val !== '1') return false;
+            const val = String(getAiPickValue(row) || '').trim().toLowerCase();
+            if (val !== 'ja' && val !== 'true' && val !== '1' && val !== 'yes') return false;
 
             const reason = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').trim().toLowerCase();
             if (reason.includes('in het verleden al geselecteerd')) {
@@ -1852,7 +1870,8 @@
             const now = new Date();
             const diff = end - now;
             
-            if (diff <= 0) return { boxText: 'Veiling afgelopen', imageBadge: 'AFGELOPEN', isUrgent: false, isExpired: true };
+            // <= 5 seconden is verlopen (wordt verwijderd)
+            if (diff <= 5000) return { boxText: 'Veiling afgelopen', imageBadge: 'AFGELOPEN', isUrgent: false, isExpired: true };
             
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const totalHours = Math.floor(diff / (1000 * 60 * 60)); 
@@ -1877,6 +1896,7 @@
         function updateLiveTimers() {
             const timerBoxes = document.querySelectorAll('.live-countdown-box');
             let needsRerender = false;
+            const now = new Date();
 
             timerBoxes.forEach(box => {
                 const endTime = box.getAttribute('data-endtime');
@@ -1884,22 +1904,41 @@
                 const cardEl = box.closest('.card');
                 const badgeEl = cardEl ? cardEl.querySelector('.live-badge-image') : null;
                 
-                const cnt = getCountdownDetails(endTime);
-                if (cnt) {
-                    if (cnt.isExpired) {
+                const end = parseAuctionDate(endTime);
+                if (end) {
+                    const diff = end - now;
+
+                    // 5 sec of minder -> verdwijnen
+                    if (diff <= 5000) {
                         const uniqueId = cardEl ? cardEl.getAttribute('data-uniqueid') : null;
                         if (uniqueId) {
                             sessionExpiredCardIds[uniqueId] = true;
                             needsRerender = true;
                         }
-                    } else if (cnt.isUrgent) {
-                        box.className = 'countdown live-countdown-box';
-                        box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
-                        if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                    } 
+                    // Tussen 15 en 5 seconden -> vergrijzen (fading-gray)
+                    else if (diff <= 15000) {
+                        if (cardEl) cardEl.classList.add('fading-gray');
+                        const cnt = getCountdownDetails(endTime);
+                        if (cnt) {
+                            box.className = 'countdown live-countdown-box';
+                            box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
+                            if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                        }
                     } else {
-                        box.className = 'countdown-future live-countdown-box';
-                        box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
-                        if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                        if (cardEl) cardEl.classList.remove('fading-gray');
+                        const cnt = getCountdownDetails(endTime);
+                        if (cnt) {
+                            if (cnt.isUrgent) {
+                                box.className = 'countdown live-countdown-box';
+                                box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
+                                if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                            } else {
+                                box.className = 'countdown-future live-countdown-box';
+                                box.innerHTML = `${cnt.boxText} | Biedingen: ${bids}`;
+                                if (badgeEl) badgeEl.innerHTML = cnt.imageBadge;
+                            }
+                        }
                     }
                 }
             });
@@ -1993,8 +2032,8 @@
 
                 const dateA = parseAuctionDate(a['Veiling loopt af op']);
                 const dateB = parseAuctionDate(b['Veiling loopt af op']);
-                const isExpiredA = !dateA || (dateA - now <= 0);
-                const isExpiredB = !dateB || (dateB - now <= 0);
+                const isExpiredA = !dateA || (dateA - now <= 5000);
+                const isExpiredB = !dateB || (dateB - now <= 5000);
 
                 if (isExpiredA && !isExpiredB) return 1;  
                 if (!isExpiredA && isExpiredB) return -1; 
