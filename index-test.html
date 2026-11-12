@@ -2070,6 +2070,19 @@
                 const isOwnStock = (currentTab === 'voorraad');
                 const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
                 const isAuction = endDateVal !== '';
+
+                let isExpiredCard = false;
+                if (isAuction) {
+                    const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
+                    if (countdownObj && countdownObj.isExpired) {
+                        isExpiredCard = true;
+                    }
+                }
+
+                // Als een veiling afgelopen is, direct weggooien / overslaan in deze weergave
+                if (isExpiredCard) {
+                    return; 
+                }
                 
                 let rawTitle = row.Titel || row.Title || (`${row.Merk || ''} ${row.Model || ''}`.trim()) || row.Model || 'Machine / Onbekend';
                 let fullTitle = rawTitle.length > 60 ? rawTitle.substring(0, 57) + '...' : rawTitle;
@@ -2098,7 +2111,6 @@
                 let badgeHtml = '';
                 let imageBadgeContainerHtml = '';
                 let auctionHtml = '';
-                let isExpired = false;
 
                 const isAiPick = aiPicksActive && isAiPickItem(row);
                 const aiReason = getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '';
@@ -2109,29 +2121,17 @@
                     const countdownObj = getCountdownDetails(row['Veiling loopt af op']);
                     if (countdownObj) {
                         const bidsCount = row['Aantal biedingen'] || '0';
-                        if (countdownObj.isExpired) {
-                            badgeHtml = `<div class="badge badge-rood">Afgelopen</div>`;
-                            imageBadgeContainerHtml = `
-                                <div class="badge-image-container">
-                                    <div class="badge-image live-badge-image">AFGELOPEN</div>
-                                    ${onsiteBadgeHtml}
-                                </div>
-                            `;
-                            auctionHtml = `<div class="countdown" style="background:#eee; color:#666; border-color:#ccc;">Veiling afgelopen | Biedingen: ${bidsCount}</div>`;
-                            isExpired = true;
+                        imageBadgeContainerHtml = `
+                            <div class="badge-image-container">
+                                <div class="badge-image live-badge-image">${countdownObj.imageBadge}</div>
+                                ${onsiteBadgeHtml}
+                            </div>
+                        `;
+                        if (countdownObj.isUrgent) {
+                            badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
+                            auctionHtml = `<div class="countdown live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
                         } else {
-                            imageBadgeContainerHtml = `
-                                <div class="badge-image-container">
-                                    <div class="badge-image live-badge-image">${countdownObj.imageBadge}</div>
-                                    ${onsiteBadgeHtml}
-                                </div>
-                            `;
-                            if (countdownObj.isUrgent) {
-                                badgeHtml = `<div class="badge badge-urgent">BIJNA AFGELOPEN</div>`;
-                                auctionHtml = `<div class="countdown live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
-                            } else {
-                                auctionHtml = `<div class="countdown-future live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
-                            }
+                            auctionHtml = `<div class="countdown-future live-countdown-box" data-endtime="${escapeHtml(row['Veiling loopt af op'])}" data-bids="${escapeHtml(bidsCount)}">${countdownObj.boxText} | Biedingen: ${bidsCount}</div>`;
                         }
                     }
                 } else if (row.Status) {
@@ -2266,12 +2266,11 @@
                     `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')'" title="Verberg">&#x2715;</button>`;
 
                 const aiReasonHtml = (isAiPick && aiReason) ? `<div class="ai-reason-box">🤖 <strong>AI Advies:</strong> ${escapeHtml(aiReason)}</div>` : '';
-                const expiredClass = isExpired ? ' expired' : '';
                 
                 let titleHtml = escapeHtml(fullTitle);
 
                 const cardWrapper = document.createElement('div');
-                cardWrapper.className = `card${expiredClass}${extraClass}`;
+                cardWrapper.className = `card${extraClass}`;
                 cardWrapper.setAttribute('data-uniqueid', uniqueId);
                 
                 cardWrapper.setAttribute('data-producturl', productUrl);
