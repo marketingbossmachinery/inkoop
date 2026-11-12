@@ -1979,8 +1979,17 @@
             });
 
             filteredData.sort((a, b) => {
-                // 1. Als de AI Picks toggle aan staat, moeten de AI-picks ALTIJD bovenaan staan,
-                // ongeacht welke tab of sortering er is geselecteerd.
+                // 0. CHECK: Veilingen die al afgelopen zijn MOETEN ALTIJD naar beneden springen!
+                const dateA = parseAuctionDate(a['Veiling loopt af op']);
+                const dateB = parseAuctionDate(b['Veiling loopt af op']);
+                const now = new Date();
+                const isExpiredA = !dateA || (dateA - now <= 0);
+                const isExpiredB = !dateB || (dateB - now <= 0);
+
+                if (isExpiredA && !isExpiredB) return 1;  // A is afgelopen -> naar onderen
+                if (!isExpiredA && isExpiredB) return -1; // B is afgelopen -> A komt hoger
+
+                // 1. Als de AI Picks toggle aan staat, moeten de AI-picks ALTIJD bovenaan staan
                 if (aiPicksActive) {
                     const isAiA = isAiPickItem(a) ? 1 : 0;
                     const isAiB = isAiPickItem(b) ? 1 : 0;
@@ -2009,7 +2018,7 @@
                     }
                 }
 
-                // 3. Standaard / AI-ranking gedrag per tab (als er niet handmatig op prijs/jaar/uren is gesorteerd)
+                // 3. Standaard / AI-ranking gedrag per tab
                 if (currentTab === 'listings') {
                     const scoreA = parseNumericForSort(getRowValue(a, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
                     const scoreB = parseNumericForSort(getRowValue(b, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
@@ -2020,18 +2029,10 @@
                 }
 
                 if (currentTab === 'auctions' || currentSort === 'auction-first') {
-                    const dateA = parseAuctionDate(a['Veiling loopt af op']);
-                    const dateB = parseAuctionDate(b['Veiling loopt af op']);
-                    const now = new Date();
-                    const isExpiredA = !dateA || (dateA - now <= 0);
-                    const isExpiredB = !dateB || (dateB - now <= 0);
-                    
-                    if (isExpiredA && !isExpiredB) return 1;
-                    if (!isExpiredA && isExpiredB) return -1;
                     if (!dateA && !dateB) return 0;
                     if (!dateA) return 1;
                     if (!dateB) return -1;
-                    return dateA - dateB; // Eerst aflopende veilingen bovenaan
+                    return dateA - dateB; // Eerst aflopende actieve veilingen bovenaan
                 }
 
                 return 0;
