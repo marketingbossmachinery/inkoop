@@ -475,6 +475,67 @@
             border: 1px solid #cbd5e1;
         }
 
+        /* Plaatsen / Locaties per geselecteerd land */
+        #placesSectionPanel {
+            display: none;
+            border-left: 4px solid var(--ai-blue);
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 12px;
+        }
+
+        .place-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: #fafafa;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: border-color 0.15s, background-color 0.15s, transform 0.15s;
+        }
+
+        .place-card:hover {
+            border-color: var(--boss-red);
+            background: #fff5f5;
+            transform: translateY(-1px);
+        }
+
+        .place-name {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--boss-black);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .place-sub {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        .place-count-badge {
+            background: var(--boss-black);
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 900;
+            padding: 4px 9px;
+            border-radius: 999px;
+            flex-shrink: 0;
+        }
+
+        .place-card:hover .place-count-badge {
+            background: var(--boss-red);
+        }
+
         /* Overzichten sectie (Bouwjaar / Draaiuren / Top Merken) */
         .specs-grid {
             display: grid;
@@ -711,7 +772,16 @@
             </div>
         </div>
 
-        <!-- Nieuwe sectie boven 3, 4 en 5: Bouwjaar, Draaiuren & Top Merken -->
+        <!-- Plaatsen / Locaties o.b.v. locatie wanneer een land is geselecteerd -->
+        <div class="panel" id="placesSectionPanel">
+            <div class="panel-header">
+                <h2 id="placesSectionTitle">Plaatsen &amp; Locaties</h2>
+                <span style="font-size: 12px; color: var(--text-light);">Klik op een plaats om direct op het platform te zoeken · Handig voor listings</span>
+            </div>
+            <div class="places-grid" id="placesGrid"></div>
+        </div>
+
+        <!-- Overzichten sectie boven 3, 4 en 5: Bouwjaar, Draaiuren & Top Merken -->
         <div class="specs-grid">
             <div class="panel" style="margin-bottom:0;">
                 <div class="panel-header">
@@ -875,6 +945,38 @@
             return 'other';
         }
 
+        function extractPlaceFromLocation(locStr, countryCode) {
+            if (!locStr) return null;
+            let raw = String(locStr).replace(/^[📍\s🏢]+/, '').trim();
+            if (!raw) return null;
+
+            // Pak meestal het eerste deel vóór komma, streepje of slash (bijv. "Eindhoven, Nederland" -> "Eindhoven")
+            let candidate = raw.split(/[,–\/\-|]+/)[0].trim();
+
+            // Verwijder eventuele landnaam of landcode als die direct vooraan staat
+            const countryName = (COUNTRY_META[countryCode]?.name || '').toLowerCase();
+            const lowerCand = candidate.toLowerCase().replace(/\d+/g, '').trim();
+            if (!lowerCand) return null;
+            if (COUNTRY_ALIASES[lowerCand] || (countryName && lowerCand === countryName)) {
+                return null;
+            }
+
+            // Opschonen van losse postcodes aan begin/eind (bijv. "5600 AA Eindhoven" -> "Eindhoven")
+            candidate = candidate
+                .replace(/\b\d{4,5}\s*[A-Za-z]{0,2}\b/g, '')
+                .replace(/\s{2,}/g, ' ')
+                .trim();
+
+            if (!candidate || candidate.length < 2) return null;
+
+            // Netjes hoofdlettergebruik behouden of normaliseren bij volledig uppercase
+            if (candidate === candidate.toUpperCase() && candidate.length > 3) {
+                candidate = candidate.toLowerCase().replace(/\b\w/g, ch => ch.toUpperCase());
+            }
+
+            return candidate;
+        }
+
         function getCountryDisplayName(code) {
             if (code === 'other') return 'Overig / Onbekend';
             return COUNTRY_META[code]?.name || code.toUpperCase();
@@ -963,7 +1065,7 @@
 
             if (selectedCountryCode) {
                 const cname = getCountryDisplayName(selectedCountryCode);
-                desc.textContent = `Focus op ${cname} — bovenaan gepind in overzichten, overige landen gedimd. Klik op de vlag of opnieuw op het land om te resetten.`;
+                desc.textContent = `Focus op ${cname} — bovenaan gepind in overzichten, plaatsen weergegeven en overige landen gedimd.`;
             } else {
                 desc.textContent = 'Overzicht van actieve kavels per land en categorie, aangevuld met urgentie, AI Picks en portaldekking.';
             }
@@ -1137,14 +1239,60 @@
 
             renderMapMarkers(countryStats, sortedCountries);
             renderMatrixTable(sortedCountries, sortedCategories, countryStats, activeCatTotals, activeGrandTotal, scope);
+            renderPlacesForSelectedCountry(focusRows, focusName, tabParam);
             renderSpecsAndBrands(focusRows, countryQuery, tabParam);
             renderInsights(sortedCountries, countryStats);
+        }
+
+        function renderPlacesForSelectedCountry(focusRows, focusName, tabParam) {
+            const panel = document.getElementById('placesSectionPanel');
+            const titleEl = document.getElementById('placesSectionTitle');
+            const gridEl = document.getElementById('placesGrid');
+
+            if (!selectedCountryCode) {
+                panel.style.display = 'none';
+                gridEl.innerHTML = '';
+                return;
+            }
+
+            panel.style.display = 'block';
+            titleEl.textContent = `Plaatsen & Locaties in ${focusName}`;
+
+            const placeMap = {};
+            focusRows.forEach(r => {
+                const place = extractPlaceFromLocation(r.Locatie, selectedCountryCode);
+                if (!place) return;
+                const key = place.toLowerCase();
+                if (!placeMap[key]) {
+                    placeMap[key] = { name: place, count: 0, sampleLoc: r.Locatie || place };
+                }
+                placeMap[key].count++;
+            });
+
+            const sortedPlaces = Object.values(placeMap).sort((a, b) => b.count - a.count);
+
+            if (sortedPlaces.length === 0) {
+                gridEl.innerHTML = `<p style="margin:0; font-size:13px; color:var(--text-light);">Geen specifieke plaatsnamen herkend in de locatievelden voor ${escapeHtml(focusName)}.</p>`;
+                return;
+            }
+
+            gridEl.innerHTML = sortedPlaces.slice(0, 24).map(p => {
+                const url = buildPlatformUrl({ tab: tabParam, q: p.name });
+                return `
+                    <a href="${url}" class="place-card" title="Open kavels in ${escapeHtml(p.name)}">
+                        <div style="min-width:0;">
+                            <div class="place-name">📍 ${escapeHtml(p.name)}</div>
+                            <div class="place-sub">${escapeHtml(p.sampleLoc)}</div>
+                        </div>
+                        <span class="place-count-badge">${p.count}</span>
+                    </a>
+                `;
+            }).join('');
         }
 
         function renderSpecsAndBrands(rows, countryQuery, tabParam) {
             const currentYear = new Date().getFullYear();
 
-            // 1. Bouwjaar & leeftijd
             const years = [];
             const ageBuckets = {
                 '0 – 3 jaar (Nieuw/Jong)': 0,
@@ -1185,7 +1333,6 @@
                 `;
             }).join('');
 
-            // 2. Draaiuren
             const hoursList = [];
             const hourBuckets = {
                 '0 – 2.500 u': 0,
@@ -1221,7 +1368,6 @@
                 `;
             }).join('');
 
-            // 3. Top merken
             const brandCounts = {};
             rows.forEach(r => {
                 const b = (r.Merk || r.brand || '').toString().trim();
