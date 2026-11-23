@@ -412,6 +412,10 @@
             overflow: hidden;
         }
 
+        .flag-globe-btn.has-flag {
+            border: 2px solid var(--ai-blue);
+        }
+
         .flag-globe-btn:hover {
             border-color: var(--boss-black);
             background: #f8f9fa;
@@ -438,8 +442,8 @@
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-width: 130px;
-            max-height: 340px;
+            min-width: 150px;
+            max-height: 360px;
             overflow-y: auto;
             z-index: 100;
         }
@@ -1149,13 +1153,13 @@
 
                     <!-- Vlaggen / Globe Filter -->
                     <div class="flag-filter-container">
-                        <div class="flag-globe-btn" id="activeFlagBtn" onclick="toggleFlagMenu()" title="Filter op vlag">
+                        <div class="flag-globe-btn" id="activeFlagBtn" onclick="toggleFlagMenu()" title="Filter op land / vlag">
                             <svg viewBox="0 0 24 24">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                             </svg>
                         </div>
                         <div class="flag-dropdown" id="flagDropdown">
-                            <!-- Dynamisch gevuld -->
+                            <!-- Dynamisch gevuld met alle beschikbare landen -->
                         </div>
                     </div>
 
@@ -1199,7 +1203,7 @@
         let aiPicksActive = true; 
         let showCompetitors = false; 
         let currentSort = 'default';
-        let selectedFlagFilter = '';
+        let selectedFlagFilter = ''; // bijv. 'us.png', 'at.png', of '' voor alle landen
 
         let feedbackData = JSON.parse(localStorage.getItem('bossFeedbackData') || '{}');
         let hiddenCardsData = JSON.parse(localStorage.getItem('bossHiddenCards') || '{}');
@@ -1210,6 +1214,16 @@
         const svgThreeStars = `<svg viewBox="0 0 24 24" fill="#ffffff"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>`;
         const svgGlobeIcon = `<svg class="flag-globe-icon-sm" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
 
+        const FLAG_TO_COUNTRY_LABEL = {
+            'nl.png': 'Nederland', 'be.png': 'België', 'de.png': 'Duitsland', 'fr.png': 'Frankrijk',
+            'gb.png': 'Verenigd Koninkrijk', 'ie.png': 'Ierland', 'es.png': 'Spanje', 'pt.png': 'Portugal',
+            'it.png': 'Italië', 'cz.png': 'Tsjechië', 'pl.png': 'Polen', 'sk.png': 'Slowakije',
+            'at.png': 'Oostenrijk', 'ch.png': 'Zwitserland', 'se.png': 'Zweden', 'no.png': 'Noorwegen',
+            'dk.png': 'Denemarken', 'fi.png': 'Finland', 'ro.png': 'Roemenië', 'hu.png': 'Hongarije',
+            'hr.png': 'Kroatië', 'us.png': 'Verenigde Staten', 'ca.png': 'Canada',
+            'ae.png': 'Verenigde Arabische Emiraten', 'jp.png': 'Japan', 'au.png': 'Australië', 'za.png': 'Zuid-Afrika'
+        };
+
         let searchTimeout = null;
         function debouncedRenderGrid() {
             clearTimeout(searchTimeout);
@@ -1218,11 +1232,32 @@
             }, 150);
         }
 
+        function resolveFlagFileFromParam(paramLand, paramQ) {
+            const raw = (paramLand || '').trim().toLowerCase();
+            if (raw) {
+                if (raw.endsWith('.png')) return raw;
+                const cleanCode = raw.replace(/[^a-z]/g, '');
+                if (cleanCode.length === 2) return `${cleanCode}.png`;
+                const foundByName = extractFlagFile(raw);
+                if (foundByName) return foundByName;
+            }
+            if (paramQ) {
+                const qLower = paramQ.trim().toLowerCase();
+                // Alleen als q exact of bijna exact een landnaam is, op land filteren i.p.v. tekstueel zoeken
+                const possibleFlag = extractFlagFile(qLower);
+                if (possibleFlag && FLAG_TO_COUNTRY_LABEL[possibleFlag] && FLAG_TO_COUNTRY_LABEL[possibleFlag].toLowerCase() === qLower) {
+                    return possibleFlag;
+                }
+            }
+            return '';
+        }
+
         function applyUrlQueryParams() {
             const params = new URLSearchParams(window.location.search);
             const paramTab = params.get('tab');
             const paramCat = params.get('categorie');
             const paramQ = params.get('q');
+            const paramLand = params.get('land');
 
             if (paramTab && ['listings', 'auctions', 'voorraad'].includes(paramTab)) {
                 currentTab = paramTab;
@@ -1257,7 +1292,19 @@
                 document.getElementById('sidebarFilters').classList.add('open');
             }
 
-            if (paramQ) {
+            const resolvedFlag = resolveFlagFileFromParam(paramLand, paramQ);
+            if (resolvedFlag) {
+                selectedFlagFilter = resolvedFlag;
+                updateActiveFlagButton();
+                // Als q gelijk was aan de landnaam, hoeft het niet dubbel als vrije tekstfilter te staan
+                if (paramQ && FLAG_TO_COUNTRY_LABEL[resolvedFlag]?.toLowerCase() === paramQ.trim().toLowerCase()) {
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput) searchInput.value = '';
+                } else if (paramQ) {
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput) searchInput.value = paramQ;
+                }
+            } else if (paramQ) {
                 const searchInput = document.getElementById('searchInput');
                 if (searchInput) searchInput.value = paramQ;
             }
@@ -1272,6 +1319,12 @@
 
             if (catVal) params.set('categorie', catVal);
             else params.delete('categorie');
+
+            if (selectedFlagFilter) {
+                params.set('land', selectedFlagFilter.replace(/\.png$/i, ''));
+            } else {
+                params.delete('land');
+            }
 
             if (qVal) params.set('q', qVal);
             else params.delete('q');
@@ -1316,9 +1369,14 @@
         function updateActiveFlagButton() {
             const btn = document.getElementById('activeFlagBtn');
             if (!selectedFlagFilter) {
+                btn.classList.remove('has-flag');
+                btn.title = 'Filter op land / vlag (alle landen)';
                 btn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
             } else {
-                btn.innerHTML = `<img src="https://flagcdn.com/24x18/${selectedFlagFilter}" alt="vlag" style="width:26px; height:26px; object-fit:cover; border-radius:50%; display:block;">`;
+                btn.classList.add('has-flag');
+                const countryName = FLAG_TO_COUNTRY_LABEL[selectedFlagFilter] || selectedFlagFilter.replace('.png', '').toUpperCase();
+                btn.title = `Geselecteerd land: ${countryName} (klik om land te wijzigen of resetten)`;
+                btn.innerHTML = `<img src="https://flagcdn.com/24x18/${selectedFlagFilter}" alt="${escapeHtml(countryName)}" style="width:26px; height:26px; object-fit:cover; border-radius:50%; display:block;">`;
             }
         }
 
@@ -1610,8 +1668,6 @@
                 }
             }
 
-            selectedFlagFilter = '';
-            updateActiveFlagButton();
             syncUrlQueryParams();
             
             const grid = document.getElementById('product-grid');
@@ -1722,10 +1778,20 @@
             ) {
                 return 'it.png';
             }
+
+            // Bekende Amerikaanse staten / steden mee-herkennen als VS
+            const usHints = [
+                'texas', 'california', 'florida', 'ohio', 'illinois', 'indiana', 'michigan',
+                'pennsylvania', 'georgia', 'north carolina', 'tennessee', 'wisconsin', 'minnesota',
+                'missouri', 'alabama', 'louisiana', 'kentucky', 'oklahoma', 'kansas', 'iowa',
+                'arkansas', 'mississippi', 'utah', 'nevada', 'arizona', 'colorado', 'washington',
+                'oregon', 'houston', 'dallas', 'atlanta', 'chicago', 'phoenix', 'denver', 'miami',
+                'orlando', 'los angeles', 'sacramento', 'charlotte', 'nashville', 'columbus', 'indianapolis'
+            ];
             
             const worldCountries = {
                 'canada': 'ca', 'can': 'ca', 'ca': 'ca',
-                'usa': 'us', 'united states': 'us', 'verenigde staten': 'us', 'v.s.': 'us', 'usm': 'us',
+                'usa': 'us', 'united states': 'us', 'verenigde staten': 'us', 'v.s.': 'us', 'usm': 'us', 'us': 'us',
                 'mexico': 'mx', 'mex': 'mx', 'mx': 'mx',
                 'argentina': 'ar', 'argentinië': 'ar', 'arg': 'ar', 'ar': 'ar',
                 'brazil': 'br', 'brazilië': 'br', 'bra': 'br', 'br': 'br',
@@ -1784,6 +1850,15 @@
                 }
             }
 
+            if (!countryCode) {
+                for (const hint of usHints) {
+                    if (new RegExp(`\\b${hint}\\b`, 'i').test(lLower)) {
+                        countryCode = 'us';
+                        break;
+                    }
+                }
+            }
+
             return countryCode ? countryCode + '.png' : null;
         }
 
@@ -1807,7 +1882,7 @@
                 .replace(/'/g, '&#039;');
         }
 
-        function matchesOtherFilters(row, isAuctionTabContext = null, isStockTabContext = null) {
+        function matchesOtherFilters(row, isAuctionTabContext = null, isStockTabContext = null, ignoreFlag = false) {
             const filterPlatform = document.getElementById('filter-platform').value;
             const filterCategorie = document.getElementById('filter-categorie').value;
             const filterMerk = document.getElementById('filter-merk').value;
@@ -1861,6 +1936,11 @@
                 if (locLower.includes('gelderland') && linkLower.includes('europe-commercial-vehicle.com')) return false;
             }
 
+            if (!ignoreFlag && selectedFlagFilter) {
+                let cardFlag = extractFlagFile(row['Locatie']);
+                if (cardFlag !== selectedFlagFilter) return false;
+            }
+
             if (searchQuery) {
                 const searchableText = `${row.Titel || ''} ${row.Merk || ''} ${row.brand || ''} ${row.Model || ''} ${row.Locatie || ''} ${row.Platform || ''}`.toLowerCase();
                 if (!searchableText.includes(searchQuery)) return false;
@@ -1881,8 +1961,9 @@
             const isAuctionTab = (currentTab === 'auctions');
             const isStockTab = (currentTab === 'voorraad');
 
+            // Tel alle landen binnen de huidige tab/filters (maar negeer selectedFlagFilter zodat alle landen zichtbaar blijven om naar te wisselen)
             dataSource.forEach(row => {
-                if (matchesOtherFilters(row, isAuctionTab, isStockTab)) {
+                if (matchesOtherFilters(row, isAuctionTab, isStockTab, true)) {
                     if (row['Locatie']) {
                         let f = extractFlagFile(row['Locatie']);
                         if (f) {
@@ -1894,16 +1975,20 @@
 
             let sortedFlags = Object.keys(flagCounts).sort((a, b) => flagCounts[b] - flagCounts[a]);
             const dropdown = document.getElementById('flagDropdown');
-            let totalMatchingCount = dataSource.filter(row => matchesOtherFilters(row, isAuctionTab, isStockTab)).length;
+            let totalMatchingCount = dataSource.filter(row => matchesOtherFilters(row, isAuctionTab, isStockTab, true)).length;
             
-            let html = `<div class="flag-dropdown-option ${selectedFlagFilter === '' ? 'selected' : ''}" onclick="selectFlagFilter('')"><span style="display:flex; align-items:center; width:24px; height:24px;">${svgGlobeIcon}</span><span class="flag-count">${totalMatchingCount}</span></div>`;
+            let html = `<div class="flag-dropdown-option ${selectedFlagFilter === '' ? 'selected' : ''}" onclick="selectFlagFilter('')" title="Alle landen"><span style="display:flex; align-items:center; gap:6px;">${svgGlobeIcon} <span>Alle landen</span></span><span class="flag-count">${totalMatchingCount}</span></div>`;
             
             sortedFlags.forEach(flag => {
                 let isSel = (selectedFlagFilter === flag) ? 'selected' : '';
                 let count = flagCounts[flag];
+                let cname = FLAG_TO_COUNTRY_LABEL[flag] || flag.replace('.png', '').toUpperCase();
                 html += `
-                    <div class="flag-dropdown-option ${isSel}" onclick="selectFlagFilter('${flag}')">
-                        <img src="https://flagcdn.com/24x18/${flag}" alt="${flag}" style="width:24px; height:24px; object-fit:cover; border-radius:50%; border:1px solid #cbd5e1;">
+                    <div class="flag-dropdown-option ${isSel}" onclick="selectFlagFilter('${flag}')" title="${escapeHtml(cname)}">
+                        <span style="display:flex; align-items:center; gap:8px;">
+                            <img src="https://flagcdn.com/24x18/${flag}" alt="${flag}" style="width:20px; height:20px; object-fit:cover; border-radius:50%; border:1px solid #cbd5e1;">
+                            <span>${escapeHtml(cname)}</span>
+                        </span>
                         <span class="flag-count">${count}</span>
                     </div>
                 `;
@@ -2072,24 +2157,18 @@
                 if (sessionExpiredCardIds[uniqueId]) return false;
 
                 if (!matchesOtherFilters(row, isAuctionTab, isStockTab)) return false;
-                if (selectedFlagFilter) {
-                    let cardFlag = extractFlagFile(row['Locatie']);
-                    if (cardFlag !== selectedFlagFilter) return false;
-                }
                 return true;
             });
 
             filteredData.sort((a, b) => {
                 const now = new Date();
 
-                // 1. AI Picks ALTIJD bovenaan overal wanneer aan
                 if (aiPicksActive) {
                     const isAiA = isAiPickItem(a) ? 1 : 0;
                     const isAiB = isAiPickItem(b) ? 1 : 0;
                     if (isAiA !== isAiB) return isAiB - isAiA; 
                 }
 
-                // 2. Aflopende veilingen sortering
                 if (currentTab === 'auctions' || currentSort === 'auction-first') {
                     const dateA = parseAuctionDate(a['Veiling loopt af op']);
                     const dateB = parseAuctionDate(b['Veiling loopt af op']);
@@ -2104,7 +2183,6 @@
                     return dateA - dateB; 
                 }
 
-                // 3. Specifieke sortering (Prijs, Bouwjaar, Uren)
                 if (currentSort && currentSort !== 'default' && currentSort !== 'ai-ranking' && currentSort !== 'auction-first') {
                     let numA = null;
                     let numB = null;
@@ -2126,7 +2204,6 @@
                     }
                 }
 
-                // 4. Standaard Listings AI Ranking score
                 if (currentTab === 'listings') {
                     const scoreA = parseNumericForSort(getRowValue(a, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
                     const scoreB = parseNumericForSort(getRowValue(b, ['AI Ranking', 'Kolom W', 'Score', 'AI Score', 'Match']));
@@ -2421,11 +2498,6 @@
                     }
         
                     if (!matchesOtherFilters(row, isAuctionTab, isStockTab)) return false;
-
-                    if (selectedFlagFilter) {
-                        let cardFlag = extractFlagFile(row['Locatie']);
-                        if (cardFlag !== selectedFlagFilter) return false;
-                    }
         
                     return true;
                 }).length;
