@@ -704,9 +704,17 @@
         .card.glow-red { border-color: #dc3545; box-shadow: 0 0 15px rgba(220,53,69,0.35); opacity: 0.85; }
 
         .card.glow-ai {
-            border-color: var(--ai-blue) !important;
-            border-top-color: var(--ai-blue) !important;
-            box-shadow: 0 0 20px rgba(37,99,235,0.4) !important;
+            border-color: var(--ai-blue);
+            border-top-color: var(--ai-blue);
+            box-shadow: 0 0 20px rgba(37,99,235,0.4);
+        }
+
+        /* Positieve feedback krijgt altijd groen kader */
+        .card.glow-green,
+        .card.glow-green.glow-ai {
+            border-color: #28a745 !important;
+            border-top-color: #28a745 !important;
+            box-shadow: 0 0 18px rgba(40,167,69,0.45) !important;
         }
 
         .card-image-container {
@@ -718,7 +726,7 @@
             overflow: visible;
         }
 
-        /* Kruisje binnen de foto, linksonder */
+        /* Kruisje binnen de foto, linksonder — doorzichtig/neutraal zoals bij Machinery, rood bij hover/geselecteerd */
         .hide-card-btn {
             position: absolute;
             bottom: 6px;
@@ -726,8 +734,8 @@
             width: 28px;
             height: 28px;
             border-radius: 4px;
-            background: rgba(255, 255, 255, 0.95);
-            color: #dc3545;
+            background: rgba(255, 255, 255, 0.82);
+            color: #444;
             border: 1px solid #ccc;
             font-size: 17px;
             font-weight: bold;
@@ -737,7 +745,7 @@
             justify-content: center;
             cursor: pointer;
             z-index: 6;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: transform 0.1s, background 0.2s, color 0.2s, border-color 0.2s;
             padding: 0;
         }
@@ -1345,7 +1353,6 @@
                 localStorage.setItem('bossVansHiddenIds', JSON.stringify(hiddenIds));
             }
 
-            // Stuurt tonen=nee + action=hide naar Apps Script zodat kolom W (Tonen) voor iedereen 'Nee' wordt
             sendToGoogleAppsScript(strId, 'Nee', 'tonen');
             renderGrid();
         }
@@ -2251,15 +2258,15 @@
                 let negBtnClass = '';
 
                 if (myFb === 'positive') {
-                    extraClass = ' glow-green';
+                    extraClass += ' glow-green';
                     posBtnClass = ' active-pos';
                 }
                 if (myFb === 'negative') {
-                    extraClass = ' glow-red';
+                    extraClass += ' glow-red';
                     negBtnClass = ' active-neg';
                 }
                 if (isAiPick) {
-                    extraClass = ' glow-ai';
+                    extraClass += ' glow-ai';
                 }
 
                 const hideBtnHtml = !isOwnStock
