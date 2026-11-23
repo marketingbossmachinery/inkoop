@@ -75,7 +75,6 @@
             padding: 0 24px 40px;
         }
 
-        /* Bovenste rij: toolbar + visuele selectie-badge ernaast */
         .top-bar-row {
             display: flex;
             align-items: stretch;
@@ -116,7 +115,6 @@
             flex-wrap: wrap;
         }
 
-        /* Rechts naast het bovenste vlak: wereldbol of geselecteerde land-vlag */
         .country-focus-badge-box {
             background: #ffffff;
             border-radius: 6px;
@@ -227,7 +225,6 @@
             background: #a8181e;
         }
 
-        /* KPI Kaarten (klikbaar) */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -288,7 +285,6 @@
             display: inline-block;
         }
 
-        /* Kaart sectie */
         .panel {
             background: #ffffff;
             border-radius: 6px;
@@ -317,7 +313,7 @@
 
         #world-map {
             width: 100%;
-            height: 430px;
+            height: 450px;
             border-radius: 6px;
             border: 1px solid var(--border-color);
             z-index: 1;
@@ -348,10 +344,9 @@
 
         .map-pin.dimmed {
             background: #64748b;
-            opacity: 0.65;
+            opacity: 0.55;
         }
 
-        /* Matrix / Excel-achtige tabel */
         .table-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -475,7 +470,6 @@
             border: 1px solid #cbd5e1;
         }
 
-        /* Plaatsen / Locaties per geselecteerd land */
         #placesSectionPanel {
             display: none;
             border-left: 4px solid var(--ai-blue);
@@ -536,7 +530,6 @@
             background: var(--boss-red);
         }
 
-        /* Overzichten sectie (Bouwjaar / Draaiuren / Top Merken) */
         .specs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -597,7 +590,6 @@
             color: var(--boss-black);
         }
 
-        /* Extra inzichten onderaan */
         .insights-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -681,7 +673,6 @@
     </header>
 
     <div class="container">
-        <!-- Bovenste balk + visuele selectie-badge ernaast -->
         <div class="top-bar-row">
             <div class="page-toolbar">
                 <div class="page-title-group">
@@ -714,7 +705,6 @@
             </div>
         </div>
 
-        <!-- KPI Samenvatting (klikbaar met dynamische links) -->
         <div class="kpi-grid">
             <a id="kpi-link-total" href="./" class="kpi-card accent">
                 <div class="kpi-label" id="kpi-total-label">Actieve Kavels</div>
@@ -748,16 +738,14 @@
             </a>
         </div>
 
-        <!-- 1. Wereldkaart bovenaan -->
         <div class="panel">
             <div class="panel-header">
                 <h2>1. Wereldkaart — Kavels per Locatie / Land</h2>
-                <span style="font-size: 12px; color: var(--text-light);">Klik op een marker of rij om het land bovenaan te pinnen en alle data aan te passen</span>
+                <span id="map-instruction-hint" style="font-size: 12px; color: var(--text-light);">Klik op een land om in te zoomen en kleine locaties-bolletjes te tonen</span>
             </div>
             <div id="world-map"></div>
         </div>
 
-        <!-- 2. Excel-achtige Matrix: Land x Categorie -->
         <div class="panel">
             <div class="panel-header">
                 <h2>2. Overzicht per Land &amp; Categorie (Matrix)</h2>
@@ -772,7 +760,6 @@
             </div>
         </div>
 
-        <!-- Plaatsen / Locaties o.b.v. locatie wanneer een land is geselecteerd -->
         <div class="panel" id="placesSectionPanel">
             <div class="panel-header">
                 <h2 id="placesSectionTitle">Plaatsen &amp; Locaties</h2>
@@ -781,7 +768,6 @@
             <div class="places-grid" id="placesGrid"></div>
         </div>
 
-        <!-- Overzichten sectie boven 3, 4 en 5: Bouwjaar, Draaiuren & Top Merken -->
         <div class="specs-grid">
             <div class="panel" style="margin-bottom:0;">
                 <div class="panel-header">
@@ -808,7 +794,6 @@
             </div>
         </div>
 
-        <!-- 3, 4 en 5: Aanvullende relevante inzichten -->
         <div class="insights-grid">
             <div class="panel">
                 <div class="panel-header">
@@ -838,33 +823,83 @@
         const jsonMasterUrl = './data/equipment-data.json';
 
         const COUNTRY_META = {
-            'nl': { name: 'Nederland', lat: 52.1326, lng: 5.2913 },
-            'be': { name: 'België', lat: 50.5039, lng: 4.4699 },
-            'de': { name: 'Duitsland', lat: 51.1657, lng: 10.4515 },
-            'fr': { name: 'Frankrijk', lat: 46.2276, lng: 2.2137 },
-            'gb': { name: 'Verenigd Koninkrijk', lat: 52.3555, lng: -1.1743 },
-            'ie': { name: 'Ierland', lat: 53.1424, lng: -7.6921 },
-            'es': { name: 'Spanje', lat: 40.4637, lng: -3.7492 },
-            'pt': { name: 'Portugal', lat: 39.3999, lng: -8.2245 },
-            'it': { name: 'Italië', lat: 41.8719, lng: 12.5674 },
-            'cz': { name: 'Tsjechië', lat: 49.8175, lng: 15.4730 },
-            'pl': { name: 'Polen', lat: 51.9194, lng: 19.1451 },
-            'sk': { name: 'Slowakije', lat: 48.6690, lng: 19.6990 },
-            'at': { name: 'Oostenrijk', lat: 47.5162, lng: 14.5501 },
-            'ch': { name: 'Zwitserland', lat: 46.8182, lng: 8.2275 },
-            'se': { name: 'Zweden', lat: 60.1282, lng: 18.6435 },
-            'no': { name: 'Noorwegen', lat: 60.4720, lng: 8.4689 },
-            'dk': { name: 'Denemarken', lat: 56.2639, lng: 9.5018 },
-            'fi': { name: 'Finland', lat: 61.9241, lng: 25.7482 },
-            'ro': { name: 'Roemenië', lat: 45.9432, lng: 24.9668 },
-            'hu': { name: 'Hongarije', lat: 47.1625, lng: 19.5033 },
-            'hr': { name: 'Kroatië', lat: 45.1000, lng: 15.2000 },
-            'us': { name: 'Verenigde Staten', lat: 39.8283, lng: -98.5795 },
-            'ca': { name: 'Canada', lat: 56.1304, lng: -106.3468 },
-            'ae': { name: 'Verenigde Arabische Emiraten', lat: 24.4539, lng: 54.3773 },
-            'jp': { name: 'Japan', lat: 36.2048, lng: 138.2529 },
-            'au': { name: 'Australië', lat: -25.2744, lng: 133.7751 },
-            'za': { name: 'Zuid-Afrika', lat: -30.5595, lng: 22.9375 }
+            'nl': { name: 'Nederland', lat: 52.1326, lng: 5.2913, zoom: 7 },
+            'be': { name: 'België', lat: 50.5039, lng: 4.4699, zoom: 7 },
+            'de': { name: 'Duitsland', lat: 51.1657, lng: 10.4515, zoom: 6 },
+            'fr': { name: 'Frankrijk', lat: 46.2276, lng: 2.2137, zoom: 6 },
+            'gb': { name: 'Verenigd Koninkrijk', lat: 52.3555, lng: -1.1743, zoom: 6 },
+            'ie': { name: 'Ierland', lat: 53.1424, lng: -7.6921, zoom: 7 },
+            'es': { name: 'Spanje', lat: 40.4637, lng: -3.7492, zoom: 6 },
+            'pt': { name: 'Portugal', lat: 39.3999, lng: -8.2245, zoom: 7 },
+            'it': { name: 'Italië', lat: 41.8719, lng: 12.5674, zoom: 6 },
+            'cz': { name: 'Tsjechië', lat: 49.8175, lng: 15.4730, zoom: 7 },
+            'pl': { name: 'Polen', lat: 51.9194, lng: 19.1451, zoom: 6 },
+            'sk': { name: 'Slowakije', lat: 48.6690, lng: 19.6990, zoom: 7 },
+            'at': { name: 'Oostenrijk', lat: 47.5162, lng: 14.5501, zoom: 7 },
+            'ch': { name: 'Zwitserland', lat: 46.8182, lng: 8.2275, zoom: 7 },
+            'se': { name: 'Zweden', lat: 60.1282, lng: 18.6435, zoom: 5 },
+            'no': { name: 'Noorwegen', lat: 60.4720, lng: 8.4689, zoom: 5 },
+            'dk': { name: 'Denemarken', lat: 56.2639, lng: 9.5018, zoom: 7 },
+            'fi': { name: 'Finland', lat: 61.9241, lng: 25.7482, zoom: 5 },
+            'ro': { name: 'Roemenië', lat: 45.9432, lng: 24.9668, zoom: 6 },
+            'hu': { name: 'Hongarije', lat: 47.1625, lng: 19.5033, zoom: 7 },
+            'hr': { name: 'Kroatië', lat: 45.1000, lng: 15.2000, zoom: 7 },
+            'us': { name: 'Verenigde Staten', lat: 39.8283, lng: -98.5795, zoom: 4 },
+            'ca': { name: 'Canada', lat: 56.1304, lng: -106.3468, zoom: 4 },
+            'ae': { name: 'Verenigde Arabische Emiraten', lat: 24.4539, lng: 54.3773, zoom: 7 },
+            'jp': { name: 'Japan', lat: 36.2048, lng: 138.2529, zoom: 5 },
+            'au': { name: 'Australië', lat: -25.2744, lng: 133.7751, zoom: 4 },
+            'za': { name: 'Zuid-Afrika', lat: -30.5595, lng: 22.9375, zoom: 5 }
+        };
+
+        // Bekende plaats-/regio-coördinaten voor kleine bolletjes op de kaart per geselecteerd land
+        const PLACE_COORDS = {
+            // Nederland
+            'eindhoven': [52.4416, 5.4697], 'veldhoven': [51.4083, 5.4053], 'rotterdam': [51.9244, 4.4777],
+            'amsterdam': [52.3676, 4.9041], 'utrecht': [52.0907, 5.1214], 'zwolle': [52.5168, 6.0830],
+            'nijmegen': [51.8126, 5.8372], 'tilburg': [51.5555, 5.0913], 'breda': [51.5719, 4.7683],
+            'groningen': [53.2194, 6.5665], 'arnhem': [51.9851, 5.8987], 'almere': [52.3508, 5.2647],
+            'venlo': [51.3704, 6.1724], 'oss': [51.7650, 5.5480], 'barneveld': [52.1400, 5.5880],
+            // België
+            'antwerpen': [51.2194, 4.4025], 'gent': [51.0543, 3.7174], 'brussel': [50.8503, 4.3517],
+            'luik': [50.6326, 5.5797], 'hasselt': [50.9307, 5.3325], 'kortrijk': [50.8279, 3.2649],
+            'namen': [50.4674, 4.8718], 'mechelen': [51.0259, 4.4776], 'genk': [50.9650, 5.5000],
+            // Duitsland
+            'hamburg': [53.5511, 9.9937], 'münchen': [48.1351, 11.5820], 'muenchen': [48.1351, 11.5820],
+            'berlin': [52.5200, 13.4050], 'köln': [50.9375, 6.9603], 'frankfurt': [50.1109, 8.6821],
+            'stuttgart': [48.7758, 9.1829], 'düsseldorf': [51.2277, 6.7735], 'bremen': [53.0793, 8.8017],
+            'hannover': [52.3759, 9.7320], 'leipzig': [51.3397, 12.3731], 'dortmund': [51.5136, 7.4653],
+            // Frankrijk
+            'paris': [48.8566, 2.3522], 'lyon': [45.7640, 4.8357], 'marseille': [43.2965, 5.3698],
+            'lille': [50.6292, 3.0573], 'toulouse': [43.6047, 1.4442], 'bordeaux': [44.8378, -0.5792],
+            'nantes': [47.2184, -1.5536], 'strasbourg': [48.5734, 7.7521], 'rennes': [48.1173, -1.6778],
+            // UK
+            'london': [51.5072, -0.1276], 'birmingham': [52.4862, -1.8904], 'manchester': [53.4808, -2.2426],
+            'leeds': [53.8008, -1.5491], 'glasgow': [55.8642, -4.2518], 'bristol': [51.4545, -2.5879],
+            'edinburgh': [55.9533, -3.1883], 'cardiff': [51.4816, -3.1791], 'belfast': [54.5973, -5.9301],
+            // Spanje
+            'madrid': [40.4168, -3.7038], 'barcelona': [41.3851, 2.1734], 'valencia': [39.4699, -0.3763],
+            'sevilla': [37.3891, -5.9845], 'zaragoza': [41.6488, -0.8891], 'bilbao': [43.2630, -2.9350],
+            // Italië
+            'milano': [45.4642, 9.1900], 'milan': [45.4642, 9.1900], 'roma': [41.9028, 12.4964],
+            'rome': [41.9028, 12.4964], 'bologna': [44.4949, 11.3426], 'torino': [45.0703, 7.6869],
+            'verona': [45.4384, 10.9916], 'napoli': [40.8518, 14.2681], 'padova': [45.4064, 11.8768],
+            // Polen & Oost-Europa
+            'warszawa': [52.2297, 21.0122], 'warsaw': [52.2297, 21.0122], 'kraków': [50.0647, 19.9450],
+            'wrocław': [51.1079, 17.0385], 'poznań': [52.4064, 16.9252], 'gdańsk': [54.3520, 18.6466],
+            'praha': [50.0755, 14.4378], 'prague': [50.0755, 14.4378], 'brno': [49.1951, 16.6068],
+            'wien': [48.2082, 16.3738], 'vienna': [48.2082, 16.3738], 'graz': [47.0707, 15.4395],
+            // Scandinavië
+            'stockholm': [59.3293, 18.0686], 'göteborg': [57.7089, 11.9746], 'malmö': [55.6050, 13.0038],
+            'oslo': [59.9139, 10.7522], 'bergen': [60.3913, 5.3221], 'trondheim': [63.4305, 10.3951],
+            'københavn': [55.6761, 12.5683], 'copenhagen': [55.6761, 12.5683], 'aarhus': [56.1629, 10.2039],
+            // VS & Canada
+            'houston': [29.7604, -95.3698], 'dallas': [32.7767, -96.7970], 'atlanta': [33.7490, -84.3880],
+            'chicago': [41.8781, -87.6298], 'phoenix': [33.4484, -112.0740], 'denver': [39.7392, -104.9903],
+            'miami': [25.7617, -80.1918], 'orlando': [28.5383, -81.3792], 'los angeles': [34.0522, -118.2437],
+            'sacramento': [38.5816, -121.4944], 'charlotte': [35.2271, -80.8431], 'nashville': [36.1627, -86.7816],
+            'columbus': [39.9612, -82.9988], 'indianapolis': [39.7684, -86.1581], 'seattle': [47.6062, -122.3321],
+            'toronto': [43.6532, -79.3832], 'vancouver': [49.2827, -123.1207], 'montreal': [45.5017, -73.5673], 'calgary': [51.0447, -114.0719]
         };
 
         const COUNTRY_ALIASES = {
@@ -889,7 +924,7 @@
             'roemenië': 'ro', 'roemenie': 'ro', 'romania': 'ro', 'ro': 'ro',
             'hongarije': 'hu', 'hungary': 'hu', 'hu': 'hu',
             'kroatië': 'hr', 'kroatie': 'hr', 'croatia': 'hr', 'hr': 'hr',
-            'usa': 'us', 'united states': 'us', 'verenigde staten': 'us',
+            'usa': 'us', 'united states': 'us', 'verenigde staten': 'us', 'us': 'us',
             'canada': 'ca', 'ca': 'ca',
             'vae': 'ae', 'dubai': 'ae', 'united arab emirates': 'ae', 'ae': 'ae',
             'japan': 'jp', 'jp': 'jp',
@@ -901,6 +936,7 @@
         let selectedCountryCode = null;
         let mapInstance = null;
         let markersLayer = null;
+        let cityDotsLayer = null;
         let lastMatrixExport = { headers: [], rows: [] };
 
         function initMap() {
@@ -914,6 +950,7 @@
             }).addTo(mapInstance);
 
             markersLayer = L.layerGroup().addTo(mapInstance);
+            cityDotsLayer = L.layerGroup().addTo(mapInstance);
         }
 
         function getRowValue(row, possibleKeys) {
@@ -942,6 +979,18 @@
                 if (regex.test(cleaned)) return code;
             }
 
+            const usHints = [
+                'texas', 'california', 'florida', 'ohio', 'illinois', 'indiana', 'michigan',
+                'pennsylvania', 'georgia', 'north carolina', 'tennessee', 'wisconsin', 'minnesota',
+                'missouri', 'alabama', 'louisiana', 'kentucky', 'oklahoma', 'kansas', 'iowa',
+                'arkansas', 'mississippi', 'utah', 'nevada', 'arizona', 'colorado', 'washington',
+                'oregon', 'houston', 'dallas', 'atlanta', 'chicago', 'phoenix', 'denver', 'miami',
+                'orlando', 'los angeles', 'sacramento', 'charlotte', 'nashville', 'columbus', 'indianapolis'
+            ];
+            for (const hint of usHints) {
+                if (new RegExp(`\\b${hint}\\b`, 'i').test(cleaned)) return 'us';
+            }
+
             return 'other';
         }
 
@@ -950,10 +999,8 @@
             let raw = String(locStr).replace(/^[📍\s🏢]+/, '').trim();
             if (!raw) return null;
 
-            // Pak meestal het eerste deel vóór komma, streepje of slash (bijv. "Eindhoven, Nederland" -> "Eindhoven")
             let candidate = raw.split(/[,–\/\-|]+/)[0].trim();
 
-            // Verwijder eventuele landnaam of landcode als die direct vooraan staat
             const countryName = (COUNTRY_META[countryCode]?.name || '').toLowerCase();
             const lowerCand = candidate.toLowerCase().replace(/\d+/g, '').trim();
             if (!lowerCand) return null;
@@ -961,7 +1008,6 @@
                 return null;
             }
 
-            // Opschonen van losse postcodes aan begin/eind (bijv. "5600 AA Eindhoven" -> "Eindhoven")
             candidate = candidate
                 .replace(/\b\d{4,5}\s*[A-Za-z]{0,2}\b/g, '')
                 .replace(/\s{2,}/g, ' ')
@@ -969,12 +1015,28 @@
 
             if (!candidate || candidate.length < 2) return null;
 
-            // Netjes hoofdlettergebruik behouden of normaliseren bij volledig uppercase
             if (candidate === candidate.toUpperCase() && candidate.length > 3) {
                 candidate = candidate.toLowerCase().replace(/\b\w/g, ch => ch.toUpperCase());
             }
 
             return candidate;
+        }
+
+        function getPlaceCoordinates(placeName, countryMeta, index) {
+            const key = placeName.toLowerCase().trim();
+            if (PLACE_COORDS[key]) return PLACE_COORDS[key];
+
+            // Deterministische kleine spreiding rond het landcentrum als plaats niet in vaste lijst staat
+            let hash = 0;
+            for (let i = 0; i < key.length; i++) {
+                hash = ((hash << 5) - hash) + key.charCodeAt(i);
+                hash |= 0;
+            }
+            const angle = (Math.abs(hash) % 360) * (Math.PI / 180);
+            const radius = 0.6 + ((Math.abs(hash >> 4) % 25) / 10) + (index % 4) * 0.35;
+            const lat = countryMeta.lat + Math.sin(angle) * radius;
+            const lng = countryMeta.lng + Math.cos(angle) * radius * 1.3;
+            return [lat, lng];
         }
 
         function getCountryDisplayName(code) {
@@ -1023,10 +1085,11 @@
             return false;
         }
 
-        function buildPlatformUrl({ tab = 'auctions', q = '', categorie = '' }) {
+        function buildPlatformUrl({ tab = 'auctions', q = '', categorie = '', land = '' }) {
             const params = new URLSearchParams();
             params.set('tab', tab);
             if (categorie) params.set('categorie', categorie);
+            if (land) params.set('land', land);
             if (q) params.set('q', q);
             return `./?${params.toString()}`;
         }
@@ -1062,12 +1125,22 @@
         function selectCountry(code) {
             selectedCountryCode = (selectedCountryCode === code) ? null : code;
             const desc = document.getElementById('selection-status-desc');
+            const mapHint = document.getElementById('map-instruction-hint');
 
             if (selectedCountryCode) {
                 const cname = getCountryDisplayName(selectedCountryCode);
-                desc.textContent = `Focus op ${cname} — bovenaan gepind in overzichten, plaatsen weergegeven en overige landen gedimd.`;
+                desc.textContent = `Focus op ${cname} — kleine locaties-bolletjes op de kaart getoond, land bovenaan gepind en overige landen gedimd.`;
+                mapHint.textContent = `${cname} actief — kleine rode/blauwe bolletjes tonen locaties · Klik opnieuw op het land of de vlag om uit te zoomen`;
+                const meta = COUNTRY_META[selectedCountryCode];
+                if (meta && mapInstance) {
+                    mapInstance.setView([meta.lat, meta.lng], meta.zoom || 6);
+                }
             } else {
                 desc.textContent = 'Overzicht van actieve kavels per land en categorie, aangevuld met urgentie, AI Picks en portaldekking.';
+                mapHint.textContent = 'Klik op een land om in te zoomen en kleine locaties-bolletjes te tonen';
+                if (mapInstance) {
+                    mapInstance.setView([48, 10], 3);
+                }
             }
             updateFocusBadge();
             recomputeAndRender();
@@ -1181,31 +1254,30 @@
             });
 
             const focusName = selectedCountryCode ? getCountryDisplayName(selectedCountryCode) : null;
-            const countryQuery = (selectedCountryCode && selectedCountryCode !== 'other') ? focusName : '';
+            const landCodeParam = (selectedCountryCode && selectedCountryCode !== 'other') ? selectedCountryCode : '';
 
-            // KPI teksten & dynamische links bijwerken
             document.getElementById('kpi-total-label').textContent = selectedCountryCode ? `Kavels in ${focusName}` : 'Actieve Kavels';
             document.getElementById('kpi-total').textContent = focusRows.length.toLocaleString('nl-NL');
             document.getElementById('kpi-countries').textContent = selectedCountryCode
                 ? `${Math.round((focusRows.length / (filtered.length || 1)) * 1000) / 10}% van totaal (${filtered.length.toLocaleString('nl-NL')})`
                 : `Verspreid over ${sortedCountries.length} landen`;
-            document.getElementById('kpi-link-total').href = buildPlatformUrl({ tab: tabParam, q: countryQuery });
+            document.getElementById('kpi-link-total').href = buildPlatformUrl({ tab: tabParam, land: landCodeParam });
 
             document.getElementById('kpi-urgent').textContent = kpiUrgent.toLocaleString('nl-NL');
             document.getElementById('kpi-urgent-sub').textContent = selectedCountryCode ? `In ${focusName}` : 'Directe opvolging vereist';
-            document.getElementById('kpi-link-urgent').href = buildPlatformUrl({ tab: 'auctions', q: countryQuery });
+            document.getElementById('kpi-link-urgent').href = buildPlatformUrl({ tab: 'auctions', land: landCodeParam });
 
             document.getElementById('kpi-ai').textContent = kpiAi.toLocaleString('nl-NL');
             const aiShare = focusRows.length ? ((kpiAi / focusRows.length) * 100).toFixed(1) : '0.0';
             document.getElementById('kpi-ai-share').textContent = `${aiShare}% van ${selectedCountryCode ? focusName : 'selectie'}`;
-            document.getElementById('kpi-link-ai').href = buildPlatformUrl({ tab: tabParam, q: countryQuery });
+            document.getElementById('kpi-link-ai').href = buildPlatformUrl({ tab: tabParam, land: landCodeParam });
 
             const avgPrice = kpiPrices.length
                 ? Math.round(kpiPrices.reduce((acc, v) => acc + v, 0) / kpiPrices.length)
                 : 0;
             document.getElementById('kpi-avg-price').textContent = `€ ${avgPrice.toLocaleString('nl-NL')}`;
             document.getElementById('kpi-priced-count').textContent = `Op basis van ${kpiPrices.length} kavels met prijs`;
-            document.getElementById('kpi-link-price').href = buildPlatformUrl({ tab: tabParam, q: countryQuery });
+            document.getElementById('kpi-link-price').href = buildPlatformUrl({ tab: tabParam, land: landCodeParam });
 
             if (selectedCountryCode) {
                 const topCat = Object.entries(kpiCategories).sort((a, b) => b[1] - a[1])[0];
@@ -1214,7 +1286,7 @@
                 document.getElementById('kpi-top-country-sub').textContent = topCat ? `${topCat[1].toLocaleString('nl-NL')} kavels` : '0 kavels';
                 document.getElementById('kpi-link-top').href = buildPlatformUrl({
                     tab: tabParam,
-                    q: countryQuery,
+                    land: landCodeParam,
                     categorie: topCat ? topCat[0] : ''
                 });
             } else if (sortedCountries.length > 0) {
@@ -1225,7 +1297,7 @@
                 document.getElementById('kpi-top-country-sub').textContent = `${countryStats[topCode].count.toLocaleString('nl-NL')} kavels`;
                 document.getElementById('kpi-link-top').href = buildPlatformUrl({
                     tab: tabParam,
-                    q: topCode !== 'other' ? topName : ''
+                    land: topCode !== 'other' ? topCode : ''
                 });
             } else {
                 document.getElementById('kpi-top-label').textContent = 'Top Land (Volume)';
@@ -1237,14 +1309,177 @@
             const activeCatTotals = selectedCountryCode ? categoryTotalsSelected : categoryTotalsAll;
             const activeGrandTotal = focusRows.length;
 
-            renderMapMarkers(countryStats, sortedCountries);
+            renderMapMarkers(countryStats, sortedCountries, focusRows, tabParam);
             renderMatrixTable(sortedCountries, sortedCategories, countryStats, activeCatTotals, activeGrandTotal, scope);
-            renderPlacesForSelectedCountry(focusRows, focusName, tabParam);
-            renderSpecsAndBrands(focusRows, countryQuery, tabParam);
+            renderPlacesForSelectedCountry(focusRows, focusName, tabParam, landCodeParam);
+            renderSpecsAndBrands(focusRows, landCodeParam, tabParam);
             renderInsights(sortedCountries, countryStats);
         }
 
-        function renderPlacesForSelectedCountry(focusRows, focusName, tabParam) {
+        function renderMapMarkers(countryStats, sortedCountries, focusRows, tabParam) {
+            if (!markersLayer || !cityDotsLayer) return;
+            markersLayer.clearLayers();
+            cityDotsLayer.clearLayers();
+
+            sortedCountries.forEach(code => {
+                const meta = COUNTRY_META[code];
+                if (!meta) return;
+
+                const st = countryStats[code];
+                const isSelected = selectedCountryCode === code;
+                const isDimmed = selectedCountryCode && selectedCountryCode !== code;
+
+                const pinClass = isSelected ? 'selected' : (isDimmed ? 'dimmed' : '');
+
+                const icon = L.divIcon({
+                    className: 'custom-div-icon',
+                    html: `<div class="map-pin ${pinClass}">${code.toUpperCase()} · ${st.count}</div>`,
+                    iconSize: [0, 0],
+                    iconAnchor: [0, 0]
+                });
+
+                const marker = L.marker([meta.lat, meta.lng], { icon })
+                    .bindPopup(`
+                        <strong>${meta.name}</strong><br>
+                        Kavels: <b>${st.count}</b><br>
+                        &lt; 24u aflopend: <b>${st.urgent}</b><br>
+                        AI Picks: <b>${st.ai}</b><br>
+                        <small>Klik om te pinnen en locaties te tonen</small>
+                    `)
+                    .on('click', () => selectCountry(code));
+
+                markersLayer.addLayer(marker);
+            });
+
+            // Kleine bolletjes op de kaart voor alle plaatsen/locaties in het geselecteerde land
+            if (selectedCountryCode && COUNTRY_META[selectedCountryCode]) {
+                const cMeta = COUNTRY_META[selectedCountryCode];
+                const placeMap = {};
+
+                focusRows.forEach(r => {
+                    const place = extractPlaceFromLocation(r.Locatie, selectedCountryCode);
+                    if (!place) return;
+                    const key = place.toLowerCase();
+                    if (!placeMap[key]) {
+                        placeMap[key] = { name: place, count: 0, sampleLoc: r.Locatie || place };
+                    }
+                    placeMap[key].count++;
+                });
+
+                const topPlaces = Object.values(placeMap).sort((a, b) => b.count - a.count).slice(0, 35);
+
+                topPlaces.forEach((p, idx) => {
+                    const [lat, lng] = getPlaceCoordinates(p.name, cMeta, idx);
+                    const radius = Math.min(12, Math.max(5, 4 + Math.sqrt(p.count) * 1.4));
+                    const dot = L.circleMarker([lat, lng], {
+                        radius,
+                        color: '#ffffff',
+                        weight: 1.5,
+                        fillColor: '#cc2027',
+                        fillOpacity: 0.9
+                    });
+
+                    const targetUrl = buildPlatformUrl({ tab: tabParam, land: selectedCountryCode !== 'other' ? selectedCountryCode : '', q: p.name });
+                    dot.bindTooltip(`${p.name} (${p.count})`, { direction: 'top' });
+                    dot.bindPopup(`
+                        <strong>📍 ${escapeHtml(p.name)}</strong><br>
+                        Locatie: <small>${escapeHtml(p.sampleLoc)}</small><br>
+                        Aantal kavels: <b>${p.count}</b><br>
+                        <a href="${targetUrl}" style="color:#cc2027; font-weight:bold;">Open op platform →</a>
+                    `);
+                    dot.on('click', () => {
+                        window.location.href = targetUrl;
+                    });
+
+                    cityDotsLayer.addLayer(dot);
+                });
+            }
+        }
+
+        function renderMatrixTable(sortedCountries, sortedCategories, countryStats, categoryTotals, grandTotal, scope) {
+            const thead = document.querySelector('#countryCategoryTable thead');
+            const tbody = document.querySelector('#countryCategoryTable tbody');
+            const tfoot = document.querySelector('#countryCategoryTable tfoot');
+
+            const tabParam = scope === 'listings' ? 'listings' : 'auctions';
+
+            let headHtml = '<tr><th>Land</th>';
+            sortedCategories.forEach(cat => {
+                headHtml += `<th>${escapeHtml(cat)}</th>`;
+            });
+            headHtml += '<th class="total-col">Totaal</th></tr>';
+            thead.innerHTML = headHtml;
+
+            const exportHeaders = ['Land', ...sortedCategories, 'Totaal'];
+            const exportRows = [];
+
+            let bodyHtml = '';
+            sortedCountries.forEach(code => {
+                const st = countryStats[code];
+                const name = getCountryDisplayName(code);
+                const isSelected = selectedCountryCode === code;
+                const isDimmed = selectedCountryCode && selectedCountryCode !== code;
+                const rowClass = isSelected ? 'active-country' : (isDimmed ? 'dimmed-country' : '');
+
+                const flagHtml = code !== 'other'
+                    ? `<img src="https://flagcdn.com/24x18/${code}.png" alt="${code}" onerror="this.style.display='none'">`
+                    : '🌍';
+
+                bodyHtml += `<tr class="${rowClass}">`;
+                bodyHtml += `<td><span class="country-cell-inner" onclick="selectCountry('${code}')" title="Klik om ${escapeHtml(name)} bovenaan te pinnen">${flagHtml}<span>${escapeHtml(name)}</span></span></td>`;
+
+                const rowExport = [name];
+
+                sortedCategories.forEach(cat => {
+                    const cnt = st.categories[cat] || 0;
+                    rowExport.push(cnt);
+                    if (cnt > 0) {
+                        const url = buildPlatformUrl({
+                            tab: tabParam,
+                            categorie: cat,
+                            land: code !== 'other' ? code : ''
+                        });
+                        bodyHtml += `<td><a class="cell-link has-items" href="${url}" title="Open in platform">${cnt}</a></td>`;
+                    } else {
+                        bodyHtml += `<td><span class="cell-zero">0</span></td>`;
+                    }
+                });
+
+                rowExport.push(st.count);
+                exportRows.push(rowExport);
+
+                const rowTotalUrl = buildPlatformUrl({
+                    tab: tabParam,
+                    land: code !== 'other' ? code : ''
+                });
+                bodyHtml += `<td class="total-col"><a class="cell-link has-items" href="${rowTotalUrl}" title="Open alle kavels voor ${escapeHtml(name)}">${st.count}</a></td></tr>`;
+            });
+
+            if (sortedCountries.length === 0) {
+                bodyHtml = `<tr><td colspan="${sortedCategories.length + 2}" style="text-align:center; padding:20px;">Geen data voor de huidige selectie.</td></tr>`;
+            }
+
+            tbody.innerHTML = bodyHtml;
+
+            const totalLabel = selectedCountryCode
+                ? `Totaal (${getCountryDisplayName(selectedCountryCode)})`
+                : 'Totaal per categorie';
+
+            let footHtml = `<tr><td>${escapeHtml(totalLabel)}</td>`;
+            const footExport = [totalLabel];
+            sortedCategories.forEach(cat => {
+                const cTot = categoryTotals[cat] || 0;
+                footExport.push(cTot);
+                footHtml += `<td>${cTot}</td>`;
+            });
+            footExport.push(grandTotal);
+            footHtml += `<td>${grandTotal}</td></tr>`;
+            tfoot.innerHTML = footHtml;
+
+            lastMatrixExport = { headers: exportHeaders, rows: [...exportRows, footExport] };
+        }
+
+        function renderPlacesForSelectedCountry(focusRows, focusName, tabParam, landCodeParam) {
             const panel = document.getElementById('placesSectionPanel');
             const titleEl = document.getElementById('placesSectionTitle');
             const gridEl = document.getElementById('placesGrid');
@@ -1277,7 +1512,7 @@
             }
 
             gridEl.innerHTML = sortedPlaces.slice(0, 24).map(p => {
-                const url = buildPlatformUrl({ tab: tabParam, q: p.name });
+                const url = buildPlatformUrl({ tab: tabParam, land: landCodeParam, q: p.name });
                 return `
                     <a href="${url}" class="place-card" title="Open kavels in ${escapeHtml(p.name)}">
                         <div style="min-width:0;">
@@ -1290,7 +1525,7 @@
             }).join('');
         }
 
-        function renderSpecsAndBrands(rows, countryQuery, tabParam) {
+        function renderSpecsAndBrands(rows, landCodeParam, tabParam) {
             const currentYear = new Date().getFullYear();
 
             const years = [];
@@ -1385,8 +1620,7 @@
             document.getElementById('brandsBarsContainer').innerHTML = topBrands.length
                 ? topBrands.map(([brand, cnt]) => {
                     const pct = Math.round((cnt / maxBrandCnt) * 100);
-                    const qCombined = [countryQuery, brand].filter(Boolean).join(' ');
-                    const url = buildPlatformUrl({ tab: tabParam, q: qCombined });
+                    const url = buildPlatformUrl({ tab: tabParam, land: landCodeParam, q: brand });
                     return `
                         <div class="bar-row">
                             <div class="bar-label-line">
@@ -1398,124 +1632,6 @@
                     `;
                 }).join('')
                 : `<p style="font-size:12px; color:#777; margin:0;">Geen merken gevonden.</p>`;
-        }
-
-        function renderMapMarkers(countryStats, sortedCountries) {
-            if (!markersLayer) return;
-            markersLayer.clearLayers();
-
-            sortedCountries.forEach(code => {
-                const meta = COUNTRY_META[code];
-                if (!meta) return;
-
-                const st = countryStats[code];
-                const isSelected = selectedCountryCode === code;
-                const isDimmed = selectedCountryCode && selectedCountryCode !== code;
-
-                const pinClass = isSelected ? 'selected' : (isDimmed ? 'dimmed' : '');
-
-                const icon = L.divIcon({
-                    className: 'custom-div-icon',
-                    html: `<div class="map-pin ${pinClass}">${code.toUpperCase()} · ${st.count}</div>`,
-                    iconSize: [0, 0],
-                    iconAnchor: [0, 0]
-                });
-
-                const marker = L.marker([meta.lat, meta.lng], { icon })
-                    .bindPopup(`
-                        <strong>${meta.name}</strong><br>
-                        Kavels: <b>${st.count}</b><br>
-                        &lt; 24u aflopend: <b>${st.urgent}</b><br>
-                        AI Picks: <b>${st.ai}</b><br>
-                        <small>Klik om te pinnen/filteren</small>
-                    `)
-                    .on('click', () => selectCountry(code));
-
-                markersLayer.addLayer(marker);
-            });
-        }
-
-        function renderMatrixTable(sortedCountries, sortedCategories, countryStats, categoryTotals, grandTotal, scope) {
-            const thead = document.querySelector('#countryCategoryTable thead');
-            const tbody = document.querySelector('#countryCategoryTable tbody');
-            const tfoot = document.querySelector('#countryCategoryTable tfoot');
-
-            const tabParam = scope === 'listings' ? 'listings' : 'auctions';
-
-            let headHtml = '<tr><th>Land</th>';
-            sortedCategories.forEach(cat => {
-                headHtml += `<th>${escapeHtml(cat)}</th>`;
-            });
-            headHtml += '<th class="total-col">Totaal</th></tr>';
-            thead.innerHTML = headHtml;
-
-            const exportHeaders = ['Land', ...sortedCategories, 'Totaal'];
-            const exportRows = [];
-
-            let bodyHtml = '';
-            sortedCountries.forEach(code => {
-                const st = countryStats[code];
-                const name = getCountryDisplayName(code);
-                const isSelected = selectedCountryCode === code;
-                const isDimmed = selectedCountryCode && selectedCountryCode !== code;
-                const rowClass = isSelected ? 'active-country' : (isDimmed ? 'dimmed-country' : '');
-
-                const flagHtml = code !== 'other'
-                    ? `<img src="https://flagcdn.com/24x18/${code}.png" alt="${code}" onerror="this.style.display='none'">`
-                    : '🌍';
-
-                bodyHtml += `<tr class="${rowClass}">`;
-                bodyHtml += `<td><span class="country-cell-inner" onclick="selectCountry('${code}')" title="Klik om ${escapeHtml(name)} bovenaan te pinnen">${flagHtml}<span>${escapeHtml(name)}</span></span></td>`;
-
-                const rowExport = [name];
-
-                sortedCategories.forEach(cat => {
-                    const cnt = st.categories[cat] || 0;
-                    rowExport.push(cnt);
-                    if (cnt > 0) {
-                        const url = buildPlatformUrl({
-                            tab: tabParam,
-                            categorie: cat,
-                            q: code !== 'other' ? name : ''
-                        });
-                        bodyHtml += `<td><a class="cell-link has-items" href="${url}" title="Open in platform">${cnt}</a></td>`;
-                    } else {
-                        bodyHtml += `<td><span class="cell-zero">0</span></td>`;
-                    }
-                });
-
-                rowExport.push(st.count);
-                exportRows.push(rowExport);
-
-                const rowTotalUrl = buildPlatformUrl({
-                    tab: tabParam,
-                    q: code !== 'other' ? name : ''
-                });
-                bodyHtml += `<td class="total-col"><a class="cell-link has-items" href="${rowTotalUrl}" title="Open alle kavels voor ${escapeHtml(name)}">${st.count}</a></td></tr>`;
-            });
-
-            if (sortedCountries.length === 0) {
-                bodyHtml = `<tr><td colspan="${sortedCategories.length + 2}" style="text-align:center; padding:20px;">Geen data voor de huidige selectie.</td></tr>`;
-            }
-
-            tbody.innerHTML = bodyHtml;
-
-            const totalLabel = selectedCountryCode
-                ? `Totaal (${getCountryDisplayName(selectedCountryCode)})`
-                : 'Totaal per categorie';
-
-            let footHtml = `<tr><td>${escapeHtml(totalLabel)}</td>`;
-            const footExport = [totalLabel];
-            sortedCategories.forEach(cat => {
-                const cTot = categoryTotals[cat] || 0;
-                footExport.push(cTot);
-                footHtml += `<td>${cTot}</td>`;
-            });
-            footExport.push(grandTotal);
-            footHtml += `<td>${grandTotal}</td></tr>`;
-            tfoot.innerHTML = footHtml;
-
-            lastMatrixExport = { headers: exportHeaders, rows: [...exportRows, footExport] };
         }
 
         function renderInsights(sortedCountries, countryStats) {
