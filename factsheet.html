@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>Veiling Factsheet - Boss Global</title>
-    <!-- Leaflet CSS voor directe wereldkaart zonder verplichte API-key (kan eenvoudig worden aangevuld met Google Maps) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
@@ -136,6 +135,12 @@
             background: #a8181e;
         }
 
+        .btn-active-filter {
+            background: #eff6ff;
+            border-color: var(--ai-blue);
+            color: var(--ai-blue);
+        }
+
         /* KPI Kaarten */
         .kpi-grid {
             display: grid;
@@ -229,11 +234,18 @@
             align-items: center;
             gap: 5px;
             transform: translate(-50%, -50%);
+            transition: transform 0.15s, background 0.15s, opacity 0.15s;
         }
 
         .map-pin.selected {
             background: var(--ai-blue);
-            transform: translate(-50%, -50%) scale(1.12);
+            transform: translate(-50%, -50%) scale(1.15);
+            z-index: 999;
+        }
+
+        .map-pin.dimmed {
+            background: #64748b;
+            opacity: 0.65;
         }
 
         /* Matrix / Excel-achtige tabel */
@@ -258,6 +270,7 @@
             border-right: 1px solid #f1f5f9;
             text-align: right;
             white-space: nowrap;
+            transition: background-color 0.15s, color 0.15s, opacity 0.15s;
         }
 
         table.matrix-table th:first-child,
@@ -290,8 +303,22 @@
             background-color: #fff8f8;
         }
 
-        table.matrix-table tbody tr.active-country td {
+        table.matrix-table tbody tr.active-country td,
+        table.matrix-table tbody tr.active-country td:first-child {
             background-color: #eff6ff;
+            border-bottom: 2px solid var(--ai-blue);
+        }
+
+        table.matrix-table tbody tr.dimmed-country td,
+        table.matrix-table tbody tr.dimmed-country td:first-child {
+            background-color: #f1f5f9;
+            color: #94a3b8;
+            opacity: 0.55;
+            filter: grayscale(100%);
+        }
+
+        table.matrix-table tbody tr.dimmed-country a.cell-link {
+            color: #94a3b8;
         }
 
         table.matrix-table tfoot td,
@@ -300,6 +327,11 @@
             background-color: #f8fafc !important;
             font-weight: 900;
             color: var(--boss-black);
+        }
+
+        table.matrix-table tbody tr.dimmed-country td.total-col {
+            background-color: #e2e8f0 !important;
+            color: #94a3b8;
         }
 
         table.matrix-table tfoot td {
@@ -357,13 +389,27 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 9px 0;
+            padding: 9px 8px;
             border-bottom: 1px solid #f1f5f9;
             font-size: 13px;
+            border-radius: 4px;
+            transition: background-color 0.15s, opacity 0.15s;
         }
 
         .insight-list li:last-child {
             border-bottom: none;
+        }
+
+        .insight-list li.active-country-item {
+            background-color: #eff6ff;
+            border-left: 3px solid var(--ai-blue);
+            font-weight: bold;
+        }
+
+        .insight-list li.dimmed-country-item {
+            opacity: 0.45;
+            filter: grayscale(100%);
+            color: #94a3b8;
         }
 
         .pill {
@@ -403,7 +449,7 @@
         <div class="page-toolbar">
             <div class="page-title-group">
                 <h1>Wereldwijd Veiling &amp; Markt Factsheet</h1>
-                <p>Overzicht van actieve kavels per land en categorie, aangevuld met urgentie, AI Picks en portaldekking.</p>
+                <p id="selection-status-desc">Overzicht van actieve kavels per land en categorie, aangevuld met urgentie, AI Picks en portaldekking.</p>
             </div>
             <div class="toolbar-controls">
                 <select id="scopeSelect" class="btn" onchange="recomputeAndRender()">
@@ -415,8 +461,8 @@
                     <input type="checkbox" id="includeCompetitors" onchange="recomputeAndRender()">
                     Toon concurrentie
                 </label>
-                <button class="btn" id="clearCountryBtn" style="display: none;" onclick="selectCountry(null)">
-                    ✕ Filter: <span id="activeCountryLabel"></span>
+                <button class="btn btn-active-filter" id="clearCountryBtn" style="display: none;" onclick="selectCountry(null)">
+                    ✕ Geselecteerd land: <span id="activeCountryLabel"></span> (klik om te resetten)
                 </button>
                 <button class="btn btn-primary" onclick="exportMatrixToExcelCsv()">⬇ Exporteer naar Excel (.csv)</button>
             </div>
@@ -425,14 +471,14 @@
         <!-- KPI Samenvatting -->
         <div class="kpi-grid">
             <div class="kpi-card accent">
-                <div class="kpi-label">Actieve Kavels in Selectie</div>
+                <div class="kpi-label" id="kpi-total-label">Actieve Kavels</div>
                 <div class="kpi-value" id="kpi-total">0</div>
                 <div class="kpi-sub" id="kpi-countries">Verspreid over 0 landen</div>
             </div>
             <div class="kpi-card accent">
                 <div class="kpi-label">Bijna Afgelopen (&lt; 24 uur)</div>
                 <div class="kpi-value" id="kpi-urgent">0</div>
-                <div class="kpi-sub">Directe opvolging vereist</div>
+                <div class="kpi-sub" id="kpi-urgent-sub">Directe opvolging vereist</div>
             </div>
             <div class="kpi-card ai">
                 <div class="kpi-label">AI Picks</div>
@@ -445,7 +491,7 @@
                 <div class="kpi-sub" id="kpi-priced-count">Op basis van bekende prijzen</div>
             </div>
             <div class="kpi-card">
-                <div class="kpi-label">Top Land (Volume)</div>
+                <div class="kpi-label" id="kpi-top-label">Top Land (Volume)</div>
                 <div class="kpi-value" id="kpi-top-country">-</div>
                 <div class="kpi-sub" id="kpi-top-country-sub">0 kavels</div>
             </div>
@@ -455,7 +501,7 @@
         <div class="panel">
             <div class="panel-header">
                 <h2>1. Wereldkaart — Kavels per Locatie / Land</h2>
-                <span style="font-size: 12px; color: var(--text-light);">Klik op een marker of rij in de tabel om het land te markeren</span>
+                <span style="font-size: 12px; color: var(--text-light);">Klik op een marker of rij om het land bovenaan te pinnen en alle data aan te passen</span>
             </div>
             <div id="world-map"></div>
         </div>
@@ -464,7 +510,7 @@
         <div class="panel">
             <div class="panel-header">
                 <h2>2. Overzicht per Land &amp; Categorie (Matrix)</h2>
-                <span style="font-size: 12px; color: var(--text-light);">Klik op een aantal om direct naar het platform te gaan</span>
+                <span style="font-size: 12px; color: var(--text-light);">Klik op een landnaam om te pinnen · Klik op een getal om direct naar het platform te gaan</span>
             </div>
             <div class="table-wrapper">
                 <table class="matrix-table" id="countryCategoryTable">
@@ -504,7 +550,6 @@
     <script>
         const jsonMasterUrl = './data/equipment-data.json';
 
-        // Referentiecoördinaten per landcode (ISO-2) voor snelle kaartweergave zonder externe geocoding-vertraging
         const COUNTRY_META = {
             'nl': { name: 'Nederland', lat: 52.1326, lng: 5.2913 },
             'be': { name: 'België', lat: 50.5039, lng: 4.4699 },
@@ -658,11 +703,16 @@
             selectedCountryCode = (selectedCountryCode === code) ? null : code;
             const btn = document.getElementById('clearCountryBtn');
             const label = document.getElementById('activeCountryLabel');
+            const desc = document.getElementById('selection-status-desc');
+
             if (selectedCountryCode) {
-                label.textContent = getCountryDisplayName(selectedCountryCode);
+                const cname = getCountryDisplayName(selectedCountryCode);
+                label.textContent = cname;
                 btn.style.display = 'inline-block';
+                desc.textContent = `Focus op ${cname} — bovenaan gepind in overzichten, overige landen gedimd. Klik opnieuw om alle landen te tonen.`;
             } else {
                 btn.style.display = 'none';
+                desc.textContent = 'Overzicht van actieve kavels per land en categorie, aangevuld met urgentie, AI Picks en portaldekking.';
             }
             recomputeAndRender();
         }
@@ -680,7 +730,7 @@
 
                 if (isAuction) {
                     const endDate = parseAuctionDate(endVal);
-                    if (endDate && (endDate - now) <= 1000) return false; // Verlopen veiling uitsluiten
+                    if (endDate && (endDate - now) <= 1000) return false;
                 }
 
                 if (scope === 'auctions') return isAuction;
@@ -688,12 +738,9 @@
                 return true;
             });
 
-            // Aggregaties opbouwen
-            const countryStats = {}; // code -> { count, urgent, ai, prices: [], portals: Set, categories: {} }
-            const categoryTotals = {};
-            let totalUrgent = 0;
-            let totalAi = 0;
-            const allPrices = [];
+            const countryStats = {};
+            const categoryTotalsAll = {};
+            const categoryTotalsSelected = {};
 
             filtered.forEach(row => {
                 const code = detectCountryCode(row.Locatie);
@@ -710,13 +757,9 @@
                         const hoursLeft = (endDate - now) / (1000 * 60 * 60);
                         if (hoursLeft > 0 && hoursLeft <= 24) {
                             urgent = true;
-                            totalUrgent++;
                         }
                     }
                 }
-
-                if (ai) totalAi++;
-                if (priceNum !== null) allPrices.push(priceNum);
 
                 if (!countryStats[code]) {
                     countryStats[code] = {
@@ -737,39 +780,93 @@
                 st.portals.add(platform);
                 st.categories[category] = (st.categories[category] || 0) + 1;
 
-                categoryTotals[category] = (categoryTotals[category] || 0) + 1;
+                categoryTotalsAll[category] = (categoryTotalsAll[category] || 0) + 1;
+                if (selectedCountryCode && code === selectedCountryCode) {
+                    categoryTotalsSelected[category] = (categoryTotalsSelected[category] || 0) + 1;
+                }
             });
 
-            // Landen sorteren op volume
-            const sortedCountries = Object.keys(countryStats).sort((a, b) => countryStats[b].count - countryStats[a].count);
-            // Categorieën sorteren op volume
-            const sortedCategories = Object.keys(categoryTotals).sort((a, b) => categoryTotals[b] - categoryTotals[a]);
+            // Sortering landen: geselecteerd land ALTIJD bovenaan, daarna op volume
+            const sortedCountries = Object.keys(countryStats).sort((a, b) => {
+                if (selectedCountryCode) {
+                    if (a === selectedCountryCode && b !== selectedCountryCode) return -1;
+                    if (b === selectedCountryCode && a !== selectedCountryCode) return 1;
+                }
+                return countryStats[b].count - countryStats[a].count;
+            });
 
-            // KPI's bijwerken
-            document.getElementById('kpi-total').textContent = filtered.length.toLocaleString('nl-NL');
-            document.getElementById('kpi-countries').textContent = `Verspreid over ${sortedCountries.length} landen`;
-            document.getElementById('kpi-urgent').textContent = totalUrgent.toLocaleString('nl-NL');
-            document.getElementById('kpi-ai').textContent = totalAi.toLocaleString('nl-NL');
-            const aiShare = filtered.length ? ((totalAi / filtered.length) * 100).toFixed(1) : '0.0';
-            document.getElementById('kpi-ai-share').textContent = `${aiShare}% van selectie`;
+            const sortedCategories = Object.keys(categoryTotalsAll).sort((a, b) => categoryTotalsAll[b] - categoryTotalsAll[a]);
 
-            const avgPrice = allPrices.length
-                ? Math.round(allPrices.reduce((acc, v) => acc + v, 0) / allPrices.length)
+            // KPI's berekenen: indien land geselecteerd, tonen we de cijfers van dat land bovenaan
+            const focusRows = selectedCountryCode
+                ? filtered.filter(r => detectCountryCode(r.Locatie) === selectedCountryCode)
+                : filtered;
+
+            let kpiUrgent = 0;
+            let kpiAi = 0;
+            const kpiPrices = [];
+            const kpiCategories = {};
+
+            focusRows.forEach(row => {
+                const cat = (row.Categorie && String(row.Categorie).trim()) ? String(row.Categorie).trim() : 'Overig';
+                kpiCategories[cat] = (kpiCategories[cat] || 0) + 1;
+
+                if (isAiPick(row)) kpiAi++;
+                const p = parseNumericPrice(row['Laatste prijs'] || row['Prijs'] || row['Eerste prijs']);
+                if (p !== null) kpiPrices.push(p);
+
+                const endVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
+                if (endVal) {
+                    const endDate = parseAuctionDate(endVal);
+                    if (endDate) {
+                        const hoursLeft = (endDate - now) / (1000 * 60 * 60);
+                        if (hoursLeft > 0 && hoursLeft <= 24) kpiUrgent++;
+                    }
+                }
+            });
+
+            const focusName = selectedCountryCode ? getCountryDisplayName(selectedCountryCode) : null;
+
+            document.getElementById('kpi-total-label').textContent = selectedCountryCode ? `Kavels in ${focusName}` : 'Actieve Kavels';
+            document.getElementById('kpi-total').textContent = focusRows.length.toLocaleString('nl-NL');
+            document.getElementById('kpi-countries').textContent = selectedCountryCode
+                ? `${Math.round((focusRows.length / (filtered.length || 1)) * 1000) / 10}% van totaal (${filtered.length.toLocaleString('nl-NL')})`
+                : `Verspreid over ${sortedCountries.length} landen`;
+
+            document.getElementById('kpi-urgent').textContent = kpiUrgent.toLocaleString('nl-NL');
+            document.getElementById('kpi-urgent-sub').textContent = selectedCountryCode ? `In ${focusName}` : 'Directe opvolging vereist';
+
+            document.getElementById('kpi-ai').textContent = kpiAi.toLocaleString('nl-NL');
+            const aiShare = focusRows.length ? ((kpiAi / focusRows.length) * 100).toFixed(1) : '0.0';
+            document.getElementById('kpi-ai-share').textContent = `${aiShare}% van ${selectedCountryCode ? focusName : 'selectie'}`;
+
+            const avgPrice = kpiPrices.length
+                ? Math.round(kpiPrices.reduce((acc, v) => acc + v, 0) / kpiPrices.length)
                 : 0;
             document.getElementById('kpi-avg-price').textContent = `€ ${avgPrice.toLocaleString('nl-NL')}`;
-            document.getElementById('kpi-priced-count').textContent = `Op basis van ${allPrices.length} kavels met prijs`;
+            document.getElementById('kpi-priced-count').textContent = `Op basis van ${kpiPrices.length} kavels met prijs`;
 
-            if (sortedCountries.length > 0) {
+            if (selectedCountryCode) {
+                const topCat = Object.entries(kpiCategories).sort((a, b) => b[1] - a[1])[0];
+                document.getElementById('kpi-top-label').textContent = `Top Categorie (${focusName})`;
+                document.getElementById('kpi-top-country').textContent = topCat ? topCat[0] : '-';
+                document.getElementById('kpi-top-country-sub').textContent = topCat ? `${topCat[1].toLocaleString('nl-NL')} kavels` : '0 kavels';
+            } else if (sortedCountries.length > 0) {
                 const topCode = sortedCountries[0];
+                document.getElementById('kpi-top-label').textContent = 'Top Land (Volume)';
                 document.getElementById('kpi-top-country').textContent = getCountryDisplayName(topCode);
                 document.getElementById('kpi-top-country-sub').textContent = `${countryStats[topCode].count.toLocaleString('nl-NL')} kavels`;
             } else {
+                document.getElementById('kpi-top-label').textContent = 'Top Land (Volume)';
                 document.getElementById('kpi-top-country').textContent = '-';
                 document.getElementById('kpi-top-country-sub').textContent = '0 kavels';
             }
 
+            const activeCatTotals = selectedCountryCode ? categoryTotalsSelected : categoryTotalsAll;
+            const activeGrandTotal = focusRows.length;
+
             renderMapMarkers(countryStats, sortedCountries);
-            renderMatrixTable(sortedCountries, sortedCategories, countryStats, categoryTotals, filtered.length, scope);
+            renderMatrixTable(sortedCountries, sortedCategories, countryStats, activeCatTotals, activeGrandTotal, scope);
             renderInsights(sortedCountries, countryStats);
         }
 
@@ -783,10 +880,13 @@
 
                 const st = countryStats[code];
                 const isSelected = selectedCountryCode === code;
+                const isDimmed = selectedCountryCode && selectedCountryCode !== code;
+
+                const pinClass = isSelected ? 'selected' : (isDimmed ? 'dimmed' : '');
 
                 const icon = L.divIcon({
                     className: 'custom-div-icon',
-                    html: `<div class="map-pin ${isSelected ? 'selected' : ''}">${code.toUpperCase()} · ${st.count}</div>`,
+                    html: `<div class="map-pin ${pinClass}">${code.toUpperCase()} · ${st.count}</div>`,
                     iconSize: [0, 0],
                     iconAnchor: [0, 0]
                 });
@@ -796,7 +896,8 @@
                         <strong>${meta.name}</strong><br>
                         Kavels: <b>${st.count}</b><br>
                         &lt; 24u aflopend: <b>${st.urgent}</b><br>
-                        AI Picks: <b>${st.ai}</b>
+                        AI Picks: <b>${st.ai}</b><br>
+                        <small>Klik om te pinnen/filteren</small>
                     `)
                     .on('click', () => selectCountry(code));
 
@@ -811,7 +912,6 @@
 
             const tabParam = scope === 'listings' ? 'listings' : 'auctions';
 
-            // Header
             let headHtml = '<tr><th>Land</th>';
             sortedCategories.forEach(cat => {
                 headHtml += `<th>${escapeHtml(cat)}</th>`;
@@ -819,22 +919,23 @@
             headHtml += '<th class="total-col">Totaal</th></tr>';
             thead.innerHTML = headHtml;
 
-            // Export headers
             const exportHeaders = ['Land', ...sortedCategories, 'Totaal'];
             const exportRows = [];
 
-            // Body
             let bodyHtml = '';
             sortedCountries.forEach(code => {
                 const st = countryStats[code];
                 const name = getCountryDisplayName(code);
                 const isSelected = selectedCountryCode === code;
+                const isDimmed = selectedCountryCode && selectedCountryCode !== code;
+                const rowClass = isSelected ? 'active-country' : (isDimmed ? 'dimmed-country' : '');
+
                 const flagHtml = code !== 'other'
                     ? `<img src="https://flagcdn.com/24x18/${code}.png" alt="${code}" onerror="this.style.display='none'">`
                     : '🌍';
 
-                bodyHtml += `<tr class="${isSelected ? 'active-country' : ''}">`;
-                bodyHtml += `<td><span class="country-cell-inner" onclick="selectCountry('${code}')">${flagHtml}<span>${escapeHtml(name)}</span></span></td>`;
+                bodyHtml += `<tr class="${rowClass}">`;
+                bodyHtml += `<td><span class="country-cell-inner" onclick="selectCountry('${code}')" title="Klik om ${escapeHtml(name)} bovenaan te pinnen">${flagHtml}<span>${escapeHtml(name)}</span></span></td>`;
 
                 const rowExport = [name];
 
@@ -861,9 +962,12 @@
 
             tbody.innerHTML = bodyHtml;
 
-            // Footer totalen
-            let footHtml = '<tr><td>Totaal per categorie</td>';
-            const footExport = ['Totaal per categorie'];
+            const totalLabel = selectedCountryCode
+                ? `Totaal (${getCountryDisplayName(selectedCountryCode)})`
+                : 'Totaal per categorie';
+
+            let footHtml = `<tr><td>${escapeHtml(totalLabel)}</td>`;
+            const footExport = [totalLabel];
             sortedCategories.forEach(cat => {
                 const cTot = categoryTotals[cat] || 0;
                 footExport.push(cTot);
@@ -876,48 +980,92 @@
             lastMatrixExport = { headers: exportHeaders, rows: [...exportRows, footExport] };
         }
 
+        function orderCountriesWithSelectedFirst(codes) {
+            if (!selectedCountryCode) return codes;
+            return [...codes].sort((a, b) => {
+                if (a === selectedCountryCode && b !== selectedCountryCode) return -1;
+                if (b === selectedCountryCode && a !== selectedCountryCode) return 1;
+                return 0;
+            });
+        }
+
         function renderInsights(sortedCountries, countryStats) {
             // 1. Urgent per land
-            const urgentSorted = [...sortedCountries]
-                .filter(c => countryStats[c].urgent > 0)
-                .sort((a, b) => countryStats[b].urgent - countryStats[a].urgent)
+            const urgentSorted = orderCountriesWithSelectedFirst(
+                [...sortedCountries].filter(c => countryStats[c].urgent > 0 || c === selectedCountryCode)
+            )
+                .sort((a, b) => {
+                    if (selectedCountryCode) {
+                        if (a === selectedCountryCode) return -1;
+                        if (b === selectedCountryCode) return 1;
+                    }
+                    return countryStats[b].urgent - countryStats[a].urgent;
+                })
                 .slice(0, 8);
 
             document.getElementById('urgentByCountryList').innerHTML = urgentSorted.length
-                ? urgentSorted.map(c => `
-                    <li>
-                        <span><strong>${escapeHtml(getCountryDisplayName(c))}</strong></span>
-                        <span class="pill urgent">${countryStats[c].urgent} kavels &lt; 24u</span>
-                    </li>
-                `).join('')
+                ? urgentSorted.map(c => {
+                    const isSel = selectedCountryCode === c;
+                    const isDim = selectedCountryCode && !isSel;
+                    const liClass = isSel ? 'active-country-item' : (isDim ? 'dimmed-country-item' : '');
+                    return `
+                        <li class="${liClass}" onclick="selectCountry('${c}')" style="cursor:pointer;">
+                            <span><strong>${escapeHtml(getCountryDisplayName(c))}</strong></span>
+                            <span class="pill urgent">${countryStats[c].urgent} kavels &lt; 24u</span>
+                        </li>
+                    `;
+                }).join('')
                 : '<li style="color:#777;">Geen kavels die binnen 24 uur aflopen.</li>';
 
             // 2. AI Picks per land
             const aiSorted = [...sortedCountries]
-                .filter(c => countryStats[c].ai > 0)
-                .sort((a, b) => countryStats[b].ai - countryStats[a].ai)
+                .filter(c => countryStats[c].ai > 0 || c === selectedCountryCode)
+                .sort((a, b) => {
+                    if (selectedCountryCode) {
+                        if (a === selectedCountryCode) return -1;
+                        if (b === selectedCountryCode) return 1;
+                    }
+                    return countryStats[b].ai - countryStats[a].ai;
+                })
                 .slice(0, 8);
 
             document.getElementById('aiByCountryList').innerHTML = aiSorted.length
-                ? aiSorted.map(c => `
-                    <li>
-                        <span><strong>${escapeHtml(getCountryDisplayName(c))}</strong></span>
-                        <span class="pill ai">${countryStats[c].ai} AI Picks</span>
-                    </li>
-                `).join('')
+                ? aiSorted.map(c => {
+                    const isSel = selectedCountryCode === c;
+                    const isDim = selectedCountryCode && !isSel;
+                    const liClass = isSel ? 'active-country-item' : (isDim ? 'dimmed-country-item' : '');
+                    return `
+                        <li class="${liClass}" onclick="selectCountry('${c}')" style="cursor:pointer;">
+                            <span><strong>${escapeHtml(getCountryDisplayName(c))}</strong></span>
+                            <span class="pill ai">${countryStats[c].ai} AI Picks</span>
+                        </li>
+                    `;
+                }).join('')
                 : '<li style="color:#777;">Geen AI Picks in huidige selectie.</li>';
 
             // 3. Portaldekking & gem. prijs per land
-            const metaSorted = sortedCountries.slice(0, 8);
+            const metaSorted = [...sortedCountries]
+                .sort((a, b) => {
+                    if (selectedCountryCode) {
+                        if (a === selectedCountryCode) return -1;
+                        if (b === selectedCountryCode) return 1;
+                    }
+                    return countryStats[b].count - countryStats[a].count;
+                })
+                .slice(0, 8);
+
             document.getElementById('countryMetaList').innerHTML = metaSorted.length
                 ? metaSorted.map(c => {
                     const st = countryStats[c];
+                    const isSel = selectedCountryCode === c;
+                    const isDim = selectedCountryCode && !isSel;
+                    const liClass = isSel ? 'active-country-item' : (isDim ? 'dimmed-country-item' : '');
                     const avg = st.prices.length
                         ? `€ ${Math.round(st.prices.reduce((a, b) => a + b, 0) / st.prices.length).toLocaleString('nl-NL')}`
                         : 'n.v.t.';
                     const portalsPreview = [...st.portals].slice(0, 2).join(', ') + (st.portals.size > 2 ? ` +${st.portals.size - 2}` : '');
                     return `
-                        <li>
+                        <li class="${liClass}" onclick="selectCountry('${c}')" style="cursor:pointer;">
                             <div>
                                 <strong>${escapeHtml(getCountryDisplayName(c))}</strong><br>
                                 <small style="color:#777;">${escapeHtml(portalsPreview)}</small>
@@ -931,7 +1079,7 @@
 
         function exportMatrixToExcelCsv() {
             if (!lastMatrixExport.headers.length) return;
-            const sep = ';'; // Nederlandse Excel standaard
+            const sep = ';';
             const escapeCsv = (val) => {
                 const s = String(val ?? '');
                 return /[";\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
