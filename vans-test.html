@@ -40,6 +40,7 @@
             display: flex;
             align-items: center;
             gap: 24px;
+            flex-wrap: wrap;
         }
 
         .header-brand {
@@ -57,6 +58,7 @@
         .nav-links {
             display: flex;
             gap: 10px;
+            align-items: center;
         }
 
         .nav-link {
@@ -76,10 +78,39 @@
             color: #ffffff;
         }
 
+        .header-right-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .header-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--boss-blue);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border-radius: 4px;
+            transition: background 0.2s, transform 0.15s;
+            white-space: nowrap;
+        }
+
+        .header-cta-btn:hover {
+            background: var(--boss-blue-dark);
+            transform: translateY(-1px);
+        }
+
         .header-search-box {
             position: relative;
             flex-grow: 1;
-            max-width: 420px;
+            min-width: 220px;
+            max-width: 380px;
             display: flex;
             align-items: center;
         }
@@ -347,8 +378,132 @@
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
+        }
+
+        /* Landen-bolletje & vlaggen dropdown naast Sorteren */
+        .country-picker-container {
+            position: relative;
+        }
+
+        .country-globe-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: border-color 0.2s, background 0.2s, transform 0.15s;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .country-globe-btn:hover {
+            border-color: var(--boss-blue);
+            background: #f8fafc;
+        }
+
+        .country-globe-btn.has-country {
+            border: 2px solid var(--boss-blue);
+            box-shadow: 0 0 0 2px rgba(0, 158, 227, 0.2);
+        }
+
+        .country-globe-btn svg {
+            width: 19px;
+            height: 19px;
+            fill: #334155;
+        }
+
+        .country-globe-btn img.btn-flag {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .country-dropdown {
+            display: none;
+            position: absolute;
+            top: 42px;
+            right: 0;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.14);
+            min-width: 245px;
+            max-height: 340px;
+            overflow-y: auto;
+            z-index: 120;
+            padding: 4px 0;
+        }
+
+        .country-dropdown.open {
+            display: block;
+        }
+
+        .country-option {
+            padding: 9px 14px;
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background 0.15s;
+        }
+
+        .country-option:last-child {
+            border-bottom: none;
+        }
+
+        .country-option:hover {
+            background: #f0f9ff;
+            color: var(--boss-blue-dark);
+        }
+
+        .country-option.selected {
+            background: #e0f2fe;
+            color: var(--boss-blue-dark);
+        }
+
+        .country-option-left {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .country-option-left img {
+            width: 20px;
+            height: 14px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid #cbd5e1;
+            flex-shrink: 0;
+        }
+
+        .country-option-count {
+            font-size: 11px;
+            font-weight: 900;
+            color: #475569;
+            background: #f1f5f9;
+            padding: 2px 7px;
+            border-radius: 999px;
+            flex-shrink: 0;
+        }
+
+        .country-option.selected .country-option-count {
+            background: var(--boss-blue);
+            color: #ffffff;
         }
 
         .sort-container {
@@ -554,35 +709,6 @@
             box-shadow: 0 0 20px rgba(37,99,235,0.4) !important;
         }
 
-        /* Kruisje om kaart te verbergen */
-        .hide-card-btn {
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: #111111;
-            color: #ffffff;
-            border: 2px solid #ffffff;
-            font-size: 15px;
-            font-weight: bold;
-            line-height: 1;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 25;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.35);
-            transition: background 0.15s, transform 0.15s;
-            padding: 0;
-        }
-
-        .hide-card-btn:hover {
-            background: #dc3545;
-            transform: scale(1.12);
-        }
-
         .card-image-container {
             position: relative;
             height: 180px;
@@ -590,6 +716,37 @@
             border-top-left-radius: 6px;
             border-top-right-radius: 6px;
             overflow: visible;
+        }
+
+        /* Kruisje binnen de foto, linksonder */
+        .hide-card-btn {
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #dc3545;
+            border: 1px solid #ccc;
+            font-size: 17px;
+            font-weight: bold;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 6;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+            transition: transform 0.1s, background 0.2s, color 0.2s, border-color 0.2s;
+            padding: 0;
+        }
+
+        .hide-card-btn:hover {
+            transform: scale(1.12);
+            background: #dc3545;
+            border-color: #dc3545;
+            color: #ffffff;
         }
 
         .card-image-placeholder {
@@ -684,7 +841,7 @@
         .badge {
             position: absolute;
             top: 10px;
-            left: 14px;
+            left: 10px;
             padding: 5px 10px;
             font-size: 11px;
             font-weight: bold;
@@ -895,7 +1052,7 @@
                 </a>
                 <nav class="nav-links">
                     <a href="./vans-test.html" class="nav-link active">Platform</a>
-                    <a href="./factsheet.html" class="nav-link">Factsheet</a>
+                    <a href="./factsheet-vans.html" class="nav-link">Factsheet</a>
                 </nav>
             </div>
         </div>
@@ -905,9 +1062,12 @@
             <input type="text" id="searchInput" placeholder="Vrij zoeken op merk, model, titel of locatie..." oninput="renderGrid()">
         </div>
 
-        <div class="system-status-indicator" onclick="openStatusModal()">
-            <span id="header-status-dot" class="status-dot dot-green"></span>
-            <span id="header-status-text">Portalen Status</span>
+        <div class="header-right-group">
+            <a href="./factsheet-vans.html" class="header-cta-btn">📊 Open Vans Factsheet →</a>
+            <div class="system-status-indicator" onclick="openStatusModal()">
+                <span id="header-status-dot" class="status-dot dot-green"></span>
+                <span id="header-status-text">Portalen Status</span>
+            </div>
         </div>
     </header>
 
@@ -1005,7 +1165,16 @@
                 </div>
 
                 <div class="header-controls">
-                    <div class="sort-container">
+                    <!-- Bolletje voor Landenselectie met vlaggen en aantallen naast Sorteren -->
+                    <div class="country-picker-container" id="countryPickerContainer">
+                        <button type="button" class="country-globe-btn" id="countryGlobeBtn" onclick="toggleCountryMenu()" title="Filter op land (vlaggen & aantallen)">
+                            <svg id="countryGlobeIcon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                        </button>
+                        <div class="country-dropdown" id="countryDropdown"></div>
+                    </div>
+
+                    <!-- Sorteer Knop & Dropdown -->
+                    <div class="sort-container" id="sortContainer">
                         <div class="sort-btn" onclick="toggleSortMenu()">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -1029,12 +1198,14 @@
                         </div>
                     </div>
 
+                    <!-- Visuele AI Toggle Schakelaar -->
                     <div id="aiToggleBtn" class="ai-toggle-container active" onclick="toggleAiPicks()">
                         <span class="ai-toggle-label">🤖 AI Picks</span>
                         <div class="toggle-switch"></div>
                         <span id="aiToggleState" class="toggle-status-text">AAN</span>
                     </div>
 
+                    <!-- Toon concurrentie Toggle Schakelaar -->
                     <div id="competitorToggleBtn" class="ai-toggle-container" onclick="toggleCompetitors()">
                         <span class="ai-toggle-label">Toon concurrentie</span>
                         <div class="toggle-switch"></div>
@@ -1119,6 +1290,7 @@
         const svgThumbUp = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#28a745"><path d="M2 20h2V8H2v12zm20-9c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>`;
         const svgThumbDown = `<svg width="15" height="15" viewBox="0 0 24 24" fill="#dc3545"><path d="M22 4h-2v12h2V4zm-20 9c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 22l5.59-5.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2z"/></svg>`;
         const svgThreeStars = `<svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"/></svg>`;
+        const svgGlobe = `<svg id="countryGlobeIcon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
 
         function readUrlParams() {
             const params = new URLSearchParams(window.location.search);
@@ -1130,6 +1302,28 @@
             };
         }
 
+        function syncUrlWithState() {
+            try {
+                const params = new URLSearchParams();
+                if (currentTab && currentTab !== 'listings') {
+                    params.set('tab', currentTab);
+                }
+                const landVal = document.getElementById('filter-land')?.value || '';
+                const catVal = document.getElementById('filter-categorie')?.value || '';
+                const qVal = document.getElementById('searchInput')?.value.trim() || '';
+
+                if (landVal) params.set('land', landVal);
+                if (catVal) params.set('categorie', catVal);
+                if (qVal) params.set('q', qVal);
+
+                const qs = params.toString();
+                const nextUrl = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+                if (window.location.href.split('#')[0] !== window.location.origin + nextUrl && window.location.protocol !== 'file:') {
+                    window.history.replaceState(null, '', nextUrl);
+                }
+            } catch (e) {}
+        }
+
         function isHiddenInSheet(row) {
             const tonenVal = String(getRowValue(row, ['Tonen', 'tonen']) ?? '').trim().toLowerCase();
             return tonenVal === 'nee' || tonenVal === 'false' || tonenVal === '0' || tonenVal === 'verborgen';
@@ -1137,7 +1331,7 @@
 
         function isRowHidden(row, uniqueId) {
             if (isHiddenInSheet(row)) return true;
-            if (hiddenIds.includes(String(uniqueId))) return true;
+            if (uniqueId && hiddenIds.includes(String(uniqueId))) return true;
             return false;
         }
 
@@ -1151,7 +1345,8 @@
                 localStorage.setItem('bossVansHiddenIds', JSON.stringify(hiddenIds));
             }
 
-            sendToGoogleAppsScript(strId, 'nee', 'tonen');
+            // Stuurt tonen=nee + action=hide naar Apps Script zodat kolom W (Tonen) voor iedereen 'Nee' wordt
+            sendToGoogleAppsScript(strId, 'Nee', 'tonen');
             renderGrid();
         }
 
@@ -1159,8 +1354,109 @@
             document.getElementById('sidebarFilters').classList.toggle('open');
         }
 
+        function toggleCountryMenu() {
+            renderCountryDropdown();
+            document.getElementById('countryDropdown').classList.toggle('open');
+            document.getElementById('sortDropdown').classList.remove('open');
+        }
+
+        function selectCountryFromDropdown(code) {
+            const landSel = document.getElementById('filter-land');
+            if (landSel) {
+                landSel.value = code || '';
+            }
+            document.getElementById('countryDropdown').classList.remove('open');
+            updateCountryGlobeButton();
+            renderGrid();
+        }
+
+        function updateCountryGlobeButton() {
+            const code = document.getElementById('filter-land')?.value || '';
+            const btn = document.getElementById('countryGlobeBtn');
+            if (!btn) return;
+
+            if (code) {
+                const name = COUNTRY_NAMES[code] || code.toUpperCase();
+                btn.classList.add('has-country');
+                btn.title = `Land: ${name} (klik om te wijzigen of resetten)`;
+                btn.innerHTML = `<img class="btn-flag" src="https://flagcdn.com/48x36/${code}.png" alt="${code}" onerror="this.remove()">`;
+            } else {
+                btn.classList.remove('has-country');
+                btn.title = 'Filter op land (vlaggen & aantallen)';
+                btn.innerHTML = svgGlobe;
+            }
+        }
+
+        function renderCountryDropdown() {
+            const dropdown = document.getElementById('countryDropdown');
+            if (!dropdown) return;
+
+            const dataSource = (currentTab === 'voorraad') ? ownStockData : allData;
+            const selectedCode = document.getElementById('filter-land')?.value || '';
+            const countsByCountry = {};
+            let totalCount = 0;
+
+            dataSource.forEach(row => {
+                const uniqueId = getUniqueRowId(row);
+                if (isRowHidden(row, uniqueId)) return;
+
+                const endDateVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
+                const isAuction = endDateVal !== '' && endDateVal !== 'N.v.t.';
+                if (isAuction) {
+                    const endDate = parseAuctionDate(endDateVal);
+                    if (endDate && (endDate - new Date()) <= 0) return;
+                }
+
+                if (currentTab === 'listings' && isAuction) return;
+                if (currentTab === 'auctions' && !isAuction) return;
+
+                if (!showCompetitors) {
+                    const aiReasonText = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
+                    const platformText = String(row['Platform'] || '').toLowerCase();
+                    const locLower = String(row.Locatie || '').toLowerCase();
+                    const linkLower = String(row.Link || '').toLowerCase();
+                    if (aiReasonText.includes('concurrent') || platformText.includes('concurrent')) return;
+                    if (locLower.includes('vuren')) return;
+                    if (locLower.includes('gelderland') && linkLower.includes('europe-commercial-vehicle.com')) return;
+                }
+
+                const code = detectCountryCode(row.Locatie);
+                if (code) {
+                    countsByCountry[code] = (countsByCountry[code] || 0) + 1;
+                    totalCount++;
+                }
+            });
+
+            const sortedCodes = Object.keys(countsByCountry).sort((a, b) => countsByCountry[b] - countsByCountry[a]);
+
+            let html = `
+                <div class="country-option ${!selectedCode ? 'selected' : ''}" onclick="selectCountryFromDropdown('')">
+                    <span class="country-option-left">🌍 <span>Alle landen</span></span>
+                    <span class="country-option-count">${totalCount}</span>
+                </div>
+            `;
+
+            sortedCodes.forEach(code => {
+                const name = COUNTRY_NAMES[code] || code.toUpperCase();
+                const cnt = countsByCountry[code];
+                const isSel = selectedCode === code;
+                html += `
+                    <div class="country-option ${isSel ? 'selected' : ''}" onclick="selectCountryFromDropdown('${code}')">
+                        <span class="country-option-left">
+                            <img src="https://flagcdn.com/24x18/${code}.png" alt="${code}" onerror="this.style.display='none'">
+                            <span>${name}</span>
+                        </span>
+                        <span class="country-option-count">${cnt}</span>
+                    </div>
+                `;
+            });
+
+            dropdown.innerHTML = html;
+        }
+
         function toggleSortMenu() {
             document.getElementById('sortDropdown').classList.toggle('open');
+            document.getElementById('countryDropdown').classList.remove('open');
         }
 
         function setSort(sortType) {
@@ -1173,9 +1469,13 @@
         }
 
         window.addEventListener('click', function(e) {
-            const sortBox = document.querySelector('.sort-container');
+            const sortBox = document.getElementById('sortContainer');
             if (sortBox && !sortBox.contains(e.target)) {
                 document.getElementById('sortDropdown').classList.remove('open');
+            }
+            const countryBox = document.getElementById('countryPickerContainer');
+            if (countryBox && !countryBox.contains(e.target)) {
+                document.getElementById('countryDropdown').classList.remove('open');
             }
         });
 
@@ -1281,29 +1581,45 @@
         }
 
         function sendToGoogleAppsScript(id, value, mode = 'feedback') {
-            if (gasWebappUrl && !gasWebappUrl.includes('JOUW_VANS_APPS_SCRIPT_ID')) {
-                const paramName = mode === 'tonen' ? 'tonen' : 'feedback';
-                const targetUrl = `${gasWebappUrl}?id=${encodeURIComponent(id)}&${paramName}=${encodeURIComponent(value)}`;
-                const iframe = document.createElement('iframe');
-                iframe.style.display = 'none';
-                iframe.src = targetUrl;
-                document.body.appendChild(iframe);
-                setTimeout(() => iframe.remove(), 5000);
+            if (!gasWebappUrl || gasWebappUrl.includes('JOUW_VANS_APPS_SCRIPT_ID')) return;
+
+            const params = new URLSearchParams({ id: String(id) });
+            if (mode === 'tonen') {
+                params.set('tonen', String(value));
+                params.set('action', 'hide');
+            } else {
+                params.set('feedback', String(value));
             }
+
+            const targetUrl = `${gasWebappUrl}?${params.toString()}`;
+
+            if (window.fetch) {
+                fetch(targetUrl, { method: 'GET', mode: 'no-cors', keepalive: true }).catch(() => {});
+            }
+
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = targetUrl;
+            document.body.appendChild(iframe);
+            setTimeout(() => iframe.remove(), 5000);
         }
 
         async function haalLiveFeedbackOp() {
             if (!gasWebappUrl || gasWebappUrl.includes('JOUW_VANS_APPS_SCRIPT_ID')) return;
             try {
-                const response = await fetch(`${gasWebappUrl}?action=getLiveStatus`);
+                const response = await fetch(`${gasWebappUrl}?action=getLiveStatus&t=${new Date().getTime()}`);
                 if (!response.ok) return;
                 const liveData = await response.json();
                 let updated = false;
 
                 Object.keys(liveData).forEach(id => {
                     const entry = liveData[id];
-                    const val = (typeof entry === 'object' && entry !== null) ? String(entry.feedback || '').trim() : String(entry || '').trim();
-                    const tonenVal = (typeof entry === 'object' && entry !== null) ? String(entry.tonen || '').trim().toLowerCase() : '';
+                    const val = (typeof entry === 'object' && entry !== null)
+                        ? String(entry.feedback || entry.Feedback || '').trim()
+                        : String(entry || '').trim();
+                    const tonenVal = (typeof entry === 'object' && entry !== null)
+                        ? String(entry.tonen || entry.Tonen || '').trim().toLowerCase()
+                        : '';
 
                     if (val === 'goed' || val === 'positive') {
                         if (feedbackData[id] !== 'positive') {
@@ -1322,7 +1638,7 @@
                         }
                     }
 
-                    if (tonenVal === 'nee' || tonenVal === 'false' || tonenVal === '0') {
+                    if (tonenVal === 'nee' || tonenVal === 'false' || tonenVal === '0' || tonenVal === 'verborgen') {
                         if (!hiddenIds.includes(String(id))) {
                             hiddenIds.push(String(id));
                             updated = true;
@@ -1387,6 +1703,7 @@
                     } else {
                         populateFilters();
                         applyUrlFiltersOnce();
+                        updateCountryGlobeButton();
                         updateSystemStatusHeader();
                         renderGrid();
                     }
@@ -1407,7 +1724,6 @@
                 const landSel = document.getElementById('filter-land');
                 if (landSel && [...landSel.options].some(o => o.value === pendingUrlParams.land)) {
                     landSel.value = pendingUrlParams.land;
-                    openedSidebar = true;
                 }
             }
             if (pendingUrlParams.categorie) {
@@ -1440,6 +1756,7 @@
 
             populateFilters();
             applyUrlFiltersOnce();
+            updateCountryGlobeButton();
             renderGrid();
         }
 
@@ -1732,6 +2049,9 @@
         }
 
         function renderGrid() {
+            updateCountryGlobeButton();
+            syncUrlWithState();
+
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
 
@@ -1970,12 +2290,12 @@
                 const cardDiv = document.createElement('div');
                 cardDiv.innerHTML = `
                     ${wrapperStart}
-                        ${hideBtnHtml}
                         ${aiStampHtml}
                         ${badgeHtml}
                         <div class="card-image-container">
                             ${imageHtml}
                             ${imageBadgeHtml}
+                            ${hideBtnHtml}
                             ${feedbackButtonsHtml}
                         </div>
                         <div class="card-content">
