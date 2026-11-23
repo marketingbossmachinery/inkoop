@@ -1218,6 +1218,69 @@
             }, 150);
         }
 
+        function applyUrlQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            const paramTab = params.get('tab');
+            const paramCat = params.get('categorie');
+            const paramQ = params.get('q');
+
+            if (paramTab && ['listings', 'auctions', 'voorraad'].includes(paramTab)) {
+                currentTab = paramTab;
+                document.getElementById('tab-listings').classList.toggle('active', paramTab === 'listings');
+                document.getElementById('tab-auctions').classList.toggle('active', paramTab === 'auctions');
+                document.getElementById('tab-voorraad').classList.toggle('active', paramTab === 'voorraad');
+
+                const auctionOpt = document.getElementById('opt-auction-first');
+                if (paramTab === 'auctions') {
+                    auctionOpt.style.display = 'flex';
+                } else {
+                    auctionOpt.style.display = 'none';
+                    if (currentSort === 'auction-first') {
+                        currentSort = 'default';
+                        document.querySelectorAll('.sort-option').forEach(el => el.classList.remove('selected'));
+                        const defaultOpt = document.getElementById('opt-default');
+                        if (defaultOpt) defaultOpt.classList.add('selected');
+                    }
+                }
+            }
+
+            if (paramCat) {
+                const catSelect = document.getElementById('filter-categorie');
+                const exists = [...catSelect.options].some(o => o.value === paramCat);
+                if (!exists) {
+                    const opt = document.createElement('option');
+                    opt.value = paramCat;
+                    opt.textContent = paramCat;
+                    catSelect.appendChild(opt);
+                }
+                catSelect.value = paramCat;
+                document.getElementById('sidebarFilters').classList.add('open');
+            }
+
+            if (paramQ) {
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) searchInput.value = paramQ;
+            }
+        }
+
+        function syncUrlQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            params.set('tab', currentTab);
+
+            const catVal = document.getElementById('filter-categorie').value;
+            const qVal = document.getElementById('searchInput').value.trim();
+
+            if (catVal) params.set('categorie', catVal);
+            else params.delete('categorie');
+
+            if (qVal) params.set('q', qVal);
+            else params.delete('q');
+
+            const queryString = params.toString();
+            const newUrl = queryString ? `${window.location.pathname}?${queryString}` : window.location.pathname;
+            window.history.replaceState({}, '', newUrl);
+        }
+
         function toggleFilters() {
             const wrapper = document.getElementById('sidebarFilters');
             wrapper.classList.toggle('open');
@@ -1488,10 +1551,10 @@
         }
 
         const TARGET_PORTALS = [
-            "Agorastore", "Auctelia", "Auction Time", "Blaupool", "Camion Super Market",
-            "Equippo", "Euro Auctions", "Interencheres", "Klaravik", "Legal Brokers", "MMT Usatomacchine", 
-            "MachineryLine", "Mascus", "Proxibid", "Purple Wave", "Ritchie", "Surplex", "Troostwijk", 
-            "Truck1", "Truckscout24", "werktuigen", "Yoder & Frey"            
+            "Agorastore", "Auctelia", "Auction Time", "Aukcje EFL", "Bidspotter", "Blaupool", "Camion Super Market", "CarArena", "Dome Auctions",
+            "Equippo", "Euro Auctions", "Fallco Aste", "Fymas Auctions", "Huutokaupat", "Interencheres", "Klaravik", "Legal Brokers", "MMT Usatomacchine", 
+            "MachineryLine", "Mascus", "Proxibid", "Purple Wave", "Retrade", "Ritchie", "Surplex", "Troostwijk", 
+            "Truck1", "Truckscout24", "Veacom", "werktuigen", "Yoder & Frey"            
         ];
 
         fetch(jsonMasterUrl)
@@ -1520,8 +1583,10 @@
                 ownStockData = parsedVoorraad.filter(row => row.Merk || row.Model || row.brand || row.Titel);
 
                 populateFilters();
+                applyUrlQueryParams();
                 updateSystemStatusHeader();
-                switchTab('listings'); 
+                renderGrid();
+                syncUrlQueryParams();
                 haalLiveFeedbackOp();
             })
             .catch(err => {
@@ -1547,6 +1612,7 @@
 
             selectedFlagFilter = '';
             updateActiveFlagButton();
+            syncUrlQueryParams();
             
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '<p style="padding: 20px; font-weight: bold; color: #555;">⏳ Voertuigen worden geladen...</p>';
@@ -1681,8 +1747,8 @@
                 'verenigd koninkrijk': 'gb', 'uk': 'gb', 'engeland': 'gb', 'gran-bretagna': 'gb', 'great britain': 'gb', 'scotland': 'gb', 'wales': 'gb', 'gbr': 'gb', 'gb': 'gb',
                 'zwitserland': 'ch', 'switzerland': 'ch', 'che': 'ch', 'ch': 'ch',
                 'oostenrijk': 'at', 'austria': 'at', 'aut': 'at', 'at': 'at',
-                'slovenië': 'si', 'si': 'si', 'slowakije': 'sk', 'sk': 'sk', 'tsjechië': 'cz', 'czech republic': 'cz', 'cz': 'cz',
-                'hongarije': 'hu', 'hu': 'hu', 'roemenië': 'ro', 'ro': 'ro', 'bulgarije': 'bg', 'bulgaria': 'bg', 'bg': 'bg',
+                'slovenië': 'si', 'slovenia': 'si', 'si': 'si', 'slowakije': 'sk', 'slovakia': 'sk', 'sk': 'sk', 'tsjechië': 'cz', 'czech republic': 'cz', 'czech': 'cz', 'cz': 'cz',
+                'hongarije': 'hu', 'hu': 'hu', 'hungary': 'hu', 'roemenië': 'ro', 'ro': 'ro', 'bulgarije': 'bg', 'bulgaria': 'bg', 'bg': 'bg',
                 'griekenland': 'gr', 'gr': 'gr', 'kroatië': 'hr', 'hr': 'hr', 'croatia': 'hr', 'estland': 'ee', 'ee': 'ee', 'letland': 'lv', 'latvia': 'lv', 'lv': 'lv',
                 'litouwen': 'lt', 'lt': 'lt', 'lituania': 'lt', 'luxemburg': 'lu', 'lu': 'lu', 'ijsland': 'is', 'is': 'is', 'oekraïne': 'ua', 'ua': 'ua',
                 'turkije': 'tr', 'turkey': 'tr', 'tr': 'tr', 'rusland': 'ru', 'ru': 'ru', 'servië': 'rs', 'rs': 'rs', 'bosnië': 'ba', 'ba': 'ba',
@@ -1992,6 +2058,8 @@
         setInterval(checkLiveAuctionPrices, 30000);
 
         function renderGrid() {
+            syncUrlQueryParams();
+
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
 
@@ -2282,7 +2350,6 @@
                 }
 
                 let isHidden = hiddenCardsData[uniqueId];
-                // Gecorrigeerde syntax (geen dubbel aanhalingsteken achter de haakjes)
                 let hideButtonHtml = isHidden ? 
                     `<button class="restore-card-btn" onclick="restoreCard(event, '${escapeHtml(uniqueId)}')" title="Herstel">&#x2715;</button>` : 
                     `<button class="hide-card-btn" onclick="hideCard(event, '${escapeHtml(uniqueId)}')" title="Verberg">&#x2715;</button>`;
