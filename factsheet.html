@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Veiling Factsheet - Boss Global</title>
+    <!-- Leaflet CSS voor directe wereldkaart zonder verplichte API-key (kan eenvoudig worden aangevuld met Google Maps) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            --boss-red: #cc2027;
+            --boss-black: #111111;
+            --boss-gray: #f4f4f4;
+            --text-dark: #222222;
+            --text-light: #666666;
+            --border-color: #e2e8f0;
+            --ai-blue: #2563eb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--boss-gray);
+            color: var(--text-dark);
+        }
+
+        header {
+            background-color: var(--boss-black);
+            color: #fff;
+            padding: 15px 40px;
+            border-bottom: 4px solid var(--boss-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-link {
+            color: #dddddd;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.08);
+            transition: 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--boss-red);
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 24px auto;
+            padding: 0 24px 40px;
+        }
+
+        .page-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+            background: #ffffff;
+            padding: 14px 18px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .page-title-group h1 {
+            margin: 0;
+            font-size: 20px;
+            text-transform: uppercase;
+            color: var(--boss-black);
+        }
+
+        .page-title-group p {
+            margin: 4px 0 0 0;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .toolbar-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 9px 14px;
+            border-radius: 4px;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: var(--text-dark);
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: var(--boss-black);
+        }
+
+        .btn-primary {
+            background: var(--boss-red);
+            border-color: var(--boss-red);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: #a8181e;
+        }
+
+        /* KPI Kaarten */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .kpi-card {
+            background: #ffffff;
+            border-radius: 6px;
+            padding: 16px 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-top: 3px solid var(--boss-black);
+        }
+
+        .kpi-card.accent {
+            border-top-color: var(--boss-red);
+        }
+
+        .kpi-card.ai {
+            border-top-color: var(--ai-blue);
+        }
+
+        .kpi-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+
+        .kpi-value {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--boss-black);
+        }
+
+        .kpi-sub {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        /* Kaart sectie */
+        .panel {
+            background: #ffffff;
+            border-radius: 6px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            margin-bottom: 24px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--boss-gray);
+        }
+
+        .panel-header h2 {
+            margin: 0;
+            font-size: 16px;
+            text-transform: uppercase;
+            color: var(--boss-black);
+        }
+
+        #world-map {
+            width: 100%;
+            height: 430px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            z-index: 1;
+        }
+
+        .map-pin {
+            background: var(--boss-red);
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            border-radius: 999px;
+            padding: 3px 8px;
+            font-size: 12px;
+            font-weight: 900;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transform: translate(-50%, -50%);
+        }
+
+        .map-pin.selected {
+            background: var(--ai-blue);
+            transform: translate(-50%, -50%) scale(1.12);
+        }
+
+        /* Matrix / Excel-achtige tabel */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        table.matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            min-width: 850px;
+        }
+
+        table.matrix-table th,
+        table.matrix-table td {
+            padding: 9px 11px;
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid #f1f5f9;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        table.matrix-table th:first-child,
+        table.matrix-table td:first-child {
+            text-align: left;
+            position: sticky;
+            left: 0;
+            background: #ffffff;
+            z-index: 2;
+            font-weight: bold;
+            border-right: 2px solid #cbd5e1;
+        }
+
+        table.matrix-table thead th {
+            background: var(--boss-black);
+            color: #ffffff;
+            font-size: 12px;
+            text-transform: uppercase;
+            position: sticky;
+            top: 0;
+            z-index: 3;
+        }
+
+        table.matrix-table thead th:first-child {
+            background: var(--boss-black);
+            z-index: 4;
+        }
+
+        table.matrix-table tbody tr:hover td {
+            background-color: #fff8f8;
+        }
+
+        table.matrix-table tbody tr.active-country td {
+            background-color: #eff6ff;
+        }
+
+        table.matrix-table tfoot td,
+        table.matrix-table th.total-col,
+        table.matrix-table td.total-col {
+            background-color: #f8fafc !important;
+            font-weight: 900;
+            color: var(--boss-black);
+        }
+
+        table.matrix-table tfoot td {
+            border-top: 2px solid var(--boss-black);
+        }
+
+        .cell-link {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .cell-link.has-items:hover {
+            background: var(--boss-red);
+            color: #ffffff;
+        }
+
+        .cell-zero {
+            color: #cbd5e1;
+            font-weight: normal;
+        }
+
+        .country-cell-inner {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .country-cell-inner img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid #cbd5e1;
+        }
+
+        /* Extra inzichten onderaan */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 20px;
+        }
+
+        .insight-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .insight-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 9px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 13px;
+        }
+
+        .insight-list li:last-child {
+            border-bottom: none;
+        }
+
+        .pill {
+            background: var(--boss-gray);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .pill.urgent {
+            background: #fee2e2;
+            color: var(--boss-red);
+        }
+
+        .pill.ai {
+            background: #dbeafe;
+            color: var(--ai-blue);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="./" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="logo.png" alt="BOSS GLOBAL" style="height: 40px; object-fit: contain; display: block;">
+            </a>
+            <nav class="nav-links">
+                <a href="./" class="nav-link">Platform</a>
+                <a href="./factsheet.html" class="nav-link active">Factsheet</a>
+            </nav>
+        </div>
+        <div id="last-updated-label" style="font-size: 12px; color: #cccccc;">Data laden...</div>
+    </header>
+
+    <div class="container">
+        <div class="page-toolbar">
+            <div class="page-title-group">
+                <h1>Wereldwijd Veiling &amp; Markt Factsheet</h1>
+                <p>Overzicht van actieve kavels per land en categorie, aangevuld met urgentie, AI Picks en portaldekking.</p>
+            </div>
+            <div class="toolbar-controls">
+                <select id="scopeSelect" class="btn" onchange="recomputeAndRender()">
+                    <option value="auctions" selected>Alleen veilingen</option>
+                    <option value="listings">Alleen vaste listings</option>
+                    <option value="all">Alle externe data (veilingen + listings)</option>
+                </select>
+                <label class="btn" style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+                    <input type="checkbox" id="includeCompetitors" onchange="recomputeAndRender()">
+                    Toon concurrentie
+                </label>
+                <button class="btn" id="clearCountryBtn" style="display: none;" onclick="selectCountry(null)">
+                    ✕ Filter: <span id="activeCountryLabel"></span>
+                </button>
+                <button class="btn btn-primary" onclick="exportMatrixToExcelCsv()">⬇ Exporteer naar Excel (.csv)</button>
+            </div>
+        </div>
+
+        <!-- KPI Samenvatting -->
+        <div class="kpi-grid">
+            <div class="kpi-card accent">
+                <div class="kpi-label">Actieve Kavels in Selectie</div>
+                <div class="kpi-value" id="kpi-total">0</div>
+                <div class="kpi-sub" id="kpi-countries">Verspreid over 0 landen</div>
+            </div>
+            <div class="kpi-card accent">
+                <div class="kpi-label">Bijna Afgelopen (&lt; 24 uur)</div>
+                <div class="kpi-value" id="kpi-urgent">0</div>
+                <div class="kpi-sub">Directe opvolging vereist</div>
+            </div>
+            <div class="kpi-card ai">
+                <div class="kpi-label">AI Picks</div>
+                <div class="kpi-value" id="kpi-ai">0</div>
+                <div class="kpi-sub" id="kpi-ai-share">0% van selectie</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Gemiddelde Prijs / Bod</div>
+                <div class="kpi-value" id="kpi-avg-price">€ 0</div>
+                <div class="kpi-sub" id="kpi-priced-count">Op basis van bekende prijzen</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Top Land (Volume)</div>
+                <div class="kpi-value" id="kpi-top-country">-</div>
+                <div class="kpi-sub" id="kpi-top-country-sub">0 kavels</div>
+            </div>
+        </div>
+
+        <!-- 1. Wereldkaart bovenaan -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2>1. Wereldkaart — Kavels per Locatie / Land</h2>
+                <span style="font-size: 12px; color: var(--text-light);">Klik op een marker of rij in de tabel om het land te markeren</span>
+            </div>
+            <div id="world-map"></div>
+        </div>
+
+        <!-- 2. Excel-achtige Matrix: Land x Categorie -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2>2. Overzicht per Land &amp; Categorie (Matrix)</h2>
+                <span style="font-size: 12px; color: var(--text-light);">Klik op een aantal om direct naar het platform te gaan</span>
+            </div>
+            <div class="table-wrapper">
+                <table class="matrix-table" id="countryCategoryTable">
+                    <thead></thead>
+                    <tbody></tbody>
+                    <tfoot></tfoot>
+                </table>
+            </div>
+        </div>
+
+        <!-- 3. Aanvullende relevante inzichten -->
+        <div class="insights-grid">
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>3. Aflopende Kavels (&lt; 24u) per Land</h2>
+                </div>
+                <ul class="insight-list" id="urgentByCountryList"></ul>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>4. AI Picks per Land</h2>
+                </div>
+                <ul class="insight-list" id="aiByCountryList"></ul>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>5. Portaldekking &amp; Gem. Prijs per Land</h2>
+                </div>
+                <ul class="insight-list" id="countryMetaList"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const jsonMasterUrl = './data/equipment-data.json';
+
+        // Referentiecoördinaten per landcode (ISO-2) voor snelle kaartweergave zonder externe geocoding-vertraging
+        const COUNTRY_META = {
+            'nl': { name: 'Nederland', lat: 52.1326, lng: 5.2913 },
+            'be': { name: 'België', lat: 50.5039, lng: 4.4699 },
+            'de': { name: 'Duitsland', lat: 51.1657, lng: 10.4515 },
+            'fr': { name: 'Frankrijk', lat: 46.2276, lng: 2.2137 },
+            'gb': { name: 'Verenigd Koninkrijk', lat: 52.3555, lng: -1.1743 },
+            'ie': { name: 'Ierland', lat: 53.1424, lng: -7.6921 },
+            'es': { name: 'Spanje', lat: 40.4637, lng: -3.7492 },
+            'pt': { name: 'Portugal', lat: 39.3999, lng: -8.2245 },
+            'it': { name: 'Italië', lat: 41.8719, lng: 12.5674 },
+            'cz': { name: 'Tsjechië', lat: 49.8175, lng: 15.4730 },
+            'pl': { name: 'Polen', lat: 51.9194, lng: 19.1451 },
+            'sk': { name: 'Slowakije', lat: 48.6690, lng: 19.6990 },
+            'at': { name: 'Oostenrijk', lat: 47.5162, lng: 14.5501 },
+            'ch': { name: 'Zwitserland', lat: 46.8182, lng: 8.2275 },
+            'se': { name: 'Zweden', lat: 60.1282, lng: 18.6435 },
+            'no': { name: 'Noorwegen', lat: 60.4720, lng: 8.4689 },
+            'dk': { name: 'Denemarken', lat: 56.2639, lng: 9.5018 },
+            'fi': { name: 'Finland', lat: 61.9241, lng: 25.7482 },
+            'ro': { name: 'Roemenië', lat: 45.9432, lng: 24.9668 },
+            'hu': { name: 'Hongarije', lat: 47.1625, lng: 19.5033 },
+            'hr': { name: 'Kroatië', lat: 45.1000, lng: 15.2000 },
+            'us': { name: 'Verenigde Staten', lat: 39.8283, lng: -98.5795 },
+            'ca': { name: 'Canada', lat: 56.1304, lng: -106.3468 },
+            'ae': { name: 'Verenigde Arabische Emiraten', lat: 24.4539, lng: 54.3773 },
+            'jp': { name: 'Japan', lat: 36.2048, lng: 138.2529 },
+            'au': { name: 'Australië', lat: -25.2744, lng: 133.7751 },
+            'za': { name: 'Zuid-Afrika', lat: -30.5595, lng: 22.9375 }
+        };
+
+        const COUNTRY_ALIASES = {
+            'nederland': 'nl', 'netherlands': 'nl', 'holland': 'nl', 'nl': 'nl',
+            'belgië': 'be', 'belgie': 'be', 'belgium': 'be', 'be': 'be',
+            'duitsland': 'de', 'germany': 'de', 'de': 'de', 'überherrn': 'de', 'saarland': 'de',
+            'frankrijk': 'fr', 'france': 'fr', 'fr': 'fr',
+            'verenigd koninkrijk': 'gb', 'uk': 'gb', 'united kingdom': 'gb', 'engeland': 'gb', 'scotland': 'gb', 'wales': 'gb', 'gb': 'gb',
+            'ierland': 'ie', 'ireland': 'ie', 'ie': 'ie',
+            'spanje': 'es', 'spain': 'es', 'españa': 'es', 'es': 'es', 'ocaña': 'es',
+            'portugal': 'pt', 'pt': 'pt',
+            'italië': 'it', 'italie': 'it', 'italy': 'it', 'it': 'it',
+            'tsjechië': 'cz', 'tsjechie': 'cz', 'czech republic': 'cz', 'czechia': 'cz', 'cz': 'cz',
+            'polen': 'pl', 'poland': 'pl', 'pl': 'pl',
+            'slowakije': 'sk', 'slovakia': 'sk', 'sk': 'sk',
+            'oostenrijk': 'at', 'austria': 'at', 'at': 'at',
+            'zwitserland': 'ch', 'switzerland': 'ch', 'ch': 'ch',
+            'zweden': 'se', 'sweden': 'se', 'se': 'se',
+            'noorwegen': 'no', 'norway': 'no', 'no': 'no',
+            'denemarken': 'dk', 'denmark': 'dk', 'dk': 'dk',
+            'finland': 'fi', 'fi': 'fi',
+            'roemenië': 'ro', 'roemenie': 'ro', 'romania': 'ro', 'ro': 'ro',
+            'hongarije': 'hu', 'hungary': 'hu', 'hu': 'hu',
+            'kroatië': 'hr', 'kroatie': 'hr', 'croatia': 'hr', 'hr': 'hr',
+            'usa': 'us', 'united states': 'us', 'verenigde staten': 'us',
+            'canada': 'ca', 'ca': 'ca',
+            'vae': 'ae', 'dubai': 'ae', 'united arab emirates': 'ae', 'ae': 'ae',
+            'japan': 'jp', 'jp': 'jp',
+            'australië': 'au', 'australie': 'au', 'australia': 'au', 'au': 'au',
+            'zuid-afrika': 'za', 'zuid afrika': 'za', 'south africa': 'za', 'za': 'za'
+        };
+
+        let rawListings = [];
+        let selectedCountryCode = null;
+        let mapInstance = null;
+        let markersLayer = null;
+        let lastMatrixExport = { headers: [], rows: [] };
+
+        function initMap() {
+            mapInstance = L.map('world-map', {
+                worldCopyJump: true
+            }).setView([48, 10], 3);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(mapInstance);
+
+            markersLayer = L.layerGroup().addTo(mapInstance);
+        }
+
+        function getRowValue(row, possibleKeys) {
+            for (let k of possibleKeys) {
+                for (let actualKey of Object.keys(row)) {
+                    if (actualKey.trim().toLowerCase() === k.toLowerCase()) {
+                        return row[actualKey];
+                    }
+                }
+            }
+            return '';
+        }
+
+        function detectCountryCode(locStr) {
+            if (!locStr) return 'other';
+            const cleaned = String(locStr).replace(/^[📍\s🏢]+/, '').trim().toLowerCase();
+
+            const parts = cleaned.split(/[,–\/\-|]+/);
+            for (let i = parts.length - 1; i >= 0; i--) {
+                const token = parts[i].replace(/\d+/g, '').trim();
+                if (COUNTRY_ALIASES[token]) return COUNTRY_ALIASES[token];
+            }
+
+            for (const [alias, code] of Object.entries(COUNTRY_ALIASES)) {
+                const regex = new RegExp(`\\b${alias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+                if (regex.test(cleaned)) return code;
+            }
+
+            return 'other';
+        }
+
+        function getCountryDisplayName(code) {
+            if (code === 'other') return 'Overig / Onbekend';
+            return COUNTRY_META[code]?.name || code.toUpperCase();
+        }
+
+        function parseNumericPrice(val) {
+            if (val === null || val === undefined) return null;
+            let s = String(val).trim().toLowerCase();
+            if (!s || s.includes('aanvraag') || s.includes('bod') || s.includes('n.o.t.k')) return null;
+            s = s.replace(',', '.').replace(/[^0-9.\-]/g, '');
+            const num = parseFloat(s);
+            return isNaN(num) || num <= 0 ? null : num;
+        }
+
+        function parseAuctionDate(str) {
+            if (!str) return null;
+            let s = String(str).replace(/^'/, '').trim();
+            if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}/.test(s)) s = s.replace(' ', 'T');
+            s = s.replace(/([+-]\d{2})(\d{2})$/, '$1:$2');
+            const d = new Date(s);
+            return isNaN(d.getTime()) ? null : d;
+        }
+
+        function isAiPick(row) {
+            const val = String(getRowValue(row, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
+            return val === 'ja' || val === 'true' || val === '1';
+        }
+
+        function isCompetitor(row) {
+            const aiReason = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
+            const feedback = String(getRowValue(row, ['Feedback', 'Feedback Inkoop']) || '').toLowerCase();
+            const platform = String(row.Platform || '').toLowerCase();
+            const loc = String(row.Locatie || '').toLowerCase();
+            const link = String(row.Link || '').toLowerCase();
+
+            if (aiReason.includes('concurrent') || platform.includes('concurrent') || feedback.includes('concurrent')) return true;
+            if (loc.includes('vuren')) return true;
+            if (loc.includes('gelderland') && link.includes('europe-commercial-vehicle.com')) return true;
+            return false;
+        }
+
+        function selectCountry(code) {
+            selectedCountryCode = (selectedCountryCode === code) ? null : code;
+            const btn = document.getElementById('clearCountryBtn');
+            const label = document.getElementById('activeCountryLabel');
+            if (selectedCountryCode) {
+                label.textContent = getCountryDisplayName(selectedCountryCode);
+                btn.style.display = 'inline-block';
+            } else {
+                btn.style.display = 'none';
+            }
+            recomputeAndRender();
+        }
+
+        function recomputeAndRender() {
+            const scope = document.getElementById('scopeSelect').value;
+            const showComp = document.getElementById('includeCompetitors').checked;
+            const now = new Date();
+
+            const filtered = rawListings.filter(row => {
+                if (!showComp && isCompetitor(row)) return false;
+
+                const endVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
+                const isAuction = endVal !== '';
+
+                if (isAuction) {
+                    const endDate = parseAuctionDate(endVal);
+                    if (endDate && (endDate - now) <= 1000) return false; // Verlopen veiling uitsluiten
+                }
+
+                if (scope === 'auctions') return isAuction;
+                if (scope === 'listings') return !isAuction;
+                return true;
+            });
+
+            // Aggregaties opbouwen
+            const countryStats = {}; // code -> { count, urgent, ai, prices: [], portals: Set, categories: {} }
+            const categoryTotals = {};
+            let totalUrgent = 0;
+            let totalAi = 0;
+            const allPrices = [];
+
+            filtered.forEach(row => {
+                const code = detectCountryCode(row.Locatie);
+                const category = (row.Categorie && String(row.Categorie).trim()) ? String(row.Categorie).trim() : 'Overig';
+                const platform = (row.Platform && String(row.Platform).trim()) ? String(row.Platform).trim() : 'Onbekend';
+                const priceNum = parseNumericPrice(row['Laatste prijs'] || row['Prijs'] || row['Eerste prijs']);
+                const ai = isAiPick(row);
+
+                let urgent = false;
+                const endVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
+                if (endVal) {
+                    const endDate = parseAuctionDate(endVal);
+                    if (endDate) {
+                        const hoursLeft = (endDate - now) / (1000 * 60 * 60);
+                        if (hoursLeft > 0 && hoursLeft <= 24) {
+                            urgent = true;
+                            totalUrgent++;
+                        }
+                    }
+                }
+
+                if (ai) totalAi++;
+                if (priceNum !== null) allPrices.push(priceNum);
+
+                if (!countryStats[code]) {
+                    countryStats[code] = {
+                        count: 0,
+                        urgent: 0,
+                        ai: 0,
+                        prices: [],
+                        portals: new Set(),
+                        categories: {}
+                    };
+                }
+
+                const st = countryStats[code];
+                st.count++;
+                if (urgent) st.urgent++;
+                if (ai) st.ai++;
+                if (priceNum !== null) st.prices.push(priceNum);
+                st.portals.add(platform);
+                st.categories[category] = (st.categories[category] || 0) + 1;
+
+                categoryTotals[category] = (categoryTotals[category] || 0) + 1;
+            });
+
+            // Landen sorteren op volume
+            const sortedCountries = Object.keys(countryStats).sort((a, b) => countryStats[b].count - countryStats[a].count);
+            // Categorieën sorteren op volume
+            const sortedCategories = Object.keys(categoryTotals).sort((a, b) => categoryTotals[b] - categoryTotals[a]);
+
+            // KPI's bijwerken
+            document.getElementById('kpi-total').textContent = filtered.length.toLocaleString('nl-NL');
+            document.getElementById('kpi-countries').textContent = `Verspreid over ${sortedCountries.length} landen`;
+            document.getElementById('kpi-urgent').textContent = totalUrgent.toLocaleString('nl-NL');
+            document.getElementById('kpi-ai').textContent = totalAi.toLocaleString('nl-NL');
+            const aiShare = filtered.length ? ((totalAi / filtered.length) * 100).toFixed(1) : '0.0';
+            document.getElementById('kpi-ai-share').textContent = `${aiShare}% van selectie`;
+
+            const avgPrice = allPrices.length
+                ? Math.round(allPrices.reduce((acc, v) => acc + v, 0) / allPrices.length)
+                : 0;
+            document.getElementById('kpi-avg-price').textContent = `€ ${avgPrice.toLocaleString('nl-NL')}`;
+            document.getElementById('kpi-priced-count').textContent = `Op basis van ${allPrices.length} kavels met prijs`;
+
+            if (sortedCountries.length > 0) {
+                const topCode = sortedCountries[0];
+                document.getElementById('kpi-top-country').textContent = getCountryDisplayName(topCode);
+                document.getElementById('kpi-top-country-sub').textContent = `${countryStats[topCode].count.toLocaleString('nl-NL')} kavels`;
+            } else {
+                document.getElementById('kpi-top-country').textContent = '-';
+                document.getElementById('kpi-top-country-sub').textContent = '0 kavels';
+            }
+
+            renderMapMarkers(countryStats, sortedCountries);
+            renderMatrixTable(sortedCountries, sortedCategories, countryStats, categoryTotals, filtered.length, scope);
+            renderInsights(sortedCountries, countryStats);
+        }
+
+        function renderMapMarkers(countryStats, sortedCountries) {
+            if (!markersLayer) return;
+            markersLayer.clearLayers();
+
+            sortedCountries.forEach(code => {
+                const meta = COUNTRY_META[code];
+                if (!meta) return;
+
+                const st = countryStats[code];
+                const isSelected = selectedCountryCode === code;
+
+                const icon = L.divIcon({
+                    className: 'custom-div-icon',
+                    html: `<div class="map-pin ${isSelected ? 'selected' : ''}">${code.toUpperCase()} · ${st.count}</div>`,
+                    iconSize: [0, 0],
+                    iconAnchor: [0, 0]
+                });
+
+                const marker = L.marker([meta.lat, meta.lng], { icon })
+                    .bindPopup(`
+                        <strong>${meta.name}</strong><br>
+                        Kavels: <b>${st.count}</b><br>
+                        &lt; 24u aflopend: <b>${st.urgent}</b><br>
+                        AI Picks: <b>${st.ai}</b>
+                    `)
+                    .on('click', () => selectCountry(code));
+
+                markersLayer.addLayer(marker);
+            });
+        }
+
+        function renderMatrixTable(sortedCountries, sortedCategories, countryStats, categoryTotals, grandTotal, scope) {
+            const thead = document.querySelector('#countryCategoryTable thead');
+            const tbody = document.querySelector('#countryCategoryTable tbody');
+            const tfoot = document.querySelector('#countryCategoryTable tfoot');
+
+            const tabParam = scope === 'listings' ? 'listings' : 'auctions';
+
+            // Header
+            let headHtml = '<tr><th>Land</th>';
+            sortedCategories.forEach(cat => {
+                headHtml += `<th>${escapeHtml(cat)}</th>`;
+            });
+            headHtml += '<th class="total-col">Totaal</th></tr>';
+            thead.innerHTML = headHtml;
+
+            // Export headers
+            const exportHeaders = ['Land', ...sortedCategories, 'Totaal'];
+            const exportRows = [];
+
+            // Body
+            let bodyHtml = '';
+            sortedCountries.forEach(code => {
+                const st = countryStats[code];
+                const name = getCountryDisplayName(code);
+                const isSelected = selectedCountryCode === code;
+                const flagHtml = code !== 'other'
+                    ? `<img src="https://flagcdn.com/24x18/${code}.png" alt="${code}" onerror="this.style.display='none'">`
+                    : '🌍';
+
+                bodyHtml += `<tr class="${isSelected ? 'active-country' : ''}">`;
+                bodyHtml += `<td><span class="country-cell-inner" onclick="selectCountry('${code}')">${flagHtml}<span>${escapeHtml(name)}</span></span></td>`;
+
+                const rowExport = [name];
+
+                sortedCategories.forEach(cat => {
+                    const cnt = st.categories[cat] || 0;
+                    rowExport.push(cnt);
+                    if (cnt > 0) {
+                        const url = `./?tab=${tabParam}&categorie=${encodeURIComponent(cat)}&q=${encodeURIComponent(name)}`;
+                        bodyHtml += `<td><a class="cell-link has-items" href="${url}" title="Open in platform">${cnt}</a></td>`;
+                    } else {
+                        bodyHtml += `<td><span class="cell-zero">0</span></td>`;
+                    }
+                });
+
+                rowExport.push(st.count);
+                exportRows.push(rowExport);
+
+                bodyHtml += `<td class="total-col">${st.count}</td></tr>`;
+            });
+
+            if (sortedCountries.length === 0) {
+                bodyHtml = `<tr><td colspan="${sortedCategories.length + 2}" style="text-align:center; padding:20px;">Geen data voor de huidige selectie.</td></tr>`;
+            }
+
+            tbody.innerHTML = bodyHtml;
+
+            // Footer totalen
+            let footHtml = '<tr><td>Totaal per categorie</td>';
+            const footExport = ['Totaal per categorie'];
+            sortedCategories.forEach(cat => {
+                const cTot = categoryTotals[cat] || 0;
+                footExport.push(cTot);
+                footHtml += `<td>${cTot}</td>`;
+            });
+            footExport.push(grandTotal);
+            footHtml += `<td>${grandTotal}</td></tr>`;
+            tfoot.innerHTML = footHtml;
+
+            lastMatrixExport = { headers: exportHeaders, rows: [...exportRows, footExport] };
+        }
+
+        function renderInsights(sortedCountries, countryStats) {
+            // 1. Urgent per land
+            const urgentSorted = [...sortedCountries]
+                .filter(c => countryStats[c].urgent > 0)
+                .sort((a, b) => countryStats[b].urgent - countryStats[a].urgent)
+                .slice(0, 8);
+
+            document.getElementById('urgentByCountryList').innerHTML = urgentSorted.length
+                ? urgentSorted.map(c => `
+                    <li>
+                        <span><strong>${escapeHtml(getCountryDisplayName(c))}</strong></span>
+                        <span class="pill urgent">${countryStats[c].urgent} kavels &lt; 24u</span>
+                    </li>
+                `).join('')
+                : '<li style="color:#777;">Geen kavels die binnen 24 uur aflopen.</li>';
+
+            // 2. AI Picks per land
+            const aiSorted = [...sortedCountries]
+                .filter(c => countryStats[c].ai > 0)
+                .sort((a, b) => countryStats[b].ai - countryStats[a].ai)
+                .slice(0, 8);
+
+            document.getElementById('aiByCountryList').innerHTML = aiSorted.length
+                ? aiSorted.map(c => `
+                    <li>
+                        <span><strong>${escapeHtml(getCountryDisplayName(c))}</strong></span>
+                        <span class="pill ai">${countryStats[c].ai} AI Picks</span>
+                    </li>
+                `).join('')
+                : '<li style="color:#777;">Geen AI Picks in huidige selectie.</li>';
+
+            // 3. Portaldekking & gem. prijs per land
+            const metaSorted = sortedCountries.slice(0, 8);
+            document.getElementById('countryMetaList').innerHTML = metaSorted.length
+                ? metaSorted.map(c => {
+                    const st = countryStats[c];
+                    const avg = st.prices.length
+                        ? `€ ${Math.round(st.prices.reduce((a, b) => a + b, 0) / st.prices.length).toLocaleString('nl-NL')}`
+                        : 'n.v.t.';
+                    const portalsPreview = [...st.portals].slice(0, 2).join(', ') + (st.portals.size > 2 ? ` +${st.portals.size - 2}` : '');
+                    return `
+                        <li>
+                            <div>
+                                <strong>${escapeHtml(getCountryDisplayName(c))}</strong><br>
+                                <small style="color:#777;">${escapeHtml(portalsPreview)}</small>
+                            </div>
+                            <span class="pill">Gem. ${avg}</span>
+                        </li>
+                    `;
+                }).join('')
+                : '<li style="color:#777;">Geen data beschikbaar.</li>';
+        }
+
+        function exportMatrixToExcelCsv() {
+            if (!lastMatrixExport.headers.length) return;
+            const sep = ';'; // Nederlandse Excel standaard
+            const escapeCsv = (val) => {
+                const s = String(val ?? '');
+                return /[";\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+            };
+            const lines = [
+                lastMatrixExport.headers.map(escapeCsv).join(sep),
+                ...lastMatrixExport.rows.map(r => r.map(escapeCsv).join(sep))
+            ];
+            const blob = new Blob(['\uFEFF' + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `veiling-factsheet-${new Date().toISOString().slice(0, 10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function escapeHtml(str) {
+            return String(str ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        initMap();
+
+        fetch(jsonMasterUrl)
+            .then(res => res.json())
+            .then(masterData => {
+                if (masterData.stockHeaders && masterData.stockRows) {
+                    const headers = masterData.stockHeaders;
+                    const rows = masterData.stockRows.map(r => {
+                        const obj = {};
+                        headers.forEach((h, i) => {
+                            if (h && h.trim()) obj[h.trim()] = r[i];
+                        });
+                        return obj;
+                    });
+                    rawListings = rows.filter(r =>
+                        !(r.Platform || '').toLowerCase().includes('eigen voorraad') &&
+                        (r.Merk || r.Model || r.brand || r.Titel)
+                    );
+                } else {
+                    const base = masterData.listings || (Array.isArray(masterData) ? masterData : []);
+                    rawListings = base.filter(r => r.Merk || r.Model || r.brand || r.Titel);
+                }
+
+                document.getElementById('last-updated-label').textContent =
+                    `Bijgewerkt: ${new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' })}`;
+
+                recomputeAndRender();
+            })
+            .catch(err => {
+                console.error('Fout bij laden van data:', err);
+                document.getElementById('last-updated-label').textContent = 'Fout bij laden van data';
+            });
+    </script>
+</body>
+</html>
