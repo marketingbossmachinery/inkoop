@@ -1016,15 +1016,47 @@
             position: relative;
             z-index: 5;
         }
-        .market-item a:hover { text-decoration: underline; }
+        .market-item a:hover {
+            text-decoration: underline; 
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+        .nav-link {
+            color: #dddddd;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.08);
+            transition: 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            background: var(--boss-red, #cc2027);
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="./" style="display: flex; align-items: center; text-decoration: none;">
-            <img src="logo.png" alt="BOSS GLOBAL" style="height: 40px; object-fit: contain; display: block;">
-        </a>
+        <div class="header-left">
+            <a href="./" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="logo.png" alt="BOSS GLOBAL" style="height: 40px; object-fit: contain; display: block;">
+            </a>
+            <nav class="nav-links">
+                <a href="./" class="nav-link active">Platform</a>
+                <a href="./factsheet.html" class="nav-link">Factsheet</a>
+            </nav>
+        </div>
         
         <div class="header-search-box">
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
