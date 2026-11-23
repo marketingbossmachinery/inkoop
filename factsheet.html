@@ -741,7 +741,7 @@
         <div class="panel">
             <div class="panel-header">
                 <h2>1. Wereldkaart — Kavels per Locatie / Land</h2>
-                <span id="map-instruction-hint" style="font-size: 12px; color: var(--text-light);">Klik op een land om in te zoomen en kleine locaties-bolletjes te tonen</span>
+                <span id="map-instruction-hint" style="font-size: 12px; color: var(--text-light);">Klik op een land om in te zoomen en geverifieerde plaats-bolletjes te tonen</span>
             </div>
             <div id="world-map"></div>
         </div>
@@ -821,54 +821,52 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         const jsonMasterUrl = './data/equipment-data.json';
+        const GEOCODE_CACHE_KEY = 'boss_factsheet_geocode_v1';
 
         const COUNTRY_META = {
-            'nl': { name: 'Nederland', lat: 52.1326, lng: 5.2913, zoom: 7, dLat: 0.42, dLng: 0.55, minLat: 50.95, maxLat: 53.25, minLng: 3.75, maxLng: 6.75 },
-            'be': { name: 'België', lat: 50.5039, lng: 4.4699, zoom: 7, dLat: 0.32, dLng: 0.55, minLat: 49.75, maxLat: 51.35, minLng: 2.95, maxLng: 5.85 },
-            'de': { name: 'Duitsland', lat: 51.1657, lng: 10.4515, zoom: 6, dLat: 1.4, dLng: 1.6, minLat: 47.8, maxLat: 54.4, minLng: 6.5, maxLng: 14.2 },
-            'fr': { name: 'Frankrijk', lat: 46.2276, lng: 2.2137, zoom: 6, dLat: 1.6, dLng: 1.8, minLat: 43.2, maxLat: 50.2, minLng: -3.8, maxLng: 7.2 },
-            'gb': { name: 'Verenigd Koninkrijk', lat: 52.3555, lng: -1.1743, zoom: 6, dLat: 1.5, dLng: 1.4, minLat: 50.4, maxLat: 57.0, minLng: -4.8, maxLng: 1.2 },
-            'ie': { name: 'Ierland', lat: 53.1424, lng: -7.6921, zoom: 7, dLat: 0.6, dLng: 0.8, minLat: 51.8, maxLat: 54.8, minLng: -9.5, maxLng: -6.2 },
-            'es': { name: 'Spanje', lat: 40.4637, lng: -3.7492, zoom: 6, dLat: 1.5, dLng: 1.8, minLat: 37.2, maxLat: 43.1, minLng: -7.8, maxLng: 2.5 },
-            'pt': { name: 'Portugal', lat: 39.3999, lng: -8.2245, zoom: 7, dLat: 0.9, dLng: 0.4, minLat: 37.3, maxLat: 41.6, minLng: -8.9, maxLng: -7.0 },
-            'it': { name: 'Italië', lat: 41.8719, lng: 12.5674, zoom: 6, dLat: 1.5, dLng: 1.4, minLat: 38.2, maxLat: 46.0, minLng: 7.8, maxLng: 16.5 },
-            'cz': { name: 'Tsjechië', lat: 49.8175, lng: 15.4730, zoom: 7, dLat: 0.4, dLng: 0.8, minLat: 48.8, maxLat: 50.8, minLng: 12.8, maxLng: 18.2 },
-            'pl': { name: 'Polen', lat: 51.9194, lng: 19.1451, zoom: 6, dLat: 1.1, dLng: 1.5, minLat: 49.5, maxLat: 54.2, minLng: 15.2, maxLng: 23.0 },
-            'sk': { name: 'Slowakije', lat: 48.6690, lng: 19.6990, zoom: 7, dLat: 0.35, dLng: 0.8, minLat: 48.0, maxLat: 49.4, minLng: 17.5, maxLng: 21.8 },
-            'at': { name: 'Oostenrijk', lat: 47.5162, lng: 14.5501, zoom: 7, dLat: 0.45, dLng: 1.1, minLat: 46.7, maxLat: 48.6, minLng: 10.2, maxLng: 16.5 },
-            'ch': { name: 'Zwitserland', lat: 46.8182, lng: 8.2275, zoom: 7, dLat: 0.35, dLng: 0.7, minLat: 46.0, maxLat: 47.6, minLng: 6.3, maxLng: 10.2 },
-            'se': { name: 'Zweden', lat: 60.1282, lng: 18.6435, zoom: 5, dLat: 2.0, dLng: 1.5, minLat: 56.0, maxLat: 65.5, minLng: 12.0, maxLng: 22.5 },
-            'no': { name: 'Noorwegen', lat: 60.4720, lng: 8.4689, zoom: 5, dLat: 1.8, dLng: 1.5, minLat: 58.5, maxLat: 67.0, minLng: 5.5, maxLng: 14.0 },
-            'dk': { name: 'Denemarken', lat: 56.2639, lng: 9.5018, zoom: 7, dLat: 0.5, dLng: 0.6, minLat: 55.0, maxLat: 57.3, minLng: 8.3, maxLng: 11.5 },
-            'fi': { name: 'Finland', lat: 61.9241, lng: 25.7482, zoom: 5, dLat: 1.5, dLng: 1.5, minLat: 60.2, maxLat: 66.0, minLng: 21.5, maxLng: 29.0 },
-            'ro': { name: 'Roemenië', lat: 45.9432, lng: 24.9668, zoom: 6, dLat: 0.9, dLng: 1.3, minLat: 44.2, maxLat: 47.8, minLng: 21.0, maxLng: 28.0 },
-            'hu': { name: 'Hongarije', lat: 47.1625, lng: 19.5033, zoom: 7, dLat: 0.5, dLng: 0.9, minLat: 46.1, maxLat: 48.3, minLng: 17.0, maxLng: 22.0 },
-            'hr': { name: 'Kroatië', lat: 45.1000, lng: 15.2000, zoom: 7, dLat: 0.5, dLng: 0.8, minLat: 43.6, maxLat: 46.1, minLng: 14.0, maxLng: 18.0 },
-            'us': { name: 'Verenigde Staten', lat: 39.8283, lng: -98.5795, zoom: 4, dLat: 4.5, dLng: 8.0, minLat: 26.5, maxLat: 47.5, minLng: -122.5, maxLng: -74.0 },
-            'ca': { name: 'Canada', lat: 56.1304, lng: -106.3468, zoom: 4, dLat: 4.0, dLng: 8.0, minLat: 44.5, maxLat: 60.0, minLng: -125.0, maxLng: -64.0 },
-            'ae': { name: 'Verenigde Arabische Emiraten', lat: 24.4539, lng: 54.3773, zoom: 7, dLat: 0.4, dLng: 0.6, minLat: 23.2, maxLat: 25.6, minLng: 52.5, maxLng: 56.0 },
-            'jp': { name: 'Japan', lat: 36.2048, lng: 138.2529, zoom: 5, dLat: 1.8, dLng: 1.8, minLat: 32.0, maxLat: 42.5, minLng: 130.5, maxLng: 143.5 },
-            'au': { name: 'Australië', lat: -25.2744, lng: 133.7751, zoom: 4, dLat: 4.5, dLng: 6.5, minLat: -37.0, maxLat: -14.0, minLng: 115.0, maxLng: 152.0 },
-            'za': { name: 'Zuid-Afrika', lat: -30.5595, lng: 22.9375, zoom: 5, dLat: 2.2, dLng: 2.8, minLat: -34.0, maxLat: -24.0, minLng: 18.0, maxLng: 31.5 }
+            'nl': { name: 'Nederland', lat: 52.1326, lng: 5.2913, zoom: 7 },
+            'be': { name: 'België', lat: 50.5039, lng: 4.4699, zoom: 7 },
+            'de': { name: 'Duitsland', lat: 51.1657, lng: 10.4515, zoom: 6 },
+            'fr': { name: 'Frankrijk', lat: 46.2276, lng: 2.2137, zoom: 6 },
+            'gb': { name: 'Verenigd Koninkrijk', lat: 52.3555, lng: -1.1743, zoom: 6 },
+            'ie': { name: 'Ierland', lat: 53.1424, lng: -7.6921, zoom: 7 },
+            'es': { name: 'Spanje', lat: 40.4637, lng: -3.7492, zoom: 6 },
+            'pt': { name: 'Portugal', lat: 39.3999, lng: -8.2245, zoom: 7 },
+            'it': { name: 'Italië', lat: 41.8719, lng: 12.5674, zoom: 6 },
+            'cz': { name: 'Tsjechië', lat: 49.8175, lng: 15.4730, zoom: 7 },
+            'pl': { name: 'Polen', lat: 51.9194, lng: 19.1451, zoom: 6 },
+            'sk': { name: 'Slowakije', lat: 48.6690, lng: 19.6990, zoom: 7 },
+            'at': { name: 'Oostenrijk', lat: 47.5162, lng: 14.5501, zoom: 7 },
+            'ch': { name: 'Zwitserland', lat: 46.8182, lng: 8.2275, zoom: 7 },
+            'se': { name: 'Zweden', lat: 60.1282, lng: 18.6435, zoom: 5 },
+            'no': { name: 'Noorwegen', lat: 60.4720, lng: 8.4689, zoom: 5 },
+            'dk': { name: 'Denemarken', lat: 56.2639, lng: 9.5018, zoom: 7 },
+            'fi': { name: 'Finland', lat: 61.9241, lng: 25.7482, zoom: 5 },
+            'ro': { name: 'Roemenië', lat: 45.9432, lng: 24.9668, zoom: 6 },
+            'hu': { name: 'Hongarije', lat: 47.1625, lng: 19.5033, zoom: 7 },
+            'hr': { name: 'Kroatië', lat: 45.1000, lng: 15.2000, zoom: 7 },
+            'us': { name: 'Verenigde Staten', lat: 39.8283, lng: -98.5795, zoom: 4 },
+            'ca': { name: 'Canada', lat: 56.1304, lng: -106.3468, zoom: 4 },
+            'ae': { name: 'Verenigde Arabische Emiraten', lat: 24.4539, lng: 54.3773, zoom: 7 },
+            'jp': { name: 'Japan', lat: 36.2048, lng: 138.2529, zoom: 5 },
+            'au': { name: 'Australië', lat: -25.2744, lng: 133.7751, zoom: 4 },
+            'za': { name: 'Zuid-Afrika', lat: -30.5595, lng: 22.9375, zoom: 5 }
         };
 
         const PLACE_COORDS = {
-            // Nederlandse provincies & regio's
             'noord-brabant': [51.57, 5.10], 'noord brabant': [51.57, 5.10], 'brabant': [51.57, 5.10],
             'zuid-holland': [51.98, 4.48], 'zuid holland': [51.98, 4.48],
             'noord-holland': [52.55, 4.88], 'noord holland': [52.55, 4.88],
             'gelderland': [52.05, 5.95], 'utrecht': [52.09, 5.12], 'overijssel': [52.44, 6.45],
             'limburg': [51.20, 5.95], 'friesland': [53.16, 5.79], 'fryslân': [53.16, 5.79],
             'groningen': [53.22, 6.57], 'drenthe': [52.85, 6.62], 'zeeland': [51.50, 3.85], 'flevoland': [52.52, 5.55],
-            // Nederlandse steden & plaatsen
             'eindhoven': [51.4416, 5.4697], 'veldhoven': [51.4083, 5.4053], 'rotterdam': [51.9244, 4.4777],
             'amsterdam': [52.3676, 4.9041], 'den haag': [52.0705, 4.3007], 's-gravenhage': [52.0705, 4.3007],
-            'utrecht': [52.0907, 5.1214], 'zwolle': [52.5168, 6.0830], 'nijmegen': [51.8126, 5.8372],
-            'tilburg': [51.5555, 5.0913], 'breda': [51.5719, 4.7683], 'groningen': [53.2194, 6.5665],
-            'arnhem': [51.9851, 5.8987], 'almere': [52.3508, 5.2647], 'venlo': [51.3704, 6.1724],
-            'oss': [51.7650, 5.5480], 'barneveld': [52.1400, 5.5880], 'apeldoorn': [52.2112, 5.9699],
-            'haarlem': [52.3874, 4.6462], 'alkmaar': [52.6324, 4.7534], 'zaandam': [52.4389, 4.8266],
-            'amersfoort': [52.1561, 5.3878], 'den bosch': [51.6978, 5.3037], "'s-hertogenbosch": [51.6978, 5.3037],
+            'zwolle': [52.5168, 6.0830], 'nijmegen': [51.8126, 5.8372], 'tilburg': [51.5555, 5.0913],
+            'breda': [51.5719, 4.7683], 'arnhem': [51.9851, 5.8987], 'almere': [52.3508, 5.2647],
+            'venlo': [51.3704, 6.1724], 'oss': [51.7650, 5.5480], 'barneveld': [52.1400, 5.5880],
+            'apeldoorn': [52.2112, 5.9699], 'haarlem': [52.3874, 4.6462], 'alkmaar': [52.6324, 4.7534],
+            'zaandam': [52.4389, 4.8266], 'amersfoort': [52.1561, 5.3878], 'den bosch': [51.6978, 5.3037],
             'helmond': [51.4793, 5.6570], 'roosendaal': [51.5308, 4.4653], 'dordrecht': [51.8133, 4.6901],
             'gouda': [52.0116, 4.7105], 'leiden': [52.1601, 4.4970], 'enschede': [52.2215, 6.8937],
             'hengelo': [52.2659, 6.7930], 'deventer': [52.2550, 6.1639], 'leeuwarden': [53.2012, 5.7999],
@@ -877,42 +875,33 @@
             'goes': [51.5042, 3.8897], 'middelburg': [51.4988, 3.6109], 'nijkerk': [52.2225, 5.4836],
             'ede': [52.0476, 5.6656], 'doetinchem': [51.9650, 6.2886], 'waalwijk': [51.6836, 5.0667],
             'veghel': [51.6167, 5.5500], 'uden': [51.6625, 5.6167], 'bergen op zoom': [51.4950, 4.2917],
-            // België
             'antwerpen': [51.2194, 4.4025], 'gent': [51.0543, 3.7174], 'brussel': [50.8503, 4.3517],
             'luik': [50.6326, 5.5797], 'hasselt': [50.9307, 5.3325], 'kortrijk': [50.8279, 3.2649],
             'namen': [50.4674, 4.8718], 'mechelen': [51.0259, 4.4776], 'genk': [50.9650, 5.5000],
             'brugge': [51.2093, 3.2247], 'leuven': [50.8798, 4.7005], 'charleroi': [50.4108, 4.4446],
-            // Duitsland
             'hamburg': [53.5511, 9.9937], 'münchen': [48.1351, 11.5820], 'muenchen': [48.1351, 11.5820],
             'berlin': [52.5200, 13.4050], 'köln': [50.9375, 6.9603], 'frankfurt': [50.1109, 8.6821],
             'stuttgart': [48.7758, 9.1829], 'düsseldorf': [51.2277, 6.7735], 'bremen': [53.0793, 8.8017],
             'hannover': [52.3759, 9.7320], 'leipzig': [51.3397, 12.3731], 'dortmund': [51.5136, 7.4653],
             'überherrn': [49.2500, 6.7000], 'saarland': [49.3964, 7.0230],
-            // Frankrijk
             'paris': [48.8566, 2.3522], 'lyon': [45.7640, 4.8357], 'marseille': [43.2965, 5.3698],
             'lille': [50.6292, 3.0573], 'toulouse': [43.6047, 1.4442], 'bordeaux': [44.8378, -0.5792],
             'nantes': [47.2184, -1.5536], 'strasbourg': [48.5734, 7.7521], 'rennes': [48.1173, -1.6778],
-            // UK
             'london': [51.5072, -0.1276], 'birmingham': [52.4862, -1.8904], 'manchester': [53.4808, -2.2426],
             'leeds': [53.8008, -1.5491], 'glasgow': [55.8642, -4.2518], 'bristol': [51.4545, -2.5879],
             'edinburgh': [55.9533, -3.1883], 'cardiff': [51.4816, -3.1791], 'belfast': [54.5973, -5.9301],
-            // Spanje
             'madrid': [40.4168, -3.7038], 'barcelona': [41.3851, 2.1734], 'valencia': [39.4699, -0.3763],
             'sevilla': [37.3891, -5.9845], 'zaragoza': [41.6488, -0.8891], 'bilbao': [43.2630, -2.9350], 'ocaña': [39.9560, -3.4970],
-            // Italië
             'milano': [45.4642, 9.1900], 'milan': [45.4642, 9.1900], 'roma': [41.9028, 12.4964],
             'rome': [41.9028, 12.4964], 'bologna': [44.4949, 11.3426], 'torino': [45.0703, 7.6869],
             'verona': [45.4384, 10.9916], 'napoli': [40.8518, 14.2681], 'padova': [45.4064, 11.8768],
-            // Polen & Oost-Europa
             'warszawa': [52.2297, 21.0122], 'warsaw': [52.2297, 21.0122], 'kraków': [50.0647, 19.9450],
             'wrocław': [51.1079, 17.0385], 'poznań': [52.4064, 16.9252], 'gdańsk': [54.3520, 18.6466],
             'praha': [50.0755, 14.4378], 'prague': [50.0755, 14.4378], 'brno': [49.1951, 16.6068],
             'wien': [48.2082, 16.3738], 'vienna': [48.2082, 16.3738], 'graz': [47.0707, 15.4395],
-            // Scandinavië
             'stockholm': [59.3293, 18.0686], 'göteborg': [57.7089, 11.9746], 'malmö': [55.6050, 13.0038],
             'oslo': [59.9139, 10.7522], 'bergen': [60.3913, 5.3221], 'trondheim': [63.4305, 10.3951],
             'københavn': [55.6761, 12.5683], 'copenhagen': [55.6761, 12.5683], 'aarhus': [56.1629, 10.2039],
-            // VS & Canada
             'houston': [29.7604, -95.3698], 'dallas': [32.7767, -96.7970], 'atlanta': [33.7490, -84.3880],
             'chicago': [41.8781, -87.6298], 'phoenix': [33.4484, -112.0740], 'denver': [39.7392, -104.9903],
             'miami': [25.7617, -80.1918], 'orlando': [28.5383, -81.3792], 'los angeles': [34.0522, -118.2437],
@@ -957,6 +946,89 @@
         let markersLayer = null;
         let cityDotsLayer = null;
         let lastMatrixExport = { headers: [], rows: [] };
+        let geocodeCache = loadGeocodeCache();
+        const pendingGeocode = new Set();
+        let geocodeQueueRunning = false;
+        const geocodeQueue = [];
+
+        function loadGeocodeCache() {
+            try {
+                const raw = localStorage.getItem(GEOCODE_CACHE_KEY);
+                return raw ? JSON.parse(raw) : {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveGeocodeCache() {
+            try {
+                localStorage.setItem(GEOCODE_CACHE_KEY, JSON.stringify(geocodeCache));
+            } catch (e) {}
+        }
+
+        function enqueueGeocode(placeName, countryCode) {
+            const key = `${countryCode || 'any'}::${placeName.toLowerCase().trim()}`;
+            if (key in geocodeCache || pendingGeocode.has(key)) return;
+            pendingGeocode.add(key);
+            geocodeQueue.push({ key, placeName, countryCode });
+            if (!geocodeQueueRunning) {
+                processGeocodeQueue();
+            }
+        }
+
+        async function processGeocodeQueue() {
+            geocodeQueueRunning = true;
+            while (geocodeQueue.length > 0) {
+                const item = geocodeQueue.shift();
+                try {
+                    const params = new URLSearchParams({
+                        q: item.placeName,
+                        format: 'jsonv2',
+                        limit: '1'
+                    });
+                    if (item.countryCode && item.countryCode !== 'other') {
+                        params.set('countrycodes', item.countryCode);
+                    }
+                    const resp = await fetch(`https://nominatim.openstreetmap.org/search?${params.toString()}`, {
+                        headers: { 'Accept-Language': 'nl,en' }
+                    });
+                    if (resp.ok) {
+                        const data = await resp.json();
+                        if (Array.isArray(data) && data.length > 0) {
+                            const lat = parseFloat(data[0].lat);
+                            const lon = parseFloat(data[0].lon);
+                            geocodeCache[item.key] = (!isNaN(lat) && !isNaN(lon)) ? [lat, lon] : null;
+                        } else {
+                            geocodeCache[item.key] = null;
+                        }
+                        saveGeocodeCache();
+                        if (selectedCountryCode && item.key.startsWith(`${selectedCountryCode}::`)) {
+                            recomputeAndRender();
+                        }
+                    }
+                } catch (e) {
+                    // laat key uit pending zodat het later opnieuw kan
+                } finally {
+                    pendingGeocode.delete(item.key);
+                }
+                // Respecteer Nominatim rate limit (~1 request/sec)
+                await new Promise(r => setTimeout(r, 1100));
+            }
+            geocodeQueueRunning = false;
+        }
+
+        function getVerifiedPlaceCoords(placeName, countryCode) {
+            const lower = placeName.toLowerCase().trim();
+            if (PLACE_COORDS[lower]) return PLACE_COORDS[lower];
+
+            const key = `${countryCode || 'any'}::${lower}`;
+            if (key in geocodeCache) {
+                return geocodeCache[key]; // [lat, lng] of null (niet gevonden -> geen punt tonen)
+            }
+
+            enqueueGeocode(placeName, countryCode);
+            return undefined; // nog in opzoek-wachtrij
+        }
 
         function initMap() {
             mapInstance = L.map('world-map', {
@@ -1039,36 +1111,6 @@
             }
 
             return candidate;
-        }
-
-        function clamp(val, min, max) {
-            if (typeof min === 'number' && val < min) return min;
-            if (typeof max === 'number' && val > max) return max;
-            return val;
-        }
-
-        function getPlaceCoordinates(placeName, countryMeta, index) {
-            const key = placeName.toLowerCase().trim();
-            if (PLACE_COORDS[key]) return PLACE_COORDS[key];
-
-            let hash = 0;
-            for (let i = 0; i < key.length; i++) {
-                hash = ((hash << 5) - hash) + key.charCodeAt(i);
-                hash |= 0;
-            }
-
-            const angle = (Math.abs(hash) % 360) * (Math.PI / 180);
-            const normR = 0.22 + ((Math.abs(hash >> 5) % 68) / 100);
-            const dLat = (countryMeta.dLat || 0.5) * normR;
-            const dLng = (countryMeta.dLng || 0.7) * normR;
-
-            const rawLat = countryMeta.lat + Math.sin(angle) * dLat;
-            const rawLng = countryMeta.lng + Math.cos(angle) * dLng;
-
-            const lat = clamp(rawLat, countryMeta.minLat, countryMeta.maxLat);
-            const lng = clamp(rawLng, countryMeta.minLng, countryMeta.maxLng);
-
-            return [lat, lng];
         }
 
         function getCountryDisplayName(code) {
@@ -1161,15 +1203,15 @@
 
             if (selectedCountryCode) {
                 const cname = getCountryDisplayName(selectedCountryCode);
-                desc.textContent = `Focus op ${cname} — kleine locaties-bolletjes op de kaart getoond, land bovenaan gepind en overige landen gedimd.`;
-                mapHint.textContent = `${cname} actief — kleine bolletjes tonen locaties · Klik opnieuw op het land of de vlag om uit te zoomen`;
+                desc.textContent = `Focus op ${cname} — geverifieerde plaats-bolletjes op de kaart getoond, land bovenaan gepind en overige landen gedimd.`;
+                mapHint.textContent = `${cname} actief — alleen geverifieerde plaats-bolletjes worden getoond · Klik opnieuw om uit te zoomen`;
                 const meta = COUNTRY_META[selectedCountryCode];
                 if (meta && mapInstance) {
                     mapInstance.setView([meta.lat, meta.lng], meta.zoom || 6);
                 }
             } else {
                 desc.textContent = 'Overzicht van actieve kavels per land en categorie, aangevuld met urgentie, AI Picks en portaldekking.';
-                mapHint.textContent = 'Klik op een land om in te zoomen en kleine locaties-bolletjes te tonen';
+                mapHint.textContent = 'Klik op een land om in te zoomen en geverifieerde plaats-bolletjes te tonen';
                 if (mapInstance) {
                     mapInstance.setView([48, 10], 3);
                 }
@@ -1384,7 +1426,6 @@
             });
 
             if (selectedCountryCode && COUNTRY_META[selectedCountryCode]) {
-                const cMeta = COUNTRY_META[selectedCountryCode];
                 const placeMap = {};
 
                 focusRows.forEach(r => {
@@ -1399,8 +1440,12 @@
 
                 const topPlaces = Object.values(placeMap).sort((a, b) => b.count - a.count).slice(0, 35);
 
-                topPlaces.forEach((p, idx) => {
-                    const [lat, lng] = getPlaceCoordinates(p.name, cMeta, idx);
+                topPlaces.forEach(p => {
+                    const coords = getVerifiedPlaceCoords(p.name, selectedCountryCode);
+                    // Geen punt plaatsen als coördinaten onbekend of niet gevonden zijn
+                    if (!Array.isArray(coords) || coords.length !== 2) return;
+
+                    const [lat, lng] = coords;
                     const radius = Math.min(11, Math.max(5, 4 + Math.sqrt(p.count) * 1.2));
                     const dot = L.circleMarker([lat, lng], {
                         radius,
