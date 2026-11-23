@@ -1585,8 +1585,8 @@
 
             const params = new URLSearchParams({ id: String(id) });
             if (mode === 'tonen') {
+                params.set('action', 'verberg');
                 params.set('tonen', String(value));
-                params.set('action', 'hide');
             } else {
                 params.set('feedback', String(value));
             }
@@ -1615,7 +1615,7 @@
                 Object.keys(liveData).forEach(id => {
                     const entry = liveData[id];
                     const val = (typeof entry === 'object' && entry !== null)
-                        ? String(entry.feedback || entry.Feedback || '').trim()
+                        ? String(entry.status || entry.feedback || entry.Feedback || '').trim()
                         : String(entry || '').trim();
                     const tonenVal = (typeof entry === 'object' && entry !== null)
                         ? String(entry.tonen || entry.Tonen || '').trim().toLowerCase()
