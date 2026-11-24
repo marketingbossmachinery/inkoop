@@ -238,6 +238,23 @@
             background: var(--boss-blue-dark);
         }
 
+        .btn-back-brand {
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 4px;
+            border: 1px solid var(--boss-blue);
+            background: #f0f9ff;
+            color: var(--boss-blue-dark);
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .btn-back-brand:hover {
+            background: var(--boss-blue);
+            color: #ffffff;
+        }
+
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -315,6 +332,13 @@
             margin-bottom: 14px;
             padding-bottom: 10px;
             border-bottom: 2px solid var(--boss-gray);
+        }
+
+        .panel-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .panel-header h2 {
@@ -403,6 +427,20 @@
             position: sticky;
             top: 0;
             z-index: 3;
+        }
+
+        table.matrix-table thead th.drillable-th {
+            cursor: pointer;
+            transition: background-color 0.15s, color 0.15s;
+        }
+
+        table.matrix-table thead th.drillable-th:hover {
+            background: var(--boss-blue-dark);
+        }
+
+        table.matrix-table thead th.active-drill-th {
+            background: var(--boss-blue);
+            color: #ffffff;
         }
 
         table.matrix-table thead th:first-child {
@@ -703,7 +741,7 @@
             <div class="page-toolbar">
                 <div class="page-title-group">
                     <h1>Boss Vans — Markt &amp; Veiling Factsheet</h1>
-                    <p id="selection-status-desc">Overzicht van actieve bedrijfswagens per land en model, aangevuld met veilingurgentie, AI Picks en portaldekking.</p>
+                    <p id="selection-status-desc">Overzicht van actieve bedrijfswagens per land, merk en model, aangevuld met veilingurgentie, AI Picks en portaldekking.</p>
                 </div>
                 <div class="toolbar-controls">
                     <select id="scopeSelect" class="btn" onchange="recomputeAndRender()">
@@ -774,8 +812,11 @@
 
         <div class="panel">
             <div class="panel-header">
-                <h2>2. Overzicht per Land &amp; Model (Matrix)</h2>
-                <span style="font-size: 12px; color: var(--text-light);">Klik op een landnaam om te pinnen · Klik op een getal om direct naar het platform te gaan</span>
+                <div class="panel-header-left">
+                    <h2 id="matrixPanelTitle">2. Overzicht per Land &amp; Merk (Matrix)</h2>
+                    <button type="button" id="backToBrandsBtn" class="btn-back-brand" style="display:none;" onclick="clearSelectedBrand()">← Alle merken</button>
+                </div>
+                <span id="matrixInstructionHint" style="font-size: 12px; color: var(--text-light);">Klik op een merk in de kop om uit te splitsen in modellen · Klik op een landnaam om te pinnen</span>
             </div>
             <div class="table-wrapper">
                 <table class="matrix-table" id="countryBrandTable">
@@ -931,6 +972,7 @@
 
         let rawListings = [];
         let selectedCountryCode = null;
+        let selectedBrandKey = null; // null = merk-overzicht, string = genormaliseerde merknaam voor model-uitsplitsing
         let mapInstance = null;
         let markersLayer = null;
         let cityDotsLayer = null;
@@ -1034,9 +1076,10 @@
         }
 
         function getRowValue(row, possibleKeys) {
+            if (!row) return '';
             for (let k of possibleKeys) {
                 for (let actualKey of Object.keys(row)) {
-                    if (actualKey.trim().toLowerCase() === k.toLowerCase()) {
+                    if (actualKey.trim().toLowerCase() === k.trim().toLowerCase()) {
                         return row[actualKey];
                     }
                 }
@@ -1052,948 +1095,28 @@
             return false;
         }
 
-        // Normaliseert modelnaam zodat varianten met/zonder hoofdletters, streepjes, spaties of spellingsverschillen samen komen
-        function normalizeModelKey(brandVal, modelVal, titleVal) {
-            let rawBrand = String(brandVal || '').trim();
-            let rawModel = String(modelVal || '').trim();
-
-            if (!rawModel && titleVal) {
-                rawModel = String(titleVal).trim();
+        // Merk (kolom B / index 1) normaliseren zodat varianten samenvallen
+        function normalizeBrandKey(brandVal) {
+            const raw = String(brandVal || '').trim().toLowerCase();
+            if (!raw) return 'onbekend';
+            if (raw === 'mercedes-benz' || raw === 'mercedes benz' || raw === 'mercedes' || raw === 'mb') {
+                return 'mercedes-benz';
             }
+            if (raw === 'volkswagen' || raw === 'vw') {
+                return 'volkswagen';
+            }
+            return raw.replace(/[^a-z0-9]+/g, ' ').trim() || 'onbekend';
+        }
+
+        function formatBrandLabel(brandKey, sampleBrandVal) {
+            if (brandKey === 'mercedes-benz') return 'MERCEDES-BENZ';
+            if (brandKey === 'volkswagen') return 'VOLKSWAGEN';
+            if (brandKey === 'onbekend') return 'ONBEKEND';
+            const cleaned = String(sampleBrandVal || brandKey).trim().toUpperCase();
+            return cleaned || brandKey.toUpperCase();
+        }
+
+        // Model uit index 23 ("Model ") normaliseren zodat varianten netjes samen komen
+        function normalizeModelKey(modelVal, brandVal) {
+            let rawModel = String(modelVal ?? '').trim();
             if (!rawModel) return 'onbekend';
-
-            // Verwijder merk als het al vooraan in het model staat
-            let combined = rawModel;
-            if (rawBrand) {
-                const brandClean = rawBrand.replace(/[-_]/g, ' ').trim();
-                const escBrand = brandClean.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '[\\s\\-_]+');
-                combined = combined.replace(new RegExp(`^${escBrand}\\b`, 'i'), '').trim();
-            }
-
-            // Spelling- en merkprefix-varianten normaliseren (bijv. Mercedes-Benz / MB / Vito / E-Deliver 9)
-            let norm = combined
-                .toLowerCase()
-                .replace(/\bmercedes[\s\-]*benz\b/g, 'mercedes')
-                .replace(/\bmb\b/g, 'mercedes')
-                .replace(/\bvolkswagen\b/g, 'vw')
-                .replace(/\be[\s\-]*deliver[\s\-]*([0-9]+)/g, 'edeliver$1')
-                .replace(/\bsprinter[\s\-]*([0-9]{3})/g, 'sprinter$1')
-                .replace(/\btransit[\s\-]*custom\b/g, 'transitcustom')
-                .replace(/\btransit[\s\-]*connect\b/g, 'transitconnect')
-                .replace(/\bmaster[\s\-]*([lhm]\d)?/g, 'master$1')
-                .replace(/\bproace[\s\-]*max\b/g, 'proacemax')
-                .replace(/\bproace[\s\-]*city\b/g, 'proacecity')
-                .replace(/[^a-z0-9]+/g, '');
-
-            if (!norm) {
-                norm = rawModel.toLowerCase().replace(/[^a-z0-9]+/g, '');
-            }
-
-            return norm || 'onbekend';
-        }
-
-        function formatModelLabel(normKey, rawModelVal, rawBrandVal, rawTitleVal) {
-            const explicitMap = {
-                'vito': 'MERCEDES-BENZ VITO',
-                'sprinter': 'MERCEDES-BENZ SPRINTER',
-                'citan': 'MERCEDES-BENZ CITAN',
-                'edeliver9': 'MAXUS E-DELIVER 9',
-                'edeliver3': 'MAXUS E-DELIVER 3',
-                'transit': 'FORD TRANSIT',
-                'transitcustom': 'FORD TRANSIT CUSTOM',
-                'transitconnect': 'FORD TRANSIT CONNECT',
-                'transporter': 'VW TRANSPORTER',
-                'crafter': 'VW CRAFTER',
-                'caddy': 'VW CADDY',
-                'ducato': 'FIAT DUCATO',
-                'doblo': 'FIAT DOBLO',
-                'master': 'RENAULT MASTER',
-                'trafic': 'RENAULT TRAFIC',
-                'kangoo': 'RENAULT KANGOO',
-                'boxer': 'PEUGEOT BOXER',
-                'expert': 'PEUGEOT EXPERT',
-                'partner': 'PEUGEOT PARTNER',
-                'jumper': 'CITROËN JUMPER',
-                'jumpy': 'CITROËN JUMPY',
-                'berlingo': 'CITROËN BERLINGO',
-                'movano': 'OPEL MOVANO',
-                'vivaro': 'OPEL VIVARO',
-                'combo': 'OPEL COMBO',
-                'proace': 'TOYOTA PROACE',
-                'proacemax': 'TOYOTA PROACE MAX',
-                'proacecity': 'TOYOTA PROACE CITY',
-                'daily': 'IVECO DAILY'
-            };
-
-            if (explicitMap[normKey]) return explicitMap[normKey];
-
-            let base = String(rawModelVal || rawTitleVal || normKey).trim();
-            if (rawBrandVal) {
-                const brandClean = String(rawBrandVal).trim();
-                const escBrand = brandClean.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '[\\s\\-_]+');
-                const stripped = base.replace(new RegExp(`^${escBrand}\\b`, 'i'), '').trim();
-                if (stripped) base = stripped;
-            }
-
-            const cleaned = base
-                .replace(/[-_]+/g, ' ')
-                .replace(/\s{2,}/g, ' ')
-                .trim()
-                .toUpperCase();
-
-            return cleaned || normKey.toUpperCase();
-        }
-
-        function detectCountryCode(locStr) {
-            if (!locStr) return 'other';
-            const cleaned = String(locStr).replace(/^[📍\s🏢]+/, '').trim().toLowerCase();
-
-            const parts = cleaned.split(/[,–\/\-|]+/);
-            for (let i = parts.length - 1; i >= 0; i--) {
-                const token = parts[i].replace(/\d+/g, '').trim();
-                if (COUNTRY_ALIASES[token]) return COUNTRY_ALIASES[token];
-            }
-
-            for (const [alias, code] of Object.entries(COUNTRY_ALIASES)) {
-                const regex = new RegExp(`\\b${alias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
-                if (regex.test(cleaned)) return code;
-            }
-
-            return 'other';
-        }
-
-        function extractPlaceFromLocation(locStr, countryCode) {
-            if (!locStr) return null;
-            let raw = String(locStr).replace(/^[📍\s🏢]+/, '').trim();
-            if (!raw) return null;
-
-            let candidate = raw.split(/[,–\/\-|]+/)[0].trim();
-
-            const countryName = (COUNTRY_META[countryCode]?.name || '').toLowerCase();
-            const lowerCand = candidate.toLowerCase().replace(/\d+/g, '').trim();
-            if (!lowerCand) return null;
-            if (COUNTRY_ALIASES[lowerCand] || (countryName && lowerCand === countryName)) {
-                return null;
-            }
-
-            candidate = candidate
-                .replace(/\b\d{4,5}\s*[A-Za-z]{0,2}\b/g, '')
-                .replace(/\s{2,}/g, ' ')
-                .trim();
-
-            if (!candidate || candidate.length < 2) return null;
-
-            if (candidate === candidate.toUpperCase() && candidate.length > 3) {
-                candidate = candidate.toLowerCase().replace(/\b\w/g, ch => ch.toUpperCase());
-            }
-
-            return candidate;
-        }
-
-        function getCountryDisplayName(code) {
-            if (code === 'other') return 'Overig / Onbekend';
-            return COUNTRY_META[code]?.name || code.toUpperCase();
-        }
-
-        function parseNumericValue(val) {
-            if (val === null || val === undefined) return null;
-            let s = String(val).trim().toLowerCase();
-            if (!s || s.includes('aanvraag') || s.includes('bod') || s.includes('n.o.t.k')) return null;
-            let digits = s.match(/[\d]+([.,]\d{3})*/);
-            if (digits) {
-                const clean = digits[0].replace(/[.,]/g, '');
-                const num = parseInt(clean, 10);
-                return isNaN(num) ? null : num;
-            }
-            return null;
-        }
-
-        function parseYearValue(val) {
-            if (val === null || val === undefined) return null;
-            const match = String(val).match(/\b(19\d{2}|20\d{2})\b/);
-            return match ? parseInt(match[1], 10) : null;
-        }
-
-        function parseNumericPrice(val) {
-            const num = parseNumericValue(val);
-            return num !== null && num > 0 ? num : null;
-        }
-
-        function parseAuctionDate(str) {
-            if (!str || str === 'N.v.t.') return null;
-            let s = String(str).replace(/^'/, '').trim();
-            if (/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}/.test(s)) s = s.replace(' ', 'T');
-            s = s.replace(/([+-]\d{2})(\d{2})$/, '$1:$2');
-            const d = new Date(s);
-            if (!isNaN(d.getTime())) return d;
-
-            const euMatch = s.match(/^(\d{2})-(\d{2})-(\d{4})[, ]*\s*(\d{2}):(\d{2})$/);
-            if (euMatch) {
-                const [, day, m, y, hh, mm] = euMatch;
-                return new Date(`${y}-${m}-${day}T${hh}:${mm}:00`);
-            }
-            return null;
-        }
-
-        function isAiPick(row) {
-            const val = String(getRowValue(row, ['AI Pick', 'AI-Pick', 'AIPick']) || '').trim().toLowerCase();
-            return val === 'ja' || val === 'true' || val === '1';
-        }
-
-        function isCompetitor(row) {
-            const aiReason = String(getRowValue(row, ['AI Reden', 'AI-Reden', 'AIReden']) || '').toLowerCase();
-            const feedback = String(getRowValue(row, ['Feedback', 'Feedback Inkoop']) || '').toLowerCase();
-            const platform = String(row.Platform || '').toLowerCase();
-            const loc = String(row.Locatie || '').toLowerCase();
-            const link = String(row.Link || '').toLowerCase();
-
-            if (aiReason.includes('concurrent') || platform.includes('concurrent') || feedback.includes('concurrent')) return true;
-            if (loc.includes('vuren')) return true;
-            if (loc.includes('gelderland') && link.includes('europe-commercial-vehicle.com')) return true;
-            return false;
-        }
-
-        function buildPlatformUrl({ tab = 'listings', q = '', land = '' }) {
-            const params = new URLSearchParams();
-            params.set('tab', tab);
-            if (land) params.set('land', land);
-            if (q) params.set('q', q);
-            return `${PLATFORM_PAGE}?${params.toString()}`;
-        }
-
-        function updateFocusBadge() {
-            const box = document.getElementById('countryFocusBadge');
-            const circle = document.getElementById('focusBadgeCircle');
-            const label = document.getElementById('focusBadgeLabel');
-            const value = document.getElementById('focusBadgeValue');
-            const hint = document.getElementById('focusBadgeHint');
-
-            if (selectedCountryCode) {
-                const name = getCountryDisplayName(selectedCountryCode);
-                box.classList.add('has-selection');
-                label.textContent = 'Geselecteerd land';
-                value.textContent = name;
-                hint.style.display = 'block';
-
-                if (selectedCountryCode !== 'other') {
-                    circle.innerHTML = `<img src="https://flagcdn.com/48x36/${selectedCountryCode}.png" alt="${escapeHtml(name)}" onerror="this.parentElement.innerHTML='🌍'">`;
-                } else {
-                    circle.innerHTML = `<span style="font-size:20px;">🌍</span>`;
-                }
-            } else {
-                box.classList.remove('has-selection');
-                label.textContent = 'Marktoverzicht';
-                value.textContent = 'Alle landen';
-                hint.style.display = 'none';
-                circle.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
-            }
-        }
-
-        function selectCountry(code) {
-            selectedCountryCode = (selectedCountryCode === code) ? null : code;
-            const desc = document.getElementById('selection-status-desc');
-            const mapHint = document.getElementById('map-instruction-hint');
-
-            if (selectedCountryCode) {
-                const cname = getCountryDisplayName(selectedCountryCode);
-                desc.textContent = `Focus op ${cname} — geverifieerde plaats-bolletjes op de kaart getoond, land bovenaan gepind en overige landen gedimd.`;
-                mapHint.textContent = `${cname} actief — alleen geverifieerde plaats-bolletjes worden getoond · Klik opnieuw om uit te zoomen`;
-                const meta = COUNTRY_META[selectedCountryCode];
-                if (meta && mapInstance) {
-                    mapInstance.setView([meta.lat, meta.lng], meta.zoom || 6);
-                }
-            } else {
-                desc.textContent = 'Overzicht van actieve bedrijfswagens per land en model, aangevuld met veilingurgentie, AI Picks en portaldekking.';
-                mapHint.textContent = 'Klik op een land om in te zoomen en geverifieerde plaats-bolletjes te tonen';
-                if (mapInstance) {
-                    mapInstance.setView([50, 9], 4);
-                }
-            }
-            updateFocusBadge();
-            recomputeAndRender();
-        }
-
-        function recomputeAndRender() {
-            const scope = document.getElementById('scopeSelect').value;
-            const showComp = document.getElementById('includeCompetitors').checked;
-            const now = new Date();
-            const tabParam = scope === 'auctions' ? 'auctions' : 'listings';
-
-            const filtered = rawListings.filter(row => {
-                if (isRowHidden(row)) return false;
-                if (!showComp && isCompetitor(row)) return false;
-
-                const endVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
-                const isAuction = endVal !== '' && endVal !== 'N.v.t.';
-
-                if (isAuction) {
-                    const endDate = parseAuctionDate(endVal);
-                    if (endDate && (endDate - now) <= 1000) return false;
-                }
-
-                if (scope === 'auctions') return isAuction;
-                if (scope === 'listings') return !isAuction;
-                return true;
-            });
-
-            // Groepeer en tel alle rijen op genormaliseerd model (niet op merk)
-            const modelKeyCounts = {};
-            const modelKeyLabelSamples = {};
-            filtered.forEach(r => {
-                const key = normalizeModelKey(r.Merk, r.Model, r.Titel);
-                modelKeyCounts[key] = (modelKeyCounts[key] || 0) + 1;
-                if (!modelKeyLabelSamples[key]) {
-                    modelKeyLabelSamples[key] = {
-                        model: r.Model,
-                        brand: r.Merk,
-                        title: r.Titel
-                    };
-                }
-            });
-
-            const topModelKeys = Object.entries(modelKeyCounts)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 10)
-                .map(([k]) => k);
-
-            const OTHER_MODEL_KEY = '__OVERIGE_MODELLEN__';
-            const modelColumns = topModelKeys.map(key => {
-                const s = modelKeyLabelSamples[key] || {};
-                return {
-                    key,
-                    label: formatModelLabel(key, s.model, s.brand, s.title),
-                    searchQuery: formatModelLabel(key, s.model, '', s.title)
-                };
-            });
-
-            const countryStats = {};
-            const colTotalsAll = {};
-            const colTotalsSelected = {};
-
-            filtered.forEach(row => {
-                const code = detectCountryCode(row.Locatie);
-                const normModel = normalizeModelKey(row.Merk, row.Model, row.Titel);
-                const colKey = topModelKeys.includes(normModel) ? normModel : OTHER_MODEL_KEY;
-
-                const platform = (row.Platform && String(row.Platform).trim()) ? String(row.Platform).trim() : 'Onbekend';
-                const priceNum = parseNumericPrice(row['Laatste prijs'] || row['Prijs'] || row['Eerste prijs']);
-                const ai = isAiPick(row);
-
-                let urgent = false;
-                const endVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
-                if (endVal && endVal !== 'N.v.t.') {
-                    const endDate = parseAuctionDate(endVal);
-                    if (endDate) {
-                        const hoursLeft = (endDate - now) / (1000 * 60 * 60);
-                        if (hoursLeft > 0 && hoursLeft <= 24) urgent = true;
-                    }
-                }
-
-                if (!countryStats[code]) {
-                    countryStats[code] = {
-                        count: 0,
-                        urgent: 0,
-                        ai: 0,
-                        prices: [],
-                        portals: new Set(),
-                        models: {}
-                    };
-                }
-
-                const st = countryStats[code];
-                st.count++;
-                if (urgent) st.urgent++;
-                if (ai) st.ai++;
-                if (priceNum !== null) st.prices.push(priceNum);
-                st.portals.add(platform);
-                st.models[colKey] = (st.models[colKey] || 0) + 1;
-
-                colTotalsAll[colKey] = (colTotalsAll[colKey] || 0) + 1;
-                if (selectedCountryCode && code === selectedCountryCode) {
-                    colTotalsSelected[colKey] = (colTotalsSelected[colKey] || 0) + 1;
-                }
-            });
-
-            const sortedCountries = Object.keys(countryStats).sort((a, b) => {
-                if (selectedCountryCode) {
-                    if (a === selectedCountryCode && b !== selectedCountryCode) return -1;
-                    if (b === selectedCountryCode && a !== selectedCountryCode) return 1;
-                }
-                return countryStats[b].count - countryStats[a].count;
-            });
-
-            const sortedModelCols = [...modelColumns];
-            if (colTotalsAll[OTHER_MODEL_KEY]) {
-                sortedModelCols.push({
-                    key: OTHER_MODEL_KEY,
-                    label: 'OVERIGE MODELLEN',
-                    searchQuery: ''
-                });
-            }
-
-            const focusRows = selectedCountryCode
-                ? filtered.filter(r => detectCountryCode(r.Locatie) === selectedCountryCode)
-                : filtered;
-
-            let kpiUrgent = 0;
-            let kpiAi = 0;
-            const kpiPrices = [];
-            const kpiBrands = {};
-
-            focusRows.forEach(row => {
-                const brand = (row.Merk && String(row.Merk).trim()) ? String(row.Merk).trim() : 'Overig';
-                kpiBrands[brand] = (kpiBrands[brand] || 0) + 1;
-
-                if (isAiPick(row)) kpiAi++;
-                const p = parseNumericPrice(row['Laatste prijs'] || row['Prijs'] || row['Eerste prijs']);
-                if (p !== null) kpiPrices.push(p);
-
-                const endVal = row['Veiling loopt af op'] ? String(row['Veiling loopt af op']).trim() : '';
-                if (endVal && endVal !== 'N.v.t.') {
-                    const endDate = parseAuctionDate(endVal);
-                    if (endDate) {
-                        const hoursLeft = (endDate - now) / (1000 * 60 * 60);
-                        if (hoursLeft > 0 && hoursLeft <= 24) kpiUrgent++;
-                    }
-                }
-            });
-
-            const focusName = selectedCountryCode ? getCountryDisplayName(selectedCountryCode) : null;
-            const landCodeParam = (selectedCountryCode && selectedCountryCode !== 'other') ? selectedCountryCode : '';
-
-            document.getElementById('kpi-total-label').textContent = selectedCountryCode ? `Wagens in ${focusName}` : 'Actieve Bedrijfswagens';
-            document.getElementById('kpi-total').textContent = focusRows.length.toLocaleString('nl-NL');
-            document.getElementById('kpi-countries').textContent = selectedCountryCode
-                ? `${Math.round((focusRows.length / (filtered.length || 1)) * 1000) / 10}% van totaal (${filtered.length.toLocaleString('nl-NL')})`
-                : `Verspreid over ${sortedCountries.length} landen`;
-            document.getElementById('kpi-link-total').href = buildPlatformUrl({ tab: tabParam, land: landCodeParam });
-
-            document.getElementById('kpi-urgent').textContent = kpiUrgent.toLocaleString('nl-NL');
-            document.getElementById('kpi-urgent-sub').textContent = selectedCountryCode ? `In ${focusName}` : 'Directe opvolging vereist';
-            document.getElementById('kpi-link-urgent').href = buildPlatformUrl({ tab: 'auctions', land: landCodeParam });
-
-            document.getElementById('kpi-ai').textContent = kpiAi.toLocaleString('nl-NL');
-            const aiShare = focusRows.length ? ((kpiAi / focusRows.length) * 100).toFixed(1) : '0.0';
-            document.getElementById('kpi-ai-share').textContent = `${aiShare}% van ${selectedCountryCode ? focusName : 'selectie'}`;
-            document.getElementById('kpi-link-ai').href = buildPlatformUrl({ tab: tabParam, land: landCodeParam });
-
-            const avgPrice = kpiPrices.length
-                ? Math.round(kpiPrices.reduce((acc, v) => acc + v, 0) / kpiPrices.length)
-                : 0;
-            document.getElementById('kpi-avg-price').textContent = `€ ${avgPrice.toLocaleString('nl-NL')}`;
-            document.getElementById('kpi-priced-count').textContent = `Op basis van ${kpiPrices.length} wagens met prijs`;
-            document.getElementById('kpi-link-price').href = buildPlatformUrl({ tab: tabParam, land: landCodeParam });
-
-            if (selectedCountryCode) {
-                const topBrand = Object.entries(kpiBrands).sort((a, b) => b[1] - a[1])[0];
-                document.getElementById('kpi-top-label').textContent = `Top Merk (${focusName})`;
-                document.getElementById('kpi-top-country').textContent = topBrand ? topBrand[0] : '-';
-                document.getElementById('kpi-top-country-sub').textContent = topBrand ? `${topBrand[1].toLocaleString('nl-NL')} wagens` : '0 wagens';
-                document.getElementById('kpi-link-top').href = buildPlatformUrl({
-                    tab: tabParam,
-                    land: landCodeParam,
-                    q: topBrand ? topBrand[0] : ''
-                });
-            } else if (sortedCountries.length > 0) {
-                const topCode = sortedCountries[0];
-                const topName = getCountryDisplayName(topCode);
-                document.getElementById('kpi-top-label').textContent = 'Top Land (Volume)';
-                document.getElementById('kpi-top-country').textContent = topName;
-                document.getElementById('kpi-top-country-sub').textContent = `${countryStats[topCode].count.toLocaleString('nl-NL')} wagens`;
-                document.getElementById('kpi-link-top').href = buildPlatformUrl({
-                    tab: tabParam,
-                    land: topCode !== 'other' ? topCode : ''
-                });
-            } else {
-                document.getElementById('kpi-top-label').textContent = 'Top Land (Volume)';
-                document.getElementById('kpi-top-country').textContent = '-';
-                document.getElementById('kpi-top-country-sub').textContent = '0 wagens';
-                document.getElementById('kpi-link-top').href = PLATFORM_PAGE;
-            }
-
-            const activeColTotals = selectedCountryCode ? colTotalsSelected : colTotalsAll;
-            const activeGrandTotal = focusRows.length;
-
-            renderMapMarkers(countryStats, sortedCountries, focusRows, tabParam);
-            renderMatrixTable(sortedCountries, sortedModelCols, countryStats, activeColTotals, activeGrandTotal, scope);
-            renderPlacesForSelectedCountry(focusRows, focusName, tabParam, landCodeParam);
-            renderSpecsAndBrands(focusRows, landCodeParam, tabParam);
-            renderInsights(sortedCountries, countryStats);
-        }
-
-        function renderMapMarkers(countryStats, sortedCountries, focusRows, tabParam) {
-            if (!markersLayer || !cityDotsLayer) return;
-            markersLayer.clearLayers();
-            cityDotsLayer.clearLayers();
-
-            sortedCountries.forEach(code => {
-                const meta = COUNTRY_META[code];
-                if (!meta) return;
-
-                const st = countryStats[code];
-                const isSelected = selectedCountryCode === code;
-                const isDimmed = selectedCountryCode && selectedCountryCode !== code;
-                const pinClass = isSelected ? 'selected' : (isDimmed ? 'dimmed' : '');
-
-                const icon = L.divIcon({
-                    className: 'custom-div-icon',
-                    html: `<div class="map-pin ${pinClass}">${code.toUpperCase()} · ${st.count}</div>`,
-                    iconSize: [0, 0],
-                    iconAnchor: [0, 0]
-                });
-
-                const marker = L.marker([meta.lat, meta.lng], { icon })
-                    .bindPopup(`
-                        <strong>${meta.name}</strong><br>
-                        Bedrijfswagens: <b>${st.count}</b><br>
-                        &lt; 24u aflopend: <b>${st.urgent}</b><br>
-                        AI Picks: <b>${st.ai}</b><br>
-                        <small>Klik om te pinnen en locaties te tonen</small>
-                    `)
-                    .on('click', () => selectCountry(code));
-
-                markersLayer.addLayer(marker);
-            });
-
-            if (selectedCountryCode && COUNTRY_META[selectedCountryCode]) {
-                const placeMap = {};
-
-                focusRows.forEach(r => {
-                    const place = extractPlaceFromLocation(r.Locatie, selectedCountryCode);
-                    if (!place) return;
-                    const key = place.toLowerCase();
-                    if (!placeMap[key]) {
-                        placeMap[key] = { name: place, count: 0, sampleLoc: r.Locatie || place };
-                    }
-                    placeMap[key].count++;
-                });
-
-                const topPlaces = Object.values(placeMap).sort((a, b) => b.count - a.count).slice(0, 35);
-
-                topPlaces.forEach(p => {
-                    const coords = getVerifiedPlaceCoords(p.name, selectedCountryCode);
-                    if (!Array.isArray(coords) || coords.length !== 2) return;
-
-                    const [lat, lng] = coords;
-                    const radius = Math.min(11, Math.max(5, 4 + Math.sqrt(p.count) * 1.2));
-                    const dot = L.circleMarker([lat, lng], {
-                        radius,
-                        color: '#ffffff',
-                        weight: 1.5,
-                        fillColor: '#009ee3',
-                        fillOpacity: 0.9
-                    });
-
-                    const targetUrl = buildPlatformUrl({
-                        tab: tabParam,
-                        land: selectedCountryCode !== 'other' ? selectedCountryCode : '',
-                        q: p.name
-                    });
-                    dot.bindTooltip(`${p.name} (${p.count})`, { direction: 'top' });
-                    dot.bindPopup(`
-                        <strong>📍 ${escapeHtml(p.name)}</strong><br>
-                        Locatie: <small>${escapeHtml(p.sampleLoc)}</small><br>
-                        Aantal wagens: <b>${p.count}</b><br>
-                        <a href="${targetUrl}" style="color:#0082bd; font-weight:bold;">Open op platform →</a>
-                    `);
-                    dot.on('click', () => {
-                        window.location.href = targetUrl;
-                    });
-
-                    cityDotsLayer.addLayer(dot);
-                });
-            }
-        }
-
-        function renderMatrixTable(sortedCountries, sortedModelCols, countryStats, colTotals, grandTotal, scope) {
-            const thead = document.querySelector('#countryBrandTable thead');
-            const tbody = document.querySelector('#countryBrandTable tbody');
-            const tfoot = document.querySelector('#countryBrandTable tfoot');
-
-            const tabParam = scope === 'auctions' ? 'auctions' : 'listings';
-
-            let headHtml = '<tr><th>Land</th>';
-            sortedModelCols.forEach(col => {
-                headHtml += `<th>${escapeHtml(col.label)}</th>`;
-            });
-            headHtml += '<th class="total-col">Totaal</th></tr>';
-            thead.innerHTML = headHtml;
-
-            const exportHeaders = ['Land', ...sortedModelCols.map(c => c.label), 'Totaal'];
-            const exportRows = [];
-
-            let bodyHtml = '';
-            sortedCountries.forEach(code => {
-                const st = countryStats[code];
-                const name = getCountryDisplayName(code);
-                const isSelected = selectedCountryCode === code;
-                const isDimmed = selectedCountryCode && selectedCountryCode !== code;
-                const rowClass = isSelected ? 'active-country' : (isDimmed ? 'dimmed-country' : '');
-
-                const flagHtml = code !== 'other'
-                    ? `<img src="https://flagcdn.com/24x18/${code}.png" alt="${code}" onerror="this.style.display='none'">`
-                    : '🌍';
-
-                bodyHtml += `<tr class="${rowClass}">`;
-                bodyHtml += `<td><span class="country-cell-inner" onclick="selectCountry('${code}')" title="Klik om ${escapeHtml(name)} bovenaan te pinnen">${flagHtml}<span>${escapeHtml(name)}</span></span></td>`;
-
-                const rowExport = [name];
-
-                sortedModelCols.forEach(col => {
-                    const cnt = st.models[col.key] || 0;
-                    rowExport.push(cnt);
-                    if (cnt > 0) {
-                        const url = buildPlatformUrl({
-                            tab: tabParam,
-                            q: col.searchQuery,
-                            land: code !== 'other' ? code : ''
-                        });
-                        bodyHtml += `<td><a class="cell-link has-items" href="${url}" title="Open in platform">${cnt}</a></td>`;
-                    } else {
-                        bodyHtml += `<td><span class="cell-zero">0</span></td>`;
-                    }
-                });
-
-                rowExport.push(st.count);
-                exportRows.push(rowExport);
-
-                const rowTotalUrl = buildPlatformUrl({
-                    tab: tabParam,
-                    land: code !== 'other' ? code : ''
-                });
-                bodyHtml += `<td class="total-col"><a class="cell-link has-items" href="${rowTotalUrl}" title="Open alle wagens voor ${escapeHtml(name)}">${st.count}</a></td></tr>`;
-            });
-
-            if (sortedCountries.length === 0) {
-                bodyHtml = `<tr><td colspan="${sortedModelCols.length + 2}" style="text-align:center; padding:20px;">Geen data voor de huidige selectie.</td></tr>`;
-            }
-
-            tbody.innerHTML = bodyHtml;
-
-            const totalLabel = selectedCountryCode
-                ? `Totaal (${getCountryDisplayName(selectedCountryCode)})`
-                : 'Totaal per model';
-
-            let footHtml = `<tr><td>${escapeHtml(totalLabel)}</td>`;
-            const footExport = [totalLabel];
-            sortedModelCols.forEach(col => {
-                const mTot = colTotals[col.key] || 0;
-                footExport.push(mTot);
-                footHtml += `<td>${mTot}</td>`;
-            });
-            footExport.push(grandTotal);
-            footHtml += `<td>${grandTotal}</td></tr>`;
-            tfoot.innerHTML = footHtml;
-
-            lastMatrixExport = { headers: exportHeaders, rows: [...exportRows, footExport] };
-        }
-
-        function renderPlacesForSelectedCountry(focusRows, focusName, tabParam, landCodeParam) {
-            const panel = document.getElementById('placesSectionPanel');
-            const titleEl = document.getElementById('placesSectionTitle');
-            const gridEl = document.getElementById('placesGrid');
-
-            if (!selectedCountryCode) {
-                panel.style.display = 'none';
-                gridEl.innerHTML = '';
-                return;
-            }
-
-            panel.style.display = 'block';
-            titleEl.textContent = `Plaatsen & Locaties in ${focusName}`;
-
-            const placeMap = {};
-            focusRows.forEach(r => {
-                const place = extractPlaceFromLocation(r.Locatie, selectedCountryCode);
-                if (!place) return;
-                const key = place.toLowerCase();
-                if (!placeMap[key]) {
-                    placeMap[key] = { name: place, count: 0, sampleLoc: r.Locatie || place };
-                }
-                placeMap[key].count++;
-            });
-
-            const sortedPlaces = Object.values(placeMap).sort((a, b) => b.count - a.count);
-
-            if (sortedPlaces.length === 0) {
-                gridEl.innerHTML = `<p style="margin:0; font-size:13px; color:var(--text-light);">Geen specifieke plaatsnamen herkend in de locatievelden voor ${escapeHtml(focusName)}.</p>`;
-                return;
-            }
-
-            gridEl.innerHTML = sortedPlaces.slice(0, 24).map(p => {
-                const url = buildPlatformUrl({ tab: tabParam, land: landCodeParam, q: p.name });
-                return `
-                    <a href="${url}" class="place-card" title="Open wagens in ${escapeHtml(p.name)}">
-                        <div style="min-width:0;">
-                            <div class="place-name">📍 ${escapeHtml(p.name)}</div>
-                            <div class="place-sub">${escapeHtml(p.sampleLoc)}</div>
-                        </div>
-                        <span class="place-count-badge">${p.count}</span>
-                    </a>
-                `;
-            }).join('');
-        }
-
-        function renderSpecsAndBrands(rows, landCodeParam, tabParam) {
-            const currentYear = new Date().getFullYear();
-
-            const years = [];
-            const ageBuckets = {
-                '0 – 3 jaar (Nieuw/Jong)': 0,
-                '4 – 7 jaar': 0,
-                '8 – 12 jaar': 0,
-                '13+ jaar (Ouder)': 0
-            };
-
-            rows.forEach(r => {
-                const y = parseYearValue(r['Eerste registratie'] || r.Bouwjaar);
-                if (y && y >= 1980 && y <= currentYear + 1) {
-                    years.push(y);
-                    const age = Math.max(0, currentYear - y);
-                    if (age <= 3) ageBuckets['0 – 3 jaar (Nieuw/Jong)']++;
-                    else if (age <= 7) ageBuckets['4 – 7 jaar']++;
-                    else if (age <= 12) ageBuckets['8 – 12 jaar']++;
-                    else ageBuckets['13+ jaar (Ouder)']++;
-                }
-            });
-
-            const avgYear = years.length ? Math.round(years.reduce((a, b) => a + b, 0) / years.length) : null;
-            const avgAge = avgYear ? Math.max(0, currentYear - avgYear) : null;
-            const minYear = years.length ? Math.min(...years) : null;
-            const maxYear = years.length ? Math.max(...years) : null;
-
-            document.getElementById('yearSummaryStrip').innerHTML = years.length
-                ? `<span>Gem. registratie: <strong>${avgYear}</strong> (${avgAge}j)</span><span>Bereik: <strong>${minYear} – ${maxYear}</strong></span><span>Bekend: <strong>${years.length}</strong></span>`
-                : `<span>Geen registratiegegevens beschikbaar</span>`;
-
-            const maxAgeBucket = Math.max(...Object.values(ageBuckets), 1);
-            document.getElementById('yearBarsContainer').innerHTML = Object.entries(ageBuckets).map(([label, cnt]) => {
-                const pct = Math.round((cnt / maxAgeBucket) * 100);
-                return `
-                    <div class="bar-row">
-                        <div class="bar-label-line"><span>${escapeHtml(label)}</span><span>${cnt}</span></div>
-                        <div class="bar-track"><div class="bar-fill dark" style="width:${pct}%;"></div></div>
-                    </div>
-                `;
-            }).join('');
-
-            const kmList = [];
-            const kmBuckets = {
-                '0 – 75.000 km': 0,
-                '75.001 – 150.000 km': 0,
-                '150.001 – 250.000 km': 0,
-                '250.000+ km': 0
-            };
-
-            rows.forEach(r => {
-                const km = parseNumericValue(r.KMstand || r['KM stand'] || r.Kilometerstand);
-                if (km !== null && km >= 0 && km < 2000000) {
-                    kmList.push(km);
-                    if (km <= 75000) kmBuckets['0 – 75.000 km']++;
-                    else if (km <= 150000) kmBuckets['75.001 – 150.000 km']++;
-                    else if (km <= 250000) kmBuckets['150.001 – 250.000 km']++;
-                    else kmBuckets['250.000+ km']++;
-                }
-            });
-
-            const avgKm = kmList.length ? Math.round(kmList.reduce((a, b) => a + b, 0) / kmList.length) : null;
-            document.getElementById('kmSummaryStrip').innerHTML = kmList.length
-                ? `<span>Gem. KM-stand: <strong>${avgKm.toLocaleString('nl-NL')} km</strong></span><span>Bekend: <strong>${kmList.length}</strong></span>`
-                : `<span>Geen kilometerstanden beschikbaar</span>`;
-
-            const maxKmBucket = Math.max(...Object.values(kmBuckets), 1);
-            document.getElementById('kmBarsContainer').innerHTML = Object.entries(kmBuckets).map(([label, cnt]) => {
-                const pct = Math.round((cnt / maxKmBucket) * 100);
-                return `
-                    <div class="bar-row">
-                        <div class="bar-label-line"><span>${escapeHtml(label)}</span><span>${cnt}</span></div>
-                        <div class="bar-track"><div class="bar-fill blue" style="width:${pct}%;"></div></div>
-                    </div>
-                `;
-            }).join('');
-
-            const brandCounts = {};
-            rows.forEach(r => {
-                const b = (r.Merk || '').toString().trim();
-                if (b) brandCounts[b] = (brandCounts[b] || 0) + 1;
-            });
-
-            const topBrands = Object.entries(brandCounts).sort((a, b) => b[1] - a[1]).slice(0, 6);
-            const uniqueBrandCount = Object.keys(brandCounts).length;
-
-            document.getElementById('brandsSummaryStrip').innerHTML = topBrands.length
-                ? `<span>Unieke merken: <strong>${uniqueBrandCount}</strong></span><span>#1: <strong>${escapeHtml(topBrands[0][0])}</strong> (${topBrands[0][1]})</span>`
-                : `<span>Geen merkgegevens beschikbaar</span>`;
-
-            const maxBrandCnt = topBrands.length ? topBrands[0][1] : 1;
-            document.getElementById('brandsBarsContainer').innerHTML = topBrands.length
-                ? topBrands.map(([brand, cnt]) => {
-                    const pct = Math.round((cnt / maxBrandCnt) * 100);
-                    const url = buildPlatformUrl({ tab: tabParam, land: landCodeParam, q: brand });
-                    return `
-                        <div class="bar-row">
-                            <div class="bar-label-line">
-                                <a href="${url}" style="color:inherit; text-decoration:none;">${escapeHtml(brand)} →</a>
-                                <span>${cnt}</span>
-                            </div>
-                            <div class="bar-track"><div class="bar-fill" style="width:${pct}%;"></div></div>
-                        </div>
-                    `;
-                }).join('')
-                : `<p style="font-size:12px; color:#777; margin:0;">Geen merken gevonden.</p>`;
-        }
-
-        function renderInsights(sortedCountries, countryStats) {
-            const urgentSorted = [...sortedCountries]
-                .filter(c => countryStats[c].urgent > 0 || c === selectedCountryCode)
-                .sort((a, b) => {
-                    if (selectedCountryCode) {
-                        if (a === selectedCountryCode) return -1;
-                        if (b === selectedCountryCode) return 1;
-                    }
-                    return countryStats[b].urgent - countryStats[a].urgent;
-                })
-                .slice(0, 8);
-
-            document.getElementById('urgentByCountryList').innerHTML = urgentSorted.length
-                ? urgentSorted.map(c => {
-                    const isSel = selectedCountryCode === c;
-                    const isDim = selectedCountryCode && !isSel;
-                    const liClass = isSel ? 'active-country-item' : (isDim ? 'dimmed-country-item' : '');
-                    return `
-                        <li class="${liClass}" onclick="selectCountry('${c}')" style="cursor:pointer;">
-                            <span><strong>${escapeHtml(getCountryDisplayName(c))}</strong></span>
-                            <span class="pill urgent">${countryStats[c].urgent} veilingen &lt; 24u</span>
-                        </li>
-                    `;
-                }).join('')
-                : '<li style="color:#777;">Geen veilingen die binnen 24 uur aflopen.</li>';
-
-            const aiSorted = [...sortedCountries]
-                .filter(c => countryStats[c].ai > 0 || c === selectedCountryCode)
-                .sort((a, b) => {
-                    if (selectedCountryCode) {
-                        if (a === selectedCountryCode) return -1;
-                        if (b === selectedCountryCode) return 1;
-                    }
-                    return countryStats[b].ai - countryStats[a].ai;
-                })
-                .slice(0, 8);
-
-            document.getElementById('aiByCountryList').innerHTML = aiSorted.length
-                ? aiSorted.map(c => {
-                    const isSel = selectedCountryCode === c;
-                    const isDim = selectedCountryCode && !isSel;
-                    const liClass = isSel ? 'active-country-item' : (isDim ? 'dimmed-country-item' : '');
-                    return `
-                        <li class="${liClass}" onclick="selectCountry('${c}')" style="cursor:pointer;">
-                            <span><strong>${escapeHtml(getCountryDisplayName(c))}</strong></span>
-                            <span class="pill ai">${countryStats[c].ai} AI Picks</span>
-                        </li>
-                    `;
-                }).join('')
-                : '<li style="color:#777;">Geen AI Picks in huidige selectie.</li>';
-
-            const metaSorted = [...sortedCountries]
-                .sort((a, b) => {
-                    if (selectedCountryCode) {
-                        if (a === selectedCountryCode) return -1;
-                        if (b === selectedCountryCode) return 1;
-                    }
-                    return countryStats[b].count - countryStats[a].count;
-                })
-                .slice(0, 8);
-
-            document.getElementById('countryMetaList').innerHTML = metaSorted.length
-                ? metaSorted.map(c => {
-                    const st = countryStats[c];
-                    const isSel = selectedCountryCode === c;
-                    const isDim = selectedCountryCode && !isSel;
-                    const liClass = isSel ? 'active-country-item' : (isDim ? 'dimmed-country-item' : '');
-                    const avg = st.prices.length
-                        ? `€ ${Math.round(st.prices.reduce((a, b) => a + b, 0) / st.prices.length).toLocaleString('nl-NL')}`
-                        : 'n.v.t.';
-                    const portalsPreview = [...st.portals].slice(0, 2).join(', ') + (st.portals.size > 2 ? ` +${st.portals.size - 2}` : '');
-                    return `
-                        <li class="${liClass}" onclick="selectCountry('${c}')" style="cursor:pointer;">
-                            <div>
-                                <strong>${escapeHtml(getCountryDisplayName(c))}</strong><br>
-                                <small style="color:#777;">${escapeHtml(portalsPreview)}</small>
-                            </div>
-                            <span class="pill">Gem. ${avg}</span>
-                        </li>
-                    `;
-                }).join('')
-                : '<li style="color:#777;">Geen data beschikbaar.</li>';
-        }
-
-        function exportMatrixToExcelCsv() {
-            if (!lastMatrixExport.headers.length) return;
-            const sep = ';';
-            const escapeCsv = (val) => {
-                const s = String(val ?? '');
-                return /[";\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
-            };
-            const lines = [
-                lastMatrixExport.headers.map(escapeCsv).join(sep),
-                ...lastMatrixExport.rows.map(r => r.map(escapeCsv).join(sep))
-            ];
-            const blob = new Blob(['\uFEFF' + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `vans-factsheet-${new Date().toISOString().slice(0, 10)}.csv`;
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        function escapeHtml(str) {
-            return String(str ?? '')
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
-
-        initMap();
-        updateFocusBadge();
-
-        fetch(jsonMasterUrl + '?t=' + new Date().getTime())
-            .then(res => res.json())
-            .then(masterData => {
-                if (masterData.stockHeaders && masterData.stockRows) {
-                    const headers = masterData.stockHeaders;
-                    const rows = masterData.stockRows.map(r => {
-                        const obj = {};
-                        headers.forEach((h, i) => {
-                            if (h && h.trim()) obj[h.trim()] = r[i];
-                        });
-                        return obj;
-                    });
-                    rawListings = rows.filter(r =>
-                        !(r.Platform || '').toLowerCase().includes('eigen voorraad') &&
-                        (r.Merk || r.Model || r.Titel)
-                    );
-                } else if (Array.isArray(masterData)) {
-                    rawListings = masterData.filter(r =>
-                        !(r.Platform || '').toLowerCase().includes('eigen voorraad') &&
-                        (r.Merk || r.Model || r.Titel)
-                    );
-                } else {
-                    const base = masterData.listings || [];
-                    rawListings = base.filter(r => r.Merk || r.Model || r.Titel);
-                }
-
-                document.getElementById('last-updated-label').textContent =
-                    `Bijgewerkt: ${new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' })}`;
-
-                recomputeAndRender();
-            })
-            .catch(err => {
-                console.error('Fout bij laden van Boss Vans data:', err);
-                document.getElementById('last-updated-label').textContent = 'Fout bij laden van data';
-            });
-    </script>
-</body>
-</html>
