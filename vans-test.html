@@ -22,6 +22,7 @@
             padding: 0;
             background-color: var(--boss-gray);
             color: var(--text-dark);
+            overflow-x: hidden;
         }
 
         header {
@@ -83,27 +84,6 @@
             align-items: center;
             gap: 12px;
             flex-wrap: wrap;
-        }
-
-        .header-cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--boss-blue);
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 900;
-            text-transform: uppercase;
-            padding: 8px 14px;
-            border-radius: 4px;
-            transition: background 0.2s, transform 0.15s;
-            white-space: nowrap;
-        }
-
-        .header-cta-btn:hover {
-            background: var(--boss-blue-dark);
-            transform: translateY(-1px);
         }
 
         .header-search-box {
@@ -269,6 +249,7 @@
             max-width: 1600px;
             margin: 20px auto;
             padding: 0 20px;
+            box-sizing: border-box;
         }
 
         .sidebar {
@@ -331,6 +312,7 @@
 
         .main-content {
             width: 100%;
+            min-width: 0;
         }
 
         .tabs-header-area {
@@ -380,6 +362,7 @@
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
+            max-width: 100%;
         }
 
         /* Landen-bolletje & vlaggen dropdown naast Sorteren */
@@ -398,7 +381,7 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: border-color 0.2s, background 0.2s, transform 0.15s;
+            transition: border-color 0.2s, background 0.2s;
             padding: 0;
             overflow: hidden;
             position: relative;
@@ -409,22 +392,10 @@
             background: #f8fafc;
         }
 
-        .country-globe-btn.has-country {
-            border: 2px solid var(--boss-blue);
-            box-shadow: 0 0 0 2px rgba(0, 158, 227, 0.2);
-        }
-
         .country-globe-btn svg {
             width: 19px;
             height: 19px;
             fill: #334155;
-        }
-
-        .country-globe-btn img.btn-flag {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
         }
 
         .country-dropdown {
@@ -437,10 +408,12 @@
             border-radius: 8px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.14);
             min-width: 245px;
+            max-width: calc(100vw - 32px);
             max-height: 340px;
             overflow-y: auto;
             z-index: 120;
             padding: 4px 0;
+            box-sizing: border-box;
         }
 
         .country-dropdown.open {
@@ -549,12 +522,35 @@
             border-radius: 6px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             min-width: 250px;
+            max-width: calc(100vw - 32px);
             z-index: 100;
             overflow: hidden;
+            box-sizing: border-box;
         }
 
         .sort-dropdown.open {
             display: block;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 12px 16px;
+            }
+            .container {
+                padding: 0 12px;
+            }
+            .country-dropdown {
+                left: 0;
+                right: auto;
+                min-width: 220px;
+                max-width: calc(100vw - 24px);
+            }
+            .sort-dropdown {
+                left: 0;
+                right: auto;
+                min-width: 220px;
+                max-width: calc(100vw - 24px);
+            }
         }
 
         .sort-option {
@@ -599,6 +595,7 @@
             outline: none;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             box-sizing: border-box;
+            max-width: 100%;
         }
 
         .ai-toggle-container {
@@ -678,6 +675,7 @@
             width: 100%;
             padding-top: 10px;
             padding-right: 10px;
+            box-sizing: border-box;
         }
 
         .card {
@@ -1071,7 +1069,6 @@
         </div>
 
         <div class="header-right-group">
-            <a href="./factsheet-vans.html" class="header-cta-btn">📊 Open Vans Factsheet →</a>
             <div class="system-status-indicator" onclick="openStatusModal()">
                 <span id="header-status-dot" class="status-dot dot-green"></span>
                 <span id="header-status-text">Portalen Status</span>
@@ -1382,16 +1379,11 @@
             const btn = document.getElementById('countryGlobeBtn');
             if (!btn) return;
 
-            if (code) {
-                const name = COUNTRY_NAMES[code] || code.toUpperCase();
-                btn.classList.add('has-country');
-                btn.title = `Land: ${name} (klik om te wijzigen of resetten)`;
-                btn.innerHTML = `<img class="btn-flag" src="https://flagcdn.com/48x36/${code}.png" alt="${code}" onerror="this.remove()">`;
-            } else {
-                btn.classList.remove('has-country');
-                btn.title = 'Filter op land (vlaggen & aantallen)';
-                btn.innerHTML = svgGlobe;
-            }
+            btn.classList.remove('has-country');
+            btn.title = code
+                ? `Land: ${COUNTRY_NAMES[code] || code.toUpperCase()} (klik om te wijzigen of resetten)`
+                : 'Filter op land (vlaggen & aantallen)';
+            btn.innerHTML = svgGlobe;
         }
 
         function renderCountryDropdown() {
