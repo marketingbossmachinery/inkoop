@@ -365,7 +365,6 @@
             max-width: 100%;
         }
 
-        /* Landen-bolletje & vlaggen dropdown naast Sorteren */
         .country-picker-container {
             position: relative;
         }
@@ -584,16 +583,15 @@
         }
 
         .feedback-filter-select {
-            padding: 8px 12px;
+            padding: 0 12px;
             height: 36px;
-            border-radius: 20px;
+            border-radius: 4px;
             border: 1px solid #cbd5e1;
             font-size: 13px;
             font-weight: bold;
             background-color: #fff;
             cursor: pointer;
             outline: none;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             box-sizing: border-box;
             max-width: 100%;
         }
@@ -707,7 +705,6 @@
             box-shadow: 0 0 20px rgba(37,99,235,0.4);
         }
 
-        /* Positieve feedback krijgt altijd groen kader */
         .card.glow-green,
         .card.glow-green.glow-ai {
             border-color: #28a745 !important;
@@ -724,7 +721,6 @@
             overflow: visible;
         }
 
-        /* Kruisje binnen de foto, linksonder — doorzichtig/neutraal zoals bij Machinery, rood bij hover/geselecteerd */
         .hide-card-btn {
             position: absolute;
             bottom: 6px;
@@ -753,6 +749,34 @@
             background: #dc3545;
             border-color: #dc3545;
             color: #ffffff;
+        }
+
+        .restore-card-btn {
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            background: #dc3545;
+            color: #ffffff;
+            border: 1px solid #b21f2d;
+            font-size: 17px;
+            font-weight: bold;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 6;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: transform 0.1s, background 0.2s;
+            padding: 0;
+        }
+
+        .restore-card-btn:hover {
+            transform: scale(1.12);
+            background: #c9302c;
         }
 
         .card-image-placeholder {
@@ -1218,7 +1242,7 @@
                     </div>
 
                     <select id="filter-feedback" class="feedback-filter-select" onchange="renderGrid()">
-                        <option value="relevant" selected>Relevante resultaten (Geen 👎)</option>
+                        <option value="relevant" selected>Relevante resultaten</option>
                         <option value="all">Alle resultaten</option>
                         <option value="positive">Alleen positief (👍)</option>
                         <option value="negative">Alleen negatief (👎)</option>
@@ -1334,9 +1358,14 @@
             return tonenVal === 'nee' || tonenVal === 'false' || tonenVal === '0' || tonenVal === 'verborgen';
         }
 
+        function isHiddenByCross(uniqueId) {
+            return Boolean(uniqueId && hiddenIds.includes(String(uniqueId)));
+        }
+
         function isRowHidden(row, uniqueId) {
             if (isHiddenInSheet(row)) return true;
-            if (uniqueId && hiddenIds.includes(String(uniqueId))) return true;
+            const filterFb = document.getElementById('filter-feedback')?.value || 'relevant';
+            if (filterFb !== 'all' && isHiddenByCross(uniqueId)) return true;
             return false;
         }
 
@@ -1351,6 +1380,18 @@
             }
 
             sendToGoogleAppsScript(strId, 'Nee', 'tonen');
+            renderGrid();
+        }
+
+        function restoreListingCard(event, id) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const strId = String(id);
+            hiddenIds = hiddenIds.filter(item => item !== strId);
+            localStorage.setItem('bossVansHiddenIds', JSON.stringify(hiddenIds));
+
+            sendToGoogleAppsScript(strId, 'Ja', 'tonen');
             renderGrid();
         }
 
@@ -1584,7 +1625,7 @@
 
             const params = new URLSearchParams({ id: String(id) });
             if (mode === 'tonen') {
-                params.set('action', 'verberg');
+                params.set('action', value === 'Ja' ? 'tonenJa' : 'verberg');
                 params.set('tonen', String(value));
             } else {
                 params.set('feedback', String(value));
@@ -1640,6 +1681,11 @@
                     if (tonenVal === 'nee' || tonenVal === 'false' || tonenVal === '0' || tonenVal === 'verborgen') {
                         if (!hiddenIds.includes(String(id))) {
                             hiddenIds.push(String(id));
+                            updated = true;
+                        }
+                    } else if (tonenVal === 'ja' || tonenVal === 'true' || tonenVal === '1') {
+                        if (hiddenIds.includes(String(id))) {
+                            hiddenIds = hiddenIds.filter(item => item !== String(id));
                             updated = true;
                         }
                     }
@@ -2261,8 +2307,11 @@
                     extraClass += ' glow-ai';
                 }
 
+                const isHiddenByUser = isHiddenByCross(uniqueId);
                 const hideBtnHtml = !isOwnStock
-                    ? `<button type="button" class="hide-card-btn" onclick="hideListingCard(event, '${safeId}')" title="Verberg kavel (Tonen = Nee)">&times;</button>`
+                    ? (isHiddenByUser
+                        ? `<button type="button" class="restore-card-btn" onclick="restoreListingCard(event, '${safeId}')" title="Herstel kavel (Tonen = Ja)">&times;</button>`
+                        : `<button type="button" class="hide-card-btn" onclick="hideListingCard(event, '${safeId}')" title="Verberg kavel (Tonen = Nee)">&times;</button>`)
                     : '';
 
                 const feedbackButtonsHtml = !isOwnStock ? `
