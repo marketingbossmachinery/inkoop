@@ -23,7 +23,8 @@
   "AI Pick": "Ja",
   "AI Reden": "AI Top Pick: Splinternieuwe 2025 eCitan met 45kWh en slechts 1660 km sluit perfect aan bij positieve feedback.",
   "AI Ranking": "84",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eCitan"
 },{
   "Platform": "Kvdbil (veilingen)",
   "Merk": "Mercedes",
@@ -47,7 +48,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Courante eCitan uit 2023 met goede specificaties maar net buiten de top 5 gebleven.",
   "AI Ranking": "73",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eCitan"
 },{
   "Platform": "Kvdbil (veilingen)",
   "Merk": "Maxus",
@@ -71,7 +73,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Maxus eDeliver 3 met 56k km heeft matige restwaarde en lage marktvraag.",
   "AI Ranking": "46",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Deliver 3"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -95,7 +98,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling sluit te snel (< 3 uur)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -119,7 +123,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Custom"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -143,7 +148,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Sterk verouderde open laadbak uit 2008 met onbekende kilometerstand.",
   "AI Ranking": "25",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -167,7 +173,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling reeds verlopen",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -191,7 +198,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Betreft losse bedrijfswageninrichting en geen compleet voertuig.",
   "AI Ranking": "10",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -215,7 +223,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Oudere Transit Custom uit 2014 zonder bekende kilometerstand brengt te veel risico met zich mee.",
   "AI Ranking": "32",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Custom"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -239,7 +248,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Custom uit 2016 zonder bekende tellerstand brengt aanzienlijke technische risicos met zich mee.",
   "AI Ranking": "38",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Custom"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -263,7 +273,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -287,7 +298,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Transit Custom 2020 maar kilometerstand ontbreekt geheel in veilinggegevens.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Custom"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -311,7 +323,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Transit Custom L2 uit 2018 mist essentiële kilometerinformatie om een veilige inkoop te rechtvaardigen.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Custom"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -335,7 +348,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Custom"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -359,7 +373,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Geen kilometerstand en geen bouwjaar vermeld bij deze Transit Connect.",
   "AI Ranking": "34",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Connect"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -383,7 +398,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling reeds verlopen",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Transit Connect"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -407,7 +423,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling reeds verlopen",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "e-Transit"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -431,7 +448,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling reeds verlopen",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Transit Connect"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -455,7 +473,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling reeds verlopen",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Transit Connect"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -479,7 +498,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Transit Custom EcoBlue uit Zweden zonder kilometerstand of sluitend onderhoudsinzicht.",
   "AI Ranking": "40",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Custom"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -503,7 +523,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling reeds verlopen",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Transit Connect"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -527,7 +548,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Onvolledige voertuiggegevens en onbekende kilometerstand uit buitenlandse veiling.",
   "AI Ranking": "35",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Connect"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -551,7 +573,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling reeds verlopen",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -575,7 +598,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling sluit te snel (< 3 uur)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -599,7 +623,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling reeds verlopen",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Transit Connect"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -623,7 +648,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling reeds verlopen",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -647,7 +673,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling sluit te snel (< 3 uur)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Custom"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -671,7 +698,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -695,7 +723,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Aangepaste rolstoelbus met ontbrekende kilometerstand en specifiek doelgroeprisico.",
   "AI Ranking": "30",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -719,7 +748,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Connect EcoBlue zonder kilometerstand en bouwjaar brengt te veel onzekerheid met zich mee.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Connect"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -743,7 +773,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Onvolledige specificaties en ontbrekende tellerstand op buitenlandse veilingkandidaat.",
   "AI Ranking": "36",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -767,7 +798,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Oudere handgeschakelde 1.6 TDCi Connect zonder registratiejaar of kilometerstand.",
   "AI Ranking": "33",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Connect"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -791,7 +823,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Transit Connect zonder kilometerhistorie en onduidelijke staat van onderhoud.",
   "AI Ranking": "39",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Connect"
 },{
   "Platform": "Klaravik (veilingen)",
   "Merk": "Ford",
@@ -815,7 +848,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Truckscout24",
   "Merk": "MinibusMaxuseDELIVER",
@@ -839,7 +873,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 7"
 },{
   "Platform": "Truckscout24",
   "Merk": "Box",
@@ -863,7 +898,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Maxus EV80 kofferbakwagen is incourant en lastig te herverkopen.",
   "AI Ranking": "42",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "vanMaxusEV80 Koffer"
 },{
   "Platform": "Truckscout24",
   "Merk": "MinibusMaxuseDELIVER",
@@ -887,7 +923,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 7"
 },{
   "Platform": "Truckscout24",
   "Merk": "High",
@@ -911,7 +948,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter L3H3 met 24k euro is te duur voor handelsvoorraad.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "DBA",
   "Merk": "VW",
@@ -935,7 +973,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Deense Crafter met bijna dertigduizend euro vraagprijs biedt geen marge.",
   "AI Ranking": "42",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Truckscout24",
   "Merk": "Pick-up",
@@ -959,7 +998,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Truckscout24",
   "Merk": "MinibusMAXUSMIFA",
@@ -983,7 +1023,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "9/LUXURY/90kWh/PANO/ELEKT.TÜREN/AHK/NAVI/"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -1007,7 +1048,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zeer lage kilometerstand maar 35kWh techniek blijft riskant.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -1031,7 +1073,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Lage kilometerstand maar vraagprijs van bijna zestigduizend euro is te hoog.",
   "AI Ranking": "65",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Truckscout24",
   "Merk": "Mercedes-benz",
@@ -1055,7 +1098,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Nederlandse eVito met lage km-stand maar bijna negentienduizend euro is te duur.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Truckscout24",
   "Merk": "TOYOTA",
@@ -1079,7 +1123,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "PRO-ACE ELECTRIC"
 },{
   "Platform": "Truckscout24",
   "Merk": "High",
@@ -1103,7 +1148,8 @@
   "AI Pick": "Ja",
   "AI Reden": "AI Top Pick: eSprinter met slechts 6265 km en scherpe prijs onder vijftienduizend euro.",
   "AI Ranking": "86",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -1127,7 +1173,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -1151,7 +1198,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Truckscout24",
   "Merk": "Panel",
@@ -1175,7 +1223,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito met lage tellerstand maar marge is gemiddeld door accugrootte.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Truckscout24",
   "Merk": "Maxus",
@@ -1199,7 +1248,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 3"
 },{
   "Platform": "Truckscout24",
   "Merk": "Pick-up",
@@ -1223,7 +1273,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Truckscout24",
   "Merk": "Toyota",
@@ -1247,7 +1298,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Truckscout24",
   "Merk": "Toyota",
@@ -1271,7 +1323,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Truckscout24",
   "Merk": "Pick-up",
@@ -1295,7 +1348,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter open laadbak past niet bij onze gesloten bestelbussen focus.",
   "AI Ranking": "44",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Truckscout24",
   "Merk": "Maxus",
@@ -1319,7 +1373,8 @@
   "AI Pick": "Nee",
   "AI Reden": "9-persoons Maxus EV80 is zeer incourant in de Nederlandse markt.",
   "AI Ranking": "38",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "EV80 9-seaterMAXUSEV80"
 },{
   "Platform": "Truckscout24",
   "Merk": "Mercedes-benz",
@@ -1343,7 +1398,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Travego touringcar valt volledig buiten ons commerciële aanbod.",
   "AI Ranking": "20",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Travego"
 },{
   "Platform": "Truckscout24",
   "Merk": "Mercedes-benz",
@@ -1367,7 +1423,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Citaro stadsbus valt volledig buiten het bestelwagensegment.",
   "AI Ranking": "20",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Citaro"
 },{
   "Platform": "DBA",
   "Merk": "Ford",
@@ -1391,7 +1448,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Transit"
 },{
   "Platform": "DBA",
   "Merk": "Ford",
@@ -1415,7 +1473,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Transit"
 },{
   "Platform": "DBA",
   "Merk": "Mercedes-Benz",
@@ -1439,7 +1498,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "DBA",
   "Merk": "Mercedes-Benz",
@@ -1463,7 +1523,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "DBA",
   "Merk": "Maxus",
@@ -1487,7 +1548,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Kleine Deense eDeliver 3 met matig verkooprendement.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Deliver 3"
 },{
   "Platform": "DBA",
   "Merk": "Maxus",
@@ -1511,7 +1573,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Deliver 9"
 },{
   "Platform": "DBA",
   "Merk": "VW",
@@ -1535,7 +1598,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter chassis cabine uit Denemarken met te hoge vraagprijs.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "DBA",
   "Merk": "Maxus",
@@ -1559,7 +1623,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Aluminium koffer met laadklep op Maxus chassis heeft te hoge vraagprijs.",
   "AI Ranking": "42",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Deliver 9"
 },{
   "Platform": "DBA",
   "Merk": "Maxus",
@@ -1583,7 +1648,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Deense eDeliver 9 met 72kWh accu kent historisch negatieve feedback.",
   "AI Ranking": "47",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Deliver 9"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Maxus",
@@ -1593,7 +1659,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Openbank Leasing",
-  "Locatie": "",
+  "Locatie": "DE, Baden-Württemberg",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=26993946&aid=691605",
   "Datum gevonden": "2026-11-24T04:27:49.967Z",
   "Status": "Op voorraad",
@@ -1607,7 +1673,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Maxus eDeliver 9 L3H3 heeft hoge afschrijving en sluit niet optimaal aan bij feedback.",
   "AI Ranking": "49",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Maxus",
@@ -1617,7 +1684,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Openbank Leasing",
-  "Locatie": "",
+  "Locatie": "DE, Baden-Württemberg",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=26993978&aid=691605",
   "Datum gevonden": "2026-11-24T04:27:50.213Z",
   "Status": "Op voorraad",
@@ -1631,7 +1698,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Elektrische Maxus pick-up met 89kWh heeft minieme afzetmarkt in onze doelgroep.",
   "AI Ranking": "44",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eT90"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Maxus",
@@ -1641,7 +1709,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Openbank Leasing",
-  "Locatie": "",
+  "Locatie": "DE, Baden-Württemberg",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=26993985&aid=691605",
   "Datum gevonden": "2026-11-24T04:27:50.441Z",
   "Status": "Op voorraad",
@@ -1655,7 +1723,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Maxus eT90 pick-up past niet binnen ons reguliere bedrijfswagenassortiment.",
   "AI Ranking": "43",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eT90"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -1665,7 +1734,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Erste Bank und Sparkassen Leasing GmbH",
-  "Locatie": "",
+  "Locatie": "HR",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27001981&aid=691784",
   "Datum gevonden": "2026-11-24T04:27:46.684Z",
   "Status": "Op voorraad",
@@ -1679,7 +1748,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Oudere 2019 eVito met eerste generatie 70kW techniek en onduidelijke tellerhistorie.",
   "AI Ranking": "38",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -1689,7 +1759,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Erste Bank und Sparkassen Leasing GmbH",
-  "Locatie": "",
+  "Locatie": "HR",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27001983&aid=691784",
   "Datum gevonden": "2026-11-24T04:27:46.913Z",
   "Status": "Op voorraad",
@@ -1703,7 +1773,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Vroeg bouwjaar 2019 met verouderde accutechniek en beperkte actieradius.",
   "AI Ranking": "38",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -1713,7 +1784,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Erste Bank und Sparkassen Leasing GmbH",
-  "Locatie": "",
+  "Locatie": "HR",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27001985&aid=691784",
   "Datum gevonden": "2026-11-24T04:27:46.217Z",
   "Status": "Op voorraad",
@@ -1727,7 +1798,8 @@
   "AI Pick": "Nee",
   "AI Reden": "2019 eVito met 74k km en eerste generatie accupakket is weinig courant in huidige markt.",
   "AI Ranking": "42",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -1737,7 +1809,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Erste Bank und Sparkassen Leasing GmbH",
-  "Locatie": "",
+  "Locatie": "HR",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27001990&aid=691784",
   "Datum gevonden": "2026-11-24T04:27:47.823Z",
   "Status": "Op voorraad",
@@ -1751,7 +1823,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Vroege elektrische Vito met beperkte prestaties en onvolledige kilometerregistratie.",
   "AI Ranking": "38",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -1761,7 +1834,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Erste Bank und Sparkassen Leasing GmbH",
-  "Locatie": "",
+  "Locatie": "HR",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27001991&aid=691784",
   "Datum gevonden": "2026-11-24T04:27:47.135Z",
   "Status": "Op voorraad",
@@ -1775,7 +1848,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Slechts 48 kW vermogen op deze eVito maakt deze bestelbus volstrekt incourant.",
   "AI Ranking": "35",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -1785,7 +1859,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Erste Bank und Sparkassen Leasing GmbH",
-  "Locatie": "",
+  "Locatie": "HR",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27001995&aid=691784",
   "Datum gevonden": "2026-11-24T04:27:47.361Z",
   "Status": "Op voorraad",
@@ -1799,7 +1873,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Verouderde eVito aandrijflijn uit 2019 met beperkt commercieel potentieel.",
   "AI Ranking": "38",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -1809,7 +1884,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Erste Bank und Sparkassen Leasing GmbH",
-  "Locatie": "",
+  "Locatie": "HR",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27001999&aid=691784",
   "Datum gevonden": "2026-11-24T04:27:47.590Z",
   "Status": "Op voorraad",
@@ -1823,7 +1898,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Oude specificatie elektrische Vito zonder betrouwbare tellerstand.",
   "AI Ranking": "38",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -1833,7 +1909,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Erste Bank und Sparkassen Leasing GmbH",
-  "Locatie": "",
+  "Locatie": "HR",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27002007&aid=691784",
   "Datum gevonden": "2026-11-24T04:27:52.056Z",
   "Status": "Op voorraad",
@@ -1847,7 +1923,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter met slechts 70 kW motorvermogen is te traag voor intensief commercieel gebruik.",
   "AI Ranking": "44",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Maxus",
@@ -1857,7 +1934,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Openbank cars and commercial vehicles",
-  "Locatie": "",
+  "Locatie": "DE, Bayern",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27004833&aid=691863",
   "Datum gevonden": "2026-11-24T04:27:49.473Z",
   "Status": "Op voorraad",
@@ -1871,7 +1948,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Maxus eDeliver 3 met klein 35 kWh accupakket is commercieel zeer moeilijk plaatsbaar.",
   "AI Ranking": "40",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 3"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Maxus",
@@ -1881,7 +1959,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Openbank cars and commercial vehicles",
-  "Locatie": "",
+  "Locatie": "DE, Bayern",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27004835&aid=691863",
   "Datum gevonden": "2026-11-24T04:27:49.704Z",
   "Status": "Op voorraad",
@@ -1895,7 +1973,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Historische feedback op Maxus eDeliver 9 is negatief beoordeeld als verkeerd model.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Maxus",
@@ -1905,7 +1984,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Openbank Leasing",
-  "Locatie": "",
+  "Locatie": "DE, Nordrhein-Westfalen",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27007332&aid=691919",
   "Datum gevonden": "2026-11-24T04:27:49.233Z",
   "Status": "Op voorraad",
@@ -1919,7 +1998,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Elektrische pick-up valt buiten onze kernfocus voor bedrijfswagens en heeft beperkte handelsvraag.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eT90"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -1929,7 +2009,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Premium Leasing - Open Auction",
-  "Locatie": "",
+  "Locatie": "NL",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27010996&aid=691993",
   "Datum gevonden": "2026-11-24T04:27:44.826Z",
   "Status": "Op voorraad",
@@ -1943,7 +2023,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling sluit pas over > 4 dagen",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -1953,7 +2034,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Mercedes-Benz Vans",
-  "Locatie": "",
+  "Locatie": "PL",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27012304&aid=692024",
   "Datum gevonden": "2026-11-24T04:27:48.997Z",
   "Status": "Op voorraad",
@@ -1967,7 +2048,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Vito Kombi personenuitvoering met grote 90kWh accu maar personenvervoer is niet onze hoofdmoot.",
   "AI Ranking": "68",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -1977,7 +2059,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Tax free Vans",
-  "Locatie": "",
+  "Locatie": "DK, Nordjylland",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27017931&aid=687537",
   "Datum gevonden": "2026-11-24T04:27:48.071Z",
   "Status": "Op voorraad",
@@ -1991,7 +2073,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Extra Long met kleine 35 kWh batterij is historisch expliciet afgekeurd wegens slecht model.",
   "AI Ranking": "42",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2001,7 +2084,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Tax free Vans",
-  "Locatie": "",
+  "Locatie": "DK, Nordjylland",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27017932&aid=687537",
   "Datum gevonden": "2026-11-24T04:27:48.306Z",
   "Status": "Op voorraad",
@@ -2015,7 +2098,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 35 kWh Extra Long combinatie matched niet met inkoopstrategie wegens minimaal rijbereik.",
   "AI Ranking": "42",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2025,7 +2109,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Tax free Vans",
-  "Locatie": "",
+  "Locatie": "DK, Nordjylland",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27017933&aid=687537",
   "Datum gevonden": "2026-11-24T04:27:48.537Z",
   "Status": "Op voorraad",
@@ -2039,7 +2123,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Lage stand maar 35 kWh accu op een zware Extra Long carrosserie is onverkoopbaar.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2049,7 +2134,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Tax free Vans",
-  "Locatie": "",
+  "Locatie": "DK, Nordjylland",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27017934&aid=687537",
   "Datum gevonden": "2026-11-24T04:27:48.765Z",
   "Status": "Op voorraad",
@@ -2063,7 +2148,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Afgekeurde combinatie van 35 kWh batterijpakket en Extra Long lengtemaat.",
   "AI Ranking": "42",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2073,7 +2159,7 @@
   "Eerste prijs": "€6.900",
   "Laatste prijs": "",
   "Verkoper": "ayvens",
-  "Locatie": "",
+  "Locatie": "IT, Emilia-Romagna",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27018444&aid=692131",
   "Datum gevonden": "2026-11-24T04:27:50.669Z",
   "Status": "Op voorraad",
@@ -2087,7 +2173,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling sluit te snel (< 3 uur)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2097,7 +2184,7 @@
   "Eerste prijs": "€8.500",
   "Laatste prijs": "",
   "Verkoper": "ayvens",
-  "Locatie": "",
+  "Locatie": "IT, Emilia-Romagna",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27018445&aid=692131",
   "Datum gevonden": "2026-11-24T04:27:50.896Z",
   "Status": "Op voorraad",
@@ -2111,7 +2198,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling sluit te snel (< 3 uur)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2121,7 +2209,7 @@
   "Eerste prijs": "€5.500",
   "Laatste prijs": "",
   "Verkoper": "ayvens",
-  "Locatie": "",
+  "Locatie": "IT, Emilia-Romagna",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27018462&aid=692131",
   "Datum gevonden": "2026-11-24T04:27:51.136Z",
   "Status": "Op voorraad",
@@ -2135,7 +2223,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling sluit te snel (< 3 uur)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2145,7 +2234,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Exclusieve Veiling - ⚡️EV Fest ⚡️ - FR - Speciale aanbieding op koperskosten",
-  "Locatie": "",
+  "Locatie": "FR, Cher",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27020291&aid=692123",
   "Datum gevonden": "2026-11-24T04:27:51.362Z",
   "Status": "Op voorraad",
@@ -2159,7 +2248,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter met 47kWh accupakket heeft beperkte actieradius en eSprinter 312 scoorde eerder negatief op prijs-kwaliteit.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2169,7 +2259,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Exclusieve Veiling - ⚡️EV Fest ⚡️ - FR - Speciale aanbieding op koperskosten",
-  "Locatie": "",
+  "Locatie": "FR, Cher",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27020292&aid=692123",
   "Datum gevonden": "2026-11-24T04:27:51.595Z",
   "Status": "Op voorraad",
@@ -2183,7 +2273,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zeer lage kilometerstand maar klein accupakket van 47kWh maakt doorverkoop lastig.",
   "AI Ranking": "60",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2193,7 +2284,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Exclusieve Veiling - ⚡️EV Fest ⚡️ - FR - Speciale aanbieding op koperskosten",
-  "Locatie": "",
+  "Locatie": "FR, Cher",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27020293&aid=692123",
   "Datum gevonden": "2026-11-24T04:27:51.823Z",
   "Status": "Op voorraad",
@@ -2207,7 +2298,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Minimale kilometerstand maar eSprinter 47kWh kent beperkte marktvraag wegens actieradius.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2217,7 +2309,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Exclusieve Veiling - ⚡️EV Fest ⚡️ - FR - Speciale aanbieding op koperskosten",
-  "Locatie": "",
+  "Locatie": "FR, Oise",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27020294&aid=692123",
   "Datum gevonden": "2026-11-24T04:27:45.076Z",
   "Status": "Op voorraad",
@@ -2231,7 +2323,8 @@
   "AI Pick": "Ja",
   "AI Reden": "AI Top Pick: Gewilde eVito 112 Long met groter 60kWh accupakket uit 2024 en lage kilometerstand.",
   "AI Ranking": "83",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2241,7 +2334,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Exclusieve Veiling - ⚡️EV Fest ⚡️ - FR - Speciale aanbieding op koperskosten",
-  "Locatie": "",
+  "Locatie": "FR, Ain",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27020295&aid=692123",
   "Datum gevonden": "2026-11-24T04:27:45.299Z",
   "Status": "Op voorraad",
@@ -2255,7 +2348,8 @@
   "AI Pick": "Ja",
   "AI Reden": "AI Top Pick: Zeer courante 2024 eVito 112 Long met 60kWh batterij en slechts 14k gelopen.",
   "AI Ranking": "85",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2265,7 +2359,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Exclusieve Veiling - ⚡️EV Fest ⚡️ - FR - Speciale aanbieding op koperskosten",
-  "Locatie": "",
+  "Locatie": "FR, Ain",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27020296&aid=692123",
   "Datum gevonden": "2026-11-24T04:27:45.531Z",
   "Status": "Op voorraad",
@@ -2279,7 +2373,8 @@
   "AI Pick": "Ja",
   "AI Reden": "AI Top Pick: Beste specificaties in de batch met 2024 bouwjaar 60kWh accu en 11k km.",
   "AI Ranking": "88",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2289,7 +2384,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Exclusieve Veiling - ⚡️EV Fest ⚡️ - FR - Speciale aanbieding op koperskosten",
-  "Locatie": "",
+  "Locatie": "FR, Oise",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27020297&aid=692123",
   "Datum gevonden": "2026-11-24T04:27:45.760Z",
   "Status": "Op voorraad",
@@ -2303,7 +2398,8 @@
   "AI Pick": "Ja",
   "AI Reden": "AI Top Pick: Uitstekende match met voorraad en vraag dankzij 60kWh pakket en lage stand.",
   "AI Ranking": "87",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2313,7 +2409,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Exclusieve Veiling - ⚡️EV Fest ⚡️ - FR - Speciale aanbieding op koperskosten",
-  "Locatie": "",
+  "Locatie": "FR, Oise",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27020298&aid=692123",
   "Datum gevonden": "2026-11-24T04:27:45.989Z",
   "Status": "Op voorraad",
@@ -2327,7 +2423,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Prima eVito 112 met 60kWh accu maar net buiten de top 5 selectie gevallen door iets hogere km-stand.",
   "AI Ranking": "72",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2337,7 +2434,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "OEM | Electric Vehicles Special",
-  "Locatie": "",
+  "Locatie": "ES, Madrid",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27029181&aid=692302",
   "Datum gevonden": "2026-11-24T04:27:52.291Z",
   "Status": "Op voorraad",
@@ -2351,7 +2448,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter 312 Furgon uit 2021 met beperkt vermogen en eerdere negatieve marge-ervaringen.",
   "AI Ranking": "56",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2361,7 +2459,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "OEM | Electric Vehicles Special",
-  "Locatie": "",
+  "Locatie": "ES, Madrid",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27029182&aid=692302",
   "Datum gevonden": "2026-11-24T04:27:52.520Z",
   "Status": "Op voorraad",
@@ -2375,7 +2473,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter 312 met bijna 60k km en eerdere afkeur op dit type wegens te hoge prijs.",
   "AI Ranking": "54",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2385,7 +2484,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "OEM | Electric Vehicles Special",
-  "Locatie": "",
+  "Locatie": "ES, Madrid",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27029183&aid=692302",
   "Datum gevonden": "2026-11-24T04:27:52.747Z",
   "Status": "Op voorraad",
@@ -2399,7 +2498,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Relatief nette kilometerstand op 2022 eSprinter maar model is historisch matig rendabel gebleken.",
   "AI Ranking": "60",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2409,7 +2509,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "OEM | Electric Vehicles Special",
-  "Locatie": "",
+  "Locatie": "ES, Madrid",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27029184&aid=692302",
   "Datum gevonden": "2026-11-24T04:27:52.969Z",
   "Status": "Op voorraad",
@@ -2423,7 +2523,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter 312 Furgon met 48k km kent trage omloopsnelheid in onze doelgroep.",
   "AI Ranking": "55",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2433,7 +2534,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "OEM | Electric Vehicles Special",
-  "Locatie": "",
+  "Locatie": "ES, Madrid",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27029185&aid=692302",
   "Datum gevonden": "2026-11-24T04:27:53.205Z",
   "Status": "Op voorraad",
@@ -2447,7 +2548,8 @@
   "AI Pick": "Nee",
   "AI Reden": "2022 eSprinter met 57k km en matige actieradius voor professioneel distributiewerk.",
   "AI Ranking": "53",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autorola (veilingen)",
   "Merk": "Mercedes-Benz",
@@ -2457,7 +2559,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "OEM | Electric Vehicles Special",
-  "Locatie": "",
+  "Locatie": "ES, Madrid",
   "Link": "https://www.autorola.nl/nl/dealer/bid?zz=1&cameFrom=SEARCH&eid=27029186&aid=692302",
   "Datum gevonden": "2026-11-24T04:27:53.435Z",
   "Status": "Op voorraad",
@@ -2471,7 +2573,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter Furgon met 44k km mist de gewilde marge en snelle marktacceptatie.",
   "AI Ranking": "56",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "DBA",
   "Merk": "Mercedes-Benz",
@@ -2495,7 +2598,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito Tourer personenuitvoering is te duur en valt buiten bestelbusfocus.",
   "AI Ranking": "44",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -2519,7 +2623,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Mustang Mach-E"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -2543,7 +2648,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Geen prijs vermeld waardoor margecalculatie niet mogelijk is.",
   "AI Ranking": "30",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -2567,7 +2673,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Vraagprijs van nul euro maakt margecalculatie onmogelijk.",
   "AI Ranking": "30",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -2591,7 +2698,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Explorer 2025"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "MAXUS",
@@ -2615,7 +2723,8 @@
   "AI Pick": "Ja",
   "AI Reden": "AI pick in het verleden al geselecteerd",
   "AI Ranking": "81",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "eDeliver 3"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -2639,7 +2748,8 @@
   "AI Pick": "Ja",
   "AI Reden": "AI pick in het verleden al geselecteerd",
   "AI Ranking": "88",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Copart (veilingen)",
   "Merk": "Ford",
@@ -2663,7 +2773,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Puma Gen-E"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace",
@@ -2687,7 +2798,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Compacte 50kWh Proace voor veertienduizend euro is redelijk geprijsd.",
   "AI Ranking": "65",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -2711,7 +2823,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "VOLKSWAGEN Crafter",
@@ -2735,7 +2848,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Identiek Spaans aanbod met onduidelijke historie en hoge vraagprijs voor 2018.",
   "AI Ranking": "55",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Coches",
   "Merk": "VOLKSWAGEN Crafter",
@@ -2759,7 +2873,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter Furgon sluit minder goed aan bij onze voorraadstrategie.",
   "AI Ranking": "55",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -2783,7 +2898,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Extralang model werd historisch afgekeurd wegens verkeerde uitvoering.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -2807,7 +2923,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Hoge kilometerstand van 143k km voor een elektrische 35kWh eVito.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace City",
@@ -2831,7 +2948,8 @@
   "AI Pick": "Nee",
   "AI Reden": "L2 Proace City EV voor twintigduizend euro is marktconform geprijsd.",
   "AI Ranking": "50",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -2855,7 +2973,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 111 voor bijna negentienduizend euro is structureel te duur.",
   "AI Ranking": "60",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -2879,7 +2998,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito Tourer personenbus past niet in de commerciële bestelbusfocus.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -2903,7 +3023,8 @@
   "AI Pick": "Nee",
   "AI Reden": "2019 eVito met 38k km kent beperkte actieradius en vraag.",
   "AI Ranking": "64",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "FORD Transit",
@@ -2927,7 +3048,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Vraagprijs van bijna twintigduizend euro is te fors voor 76k km.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -2951,7 +3073,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Onder tienduizend euro prima maar actieradius blijft een verkoopbelemmering.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -2975,7 +3098,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Oudere 2020 eVito met 70k km biedt net te weinig marge.",
   "AI Ranking": "61",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Sprinter",
@@ -2999,7 +3123,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Spaanse eSprinter met nette kilometers maar marge is krap.",
   "AI Ranking": "64",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3023,7 +3148,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 111 met 31k km voor 17500 euro laat te weinig marge.",
   "AI Ranking": "61",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MAXUS eDeliver 9",
@@ -3047,7 +3173,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eDeliver 9 72kWh kent historisch negatieve feedback.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3071,7 +3198,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito met 62k km voor dertienduizend euro kent een matige doorloop.",
   "AI Ranking": "64",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3095,7 +3223,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Onder tienduizend euro interessant maar kleine 35kWh accu blijft lastig.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3119,7 +3248,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Scherpe prijs echter beperkt verkoopvolume voor 35kWh eVito.",
   "AI Ranking": "66",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3143,7 +3273,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Goede prijsstelling maar importkosten en beperkte actieradius drukken marge.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3167,7 +3298,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Scherpe prijs rond tienduizend euro voor eVito met 47k km.",
   "AI Ranking": "71",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3191,7 +3323,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito met bijna 80k km en 35kWh accu kent weinig vraag.",
   "AI Ranking": "61",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3215,7 +3348,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Oudere eVito uit 2019 voor bijna zeventienduizend euro is niet scherp.",
   "AI Ranking": "57",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace",
@@ -3239,7 +3373,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Proace 75kWh met nette km-stand maar te duur voor export.",
   "AI Ranking": "56",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3263,7 +3398,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 2020 met 60k km en 35kWh accu kent een trage omloop.",
   "AI Ranking": "64",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace",
@@ -3287,7 +3423,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Spaanse Proace VX voor twintigduizend euro biedt geen marge.",
   "AI Ranking": "54",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Coches",
   "Merk": "RENAULT Kangoo Z.E.",
@@ -3311,7 +3448,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Oudere 2017 Kangoo Z.E. met 22kWh techniek is incourant.",
   "AI Ranking": "40",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Kangoo E-Tech"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3335,7 +3473,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Gunstige prijs voor eVito maar actieradius blijft een handelsbeperking.",
   "AI Ranking": "66",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3359,7 +3498,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Vito 111 met 77k km en 35kWh pakket is minder gewild in de markt.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3383,7 +3523,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Nettere kilometerstand maar de vraag naar 35kWh eVito blijft tamelijk beperkt.",
   "AI Ranking": "65",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "MAXUS eDeliver 9",
@@ -3407,7 +3548,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Negatieve match met historische feedback op Maxus 72kWh bestelbus.",
   "AI Ranking": "50",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Coches",
   "Merk": "MERCEDES-BENZ Vito",
@@ -3431,7 +3573,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 112 met 60kWh is gewild maar deze vraagprijs is te hoog.",
   "AI Ranking": "56",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Coches",
   "Merk": "FORD Transit",
@@ -3455,7 +3598,8 @@
   "AI Pick": "Nee",
   "AI Reden": "E-Transit 350 Trend met nette km-stand maar beperkte handelsmarge.",
   "AI Ranking": "61",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace City",
@@ -3479,7 +3623,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Scherp geprijsde Proace City EV maar nichemarkt qua afmetingen.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace City",
@@ -3503,7 +3648,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Dubbele aanbieding van scherp geprijsde compacte Proace City EV.",
   "AI Ranking": "68",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Coches",
   "Merk": "FORD Transit",
@@ -3527,7 +3673,8 @@
   "AI Pick": "Nee",
   "AI Reden": "E-Transit met meer dan 100k km is te duur voor een margekandidaat.",
   "AI Ranking": "60",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace City",
@@ -3551,7 +3698,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Bijna nieuwe Proace City EV met scherpe prijs rond twaalfduizend euro.",
   "AI Ranking": "68",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Coches",
   "Merk": "MAXUS eDeliver 9",
@@ -3575,7 +3723,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Negatieve match met historische afkeur op eDeliver 9 72kWh.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Coches",
   "Merk": "TOYOTA Proace",
@@ -3599,7 +3748,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Dubbele listing van Proace 75kWh zonder voldoende handelsmarge.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Camion Super Market",
   "Merk": "Mercedes-benz",
@@ -3623,7 +3773,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Bijna nieuwe eCitan maar twintigduizend euro laat te weinig handelswinst.",
   "AI Ranking": "61",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eCitan"
 },{
   "Platform": "Camion Super Market",
   "Merk": "Fiat",
@@ -3647,7 +3798,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Fiat E-Ducato met 27k km kent een zeer beperkte vraag in Nederland.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Ducato"
 },{
   "Platform": "Camion Super Market",
   "Merk": "2022",
@@ -3671,7 +3823,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Proace City met 91k km uit Italië biedt te krappe marge.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -3695,7 +3848,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter Kasten 35 sluit historisch minder aan bij de vraag.",
   "AI Ranking": "55",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -3719,7 +3873,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Hoge vraagprijs van vijfentwintigduizend euro voor een Maxus bestelbus.",
   "AI Ranking": "46",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Mobile",
   "Merk": "Ford",
@@ -3743,7 +3898,8 @@
   "AI Pick": "Nee",
   "AI Reden": "E-Transit met 132k km heeft te veel gelopen voor deze prijs.",
   "AI Ranking": "56",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -3767,7 +3923,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Lage kilometerstand en nette prijs voor eVito maar 35kWh accu is beperkt.",
   "AI Ranking": "70",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -3791,7 +3948,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter 5-tons kofferwagen vereist C1-rijbewijs en heeft kleine doelgroep.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -3815,7 +3973,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Vraagprijs van nul euro maakt margecalculatie onmogelijk.",
   "AI Ranking": "30",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -3839,7 +3998,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duitse eVito met 46k km voor vijftienduizend euro biedt minimale marge.",
   "AI Ranking": "63",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Milanuncios",
   "Merk": "TOYOTA",
@@ -3863,7 +4023,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Proace 50kWh met 42k km voor veertienduizend euro is redelijk.",
   "AI Ranking": "65",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Milanuncios",
   "Merk": "Renault",
@@ -3887,7 +4048,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Vraagprijs van nul euro en verouderde 2016 Kangoo techniek.",
   "AI Ranking": "30",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Kangoo E-Tech"
 },{
   "Platform": "Milanuncios",
   "Merk": "TOYOTA",
@@ -3911,7 +4073,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Proace City EV L2 voor twintigduizend euro laat te weinig handelsmarge.",
   "AI Ranking": "50",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Milanuncios",
   "Merk": "TOYOTA",
@@ -3935,7 +4098,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Scherp geprijsde Proace City maar compact segment heeft beperktere omzet.",
   "AI Ranking": "67",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Milanuncios",
   "Merk": "Maxus",
@@ -3959,7 +4123,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Maxus eDeliver 9 72kWh matcht niet met onze inkoopstrategie.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Milanuncios",
   "Merk": "Nissan",
@@ -3983,7 +4148,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Nissan e-NV200 met 87k km en 40kWh accu is verouderd qua vraag.",
   "AI Ranking": "58",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "e-NV200"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4007,7 +4173,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Aantrekkelijke prijs maar kleine 35kWh batterij drukt de omloopsnelheid.",
   "AI Ranking": "66",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-benz",
@@ -4031,7 +4198,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Goede basisprijs maar beperkt bereik maakt herverkoop uitdagend.",
   "AI Ranking": "66",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Milanuncios",
   "Merk": "TOYOTA",
@@ -4055,7 +4223,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Te duur voor een gebruikte Proace met 67k km op de teller.",
   "AI Ranking": "54",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Milanuncios",
   "Merk": "Maxus",
@@ -4079,7 +4248,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eDeliver 9 met 72kWh batterij botst met eerdere inkoopfeedback.",
   "AI Ranking": "50",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Milanuncios",
   "Merk": "Citroen",
@@ -4103,7 +4273,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Citroën combi personenwagen valt buiten de gewenste categorie.",
   "AI Ranking": "55",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "ë-Jumpy"
 },{
   "Platform": "Milanuncios",
   "Merk": "Citroen",
@@ -4127,7 +4298,8 @@
   "AI Pick": "Nee",
   "AI Reden": "e-Jumpy Combi personenuitvoering past niet binnen de bedrijfsstrategie.",
   "AI Ranking": "55",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "ë-Jumpy"
 },{
   "Platform": "Milanuncios",
   "Merk": "TOYOTA",
@@ -4151,7 +4323,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Identieke Spaanse aanbieding van scherp geprijsde Proace City EV.",
   "AI Ranking": "68",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Milanuncios",
   "Merk": "TOYOTA",
@@ -4175,7 +4348,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Vrijwel nieuwe Proace City EV voor twaalfduizend euro is scherp geprijsd.",
   "AI Ranking": "68",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Milanuncios",
   "Merk": "Maxus",
@@ -4199,7 +4373,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Historische feedback op eDeliver 9 72kWh was uitgesproken negatief.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Milanuncios",
   "Merk": "TOYOTA",
@@ -4223,7 +4398,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Proace 75kWh is prima maar met 18k te hoog geprijsd voor export.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "2dehands",
   "Merk": "Ford",
@@ -4247,7 +4423,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Ontbrekende kilometerstand en bouwjaar maken beoordeling onmogelijk.",
   "AI Ranking": "40",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Custom"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -4271,7 +4448,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Ongeldige prijs van nul euro en omgebouwd tot kappersbus.",
   "AI Ranking": "25",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -4295,7 +4473,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Jonge eCitan in Vaassen maar twintigduizend euro laat te weinig marge over.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eCitan"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -4319,7 +4498,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 41kWh in Rotterdam is netjes maar te duur geprijsd.",
   "AI Ranking": "59",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -4343,7 +4523,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Extra Lang eVito werd door inkoop afgekeurd en prijs is bijna twintigduizend.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Marktplaats",
   "Merk": "Maxus",
@@ -4367,7 +4548,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Hoge investering in een eDeliver 9 zonder gegarandeerde marge.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Marktplaats",
   "Merk": "Maxus",
@@ -4391,7 +4573,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "EV80 9persoons"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -4415,7 +4598,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eCitan"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-Benz",
@@ -4439,7 +4623,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "2dehands",
   "Merk": "Maxus",
@@ -4463,7 +4648,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Marktplaats",
   "Merk": "Maxus",
@@ -4487,7 +4673,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "2dehands",
   "Merk": "Maxus",
@@ -4511,7 +4698,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "2dehands",
   "Merk": "Maxus",
@@ -4535,7 +4723,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "2dehands",
   "Merk": "Maxus",
@@ -4559,7 +4748,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -4583,7 +4773,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Extra Lang eVito werd historisch expliciet afgekeurd door het team.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -4607,7 +4798,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Mooie staat in Leeuwarden maar bijna achttienduizend euro is te hoog.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Marktplaats",
   "Merk": "Maxus",
@@ -4631,7 +4823,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Hoge investering in een Maxus eDeliver 9 zonder gegarandeerde marge.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Marktplaats",
   "Merk": "Mercedes-benz",
@@ -4655,7 +4848,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Dubbele vermelding van Nederlandse eVito met nette km-stand.",
   "AI Ranking": "68",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "2dehands",
   "Merk": "Maxus",
@@ -4679,7 +4873,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Marktplaats",
   "Merk": "Maxus",
@@ -4703,7 +4898,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Nederlandse eDeliver 9 is te duur om voldoende handelsmarge te pakken.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "2dehands",
   "Merk": "Maxus",
@@ -4727,7 +4923,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Marktplaats",
   "Merk": "Maxus",
@@ -4751,7 +4948,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "2dehands",
   "Merk": "Maxus",
@@ -4775,7 +4973,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Marktplaats",
   "Merk": "Maxus",
@@ -4799,7 +4998,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Leboncoin",
   "Merk": "Toyota",
@@ -4823,7 +5023,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Compacte Proace City te duur voor de handel.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -4847,7 +5048,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Jonge eCitan maar met achttienduizend euro te dicht bij de markt.",
   "AI Ranking": "63",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Citan"
 },{
   "Platform": "Leboncoin",
   "Merk": "Maxus",
@@ -4871,7 +5073,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Kleine eDeliver 3 met 35kWh pakket is structureel lastig verkoopbaar.",
   "AI Ranking": "50",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "E-deliver 3"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -4895,7 +5098,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zeer lage kilometerstand voor 2024 eSprinter maar Franse marge is krap.",
   "AI Ranking": "71",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Leboncoin",
   "Merk": "Toyota",
@@ -4919,7 +5123,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Proace 75kWh met 74k km is redelijk maar marge is minimaal.",
   "AI Ranking": "63",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Leboncoin",
   "Merk": "Proace",
@@ -4943,7 +5148,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Hoge kilometerstand van 150k km voor een compacte elektrische bus.",
   "AI Ranking": "42",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -4967,7 +5173,8 @@
   "AI Pick": "Nee",
   "AI Reden": "2019 eVito met te hoge prijsstelling voor een oudere generatie.",
   "AI Ranking": "56",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -4991,7 +5198,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 35kWh voor negentienduizend euro is substantieel te duur.",
   "AI Ranking": "55",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5015,7 +5223,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter met 65k km is aan de prijs voor een 41kWh variant.",
   "AI Ranking": "60",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5039,7 +5248,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Oudere 2019 eVito met kleine accu en gemiddelde prijsstelling.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Leboncoin",
   "Merk": "E-sprinter",
@@ -5063,7 +5273,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter met nette kilometers maar Franse registratie vergt import.",
   "AI Ranking": "66",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5087,7 +5298,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito met lage km-stand maar 35kWh accupakket remt de verkoop.",
   "AI Ranking": "64",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Leboncoin",
   "Merk": "Toyota",
@@ -5111,7 +5323,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Jonge Proace maar de vraagprijs laat te weinig handelsruimte.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5135,7 +5348,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Bijna nieuwe eSprinter met 1386 km maar prijs laat weinig marge.",
   "AI Ranking": "69",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5159,7 +5373,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Lage kilometerstand maar 41kWh eSprinter prijs zit te strak.",
   "AI Ranking": "68",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Leboncoin",
   "Merk": "Maxus",
@@ -5183,7 +5398,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Maxus eDeliver 3 voor bijna drieëntwintigduizend euro is niet rendabel.",
   "AI Ranking": "44",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 3"
 },{
   "Platform": "Leboncoin",
   "Merk": "Toyota",
@@ -5207,7 +5423,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Proace City Business vraagt te veel kapitaal voor een kleine besteller.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Leboncoin",
   "Merk": "Transfert",
@@ -5231,7 +5448,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Prijs onrealistisch laag (< 3500) (schade of fout)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5255,7 +5473,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter 2023 met 32k km maar prijs is net te dicht bij retail.",
   "AI Ranking": "63",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-benz",
@@ -5279,7 +5498,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Gemiddelde eVito zonder opvallend margepotentieel.",
   "AI Ranking": "63",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5303,7 +5523,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zeer lage kilometers maar de 41kWh batterij drukt de marktwaarde.",
   "AI Ranking": "68",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5327,7 +5548,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Franse eSprinter aan de prijs voor een standaard L2H2 uitvoering.",
   "AI Ranking": "64",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Leboncoin",
   "Merk": "Mercedes-Benz",
@@ -5351,7 +5573,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Lage km-stand maar 35kWh pakket blijft de beperkende factor.",
   "AI Ranking": "66",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Volkswagen",
@@ -5375,7 +5598,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Volkswagen",
@@ -5399,7 +5623,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Ontbrekende registratie en kilometerdata maken calculatie riskant.",
   "AI Ranking": "40",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -5423,7 +5648,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Compacte Proace City voor bijna vijfentwintigduizend euro is te duur.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Maxus",
@@ -5447,7 +5673,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eDeliver 3 is te compact en te duur vergeleken met grotere alternatieven.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 3"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -5471,7 +5698,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duitse eVito met 47k km voor bijna zeventienduizend euro is te duur.",
   "AI Ranking": "61",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Volkswagen",
@@ -5495,7 +5723,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter L3H2 met dieselmotor sluit historisch minder goed aan.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -5519,7 +5748,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -5543,7 +5773,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Proace City personenbus past niet binnen het bedrijfswagenbeleid.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -5567,7 +5798,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Forse meerprijs vergeleken met soortgelijke aanbiedingen.",
   "AI Ranking": "54",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -5591,7 +5823,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Personenbus Verso past niet in de commerciële bestelbusfocus.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -5615,7 +5848,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Scherp geprijsde eSprinter met 43k km voor twaalfduizend euro.",
   "AI Ranking": "73",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -5639,7 +5873,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Compacte Proace City te duur geprijsd voor handelsdoeleinden.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -5663,7 +5898,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zelfde eVito in Hilden met te krappe handelsmarge.",
   "AI Ranking": "60",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -5687,7 +5923,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duurdere bruto listing van dezelfde Duitse eVito.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -5711,7 +5948,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duitse Proace met 50kWh batterij is te duur voor de handel.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Toyota",
@@ -5735,7 +5973,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-benz",
@@ -5759,7 +5998,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter met 24900 km voor veertienduizend euro is interessant maar niet top.",
   "AI Ranking": "71",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Volkswagen",
@@ -5783,7 +6023,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter past historisch minder goed in het gewenste profiel en marge is beperkt.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Kleinanzeigen",
   "Merk": "Mercedes-Benz",
@@ -5807,7 +6048,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Particuliere advertentie zonder duidelijke btw-verrekening.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "BCA (veilingen)",
   "Merk": "Opel",
@@ -5817,7 +6059,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Alphabet LCV/Nutzfahrzeuge",
-  "Locatie": "",
+  "Locatie": "Bad Fallingbostel, Germany",
   "Link": "https://nl.bca-europe.com/Lot?id=7c39a649-bfe4-f111-94fe-005056b591b3&q=&bq=fueltype_exact%3AElectric%7Cbodytype_exact%3AVan%2CBedrijfswagen%2CBox%20Wagon%20High%20Roof%2CBox%20Wagon&sort=Relevance&missingMileage=True&awaitingAppraisal=True&page=1&extraFiltersActive=true&returnTo=14892681&promoAppliedSets=&R=15&SR=10&SourceSystem=BuyerGateway",
   "Datum gevonden": "2026-11-24T04:27:29.868Z",
   "Status": "Op voorraad",
@@ -5831,7 +6073,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Opel Vivaro-e heeft extreem lage stand maar merk sluit minder sterk aan bij onze kernvoorraad.",
   "AI Ranking": "61",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vivaro-e"
 },{
   "Platform": "BCA (veilingen)",
   "Merk": "Opel",
@@ -5841,7 +6084,7 @@
   "Eerste prijs": "Op aanvraag",
   "Laatste prijs": "",
   "Verkoper": "Alphabet LCV/Nutzfahrzeuge",
-  "Locatie": "",
+  "Locatie": "Rackwitz, Germany",
   "Link": "https://nl.bca-europe.com/Lot?id=7e39a649-bfe4-f111-94fe-005056b591b3&q=&bq=fueltype_exact%3AElectric%7Cbodytype_exact%3AVan%2CBedrijfswagen%2CBox%20Wagon%20High%20Roof%2CBox%20Wagon&sort=Relevance&missingMileage=True&awaitingAppraisal=True&page=1&extraFiltersActive=true&returnTo=14844912&promoAppliedSets=&R=15&SR=10&SourceSystem=BuyerGateway",
   "Datum gevonden": "2026-11-24T04:27:29.613Z",
   "Status": "Op voorraad",
@@ -5855,7 +6098,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Vivaro-e met 50kWh accupakket en gemiddelde kilometerstand biedt onvoldoende margepotentieel.",
   "AI Ranking": "55",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vivaro-e"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-Benz",
@@ -5879,7 +6123,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zeer hoge kilometerstand van 160k km voor een elektrische bestelauto.",
   "AI Ranking": "40",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eCitan"
 },{
   "Platform": "Milanuncios",
   "Merk": "TOYOTA",
@@ -5903,7 +6148,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Proace met 75kWh accu maar negentienduizend euro laat geen ruimte.",
   "AI Ranking": "56",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Milanuncios",
   "Merk": "Mercedes-Benz",
@@ -5927,7 +6173,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Ongeldige prijsnotering van nul euro.",
   "AI Ranking": "30",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -5951,7 +6198,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito met nette km-stand maar marge blijft net te krap.",
   "AI Ranking": "66",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -5975,7 +6223,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito met 26k km voor bijna negentienduizend euro is veel te duur.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -5999,7 +6248,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Gunstig geprijsde eVito met 28k km maar 35kWh accu remt omloop.",
   "AI Ranking": "68",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6023,7 +6273,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6047,7 +6298,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito uit Hilden voor bijna zestigduizend euro is te marktconform.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6071,7 +6323,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Extralang eVito model werd historisch afgekeurd door inkoop.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6095,7 +6348,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito met 54k km voor bijna vijftienduizend euro biedt krappe marge.",
   "AI Ranking": "63",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6119,7 +6373,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 111 met 45k km voor bijna zestigduizend euro biedt te weinig marge.",
   "AI Ranking": "61",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6143,7 +6398,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zeer lage prijs van 7999 euro maar particuliere verkoop zonder garantie.",
   "AI Ranking": "74",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6167,7 +6423,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Junge Sterne garantie is mooi maar brutoprijs is te hoog voor handel.",
   "AI Ranking": "57",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6191,7 +6448,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 35kWh met 65k km voor bijna zestigduizend euro is te duur.",
   "AI Ranking": "61",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6215,7 +6473,8 @@
   "AI Pick": "Nee",
   "AI Reden": "2019 eVito met lage km-stand maar 35kWh accu kent lage vraag.",
   "AI Ranking": "63",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6239,7 +6498,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito met nette km-stand maar vijftienduizend euro is marktconform.",
   "AI Ranking": "65",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-Benz",
@@ -6263,7 +6523,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Prijs onrealistisch laag (< 3500) (schade of fout)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Quoka",
   "Merk": "Toyota",
@@ -6287,7 +6548,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duitse Proace voor twintigduizend euro netto laat te weinig ruimte.",
   "AI Ranking": "55",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6311,7 +6573,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eCitan"
 },{
   "Platform": "Quoka",
   "Merk": "Mercedes-benz",
@@ -6335,7 +6598,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Mooie eCitan 45kWh maar marge blijft te krap rond achttienduizend euro.",
   "AI Ranking": "64",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eCitan"
 },{
   "Platform": "Otomoto",
   "Merk": "Maxus",
@@ -6359,7 +6623,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Oudere Maxus EV80 kent in Nederland nauwelijks vraag.",
   "AI Ranking": "44",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "EV80"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -6383,7 +6648,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Sprinter"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -6407,7 +6673,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter met 61k km uit Polen biedt net te weinig marge.",
   "AI Ranking": "66",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -6431,7 +6698,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Jonge 2024 eVito voor veertienduizend euro met nette kilometerstand.",
   "AI Ranking": "71",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -6455,7 +6723,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eCitan extra lang voor ruim achtentwintigduizend euro is te duur.",
   "AI Ranking": "50",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eCitan"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -6479,7 +6748,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Lage prijs onder tienduizend euro maar import uit Polen vergt extra kosten.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -6503,7 +6773,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter met acceptabele kilometerstand maar marge is net niet top.",
   "AI Ranking": "69",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -6527,7 +6798,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Te dure Vito ten opzichte van vergelijkbare elektrische voorraad.",
   "AI Ranking": "46",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -6551,7 +6823,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eCitan met 40k km voor bijna vijfentwintigduizend euro is te duur.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eCitan"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -6575,7 +6848,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Jonge eSprinter 2023 met nette km-stand en scherpe prijs.",
   "AI Ranking": "73",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Sprinter"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -6599,7 +6873,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Poolse eSprinter met 63k km heeft een redelijke prijsstelling.",
   "AI Ranking": "68",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Otomoto",
   "Merk": "Mercedes-benz",
@@ -6623,7 +6898,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Onvolledige typeaanduiding en te hoge prijs van bijna zesentwintigduizend.",
   "AI Ranking": "50",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Progressive"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -6647,7 +6923,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Prijs onrealistisch laag (< 3500) (schade of fout)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -6671,7 +6948,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter modelmatch past minder goed bij onze voorraadbenchmark.",
   "AI Ranking": "53",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -6695,7 +6973,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Poolse Crafter met hoge prijsstelling voor een 2019 model.",
   "AI Ranking": "50",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -6719,7 +6998,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter modelmatch scoort laag volgens historische inkoopcriteria.",
   "AI Ranking": "55",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -6743,7 +7023,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter modelvariant sluit minder aan bij onze verkoopfocus.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -6767,7 +7048,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter modeluitvoering sluit historisch minder aan bij onze handel.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Otomoto",
   "Merk": "Volkswagen",
@@ -6791,7 +7073,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter matcht niet optimaal met onze voorraadbehoefte.",
   "AI Ranking": "54",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -6815,7 +7098,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Proace City BEV voor bijna negenentwintigduizend euro is onverkoopbaar.",
   "AI Ranking": "44",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -6839,7 +7123,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Kleine bestelauto voor meer dan vijfentwintigduizend euro levert geen marge.",
   "AI Ranking": "46",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -6863,7 +7148,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Te duur voor een compacte elektrische bestelauto.",
   "AI Ranking": "44",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -6887,7 +7173,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Proace City EV met meer dan zevenentwintigduizend euro is te duur.",
   "AI Ranking": "44",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -6911,7 +7198,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Te duur voor een compacte elektrische besteller.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -6935,7 +7223,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Proace City EV Active is te duur voor handelsdoeleinden.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -6959,7 +7248,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -6983,7 +7273,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Kleine Proace City voor ruim achtentwintigduizend euro is kansloos.",
   "AI Ranking": "44",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7007,7 +7298,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Hoge aanschafprijs voor een compacte elektrische besteller.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7031,7 +7323,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Budgetlimiet overschreden (> €30.000)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7055,7 +7348,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Hoge nieuwprijs zonder margepotentieel voor wederverkoop.",
   "AI Ranking": "44",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7079,7 +7373,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Kleine Proace City voor bijna zesentwintigduizend euro biedt geen marge.",
   "AI Ranking": "46",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7103,7 +7398,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Compacte Proace City met te hoge vraagprijs.",
   "AI Ranking": "43",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Toyota",
@@ -7127,7 +7423,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Nieuwprijsniveau op een compacte Proace City EV levert geen marge.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Proace City"
 },{
   "Platform": "Otomoto",
   "Merk": "Ford",
@@ -7151,7 +7448,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Poolse Transit met 70k km biedt onvoldoende marge na import.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Finn",
   "Merk": "Mercedes-Benz Sprinter 209",
@@ -7175,7 +7473,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Noorse eSprinter met nette prijs maar douanekosten drukken resultaat.",
   "AI Ranking": "66",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Sprinter"
 },{
   "Platform": "Finn",
   "Merk": "Mercedes-Benz Sprinter 312",
@@ -7199,7 +7498,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Lage km-stand maar Noorse import buiten de EU brengt administratieve kosten.",
   "AI Ranking": "64",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Sprinter"
 },{
   "Platform": "Finn",
   "Merk": "Mercedes-Benz eSprinter 312",
@@ -7223,7 +7523,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Noors voertuig met bijkomende importheffingen en bpm-afhandeling.",
   "AI Ranking": "54",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -7247,7 +7548,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Noorse eDeliver 9 voor bijna zesentwintigduizend euro is veel te duur.",
   "AI Ranking": "44",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Deliver 9"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -7271,7 +7573,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Maxus eDeliver 9 uit Noorwegen met te hoge aanschafprijs en invoerheffingen.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Deliver 9"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -7295,7 +7598,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Noorse elektrische pick-up heeft te kleine doelgroep en importkosten.",
   "AI Ranking": "42",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Deliver 9"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -7319,7 +7623,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Noorse import van open laadbak eDeliver 9 is te complex en te duur.",
   "AI Ranking": "42",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Deliver 9"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -7343,7 +7648,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zeer hoge km-stand van 215k km en Noorse import buiten de EU.",
   "AI Ranking": "35",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Deliver 9"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -7367,7 +7673,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Import uit Noorwegen brengt douanekosten en eDeliver 9 heeft zwakke vraag.",
   "AI Ranking": "50",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Deliver 9"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -7391,7 +7698,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -7415,7 +7723,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -7439,7 +7748,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Open laadbak uitvoering past niet binnen de kernvoorraad.",
   "AI Ranking": "46",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -7463,7 +7773,8 @@
   "AI Pick": "Ja",
   "AI Reden": "AI Top Pick: eSprinter L2 met 49980 km voor slechts 8395 euro levert uitstekende marge.",
   "AI Ranking": "88",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -7487,7 +7798,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zware Crafter kofferwagen met te specifieke doelgroep.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -7511,7 +7823,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -7535,7 +7848,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter Hochdach FWD werd historisch negatief beoordeeld.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -7559,7 +7873,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Open laadbak Crafter heeft trage omloopsnelheid.",
   "AI Ranking": "50",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -7583,7 +7898,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter modelvariant sluit minder aan bij onze verkoopdoelgroep.",
   "AI Ranking": "55",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -7607,7 +7923,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Oude Crafter Euro 5 diesel past niet in het huidige handelsbeleid.",
   "AI Ranking": "40",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Mobile",
   "Merk": "Volkswagen",
@@ -7631,7 +7948,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter dubbele cabine met open bak sluit niet aan bij onze voorraad.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -7655,7 +7973,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Hoge aanschafprijs voor een Maxus bestelbus.",
   "AI Ranking": "53",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -7679,7 +7998,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Grote 89kWh batterij maar eDeliver 9 heeft lage restwaardes.",
   "AI Ranking": "55",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -7703,7 +8023,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eDeliver 9 met 52kWh batterij werd historisch negatief beoordeeld.",
   "AI Ranking": "50",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Mobile",
   "Merk": "Ford",
@@ -7727,7 +8048,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Transit"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -7751,7 +8073,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Maxus eDeliver 3 met meer dan 100k km kent weinig marktvraag.",
   "AI Ranking": "45",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 3"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -7775,7 +8098,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Mobile",
   "Merk": "Ford",
@@ -7799,7 +8123,8 @@
   "AI Pick": "Ja",
   "AI Reden": "AI Top Pick: Ford E-Transit L4H3 met 68kWh accu in Nederland voor slechts 12950 euro.",
   "AI Ranking": "87",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Transit"
 },{
   "Platform": "Mobile",
   "Merk": "Ford",
@@ -7823,7 +8148,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Custom mHEV met 165k km zit ruim boven de gewenste kilometergrens.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit Custom"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -7847,7 +8173,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Redelijke eVito maar marge is onvoldoende ruim voor deze prijs.",
   "AI Ranking": "63",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -7871,7 +8198,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duitse eSprinter 312 met nette kilometers en scherpe prijs.",
   "AI Ranking": "71",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -7895,7 +8223,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -7919,7 +8248,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Courante eSprinter met nette kilometerstand en afgeprijsde status.",
   "AI Ranking": "72",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -7943,7 +8273,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zeer lage kilometers maar 35kWh accu beperkt de commerciële vraag.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -7967,7 +8298,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Nette lage km-stand en scherpe prijs maar 35kWh accu beperkt de markt.",
   "AI Ranking": "70",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -7991,7 +8323,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Netto prijs van 13403 euro is redelijk maar marge blijft beperkt.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8015,7 +8348,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Nette Duitse eVito maar marge is onvoldoende om risico te dekken.",
   "AI Ranking": "63",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8039,7 +8373,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duitse eVito met 47k km voor ruim veertienduizend euro biedt krappe marge.",
   "AI Ranking": "65",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8063,7 +8398,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 111 met 150km actieradius heeft te beperkte inzetbaarheid.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8087,7 +8423,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Dubbele listing van Duitse eVito met 11k km.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8111,7 +8448,8 @@
   "AI Pick": "Ja",
   "AI Reden": "AI Top Pick: Mercedes eSprinter met slechts 36318 km voor 8395 euro met airco en camera.",
   "AI Ranking": "89",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8135,7 +8473,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter met 38k km voor veertienduizend euro biedt redelijke marge.",
   "AI Ranking": "71",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8159,7 +8498,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zeer lage kilometerstand maar eVito 111 vraagt flinke afslag.",
   "AI Ranking": "68",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Mobile",
   "Merk": "Mercedes-Benz",
@@ -8183,7 +8523,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duitse eSprinter met 33k km en SoH test voor nette prijs.",
   "AI Ranking": "71",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "La Centrale",
   "Merk": "Mercedes-Benz",
@@ -8207,7 +8548,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES SPRINTER III phase 2",
@@ -8231,7 +8573,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Lage km-stand maar bijna twintigduizend euro is te duur voor 41kWh Sprinter.",
   "AI Ranking": "65",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Sprinter"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES SPRINTER III",
@@ -8255,7 +8598,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter met 65k km voor bijna zeventienduizend euro is te duur.",
   "AI Ranking": "60",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES SPRINTER III phase 2",
@@ -8279,7 +8623,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter met 15k km maar achttienduizend euro is aan de hoge kant.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Sprinter"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES SPRINTER III phase 2",
@@ -8303,7 +8648,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zeer lage kilometerstand maar prijs van 18500 euro is net te krap.",
   "AI Ranking": "68",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Sprinter"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES VITO III phase 2",
@@ -8327,7 +8673,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Franse eVito voor bijna twintigduizend euro is veel te duur.",
   "AI Ranking": "54",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES VITO III phase 2",
@@ -8351,7 +8698,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 35kWh voor bijna twintigduizend euro is te duur.",
   "AI Ranking": "54",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES SPRINTER III phase 2",
@@ -8375,7 +8723,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Lage km-stand maar twintigduizend euro is te veel voor een 41kWh Sprinter.",
   "AI Ranking": "64",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Sprinter"
 },{
   "Platform": "La Centrale",
   "Merk": "MAXUS EDELIVER9",
@@ -8399,7 +8748,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Maxus met 35kWh accupakket is in de praktijk nauwelijks verkoopbaar.",
   "AI Ranking": "50",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Autoscout24",
   "Merk": "Ford ",
@@ -8423,7 +8773,8 @@
   "AI Pick": "Nee",
   "AI Reden": "E-Transit met ruim een ton op de teller laat te weinig marge over.",
   "AI Ranking": "63",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -8447,7 +8798,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Eerder door inkoopteam afgewezen (Zwarte lijst)",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8471,7 +8823,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 111 voor bijna negentienduizend euro is structureel te duur.",
   "AI Ranking": "57",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Citan",
@@ -8495,7 +8848,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Jonge eCitan 45kWh met 9k km maar vraagprijs van 19500 euro is fors.",
   "AI Ranking": "63",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Citan"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -8519,7 +8873,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Prijs te hoog voor een standaard eVito met oudere accutechniek.",
   "AI Ranking": "60",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8543,7 +8898,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Dubbele vermelding van te dure Duitse eVito.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -8567,7 +8923,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 111 met 41k km voor achttienduizend euro is te duur.",
   "AI Ranking": "58",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Kasten 111"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8591,7 +8948,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Spaanse eVito met 18000 euro vraagprijs biedt onvoldoende rendement.",
   "AI Ranking": "57",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8615,7 +8973,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Betere 66kWh accu maar prijs van achttienduizend euro is marktconform.",
   "AI Ranking": "65",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -8639,7 +8998,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zelfde voertuig aangeboden tegen te hoge prijs.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8663,7 +9023,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duitse eVito met 38k km voor bijna achttienduizend euro laat geen ruimte.",
   "AI Ranking": "60",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8687,7 +9048,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Bruto duplicatie van de Pfaffenhofen advertentie.",
   "AI Ranking": "56",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8711,7 +9073,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Identieke duurdere advertentie van dezelfde eVito.",
   "AI Ranking": "56",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -8735,7 +9098,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eSprinter met 23k km voor veertienduizend euro is een redelijke deal.",
   "AI Ranking": "71",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8759,7 +9123,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito met 28k km voor bijna achttienduizend euro is te hoog geprijsd.",
   "AI Ranking": "60",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8783,7 +9148,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duitse eVito met bijna achttienduizend euro vraagprijs biedt geen marge.",
   "AI Ranking": "60",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8807,7 +9173,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 111 met 43k km voor ruim zestienduizend euro is marktconform.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8831,7 +9198,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Spaanse eSprinter met 38k km is marktconform geprijsd.",
   "AI Ranking": "66",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Sprinter"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8855,7 +9223,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Spaanse eVito 66kWh met 25k km maar zeventienduizend euro is te strak.",
   "AI Ranking": "65",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8879,7 +9248,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito met achterklep en ramen sluit minder goed aan bij gesloten bestelbus.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8903,7 +9273,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duplicatie van Spaanse eSprinter met gemiddelde marge.",
   "AI Ranking": "66",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Sprinter"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -8927,7 +9298,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Nederlands aanbod maar prijs van 17490 euro voor 41kWh is te fors.",
   "AI Ranking": "59",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8951,7 +9323,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 111 Kasten Lang voor bijna achttienduizend euro is te prijzig.",
   "AI Ranking": "60",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8975,7 +9348,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Derde duplicaat van Spaanse eVito met redelijke prijsstelling.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -8999,7 +9373,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito 66kWh voor vijftienduizend euro is redelijk maar marge blijft gemiddeld.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9023,7 +9398,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Correct geprijsde Nederlandse eVito maar marge blijft bescheiden.",
   "AI Ranking": "68",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9047,7 +9423,8 @@
   "AI Pick": "Nee",
   "AI Reden": "eVito met 30k km voor vijftienduizend euro biedt net te weinig handelsmarge.",
   "AI Ranking": "65",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9071,7 +9448,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duplicaat van Spaanse eVito 66kWh met standaard marge.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9095,7 +9473,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Italiaanse eSprinter L2H2 met nette kilometers en redelijke prijs.",
   "AI Ranking": "69",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9119,7 +9498,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Belgische eVito met lage km-stand maar 41kWh batterij drukt marge.",
   "AI Ranking": "65",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9143,7 +9523,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Lage km-stand en scherpe prijs maar 35kWh blijft een commercieel risico.",
   "AI Ranking": "68",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "111 ELETTRICA"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9167,7 +9548,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Tourer personenuitvoering valt buiten onze kernactiviteit.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9191,7 +9573,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Nette kilometerstand en scherpe prijs maar 35kWh beperkt de doorloop.",
   "AI Ranking": "67",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -9215,7 +9598,8 @@
   "AI Pick": "Ja",
   "AI Reden": "AI Top Pick: eSprinter 55kWh met slechts 13000 km voor 9754 euro biedt maximale marge.",
   "AI Ranking": "90",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9239,7 +9623,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Jonge eCitan met 7k km maar met 18500 euro te dicht op de markt.",
   "AI Ranking": "64",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eCitan"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9263,7 +9648,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Italiaanse eVito met 35kWh accu kent een beperkt koperspubliek.",
   "AI Ranking": "66",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -9287,7 +9673,8 @@
   "AI Pick": "Ja",
   "AI Reden": "AI Top Pick: Zeer scherpe prijs voor een eSprinter met 36000 km en status afgeprijsd.",
   "AI Ranking": "92",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9311,7 +9698,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Zeer lage netto prijs maar verkoopvoorwaarden en status onvoldoende helder.",
   "AI Ranking": "74",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -9335,7 +9723,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Scherpe prijs voor eSprinter 55kWh maar transport uit Noord-Italië drukt marge.",
   "AI Ranking": "74",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9359,7 +9748,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Spaanse eVito 66kWh met nette prijs rond twaalfduizend euro.",
   "AI Ranking": "70",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Sprinter",
@@ -9383,7 +9773,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Uitstekende prijs voor eSprinter 55kWh maar nét buiten de absolute topselectie.",
   "AI Ranking": "74",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9407,7 +9798,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Gunstige Spaanse eVito maar transportkosten dempen de uiteindelijke marge.",
   "AI Ranking": "71",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9431,7 +9823,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Locatie van bekende concurrent",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9455,7 +9848,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Dubbele listing met veel te hoge bruto vraagprijs.",
   "AI Ranking": "52",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9479,7 +9873,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Scherpe prijs en lage kilometerstand voor deze Spaanse Vito.",
   "AI Ranking": "71",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9503,7 +9898,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duplicaat van Osnabrück advertentie met te hoge vraagprijs.",
   "AI Ranking": "60",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9527,7 +9923,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Extralang eVito model werd historisch expliciet afgekeurd door inkoop.",
   "AI Ranking": "48",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9551,7 +9948,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Duurdere duplicatie van eSprinter aanbod in Duitsland.",
   "AI Ranking": "60",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "eSprinter"
 },{
   "Platform": "Autoscout24",
   "Merk": "Maxus eDeliver 9",
@@ -9575,7 +9973,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Oostenrijkse eDeliver 9 met 52kWh accu is historisch ongewenst en duur.",
   "AI Ranking": "44",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "L3H2 52kWh"
 },{
   "Platform": "Autoscout24",
   "Merk": "Ford ",
@@ -9599,7 +9998,8 @@
   "AI Pick": "Nee",
   "AI Reden": "E-Transit met 68k km voor ruim negentienduizend euro is marktconform.",
   "AI Ranking": "62",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Transit"
 },{
   "Platform": "Legal Brokers (veilingen)",
   "Merk": "Volkswagen",
@@ -9623,7 +10023,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Veiling reeds verlopen",
   "AI Ranking": "0",
-  "Tonen": ""
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz ",
@@ -9647,7 +10048,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Lage km-stand en scherpe prijs voor Spaanse Vito maar importkosten gelden.",
   "AI Ranking": "71",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Vito"
 },{
   "Platform": "Autoscout24",
   "Merk": "Mercedes-Benz Vito",
@@ -9671,7 +10073,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Tourer personenuitvoering matcht niet met onze bestelbusfocus.",
   "AI Ranking": "52",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Tourer Elektrik"
 },{
   "Platform": "Autoscout24",
   "Merk": "Volkswagen ",
@@ -9695,7 +10098,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Crafter modeluitvoering sluit historisch minder aan bij de criteria.",
   "AI Ranking": "56",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "Crafter"
 },{
   "Platform": "La Centrale",
   "Merk": "MERCEDES VITO III phase 2",
@@ -9719,7 +10123,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Extra Long eVito model werd historisch afgekeurd wegens verkeerde specificatie.",
   "AI Ranking": "52",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -9743,7 +10148,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Recente 2024 eDeliver 9 maar tweeëntwintigduizend euro laat weinig marge over.",
   "AI Ranking": "58",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Mobile",
   "Merk": "Maxus",
@@ -9767,7 +10173,8 @@
   "AI Pick": "Nee",
   "AI Reden": "Maxus 72kWh eDeliver 9 botst met historische inkoopfeedback en is te duur.",
   "AI Ranking": "50",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "eDeliver 9"
 },{
   "Platform": "Finn",
   "Merk": "Maxus e-Deliver 9",
@@ -9791,7 +10198,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Prijs onrealistisch laag (< 3500) (schade of fout)",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "e-Deliver 9"
 },{
   "Platform": "Finn",
   "Merk": "Mercedes-Benz Vito",
@@ -9815,7 +10223,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Prijs onrealistisch laag (< 3500) (schade of fout)",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "e-Vito"
 },{
   "Platform": "Otomoto",
   "Merk": "Ford",
@@ -9839,7 +10248,8 @@
   "AI Pick": "Nee",
   "AI Reden": "JS Filter: Prijs onrealistisch laag (< 3500) (schade of fout)",
   "AI Ranking": "0",
-  "Tonen": "Ja"
+  "Tonen": "Ja",
+  "Model ": "e-Transit"
 }
   ],
   "voorraad": [
