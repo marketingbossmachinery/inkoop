@@ -703,7 +703,7 @@
             <div class="page-toolbar">
                 <div class="page-title-group">
                     <h1>Boss Vans — Markt &amp; Veiling Factsheet</h1>
-                    <p id="selection-status-desc">Overzicht van actieve bedrijfswagens per land en merk, aangevuld met veilingurgentie, AI Picks en portaldekking.</p>
+                    <p id="selection-status-desc">Overzicht van actieve bedrijfswagens per land en model, aangevuld met veilingurgentie, AI Picks en portaldekking.</p>
                 </div>
                 <div class="toolbar-controls">
                     <select id="scopeSelect" class="btn" onchange="recomputeAndRender()">
@@ -774,7 +774,7 @@
 
         <div class="panel">
             <div class="panel-header">
-                <h2>2. Overzicht per Land &amp; Merk (Matrix)</h2>
+                <h2>2. Overzicht per Land &amp; Model (Matrix)</h2>
                 <span style="font-size: 12px; color: var(--text-light);">Klik op een landnaam om te pinnen · Klik op een getal om direct naar het platform te gaan</span>
             </div>
             <div class="table-wrapper">
@@ -1052,6 +1052,98 @@
             return false;
         }
 
+        // Normaliseert modelnaam zodat varianten met/zonder hoofdletters, streepjes, spaties of spellingsverschillen samen komen
+        function normalizeModelKey(brandVal, modelVal, titleVal) {
+            let rawBrand = String(brandVal || '').trim();
+            let rawModel = String(modelVal || '').trim();
+
+            if (!rawModel && titleVal) {
+                rawModel = String(titleVal).trim();
+            }
+            if (!rawModel) return 'onbekend';
+
+            // Verwijder merk als het al vooraan in het model staat
+            let combined = rawModel;
+            if (rawBrand) {
+                const brandClean = rawBrand.replace(/[-_]/g, ' ').trim();
+                const escBrand = brandClean.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '[\\s\\-_]+');
+                combined = combined.replace(new RegExp(`^${escBrand}\\b`, 'i'), '').trim();
+            }
+
+            // Spelling- en merkprefix-varianten normaliseren (bijv. Mercedes-Benz / MB / Vito / E-Deliver 9)
+            let norm = combined
+                .toLowerCase()
+                .replace(/\bmercedes[\s\-]*benz\b/g, 'mercedes')
+                .replace(/\bmb\b/g, 'mercedes')
+                .replace(/\bvolkswagen\b/g, 'vw')
+                .replace(/\be[\s\-]*deliver[\s\-]*([0-9]+)/g, 'edeliver$1')
+                .replace(/\bsprinter[\s\-]*([0-9]{3})/g, 'sprinter$1')
+                .replace(/\btransit[\s\-]*custom\b/g, 'transitcustom')
+                .replace(/\btransit[\s\-]*connect\b/g, 'transitconnect')
+                .replace(/\bmaster[\s\-]*([lhm]\d)?/g, 'master$1')
+                .replace(/\bproace[\s\-]*max\b/g, 'proacemax')
+                .replace(/\bproace[\s\-]*city\b/g, 'proacecity')
+                .replace(/[^a-z0-9]+/g, '');
+
+            if (!norm) {
+                norm = rawModel.toLowerCase().replace(/[^a-z0-9]+/g, '');
+            }
+
+            return norm || 'onbekend';
+        }
+
+        function formatModelLabel(normKey, rawModelVal, rawBrandVal, rawTitleVal) {
+            const explicitMap = {
+                'vito': 'MERCEDES-BENZ VITO',
+                'sprinter': 'MERCEDES-BENZ SPRINTER',
+                'citan': 'MERCEDES-BENZ CITAN',
+                'edeliver9': 'MAXUS E-DELIVER 9',
+                'edeliver3': 'MAXUS E-DELIVER 3',
+                'transit': 'FORD TRANSIT',
+                'transitcustom': 'FORD TRANSIT CUSTOM',
+                'transitconnect': 'FORD TRANSIT CONNECT',
+                'transporter': 'VW TRANSPORTER',
+                'crafter': 'VW CRAFTER',
+                'caddy': 'VW CADDY',
+                'ducato': 'FIAT DUCATO',
+                'doblo': 'FIAT DOBLO',
+                'master': 'RENAULT MASTER',
+                'trafic': 'RENAULT TRAFIC',
+                'kangoo': 'RENAULT KANGOO',
+                'boxer': 'PEUGEOT BOXER',
+                'expert': 'PEUGEOT EXPERT',
+                'partner': 'PEUGEOT PARTNER',
+                'jumper': 'CITROËN JUMPER',
+                'jumpy': 'CITROËN JUMPY',
+                'berlingo': 'CITROËN BERLINGO',
+                'movano': 'OPEL MOVANO',
+                'vivaro': 'OPEL VIVARO',
+                'combo': 'OPEL COMBO',
+                'proace': 'TOYOTA PROACE',
+                'proacemax': 'TOYOTA PROACE MAX',
+                'proacecity': 'TOYOTA PROACE CITY',
+                'daily': 'IVECO DAILY'
+            };
+
+            if (explicitMap[normKey]) return explicitMap[normKey];
+
+            let base = String(rawModelVal || rawTitleVal || normKey).trim();
+            if (rawBrandVal) {
+                const brandClean = String(rawBrandVal).trim();
+                const escBrand = brandClean.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '[\\s\\-_]+');
+                const stripped = base.replace(new RegExp(`^${escBrand}\\b`, 'i'), '').trim();
+                if (stripped) base = stripped;
+            }
+
+            const cleaned = base
+                .replace(/[-_]+/g, ' ')
+                .replace(/\s{2,}/g, ' ')
+                .trim()
+                .toUpperCase();
+
+            return cleaned || normKey.toUpperCase();
+        }
+
         function detectCountryCode(locStr) {
             if (!locStr) return 'other';
             const cleaned = String(locStr).replace(/^[📍\s🏢]+/, '').trim().toLowerCase();
@@ -1211,7 +1303,7 @@
                     mapInstance.setView([meta.lat, meta.lng], meta.zoom || 6);
                 }
             } else {
-                desc.textContent = 'Overzicht van actieve bedrijfswagens per land en merk, aangevuld met veilingurgentie, AI Picks en portaldekking.';
+                desc.textContent = 'Overzicht van actieve bedrijfswagens per land en model, aangevuld met veilingurgentie, AI Picks en portaldekking.';
                 mapHint.textContent = 'Klik op een land om in te zoomen en geverifieerde plaats-bolletjes te tonen';
                 if (mapInstance) {
                     mapInstance.setView([50, 9], 4);
@@ -1244,25 +1336,45 @@
                 return true;
             });
 
-            // Top 10 merken voor overzichtelijke matrix-kolommen
-            const globalBrandCounts = {};
+            // Groepeer en tel alle rijen op genormaliseerd model (niet op merk)
+            const modelKeyCounts = {};
+            const modelKeyLabelSamples = {};
             filtered.forEach(r => {
-                const b = (r.Merk && String(r.Merk).trim()) ? String(r.Merk).trim() : 'Overig';
-                globalBrandCounts[b] = (globalBrandCounts[b] || 0) + 1;
+                const key = normalizeModelKey(r.Merk, r.Model, r.Titel);
+                modelKeyCounts[key] = (modelKeyCounts[key] || 0) + 1;
+                if (!modelKeyLabelSamples[key]) {
+                    modelKeyLabelSamples[key] = {
+                        model: r.Model,
+                        brand: r.Merk,
+                        title: r.Titel
+                    };
+                }
             });
-            const topBrandCols = Object.entries(globalBrandCounts)
+
+            const topModelKeys = Object.entries(modelKeyCounts)
                 .sort((a, b) => b[1] - a[1])
                 .slice(0, 10)
-                .map(([b]) => b);
+                .map(([k]) => k);
+
+            const OTHER_MODEL_KEY = '__OVERIGE_MODELLEN__';
+            const modelColumns = topModelKeys.map(key => {
+                const s = modelKeyLabelSamples[key] || {};
+                return {
+                    key,
+                    label: formatModelLabel(key, s.model, s.brand, s.title),
+                    searchQuery: formatModelLabel(key, s.model, '', s.title)
+                };
+            });
 
             const countryStats = {};
-            const brandTotalsAll = {};
-            const brandTotalsSelected = {};
+            const colTotalsAll = {};
+            const colTotalsSelected = {};
 
             filtered.forEach(row => {
                 const code = detectCountryCode(row.Locatie);
-                const rawBrand = (row.Merk && String(row.Merk).trim()) ? String(row.Merk).trim() : 'Overig';
-                const colBrand = topBrandCols.includes(rawBrand) ? rawBrand : 'Overige merken';
+                const normModel = normalizeModelKey(row.Merk, row.Model, row.Titel);
+                const colKey = topModelKeys.includes(normModel) ? normModel : OTHER_MODEL_KEY;
+
                 const platform = (row.Platform && String(row.Platform).trim()) ? String(row.Platform).trim() : 'Onbekend';
                 const priceNum = parseNumericPrice(row['Laatste prijs'] || row['Prijs'] || row['Eerste prijs']);
                 const ai = isAiPick(row);
@@ -1284,7 +1396,7 @@
                         ai: 0,
                         prices: [],
                         portals: new Set(),
-                        brands: {}
+                        models: {}
                     };
                 }
 
@@ -1294,11 +1406,11 @@
                 if (ai) st.ai++;
                 if (priceNum !== null) st.prices.push(priceNum);
                 st.portals.add(platform);
-                st.brands[colBrand] = (st.brands[colBrand] || 0) + 1;
+                st.models[colKey] = (st.models[colKey] || 0) + 1;
 
-                brandTotalsAll[colBrand] = (brandTotalsAll[colBrand] || 0) + 1;
+                colTotalsAll[colKey] = (colTotalsAll[colKey] || 0) + 1;
                 if (selectedCountryCode && code === selectedCountryCode) {
-                    brandTotalsSelected[colBrand] = (brandTotalsSelected[colBrand] || 0) + 1;
+                    colTotalsSelected[colKey] = (colTotalsSelected[colKey] || 0) + 1;
                 }
             });
 
@@ -1310,9 +1422,13 @@
                 return countryStats[b].count - countryStats[a].count;
             });
 
-            const sortedBrandCols = [...topBrandCols];
-            if (brandTotalsAll['Overige merken']) {
-                sortedBrandCols.push('Overige merken');
+            const sortedModelCols = [...modelColumns];
+            if (colTotalsAll[OTHER_MODEL_KEY]) {
+                sortedModelCols.push({
+                    key: OTHER_MODEL_KEY,
+                    label: 'OVERIGE MODELLEN',
+                    searchQuery: ''
+                });
             }
 
             const focusRows = selectedCountryCode
@@ -1395,11 +1511,11 @@
                 document.getElementById('kpi-link-top').href = PLATFORM_PAGE;
             }
 
-            const activeBrandTotals = selectedCountryCode ? brandTotalsSelected : brandTotalsAll;
+            const activeColTotals = selectedCountryCode ? colTotalsSelected : colTotalsAll;
             const activeGrandTotal = focusRows.length;
 
             renderMapMarkers(countryStats, sortedCountries, focusRows, tabParam);
-            renderMatrixTable(sortedCountries, sortedBrandCols, countryStats, activeBrandTotals, activeGrandTotal, scope);
+            renderMatrixTable(sortedCountries, sortedModelCols, countryStats, activeColTotals, activeGrandTotal, scope);
             renderPlacesForSelectedCountry(focusRows, focusName, tabParam, landCodeParam);
             renderSpecsAndBrands(focusRows, landCodeParam, tabParam);
             renderInsights(sortedCountries, countryStats);
@@ -1489,7 +1605,7 @@
             }
         }
 
-        function renderMatrixTable(sortedCountries, sortedBrandCols, countryStats, brandTotals, grandTotal, scope) {
+        function renderMatrixTable(sortedCountries, sortedModelCols, countryStats, colTotals, grandTotal, scope) {
             const thead = document.querySelector('#countryBrandTable thead');
             const tbody = document.querySelector('#countryBrandTable tbody');
             const tfoot = document.querySelector('#countryBrandTable tfoot');
@@ -1497,13 +1613,13 @@
             const tabParam = scope === 'auctions' ? 'auctions' : 'listings';
 
             let headHtml = '<tr><th>Land</th>';
-            sortedBrandCols.forEach(brand => {
-                headHtml += `<th>${escapeHtml(brand)}</th>`;
+            sortedModelCols.forEach(col => {
+                headHtml += `<th>${escapeHtml(col.label)}</th>`;
             });
             headHtml += '<th class="total-col">Totaal</th></tr>';
             thead.innerHTML = headHtml;
 
-            const exportHeaders = ['Land', ...sortedBrandCols, 'Totaal'];
+            const exportHeaders = ['Land', ...sortedModelCols.map(c => c.label), 'Totaal'];
             const exportRows = [];
 
             let bodyHtml = '';
@@ -1523,13 +1639,13 @@
 
                 const rowExport = [name];
 
-                sortedBrandCols.forEach(brand => {
-                    const cnt = st.brands[brand] || 0;
+                sortedModelCols.forEach(col => {
+                    const cnt = st.models[col.key] || 0;
                     rowExport.push(cnt);
                     if (cnt > 0) {
                         const url = buildPlatformUrl({
                             tab: tabParam,
-                            q: brand === 'Overige merken' ? '' : brand,
+                            q: col.searchQuery,
                             land: code !== 'other' ? code : ''
                         });
                         bodyHtml += `<td><a class="cell-link has-items" href="${url}" title="Open in platform">${cnt}</a></td>`;
@@ -1549,21 +1665,21 @@
             });
 
             if (sortedCountries.length === 0) {
-                bodyHtml = `<tr><td colspan="${sortedBrandCols.length + 2}" style="text-align:center; padding:20px;">Geen data voor de huidige selectie.</td></tr>`;
+                bodyHtml = `<tr><td colspan="${sortedModelCols.length + 2}" style="text-align:center; padding:20px;">Geen data voor de huidige selectie.</td></tr>`;
             }
 
             tbody.innerHTML = bodyHtml;
 
             const totalLabel = selectedCountryCode
                 ? `Totaal (${getCountryDisplayName(selectedCountryCode)})`
-                : 'Totaal per merk';
+                : 'Totaal per model';
 
             let footHtml = `<tr><td>${escapeHtml(totalLabel)}</td>`;
             const footExport = [totalLabel];
-            sortedBrandCols.forEach(brand => {
-                const bTot = brandTotals[brand] || 0;
-                footExport.push(bTot);
-                footHtml += `<td>${bTot}</td>`;
+            sortedModelCols.forEach(col => {
+                const mTot = colTotals[col.key] || 0;
+                footExport.push(mTot);
+                footHtml += `<td>${mTot}</td>`;
             });
             footExport.push(grandTotal);
             footHtml += `<td>${grandTotal}</td></tr>`;
