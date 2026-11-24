@@ -431,16 +431,10 @@
 
         table.matrix-table thead th.drillable-th {
             cursor: pointer;
-            transition: background-color 0.15s, color 0.15s;
         }
 
         table.matrix-table thead th.drillable-th:hover {
             background: var(--boss-blue-dark);
-        }
-
-        table.matrix-table thead th.active-drill-th {
-            background: var(--boss-blue);
-            color: #ffffff;
         }
 
         table.matrix-table thead th:first-child {
@@ -816,7 +810,7 @@
                     <h2 id="matrixPanelTitle">2. Overzicht per Land &amp; Merk (Matrix)</h2>
                     <button type="button" id="backToBrandsBtn" class="btn-back-brand" style="display:none;" onclick="clearSelectedBrand()">← Alle merken</button>
                 </div>
-                <span id="matrixInstructionHint" style="font-size: 12px; color: var(--text-light);">Klik op een merk in de kop om uit te splitsen in modellen · Klik op een landnaam om te pinnen</span>
+                <span id="matrixHintText" style="font-size: 12px; color: var(--text-light);">Klik op een merk in de kop om uit te splitsen in modellen · Klik op een landnaam om te pinnen</span>
             </div>
             <div class="table-wrapper">
                 <table class="matrix-table" id="countryBrandTable">
@@ -972,7 +966,7 @@
 
         let rawListings = [];
         let selectedCountryCode = null;
-        let selectedBrandKey = null; // null = merk-overzicht, string = genormaliseerde merknaam voor model-uitsplitsing
+        let selectedBrandKey = null;
         let mapInstance = null;
         let markersLayer = null;
         let cityDotsLayer = null;
@@ -1076,7 +1070,6 @@
         }
 
         function getRowValue(row, possibleKeys) {
-            if (!row) return '';
             for (let k of possibleKeys) {
                 for (let actualKey of Object.keys(row)) {
                     if (actualKey.trim().toLowerCase() === k.trim().toLowerCase()) {
@@ -1095,7 +1088,7 @@
             return false;
         }
 
-        // Merk (kolom B / index 1) normaliseren zodat varianten samenvallen
+        // Merk (kolom B / Merk) normaliseren zodat varianten samenvallen
         function normalizeBrandKey(brandVal) {
             const raw = String(brandVal || '').trim().toLowerCase();
             if (!raw) return 'onbekend';
@@ -1112,32 +1105,26 @@
             if (brandKey === 'mercedes-benz') return 'MERCEDES-BENZ';
             if (brandKey === 'volkswagen') return 'VOLKSWAGEN';
             if (brandKey === 'onbekend') return 'ONBEKEND';
-            const cleaned = String(sampleBrandVal || brandKey).trim().toUpperCase();
-            return cleaned || brandKey.toUpperCase();
+            return String(sampleBrandVal || brandKey).trim().toUpperCase() || brandKey.toUpperCase();
         }
 
-        // Model uit index 23 ("Model ") normaliseren zodat varianten netjes samen komen
+        // Model (kolom 23 / "Model ") normaliseren zodat varianten netjes samen komen
         function normalizeModelKey(modelVal, brandVal) {
             let rawModel = String(modelVal ?? '').trim();
             if (!rawModel) return 'onbekend';
-
             const rawBrand = String(brandVal ?? '').trim();
             if (rawBrand) {
                 const escBrand = rawBrand.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '[\\s\\-_]+');
                 const stripped = rawModel.replace(new RegExp(`^${escBrand}\\b`, 'i'), '').trim();
                 if (stripped) rawModel = stripped;
             }
-
             const norm = rawModel
                 .toLowerCase()
                 .replace(/\be[\s\-]*deliver[\s\-]*([0-9]+)/g, 'edeliver$1')
                 .replace(/\bsprinter[\s\-]*([0-9]{3})/g, 'sprinter$1')
                 .replace(/\btransit[\s\-]*custom\b/g, 'transitcustom')
                 .replace(/\btransit[\s\-]*connect\b/g, 'transitconnect')
-                .replace(/\bproace[\s\-]*max\b/g, 'proacemax')
-                .replace(/\bproace[\s\-]*city\b/g, 'proacecity')
                 .replace(/[^a-z0-9]+/g, '');
-
             return norm || rawModel.toLowerCase().trim() || 'onbekend';
         }
 
@@ -1375,7 +1362,7 @@
                 .slice(0, 10)
                 .map(([k]) => k);
 
-            // 2. Modellen tellen voor het geselecteerde merk (index 23 / "Model ")
+            // 2. Modellen tellen voor gekozen merk (index 23 / "Model ")
             const modelKeyCounts = {};
             const modelSamples = {};
             if (selectedBrandKey) {
@@ -1398,16 +1385,18 @@
 
             const OTHER_KEY = '__OVERIGE__';
             const isModelDrilldown = Boolean(selectedBrandKey);
+            const activeBrandLabel = selectedBrandKey
+                ? formatBrandLabel(selectedBrandKey, brandSamples[selectedBrandKey])
+                : null;
 
             const matrixCols = isModelDrilldown
                 ? topModelKeys.map(mKey => {
                     const s = modelSamples[mKey] || {};
                     const label = formatModelLabel(mKey, s.model, s.brand);
-                    const brandName = formatBrandLabel(selectedBrandKey, brandSamples[selectedBrandKey]);
                     return {
                         key: mKey,
                         label,
-                        searchQuery: `${brandName} ${label}`.trim(),
+                        searchQuery: `${activeBrandLabel} ${label}`.trim(),
                         isBrandColumn: false
                     };
                 })
@@ -1496,7 +1485,7 @@
                 sortedMatrixCols.push({
                     key: OTHER_KEY,
                     label: isModelDrilldown ? 'OVERIGE MODELLEN' : 'OVERIGE MERKEN',
-                    searchQuery: isModelDrilldown ? formatBrandLabel(selectedBrandKey, brandSamples[selectedBrandKey]) : '',
+                    searchQuery: isModelDrilldown ? activeBrandLabel : '',
                     isBrandColumn: false
                 });
             }
@@ -1585,10 +1574,6 @@
             const activeGrandTotal = isModelDrilldown
                 ? sortedMatrixCols.reduce((acc, c) => acc + (activeColTotals[c.key] || 0), 0)
                 : focusRows.length;
-
-            const activeBrandLabel = selectedBrandKey
-                ? formatBrandLabel(selectedBrandKey, brandSamples[selectedBrandKey])
-                : null;
 
             renderMapMarkers(countryStats, sortedCountries, focusRows, tabParam);
             renderMatrixTable(
@@ -1705,12 +1690,12 @@
             const tfoot = document.querySelector('#countryBrandTable tfoot');
             const titleEl = document.getElementById('matrixPanelTitle');
             const backBtn = document.getElementById('backToBrandsBtn');
-            const hintEl = document.getElementById('matrixInstructionHint');
+            const hintEl = document.getElementById('matrixHintText');
 
             if (isModelDrilldown) {
                 titleEl.textContent = `2. Overzicht per Land & Model — ${activeBrandLabel}`;
                 backBtn.style.display = 'inline-block';
-                hintEl.textContent = `Modellen van ${activeBrandLabel} (basis: kolom 23) · Klik op "← Alle merken" om terug te gaan`;
+                hintEl.textContent = `Modellen van ${activeBrandLabel} (kolom 23) · Klik op "← Alle merken" om terug te gaan`;
             } else {
                 titleEl.textContent = '2. Overzicht per Land & Merk (Matrix)';
                 backBtn.style.display = 'none';
@@ -1774,7 +1759,7 @@
                     q: isModelDrilldown ? activeBrandLabel : '',
                     land: code !== 'other' ? code : ''
                 });
-                bodyHtml += `<td class="total-col"><a class="cell-link has-items" href="${rowTotalUrl}" title="Open wagens voor ${escapeHtml(name)}">${rowTot}</a></td></tr>`;
+                bodyHtml += `<td class="total-col"><a class="cell-link has-items" href="${rowTotalUrl}" title="Open alle wagens voor ${escapeHtml(name)}">${rowTot}</a></td></tr>`;
             });
 
             if (sortedCountries.length === 0) {
