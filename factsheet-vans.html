@@ -1088,7 +1088,6 @@
             return false;
         }
 
-        // Merk (kolom B / Merk) normaliseren zodat varianten samenvallen
         function normalizeBrandKey(brandVal) {
             const raw = String(brandVal || '').trim().toLowerCase();
             if (!raw) return 'onbekend';
@@ -1108,7 +1107,6 @@
             return String(sampleBrandVal || brandKey).trim().toUpperCase() || brandKey.toUpperCase();
         }
 
-        // Model (kolom 23 / "Model ") normaliseren zodat varianten netjes samen komen
         function normalizeModelKey(modelVal, brandVal) {
             let rawModel = String(modelVal ?? '').trim();
             if (!rawModel) return 'onbekend';
@@ -1342,7 +1340,6 @@
                 return true;
             });
 
-            // 1. Merken tellen (kolom B / index 1)
             const brandKeyCounts = {};
             const brandSamples = {};
             filtered.forEach(r => {
@@ -1362,7 +1359,6 @@
                 .slice(0, 10)
                 .map(([k]) => k);
 
-            // 2. Modellen tellen voor gekozen merk (index 23 / "Model ")
             const modelKeyCounts = {};
             const modelSamples = {};
             if (selectedBrandKey) {
@@ -2060,28 +2056,14 @@
         fetch(jsonMasterUrl + '?t=' + new Date().getTime())
             .then(res => res.json())
             .then(masterData => {
-                if (masterData.stockHeaders && masterData.stockRows) {
-                    const headers = masterData.stockHeaders;
-                    const rows = masterData.stockRows.map(r => {
-                        const obj = {};
-                        headers.forEach((h, i) => {
-                            if (h && h.trim()) obj[h.trim()] = r[i];
-                        });
-                        return obj;
-                    });
-                    rawListings = rows.filter(r =>
-                        !(r.Platform || '').toLowerCase().includes('eigen voorraad') &&
-                        (r.Merk || getRowValue(r, ['Model ', 'Model']) || r.Titel)
-                    );
-                } else if (Array.isArray(masterData)) {
-                    rawListings = masterData.filter(r =>
-                        !(r.Platform || '').toLowerCase().includes('eigen voorraad') &&
-                        (r.Merk || getRowValue(r, ['Model ', 'Model']) || r.Titel)
-                    );
-                } else {
-                    const base = masterData.listings || [];
-                    rawListings = base.filter(r => r.Merk || getRowValue(r, ['Model ', 'Model']) || r.Titel);
-                }
+                const base = Array.isArray(masterData)
+                    ? masterData
+                    : (Array.isArray(masterData.listings) ? masterData.listings : []);
+
+                rawListings = base.filter(r =>
+                    !(String(r.Platform || '').toLowerCase().includes('eigen voorraad')) &&
+                    (r.Merk || getRowValue(r, ['Model ', 'Model']) || r.Titel)
+                );
 
                 document.getElementById('last-updated-label').textContent =
                     `Bijgewerkt: ${new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' })}`;
